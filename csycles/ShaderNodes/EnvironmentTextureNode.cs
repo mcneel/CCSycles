@@ -177,7 +177,7 @@ namespace ccl.ShaderNodes
 		internal override void ParseXml(XmlReader xmlNode)
 		{
 			var imgsrc = xmlNode.GetAttribute("src");
-			if (!string.IsNullOrEmpty(imgsrc))
+			if (!string.IsNullOrEmpty(imgsrc) && System.IO.File.Exists(imgsrc))
 			{
 				using (var bmp = new Bitmap(imgsrc))
 				{
