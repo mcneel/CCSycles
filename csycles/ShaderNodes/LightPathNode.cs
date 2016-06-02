@@ -100,7 +100,7 @@ namespace ccl.ShaderNodes
 			AddSocket(IsReflectionRay);
 			IsTransmissionRay = new FloatSocket(parentNode, "Is Transmission Ray");
 			AddSocket(IsTransmissionRay);
-			IsVolumeScatterRay = new FloatSocket(parentNode, "Is VolumeScatter Ray");
+			IsVolumeScatterRay = new FloatSocket(parentNode, "Is Volume Scatter Ray");
 			AddSocket(IsVolumeScatterRay);
 			RayLength = new FloatSocket(parentNode, "Ray Length");
 			AddSocket(RayLength);
