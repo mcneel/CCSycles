@@ -83,6 +83,10 @@ namespace ccl.ShaderNodes
 		/// Transparent depth. @todo find better description
 		/// </summary>
 		public FloatSocket TransparentDepth { get; set; }
+		/// <summary>
+		/// Transmission depth.
+		/// </summary>
+		public FloatSocket TransmissionDepth { get; set; }
 
 		internal LightPathOutputs(ShaderNode parentNode)
 		{
@@ -108,6 +112,8 @@ namespace ccl.ShaderNodes
 			AddSocket(RayDepth);
 			TransparentDepth = new FloatSocket(parentNode, "Transparent Depth");
 			AddSocket(TransparentDepth);
+			TransmissionDepth = new FloatSocket(parentNode, "Transmission Depth");
+			AddSocket(TransmissionDepth);
 		}
 	}
 
