@@ -90,6 +90,7 @@ namespace ccl.ShaderNodes
 			Interpolation = InterpolationType.Linear;
 			ColorSpace = TextureColorSpace.None;
 			Projection = TextureProjection.Flat;
+			Extension = TextureExtension.Repeat;
 		}
 
 		/// <summary>
@@ -108,6 +109,10 @@ namespace ccl.ShaderNodes
 		/// ImageTexture texture interpolation
 		/// </summary>
 		public InterpolationType Interpolation { get; set; }
+		/// <summary>
+		/// texture extension type.
+		/// </summary>
+		public TextureExtension Extension { get; set; }
 		/// <summary>
 		/// ImageTexture linear
 		/// </summary>
@@ -146,8 +151,6 @@ namespace ccl.ShaderNodes
 
 		internal override void SetEnums(uint clientId, uint shaderId)
 		{
-			//CSycles.shadernode_set_attribute_string(clientId, shaderId, Id, "color_space", ColorSpace.ToString());
-			//CSycles.shadernode_set_attribute_string(clientId, shaderId, Id, "projection", Projection.ToString());
 			CSycles.shadernode_set_enum(clientId, shaderId, Id, Type, "color_space", ColorSpace.ToString());
 			CSycles.shadernode_set_enum(clientId, shaderId, Id, Type, "projection", Projection.ToString());
 		}
@@ -156,6 +159,7 @@ namespace ccl.ShaderNodes
 		{
 			CSycles.shadernode_set_member_float(clientId, shaderId, Id, Type, "projection_blend", ProjectionBlend);
 			CSycles.shadernode_set_member_int(clientId, shaderId, Id, Type, "interpolation", (int)Interpolation);
+			CSycles.shadernode_set_member_int(clientId, shaderId, Id, Type, "extension", (int)Extension);
 			CSycles.shadernode_set_member_bool(clientId, shaderId, Id, Type, "use_alpha", UseAlpha);
 			CSycles.shadernode_set_member_bool(clientId, shaderId, Id, Type, "is_linear", IsLinear);
 			if (FloatImage != null)

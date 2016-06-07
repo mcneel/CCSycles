@@ -780,6 +780,9 @@ void cycles_shadernode_set_member_int(unsigned int client_id, unsigned int shade
 						if (mname == "interpolation") {
 							imgnode->interpolation = (ccl::InterpolationType)value;
 						}
+						if (mname == "extension") {
+							imgnode->extension = (ccl::ExtensionType)value;
+						}
 					}
 					break;
 				case shadernode_type::ENVIRONMENT_TEXTURE:

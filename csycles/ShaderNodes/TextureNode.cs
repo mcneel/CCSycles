@@ -38,6 +38,13 @@ namespace ccl.ShaderNodes
 			Tube,
 		}
 
+		public enum TextureExtension
+		{
+			Repeat,
+			Extend,
+			Clip,
+		}
+
 		public enum EnvironmentProjection
 		{
 			Equirectangular,
