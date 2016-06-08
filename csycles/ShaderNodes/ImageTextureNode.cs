@@ -94,10 +94,6 @@ namespace ccl.ShaderNodes
 		}
 
 		/// <summary>
-		/// ImageTexture color space
-		/// </summary>
-		public TextureColorSpace ColorSpace { get; set; }
-		/// <summary>
 		/// ImageTexture texture projection
 		/// </summary>
 		public TextureProjection Projection { get; set; }
@@ -106,18 +102,6 @@ namespace ccl.ShaderNodes
 		/// </summary>
 		public float ProjectionBlend { get; set; }
 		/// <summary>
-		/// ImageTexture texture interpolation
-		/// </summary>
-		public InterpolationType Interpolation { get; set; }
-		/// <summary>
-		/// texture extension type.
-		/// </summary>
-		public TextureExtension Extension { get; set; }
-		/// <summary>
-		/// ImageTexture linear
-		/// </summary>
-		public bool IsLinear { get; set; }
-		/// <summary>
 		/// ImageTexture float image
 		/// </summary>
 		public bool IsFloat { get; set; }
@@ -125,29 +109,6 @@ namespace ccl.ShaderNodes
 		/// ImageTexture use alpha changel if true
 		/// </summary>
 		public bool UseAlpha { get; set; }
-		/// <summary>
-		/// ImageTexture image data name
-		/// </summary>
-		public string Filename { get; set; }
-
-		/// <summary>
-		/// ImageTexture float image data 
-		/// </summary>
-		public float[] FloatImage { set; get; }
-
-		/// <summary>
-		/// ImageTexture byte image data 
-		/// </summary>
-		public byte[] ByteImage { set; get; }
-
-		/// <summary>
-		/// ImageTexture image width in pixels
-		/// </summary>
-		public uint Width { get; set; }
-		/// <summary>
-		/// ImageTexture image height in pixels
-		/// </summary>
-		public uint Height { get; set; }
 
 		internal override void SetEnums(uint clientId, uint shaderId)
 		{
@@ -173,34 +134,36 @@ namespace ccl.ShaderNodes
 				CSycles.shadernode_set_member_byte_img(clientId, shaderId, Id, Type, "builtin-data", Filename ?? String.Format("{0}-{0}-{0}", clientId, shaderId, Id), ref bimg, Width, Height, 1, 4);
 			}
 		}
+		private void SetProjection(string projection)
+		{
+			projection = projection.Replace(" ", "_");
+			Projection = (TextureProjection)Enum.Parse(typeof(TextureProjection), projection, true);
+		}
 
 		internal override void ParseXml(XmlReader xmlNode)
 		{
-			var imgsrc = xmlNode.GetAttribute("src");
-			if (!string.IsNullOrEmpty(imgsrc) && System.IO.File.Exists(imgsrc))
+			var cs = xmlNode.GetAttribute("color_space");
+			if (!string.IsNullOrEmpty(cs))
 			{
-				using (var bmp = new Bitmap(imgsrc))
-				{
-					var l = bmp.Width * bmp.Height * 4;
-					var bmpdata = new float[l];
-					for (var x = 0; x < bmp.Width; x++)
-					{
-						for (var y = 0; y < bmp.Height; y++)
-						{
-							var pos = y * bmp.Width * 4 + x * 4;
-							var pixel = bmp.GetPixel(x, y);
-							bmpdata[pos] = pixel.R / 255.0f;
-							bmpdata[pos + 1] = pixel.G / 255.0f;
-							bmpdata[pos + 2] = pixel.B / 255.0f;
-							bmpdata[pos + 3] = pixel.A / 255.0f;
-						}
-					}
-					FloatImage = bmpdata;
-					Width = (uint)bmp.Width;
-					Height = (uint)bmp.Height;
-					Filename = imgsrc;
-				}
+				SetColorSpace(cs);
 			}
+			var projection = xmlNode.GetAttribute("projection");
+			if (!string.IsNullOrEmpty(projection))
+			{
+				SetProjection(projection);
+			}
+			var extension = xmlNode.GetAttribute("extension");
+			if (!string.IsNullOrEmpty(extension))
+			{
+				SetExtension(extension);
+			}
+			var interpolation = xmlNode.GetAttribute("interpolation");
+			if (!string.IsNullOrEmpty(interpolation))
+			{
+				SetInterpolation(interpolation);
+			}
+			ImageParseXml(xmlNode);
 		}
+
 	}
 }

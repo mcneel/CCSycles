@@ -93,69 +93,42 @@ namespace ccl.ShaderNodes
 			ColorSpace = TextureColorSpace.None;
 			Projection = EnvironmentProjection.Equirectangular;
 		}
-
-		/// <summary>
-		/// Set to true if image data is to be interpreted as linear.
-		/// </summary>
-		public bool IsLinear { get; set; }
-		/// <summary>
-		/// Color space to operate in
-		/// </summary>
-		public TextureColorSpace ColorSpace { get; set; }
 		/// <summary>
 		/// Get or set environment projection
 		/// </summary>
 		public EnvironmentProjection Projection { get; set; }
-		/// <summary>
-		/// EnvironmentTexture texture interpolation
-		/// </summary>
-		public InterpolationType Interpolation { get; set; }
-		/// <summary>
-		/// Get or set image name
-		/// </summary>
-		public string Filename { get; set; }
-
-		/// <summary>
-		/// Get or set the float data for image. Use for HDR images
-		/// </summary>
-		public float[] FloatImage { set; get; }
-		
-		/// <summary>
-		/// Get or set the byte data for image
-		/// </summary>
-		public byte[] ByteImage { set; get; }
-
-		/// <summary>
-		/// Get or set image resolution width
-		/// </summary>
-		public uint Width { get; set; }
-		/// <summary>
-		/// Get or set image resolution height
-		/// </summary>
-		public uint Height { get; set; }
+		private void SetProjection(string projection)
+		{
+			projection = projection.Replace(" ", "_");
+			Projection = (EnvironmentProjection)Enum.Parse(typeof(EnvironmentProjection), projection, true);
+		}
 
 		private string GetProjectionString(EnvironmentProjection projection)
 		{
-
+			var proj = "";
 			switch (projection)
 			{
 				case EnvironmentProjection.Equirectangular:
-					return "Equirectangular";
+					proj = "Equirectangular";
+					break;
 				case EnvironmentProjection.MirrorBall:
-					return "Mirror Ball";
+					proj = "Mirror Ball";
+					break;
 				case EnvironmentProjection.Wallpaper:
-					return "Wallpaper";
+					proj = "Wallpaper";
+					break;
+				default:
+					proj = "Equirectangular";
+					break;
 			}
-
-			return "Equirectangular";
+			return proj;
 		}
 
 		internal override void SetEnums(uint clientId, uint shaderId)
 		{
 			var projection = GetProjectionString(Projection);
-			var colspace = ColorSpace == TextureColorSpace.Color ? "Color" : "None";
 			CSycles.shadernode_set_enum(clientId, shaderId, Id, Type, "projection", projection);
-			CSycles.shadernode_set_enum(clientId, shaderId, Id, Type, "color_space", colspace);
+			CSycles.shadernode_set_enum(clientId, shaderId, Id, Type, "color_space", ColorSpace.ToString());
 		}
 
 		internal override void SetDirectMembers(uint clientId, uint shaderId)
@@ -176,31 +149,22 @@ namespace ccl.ShaderNodes
 
 		internal override void ParseXml(XmlReader xmlNode)
 		{
-			var imgsrc = xmlNode.GetAttribute("src");
-			if (!string.IsNullOrEmpty(imgsrc) && System.IO.File.Exists(imgsrc))
+			var cs = xmlNode.GetAttribute("color_space");
+			if (!string.IsNullOrEmpty(cs))
 			{
-				using (var bmp = new Bitmap(imgsrc))
-				{
-					var l = bmp.Width * bmp.Height * 4;
-					var bmpdata = new float[l];
-					for (var x = 0; x < bmp.Width; x++)
-					{
-						for (var y = 0; y < bmp.Height; y++)
-						{
-							var pos = y * bmp.Width * 4 + x * 4;
-							var pixel = bmp.GetPixel(x, y);
-							bmpdata[pos] = pixel.R / 255.0f;
-							bmpdata[pos + 1] = pixel.G / 255.0f;
-							bmpdata[pos + 2] = pixel.B / 255.0f;
-							bmpdata[pos + 3] = pixel.A / 255.0f;
-						}
-					}
-					FloatImage = bmpdata;
-					Width = (uint)bmp.Width;
-					Height = (uint)bmp.Height;
-					Filename = imgsrc;
-				}
+				SetColorSpace(cs);
 			}
+			var projection = xmlNode.GetAttribute("projection");
+			if (!string.IsNullOrEmpty(projection))
+			{
+				SetProjection(projection);
+			}
+			var interpolation = xmlNode.GetAttribute("interpolation");
+			if (!string.IsNullOrEmpty(interpolation))
+			{
+				SetInterpolation(interpolation);
+			}
+			ImageParseXml(xmlNode);
 		}
 	}
 }
