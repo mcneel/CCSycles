@@ -133,9 +133,6 @@
     <ClCompile Include="cycles\src\render\shader.cpp">
       <Filter>render</Filter>
     </ClCompile>
-    <ClCompile Include="cycles\src\render\sky_model.cpp">
-      <Filter>render</Filter>
-    </ClCompile>
     <ClCompile Include="cycles\src\render\sobol.cpp">
       <Filter>render</Filter>
     </ClCompile>
@@ -166,6 +163,7 @@
     <ClCompile Include="cycles\src\util\util_debug.cpp">
       <Filter>util</Filter>
     </ClCompile>
+    <ClCompile Include="cycles\src\util\util_sky_model.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cycles\src\bvh\bvh.h">
@@ -381,12 +379,6 @@
     <ClInclude Include="cycles\src\render\shader.h">
       <Filter>render</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\render\sky_model.h">
-      <Filter>render</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\render\sky_model_data.h">
-      <Filter>render</Filter>
-    </ClInclude>
     <ClInclude Include="cycles\src\render\sobol.h">
       <Filter>render</Filter>
     </ClInclude>
@@ -585,6 +577,8 @@
     <ClInclude Include="cycles\src\kernel\geom\geom_volume.h">
       <Filter>kernel_geom_headers</Filter>
     </ClInclude>
+    <ClInclude Include="cycles\src\util\util_sky_model.h" />
+    <ClInclude Include="cycles\src\util\util_sky_model_data.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="util">
