@@ -46,12 +46,18 @@
     <ClCompile Include="cycles\src\util\util_task.cpp">
       <Filter>util</Filter>
     </ClCompile>
+    <ClCompile Include="cycles\src\util\util_thread.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
     <ClCompile Include="cycles\src\util\util_time.cpp">
       <Filter>util</Filter>
     </ClCompile>
     <ClCompile Include="cycles\src\util\util_transform.cpp">
       <Filter>util</Filter>
     </ClCompile>
+		<ClCompile Include="cycles\src\util\util_windows.cpp">
+      <Filter>util</Filter>
+		</ClCompile>
     <ClCompile Include="cycles\src\device\device.cpp">
       <Filter>device</Filter>
     </ClCompile>
@@ -163,7 +169,15 @@
     <ClCompile Include="cycles\src\util\util_debug.cpp">
       <Filter>util</Filter>
     </ClCompile>
-    <ClCompile Include="cycles\src\util\util_sky_model.cpp" />
+    <ClCompile Include="cycles\src\util\util_sky_model.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles\src\graph\node.cpp">
+      <Filter>graph</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles\src\graph\node_type.cpp">
+      <Filter>graph</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cycles\src\bvh\bvh.h">
@@ -283,6 +297,9 @@
     <ClInclude Include="cycles\src\util\util_task.h">
       <Filter>util</Filter>
     </ClInclude>
+    <ClInclude Include="cycles\src\util\util_texture.h">
+      <Filter>util</Filter>
+    </ClInclude>
     <ClInclude Include="cycles\src\util\util_thread.h">
       <Filter>util</Filter>
     </ClInclude>
@@ -304,7 +321,7 @@
     <ClInclude Include="cycles\src\util\util_view.h">
       <Filter>util</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\util\util_xml.h">
+    <ClInclude Include="cycles\src\util\util_windows.h">
       <Filter>util</Filter>
     </ClInclude>
     <ClInclude Include="cycles\src\device\device.h">
@@ -405,6 +422,21 @@
     </ClInclude>
     <ClInclude Include="cycles\src\util\util_math_cdf.h">
       <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\util\util_sky_model.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\util\util_sky_model_data.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\graph\node.h">
+      <Filter>graph</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\graph\node_enum.h">
+      <Filter>graph</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\graph\node_type.h">
+      <Filter>graph</Filter>
     </ClInclude>
     <ClInclude Include="cycles\src\kernel\kernel.h">
       <Filter>kernel_headers</Filter>
@@ -577,12 +609,46 @@
     <ClInclude Include="cycles\src\kernel\geom\geom_volume.h">
       <Filter>kernel_geom_headers</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\util\util_sky_model.h" />
-    <ClInclude Include="cycles\src\util\util_sky_model_data.h" />
+    <ClInclude Include="cycles\src\kernel\split\kernel_background_buffer_update.h">
+      <Filter>kernel_split_headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\kernel\split\kernel_data_init.h">
+      <Filter>kernel_split_headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\kernel\split\kernel_direct_lighting.h">
+      <Filter>kernel_split_headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\kernel\split\kernel_holdout_emission_blurring_pathtermination_ao.h">
+      <Filter>kernel_split_headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\kernel\split\kernel_lamp_emission.h">
+      <Filter>kernel_split_headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\kernel\split\kernel_next_iteration_setup.h">
+      <Filter>kernel_split_headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\kernel\split\kernel_scene_intersect.h">
+      <Filter>kernel_split_headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\kernel\split\kernel_shader_eval.h">
+      <Filter>kernel_split_headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\kernel\split\kernel_shadow_blocked.h">
+      <Filter>kernel_split_headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\kernel\split\kernel_split_common.h">
+      <Filter>kernel_split_headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\kernel\split\kernel_sum_all_radiance.h">
+      <Filter>kernel_split_headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="util">
       <UniqueIdentifier>{a3c9e2ce-3b7e-43a4-bd53-fceb830a2eb8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="graph">
+      <UniqueIdentifier>{F943DDEB-390F-4F83-A075-7AC89149A35E}</UniqueIdentifier>
     </Filter>
     <Filter Include="device">
       <UniqueIdentifier>{ee660968-f550-4ac9-a607-0fd603e741b8}</UniqueIdentifier>
@@ -601,6 +667,9 @@
     </Filter>
     <Filter Include="kernel_geom_headers">
       <UniqueIdentifier>{F4243D13-A063-419A-A7BB-A621E7A5AD11}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="kernel_split_headers">
+      <UniqueIdentifier>{B898C955-7640-4795-AA2E-B6397E0957BC}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

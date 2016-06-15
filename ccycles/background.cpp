@@ -16,6 +16,7 @@ limitations under the License.
 
 #include "internal_types.h"
 
+extern std::vector<CCShader*> shaders;
 extern std::vector<CCScene> scenes;
 
 /* Set shader_id as default background shader for scene_id.
@@ -27,17 +28,28 @@ extern std::vector<CCScene> scenes;
 void cycles_scene_set_background_shader(unsigned int client_id, unsigned int scene_id, unsigned int shader_id)
 {
 	SCENE_FIND(scene_id)
-		sce->default_background = shader_id;
-		sce->background->shader = shader_id;
-		sce->background->tag_update(sce);
-		logger.logit(client_id, "Scene ", scene_id, " set background shader ", shader_id);
+		ccl::Shader* bg = find_shader_in_scene(sce, shader_id);
+		if (bg != nullptr) {
+			sce->default_background = bg;
+			sce->background->shader = bg;
+			sce->background->tag_update(sce);
+			logger.logit(client_id, "Scene ", scene_id, " set background shader ", shader_id);
+		}
 	SCENE_FIND_END()
 }
 
 unsigned int cycles_scene_get_background_shader(unsigned int client_id, unsigned int scene_id)
 {
 	SCENE_FIND(scene_id)
-		return sce->default_background;
+		unsigned int idx = 0;
+		auto bi = sce->shaders.cbegin();
+		auto ei = sce->shaders.cend();
+		while (bi != ei) {
+			if (*bi == sce->default_background) break;
+			idx++;
+			bi++;
+		}
+		return idx;
 	SCENE_FIND_END()
 	return UINT_MAX;
 }

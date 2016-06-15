@@ -210,6 +210,13 @@ struct CCShader {
 };
 
 /********************************/
+/* Some utility functions       */
+/********************************/
+
+extern ccl::Shader* find_shader_in_scene(ccl::Scene* sce, unsigned int shader_id);
+extern unsigned int get_idx_for_shader_in_scene(ccl::Scene* sce, ccl::Shader* sh);
+
+/********************************/
 /* Some useful defines          */
 /********************************/
 
@@ -260,10 +267,12 @@ struct CCShader {
 	sh->shader->##var = (type)(val); \
 	logger.logit(client_id, "Set " #var " of shader ", shid, " to ", val, " casting to " #type);
 
+#if 0
 #define SHADERNODE_FIND(shader_id, shnode_id) \
 	CCShader* sh = shaders[shader_id]; \
-	list<ccl::ShaderNode*>::iterator psh = sh->graph->nodes.begin(); \
-	while (psh != sh->graph->nodes.end()) \
+	auto psh = sh->graph->nodes.begin(); \
+	auto end = sh->graph->nodes.end(); \
+	while (psh != end) \
 	{ \
 		if ((*psh)->id == shnode_id) {
 
@@ -272,3 +281,4 @@ struct CCShader {
 		} \
 		++psh; \
 	}
+#endif

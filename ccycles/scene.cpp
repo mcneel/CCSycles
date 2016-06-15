@@ -22,6 +22,42 @@ extern std::vector<ccl::DeviceInfo> devices;
 extern std::vector<ccl::SceneParams> scene_params;
 std::vector<CCScene> scenes;
 
+/* Find a ccl::Shader in a given ccl::Scene, based on shader_id
+*/
+ccl::Shader* find_shader_in_scene(ccl::Scene* sce, unsigned int shader_id)
+{
+	auto b = sce->shaders.cbegin();
+	auto e = sce->shaders.cend();
+	ccl::Shader* bg = nullptr;
+	unsigned int idx = 0;
+	while (b != e) {
+		if (idx == shader_id) {
+			bg = *b;
+			break;
+		}
+		idx++;
+		b++;
+	}
+	return bg;
+}
+
+unsigned int get_idx_for_shader_in_scene(ccl::Scene* sce, ccl::Shader* sh)
+{
+	auto b = sce->shaders.cbegin();
+	auto e = sce->shaders.cend();
+	ccl::Shader* bg = nullptr;
+	unsigned int idx = 0;
+	while (b != e) {
+		if (*b == sh) {
+			return idx;
+		}
+		idx++;
+		b++;
+	}
+	return -1;
+
+}
+
 /* implement CCScene methods*/
 
 void CCScene::builtin_image_info(const string& builtin_name, void* builtin_data, bool& is_float, int& width, int& height, int& depth, int& channels)
@@ -123,7 +159,8 @@ unsigned int cycles_scene_create(unsigned int client_id, unsigned int scene_para
 void cycles_scene_set_default_surface_shader(unsigned int client_id, unsigned int scene_id, unsigned int shader_id)
 {
 	SCENE_FIND(scene_id)
-		sce->default_surface = (int)shader_id;
+		ccl::Shader* sh = find_shader_in_scene(sce, shader_id);
+		sce->default_surface = sh;
 		logger.logit(client_id, "Scene ", scene_id, " set default surface shader ", shader_id);
 	SCENE_FIND_END()
 }
@@ -131,7 +168,7 @@ void cycles_scene_set_default_surface_shader(unsigned int client_id, unsigned in
 unsigned int cycles_scene_get_default_surface_shader(unsigned int client_id, unsigned int scene_id)
 {
 	SCENE_FIND(scene_id)
-		return (unsigned int)(sce->default_surface);
+		return get_idx_for_shader_in_scene(sce, sce->default_surface);
 	SCENE_FIND_END()
 
 	return UINT_MAX;

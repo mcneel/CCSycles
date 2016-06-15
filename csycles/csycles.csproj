@@ -175,13 +175,15 @@ XCopy "$(ProjectDir)..\cycles\src\kernel\kernels\opencl" "$(SolutionDir)..\$(Out
 XCopy "$(ProjectDir)..\cycles\src\kernel\kernels\cuda" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\kernel\kernels\cuda" /Y /I /Q
 XCopy "$(ProjectDir)..\cycles\src\kernel\kernel*.*" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\kernel" /Y /I /Q
 
+XCopy "$(ProjectDir)..\cycles\src\util\util_atomic.h" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\kernel" /Y /I /Q
 XCopy "$(ProjectDir)..\cycles\src\util\util_color.h" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\kernel" /Y /I /Q
 XCopy "$(ProjectDir)..\cycles\src\util\util_half.h" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\kernel" /Y /I /Q
 XCopy "$(ProjectDir)..\cycles\src\util\util_math.h" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\kernel" /Y /I /Q
 XCopy "$(ProjectDir)..\cycles\src\util\util_math_fast.h" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\kernel" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\util\util_texture.h" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\kernel" /Y /I /Q
 XCopy "$(ProjectDir)..\cycles\src\util\util_transform.h" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\kernel" /Y /I /Q
 XCopy "$(ProjectDir)..\cycles\src\util\util_types.h" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\kernel" /Y /I /Q
-XCopy "$(ProjectDir)..\cycles\src\util\util_atomic.h" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\kernel" /Y /I /Q</PostBuildEvent>
+</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PreBuildEvent>

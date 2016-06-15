@@ -22,7 +22,8 @@ unsigned int cycles_create_light(unsigned int client_id, unsigned int scene_id, 
 {
 	SCENE_FIND(scene_id)
 		ccl::Light* l = new ccl::Light();
-		l->shader = (int)light_shader_id;
+		ccl::Shader* lightshader = find_shader_in_scene(sce, light_shader_id);
+		l->shader = lightshader;
 		sce->lights.push_back(l);
 		logger.logit(client_id, "Adding light ", sce->lights.size() - 1, " to scene ", scene_id, " using light shader ", light_shader_id);
 		return (unsigned int)(sce->lights.size() - 1);

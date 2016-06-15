@@ -22,8 +22,10 @@ unsigned int cycles_scene_add_mesh(unsigned int client_id, unsigned int scene_id
 {
 	SCENE_FIND(scene_id)
 		ccl::Mesh* mesh = new ccl::Mesh();
-		
-		mesh->used_shaders.push_back(shader_id);
+
+		ccl::Shader* sh = find_shader_in_scene(sce, shader_id);
+
+		mesh->used_shaders.push_back(sh);
 		sce->meshes.push_back(mesh);
 
 		logger.logit(client_id, "Add mesh ", sce->meshes.size() - 1, " in scene ", scene_id, " using default surface shader ", shader_id);
@@ -38,11 +40,13 @@ unsigned int cycles_scene_add_mesh_object(unsigned int client_id, unsigned int s
 {
 	SCENE_FIND(scene_id)
 		ccl::Mesh* mesh = new ccl::Mesh();
+		ccl::Shader* sh = find_shader_in_scene(sce, shader_id);
 		
 		ccl::Object* ob = sce->objects[object_id];
 		ob->mesh = mesh;
 
-		mesh->used_shaders.push_back(shader_id);
+
+		mesh->used_shaders.push_back(sh);
 		sce->meshes.push_back(mesh);
 
 		logger.logit(client_id, "Add mesh ", sce->meshes.size() - 1, " to object ", object_id, " in scene ", scene_id, " using default surface shader ", shader_id);
@@ -57,22 +61,18 @@ void cycles_mesh_set_shader(unsigned int client_id, unsigned int scene_id, unsig
 {
 	SCENE_FIND(scene_id)
 		ccl::Mesh* me = sce->meshes[mesh_id];
+		ccl::Shader* sh = find_shader_in_scene(sce, shader_id);
 
-		auto it = me->used_shaders.begin();
-		auto end = me->used_shaders.end();
+		me->used_shaders.push_back(sh);
+		int idx = me->used_shaders.size() - 1;
 
-		while (it != end) {
-			if (*it == shader_id) break;
-			++it;
+		me->shader.resize(me->triangles.size());
+		for (int i = 0; i < me->triangles.size(); i++) {
+			me->shader[i] = idx;
 		}
 
-		for (int i = 0; i < me->shader.size(); i++) {
-			me->shader[i] = shader_id;
-		}
-
-		if (it == end) me->used_shaders.push_back(shader_id);
-
-		sce->shaders[shader_id]->tag_update(sce);
+		sh->tag_update(sce);
+		sh->tag_used(sce);
 
 	SCENE_FIND_END()
 }
@@ -97,7 +97,11 @@ void cycles_mesh_set_smooth(unsigned int client_id, unsigned int scene_id, unsig
 {
 	SCENE_FIND(scene_id)
 		ccl::Mesh* me = sce->meshes[mesh_id];
-		me->smooth.resize(me->triangles.size(), smooth == 1);
+		bool use_smooth = smooth == 1;
+		me->smooth.resize(me->triangles.size());
+		for (int i = 0; i < me->triangles.size(); i++) {
+			me->smooth[i] = use_smooth;
+		}
 	SCENE_FIND_END()
 }
 
@@ -113,7 +117,7 @@ void cycles_mesh_set_verts(unsigned int client_id, unsigned int scene_id, unsign
 			f3.y = verts[i+1];
 			f3.z = verts[i+2];
 			logger.logit(client_id, "v: ", f3.x, ",", f3.y, ",", f3.z);
-			me->verts.push_back(f3);
+			me->verts.push_back_slow(f3);
 		}
 		me->geometry_flags = ccl::Mesh::GeometryFlags::GEOMETRY_TRIANGLES;
 	SCENE_FIND_END()
@@ -125,12 +129,16 @@ void cycles_mesh_set_tris(unsigned int client_id, unsigned int scene_id, unsigne
 		ccl::Mesh* me = sce->meshes[mesh_id];
 
 		//cycles_mesh_set_shader(client_id, scene_id, mesh_id, shader_id);
+		me->reserve_mesh(fcount * 3, fcount);
 
 		for (int i = 0; i < (int)fcount*3; i += 3) {
 			logger.logit(client_id, "f: ", faces[i], ",", faces[i + 1], ",", faces[i + 2]);
 			me->add_triangle(faces[i], faces[i + 1], faces[i + 2], shader_id, smooth == 1);
 		}
 		me->geometry_flags = ccl::Mesh::GeometryFlags::GEOMETRY_TRIANGLES;
+
+		cycles_mesh_set_shader(client_id, scene_id, mesh_id, shader_id);
+
 		
 		// TODO: APIfy next call, right now keep here to be closer to PoC plugin
 		//me->attributes.remove(ccl::ATTR_STD_VERTEX_NORMAL);

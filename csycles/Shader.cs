@@ -95,6 +95,8 @@ namespace ccl
 		{
 			CSycles.shader_new_graph(Client.Id, Id);
 
+			created_in_cycles = false;
+
 			m_nodes.Clear();
 
 			Output = new OutputNode();
