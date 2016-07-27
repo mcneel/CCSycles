@@ -27,7 +27,7 @@ BEGIN
             VALUE "LegalCopyright", COPYRIGHT
             VALUE "OriginalFilename", "ccycles.dll"
             VALUE "ProductName", "C[CS]?ycles - CCycles"
-            VALUE "ProductVersion", VERSION_WITH_PERIODS
+            VALUE "ProductVersion", RMA_VERSION_WITH_PERIODS_STRING
         END
     END
     BLOCK "VarFileInfo"
