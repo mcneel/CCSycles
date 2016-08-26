@@ -171,12 +171,19 @@ public:
 	 */
 	void reset(int width, int height, unsigned int buffer_stride_);
 
+	/* Returns true if size was changed. Will reset the has_changed flag. */
+	bool size_has_changed();
 	ccl::thread_mutex pixels_mutex;
 
 	~CCSession() {
 		delete[] pixels;
+		pixels = nullptr;
 		delete session;
+		session = nullptr;
 	}
+
+private:
+	bool _size_has_changed;
 
 protected:
 	/* Protected constructor, use CCSession::create to create a new CCSession. */
