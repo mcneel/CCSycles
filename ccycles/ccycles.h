@@ -423,6 +423,8 @@ CCL_CAPI void __cdecl cycles_session_start(unsigned int client_id, unsigned int 
 CCL_CAPI void __cdecl cycles_session_wait(unsigned int client_id, unsigned int session_id);
 /** Pause (true) or un-pause (false) a render session. */
 CCL_CAPI void __cdecl cycles_session_set_pause(unsigned int client_id, unsigned int session_id, bool pause);
+/** True if session is paused. */
+CCL_CAPI bool __cdecl cycles_session_is_paused(unsigned int client_id, unsigned int session_id);
 /** Set session samples to render. */
 CCL_CAPI void __cdecl cycles_session_set_samples(unsigned int client_id, unsigned int session_id, int samples);
 /** Clear resources for session. */

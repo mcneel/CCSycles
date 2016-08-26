@@ -117,6 +117,13 @@ namespace ccl
 			cycles_session_set_pause(clientId, sessionId, pause);
 		}
 
+		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_session_is_paused", CallingConvention = CallingConvention.Cdecl)]
+		private static extern bool cycles_session_is_paused(uint clientId, uint sessionId);
+		public static bool session_is_paused(uint clientId, uint sessionId)
+		{
+			return cycles_session_is_paused(clientId, sessionId);
+		}
+
 		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_session_set_samples", CallingConvention = CallingConvention.Cdecl)]
 		private static extern void cycles_session_set_samples(uint clientId, uint sessionId, int samples);
 		public static void session_set_samples(uint clientId, uint sessionId, int samples)

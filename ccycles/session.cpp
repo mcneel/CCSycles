@@ -380,6 +380,15 @@ void cycles_session_set_pause(unsigned int client_id, unsigned int session_id, b
 	SESSION_FIND_END()
 }
 
+bool cycles_session_is_paused(unsigned int client_id, unsigned int session_id)
+{
+	SESSION_FIND(session_id)
+		return session->is_paused();
+	SESSION_FIND_END()
+
+	return false;
+}
+
 void cycles_session_set_samples(unsigned int client_id, unsigned int session_id, int samples)
 {
 	SESSION_FIND(session_id)
