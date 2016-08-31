@@ -54,8 +54,9 @@ namespace ccl.ShaderNodes
 	[ShaderNode("scatter_volume")]
 	public class ScatterVolumeNode : ShaderNode
 	{
-		public ScatterVolumeInputs ins { get { return (ScatterVolumeInputs)inputs; } }
-		public ScatterVolumeOutputs outs { get { return (ScatterVolumeOutputs)outputs; } }
+		public ScatterVolumeInputs ins => (ScatterVolumeInputs)inputs;
+		public ScatterVolumeOutputs outs => (ScatterVolumeOutputs)outputs;
+
 		/// <summary>
 		/// Create a new Scatter volume node
 		/// </summary>

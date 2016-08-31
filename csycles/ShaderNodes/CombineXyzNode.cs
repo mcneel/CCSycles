@@ -54,8 +54,8 @@ namespace ccl.ShaderNodes
 	[ShaderNode("combine_xyz")]
 	public class CombineXyzNode : ShaderNode
 	{
-		public CombineXyzInputs ins { get { return (CombineXyzInputs)inputs; } }
-		public CombineXyzOutputs outs { get { return (CombineXyzOutputs)outputs; } }
+		public CombineXyzInputs ins => (CombineXyzInputs)inputs;
+		public CombineXyzOutputs outs => (CombineXyzOutputs)outputs;
 
 		public CombineXyzNode() : this("a combine XYZ node") { }
 		public CombineXyzNode(string name) :

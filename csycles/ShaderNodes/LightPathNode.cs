@@ -133,11 +133,12 @@ namespace ccl.ShaderNodes
 		/// <summary>
 		/// LightPath node input sockets
 		/// </summary>
-		public LightPathInputs ins { get { return (LightPathInputs)inputs; } }
+		public LightPathInputs ins => (LightPathInputs)inputs;
+
 		/// <summary>
 		/// LightPath node output sockets
 		/// </summary>
-		public LightPathOutputs outs { get { return (LightPathOutputs)outputs; } }
+		public LightPathOutputs outs => (LightPathOutputs)outputs;
 
 		/// <summary>
 		/// Create a new LightPathNode

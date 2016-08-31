@@ -75,8 +75,8 @@ namespace ccl.ShaderNodes
 			Hetero_Terrain,
 		}
 
-		public MusgraveInputs ins { get { return (MusgraveInputs)inputs; } }
-		public MusgraveOutputs outs { get { return (MusgraveOutputs)outputs; } }
+		public MusgraveInputs ins => (MusgraveInputs)inputs;
+		public MusgraveOutputs outs => (MusgraveOutputs)outputs;
 
 		public MusgraveTexture() : this("a musgrave texture") { }
 		public MusgraveTexture(string name)

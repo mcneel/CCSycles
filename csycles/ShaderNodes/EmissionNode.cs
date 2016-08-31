@@ -48,8 +48,8 @@ namespace ccl.ShaderNodes
 	[ShaderNode("emission")]
 	public class EmissionNode : ShaderNode
 	{
-		public EmissionInputs ins { get { return (EmissionInputs)inputs; } }
-		public EmissionOutputs outs { get { return (EmissionOutputs)outputs; } }
+		public EmissionInputs ins => (EmissionInputs)inputs;
+		public EmissionOutputs outs => (EmissionOutputs)outputs;
 
 		public EmissionNode() : this("an emission node") { }
 		public EmissionNode(string name)

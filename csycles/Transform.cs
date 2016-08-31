@@ -141,24 +141,28 @@ namespace ccl
 
 		public static explicit operator Transform(_Transform t)
 		{
-			Transform conv = new Transform();
+			Transform conv = new Transform
+			{
+				x = (float4) t.x,
+				y = (float4) t.y,
+				z = (float4) t.z,
+				w = (float4) t.w
+			};
 
-			conv.x = (float4)t.x;
-			conv.y = (float4)t.y;
-			conv.z = (float4)t.z;
-			conv.w = (float4)t.w;
 
 			return conv;
 		}
 
 		public static explicit operator _Transform(Transform t)
 		{
-			_Transform conv = new _Transform();
+			_Transform conv = new _Transform
+			{
+				x = (_float4) t.x,
+				y = (_float4) t.y,
+				z = (_float4) t.z,
+				w = (_float4) t.w
+			};
 
-			conv.x = (_float4)t.x;
-			conv.y = (_float4)t.y;
-			conv.z = (_float4)t.z;
-			conv.w = (_float4)t.w;
 			return conv;
 		}
 
@@ -505,7 +509,8 @@ namespace ccl
 		/// <returns></returns>
 		override public string ToString()
 		{
-			return string.Format("[{0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9}, {10}, {11}, {12}, {13}, {14}, {15}]", x.x, x.y, x.z, x.w, y.x, y.y, y.z, y.w, z.x, z.y, z.z, z.w, w.x, w.y, w.z, w.w);
+			return
+				$"[{x.x}, {x.y}, {x.z}, {x.w}, {y.x}, {y.y}, {y.z}, {y.w}, {z.x}, {z.y}, {z.z}, {z.w}, {w.x}, {w.y}, {w.z}, {w.w}]";
 		}
 	}
 

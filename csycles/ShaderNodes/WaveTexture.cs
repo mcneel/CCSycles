@@ -60,8 +60,8 @@ namespace ccl.ShaderNodes
 	[ShaderNode("wave_texture")]
 	public class WaveTexture : TextureNode
 	{
-		public WaveInputs ins { get { return (WaveInputs)inputs; } }
-		public WaveOutputs outs { get { return (WaveOutputs)outputs; } }
+		public WaveInputs ins => (WaveInputs)inputs;
+		public WaveOutputs outs => (WaveOutputs)outputs;
 
 		public WaveTexture() : this("a wave texture") { }
 		public WaveTexture(string name)

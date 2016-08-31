@@ -19,33 +19,22 @@ namespace ccl.Attributes
 	[System.AttributeUsage(System.AttributeTargets.Class)]
 	public sealed class ShaderNodeAttribute : System.Attribute
 	{
-		private string nodeTypeName;
-		private bool nodeTypeIsBase;
-
 		public ShaderNodeAttribute(string name, bool base_class)
 		{
-			nodeTypeName = name;
-			nodeTypeIsBase = base_class;
+			Name = name;
+			IsBase = base_class;
 		}
 
 		public ShaderNodeAttribute(string name)
 		{
-			nodeTypeName = name;
-			nodeTypeIsBase = false;
+			Name = name;
+			IsBase = false;
 		}
 
 		public ShaderNodeAttribute() { }
 
-		public string Name
-		{
-			get { return nodeTypeName; }
-			set { nodeTypeName = value; }
-		}
+		public string Name { get; set; }
 
-		public bool IsBase
-		{
-			get { return nodeTypeIsBase; }
-			set { nodeTypeIsBase = value; }
-		}
+		public bool IsBase { get; set; }
 	}
 }

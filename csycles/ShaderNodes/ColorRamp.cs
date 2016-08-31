@@ -56,10 +56,7 @@ namespace ccl.ShaderNodes
 		/// </summary>
 		/// <param name="other"></param>
 		/// <returns></returns>
-		public int CompareTo(ColorStop other)
-		{
-			return other == null ? 1 : Position.CompareTo(other.Position);
-		}
+		public int CompareTo(ColorStop other) => other == null ? 1 : Position.CompareTo(other.Position);
 	}
 
 	/// <summary>
@@ -143,10 +140,9 @@ namespace ccl.ShaderNodes
 				else
 				{
 					// or copy the one from the right,
-					l = new ColorStop(r);
 					// but set its position to 0.0f so we can
 					// still interpolate
-					l.Position = 0.0f;
+					l = new ColorStop(r) {Position = 0.0f};
 				}
 
 			}
@@ -331,11 +327,13 @@ namespace ccl.ShaderNodes
 		/// <summary>
 		/// ColorRamp input sockets
 		/// </summary>
-		public ColorRampInputs ins { get { return (ColorRampInputs)inputs; } }
+		public ColorRampInputs ins => (ColorRampInputs)inputs;
+
 		/// <summary>
 		/// ColorRamp output sockets
 		/// </summary>
-		public ColorRampOutputs outs { get { return (ColorRampOutputs)outputs; } }
+		public ColorRampOutputs outs => (ColorRampOutputs)outputs;
+
 		/// <summary>
 		/// Create a ColorRampNode
 		/// </summary>
@@ -388,7 +386,7 @@ namespace ccl.ShaderNodes
 			var interpolation = xmlNode.GetAttribute("interpolation");
 			if (string.IsNullOrEmpty(interpolation))
 			{
-				var i = ColorBand.Interpolations.Linear;
+				ColorBand.Interpolations i;
 				if(Enum.TryParse<ColorBand.Interpolations>(interpolation, out i))
 				{
 					ColorBand.Interpolation = i;

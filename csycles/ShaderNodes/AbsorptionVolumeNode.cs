@@ -51,8 +51,9 @@ namespace ccl.ShaderNodes
 	[ShaderNode("absorption_volume")]
 	public class AbsorptionVolumeNode : ShaderNode
 	{
-		public AbsorptionVolumeInputs ins { get { return (AbsorptionVolumeInputs)inputs; } }
-		public AbsorptionVolumeOutputs outs { get { return (AbsorptionVolumeOutputs)outputs; } }
+		public AbsorptionVolumeInputs ins => (AbsorptionVolumeInputs)inputs;
+		public AbsorptionVolumeOutputs outs => (AbsorptionVolumeOutputs)outputs;
+
 		/// <summary>
 		/// Create a new Absorption volume node
 		/// </summary>

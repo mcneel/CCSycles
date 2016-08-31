@@ -86,8 +86,8 @@ namespace ccl.ShaderNodes
 	[ShaderNode("texture_coordinate")]
 	public class TextureCoordinateNode : ShaderNode
 	{
-		public TextureCoordinateInputs ins { get { return (TextureCoordinateInputs)inputs; } }
-		public TextureCoordinateOutputs outs { get { return (TextureCoordinateOutputs)outputs; } }
+		public TextureCoordinateInputs ins => (TextureCoordinateInputs)inputs;
+		public TextureCoordinateOutputs outs => (TextureCoordinateOutputs)outputs;
 
 		public TextureCoordinateNode()
 			: this("a texcoord") { }

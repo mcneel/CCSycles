@@ -56,11 +56,12 @@ namespace ccl.ShaderNodes
 		/// <summary>
 		/// ColorNode input sockets
 		/// </summary>
-		public ColorInputs ins { get { return (ColorInputs)inputs; } }
+		public ColorInputs ins => (ColorInputs)inputs;
+
 		/// <summary>
 		/// ColorNode output sockets
 		/// </summary>
-		public ColorOutputs outs { get { return (ColorOutputs)outputs; } }
+		public ColorOutputs outs => (ColorOutputs)outputs;
 
 		/// <summary>
 		/// Create a ColorNode

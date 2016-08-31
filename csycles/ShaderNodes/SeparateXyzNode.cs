@@ -54,8 +54,8 @@ namespace ccl.ShaderNodes
 	[ShaderNode("separate_xyz")]
 	public class SeparateXyzNode : ShaderNode
 	{
-		public SeparateXyzInputs ins { get { return (SeparateXyzInputs)inputs; } }
-		public SeparateXyzOutputs outs { get { return (SeparateXyzOutputs)outputs; } }
+		public SeparateXyzInputs ins => (SeparateXyzInputs)inputs;
+		public SeparateXyzOutputs outs => (SeparateXyzOutputs)outputs;
 
 		public SeparateXyzNode() : this("a separate XYZ node") { }
 		public SeparateXyzNode(string name) :

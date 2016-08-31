@@ -51,7 +51,7 @@ namespace ccl
 			g_ccycles_loaded = true;
 		}
 
-		private static Dictionary<string, Type> g_registered_shadernodes = new Dictionary<string, Type>();
+		private static readonly Dictionary<string, Type> g_registered_shadernodes = new Dictionary<string, Type>();
 
 		/// <summary>
 		/// Load all shader nodes from the assembly using reflection
@@ -113,7 +113,7 @@ namespace ccl
 				return constructor.Invoke(param) as ShaderNodes.ShaderNode;
 			}
 
-			throw new InvalidDataException(string.Format("Node with xmlname '{0}' not found.", xmlName));
+			throw new InvalidDataException($"Node with xmlname '{xmlName}' not found.");
 		}
 
 		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_initialise", CallingConvention = CallingConvention.Cdecl)]

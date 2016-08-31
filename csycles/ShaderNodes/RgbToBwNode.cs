@@ -62,11 +62,12 @@ namespace ccl.ShaderNodes
 		/// <summary>
 		/// RgbToBw input sockets
 		/// </summary>
-		public ConvertRgbInputs ins { get { return (ConvertRgbInputs)inputs; } }
+		public ConvertRgbInputs ins => (ConvertRgbInputs)inputs;
+
 		/// <summary>
 		/// RgbToBw output sockets
 		/// </summary>
-		public ConvertValOutputs outs { get { return (ConvertValOutputs)outputs; } }
+		public ConvertValOutputs outs => (ConvertValOutputs)outputs;
 
 		/// <summary>
 		/// Create new RgbToBw node

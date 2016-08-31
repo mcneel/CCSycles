@@ -29,8 +29,8 @@ namespace ccl
 		/// <summary>
 		/// Get the ID for the session parameters.
 		/// </summary>
-		public uint Id { get; private set; }
-		private Client Client { get; set; }
+		public uint Id { get; }
+		private Client Client { get; }
 		/// <summary>
 		/// Create session parameters using <c>Device</c>
 		/// </summary>

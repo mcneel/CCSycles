@@ -53,8 +53,8 @@ namespace ccl.ShaderNodes
 	[ShaderNode("light_falloff")]
 	public class LightFalloffNode : ShaderNode
 	{
-		public LightFalloffInputs ins { get { return (LightFalloffInputs)inputs; } }
-		public LightFalloffOutputs outs { get { return (LightFalloffOutputs)outputs; } }
+		public LightFalloffInputs ins => (LightFalloffInputs)inputs;
+		public LightFalloffOutputs outs => (LightFalloffOutputs)outputs;
 
 		public LightFalloffNode() : this("a light fall-off node") { }
 		public LightFalloffNode(string name) :

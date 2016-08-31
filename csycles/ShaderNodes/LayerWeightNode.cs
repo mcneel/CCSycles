@@ -51,8 +51,8 @@ namespace ccl.ShaderNodes
 	[ShaderNode("layer_weight")]
 	public class LayerWeightNode : ShaderNode
 	{
-		public LayerWeightInputs ins { get { return (LayerWeightInputs)inputs; } }
-		public LayerWeightOutputs outs { get { return (LayerWeightOutputs)outputs; } }
+		public LayerWeightInputs ins => (LayerWeightInputs)inputs;
+		public LayerWeightOutputs outs => (LayerWeightOutputs)outputs;
 
 		public LayerWeightNode() : this("a layerweight node") { }
 		public LayerWeightNode(string name)

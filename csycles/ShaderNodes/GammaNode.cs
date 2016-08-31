@@ -48,8 +48,8 @@ namespace ccl.ShaderNodes
 	[ShaderNode("gamma")]
 	public class GammaNode : ShaderNode
 	{
-		public GammaInputs ins { get { return (GammaInputs)inputs; } }
-		public GammaOutputs outs { get { return (GammaOutputs)outputs; } }
+		public GammaInputs ins => (GammaInputs)inputs;
+		public GammaOutputs outs => (GammaOutputs)outputs;
 
 		public GammaNode() : this("a gamma node") {}
 		public GammaNode(string name)

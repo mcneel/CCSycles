@@ -71,8 +71,9 @@ namespace ccl.ShaderNodes
 			GGX,
 			Asihkmin_Shirley,
 		}
-		public AnisotropicBsdfInputs ins { get { return (AnisotropicBsdfInputs)inputs; } }
-		public AnisotropicBsdfOutputs outs { get { return (AnisotropicBsdfOutputs)outputs; } }
+		public AnisotropicBsdfInputs ins => (AnisotropicBsdfInputs)inputs;
+		public AnisotropicBsdfOutputs outs => (AnisotropicBsdfOutputs)outputs;
+
 		/// <summary>
 		/// Create a new Anisotropic BSDF closure.
 		/// </summary>

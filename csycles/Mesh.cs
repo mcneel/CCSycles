@@ -24,11 +24,11 @@ namespace ccl
 		/// <summary>
 		/// Id of mesh in scene.
 		/// </summary>
-		public uint Id { get; private set; }
+		public uint Id { get; }
 		/// <summary>
 		/// Reference to client.
 		/// </summary>
-		private Client Client { get; set; }
+		private Client Client { get; }
 		/// <summary>
 		/// Shader used for this mesh.
 		/// </summary>

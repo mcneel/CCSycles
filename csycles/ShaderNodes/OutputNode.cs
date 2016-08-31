@@ -59,8 +59,8 @@ namespace ccl.ShaderNodes
 	[ShaderNode("output")]
 	public class OutputNode : ShaderNode
 	{
-		public OutputInputs ins { get { return (OutputInputs) inputs; } }
-		public OutputOutputs outs { get { return (OutputOutputs) outputs; } }
+		public OutputInputs ins => (OutputInputs) inputs;
+		public OutputOutputs outs => (OutputOutputs) outputs;
 
 		public OutputNode() : this("an output node") { }
 		public OutputNode(string name) :

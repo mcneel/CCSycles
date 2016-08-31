@@ -28,9 +28,9 @@ namespace ccl
 		/// <summary>
 		/// Get the Id for these scene parameters.
 		/// </summary>
-		public uint Id { get; private set; }
+		public uint Id { get; }
 
-		private Client Client { get; set; }
+		private Client Client { get; }
 
 		/// <summary>
 		/// Create scene parameters object with given parameters

@@ -51,8 +51,8 @@ namespace ccl.ShaderNodes
 	[ShaderNode("brightness")]
 	public class BrightnessContrastNode : ShaderNode
 	{
-		public BrightnessContrastInputs ins { get { return (BrightnessContrastInputs)inputs; } }
-		public BrightnessContrastOutputs outs { get { return (BrightnessContrastOutputs)outputs; } }
+		public BrightnessContrastInputs ins => (BrightnessContrastInputs)inputs;
+		public BrightnessContrastOutputs outs => (BrightnessContrastOutputs)outputs;
 
 		public BrightnessContrastNode() : this("a brightness contrast node") { }
 		public BrightnessContrastNode(string name)

@@ -54,8 +54,8 @@ namespace ccl.ShaderNodes
 	[ShaderNode("combine_hsv")]
 	public class CombineHsvNode : ShaderNode
 	{
-		public CombineHsvInputs ins { get { return (CombineHsvInputs)inputs; } }
-		public CombineHsvOutputs outs { get { return (CombineHsvOutputs)outputs; } }
+		public CombineHsvInputs ins => (CombineHsvInputs)inputs;
+		public CombineHsvOutputs outs => (CombineHsvOutputs)outputs;
 
 		public CombineHsvNode() : this("A combine HSV node") { }
 		public CombineHsvNode(string name) :

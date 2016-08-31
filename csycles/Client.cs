@@ -24,7 +24,7 @@ namespace ccl
 		/// <summary>
 		/// Id for this client
 		/// </summary>
-		public uint Id { get; private set; }
+		public uint Id { get; }
 
 		/// <summary>
 		/// Scene reference of this client

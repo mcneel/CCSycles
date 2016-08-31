@@ -14,9 +14,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 **/
 
-using System.Xml;
-using ccl.ShaderNodes.Sockets;
 using ccl.Attributes;
+using ccl.ShaderNodes.Sockets;
 
 /**
  * \defgroup cclshadernodes CSycles Shader Nodes
@@ -85,18 +84,12 @@ namespace ccl.ShaderNodes
 		/// <summary>
 		/// AddClosure input sockets
 		/// </summary>
-		public AddClosureInputs ins
-		{
-			get { return (AddClosureInputs) inputs; }
-		}
+		public AddClosureInputs ins => (AddClosureInputs) inputs;
 
 		/// <summary>
 		/// AddClosure output sockets
 		/// </summary>
-		public AddClosureOutputs outs
-		{
-			get { return (AddClosureOutputs) outputs; }
-		}
+		public AddClosureOutputs outs => (AddClosureOutputs) outputs;
 
 		/// <summary>
 		/// Create a new Add closure.

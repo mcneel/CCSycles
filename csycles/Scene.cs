@@ -126,15 +126,7 @@ namespace ccl
 		/// <returns>Shader</returns>
 		public Shader ShaderFromSceneId(uint shaderId)
 		{
-			foreach (var kvp in m_shader_in_scene_ids)
-			{
-				if (kvp.Value == shaderId)
-				{
-					return kvp.Key;
-				}
-			}
-
-			return null;
+			return (from kvp in m_shader_in_scene_ids where kvp.Value == shaderId select kvp.Key).FirstOrDefault();
 		}
 
 		/// <summary>
@@ -154,15 +146,7 @@ namespace ccl
 		/// <returns></returns>
 		private Shader GetShader(uint id)
 		{
-			foreach (var kvp in m_shader_in_scene_ids)
-			{
-				if (kvp.Value == id)
-				{
-					return kvp.Key;
-				}
-			}
-
-			return null;
+			return (from kvp in m_shader_in_scene_ids where kvp.Value == id select kvp.Key).FirstOrDefault();
 		}
 
 		/// <summary>

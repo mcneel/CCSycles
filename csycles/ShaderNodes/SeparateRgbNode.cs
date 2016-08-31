@@ -51,7 +51,7 @@ namespace ccl.ShaderNodes
 	[ShaderNode("separate_rgb")]
 	public class SeparateRgbNode : ShaderNode
 	{
-		public SeparateRgbInputs ins { get { return (SeparateRgbInputs)inputs; } }
+		public SeparateRgbInputs ins => (SeparateRgbInputs)inputs;
 		public SeparateRgbOutputs outs { get { return (SeparateRgbOutputs)outputs; } }
 
 		/// <summary>

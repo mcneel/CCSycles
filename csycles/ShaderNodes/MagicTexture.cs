@@ -54,8 +54,8 @@ namespace ccl.ShaderNodes
 	[ShaderNode("magic_texture")]
 	public class MagicTexture : TextureNode
 	{
-		public MagicInputs ins { get { return (MagicInputs)inputs; } }
-		public MagicOutputs outs { get { return (MagicOutputs)outputs; } }
+		public MagicInputs ins => (MagicInputs)inputs;
+		public MagicOutputs outs => (MagicOutputs)outputs;
 
 		public MagicTexture() : this("a magic texture") { }
 		public MagicTexture(string name)

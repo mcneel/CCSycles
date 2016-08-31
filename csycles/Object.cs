@@ -24,11 +24,11 @@ namespace ccl
 		/// <summary>
 		/// Id of the Cycles object.
 		/// </summary>
-		public uint Id { get; private set; }
+		public uint Id { get; }
 		/// <summary>
 		/// Reference to the client.
 		/// </summary>
-		private Client Client { get; set; }
+		private Client Client { get; }
 
 		/// <summary>
 		/// Create a new mesh for the given client using shader as the default shader

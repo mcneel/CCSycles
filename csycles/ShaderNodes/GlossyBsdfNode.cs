@@ -61,8 +61,8 @@ namespace ccl.ShaderNodes
 			Asihkmin_Shirley,
 		}
 
-		public GlossyInputs ins { get { return (GlossyInputs)inputs; } }
-		public GlossyOutputs outs { get { return (GlossyOutputs)outputs; } }
+		public GlossyInputs ins => (GlossyInputs)inputs;
+		public GlossyOutputs outs => (GlossyOutputs)outputs;
 
 		public GlossyBsdfNode() : this("a glossy bsdf node") { }
 		public GlossyBsdfNode(string name) :

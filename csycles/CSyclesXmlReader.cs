@@ -25,9 +25,9 @@ namespace ccl
 {
 	public class CSyclesXmlReader
 	{
-		private Client Client { get; set; }
-		private string Path { get; set; }
-		private NumberFormatInfo NumberFormatInfo { get; set; }
+		private Client Client { get; }
+		private string Path { get; }
+		private NumberFormatInfo NumberFormatInfo { get; }
 		public CSyclesXmlReader(Client client, string path)
 		{
 			Client = client;

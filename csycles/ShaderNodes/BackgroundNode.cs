@@ -69,11 +69,13 @@ namespace ccl.ShaderNodes
 		/// <summary>
 		/// Input sockets for background node
 		/// </summary>
-		public BackgroundInputs ins { get { return (BackgroundInputs)inputs; } }
+		public BackgroundInputs ins => (BackgroundInputs)inputs;
+
 		/// <summary>
 		/// Output sockets for background node
 		/// </summary>
-		public BackgroundOutputs outs { get { return (BackgroundOutputs)outputs; } }
+		public BackgroundOutputs outs => (BackgroundOutputs)outputs;
+
 		/// <summary>
 		/// Create a new background/world shader node
 		/// </summary>

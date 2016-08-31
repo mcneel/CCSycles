@@ -57,8 +57,8 @@ namespace ccl.ShaderNodes
 	[ShaderNode("checker_texture")]
 	public class CheckerTexture : TextureNode
 	{
-		public CheckerInputs ins { get { return (CheckerInputs)inputs; } }
-		public CheckerOutputs outs { get { return (CheckerOutputs)outputs; } }
+		public CheckerInputs ins => (CheckerInputs)inputs;
+		public CheckerOutputs outs => (CheckerOutputs)outputs;
 		public CheckerTexture() : this("a checker texture") { }
 		public CheckerTexture(string name)
 			: base(ShaderNodeType.CheckerTexture, name)

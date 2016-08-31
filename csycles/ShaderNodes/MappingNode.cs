@@ -69,11 +69,12 @@ namespace ccl.ShaderNodes
 		/// <summary>
 		/// MappingNode input sockets
 		/// </summary>
-		public MappingInputs ins { get { return (MappingInputs)inputs; } }
+		public MappingInputs ins => (MappingInputs)inputs;
+
 		/// <summary>
 		/// MappingNode output sockets
 		/// </summary>
-		public MappingOutputs outs { get { return (MappingOutputs)outputs; } }
+		public MappingOutputs outs => (MappingOutputs)outputs;
 
 		/// <summary>
 		/// Mapping type to transform according

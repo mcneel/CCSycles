@@ -57,8 +57,8 @@ namespace ccl.ShaderNodes
 	[ShaderNode("noise_texture")]
 	public class NoiseTexture : TextureNode
 	{
-		public NoiseInputs ins { get { return (NoiseInputs)inputs; } }
-		public NoiseOutputs outs { get { return (NoiseOutputs)outputs; } }
+		public NoiseInputs ins => (NoiseInputs)inputs;
+		public NoiseOutputs outs => (NoiseOutputs)outputs;
 
 		public NoiseTexture() : this("a noise texture") { }
 		public NoiseTexture(string name)

@@ -63,8 +63,8 @@ namespace ccl.ShaderNodes
 			GGX
 		}
 
-		public GlassInputs ins { get { return (GlassInputs)inputs; } }
-		public GlassOutputs outs { get { return (GlassOutputs)outputs; } }
+		public GlassInputs ins => (GlassInputs)inputs;
+		public GlassOutputs outs => (GlassOutputs)outputs;
 		public GlassBsdfNode() : this("a glass bsdf") { }
 		public GlassBsdfNode(string name)
 			: base(ShaderNodeType.Glass, name)

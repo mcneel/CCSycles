@@ -51,8 +51,8 @@ namespace ccl.ShaderNodes
 	[ShaderNode("voronoi_texture")]
 	public class VoronoiTexture : TextureNode
 	{
-		public VoronoiInputs ins { get { return (VoronoiInputs)inputs; } }
-		public VoronoiOutputs outs { get { return (VoronoiOutputs)outputs; } }
+		public VoronoiInputs ins => (VoronoiInputs)inputs;
+		public VoronoiOutputs outs => (VoronoiOutputs)outputs;
 
 		public VoronoiTexture() : this("a voronoi texture") { }
 		public VoronoiTexture(string name)

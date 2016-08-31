@@ -80,11 +80,12 @@ namespace ccl.ShaderNodes
 		/// <summary>
 		/// BumpNode input sockets
 		/// </summary>
-		public BumpInputs ins { get { return (BumpInputs)inputs; } }
+		public BumpInputs ins => (BumpInputs)inputs;
+
 		/// <summary>
 		/// BumpNode output sockets
 		/// </summary>
-		public BumpOutputs outs { get { return (BumpOutputs)outputs; } }
+		public BumpOutputs outs => (BumpOutputs)outputs;
 
 		/// <summary>
 		/// Create new BumpNode with blend type Bump.

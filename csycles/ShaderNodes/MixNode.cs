@@ -78,8 +78,8 @@ namespace ccl.ShaderNodes
 		}
 
 
-		public MixInputs ins { get { return (MixInputs)inputs; } }
-		public MixOutputs outs { get { return (MixOutputs)outputs; } }
+		public MixInputs ins => (MixInputs)inputs;
+		public MixOutputs outs => (MixOutputs)outputs;
 
 		/// <summary>
 		/// Create new MixNode with blend type Mix. By default Color inputs are black.

@@ -60,64 +60,49 @@ namespace ccl
 		/// <summary>
 		/// True if this is a CUDA device
 		/// </summary>
-		public bool IsCuda { get { return Type == DeviceType.CUDA; } }
+		public bool IsCuda => Type == DeviceType.CUDA;
 
 		/// <summary>
 		/// True if this device is an OpenCL device
 		/// </summary>
-		public bool IsOpenCl { get { return Type == DeviceType.OpenCL; } }
+		public bool IsOpenCl => Type == DeviceType.OpenCL;
 
 		/// <summary>
 		/// True if this device is a CPU
 		/// </summary>
-		public bool IsCpu { get { return Type == DeviceType.CPU; } }
+		public bool IsCpu => Type == DeviceType.CPU;
 
 		/// <summary>
 		/// True if this device is a GPU
 		/// </summary>
-		public bool IsGpu { get { return !IsCpu; } }
+		public bool IsGpu => !IsCpu;
 
 		/// <summary>
 		/// True if this is a Multi CUDA device
 		/// </summary>
-		public bool IsMultiCuda { get { return Type == DeviceType.Multi && Name.Contains("CUDA"); } }
+		public bool IsMultiCuda => Type == DeviceType.Multi && Name.Contains("CUDA");
 
 		/// <summary>
 		/// True if this is a Multi OpenCL device
 		/// </summary>
-		public bool IsMultiOpenCl { get { return Type == DeviceType.Multi && Name.Contains("OPENCL"); } }
+		public bool IsMultiOpenCl => Type == DeviceType.Multi && Name.Contains("OPENCL");
 
 		/// <summary>
 		/// String representation of this device
 		/// </summary>
 		/// <returns>String representation of this device</returns>
-		public override string ToString()
-		{
-			return $"{base.ToString()}: {Description} ({Type}), Id {Id} Num {Num} Name {Name} DisplayDevice {DisplayDevice} AdvancedShading {AdvancedShading} PackImages {PackImages}";
-		}
+		public override string ToString() => $"{base.ToString()}: {Description} ({Type}), Id {Id} Num {Num} Name {Name} DisplayDevice {DisplayDevice} AdvancedShading {AdvancedShading} PackImages {PackImages}";
 
 		/// <summary>
 		/// Get the default device (CPU)
 		/// </summary>
 		/// <returns>The default device</returns>
-		static public Device Default
-		{
-			get
-			{
-				return GetDevice(0);
-			}
-		}
+		static public Device Default => GetDevice(0);
 
 		/// <summary>
 		/// Get capabilities of all devices that Cycles can see.
 		/// </summary>
-		static public string Capabilities
-		{
-			get
-			{
-				return CSycles.device_capabilities();
-			}
-		}
+		static public string Capabilities => CSycles.device_capabilities();
 
 		/// <summary>
 		/// Get a device by using GetDevice(int idx). Constructor is private.
@@ -128,13 +113,7 @@ namespace ccl
 		/// Get the number of available Cycles render devices
 		/// </summary>
 		/// <returns></returns>
-		static public uint Count
-		{
-			get
-			{
-				return CSycles.number_devices();
-			}
-		}
+		static public uint Count => CSycles.number_devices();
 
 		/// <summary>
 		/// True if any of the available devices is a CUDA device

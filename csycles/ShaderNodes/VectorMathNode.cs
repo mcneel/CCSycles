@@ -123,11 +123,12 @@ namespace ccl.ShaderNodes
 		/// <summary>
 		/// VectorMathNode input sockets
 		/// </summary>
-		public VectorMathInputs ins { get { return (VectorMathInputs)inputs; } }
+		public VectorMathInputs ins => (VectorMathInputs)inputs;
+
 		/// <summary>
 		/// VectorMathNode output sockets
 		/// </summary>
-		public VectorMathOutputs outs { get { return (VectorMathOutputs)outputs; } }
+		public VectorMathOutputs outs => (VectorMathOutputs)outputs;
 
 		/// <summary>
 		/// VectorMath node operates on float inputs (note, some operations use only Vector1)

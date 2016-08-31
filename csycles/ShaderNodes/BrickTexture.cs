@@ -124,11 +124,12 @@ namespace ccl.ShaderNodes
 		/// <summary>
 		/// BrickTexture input sockets
 		/// </summary>
-		public BrickInputs ins { get { return (BrickInputs)inputs; } }
+		public BrickInputs ins => (BrickInputs)inputs;
+
 		/// <summary>
 		/// BrickTexture output sockets
 		/// </summary>
-		public BrickOutputs outs { get { return (BrickOutputs)outputs; } }
+		public BrickOutputs outs => (BrickOutputs)outputs;
 
 		/// <summary>
 		/// Create a brick texture

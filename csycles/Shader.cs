@@ -37,8 +37,8 @@ namespace ccl
 		/// <summary>
 		/// Get the ID for this shader. This ID is given by CCycles
 		/// </summary>
-		public uint Id { get; private set; }
-		private Client Client { get; set; }
+		public uint Id { get; }
+		private Client Client { get; }
 		public ShaderType Type { get; set; }
 
 		private bool created_in_cycles { get; set; }
@@ -215,7 +215,7 @@ namespace ccl
 		{
 			if (Verbose)
 			{
-				System.Diagnostics.Debug.WriteLine(String.Format("Finalizing {0}", Name));
+				System.Diagnostics.Debug.WriteLine($"Finalizing {Name}");
 			}
 			foreach (var node in m_nodes)
 			{
@@ -257,7 +257,7 @@ namespace ccl
 			}
 			else
 			{
-				throw new ArgumentException(String.Format("Cannot connect {0} to {1}", from, to));
+				throw new ArgumentException($"Cannot connect {@from} to {to}");
 			}
 		}
 

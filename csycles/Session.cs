@@ -35,7 +35,7 @@ namespace ccl
 		/// <summary>
 		/// Get the Scene used for this Session
 		/// </summary>
-		public Scene Scene { get; private set; }
+		public Scene Scene { get; }
 		/// <summary>
 		/// Get the SessionParams used for this Session
 		/// </summary>
@@ -43,12 +43,12 @@ namespace ccl
 		/// <summary>
 		/// Get the ID for this session
 		/// </summary>
-		public uint Id { get; private set; }
+		public uint Id { get; }
 
 		/// <summary>
 		/// Reference to client used for this session
 		/// </summary>
-		private Client Client { get; set; }
+		private Client Client { get; }
 
 		/// <summary>
 		/// Create a new session using the given SessionParameters and Scene

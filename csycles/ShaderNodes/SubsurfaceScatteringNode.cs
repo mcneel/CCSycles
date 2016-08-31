@@ -71,8 +71,9 @@ namespace ccl.ShaderNodes
 			Burley
 		}
 
-		public SubsurfaceScatteringInputs ins { get { return (SubsurfaceScatteringInputs)inputs; } }
-		public SubsurfaceScatteringOutputs outs { get { return (SubsurfaceScatteringOutputs)outputs; } }
+		public SubsurfaceScatteringInputs ins => (SubsurfaceScatteringInputs)inputs;
+		public SubsurfaceScatteringOutputs outs => (SubsurfaceScatteringOutputs)outputs;
+
 		/// <summary>
 		/// Create a new Scatter volume node
 		/// </summary>

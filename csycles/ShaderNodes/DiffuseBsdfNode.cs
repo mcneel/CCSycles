@@ -58,8 +58,9 @@ namespace ccl.ShaderNodes
 	[ShaderNode("diffuse_bsdf")]
 	public class DiffuseBsdfNode : ShaderNode
 	{
-		public DiffuseBsdfInputs ins { get { return (DiffuseBsdfInputs)inputs; } }
-		public DiffuseBsdfOutputs outs { get { return (DiffuseBsdfOutputs)outputs; } }
+		public DiffuseBsdfInputs ins => (DiffuseBsdfInputs)inputs;
+		public DiffuseBsdfOutputs outs => (DiffuseBsdfOutputs)outputs;
+
 		/// <summary>
 		/// Create a new Diffuse BSDF closure.
 		/// </summary>

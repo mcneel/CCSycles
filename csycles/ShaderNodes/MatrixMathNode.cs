@@ -14,10 +14,9 @@ See the License for the specific language governing permissions and
 limitations under the License.
 **/
 
-using System;
 using System.Xml;
-using ccl.ShaderNodes.Sockets;
 using ccl.Attributes;
+using ccl.ShaderNodes.Sockets;
 
 namespace ccl.ShaderNodes
 {
@@ -82,11 +81,12 @@ namespace ccl.ShaderNodes
 		/// <summary>
 		/// MatrixMathNode input sockets
 		/// </summary>
-		public MatrixMathInputs ins { get { return (MatrixMathInputs)inputs; } }
+		public MatrixMathInputs ins => (MatrixMathInputs)inputs;
+
 		/// <summary>
 		/// MatrixMathNode output sockets
 		/// </summary>
-		public MatrixMathOutputs outs { get { return (MatrixMathOutputs)outputs; } }
+		public MatrixMathOutputs outs => (MatrixMathOutputs)outputs;
 
 		/// <summary>
 		/// MatrixMath node operates on float inputs (note, some operations use only Value1)
@@ -108,7 +108,7 @@ namespace ccl.ShaderNodes
 			ins.Vector.Value = new float4(0.0f);
 		}
 
-		public ccl.Transform Transform { get; set; }
+		public Transform Transform { get; set; }
 
 		public Operations Operation { get; set; }
 

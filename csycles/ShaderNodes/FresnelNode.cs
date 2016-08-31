@@ -48,8 +48,8 @@ namespace ccl.ShaderNodes
 	[ShaderNode("fresnel")]
 	public class FresnelNode : ShaderNode
 	{
-		public FresnelInputs ins { get { return (FresnelInputs)inputs; } }
-		public FresnelOutputs outs { get { return (FresnelOutputs)outputs; } }
+		public FresnelInputs ins => (FresnelInputs)inputs;
+		public FresnelOutputs outs => (FresnelOutputs)outputs;
 		public FresnelNode() : this("a fresnel input node") { }
 		public FresnelNode(string name) :
 			base(ShaderNodeType.Fresnel, name)

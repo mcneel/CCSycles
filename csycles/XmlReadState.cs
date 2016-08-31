@@ -37,7 +37,7 @@ namespace ccl
 			
 		}
 
-		public XmlReadState(Scene scene, Transform transform, bool smooth, Shader shader, string basePath, float dicingRate, bool silent, bool is_shadowcatcher)
+		public XmlReadState(Scene scene, Transform transform, bool smooth, Shader shader, string basePath, float dicingRate, bool silent, bool isShadowcatcher)
 		{
 			Scene = scene;
 			Transform = transform;
@@ -46,7 +46,7 @@ namespace ccl
 			BasePath = basePath;
 			DicingRate = dicingRate;
 			Silent = silent;
-			IsShadowCatcher = is_shadowcatcher;
+			IsShadowCatcher = isShadowcatcher;
 		}
 
 		public XmlReadState(XmlReadState old)

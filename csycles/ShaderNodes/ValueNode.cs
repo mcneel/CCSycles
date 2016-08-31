@@ -38,8 +38,8 @@ namespace ccl.ShaderNodes
 	public class ValueNode : ShaderNode
 	{
 
-		public ValueInputs ins { get { return (ValueInputs)inputs; } }
-		public ValueOutputs outs { get { return (ValueOutputs)outputs; } }
+		public ValueInputs ins => (ValueInputs)inputs;
+		public ValueOutputs outs => (ValueOutputs)outputs;
 		public ValueNode() : this("a value input node") { }
 		public ValueNode(string name) :
 			base(ShaderNodeType.Value, name)

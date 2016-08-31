@@ -14,7 +14,6 @@ See the License for the specific language governing permissions and
 limitations under the License.
 **/
 
-using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Xml;
@@ -33,13 +32,7 @@ namespace ccl
 			NumberFormatInfo = CultureInfo.InvariantCulture.NumberFormat;
 		}
 
-		public static Utilities Instance
-		{
-			get
-			{
-				return g_utilities ?? (g_utilities = new Utilities());
-			}
-		}
+		public static Utilities Instance => g_utilities ?? (g_utilities = new Utilities());
 
 		public float[] parse_floats(string floats)
 		{
@@ -219,12 +212,12 @@ namespace ccl
 							var to = tostring.Split(' ');
 
 							if (!nodes.ContainsKey(from[0]))
-								throw new KeyNotFoundException(string.Format("'from' node [{0}] not defined prior to connection.", from[0]));
+								throw new KeyNotFoundException($"'from' node [{@from[0]}] not defined prior to connection.");
 							var fromnode = nodes[from[0]];
 							var fromsocket = fromnode.outputs.Socket(from[1]);
 
 							if (!nodes.ContainsKey(to[0]))
-								throw new KeyNotFoundException(string.Format("'to' node [{0}] not defined prior to connection.", to[0]));
+								throw new KeyNotFoundException($"'to' node [{to[0]}] not defined prior to connection.");
 							var tonode = nodes[to[0]];
 							var tosocket = tonode.inputs.Socket(to[1]);
 

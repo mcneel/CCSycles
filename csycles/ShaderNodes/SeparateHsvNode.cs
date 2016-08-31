@@ -51,8 +51,8 @@ namespace ccl.ShaderNodes
 	[ShaderNode("separate_hsv")]
 	public class SeparateHsvNode : ShaderNode
 	{
-		public SeparateHsvInputs ins { get { return (SeparateHsvInputs)inputs; } }
-		public SeparateHsvOutputs outs { get { return (SeparateHsvOutputs)outputs; } }
+		public SeparateHsvInputs ins => (SeparateHsvInputs)inputs;
+		public SeparateHsvOutputs outs => (SeparateHsvOutputs)outputs;
 
 		/// <summary>
 		/// Create new Separate HSV node.

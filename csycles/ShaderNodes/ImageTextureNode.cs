@@ -68,11 +68,12 @@ namespace ccl.ShaderNodes
 		/// <summary>
 		/// Image texture input sockets
 		/// </summary>
-		public ImageTextureInputs ins { get { return (ImageTextureInputs)inputs; } }
+		public ImageTextureInputs ins => (ImageTextureInputs)inputs;
+
 		/// <summary>
 		/// Image texture output sockets
 		/// </summary>
-		public ImageTextureOutputs outs { get { return (ImageTextureOutputs)outputs; } }
+		public ImageTextureOutputs outs => (ImageTextureOutputs)outputs;
 
 		public ImageTextureNode() : this("an image texture node")
 		{

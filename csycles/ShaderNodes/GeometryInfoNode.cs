@@ -97,11 +97,12 @@ namespace ccl.ShaderNodes
 		/// <summary>
 		/// GeometryInfo node input sockets
 		/// </summary>
-		public GeometryInfoInputs ins { get { return (GeometryInfoInputs)inputs; } }
+		public GeometryInfoInputs ins => (GeometryInfoInputs)inputs;
+
 		/// <summary>
 		/// GeometryInfo node output sockets
 		/// </summary>
-		public GeometryInfoOutputs outs { get { return (GeometryInfoOutputs)outputs; } }
+		public GeometryInfoOutputs outs => (GeometryInfoOutputs)outputs;
 
 		/// <summary>
 		/// Create a new GeometryInfoNode

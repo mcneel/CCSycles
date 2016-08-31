@@ -58,8 +58,9 @@ namespace ccl.ShaderNodes
 	[ShaderNode("velvet_bsdf")]
 	public class VelvetBsdfNode : ShaderNode
 	{
-		public VelvetBsdfInputs ins { get { return (VelvetBsdfInputs)inputs; } }
-		public VelvetBsdfOutputs outs { get { return (VelvetBsdfOutputs)outputs; } }
+		public VelvetBsdfInputs ins => (VelvetBsdfInputs)inputs;
+		public VelvetBsdfOutputs outs => (VelvetBsdfOutputs)outputs;
+
 		/// <summary>
 		/// Create a new Velvet BSDF closure.
 		/// </summary>

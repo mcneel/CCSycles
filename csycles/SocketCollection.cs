@@ -56,7 +56,7 @@ namespace ccl
 				if (XmlSocketName(socket.Name).ToLowerInvariant().Equals(name.ToLowerInvariant())) return socket;
 			}
 
-			throw new ArgumentException(string.Format("Socket {0} doesn't exist", name), "name");
+			throw new ArgumentException($"Socket {name} doesn't exist", nameof(name));
 		}
 
 		/// <summary>
@@ -92,12 +92,6 @@ namespace ccl
 		/// <summary>
 		/// Get an IEnumerable over sockets.
 		/// </summary>
-		public IEnumerable<SocketBase> Sockets
-		{
-			get
-			{
-				return m_socketlist;
-			}
-		}
+		public IEnumerable<SocketBase> Sockets => m_socketlist;
 	}
 }

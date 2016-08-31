@@ -30,7 +30,7 @@ namespace ccl.ShaderNodes
 		/// <summary>
 		/// Set a name for this node
 		/// </summary>
-		public string Name { get; private set; }
+		public string Name { get; }
 		/// <summary>
 		/// Get the node ID. This is set when created in Cycles.
 		/// </summary>
@@ -38,7 +38,7 @@ namespace ccl.ShaderNodes
 		/// <summary>
 		/// Get the shader node type. Set in the constructor.
 		/// </summary>
-		public ShaderNodeType Type { get; private set; }
+		public ShaderNodeType Type { get; }
 
 		/// <summary>
 		/// Generic access to input sockets.
@@ -123,7 +123,7 @@ namespace ccl.ShaderNodes
 
 		public override string ToString()
 		{
-			var str = String.Format("{0} ({1})", Name, Type);
+			var str = $"{Name} ({Type})";
 			return str;
 		}
 

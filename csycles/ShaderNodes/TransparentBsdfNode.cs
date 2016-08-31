@@ -50,8 +50,9 @@ namespace ccl.ShaderNodes
 	[ShaderNode("transparent_bsdf")]
 	public class TransparentBsdfNode : ShaderNode
 	{
-		public TransparentBsdfInputs ins { get { return (TransparentBsdfInputs)inputs; } }
-		public TransparentBsdfOutputs outs { get { return (TransparentBsdfOutputs)outputs; } }
+		public TransparentBsdfInputs ins => (TransparentBsdfInputs)inputs;
+		public TransparentBsdfOutputs outs => (TransparentBsdfOutputs)outputs;
+
 		/// <summary>
 		/// Create a new Transparent BSDF closure. Default Color is white
 		/// </summary>

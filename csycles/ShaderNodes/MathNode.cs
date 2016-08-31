@@ -163,11 +163,12 @@ namespace ccl.ShaderNodes
 		/// <summary>
 		/// MathNode input sockets
 		/// </summary>
-		public MathInputs ins { get { return (MathInputs)inputs; } }
+		public MathInputs ins => (MathInputs)inputs;
+
 		/// <summary>
 		/// MathNode output sockets
 		/// </summary>
-		public MathOutputs outs { get { return (MathOutputs)outputs; } }
+		public MathOutputs outs => (MathOutputs)outputs;
 
 		/// <summary>
 		/// Math node operates on float inputs (note, some operations use only Value1)

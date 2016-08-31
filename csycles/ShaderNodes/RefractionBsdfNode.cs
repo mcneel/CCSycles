@@ -60,8 +60,8 @@ namespace ccl.ShaderNodes
 			Beckmann,
 			GGX
 		}
-		public RefractionBsdfInputs ins { get { return (RefractionBsdfInputs)inputs; } }
-		public RefractionBsdfOutputs outs { get { return (RefractionBsdfOutputs)outputs; } }
+		public RefractionBsdfInputs ins => (RefractionBsdfInputs)inputs;
+		public RefractionBsdfOutputs outs => (RefractionBsdfOutputs)outputs;
 
 		public RefractionBsdfNode() : this("a refraction bsdf node") { }
 		public RefractionBsdfNode(string name) :

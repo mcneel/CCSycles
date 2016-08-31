@@ -45,8 +45,8 @@ namespace ccl.ShaderNodes
 	[ShaderNode("sky_texture")]
 	public class SkyTexture : TextureNode
 	{
-		public SkyInputs ins { get { return (SkyInputs)inputs; } }
-		public SkyOutputs outs { get { return (SkyOutputs)outputs; } }
+		public SkyInputs ins => (SkyInputs)inputs;
+		public SkyOutputs outs => (SkyOutputs)outputs;
 
 		public SkyTexture() : this("a sky texture") { }
 		public SkyTexture(string name)

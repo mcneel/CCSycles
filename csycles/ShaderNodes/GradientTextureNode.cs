@@ -107,11 +107,12 @@ namespace ccl.ShaderNodes
 		/// <summary>
 		/// GradientTextureNode input sockets
 		/// </summary>
-		public GradientInputs ins { get { return (GradientInputs)inputs; } }
+		public GradientInputs ins => (GradientInputs)inputs;
+
 		/// <summary>
 		/// GradientTextureNode output sockets
 		/// </summary>
-		public GradientOutputs outs { get { return (GradientOutputs)outputs; } }
+		public GradientOutputs outs => (GradientOutputs)outputs;
 
 		/// <summary>
 		/// Create GradientTextureNode
