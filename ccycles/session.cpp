@@ -145,8 +145,9 @@ void CCSession::display_update(int sample)
 void _cleanup_sessions()
 {
 	for (CCSession* se : sessions) {
+		if (se == nullptr) continue;
+
 		{
-			ccl::thread_scoped_lock pixels_lock(se->pixels_mutex);
 			delete[] se->pixels;
 			se->pixels = nullptr;
 			delete se->session;

@@ -34,10 +34,12 @@ void _cleanup_shaders()
 {
 	for (CCShader* sh : shaders) {
 		// just setting to nullptr, as scene disposal frees this memory.
-		sh->graph = nullptr;
-		sh->shader = nullptr;
-		sh->scene_mapping.clear();
-		delete sh;
+		if (sh != nullptr) {
+			sh->graph = nullptr;
+			sh->shader = nullptr;
+			sh->scene_mapping.clear();
+			delete sh;
+		}
 	}
 	shaders.clear();
 }
