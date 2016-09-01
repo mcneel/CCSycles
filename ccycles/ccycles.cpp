@@ -60,6 +60,7 @@ void cycles_initialise()
 	if (!initialised) {
 		devices = ccl::Device::available_devices();
 		_init_shaders();
+		initialised = true;
 	}
 }
 
