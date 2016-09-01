@@ -14,12 +14,14 @@ See the License for the specific language governing permissions and
 limitations under the License.
 **/
 
+using System;
+
 namespace ccl
 {
 	/// <summary>
 	/// A client is a main point of entry for C[CS]?ycles API user
 	/// </summary>
-	public class Client
+	public class Client : IDisposable
 	{
 		/// <summary>
 		/// Id for this client
@@ -40,9 +42,9 @@ namespace ccl
 		}
 
 		/// <summary>
-		/// Destroy a client.
+		/// Release client memory
 		/// </summary>
-		~Client()
+		public void Dispose()
 		{
 			CSycles.release_client(Id);
 		}
