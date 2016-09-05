@@ -91,11 +91,6 @@ void _cleanup_scenes()
 	// clear out scene params vector
 	scene_params.clear();
 
-	// loop over scenes, free the ccl::Scenes before clearing out vector
-	for (CCScene sce : scenes) {
-		delete sce.scene;
-	}
-
 	scenes.clear();
 }
 
