@@ -177,8 +177,6 @@ public:
 
 	~CCSession() {
 		ccl::thread_scoped_lock pixels_lock(pixels_mutex);
-		session->progress.set_cancel("Exiting from CCSession");
-		while(!session->progress.get_cancel()) {}
 		delete[] pixels;
 		pixels = nullptr;
 		delete session;
