@@ -262,6 +262,7 @@ void cycles_session_destroy(unsigned int client_id, unsigned int session_id)
 		}
 	}
 
+	delete ccsess->session;
 	delete ccses;
 
 	sessions[session_id] = nullptr;

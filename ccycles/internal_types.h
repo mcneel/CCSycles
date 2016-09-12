@@ -179,8 +179,6 @@ public:
 		ccl::thread_scoped_lock pixels_lock(pixels_mutex);
 		delete[] pixels;
 		pixels = nullptr;
-		delete session;
-		session = nullptr;
 	}
 
 private:
