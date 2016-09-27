@@ -280,7 +280,6 @@ void cycles_session_reset(unsigned int client_id, unsigned int session_id, unsig
 		bufParams.width = bufParams.full_width = width;
 		bufParams.height = bufParams.full_height = height;
 		session->reset(bufParams, (int)samples);
-		session->set_pause(false);
 	SESSION_FIND_END()
 }
 
