@@ -133,7 +133,7 @@ namespace ccl.ShaderNodes
 
 		internal override void SetEnums(uint clientId, uint shaderId)
 		{
-			CSycles.shadernode_set_enum(clientId, shaderId, Id, Type, "gradient", Gradient.ToString().Replace('_', ' '));
+			CSycles.shadernode_set_enum(clientId, shaderId, Id, Type, "gradient", (int)Gradient);
 		}
 
 		internal override void ParseXml(XmlReader xmlNode)

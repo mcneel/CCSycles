@@ -163,7 +163,7 @@ namespace ccl.ShaderNodes
 
 		internal override void SetEnums(uint clientId, uint shaderId)
 		{
-			CSycles.shadernode_set_enum(clientId, shaderId, Id, Type, "operation", Operation.ToString().Replace('_', ' '));
+			CSycles.shadernode_set_enum(clientId, shaderId, Id, Type, "operation", (int)Operation);
 		}
 
 		internal override void ParseXml(XmlReader xmlNode)

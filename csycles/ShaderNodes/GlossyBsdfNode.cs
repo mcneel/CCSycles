@@ -55,10 +55,11 @@ namespace ccl.ShaderNodes
 
 		public enum GlossyDistribution
 		{
-			Sharp,
-			Beckmann,
-			GGX,
-			Asihkmin_Shirley,
+			Sharp = 7,
+			Beckmann = 9,
+			GGX = 8,
+			Asihkmin_Shirley = 11,
+			Multiscatter_GGX = 10
 		}
 
 		public GlossyInputs ins => (GlossyInputs)inputs;
@@ -70,7 +71,7 @@ namespace ccl.ShaderNodes
 		{
 			inputs = new GlossyInputs(this);
 			outputs = new GlossyOutputs(this);
-			Distribution = GlossyDistribution.Beckmann;
+			Distribution = GlossyDistribution.Multiscatter_GGX;
 			ins.Color.Value = new float4();
 			ins.Roughness.Value = 0.0f;
 		}
@@ -92,7 +93,7 @@ namespace ccl.ShaderNodes
 
 		internal override void SetEnums(uint clientId, uint shaderId)
 		{
-			CSycles.shadernode_set_enum(clientId, shaderId, Id, Type, "distribution", GlossyToString(Distribution));
+			CSycles.shadernode_set_enum(clientId, shaderId, Id, Type, "distribution", (int)Distribution);
 		}
 
 		internal override void ParseXml(XmlReader xmlNode)

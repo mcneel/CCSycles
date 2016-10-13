@@ -19,6 +19,9 @@
     <ClCompile Include="cycles\src\bvh\bvh.cpp">
       <Filter>bvh</Filter>
     </ClCompile>
+    <ClCompile Include="cycles\src\bvh\bvh_unaligned.cpp">
+      <Filter>bvh</Filter>
+    </ClCompile>
     <ClCompile Include="cycles\src\util\util_aligned_malloc.cpp">
       <Filter>util</Filter>
     </ClCompile>
@@ -76,6 +79,18 @@
     <ClCompile Include="cycles\src\device\device_opencl.cpp">
       <Filter>device</Filter>
     </ClCompile>
+    <ClCompile Include="cycles\src\device\opencl\opencl_base.cpp">
+      <Filter>device_opencl</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles\src\device\opencl\opencl_mega.cpp">
+      <Filter>device_opencl</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles\src\device\opencl\opencl_split.cpp">
+      <Filter>device_opencl</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles\src\device\opencl\opencl_util.cpp">
+      <Filter>device_opencl</Filter>
+    </ClCompile>
     <ClCompile Include="cycles\src\device\device_task.cpp">
       <Filter>device</Filter>
     </ClCompile>
@@ -92,6 +107,9 @@
       <Filter>render</Filter>
     </ClCompile>
     <ClCompile Include="cycles\src\render\camera.cpp">
+      <Filter>render</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles\src\render\constant_fold.cpp">
       <Filter>render</Filter>
     </ClCompile>
     <ClCompile Include="cycles\src\render\curves.cpp">
@@ -116,6 +134,9 @@
       <Filter>render</Filter>
     </ClCompile>
     <ClCompile Include="cycles\src\render\mesh_displace.cpp">
+      <Filter>render</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles\src\render\mesh_subdivision.cpp">
       <Filter>render</Filter>
     </ClCompile>
     <ClCompile Include="cycles\src\render\nodes.cpp">
@@ -154,10 +175,10 @@
     <ClCompile Include="cycles\src\subd\subd_dice.cpp">
       <Filter>subd</Filter>
     </ClCompile>
-    <ClCompile Include="cycles\src\subd\subd_mesh.cpp">
+    <ClCompile Include="cycles\src\subd\subd_patch.cpp">
       <Filter>subd</Filter>
     </ClCompile>
-    <ClCompile Include="cycles\src\subd\subd_patch.cpp">
+    <ClCompile Include="cycles\src\subd\subd_patch_table.cpp">
       <Filter>subd</Filter>
     </ClCompile>
     <ClCompile Include="cycles\src\subd\subd_split.cpp">
@@ -181,6 +202,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cycles\src\bvh\bvh.h">
+      <Filter>bvh</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\bvh\bvh_unaligned.h">
       <Filter>bvh</Filter>
     </ClInclude>
     <ClInclude Include="cycles\src\bvh\bvh_binning.h">
@@ -273,6 +297,9 @@
     <ClInclude Include="cycles\src\util\util_simd.h">
       <Filter>util</Filter>
     </ClInclude>
+    <ClInclude Include="cycles\src\util\util_static_assert.h">
+      <Filter>util</Filter>
+    </ClInclude>
     <ClInclude Include="cycles\src\util\util_stack_allocator.h">
       <Filter>util</Filter>
     </ClInclude>
@@ -339,6 +366,9 @@
     <ClInclude Include="cycles\src\device\device_task.h">
       <Filter>device</Filter>
     </ClInclude>
+    <ClInclude Include="cycles\src\device\opencl\opencl.h">
+      <Filter>device_opencl</Filter>
+    </ClInclude>
     <ClInclude Include="cycles\src\render\attribute.h">
       <Filter>render</Filter>
     </ClInclude>
@@ -352,6 +382,9 @@
       <Filter>render</Filter>
     </ClInclude>
     <ClInclude Include="cycles\src\render\camera.h">
+      <Filter>render</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\render\constant_fold.h">
       <Filter>render</Filter>
     </ClInclude>
     <ClInclude Include="cycles\src\render\curves.h">
@@ -411,10 +444,10 @@
     <ClInclude Include="cycles\src\subd\subd_dice.h">
       <Filter>subd</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\subd\subd_mesh.h">
+    <ClInclude Include="cycles\src\subd\subd_patch.h">
       <Filter>subd</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\subd\subd_patch.h">
+    <ClInclude Include="cycles\src\subd\subd_patch_table.h">
       <Filter>subd</Filter>
     </ClInclude>
     <ClInclude Include="cycles\src\subd\subd_split.h">
@@ -653,6 +686,9 @@
     <Filter Include="device">
       <UniqueIdentifier>{ee660968-f550-4ac9-a607-0fd603e741b8}</UniqueIdentifier>
     </Filter>
+		<Filter Include="device_opencl">
+			<UniqueIdentifier>{7A337C27-8330-4352-A751-2E9164E26B38}</UniqueIdentifier>
+		</Filter>
     <Filter Include="render">
       <UniqueIdentifier>{d1f838d0-de6f-45ec-8cf9-997a274df0f6}</UniqueIdentifier>
     </Filter>

@@ -66,9 +66,9 @@ namespace ccl.ShaderNodes
 	{
 		public enum FalloffTypes
 		{
-			Cubic,
-			Guassian,
-			Burley
+			Cubic = 32,
+			Guassian = 33,
+			Burley = 34
 		}
 
 		public SubsurfaceScatteringInputs ins => (SubsurfaceScatteringInputs)inputs;
@@ -96,7 +96,7 @@ namespace ccl.ShaderNodes
 
 		internal override void SetEnums(uint clientId, uint shaderId)
 		{
-			CSycles.shadernode_set_enum(clientId, shaderId, Id, Type, "falloff", Falloff.ToString());
+			CSycles.shadernode_set_enum(clientId, shaderId, Id, Type, "falloff", (int)Falloff);
 		}
 
 		internal override void ParseXml(XmlReader xmlNode)

@@ -111,7 +111,7 @@ namespace ccl.ShaderNodes
 
 		internal override void SetEnums(uint clientId, uint shaderId)
 		{
-			CSycles.shadernode_set_enum(clientId, shaderId, Id, Type, "type", BlendType.ToString().Replace("_", " "));
+			CSycles.shadernode_set_enum(clientId, shaderId, Id, Type, "type", (int)BlendType);
 		}
 
 		internal override void SetDirectMembers(uint clientId, uint shaderId)

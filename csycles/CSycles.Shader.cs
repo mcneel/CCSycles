@@ -85,7 +85,7 @@ namespace ccl
 
 		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_shadernode_set_enum", CharSet = CharSet.Ansi,
 			CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_shadernode_set_enum(uint clientId, uint shaderId, uint shadernodeId, uint shnType, [MarshalAs(UnmanagedType.LPStr)] string enum_name, [MarshalAs(UnmanagedType.LPStr)] string value);
+		private static extern void cycles_shadernode_set_enum(uint clientId, uint shaderId, uint shadernodeId, uint shnType, [MarshalAs(UnmanagedType.LPStr)] string enum_name, int value);
 		/// <summary>
 		/// Set enumeration value for a shader node
 		/// </summary>
@@ -94,8 +94,8 @@ namespace ccl
 		/// <param name="shadernodeId">Node ID in shader</param>
 		/// <param name="shnType">Type of shader node</param>
 		/// <param name="enum_name">Name of enumeration. Used mostly for nodes that have multiple</param>
-		/// <param name="value">String value of the enumeration</param>
-		public static void shadernode_set_enum(uint clientId, uint shaderId, uint shadernodeId, ShaderNodeType shnType, string enum_name, string value)
+		/// <param name="value">Int value of the enumeration</param>
+		public static void shadernode_set_enum(uint clientId, uint shaderId, uint shadernodeId, ShaderNodeType shnType, string enum_name, int value)
 		{
 			cycles_shadernode_set_enum(clientId, shaderId, shadernodeId, (uint) shnType, enum_name, value);
 		}

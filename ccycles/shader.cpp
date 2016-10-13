@@ -183,7 +183,7 @@ unsigned int cycles_add_shader_node(unsigned int client_id, unsigned int shader_
 	case shadernode_type::REFRACTION:
 	{
 		ccl::RefractionBsdfNode* refrnode = new ccl::RefractionBsdfNode();
-		refrnode->distribution = (ccl::ClosureType)ccl::RefractionBsdfNode::distribution_enum["Beckmann"];
+		refrnode->distribution = ccl::CLOSURE_BSDF_MICROFACET_BECKMANN_REFRACTION_ID;
 		node = dynamic_cast<ccl::ShaderNode *>(refrnode);
 	}
 	break;
@@ -491,9 +491,8 @@ void cycles_shadernode_texmapping_set_type(unsigned int client_id, unsigned int 
 
 /* TODO: add all enum possibilities.
  */
-void cycles_shadernode_set_enum(unsigned int client_id, unsigned int shader_id, unsigned int shnode_id, shadernode_type shn_type, const char* enum_name, const char* value)
+void cycles_shadernode_set_enum(unsigned int client_id, unsigned int shader_id, unsigned int shnode_id, shadernode_type shn_type, const char* enum_name, int value)
 {
-	auto val = OpenImageIO::v1_3::ustring(value);
 	auto ename = string{ enum_name };
 
 	ccl::ShaderNode* shnode = _shader_node_find(shader_id, shnode_id);
@@ -502,77 +501,83 @@ void cycles_shadernode_set_enum(unsigned int client_id, unsigned int shader_id, 
 		case shadernode_type::MATH:
 		{
 			ccl::MathNode* node = dynamic_cast<ccl::MathNode*>(shnode);
-			node->type = (ccl::NodeMath)ccl::MathNode::type_enum[val];
+			node->type = (ccl::NodeMath)value;
 		}
 		break;
 		case shadernode_type::VECT_MATH:
 		{
 			ccl::VectorMathNode *node = dynamic_cast<ccl::VectorMathNode*>(shnode);
-			node->type = (ccl::NodeVectorMath)ccl::VectorMathNode::type_enum[val];
+			node->type = (ccl::NodeVectorMath)value;
 		}
 		break;
 		case shadernode_type::MATRIX_MATH:
 		{
 			ccl::MatrixMathNode *node = dynamic_cast<ccl::MatrixMathNode*>(shnode);
-			node->type = (ccl::NodeMatrixMath)ccl::MatrixMathNode::type_enum[val];
+			node->type = (ccl::NodeMatrixMath)value;
 		}
 		break;
 		case shadernode_type::MIX:
 		{
 			ccl::MixNode* node = dynamic_cast<ccl::MixNode*>(shnode);
-			node->type = (ccl::NodeMix)ccl::MixNode::type_enum[val];
+			node->type = (ccl::NodeMix)value;
 		}
 		break;
 		case shadernode_type::REFRACTION:
 		{
 			ccl::RefractionBsdfNode* node = dynamic_cast<ccl::RefractionBsdfNode*>(shnode);
-			node->distribution = (ccl::ClosureType)ccl::RefractionBsdfNode::distribution_enum[val];
+			node->distribution = (ccl::ClosureType)value;
 		}
 		break;
 		case shadernode_type::GLOSSY:
 		{
 			ccl::GlossyBsdfNode* node = dynamic_cast<ccl::GlossyBsdfNode*>(shnode);
-			node->distribution = (ccl::ClosureType)ccl::GlossyBsdfNode::distribution_enum[val];
+			node->distribution = (ccl::ClosureType)value;
 		}
 		break;
 		case shadernode_type::GLASS:
 		{
 			ccl::GlassBsdfNode* node = dynamic_cast<ccl::GlassBsdfNode*>(shnode);
-			node->distribution = (ccl::ClosureType)ccl::GlassBsdfNode::distribution_enum[val];
+			node->distribution = (ccl::ClosureType)value;
 		}
 		break;
 		case shadernode_type::ANISOTROPIC:
 		{
 			ccl::AnisotropicBsdfNode* node = dynamic_cast<ccl::AnisotropicBsdfNode*>(shnode);
-			node->distribution = (ccl::ClosureType)ccl::AnisotropicBsdfNode::distribution_enum[val];
+			node->distribution = (ccl::ClosureType)value;
 		}
 		break;
 		case shadernode_type::WAVE_TEXTURE:
 		{
-			ccl::WaveTextureNode* node = dynamic_cast<ccl::WaveTextureNode*>(shnode);
-			node->type = (ccl::NodeWaveType)ccl::WaveTextureNode::type_enum[val];
+			if (ename == "wave") {
+				ccl::WaveTextureNode* node = dynamic_cast<ccl::WaveTextureNode*>(shnode);
+				node->type = (ccl::NodeWaveType)value;
+			}
+			if (ename == "profile") {
+				ccl::WaveTextureNode* node = dynamic_cast<ccl::WaveTextureNode*>(shnode);
+				node->profile = (ccl::NodeWaveProfile)value;
+			}
 		}
 		break;
 		case shadernode_type::VORONOI_TEXTURE:
 		{
 			ccl::VoronoiTextureNode* node = dynamic_cast<ccl::VoronoiTextureNode*>(shnode);
-			node->coloring = (ccl::NodeVoronoiColoring)ccl::VoronoiTextureNode::coloring_enum[val];
+			node->coloring = (ccl::NodeVoronoiColoring)value;
 		}
 		break;
 		case shadernode_type::SKY_TEXTURE:
 		{
 			ccl::SkyTextureNode* node = dynamic_cast<ccl::SkyTextureNode*>(shnode);
-			node->type = (ccl::NodeSkyType)ccl::SkyTextureNode::type_enum[val];
+			node->type = (ccl::NodeSkyType)value;
 		}
 		break;
 		case shadernode_type::ENVIRONMENT_TEXTURE:
 		{
 			ccl::EnvironmentTextureNode* node = dynamic_cast<ccl::EnvironmentTextureNode*>(shnode);
 			if (ename == "color_space") {
-				node->color_space = (ccl::NodeImageColorSpace)ccl::EnvironmentTextureNode::color_space_enum[val];
+				node->color_space = (ccl::NodeImageColorSpace)value;
 			}
 			else if (ename == "projection") {
-				node->projection = (ccl::NodeEnvironmentProjection)ccl::EnvironmentTextureNode::projection_enum[val];
+				node->projection = (ccl::NodeEnvironmentProjection)value;
 			}
 		}
 		break;
@@ -580,23 +585,23 @@ void cycles_shadernode_set_enum(unsigned int client_id, unsigned int shader_id, 
 		{
 			ccl::ImageTextureNode* node = dynamic_cast<ccl::ImageTextureNode*>(shnode);
 			if (ename == "color_space") {
-				node->color_space = (ccl::NodeImageColorSpace)ccl::ImageTextureNode::color_space_enum[val];
+				node->color_space = (ccl::NodeImageColorSpace)value;
 			}
 			else if (ename == "projection") {
-				node->projection = (ccl::NodeImageProjection)ccl::ImageTextureNode::projection_enum[val];
+				node->projection = (ccl::NodeImageProjection)value;
 			}
 			break;
 		}
 		case shadernode_type::GRADIENT_TEXTURE:
 		{
 			ccl::GradientTextureNode* node = dynamic_cast<ccl::GradientTextureNode*>(shnode);
-			node->type = (ccl::NodeGradientType)ccl::GradientTextureNode::type_enum[val];
+			node->type = (ccl::NodeGradientType)value;
 			break;
 		}
 		case shadernode_type::SUBSURFACE_SCATTERING:
 		{
 			ccl::SubsurfaceScatteringNode* node = dynamic_cast<ccl::SubsurfaceScatteringNode*>(shnode);
-			node->falloff = (ccl::ClosureType)ccl::SubsurfaceScatteringNode::falloff_enum[val];
+			node->falloff = (ccl::ClosureType)value;
 			break;
 		}
 		}

@@ -14,6 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 **/
 
+using System;
 using System.Xml;
 using ccl.ShaderNodes.Sockets;
 using ccl.Attributes;
@@ -58,23 +59,29 @@ namespace ccl.ShaderNodes
 			SunDirection = new float4(0.0f, 0.0f, 1.0f);
 			Turbidity = 2.2f;
 			GroundAlbedo = 0.3f;
-			SkyType = "Hosek / Wilkie";
+			SkyType = SkyTypes.Hosek_Wilkie;
 		}
 
 		public float4 SunDirection { get; set; }
 		public float Turbidity { get; set; }
 		public float GroundAlbedo { get; set; }
 
+		public enum SkyTypes
+		{
+			Preetham,
+			Hosek_Wilkie
+		}
+
 		/// <summary>
 		/// One of:
 		/// - Preetham
 		/// - Hosek / Wilkie
 		/// </summary>
-		public string SkyType { get; set; }
+		public SkyTypes SkyType { get; set; }
 
 		internal override void SetEnums(uint clientId, uint shaderId)
 		{
-			CSycles.shadernode_set_enum(clientId, shaderId, Id, Type, "sky", SkyType);
+			CSycles.shadernode_set_enum(clientId, shaderId, Id, Type, "sky", (int)SkyType);
 		}
 
 		internal override void SetDirectMembers(uint clientId, uint shaderId)
@@ -110,7 +117,11 @@ namespace ccl.ShaderNodes
 			}
 			if (!string.IsNullOrEmpty(sky_type))
 			{
-				SkyType = sky_type;
+				SkyTypes st;
+				if (Enum.TryParse(sky_type, out st))
+				{
+					SkyType = st;
+				}
 			}
 		}
 	}

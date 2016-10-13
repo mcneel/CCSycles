@@ -67,9 +67,10 @@ namespace ccl.ShaderNodes
 	{
 		public enum AnisotropicDistribution
 		{
-			Beckmann,
-			GGX,
-			Asihkmin_Shirley,
+			Beckmann = 14,
+			GGX = 12,
+			Multiscatter_GGX = 13,
+			Asihkmin_Shirley = 15,
 		}
 		public AnisotropicBsdfInputs ins => (AnisotropicBsdfInputs)inputs;
 		public AnisotropicBsdfOutputs outs => (AnisotropicBsdfOutputs)outputs;
@@ -107,7 +108,7 @@ namespace ccl.ShaderNodes
 		AnisotropicDistribution Distribution { get; set; }
 		internal override void SetEnums(uint clientId, uint shaderId)
 		{
-			CSycles.shadernode_set_enum(clientId, shaderId, Id, Type, "distribution", AnisotropicToString(Distribution));
+			CSycles.shadernode_set_enum(clientId, shaderId, Id, Type, "distribution", (int)Distribution);
 		}
 
 		internal override void ParseXml(XmlReader xmlNode)

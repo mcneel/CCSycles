@@ -14,6 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 **/
 
+using System;
 using System.Xml;
 using ccl.ShaderNodes.Sockets;
 using ccl.Attributes;
@@ -60,6 +61,19 @@ namespace ccl.ShaderNodes
 	[ShaderNode("wave_texture")]
 	public class WaveTexture : TextureNode
 	{
+
+		public enum WaveTypes
+		{
+			Bands,
+			Rings
+		}
+
+		public enum WaveProfiles
+		{
+			Sine,
+			Saw
+		}
+
 		public WaveInputs ins => (WaveInputs)inputs;
 		public WaveOutputs outs => (WaveOutputs)outputs;
 
@@ -74,6 +88,9 @@ namespace ccl.ShaderNodes
 			ins.Distortion.Value = 0.0f;
 			ins.Detail.Value = 2.0f;
 			ins.DetailScale.Value = 1.0f;
+
+			WaveType = WaveTypes.Bands;
+			WaveProfile = WaveProfiles.Sine;
 		}
 
 		/// <summary>
@@ -81,11 +98,14 @@ namespace ccl.ShaderNodes
 		/// - Bands
 		/// - Rings
 		/// </summary>
-		public string WaveType { get; set; }
+		public WaveTypes WaveType { get; set; }
+
+		public WaveProfiles WaveProfile { get; set; }
 
 		internal override void SetEnums(uint clientId, uint shaderId)
 		{
-			CSycles.shadernode_set_enum(clientId, shaderId, Id, Type, "wave", WaveType);
+			CSycles.shadernode_set_enum(clientId, shaderId, Id, Type, "wave", (int)WaveType);
+			CSycles.shadernode_set_enum(clientId, shaderId, Id, Type, "profile", (int)WaveProfile);
 		}
 
 		internal override void ParseXml(XmlReader xmlNode)
@@ -99,7 +119,16 @@ namespace ccl.ShaderNodes
 			var wavetype = xmlNode.GetAttribute("wave_type");
 			if (!string.IsNullOrEmpty(wavetype))
 			{
-				WaveType = wavetype;
+				WaveTypes wt;
+				if(Enum.TryParse(wavetype, out wt))
+					WaveType = wt;
+			}
+			var waveprofile = xmlNode.GetAttribute("wave_profile");
+			if (!string.IsNullOrEmpty(waveprofile))
+			{
+				WaveProfiles wp;
+				if (Enum.TryParse(waveprofile, out wp))
+					WaveProfile = wp;
 			}
 		}
 	}

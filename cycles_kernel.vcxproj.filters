@@ -12,6 +12,9 @@
     <Filter Include="Geometry Header Files">
       <UniqueIdentifier>{E57A3AD2-B3C9-4232-B915-74C896B72157}</UniqueIdentifier>
     </Filter>
+    <Filter Include="BVH Header Files">
+      <UniqueIdentifier>{DA2C0F5D-FE4B-4741-81F1-3C81AA82F949}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{F6429116-0E6C-42A5-928B-E0A4DFD715CB}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
@@ -23,6 +26,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="cycles\src\kernel\closure\alloc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="cycles\src\kernel\closure\bsdf.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -42,6 +48,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="cycles\src\kernel\closure\bsdf_microfacet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\kernel\closure\bsdf_microfacet_multi.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\kernel\closure\bsdf_microfacet_multi_impl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="cycles\src\kernel\closure\bsdf_oren_nayar.h">
@@ -185,6 +197,9 @@
     <ClInclude Include="cycles\src\kernel\svm\svm_brightness.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="cycles\src\kernel\svm\svm_bump.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="cycles\src\kernel\svm\svm_camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -192,6 +207,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="cycles\src\kernel\svm\svm_closure.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\kernel\svm\svm_color_util.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="cycles\src\kernel\svm\svm_convert.h">
@@ -254,6 +272,9 @@
     <ClInclude Include="cycles\src\kernel\svm\svm_ramp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="cycles\src\kernel\svm\svm_ramp_util.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="cycles\src\kernel\svm\svm_sepcomb_hsv.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -302,23 +323,44 @@
     <ClInclude Include="cycles\src\kernel\geom\geom_attribute.h">
       <Filter>Geometry Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\geom\geom_bvh.h">
-      <Filter>Geometry Header Files</Filter>
+    <ClInclude Include="cycles\src\kernel\bvh\bvh.h">
+      <Filter>BVH Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\geom\geom_bvh_shadow.h">
-      <Filter>Geometry Header Files</Filter>
+    <ClInclude Include="cycles\src\kernel\bvh\bvh_nodes.h">
+      <Filter>BVH Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\geom\geom_bvh_subsurface.h">
-      <Filter>Geometry Header Files</Filter>
+    <ClInclude Include="cycles\src\kernel\bvh\bvh_shadow_all.h">
+      <Filter>BVH Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\geom\geom_bvh_traversal.h">
-      <Filter>Geometry Header Files</Filter>
+    <ClInclude Include="cycles\src\kernel\bvh\bvh_subsurface.h">
+      <Filter>BVH Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\geom\geom_bvh_volume.h">
-      <Filter>Geometry Header Files</Filter>
+    <ClInclude Include="cycles\src\kernel\bvh\bvh_traversal.h">
+      <Filter>BVH Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\geom\geom_bvh_volume_all.h">
-      <Filter>Geometry Header Files</Filter>
+    <ClInclude Include="cycles\src\kernel\bvh\bvh_types.h">
+      <Filter>BVH Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\kernel\bvh\bvh_volume.h">
+      <Filter>BVH Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\kernel\bvh\bvh_volume_all.h">
+      <Filter>BVH Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\kernel\bvh\qbvh_shadow_all.h">
+      <Filter>BVH Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\kernel\bvh\qbvh_subsurface.h">
+      <Filter>BVH Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\kernel\bvh\qbvh_traversal.h">
+      <Filter>BVH Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\kernel\bvh\qbvh_volume.h">
+      <Filter>BVH Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\kernel\bvh\qbvh_volume_all.h">
+      <Filter>BVH Header Files</Filter>
     </ClInclude>
     <ClInclude Include="cycles\src\kernel\geom\geom_curve.h">
       <Filter>Geometry Header Files</Filter>
@@ -332,25 +374,13 @@
     <ClInclude Include="cycles\src\kernel\geom\geom_object.h">
       <Filter>Geometry Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="cycles\src\kernel\geom\geom_patch.h">
+      <Filter>Geometry Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="cycles\src\kernel\geom\geom_primitive.h">
       <Filter>Geometry Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\geom\geom_qbvh.h">
-      <Filter>Geometry Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\geom\geom_qbvh_shadow.h">
-      <Filter>Geometry Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\geom\geom_qbvh_subsurface.h">
-      <Filter>Geometry Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\geom\geom_qbvh_traversal.h">
-      <Filter>Geometry Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\geom\geom_qbvh_volume.h">
-      <Filter>Geometry Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\geom\geom_qbvh_volume_all.h">
+    <ClInclude Include="cycles\src\kernel\geom\geom_subd_triangle.h">
       <Filter>Geometry Header Files</Filter>
     </ClInclude>
     <ClInclude Include="cycles\src\kernel\geom\geom_triangle.h">

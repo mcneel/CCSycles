@@ -100,6 +100,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="cycles\src\bvh\bvh.cpp" />
+    <ClCompile Include="cycles\src\bvh\bvh_unaligned.cpp" />
     <ClCompile Include="cycles\src\bvh\bvh_binning.cpp" />
     <ClCompile Include="cycles\src\bvh\bvh_build.cpp" />
     <ClCompile Include="cycles\src\bvh\bvh_node.cpp" />
@@ -111,12 +112,17 @@
     <ClCompile Include="cycles\src\device\device_multi.cpp" />
     <ClCompile Include="cycles\src\device\device_network.cpp" />
     <ClCompile Include="cycles\src\device\device_opencl.cpp" />
+    <ClCompile Include="cycles\src\device\opencl\opencl_base.cpp" />
+    <ClCompile Include="cycles\src\device\opencl\opencl_mega.cpp" />
+    <ClCompile Include="cycles\src\device\opencl\opencl_split.cpp" />
+    <ClCompile Include="cycles\src\device\opencl\opencl_util.cpp" />
     <ClCompile Include="cycles\src\device\device_task.cpp" />
     <ClCompile Include="cycles\src\render\attribute.cpp" />
     <ClCompile Include="cycles\src\render\background.cpp" />
     <ClCompile Include="cycles\src\render\bake.cpp" />
     <ClCompile Include="cycles\src\render\buffers.cpp" />
     <ClCompile Include="cycles\src\render\camera.cpp" />
+    <ClCompile Include="cycles\src\render\constant_fold.cpp" />
     <ClCompile Include="cycles\src\render\curves.cpp" />
     <ClCompile Include="cycles\src\render\film.cpp" />
     <ClCompile Include="cycles\src\render\graph.cpp" />
@@ -125,6 +131,7 @@
     <ClCompile Include="cycles\src\render\light.cpp" />
     <ClCompile Include="cycles\src\render\mesh.cpp" />
     <ClCompile Include="cycles\src\render\mesh_displace.cpp" />
+    <ClCompile Include="cycles\src\render\mesh_subdivision.cpp" />
     <ClCompile Include="cycles\src\render\nodes.cpp" />
     <ClCompile Include="cycles\src\render\object.cpp" />
     <ClCompile Include="cycles\src\render\osl.cpp" />
@@ -137,8 +144,8 @@
     <ClCompile Include="cycles\src\render\tables.cpp" />
     <ClCompile Include="cycles\src\render\tile.cpp" />
     <ClCompile Include="cycles\src\subd\subd_dice.cpp" />
-    <ClCompile Include="cycles\src\subd\subd_mesh.cpp" />
     <ClCompile Include="cycles\src\subd\subd_patch.cpp" />
+    <ClCompile Include="cycles\src\subd\subd_patch_table.cpp" />
     <ClCompile Include="cycles\src\subd\subd_split.cpp" />
     <ClCompile Include="cycles\src\util\util_aligned_malloc.cpp" />
     <ClCompile Include="cycles\src\util\util_debug.cpp" />
@@ -161,6 +168,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cycles\src\bvh\bvh.h" />
+    <ClInclude Include="cycles\src\bvh\bvh_unaligned.h" />
     <ClInclude Include="cycles\src\bvh\bvh_binning.h" />
     <ClInclude Include="cycles\src\bvh\bvh_build.h" />
     <ClInclude Include="cycles\src\bvh\bvh_node.h" />
@@ -172,6 +180,7 @@
     <ClInclude Include="cycles\src\device\device_memory.h" />
     <ClInclude Include="cycles\src\device\device_network.h" />
     <ClInclude Include="cycles\src\device\device_task.h" />
+    <ClInclude Include="cycles\src\device\opencl\opencl.h" />
     <ClInclude Include="cycles\src\kernel\kernel.h" />
     <ClInclude Include="cycles\src\kernel\kernels\cpu\kernel_cpu.h" />
     <ClInclude Include="cycles\src\kernel\kernels\cpu\kernel_cpu_impl.h" />
@@ -245,6 +254,7 @@
     <ClInclude Include="cycles\src\render\bake.h" />
     <ClInclude Include="cycles\src\render\buffers.h" />
     <ClInclude Include="cycles\src\render\camera.h" />
+    <ClInclude Include="cycles\src\render\constant_fold.h" />
     <ClInclude Include="cycles\src\render\curves.h" />
     <ClInclude Include="cycles\src\render\film.h" />
     <ClInclude Include="cycles\src\render\graph.h" />
@@ -264,8 +274,8 @@
     <ClInclude Include="cycles\src\render\tables.h" />
     <ClInclude Include="cycles\src\render\tile.h" />
     <ClInclude Include="cycles\src\subd\subd_dice.h" />
-    <ClInclude Include="cycles\src\subd\subd_mesh.h" />
     <ClInclude Include="cycles\src\subd\subd_patch.h" />
+    <ClInclude Include="cycles\src\subd\subd_patch_table.h" />
     <ClInclude Include="cycles\src\subd\subd_split.h" />
     <ClInclude Include="cycles\src\util\util_algorithm.h" />
     <ClInclude Include="cycles\src\util\util_aligned_malloc.h" />
@@ -292,6 +302,7 @@
     <ClInclude Include="cycles\src\util\util_progress.h" />
     <ClInclude Include="cycles\src\util\util_set.h" />
     <ClInclude Include="cycles\src\util\util_simd.h" />
+    <ClInclude Include="cycles\src\util\util_static_assert.h" />
     <ClInclude Include="cycles\src\util\util_stack_allocator.h" />
     <ClInclude Include="cycles\src\util\util_sky_model.h" />
     <ClInclude Include="cycles\src\util\util_sky_model_data.h" />

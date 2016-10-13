@@ -58,9 +58,10 @@ namespace ccl.ShaderNodes
 
 		public enum GlassDistribution
 		{
-			Sharp,
-			Beckmann,
-			GGX
+			Sharp = 28,
+			Beckmann = 25,
+			GGX = 26,
+			Multiscatter_GGX = 27
 		}
 
 		public GlassInputs ins => (GlassInputs)inputs;
@@ -72,7 +73,7 @@ namespace ccl.ShaderNodes
 			inputs = new GlassInputs(this);
 			outputs = new GlassOutputs(this);
 
-			Distribution = GlassDistribution.Beckmann;
+			Distribution = GlassDistribution.Multiscatter_GGX;
 		}
 
 		public GlassDistribution Distribution { get; set; }
@@ -84,7 +85,7 @@ namespace ccl.ShaderNodes
 
 		internal override void SetEnums(uint clientId, uint shaderId)
 		{
-			CSycles.shadernode_set_enum(clientId, shaderId, Id, Type, "distribution", Distribution.ToString());
+			CSycles.shadernode_set_enum(clientId, shaderId, Id, Type, "distribution", (int)Distribution);
 		}
 
 		internal override void ParseXml(XmlReader xmlNode)

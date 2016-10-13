@@ -128,8 +128,8 @@ namespace ccl.ShaderNodes
 		internal override void SetEnums(uint clientId, uint shaderId)
 		{
 			var projection = GetProjectionString(Projection);
-			CSycles.shadernode_set_enum(clientId, shaderId, Id, Type, "projection", projection);
-			CSycles.shadernode_set_enum(clientId, shaderId, Id, Type, "color_space", ColorSpace.ToString());
+			CSycles.shadernode_set_enum(clientId, shaderId, Id, Type, "projection", (int)Projection);
+			CSycles.shadernode_set_enum(clientId, shaderId, Id, Type, "color_space", (int)ColorSpace);
 		}
 
 		internal override void SetDirectMembers(uint clientId, uint shaderId)

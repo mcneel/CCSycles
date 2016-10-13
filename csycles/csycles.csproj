@@ -169,6 +169,7 @@ XCopy "$(SolutionDir)..\..\big_libs\RhinoCycles\lib" "$(SolutionDir)..\$(OutDir)
 
 XCopy "$(ProjectDir)..\cycles\src\kernel\closure" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\kernel\closure" /Y /I /Q
 XCopy "$(ProjectDir)..\cycles\src\kernel\geom" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\kernel\geom" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\kernel\bvh" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\kernel\bvh" /Y /I /Q
 XCopy "$(ProjectDir)..\cycles\src\kernel\svm" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\kernel\svm" /Y /I /Q
 XCopy "$(ProjectDir)..\cycles\src\kernel\split" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\kernel\split" /Y /I /Q
 XCopy "$(ProjectDir)..\cycles\src\kernel\kernels\opencl" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\kernel\kernels\opencl" /Y /I /Q
@@ -183,6 +184,7 @@ XCopy "$(ProjectDir)..\cycles\src\util\util_math_fast.h" "$(SolutionDir)..\$(Out
 XCopy "$(ProjectDir)..\cycles\src\util\util_texture.h" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\kernel" /Y /I /Q
 XCopy "$(ProjectDir)..\cycles\src\util\util_transform.h" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\kernel" /Y /I /Q
 XCopy "$(ProjectDir)..\cycles\src\util\util_types.h" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\kernel" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\util\util_static_assert.h" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\kernel" /Y /I /Q
 </PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>

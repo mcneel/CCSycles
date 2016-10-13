@@ -56,9 +56,9 @@ namespace ccl.ShaderNodes
 	{
 		public enum RefractionDistribution
 		{
-			Sharp,
-			Beckmann,
-			GGX
+			Sharp = 22,
+			Beckmann = 23,
+			GGX = 24
 		}
 		public RefractionBsdfInputs ins => (RefractionBsdfInputs)inputs;
 		public RefractionBsdfOutputs outs => (RefractionBsdfOutputs)outputs;
@@ -85,7 +85,7 @@ namespace ccl.ShaderNodes
 
 		internal override void SetEnums(uint clientId, uint shaderId)
 		{
-			CSycles.shadernode_set_enum(clientId, shaderId, Id, Type, "distribution", Distribution.ToString());
+			CSycles.shadernode_set_enum(clientId, shaderId, Id, Type, "distribution", (int)Distribution);
 		}
 	}
 }
