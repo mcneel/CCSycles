@@ -90,6 +90,22 @@ namespace ccl
 			cycles_mesh_clear(clientId, sceneId, meshId);
 		}
 
+		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_mesh_resize", CallingConvention = CallingConvention.Cdecl)]
+		private static extern void cycles_mesh_resize(uint clientId, uint sceneId, uint meshId, uint vcount, uint fcount);
+
+		public static void mesh_resize(uint clientId, uint sceneId, uint meshId, uint vcount, uint fcount)
+		{
+			cycles_mesh_resize(clientId, sceneId, meshId, vcount, fcount);
+		}
+
+		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_mesh_reserve", CallingConvention = CallingConvention.Cdecl)]
+		private static extern void cycles_mesh_reserve(uint clientId, uint sceneId, uint meshId, uint vcount, uint fcount);
+
+		public static void mesh_reserve(uint clientId, uint sceneId, uint meshId, uint vcount, uint fcount)
+		{
+			cycles_mesh_reserve(clientId, sceneId, meshId, vcount, fcount);
+		}
+
 		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_mesh_tag_rebuild", CallingConvention = CallingConvention.Cdecl)]
 		private static extern void cycles_mesh_tag_rebuild(uint clientId, uint sceneId, uint meshId);
 

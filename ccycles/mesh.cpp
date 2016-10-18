@@ -105,6 +105,26 @@ void cycles_mesh_set_smooth(unsigned int client_id, unsigned int scene_id, unsig
 	SCENE_FIND_END()
 }
 
+
+void cycles_mesh_reserve(unsigned int client_id, unsigned int scene_id, unsigned int mesh_id, unsigned vcount, unsigned fcount)
+{
+	SCENE_FIND(scene_id)
+		ccl::Mesh* me = sce->meshes[mesh_id];
+
+		me->reserve_mesh(vcount, fcount);
+	SCENE_FIND_END()
+}
+
+void cycles_mesh_resize(unsigned int client_id, unsigned int scene_id, unsigned int mesh_id, unsigned vcount, unsigned fcount)
+{
+	SCENE_FIND(scene_id)
+		ccl::Mesh* me = sce->meshes[mesh_id];
+
+		me->resize_mesh(vcount, fcount);
+	SCENE_FIND_END()
+}
+
+
 void cycles_mesh_set_verts(unsigned int client_id, unsigned int scene_id, unsigned int mesh_id, float *verts, unsigned int vcount)
 {
 	SCENE_FIND(scene_id)

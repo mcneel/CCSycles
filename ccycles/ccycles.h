@@ -490,6 +490,8 @@ CCL_CAPI void __cdecl cycles_mesh_set_uvs(unsigned int client_id, unsigned int s
 CCL_CAPI void __cdecl cycles_mesh_set_vertex_normals(unsigned int client_id, unsigned int scene_id, unsigned int mesh_id, float *vnormals, unsigned int vnormalcount);
 CCL_CAPI void __cdecl cycles_mesh_set_smooth(unsigned int client_id, unsigned int scene_id, unsigned int mesh_id, unsigned int smooth);
 CCL_CAPI void __cdecl cycles_mesh_clear(unsigned int client_id, unsigned int scene_id, unsigned int mesh_id);
+CCL_CAPI void __cdecl cycles_mesh_reserve(unsigned int client_id, unsigned int scene_id, unsigned int mesh_id, unsigned vcount, unsigned fcount);
+CCL_CAPI void __cdecl cycles_mesh_resize(unsigned int client_id, unsigned int scene_id, unsigned int mesh_id, unsigned vcount, unsigned fcount);
 CCL_CAPI void __cdecl cycles_mesh_tag_rebuild(unsigned int client_id, unsigned int scene_id, unsigned int mesh_id);
 CCL_CAPI void __cdecl cycles_mesh_set_shader(unsigned int client_id, unsigned int scene_id, unsigned int mesh_id, unsigned int shader_id);
 

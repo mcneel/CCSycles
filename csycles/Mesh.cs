@@ -89,6 +89,26 @@ namespace ccl
 		}
 
 		/// <summary>
+		/// Reserve memory for mesh data
+		/// </summary>
+		/// <param name="vcount"></param>
+		/// <param name="fcount"></param>
+		public void Reserve(uint vcount, uint fcount)
+		{
+			CSycles.mesh_reserve(Client.Id, Client.Scene.Id, Id, vcount, fcount);
+		}
+
+		/// <summary>
+		/// Resize mesh data to given counts
+		/// </summary>
+		/// <param name="vcount"></param>
+		/// <param name="fcount"></param>
+		public void Resize(uint vcount, uint fcount)
+		{
+			CSycles.mesh_resize(Client.Id, Client.Scene.Id, Id, vcount, fcount);
+		}
+
+		/// <summary>
 		/// Set vertex coordinates
 		/// </summary>
 		/// <param name="verts"></param>
