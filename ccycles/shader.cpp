@@ -579,6 +579,9 @@ void cycles_shadernode_set_enum(unsigned int client_id, unsigned int shader_id, 
 			else if (ename == "projection") {
 				node->projection = (ccl::NodeEnvironmentProjection)value;
 			}
+			if (ename == "interpolation") {
+				node->interpolation = (ccl::InterpolationType)value;
+			}
 		}
 		break;
 		case shadernode_type::IMAGE_TEXTURE:
@@ -806,14 +809,6 @@ void cycles_shadernode_set_member_int(unsigned int client_id, unsigned int shade
 			}
 			if (mname == "extension") {
 				imgnode->extension = (ccl::ExtensionType)value;
-			}
-		}
-		break;
-		case shadernode_type::ENVIRONMENT_TEXTURE:
-		{
-			ccl::EnvironmentTextureNode* envnode = dynamic_cast<ccl::EnvironmentTextureNode*>(shnode);
-			if (mname == "interpolation") {
-				envnode->interpolation = (ccl::InterpolationType)value;
 			}
 		}
 		break;
