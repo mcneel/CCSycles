@@ -8,31 +8,36 @@
  *
  *      Pthreads-win32 - POSIX Threads Library for Win32
  *      Copyright(C) 1998 John E. Bossom
- *      Copyright(C) 1999,2005 Pthreads-win32 contributors
- * 
- *      Contact Email: rpj@callisto.canberra.edu.au
- * 
+ *      Copyright(C) 1999,2012 Pthreads-win32 contributors
+ *
+ *      Homepage1: http://sourceware.org/pthreads-win32/
+ *      Homepage2: http://sourceforge.net/projects/pthreads4w/
+ *
  *      The current list of contributors is contained
  *      in the file CONTRIBUTORS included with the source
  *      code distribution. The list can also be seen at the
  *      following World Wide Web location:
  *      http://sources.redhat.com/pthreads-win32/contributors.html
- * 
+ *
  *      This library is free software; you can redistribute it and/or
  *      modify it under the terms of the GNU Lesser General Public
  *      License as published by the Free Software Foundation; either
  *      version 2 of the License, or (at your option) any later version.
- * 
+ *
  *      This library is distributed in the hope that it will be useful,
  *      but WITHOUT ANY WARRANTY; without even the implied warranty of
  *      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  *      Lesser General Public License for more details.
- * 
+ *
  *      You should have received a copy of the GNU Lesser General Public
  *      License along with this library in the file COPYING.LIB;
  *      if not, write to the Free Software Foundation, Inc.,
  *      59 Temple Place - Suite 330, Boston, MA 02111-1307, USA
  */
+
+#ifdef HAVE_CONFIG_H
+# include <config.h>
+#endif
 
 #include "pthread.h"
 #include "implement.h"
@@ -55,12 +60,12 @@ ptw32_cancel_callback (ULONG_PTR unused)
 }
 
 /*
- * ptw32_RegisterCancelation() -
+ * ptw32_Registercancellation() -
  * Must have args of same type as QueueUserAPCEx because this function
  * is a substitute for QueueUserAPCEx if it's not available.
  */
 DWORD
-ptw32_RegisterCancelation (PAPCFUNC unused1, HANDLE threadH, DWORD unused2)
+ptw32_Registercancellation (PAPCFUNC unused1, HANDLE threadH, DWORD unused2)
 {
   CONTEXT context;
 
@@ -101,8 +106,12 @@ pthread_cancel (pthread_t thread)
   ptw32_thread_t * tp;
   ptw32_mcs_local_node_t stateLock;
 
+  /*
+   * Validate the thread id. This method works for pthreads-win32 because
+   * pthread_kill and pthread_t are designed to accommodate it, but the
+   * method is not portable.
+   */
   result = pthread_kill (thread, 0);
-
   if (0 != result)
     {
       return result;
@@ -155,10 +164,10 @@ pthread_cancel (pthread_t thread)
 	      /*
 	       * If alertdrv and QueueUserAPCEx is available then the following
 	       * will result in a call to QueueUserAPCEx with the args given, otherwise
-	       * this will result in a call to ptw32_RegisterCancelation and only
+	       * this will result in a call to ptw32_Registercancellation and only
 	       * the threadH arg will be used.
 	       */
-	      ptw32_register_cancelation ((PAPCFUNC)ptw32_cancel_callback, threadH, 0);
+	      ptw32_register_cancellation ((PAPCFUNC)ptw32_cancel_callback, threadH, 0);
 	      ptw32_mcs_lock_release (&stateLock);
 	      ResumeThread (threadH);
 	    }

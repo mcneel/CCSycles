@@ -1,16 +1,17 @@
 /*
- * autostatic.c
+ * pthread_attr_setaffinity_np.c
  *
  * Description:
- * This translation unit implements static auto-init and auto-exit logic.
+ * POSIX thread functions that deal with thread CPU affinity.
  *
  * --------------------------------------------------------------------------
  *
  *      Pthreads-win32 - POSIX Threads Library for Win32
  *      Copyright(C) 1998 John E. Bossom
- *      Copyright(C) 1999,2005 Pthreads-win32 contributors
+ *      Copyright(C) 1999,2013 Pthreads-win32 contributors
  *
- *      Contact Email: rpj@callisto.canberra.edu.au
+ *      Homepage1: http://sourceware.org/pthreads-win32/
+ *      Homepage2: http://sourceforge.net/projects/pthreads4w/
  *
  *      The current list of contributors is contained
  *      in the file CONTRIBUTORS included with the source
@@ -34,36 +35,23 @@
  *      59 Temple Place - Suite 330, Boston, MA 02111-1307, USA
  */
 
-#if defined(PTW32_STATIC_LIB)
-
-#if defined(__MINGW64__) || defined(__MINGW32__) || defined(_MSC_VER)
+#ifdef HAVE_CONFIG_H
+# include <config.h>
+#endif
 
 #include "pthread.h"
 #include "implement.h"
+#include "sched.h"
 
-static void on_process_init(void)
+int
+pthread_attr_setaffinity_np (pthread_attr_t * attr, size_t cpusetsize, const cpu_set_t * cpuset)
 {
-    pthread_win32_process_attach_np ();
+  if (ptw32_is_attr (attr) != 0 || cpuset == NULL)
+    {
+      return EINVAL;
+    }
+
+  (*attr)->cpuset = ((_sched_cpu_set_vector_*)cpuset)->_cpuset;
+
+  return 0;
 }
-
-static void on_process_exit(void)
-{
-    pthread_win32_thread_detach_np  ();
-    pthread_win32_process_detach_np ();
-}
-
-#if defined(__MINGW64__) || defined(__MINGW32__)
-# define attribute_section(a) __attribute__((section(a)))
-#elif defined(_MSC_VER)
-# define attribute_section(a) __pragma(section(a,long,read)); __declspec(allocate(a))
-#endif
-
-attribute_section(".ctors") void *gcc_ctor = on_process_init;
-attribute_section(".dtors") void *gcc_dtor = on_process_exit;
-
-attribute_section(".CRT$XCU") void *msc_ctor = on_process_init;
-attribute_section(".CRT$XPU") void *msc_dtor = on_process_exit;
-
-#endif /* defined(__MINGW64__) || defined(__MINGW32__) || defined(_MSC_VER) */
-
-#endif /* PTW32_STATIC_LIB */
