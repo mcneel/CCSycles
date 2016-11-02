@@ -39,9 +39,9 @@ namespace ccl
 			m_socketlist.Add(sock);
 		}
 
-		static string XmlSocketName(string name)
+		static string XmlSocketName(string name, bool underscore)
 		{
-			return name.Replace(" ", "");
+			return underscore ? name.Replace(" ", "_") : name.Replace(" ", "");
 		}
 
 		/// <summary>
@@ -53,7 +53,8 @@ namespace ccl
 		{
 			foreach (var socket in Sockets)
 			{
-				if (XmlSocketName(socket.Name).ToLowerInvariant().Equals(name.ToLowerInvariant())) return socket;
+				if (XmlSocketName(socket.Name, false).ToLowerInvariant().Equals(name.ToLowerInvariant())) return socket;
+				if (XmlSocketName(socket.Name, true).ToLowerInvariant().Equals(name.ToLowerInvariant())) return socket;
 			}
 
 			throw new ArgumentException($"Socket {name} doesn't exist", nameof(name));
