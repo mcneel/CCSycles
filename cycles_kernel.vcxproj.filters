@@ -44,6 +44,12 @@
     <ClInclude Include="cycles\src\kernel\closure\bsdf_diffuse_ramp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="cycles\src\kernel\closure\bsdf_disney_diffuse.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\kernel\closure\bsdf_disney_sheen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="cycles\src\kernel\closure\bsdf_hair.h">
       <Filter>Header Files</Filter>
     </ClInclude>

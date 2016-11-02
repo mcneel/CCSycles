@@ -110,6 +110,8 @@
     <ClInclude Include="cycles\src\kernel\closure\bsdf_ashikhmin_velvet.h" />
     <ClInclude Include="cycles\src\kernel\closure\bsdf_diffuse.h" />
     <ClInclude Include="cycles\src\kernel\closure\bsdf_diffuse_ramp.h" />
+    <ClInclude Include="cycles\src\kernel\closure\bsdf_disney_diffuse.h" />
+    <ClInclude Include="cycles\src\kernel\closure\bsdf_disney_sheen.h" />
     <ClInclude Include="cycles\src\kernel\closure\bsdf_hair.h" />
     <ClInclude Include="cycles\src\kernel\closure\bsdf_microfacet.h" />
     <ClInclude Include="cycles\src\kernel\closure\bsdf_microfacet_multi.h" />

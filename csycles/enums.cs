@@ -136,6 +136,7 @@ namespace ccl
 		ColorRamp,
 		VectorMath,
 		MatrixMath,
+		Uber,
 	}
 
 	public enum BvhType : uint

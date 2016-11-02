@@ -560,6 +560,7 @@ enum class shadernode_type : unsigned int {
 	COLOR_RAMP,
 	VECT_MATH,
 	MATRIX_MATH,
+	UBER_BSDF,
 };
 
 CCL_CAPI unsigned int __cdecl cycles_create_shader(unsigned int client_id);

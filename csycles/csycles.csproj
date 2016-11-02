@@ -80,6 +80,7 @@
     <Compile Include="ShaderNodes\BrightnessContrastNode.cs" />
     <Compile Include="ShaderNodes\AnisotropicBsdfNode.cs" />
     <Compile Include="ShaderNodes\AbsorptionVolumeNode.cs" />
+    <Compile Include="ShaderNodes\UberBsdfNode.cs" />
     <Compile Include="ShaderNodes\GeometryInfoNode.cs" />
     <Compile Include="ShaderNodes\SubsurfaceScatteringNode.cs" />
     <Compile Include="ShaderNodes\ScatterVolumeNode.cs" />

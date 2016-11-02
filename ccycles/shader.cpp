@@ -334,6 +334,9 @@ unsigned int cycles_add_shader_node(unsigned int client_id, unsigned int shader_
 	case shadernode_type::MATRIX_MATH:
 		node = new ccl::MatrixMathNode();
 		break;
+	case shadernode_type::UBER_BSDF:
+		node = new ccl::DisneyBsdfNode();
+		break;
 	}
 
 	if (node) {
@@ -607,6 +610,9 @@ void cycles_shadernode_set_enum(unsigned int client_id, unsigned int shader_id, 
 			node->falloff = (ccl::ClosureType)value;
 			break;
 		}
+		case shadernode_type::UBER_BSDF:
+			ccl::DisneyBsdfNode* node = dynamic_cast<ccl::DisneyBsdfNode*>(shnode);
+			node->distribution = (ccl::ClosureType)value;
 		}
 	}
 }
