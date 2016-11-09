@@ -24,6 +24,7 @@ namespace ccl.ShaderNodes
 	public class UberBsdfInputs : Inputs
 	{
 		public Float4Socket BaseColor { get; set; }
+		public Float4Socket SpecularColor { get; set; }
 		public Float4Socket SubsurfaceColor { get; set; }
 		public FloatSocket Metallic { get; set; }
 		public FloatSocket Subsurface { get; set; }
@@ -49,6 +50,8 @@ namespace ccl.ShaderNodes
 
 			BaseColor = new Float4Socket(parentNode, "Base Color");
 			AddSocket(BaseColor);
+			SpecularColor = new Float4Socket(parentNode, "Specular Color");
+			AddSocket(SpecularColor);
 			SubsurfaceColor = new Float4Socket(parentNode, "Subsurface Color");
 			AddSocket(SubsurfaceColor);
 			Metallic = new FloatSocket(parentNode, "Metallic");
@@ -123,7 +126,7 @@ namespace ccl.ShaderNodes
 		/// <summary>
 		/// Create a new Uber BSDF closure.
 		/// </summary>
-		public UberBsdfNode() : this("a diffuse bsdf node") { }
+		public UberBsdfNode() : this("a disney bsdf node") { }
 		public UberBsdfNode(string name) :
 			base(ShaderNodeType.Uber, name)
 		{
@@ -157,6 +160,7 @@ namespace ccl.ShaderNodes
 		internal override void ParseXml(XmlReader xmlNode)
 		{
 			Utilities.Instance.get_float4(ins.BaseColor, xmlNode.GetAttribute("base_color"));
+			Utilities.Instance.get_float4(ins.BaseColor, xmlNode.GetAttribute("specular_color"));
 			Utilities.Instance.get_float4(ins.SubsurfaceColor, xmlNode.GetAttribute("subsurface_color"));
 			Utilities.Instance.get_float(ins.Metallic, xmlNode.GetAttribute("metallic"));
 			Utilities.Instance.get_float(ins.Subsurface, xmlNode.GetAttribute("subsurface"));
