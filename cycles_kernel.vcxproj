@@ -140,6 +140,7 @@
     <ClInclude Include="cycles\src\kernel\kernel_emission.h" />
     <ClInclude Include="cycles\src\kernel\kernel_film.h" />
     <ClInclude Include="cycles\src\kernel\kernel_globals.h" />
+    <ClInclude Include="cycles\src\kernel\kernel_image_opencl.h" />
     <ClInclude Include="cycles\src\kernel\kernel_jitter.h" />
     <ClInclude Include="cycles\src\kernel\kernel_light.h" />
     <ClInclude Include="cycles\src\kernel\kernel_math.h" />
