@@ -29,11 +29,11 @@ namespace ccl.ShaderNodes
 		/// <summary>
 		/// GradientTextureNode vector input
 		/// </summary>
-		public Float4Socket Vector { get; set; }
+		public VectorSocket Vector { get; set; }
 
 		internal GradientInputs(ShaderNode parentNode)
 		{
-			Vector = new Float4Socket(parentNode, "Vector");
+			Vector = new VectorSocket(parentNode, "Vector");
 			AddSocket(Vector);
 		}
 	}
@@ -46,7 +46,7 @@ namespace ccl.ShaderNodes
 		/// <summary>
 		/// GradientTextureNode color output
 		/// </summary>
-		public Float4Socket Color { get; set; }
+		public ColorSocket Color { get; set; }
 		/// <summary>
 		/// GradientTextureNode factor output
 		/// </summary>
@@ -54,7 +54,7 @@ namespace ccl.ShaderNodes
 
 		internal GradientOutputs(ShaderNode parentNode)
 		{
-			Color = new Float4Socket(parentNode, "Color");
+			Color = new ColorSocket(parentNode, "Color");
 			AddSocket(Color);
 			Fac = new FloatSocket(parentNode, "Fac");
 			AddSocket(Fac);

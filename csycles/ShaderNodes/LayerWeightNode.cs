@@ -23,13 +23,13 @@ namespace ccl.ShaderNodes
 	public class LayerWeightInputs : Inputs
 	{
 		public FloatSocket Blend { get; set; }
-		public Float4Socket Normal { get; set; }
+		public VectorSocket Normal { get; set; }
 
 		public LayerWeightInputs(ShaderNode parentNode)
 		{
 			Blend = new FloatSocket(parentNode, "Blend");
 			AddSocket(Blend);
-			Normal = new Float4Socket(parentNode, "Normal");
+			Normal = new VectorSocket(parentNode, "Normal");
 			AddSocket(Normal);
 		}
 	}

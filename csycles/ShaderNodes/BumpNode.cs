@@ -31,7 +31,7 @@ namespace ccl.ShaderNodes
 		/// <summary>
 		/// BumpNode input normal. If not connected will use default shading normal
 		/// </summary>
-		public Float4Socket Normal { get; set; }
+		public VectorSocket Normal { get; set; }
 		/// <summary>
 		/// BumpNode strength of the bump effect
 		/// </summary>
@@ -45,7 +45,7 @@ namespace ccl.ShaderNodes
 		{
 			Height = new FloatSocket(parentNode, "Height");
 			AddSocket(Height);
-			Normal = new Float4Socket(parentNode, "Normal");
+			Normal = new VectorSocket(parentNode, "Normal");
 			AddSocket(Normal);
 			Strength = new FloatSocket(parentNode, "Strength");
 			AddSocket(Strength);
@@ -62,11 +62,11 @@ namespace ccl.ShaderNodes
 		/// <summary>
 		/// BumpNode new Normal
 		/// </summary>
-		public Float4Socket Normal { get; set; }
+		public VectorSocket Normal { get; set; }
 
 		internal BumpOutputs(ShaderNode parentNode)
 		{
-			Normal = new Float4Socket(parentNode, "Normal");
+			Normal = new VectorSocket(parentNode, "Normal");
 			AddSocket(Normal);
 		}
 	}

@@ -21,56 +21,56 @@ namespace ccl.ShaderNodes
 {
 	public class TextureCoordinateOutputs : Outputs
 	{
-		public Float4Socket Generated { get; set; }
-		public Float4Socket Normal { get; set; }
-		public Float4Socket UV { get; set; }
-		public Float4Socket Object { get; set; }
-		public Float4Socket Camera { get; set; }
-		public Float4Socket Window { get; set; }
-		public Float4Socket Reflection { get; set; }
-		public Float4Socket WcsBox { get; set; }
-		public Float4Socket EnvSpherical { get; set; }
-		public Float4Socket EnvEmap { get; set; }
-		public Float4Socket EnvBox { get; set; }
-		public Float4Socket EnvLightProbe { get; set; }
-		public Float4Socket EnvCubemap { get; set; }
-		public Float4Socket EnvCubemapVerticalCross { get; set; }
-		public Float4Socket EnvCubemapHorizontalCross { get; set; }
-		public Float4Socket EnvHemispherical { get; set; }
+		public VectorSocket Generated { get; set; }
+		public VectorSocket Normal { get; set; }
+		public VectorSocket UV { get; set; }
+		public VectorSocket Object { get; set; }
+		public VectorSocket Camera { get; set; }
+		public VectorSocket Window { get; set; }
+		public VectorSocket Reflection { get; set; }
+		public VectorSocket WcsBox { get; set; }
+		public VectorSocket EnvSpherical { get; set; }
+		public VectorSocket EnvEmap { get; set; }
+		public VectorSocket EnvBox { get; set; }
+		public VectorSocket EnvLightProbe { get; set; }
+		public VectorSocket EnvCubemap { get; set; }
+		public VectorSocket EnvCubemapVerticalCross { get; set; }
+		public VectorSocket EnvCubemapHorizontalCross { get; set; }
+		public VectorSocket EnvHemispherical { get; set; }
 
 		public TextureCoordinateOutputs(ShaderNode parentNode)
 		{
-			Generated = new Float4Socket(parentNode, "Generated");
+			Generated = new VectorSocket(parentNode, "Generated");
 			AddSocket(Generated);
-			Normal = new Float4Socket(parentNode, "Normal");
+			Normal = new VectorSocket(parentNode, "Normal");
 			AddSocket(Normal);
-			UV = new Float4Socket(parentNode, "UV");
+			UV = new VectorSocket(parentNode, "UV");
 			AddSocket(UV);
-			Object = new Float4Socket(parentNode, "Object");
+			Object = new VectorSocket(parentNode, "Object");
 			AddSocket(Object);
-			Camera = new Float4Socket(parentNode, "Camera");
+			Camera = new VectorSocket(parentNode, "Camera");
 			AddSocket(Camera);
-			Window = new Float4Socket(parentNode, "Window");
+			Window = new VectorSocket(parentNode, "Window");
 			AddSocket(Window);
-			Reflection = new Float4Socket(parentNode, "Reflection");
+			Reflection = new VectorSocket(parentNode, "Reflection");
 			AddSocket(Reflection);
-			WcsBox = new Float4Socket(parentNode, "WcsBox");
+			WcsBox = new VectorSocket(parentNode, "WcsBox");
 			AddSocket(WcsBox);
-			EnvSpherical = new Float4Socket(parentNode, "EnvSpherical");
+			EnvSpherical = new VectorSocket(parentNode, "EnvSpherical");
 			AddSocket(EnvSpherical);
-			EnvEmap = new Float4Socket(parentNode, "EnvEmap");
+			EnvEmap = new VectorSocket(parentNode, "EnvEmap");
 			AddSocket(EnvEmap);
-			EnvBox = new Float4Socket(parentNode, "EnvBox");
+			EnvBox = new VectorSocket(parentNode, "EnvBox");
 			AddSocket(EnvBox);
-			EnvLightProbe = new Float4Socket(parentNode, "EnvLightProbe");
+			EnvLightProbe = new VectorSocket(parentNode, "EnvLightProbe");
 			AddSocket(EnvLightProbe);
-			EnvCubemap = new Float4Socket(parentNode, "EnvCubemap");
+			EnvCubemap = new VectorSocket(parentNode, "EnvCubemap");
 			AddSocket(EnvCubemap);
-			EnvCubemapVerticalCross = new Float4Socket(parentNode, "EnvCubemapVerticalCross");
+			EnvCubemapVerticalCross = new VectorSocket(parentNode, "EnvCubemapVerticalCross");
 			AddSocket(EnvCubemapVerticalCross);
-			EnvCubemapHorizontalCross = new Float4Socket(parentNode, "EnvCubemapHorizontalCross");
+			EnvCubemapHorizontalCross = new VectorSocket(parentNode, "EnvCubemapHorizontalCross");
 			AddSocket(EnvCubemapHorizontalCross);
-			EnvHemispherical = new Float4Socket(parentNode, "EnvHemi");
+			EnvHemispherical = new VectorSocket(parentNode, "EnvHemi");
 			AddSocket(EnvHemispherical);
 		}
 	}

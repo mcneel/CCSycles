@@ -23,16 +23,16 @@ namespace ccl.ShaderNodes
 {
 	public class SubsurfaceScatteringInputs : Inputs
 	{
-		public Float4Socket Color { get; set; }
+		public ColorSocket Color { get; set; }
 		public FloatSocket Scale { get; set; }
 		public FloatSocket Sharpness { get; set; }
 		public FloatSocket TextureBlur { get; set; }
-		public Float4Socket Radius { get; set; }
-		public Float4Socket Normal { get; set; }
+		public VectorSocket Radius { get; set; }
+		public VectorSocket Normal { get; set; }
 
 		public SubsurfaceScatteringInputs(ShaderNode parentNode)
 		{
-			Color = new Float4Socket(parentNode, "Color");
+			Color = new ColorSocket(parentNode, "Color");
 			AddSocket(Color);
 			Scale = new FloatSocket(parentNode, "Scale");
 			AddSocket(Scale);
@@ -40,9 +40,9 @@ namespace ccl.ShaderNodes
 			AddSocket(Sharpness);
 			TextureBlur = new FloatSocket(parentNode, "Texture Blur");
 			AddSocket(TextureBlur);
-			Radius = new Float4Socket(parentNode, "Radius");
+			Radius = new VectorSocket(parentNode, "Radius");
 			AddSocket(Radius);
-			Normal = new Float4Socket(parentNode, "Normal");
+			Normal = new VectorSocket(parentNode, "Normal");
 			AddSocket(Normal);
 		}
 	}

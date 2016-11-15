@@ -42,12 +42,12 @@ namespace ccl.ShaderNodes
 
 		internal MixClosureInputs(ShaderNode parentNode)
 		{
-			Fac = new FloatSocket(parentNode, "Fac");
-			AddSocket(Fac);
 			Closure1 = new ClosureSocket(parentNode, "Closure1");
 			AddSocket(Closure1);
 			Closure2 = new ClosureSocket(parentNode, "Closure2");
 			AddSocket(Closure2);
+			Fac = new FloatSocket(parentNode, "Fac");
+			AddSocket(Fac);
 		}
 	}
 

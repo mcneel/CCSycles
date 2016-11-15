@@ -22,14 +22,14 @@ namespace ccl.ShaderNodes
 {
 	public class FresnelInputs : Inputs
 	{
-		public Float4Socket Normal { get; set; }
+		public VectorSocket Normal { get; set; }
 		public FloatSocket IOR { get; set; }
 
 		internal FresnelInputs(ShaderNode parentNode)
 		{
 			IOR = new FloatSocket(parentNode, "IOR");
 			AddSocket(IOR);
-			Normal = new Float4Socket(parentNode, "Normal");
+			Normal = new VectorSocket(parentNode, "Normal");
 			AddSocket(Normal);
 		}
 	}

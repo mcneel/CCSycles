@@ -27,11 +27,11 @@ namespace ccl.ShaderNodes
 		/// <summary>
 		/// ColorNode output color. Note only RGB is used
 		/// </summary>
-		public Float4Socket Color { get; set; }
+		public ColorSocket Color { get; set; }
 
 		internal ColorOutputs(ShaderNode parentNode)
 		{
-			Color = new Float4Socket(parentNode, "Color");
+			Color = new ColorSocket(parentNode, "Color");
 			AddSocket(Color);
 		}
 	}

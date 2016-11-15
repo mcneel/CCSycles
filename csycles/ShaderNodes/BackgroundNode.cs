@@ -28,7 +28,7 @@ namespace ccl.ShaderNodes
 		/// <summary>
 		/// BackgroundNode Color input socket
 		/// </summary>
-		public Float4Socket Color { get; set; }
+		public ColorSocket Color { get; set; }
 		/// <summary>
 		/// BackgroundNode Strength input socket. Default value 1.0f
 		/// </summary>
@@ -36,7 +36,7 @@ namespace ccl.ShaderNodes
 
 		internal BackgroundInputs(ShaderNode parentNode)
 		{
-			Color = new Float4Socket(parentNode, "Color");
+			Color = new ColorSocket(parentNode, "Color");
 			AddSocket(Color);
 			Strength = new FloatSocket(parentNode, "Strength");
 			AddSocket(Strength);

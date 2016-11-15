@@ -284,7 +284,7 @@ namespace ccl.ShaderNodes
 		/// <summary>
 		/// ColorRamp interpolated Color output
 		/// </summary>
-		public Float4Socket Color { get; set; }
+		public ColorSocket Color { get; set; }
 		/// <summary>
 		/// ColorRamp interpolated Alpha output
 		/// </summary>
@@ -292,7 +292,7 @@ namespace ccl.ShaderNodes
 
 		internal ColorRampOutputs(ShaderNode parentNode)
 		{
-			Color = new Float4Socket(parentNode, "Color");
+			Color = new ColorSocket(parentNode, "Color");
 			AddSocket(Color);
 			Alpha = new FloatSocket(parentNode, "Alpha");
 			AddSocket(Alpha);

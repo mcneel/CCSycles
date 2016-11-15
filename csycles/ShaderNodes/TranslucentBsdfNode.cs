@@ -22,14 +22,14 @@ namespace ccl.ShaderNodes
 {
 	public class TranslucentBsdfInputs : Inputs
 	{
-		public Float4Socket Color { get; set; }
-		public Float4Socket Normal { get; set; }
+		public ColorSocket Color { get; set; }
+		public VectorSocket Normal { get; set; }
 
 		internal TranslucentBsdfInputs(ShaderNode parentNode)
 		{
-			Color = new Float4Socket(parentNode, "Color");
+			Color = new ColorSocket(parentNode, "Color");
 			AddSocket(Color);
-			Normal = new Float4Socket(parentNode, "Normal");
+			Normal = new VectorSocket(parentNode, "Normal");
 			AddSocket(Normal);
 
 		}

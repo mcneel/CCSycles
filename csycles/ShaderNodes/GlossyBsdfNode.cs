@@ -23,17 +23,17 @@ namespace ccl.ShaderNodes
 {
 	public class GlossyInputs : Inputs
 	{
-		public Float4Socket Color { get; set; }
+		public ColorSocket Color { get; set; }
 		public FloatSocket Roughness { get; set; }
-		public Float4Socket Normal { get; set; }
+		public VectorSocket Normal { get; set; }
 
 		internal GlossyInputs(ShaderNode parentNode)
 		{
-			Color = new Float4Socket(parentNode, "Color");
+			Color = new ColorSocket(parentNode, "Color");
 			AddSocket(Color);
 			Roughness = new FloatSocket(parentNode, "Roughness");
 			AddSocket(Roughness);
-			Normal = new Float4Socket(parentNode, "Normal");
+			Normal = new VectorSocket(parentNode, "Normal");
 			AddSocket(Normal);
 		}
 	}

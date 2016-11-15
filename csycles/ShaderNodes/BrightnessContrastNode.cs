@@ -22,13 +22,13 @@ namespace ccl.ShaderNodes
 {
 	public class BrightnessContrastInputs : Inputs
 	{
-		public Float4Socket Color { get; set; }
+		public ColorSocket Color { get; set; }
 		public FloatSocket Bright { get; set; }
 		public FloatSocket Contrast { get; set; }
 
 		public BrightnessContrastInputs(ShaderNode parentNode)
 		{
-			Color = new Float4Socket(parentNode, "Color");
+			Color = new ColorSocket(parentNode, "Color");
 			AddSocket(Color);
 			Bright = new FloatSocket(parentNode, "Bright");
 			AddSocket(Bright);

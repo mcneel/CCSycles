@@ -22,12 +22,12 @@ namespace ccl.ShaderNodes
 {
 	public class AbsorptionVolumeInputs : Inputs
 	{
-		public Float4Socket Color { get; set; }
+		public ColorSocket Color { get; set; }
 		public FloatSocket Density { get; set; }
 
 		public AbsorptionVolumeInputs(ShaderNode parentNode)
 		{
-			Color = new Float4Socket(parentNode, "Color");
+			Color = new ColorSocket(parentNode, "Color");
 			AddSocket(Color);
 			Density = new FloatSocket(parentNode, "Density");
 			AddSocket(Density);

@@ -22,20 +22,20 @@ namespace ccl.ShaderNodes
 {
 	public class AnisotropicBsdfInputs : Inputs
 	{
-		public Float4Socket Color { get; set; }
-		public Float4Socket Tangent { get; set; }
-		public Float4Socket Normal { get; set; }
+		public ColorSocket Color { get; set; }
+		public VectorSocket Tangent { get; set; }
+		public VectorSocket Normal { get; set; }
 		public FloatSocket Roughness { get; set; }
 		public FloatSocket Anisotropy { get; set; }
 		public FloatSocket Rotation { get; set; }
 
 		public AnisotropicBsdfInputs(ShaderNode parentNode)
 		{
-			Color = new Float4Socket(parentNode, "Color");
+			Color = new ColorSocket(parentNode, "Color");
 			AddSocket(Color);
-			Tangent = new Float4Socket(parentNode, "Tangent");
+			Tangent = new VectorSocket(parentNode, "Tangent");
 			AddSocket(Tangent);
-			Normal = new Float4Socket(parentNode, "Normal");
+			Normal = new VectorSocket(parentNode, "Normal");
 			AddSocket(Normal);
 			Roughness = new FloatSocket(parentNode, "Roughness");
 			AddSocket(Roughness);

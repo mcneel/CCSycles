@@ -23,22 +23,22 @@ namespace ccl.ShaderNodes
 {
 	public class SkyInputs : Inputs
 	{
-		public Float4Socket Vector { get; set; }
+		public VectorSocket Vector { get; set; }
 
 		public SkyInputs(ShaderNode parentNode)
 		{
-			Vector = new Float4Socket(parentNode, "Vector");
+			Vector = new VectorSocket(parentNode, "Vector");
 			AddSocket(Vector);
 		}
 	}
 
 	public class SkyOutputs : Outputs
 	{
-		public Float4Socket Color { get; set; }
+		public ColorSocket Color { get; set; }
 
 		public SkyOutputs(ShaderNode parentNode)
 		{
-			Color = new Float4Socket(parentNode, "Color");
+			Color = new ColorSocket(parentNode, "Color");
 			AddSocket(Color);
 		}
 	}

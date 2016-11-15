@@ -29,11 +29,11 @@ namespace ccl.ShaderNodes
 		/// <summary>
 		/// MappingNode input vector that should be transformed
 		/// </summary>
-		public Float4Socket Vector { get; set; }
+		public VectorSocket Vector { get; set; }
 
 		internal MappingInputs(ShaderNode parentNode)
 		{
-			Vector = new Float4Socket(parentNode, "Vector");
+			Vector = new VectorSocket(parentNode, "Vector");
 			AddSocket(Vector);
 		}
 	}
@@ -46,11 +46,11 @@ namespace ccl.ShaderNodes
 		/// <summary>
 		/// MappingNode output vector
 		/// </summary>
-		public Float4Socket Vector { get; set; }
+		public VectorSocket Vector { get; set; }
 
 		internal MappingOutputs(ShaderNode parentNode)
 		{
-			Vector = new Float4Socket(parentNode, "Vector");
+			Vector = new VectorSocket(parentNode, "Vector");
 			AddSocket(Vector);
 		}
 	}

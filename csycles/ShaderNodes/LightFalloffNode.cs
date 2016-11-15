@@ -22,17 +22,17 @@ namespace ccl.ShaderNodes
 {
 	public class LightFalloffOutputs : Outputs
 	{
-		public Float4Socket Quadratic { get; set; }
-		public Float4Socket Linear { get; set; }
-		public Float4Socket Constant { get; set; }
+		public FloatSocket Quadratic { get; set; }
+		public FloatSocket Linear { get; set; }
+		public FloatSocket Constant { get; set; }
 
 		public LightFalloffOutputs(ShaderNode parentNode)
 		{
-			Quadratic = new Float4Socket(parentNode, "Quadratic");
+			Quadratic = new FloatSocket(parentNode, "Quadratic");
 			AddSocket(Quadratic);
-			Linear = new Float4Socket(parentNode, "Linear");
+			Linear = new FloatSocket(parentNode, "Linear");
 			AddSocket(Linear);
-			Constant = new Float4Socket(parentNode, "Constant");
+			Constant = new FloatSocket(parentNode, "Constant");
 			AddSocket(Constant);
 		}
 	}

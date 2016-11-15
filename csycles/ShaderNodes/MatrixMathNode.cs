@@ -28,7 +28,7 @@ namespace ccl.ShaderNodes
 		/// <summary>
 		/// MatrixMathNode Vector input socket
 		/// </summary>
-		public Float4Socket Vector { get; set; }
+		public VectorSocket Vector { get; set; }
 
 		/// <summary>
 		/// Create MatrixMathNode input sockets
@@ -36,7 +36,7 @@ namespace ccl.ShaderNodes
 		/// <param name="parentNode"></param>
 		internal MatrixMathInputs(ShaderNode parentNode)
 		{
-			Vector = new Float4Socket(parentNode, "Vector");
+			Vector = new VectorSocket(parentNode, "Vector");
 			AddSocket(Vector);
 		}
 	}
@@ -49,7 +49,7 @@ namespace ccl.ShaderNodes
 		/// <summary>
 		/// The resulting value of the MatrixMathNode operation
 		/// </summary>
-		public Float4Socket Vector { get; set; }
+		public VectorSocket Vector { get; set; }
 
 		/// <summary>
 		/// Create MatrixMathNode output sockets
@@ -57,7 +57,7 @@ namespace ccl.ShaderNodes
 		/// <param name="parentNode"></param>
 		internal MatrixMathOutputs(ShaderNode parentNode)
 		{
-			Vector = new Float4Socket(parentNode, "Vector");
+			Vector = new VectorSocket(parentNode, "Vector");
 			AddSocket(Vector);
 		}
 	}

@@ -22,11 +22,11 @@ namespace ccl.ShaderNodes
 {
 	public class SeparateRgbInputs : Inputs
 	{
-		public Float4Socket Color { get; set; }
+		public ColorSocket Color { get; set; }
 
 		public SeparateRgbInputs(ShaderNode parentNode)
 		{
-			Color = new Float4Socket(parentNode, "Image");
+			Color = new ColorSocket(parentNode, "Image");
 			AddSocket(Color);
 		}
 	}

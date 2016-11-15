@@ -26,7 +26,7 @@ namespace ccl.ShaderNodes
 		public FloatSocket Saturation { get; set; }
 		public FloatSocket Value { get; set; }
 		public FloatSocket Fac { get; set; }
-		public Float4Socket Color { get; set; }
+		public ColorSocket Color { get; set; }
 
 		public HueSaturationInputs(ShaderNode parentNode)
 		{
@@ -38,7 +38,7 @@ namespace ccl.ShaderNodes
 			AddSocket(Value);
 			Fac = new FloatSocket(parentNode, "Fac");
 			AddSocket(Fac);
-			Color = new Float4Socket(parentNode, "Color");
+			Color = new ColorSocket(parentNode, "Color");
 			AddSocket(Color);
 		}
 	}

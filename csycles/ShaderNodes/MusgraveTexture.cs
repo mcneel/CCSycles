@@ -22,7 +22,7 @@ namespace ccl.ShaderNodes
 {
 	public class MusgraveInputs : Inputs
 	{
-		public Float4Socket Vector { get; set; }
+		public VectorSocket Vector { get; set; }
 		public FloatSocket Scale { get; set; }
 		public FloatSocket Detail { get; set; }
 		public FloatSocket Dimension{ get; set; }
@@ -32,7 +32,7 @@ namespace ccl.ShaderNodes
 
 		public MusgraveInputs(ShaderNode parentNode)
 		{
-			Vector = new Float4Socket(parentNode, "Vector");
+			Vector = new VectorSocket(parentNode, "Vector");
 			AddSocket(Vector);
 			Scale = new FloatSocket(parentNode, "Scale");
 			AddSocket(Scale);
@@ -51,12 +51,12 @@ namespace ccl.ShaderNodes
 
 	public class MusgraveOutputs : Outputs
 	{
-		public Float4Socket Color { get; set; }
+		public ColorSocket Color { get; set; }
 		public FloatSocket Fac { get; set; }
 
 		public MusgraveOutputs(ShaderNode parentNode)
 		{
-			Color = new Float4Socket(parentNode, "Color");
+			Color = new ColorSocket(parentNode, "Color");
 			AddSocket(Color);
 			Fac = new FloatSocket(parentNode, "Fac");
 			AddSocket(Fac);

@@ -39,11 +39,11 @@ namespace ccl.ShaderNodes
 
 	public class CombineRgbOutputs : Outputs
 	{
-		public Float4Socket Image { get; set; }
+		public ColorSocket Image { get; set; }
 
 		public CombineRgbOutputs(ShaderNode parentNode)
 		{
-			Image = new Float4Socket(parentNode, "Image");
+			Image = new ColorSocket(parentNode, "Image");
 			AddSocket(Image);
 		}
 	}

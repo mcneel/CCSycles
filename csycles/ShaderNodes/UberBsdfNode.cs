@@ -23,12 +23,12 @@ namespace ccl.ShaderNodes
 {
 	public class UberBsdfInputs : Inputs
 	{
-		public Float4Socket BaseColor { get; set; }
-		public Float4Socket SpecularColor { get; set; }
-		public Float4Socket SubsurfaceColor { get; set; }
+		public ColorSocket BaseColor { get; set; }
+		public ColorSocket SpecularColor { get; set; }
+		public ColorSocket SubsurfaceColor { get; set; }
 		public FloatSocket Metallic { get; set; }
 		public FloatSocket Subsurface { get; set; }
-		public Float4Socket SubsurfaceRadius { get; set; }
+		public VectorSocket SubsurfaceRadius { get; set; }
 		public FloatSocket Specular { get; set; }
 		public FloatSocket Roughness { get; set; }
 		public FloatSocket SpecularTint { get; set; }
@@ -41,24 +41,24 @@ namespace ccl.ShaderNodes
 		public FloatSocket Transparency { get; set; }
 		public FloatSocket RefractionRoughness { get; set; }
 		public FloatSocket AnisotropicRotation { get; set; }
-		public Float4Socket Normal { get; set; }
-		public Float4Socket ClearcoatNormal { get; set; }
-		public Float4Socket Tangent { get; set; }
+		public VectorSocket Normal { get; set; }
+		public VectorSocket ClearcoatNormal { get; set; }
+		public VectorSocket Tangent { get; set; }
 
 		public UberBsdfInputs(ShaderNode parentNode)
 		{
 
-			BaseColor = new Float4Socket(parentNode, "Base Color");
+			BaseColor = new ColorSocket(parentNode, "Base Color");
 			AddSocket(BaseColor);
-			SpecularColor = new Float4Socket(parentNode, "Specular Color");
+			SpecularColor = new ColorSocket(parentNode, "Specular Color");
 			AddSocket(SpecularColor);
-			SubsurfaceColor = new Float4Socket(parentNode, "Subsurface Color");
+			SubsurfaceColor = new ColorSocket(parentNode, "Subsurface Color");
 			AddSocket(SubsurfaceColor);
 			Metallic = new FloatSocket(parentNode, "Metallic");
 			AddSocket(Metallic);
 			Subsurface = new FloatSocket(parentNode, "Subsurface");
 			AddSocket(Subsurface);
-			SubsurfaceRadius = new Float4Socket(parentNode, "Subsurface Radius");
+			SubsurfaceRadius = new VectorSocket(parentNode, "Subsurface Radius");
 			AddSocket(SubsurfaceRadius);
 			Specular = new FloatSocket(parentNode, "Specular");
 			AddSocket(Specular);
@@ -84,11 +84,11 @@ namespace ccl.ShaderNodes
 			AddSocket(RefractionRoughness);
 			AnisotropicRotation = new FloatSocket(parentNode, "Anisotropic Rotation");
 			AddSocket(AnisotropicRotation);
-			Normal = new Float4Socket(parentNode, "Normal");
+			Normal = new VectorSocket(parentNode, "Normal");
 			AddSocket(Normal);
-			ClearcoatNormal = new Float4Socket(parentNode, "Clearcoat Normal");
+			ClearcoatNormal = new VectorSocket(parentNode, "Clearcoat Normal");
 			AddSocket(ClearcoatNormal);
-			Tangent = new Float4Socket(parentNode, "Tangent");
+			Tangent = new VectorSocket(parentNode, "Tangent");
 			AddSocket(Tangent);
 		}
 	}

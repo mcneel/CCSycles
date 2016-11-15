@@ -22,12 +22,12 @@ namespace ccl.ShaderNodes
 {
 	public class EmissionInputs : Inputs
 	{
-		public Float4Socket Color { get; set; }
+		public ColorSocket Color { get; set; }
 		public FloatSocket Strength { get; set; }
 
 		internal EmissionInputs(ShaderNode parentNode)
 		{
-			Color = new Float4Socket(parentNode, "Color");
+			Color = new ColorSocket(parentNode, "Color");
 			AddSocket(Color);
 			Strength = new FloatSocket(parentNode, "Strength");
 			AddSocket(Strength);

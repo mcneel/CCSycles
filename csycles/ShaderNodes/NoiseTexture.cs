@@ -22,14 +22,14 @@ namespace ccl.ShaderNodes
 {
 	public class NoiseInputs : Inputs
 	{
-		public Float4Socket Vector { get; set; }
+		public VectorSocket Vector { get; set; }
 		public FloatSocket Scale { get; set; }
 		public FloatSocket Detail { get; set; }
 		public FloatSocket Distortion { get; set; }
 
 		public NoiseInputs(ShaderNode parentNode)
 		{
-			Vector = new Float4Socket(parentNode, "Vector");
+			Vector = new VectorSocket(parentNode, "Vector");
 			AddSocket(Vector);
 			Scale = new FloatSocket(parentNode, "Scale");
 			AddSocket(Scale);
@@ -42,12 +42,12 @@ namespace ccl.ShaderNodes
 
 	public class NoiseOutputs : Outputs
 	{
-		public Float4Socket Color { get; set; }
+		public ColorSocket Color { get; set; }
 		public FloatSocket Fac { get; set; }
 
 		public NoiseOutputs(ShaderNode parentNode)
 		{
-			Color = new Float4Socket(parentNode, "Color");
+			Color = new ColorSocket(parentNode, "Color");
 			AddSocket(Color);
 			Fac = new FloatSocket(parentNode, "Fac");
 			AddSocket(Fac);

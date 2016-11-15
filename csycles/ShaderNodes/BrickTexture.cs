@@ -28,15 +28,15 @@ namespace ccl.ShaderNodes
 		/// <summary>
 		/// BrickTexture first brick color to vary with (see Bias)
 		/// </summary>
-		public Float4Socket Color1 { get; set; }
+		public ColorSocket Color1 { get; set; }
 		/// <summary>
 		/// BrickTexture second brick color to vary with
 		/// </summary>
-		public Float4Socket Color2 { get; set; }
+		public ColorSocket Color2 { get; set; }
 		/// <summary>
 		/// BrickTexture  mortar color
 		/// </summary>
-		public Float4Socket Mortar { get; set; }
+		public ColorSocket Mortar { get; set; }
 		/// <summary>
 		/// BrickTexture texture coordinate to sample at. 
 		/// </summary>
@@ -70,13 +70,13 @@ namespace ccl.ShaderNodes
 
 		internal BrickInputs(ShaderNode parentNode)
 		{
-			Color1 = new Float4Socket(parentNode, "Color1");
+			Color1 = new ColorSocket(parentNode, "Color1");
 			AddSocket(Color1);
-			Color2 = new Float4Socket(parentNode, "Color2");
+			Color2 = new ColorSocket(parentNode, "Color2");
 			AddSocket(Color2);
-			Mortar = new Float4Socket(parentNode, "Mortar");
+			Mortar = new ColorSocket(parentNode, "Mortar");
 			AddSocket(Mortar);
-			Vector= new Float4Socket(parentNode, "Vector");
+			Vector= new ColorSocket(parentNode, "Vector");
 			AddSocket(Vector);
 
 			Scale = new FloatSocket(parentNode, "Scale");

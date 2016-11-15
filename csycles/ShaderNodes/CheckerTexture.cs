@@ -22,18 +22,18 @@ namespace ccl.ShaderNodes
 {
 	public class CheckerInputs : Inputs
 	{
-		public Float4Socket Vector { get; set; }
-		public Float4Socket Color1 { get; set; }
-		public Float4Socket Color2 { get; set; }
+		public VectorSocket Vector { get; set; }
+		public ColorSocket Color1 { get; set; }
+		public ColorSocket Color2 { get; set; }
 		public FloatSocket Scale { get; set; }
 
 		public CheckerInputs(ShaderNode parentNode)
 		{
-			Vector = new Float4Socket(parentNode, "Vector");
+			Vector = new VectorSocket(parentNode, "Vector");
 			AddSocket(Vector);
-			Color1 = new Float4Socket(parentNode, "Color1");
+			Color1 = new ColorSocket(parentNode, "Color1");
 			AddSocket(Color1);
-			Color2 = new Float4Socket(parentNode, "Color2");
+			Color2 = new ColorSocket(parentNode, "Color2");
 			AddSocket(Color2);
 			Scale = new FloatSocket(parentNode, "Scale");
 			AddSocket(Scale);
@@ -42,12 +42,12 @@ namespace ccl.ShaderNodes
 
 	public class CheckerOutputs : Outputs
 	{
-		public Float4Socket Color { get; set; }
+		public VectorSocket Color { get; set; }
 		public FloatSocket Fac { get; set; }
 
 		public CheckerOutputs(ShaderNode parentNode)
 		{
-			Color = new Float4Socket(parentNode, "Color");
+			Color = new VectorSocket(parentNode, "Color");
 			AddSocket(Color);
 			Fac = new FloatSocket(parentNode, "Fac");
 			AddSocket(Fac);

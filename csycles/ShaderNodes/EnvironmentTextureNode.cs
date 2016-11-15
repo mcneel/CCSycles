@@ -30,11 +30,11 @@ namespace ccl.ShaderNodes
 		/// <summary>
 		/// EnvironmentTextureNode vector input 
 		/// </summary>
-		public Float4Socket Vector { get; set; }
+		public VectorSocket Vector { get; set; }
 
 		internal EnvironmentTextureInputs(ShaderNode parentNode)
 		{
-			Vector = new Float4Socket(parentNode, "Vector");
+			Vector = new VectorSocket(parentNode, "Vector");
 			AddSocket(Vector);
 		}
 	}
@@ -47,7 +47,7 @@ namespace ccl.ShaderNodes
 		/// <summary>
 		/// EnvironmentTextureNode color output
 		/// </summary>
-		public Float4Socket Color { get; set; }
+		public ColorSocket Color { get; set; }
 		/// <summary>
 		/// EnvironmentTextureNode alpha output
 		/// </summary>
@@ -55,7 +55,7 @@ namespace ccl.ShaderNodes
 
 		internal EnvironmentTextureOutputs(ShaderNode parentNode)
 		{
-			Color = new Float4Socket(parentNode, "Color");
+			Color = new ColorSocket(parentNode, "Color");
 			AddSocket(Color);
 			Alpha = new FloatSocket(parentNode, "Alpha");
 			AddSocket(Alpha);

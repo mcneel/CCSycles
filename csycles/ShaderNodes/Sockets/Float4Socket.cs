@@ -36,4 +36,17 @@ namespace ccl.ShaderNodes.Sockets
 			Value = new float4();
 		}
 	}
+
+	public class ColorSocket : Float4Socket {
+		public ColorSocket(ShaderNode parentNode, string name)
+			: base(parentNode, name)
+		{
+		}
+	}
+	public class VectorSocket : Float4Socket {
+		public VectorSocket(ShaderNode parentNode, string name)
+			: base(parentNode, name)
+		{
+		}
+	}
 }

@@ -22,17 +22,17 @@ namespace ccl.ShaderNodes
 {
 	public class VelvetBsdfInputs : Inputs
 	{
-		public Float4Socket Color { get; set; }
+		public ColorSocket Color { get; set; }
 		public FloatSocket Sigma { get; set; }
-		public Float4Socket Normal { get; set; }
+		public VectorSocket Normal { get; set; }
 
 		public VelvetBsdfInputs(ShaderNode parentNode)
 		{
-			Color = new Float4Socket(parentNode, "Color");
+			Color = new ColorSocket(parentNode, "Color");
 			AddSocket(Color);
 			Sigma = new FloatSocket(parentNode, "Sigma");
 			AddSocket(Sigma);
-			Normal = new Float4Socket(parentNode, "Normal");
+			Normal = new VectorSocket(parentNode, "Normal");
 			AddSocket(Normal);
 		}
 	}

@@ -22,32 +22,32 @@ namespace ccl.ShaderNodes
 {
 	public class GeometryInfoOutputs : Outputs
 	{
-		//public Float4Socket NormalIn { get; set; }
+		//public VectorSocket NormalIn { get; set; }
 		/// <summary>
 		/// Position of the shading point
 		/// </summary>
-		public Float4Socket Position { get; set; }
+		public VectorSocket Position { get; set; }
 		/// <summary>
 		/// Shading normal at the surface (includes smooth normals and bump mapping)
 		/// </summary>
 
-		public Float4Socket Normal { get; set; }
+		public VectorSocket Normal { get; set; }
 		/// <summary>
 		/// Tangent at the surface
 		/// </summary>
-		public Float4Socket Tangent { get; set; }
+		public VectorSocket Tangent { get; set; }
 		/// <summary>
 		/// Normal of the underlaying geometry (flat surface)
 		/// </summary>
-		public Float4Socket TrueNormal { get; set; }
+		public VectorSocket TrueNormal { get; set; }
 		/// <summary>
 		/// Vector from view towards shading point
 		/// </summary>
-		public Float4Socket Incoming { get; set; }
+		public VectorSocket Incoming { get; set; }
 		/// <summary>
 		/// Parametric coordinates of the shading point on the surface
 		/// </summary>
-		public Float4Socket Parametric { get; set; }
+		public VectorSocket Parametric { get; set; }
 		/// <summary>
 		/// 1.0 if the face is viewed from the backside, 0.0 if from the front
 		/// </summary>
@@ -62,17 +62,17 @@ namespace ccl.ShaderNodes
 		{
 			//IsCameraRay = new FloatSocket(parentNode, "Is Camera Ray");
 			//AddSocket(IsCameraRay);
-			Position = new Float4Socket(parentNode, "Position");
+			Position = new VectorSocket(parentNode, "Position");
 			AddSocket(Position);
-			Normal = new Float4Socket(parentNode, "Normal");
+			Normal = new VectorSocket(parentNode, "Normal");
 			AddSocket(Normal);
-			Tangent = new Float4Socket(parentNode, "Tangent");
+			Tangent = new VectorSocket(parentNode, "Tangent");
 			AddSocket(Tangent);
-			TrueNormal = new Float4Socket(parentNode, "True Normal");
+			TrueNormal = new VectorSocket(parentNode, "True Normal");
 			AddSocket(TrueNormal);
-			Incoming = new Float4Socket(parentNode, "Incoming");
+			Incoming = new VectorSocket(parentNode, "Incoming");
 			AddSocket(Incoming);
-			Parametric = new Float4Socket(parentNode, "Parametric");
+			Parametric = new VectorSocket(parentNode, "Parametric");
 			AddSocket(Parametric);
 			Backfacing = new FloatSocket(parentNode, "Backfacing");
 			AddSocket(Backfacing);

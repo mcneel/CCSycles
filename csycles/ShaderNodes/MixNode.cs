@@ -24,27 +24,27 @@ namespace ccl.ShaderNodes
 	public class MixInputs : Inputs
 	{
 		public FloatSocket Fac { get; set; }
-		public Float4Socket Color1 { get; set; }
-		public Float4Socket Color2 { get; set; }
+		public ColorSocket Color1 { get; set; }
+		public ColorSocket Color2 { get; set; }
 
 		internal MixInputs(ShaderNode parentNode)
 		{
+			Color1 = new ColorSocket(parentNode, "Color1");
+			AddSocket(Color1);
+			Color2 = new ColorSocket(parentNode, "Color2");
+			AddSocket(Color2);
 			Fac = new FloatSocket(parentNode, "Fac");
 			AddSocket(Fac);
-			Color1 = new Float4Socket(parentNode, "Color1");
-			AddSocket(Color1);
-			Color2 = new Float4Socket(parentNode, "Color2");
-			AddSocket(Color2);
 		}
 	}
 
 	public class MixOutputs : Outputs
 	{
-		public Float4Socket Color { get; set; }
+		public ColorSocket Color { get; set; }
 
 		internal MixOutputs(ShaderNode parentNode)
 		{
-			Color = new Float4Socket(parentNode, "Color");
+			Color = new ColorSocket(parentNode, "Color");
 			AddSocket(Color);
 		}
 	}

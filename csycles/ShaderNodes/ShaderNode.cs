@@ -43,11 +43,11 @@ namespace ccl.ShaderNodes
 		/// <summary>
 		/// Generic access to input sockets.
 		/// </summary>
-		internal Inputs inputs { get; set; }
+		public Inputs inputs { get; set; }
 		/// <summary>
 		/// Generic access to output sockets.
 		/// </summary>
-		internal Outputs outputs { get; set; }
+		public Outputs outputs { get; set; }
 
 		/// <summary>
 		/// Create node of type ShaderNodeType type

@@ -22,11 +22,11 @@ namespace ccl.ShaderNodes
 {
 	public class SeparateXyzInputs : Inputs
 	{
-		public Float4Socket Vector { get; set; }
+		public VectorSocket Vector { get; set; }
 
 		public SeparateXyzInputs(ShaderNode parentNode)
 		{
-			Vector = new Float4Socket(parentNode, "Vector");
+			Vector = new VectorSocket(parentNode, "Vector");
 			AddSocket(Vector);
 		}
 	}

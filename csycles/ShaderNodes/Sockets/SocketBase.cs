@@ -20,7 +20,7 @@ namespace ccl.ShaderNodes.Sockets
 	{
 		internal ShaderNode Parent { get; set; }
 
-		internal string Name { get; set; }
+		public string Name { get; set; }
 
 		public void Connect(SocketBase to)
 		{

@@ -30,11 +30,11 @@ namespace ccl.ShaderNodes
 		/// <summary>
 		/// ImageTexture space coordinate to sample texture at
 		/// </summary>
-		public Float4Socket Vector { get; set; }
+		public VectorSocket Vector { get; set; }
 
 		internal ImageTextureInputs(ShaderNode parentNode)
 		{
-			Vector = new Float4Socket(parentNode, "Vector");
+			Vector = new VectorSocket(parentNode, "Vector");
 			AddSocket(Vector);
 		}
 	}
@@ -47,7 +47,7 @@ namespace ccl.ShaderNodes
 		/// <summary>
 		/// ImageTexture Color output
 		/// </summary>
-		public Float4Socket Color { get; set; }
+		public ColorSocket Color { get; set; }
 		/// <summary>
 		/// ImageTexture alpha output
 		/// </summary>
@@ -55,7 +55,7 @@ namespace ccl.ShaderNodes
 
 		internal ImageTextureOutputs(ShaderNode parentNode)
 		{
-			Color = new Float4Socket(parentNode, "Color");
+			Color = new ColorSocket(parentNode, "Color");
 			AddSocket(Color);
 			Alpha = new FloatSocket(parentNode, "Alpha");
 			AddSocket(Alpha);

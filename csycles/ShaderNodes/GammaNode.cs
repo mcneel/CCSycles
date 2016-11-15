@@ -22,12 +22,12 @@ namespace ccl.ShaderNodes
 {
 	public class GammaInputs : Inputs
 	{
-		public Float4Socket Color { get; set; }
+		public ColorSocket Color { get; set; }
 		public FloatSocket Gamma { get; set; }
 
 		public GammaInputs(ShaderNode parentNode)
 		{
-			Color = new Float4Socket(parentNode, "Color");
+			Color = new ColorSocket(parentNode, "Color");
 			AddSocket(Color);
 			Gamma = new FloatSocket(parentNode, "Gamma");
 			AddSocket(Gamma);
