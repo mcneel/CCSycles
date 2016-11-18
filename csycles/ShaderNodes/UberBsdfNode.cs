@@ -159,27 +159,27 @@ namespace ccl.ShaderNodes
 
 		internal override void ParseXml(XmlReader xmlNode)
 		{
-			Utilities.Instance.get_float4(ins.BaseColor, xmlNode.GetAttribute("base_color"));
-			Utilities.Instance.get_float4(ins.BaseColor, xmlNode.GetAttribute("specular_color"));
-			Utilities.Instance.get_float4(ins.SubsurfaceColor, xmlNode.GetAttribute("subsurface_color"));
-			Utilities.Instance.get_float(ins.Metallic, xmlNode.GetAttribute("metallic"));
-			Utilities.Instance.get_float(ins.Subsurface, xmlNode.GetAttribute("subsurface"));
-			Utilities.Instance.get_float4(ins.SubsurfaceRadius, xmlNode.GetAttribute("subsurface_radius"));
-			Utilities.Instance.get_float(ins.Specular, xmlNode.GetAttribute("specular"));
-			Utilities.Instance.get_float(ins.Roughness, xmlNode.GetAttribute("roughness"));
-			Utilities.Instance.get_float(ins.SpecularTint, xmlNode.GetAttribute("specular_tint"));
-			Utilities.Instance.get_float(ins.Anisotropic, xmlNode.GetAttribute("anisotropic"));
-			Utilities.Instance.get_float(ins.Sheen, xmlNode.GetAttribute("sheen"));
-			Utilities.Instance.get_float(ins.SheenTint, xmlNode.GetAttribute("sheen_tint"));
-			Utilities.Instance.get_float(ins.Clearcoat, xmlNode.GetAttribute("clearcoat"));
-			Utilities.Instance.get_float(ins.ClearcoatGloss, xmlNode.GetAttribute("clearcoat_gloss"));
-			Utilities.Instance.get_float(ins.IOR, xmlNode.GetAttribute("ior"));
-			Utilities.Instance.get_float(ins.Transparency, xmlNode.GetAttribute("transparency"));
-			Utilities.Instance.get_float(ins.RefractionRoughness, xmlNode.GetAttribute("refraction_roughness"));
-			Utilities.Instance.get_float(ins.AnisotropicRotation, xmlNode.GetAttribute("anisotropic_rotation"));
-			Utilities.Instance.get_float4(ins.Normal, xmlNode.GetAttribute("normal"));
-			Utilities.Instance.get_float4(ins.ClearcoatNormal, xmlNode.GetAttribute("clearcoat_normal"));
-			Utilities.Instance.get_float4(ins.Tangent, xmlNode.GetAttribute("tangent"));
+			Utilities.Instance.get_float4(ins.BaseColor, xmlNode);
+			Utilities.Instance.get_float4(ins.SpecularColor, xmlNode);
+			Utilities.Instance.get_float4(ins.SubsurfaceColor, xmlNode);
+			Utilities.Instance.get_float(ins.Metallic, xmlNode);
+			Utilities.Instance.get_float(ins.Subsurface, xmlNode);
+			Utilities.Instance.get_float4(ins.SubsurfaceRadius, xmlNode);
+			Utilities.Instance.get_float(ins.Specular, xmlNode);
+			Utilities.Instance.get_float(ins.Roughness, xmlNode);
+			Utilities.Instance.get_float(ins.SpecularTint, xmlNode);
+			Utilities.Instance.get_float(ins.Anisotropic, xmlNode);
+			Utilities.Instance.get_float(ins.Sheen, xmlNode);
+			Utilities.Instance.get_float(ins.SheenTint, xmlNode);
+			Utilities.Instance.get_float(ins.Clearcoat, xmlNode);
+			Utilities.Instance.get_float(ins.ClearcoatGloss, xmlNode);
+			Utilities.Instance.get_float(ins.IOR, xmlNode);
+			Utilities.Instance.get_float(ins.Transparency, xmlNode);
+			Utilities.Instance.get_float(ins.RefractionRoughness, xmlNode);
+			Utilities.Instance.get_float(ins.AnisotropicRotation, xmlNode);
+			Utilities.Instance.get_float4(ins.Normal, xmlNode);
+			Utilities.Instance.get_float4(ins.ClearcoatNormal, xmlNode);
+			Utilities.Instance.get_float4(ins.Tangent, xmlNode);
 			var str = "";
 			Utilities.Instance.read_string(ref str, xmlNode.GetAttribute("distribution"));
 			if (!string.IsNullOrEmpty(str))

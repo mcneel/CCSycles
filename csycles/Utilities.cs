@@ -106,6 +106,18 @@ namespace ccl
 			if (vec.Length >= 4)
 				socket.Value.w = vec[3];
 		}
+		public void get_float4(Float4Socket socket, XmlReader node)
+		{
+			var floats = node.GetAttribute(socket.XmlName);
+			if (string.IsNullOrEmpty(floats)) return;
+
+			var vec = parse_floats(floats);
+			if (vec.Length < 3) return;
+
+			socket.Value = new float4(vec[0], vec[1], vec[2]);
+			if (vec.Length >= 4)
+				socket.Value.w = vec[3];
+		}
 
 		/// <summary>
 		/// Set the Value float for a FloatSocket from given string.
@@ -114,6 +126,13 @@ namespace ccl
 		/// <param name="nr">float string</param>
 		public void get_float(FloatSocket socket, string nr)
 		{
+			if (string.IsNullOrEmpty(nr)) return;
+
+			socket.Value = float.Parse(nr, NumberFormatInfo);
+		}
+		public void get_float(FloatSocket socket, XmlReader node)
+		{
+			var nr = node.GetAttribute(socket.XmlName);
 			if (string.IsNullOrEmpty(nr)) return;
 
 			socket.Value = float.Parse(nr, NumberFormatInfo);

@@ -15,6 +15,8 @@ limitations under the License.
 **/
 
 using System;
+using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Xml;
 using ccl.ShaderNodes.Sockets;
 using ccl.Attributes;
@@ -39,6 +41,19 @@ namespace ccl.ShaderNodes
 		/// Get the shader node type. Set in the constructor.
 		/// </summary>
 		public ShaderNodeType Type { get; }
+
+		/// <summary>
+		/// Get the XML name of the node type as string.
+		/// </summary>
+		public string ShaderNodeTypeName
+		{
+			get
+			{
+				var t = this.GetType();
+				var attr = t.GetCustomAttributes(typeof (ShaderNodeAttribute), false)[0] as ShaderNodeAttribute;
+				return attr.Name;
+			}
+		}
 
 		/// <summary>
 		/// Generic access to input sockets.
@@ -133,6 +148,60 @@ namespace ccl.ShaderNodes
 		/// <param name="xmlNode"></param>
 		virtual internal void ParseXml(XmlReader xmlNode)
 		{
+		}
+
+		public virtual string CreateXml()
+		{
+			var nfi = Utilities.Instance.NumberFormatInfo;
+			var xml = $"<{ShaderNodeTypeName} name=\"{Name}\" ";
+
+
+			foreach (var inp in inputs.Sockets)
+			{
+				var fs = inp as FloatSocket;
+				if (fs != null)
+				{
+					xml += string.Format(nfi, " {0}=\"{1}\"", fs.XmlName, fs.Value);
+					continue;
+				}
+				var ints = inp as IntSocket;
+				if (ints != null)
+				{
+					xml += string.Format(nfi, " {0}=\"{1}\"", ints.XmlName, ints.Value);
+					continue;
+				}
+				var cols = inp as ColorSocket;
+				if (cols != null)
+				{
+					xml += string.Format(nfi, " {0}=\"{1} {2} {3} {4}\"", cols.XmlName, cols.Value.x, cols.Value.y, cols.Value.z, cols.Value.w);
+					continue;
+				}
+				var f4s = inp as Float4Socket;
+				if (f4s != null)
+				{
+					xml += string.Format(nfi, " {0}=\"{1} {2} {3} {4}\"", f4s.XmlName, f4s.Value.x, f4s.Value.y, f4s.Value.z, f4s.Value.w);
+					continue;
+				}
+				var strs = inp as StringSocket;
+				if (strs != null)
+				{
+					xml += string.Format(nfi, " {0}=\"{1}\"", strs.XmlName, strs.Value);
+				}
+			}
+
+			xml += " />";
+
+			return xml;
+		}
+
+		public virtual string CreateConnectXml()
+		{
+			return inputs != null ? inputs.Sockets.Aggregate("", (current, inp) => current + $"{inp.ConnectTag}\n") : "";
+		}
+
+		public virtual string CreateConnectCode()
+		{
+			return inputs != null ? inputs.Sockets.Aggregate("", (current, inp) => current + $"{inp.ConnectCode}\n") : "";
 		}
 	}
 }

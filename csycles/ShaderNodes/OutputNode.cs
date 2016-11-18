@@ -62,9 +62,9 @@ namespace ccl.ShaderNodes
 		public OutputInputs ins => (OutputInputs) inputs;
 		public OutputOutputs outs => (OutputOutputs) outputs;
 
-		public OutputNode() : this("an output node") { }
+		public OutputNode() : this("output") { }
 		public OutputNode(string name) :
-			base(ShaderNodeType.Output, name)
+			base(ShaderNodeType.Output, "output")
 		{
 			inputs = new OutputInputs(this);
 			outputs = new OutputOutputs(this);

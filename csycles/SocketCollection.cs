@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using ccl.ShaderNodes.Sockets;
 
 namespace ccl
@@ -88,6 +89,23 @@ namespace ccl
 		public bool HasSocket(string n)
 		{
 			return PropertyNames.Any(pname => pname.ToLowerInvariant().Equals(n.ToLowerInvariant()));
+		}
+
+		/// <summary>
+		/// Get socket from collection based on index.
+		/// </summary>
+		/// <param name="idx"></param>
+		/// <returns></returns>
+		public SocketBase this[int idx]
+		{
+			get
+			{
+				if (idx >= 0 && idx < m_socketlist.Count)
+				{
+					return m_socketlist[idx];
+				}
+				throw new IndexOutOfRangeException($"SocketCollection: {idx} not a valid index");
+			}
 		}
 
 		/// <summary>

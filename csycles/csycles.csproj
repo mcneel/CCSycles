@@ -157,8 +157,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>Copy /Y "$(TargetDir)$(ProjectName).*" "$(ProjectDir)..\..\..\..\..\$(OutDir)Plug-ins"
-
+    <PostBuildEvent>XCopy /Y "$(TargetDir)$(ProjectName).*" "$(ProjectDir)..\..\..\..\..\$(OutDir)Plug-ins"
 copy /Y "$(ProjectDir)..\ccycles\x64\$(ConfigurationName)\ccycles.dll" "$(SolutionDir)..\$(OutDir)Plug-ins"
 copy /Y "$(ProjectDir)..\ccycles\x64\$(ConfigurationName)\ccycles.pdb" "$(SolutionDir)..\$(OutDir)Plug-ins"
 copy /Y "$(ProjectDir)..\OpenImageIO\x64\$(ConfigurationName)\OpenImageIOv13.dll" "$(SolutionDir)..\$(OutDir)"

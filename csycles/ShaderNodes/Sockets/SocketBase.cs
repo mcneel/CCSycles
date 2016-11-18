@@ -1,5 +1,5 @@
 ﻿/**
-Copyright 2014 Robert McNeel and Associates
+Copyright 2014-2016 Robert McNeel and Associates
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -22,6 +22,8 @@ namespace ccl.ShaderNodes.Sockets
 
 		public string Name { get; set; }
 
+		public string XmlName => Name.Replace(' ', '_').ToLowerInvariant();
+
 		public void Connect(SocketBase to)
 		{
 			to.ConnectionFrom = this;
@@ -39,5 +41,20 @@ namespace ccl.ShaderNodes.Sockets
 		/// Get string containing node name, type and socket name
 		/// </summary>
 		public string Path => $"{Parent.Name}({Parent.Type}):{Name}";
+
+		/// <summary>
+		/// Get the C# connection code into this socket
+		/// </summary>
+		public string ConnectCode => ConnectionFrom != null ? $"{ConnectionFrom.Parent.Name}.outs.{ConnectionFrom.Name}.Connect({Parent.Name}.ins.{Name});" : "";
+
+		public string ConnectTag => ConnectionFrom != null ? $"<connect to=\"{Parent.Name} {XmlName}\" from=\"{ConnectionFrom.Parent.Name} {ConnectionFrom.XmlName}\" />": "";
+
+		/// <summary>
+		/// Remove connections
+		/// </summary>
+		public void ClearConnections()
+		{
+			ConnectionFrom = null;
+		}
 	}
 }
