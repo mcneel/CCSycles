@@ -166,5 +166,17 @@ namespace ccl.ShaderNodes
 			ImageParseXml(xmlNode);
 		}
 
+		public override string CreateCodeAttributes()
+		{
+			var code = $"{VariableName}.Projection = {Projection};";
+			code += $"{VariableName}.ColorSpace = {ColorSpace};";
+			code += $"{VariableName}.Extension = {Extension};";
+			code += $"{VariableName}.Interpolation = {Interpolation};";
+			code += $"{VariableName}.UseAlpha = {UseAlpha};";
+			code += $"{VariableName}.IsLinear = {IsLinear};";
+			code += base.CreateCodeAttributes();
+
+			return code;
+		}
 	}
 }

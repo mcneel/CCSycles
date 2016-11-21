@@ -77,10 +77,6 @@ namespace ccl.ShaderNodes
 
 	public class TextureCoordinateInputs : Inputs
 	{
-		public TextureCoordinateInputs(ShaderNode parentNode)
-		{
-			
-		}
 	}
 
 	[ShaderNode("texture_coordinate")]
@@ -94,7 +90,7 @@ namespace ccl.ShaderNodes
 		public TextureCoordinateNode(string name)
 			: base(ShaderNodeType.TextureCoordinate, name)
 		{
-			inputs = null;
+			inputs = new TextureCoordinateInputs();
 			outputs = new TextureCoordinateOutputs(this);
 
 			UseTransform = false;

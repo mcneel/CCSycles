@@ -41,7 +41,7 @@ namespace ccl
 		private Client Client { get; }
 		public ShaderType Type { get; set; }
 
-		private bool created_in_cycles { get; set; }
+		private bool CreatedInCycles { get; set; }
 
 		/// <summary>
 		/// Print out debug information if set to true. Default false.
@@ -51,7 +51,7 @@ namespace ccl
 		/// <summary>
 		/// Get the output node for this shader.
 		/// </summary>
-		public OutputNode Output { get; private set; }
+		public OutputNode Output { get; internal set; }
 
 		/// <summary>
 		/// Create a new shader for client.
@@ -61,12 +61,8 @@ namespace ccl
 		public Shader(Client client, ShaderType type)
 		{
 			Client = client;
-			Type = type;
 			Id = CSycles.create_shader(Client.Id);
-			Output = new OutputNode();
-			AddNode(Output);
-			created_in_cycles = false;
-			Verbose = false;
+			CommonConstructor(type, false);
 		}
 
 		/// <summary>
@@ -80,22 +76,38 @@ namespace ccl
 		internal Shader(Client client, ShaderType type, uint id)
 		{
 			Client = client;
-			Type = type;
 			Id = id;
+			CommonConstructor(type, true);
+		}
+
+		private void CommonConstructor(ShaderType type, bool createdInCycles)
+		{
+			Type = type;
 			Output = new OutputNode();
 			AddNode(Output);
-			created_in_cycles = true;
+			CreatedInCycles = createdInCycles;
 			Verbose = false;
+		}
+
+		/// <summary>
+		/// Create a shader outside of the Cycles system. Can be used to set up a
+		/// shader graph for serialisation purposes.
+		/// </summary>
+		/// <param name="type"></param>
+		public Shader(ShaderType type)
+		{
+			Type = type;
+			Output = new OutputNode();
 		}
 
 		/// <summary>
 		/// Clear the shader graph for this node, so it can be repopulated.
 		/// </summary>
-		public void Recreate()
+		public virtual void Recreate()
 		{
 			CSycles.shader_new_graph(Client.Id, Id);
 
-			created_in_cycles = false;
+			CreatedInCycles = false;
 
 			m_nodes.Clear();
 
@@ -106,7 +118,7 @@ namespace ccl
 		/// <summary>
 		/// Tag shader for device update
 		/// </summary>
-		public void Tag()
+		public virtual void Tag()
 		{
 			CSycles.scene_tag_shader(Client.Id, Client.Scene.Id, Id);
 		}
@@ -178,13 +190,13 @@ namespace ccl
 			return shader;
 		}
 
-		readonly List<ShaderNode> m_nodes = new List<ShaderNode>();
+		readonly internal List<ShaderNode> m_nodes = new List<ShaderNode>();
 		/// <summary>
 		/// Add a ShaderNode to the shader. This will create the node in Cycles, set
 		/// any values for sockets and direct members.
 		/// </summary>
 		/// <param name="node">ShaderNode to add</param>
-		public void AddNode(ShaderNode node)
+		public virtual void AddNode(ShaderNode node)
 		{
 			if (node is OutputNode)
 			{
@@ -193,7 +205,7 @@ namespace ccl
 				return;
 			}
 
-			if (created_in_cycles)
+			if (CreatedInCycles)
 			{
 				m_nodes.Add(node);
 				return;
@@ -211,7 +223,7 @@ namespace ccl
 		/// This step also commits any values set to input sockets, enumerations
 		/// and direct member variables.
 		/// </summary>
-		public void FinalizeGraph()
+		public virtual void FinalizeGraph()
 		{
 			if (Verbose)
 			{
@@ -270,7 +282,7 @@ namespace ccl
 			set
 			{
 				m_name = value;
-				if(!created_in_cycles) CSycles.shader_set_name(Client.Id, Id, m_name);
+				if(!CreatedInCycles && Client!=null) CSycles.shader_set_name(Client.Id, Id, m_name);
 			}
 			get
 			{
@@ -285,7 +297,7 @@ namespace ccl
 		{
 			set
 			{
-				if(!created_in_cycles) CSycles.shader_set_use_mis(Client.Id, Id, value);
+				if(!CreatedInCycles && Client!=null) CSycles.shader_set_use_mis(Client.Id, Id, value);
 			}
 		}
 
@@ -296,7 +308,7 @@ namespace ccl
 		{
 			set
 			{
-				if(!created_in_cycles) CSycles.shader_set_use_transparent_shadow(Client.Id, Id, value);
+				if(!CreatedInCycles && Client!=null) CSycles.shader_set_use_transparent_shadow(Client.Id, Id, value);
 			}
 		}
 
@@ -307,7 +319,7 @@ namespace ccl
 		{
 			set
 			{
-				if(!created_in_cycles) CSycles.shader_set_heterogeneous_volume(Client.Id, Id, value);
+				if(!CreatedInCycles && Client!=null) CSycles.shader_set_heterogeneous_volume(Client.Id, Id, value);
 			}
 		}
 

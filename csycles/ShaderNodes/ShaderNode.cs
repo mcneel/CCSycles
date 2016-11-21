@@ -17,22 +17,40 @@ limitations under the License.
 using System;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Text;
 using System.Xml;
 using ccl.ShaderNodes.Sockets;
 using ccl.Attributes;
 
 namespace ccl.ShaderNodes
 {
+	using cclext;
 	/// <summary>
 	/// Base class for shader nodes.
 	/// </summary>
 	[ShaderNode("shadernode base", true)]
 	public class ShaderNode
 	{
+		private static int _runtimeSerial = 0;
+
+		private int id;
 		/// <summary>
 		/// Set a name for this node
 		/// </summary>
 		public string Name { get; }
+
+		/// <summary>
+		/// Get name that can be used as variable name
+		/// </summary>
+		public virtual string VariableName
+		{
+			get
+			{
+				var s = $"{ShaderNodeTypeCodeName}_{id}";
+				return Extensions.FirstCharacterToLower(s);
+			}
+		}
+
 		/// <summary>
 		/// Get the node ID. This is set when created in Cycles.
 		/// </summary>
@@ -49,9 +67,17 @@ namespace ccl.ShaderNodes
 		{
 			get
 			{
-				var t = this.GetType();
+				var t = GetType();
 				var attr = t.GetCustomAttributes(typeof (ShaderNodeAttribute), false)[0] as ShaderNodeAttribute;
 				return attr.Name;
+			}
+		}
+
+		public string ShaderNodeTypeCodeName
+		{
+			get {
+				var t = GetType();
+				return t.Name;
 			}
 		}
 
@@ -79,6 +105,7 @@ namespace ccl.ShaderNodes
 		/// <param name="name"></param>
 		internal ShaderNode(ShaderNodeType type, string name)
 		{
+			id = _runtimeSerial++;
 			Type = type;
 			Name = name;
 		}
@@ -150,10 +177,15 @@ namespace ccl.ShaderNodes
 		{
 		}
 
+		public virtual string CreateXmlAttributes()
+		{
+			return "";
+		}
+
 		public virtual string CreateXml()
 		{
 			var nfi = Utilities.Instance.NumberFormatInfo;
-			var xml = $"<{ShaderNodeTypeName} name=\"{Name}\" ";
+			var xml = new StringBuilder($"<{ShaderNodeTypeName} name=\"{Name}\" ", 1024);
 
 
 			foreach (var inp in inputs.Sockets)
@@ -161,47 +193,125 @@ namespace ccl.ShaderNodes
 				var fs = inp as FloatSocket;
 				if (fs != null)
 				{
-					xml += string.Format(nfi, " {0}=\"{1}\"", fs.XmlName, fs.Value);
+					xml.AppendFormat(nfi, " {0}=\"{1}\"", fs.XmlName, fs.Value);
 					continue;
 				}
 				var ints = inp as IntSocket;
 				if (ints != null)
 				{
-					xml += string.Format(nfi, " {0}=\"{1}\"", ints.XmlName, ints.Value);
+					xml.AppendFormat(nfi, " {0}=\"{1}\"", ints.XmlName, ints.Value);
 					continue;
 				}
 				var cols = inp as ColorSocket;
 				if (cols != null)
 				{
-					xml += string.Format(nfi, " {0}=\"{1} {2} {3} {4}\"", cols.XmlName, cols.Value.x, cols.Value.y, cols.Value.z, cols.Value.w);
+					xml.AppendFormat(nfi, " {0}=\"{1} {2} {3} {4}\"", cols.XmlName, cols.Value.x, cols.Value.y, cols.Value.z, cols.Value.w);
+					continue;
+				}
+				var vec = inp as VectorSocket;
+				if (vec != null)
+				{
+					xml.AppendFormat(nfi, " {0}=\"{1} {2} {3} {4}\"", vec.XmlName, vec.Value.x, vec.Value.y, vec.Value.z, vec.Value.w);
 					continue;
 				}
 				var f4s = inp as Float4Socket;
 				if (f4s != null)
 				{
-					xml += string.Format(nfi, " {0}=\"{1} {2} {3} {4}\"", f4s.XmlName, f4s.Value.x, f4s.Value.y, f4s.Value.z, f4s.Value.w);
+					xml.AppendFormat(nfi, " {0}=\"{1} {2} {3} {4}\"", f4s.XmlName, f4s.Value.x, f4s.Value.y, f4s.Value.z, f4s.Value.w);
 					continue;
 				}
 				var strs = inp as StringSocket;
 				if (strs != null)
 				{
-					xml += string.Format(nfi, " {0}=\"{1}\"", strs.XmlName, strs.Value);
+					xml.AppendFormat(nfi, " {0}=\"{1}\"", strs.XmlName, strs.Value);
 				}
 			}
 
-			xml += " />";
+			xml.Append(CreateXmlAttributes());
 
-			return xml;
+			xml.Append(" />");
+
+			return xml.ToString();
 		}
 
 		public virtual string CreateConnectXml()
 		{
-			return inputs != null ? inputs.Sockets.Aggregate("", (current, inp) => current + $"{inp.ConnectTag}\n") : "";
+			var sb = inputs.Sockets.Aggregate(new StringBuilder("", 1024), (current, inp) => current.Append($"{inp.ConnectTag}\n"));
+			return sb.ToString();
+		}
+
+		public virtual string CreateCodeAttributes()
+		{
+			var nfi = Utilities.Instance.NumberFormatInfo;
+			var attr = new StringBuilder(1024); 
+			if (inputs.Sockets.Any())
+			{
+				foreach (var inp in inputs.Sockets)
+				{
+					var fs = inp as FloatSocket;
+					if (fs != null)
+					{
+						attr.AppendFormat(nfi, " {0}.ins.{1}.Value = {2}f;", VariableName, fs.CodeName, fs.Value);
+						continue;
+					}
+					var ints = inp as IntSocket;
+					if (ints != null)
+					{
+						attr.AppendFormat(nfi, " {0}.ins.{1}.Value = {2};", VariableName, ints.CodeName, ints.Value);
+						continue;
+					}
+					var cols = inp as ColorSocket;
+					if (cols != null)
+					{
+						attr.AppendFormat(nfi, " {0}.ins.{1}.Value = new float4({2}f, {3}f, {4}f, {5}f);", VariableName, cols.CodeName, cols.Value.x, cols.Value.y, cols.Value.z, cols.Value.w);
+						continue;
+					}
+					var vec = inp as VectorSocket;
+					if (vec != null)
+					{
+						attr.AppendFormat(nfi, " {0}.ins.{1}.Value = new float4({2}f, {3}f, {4}f, {5}f);", VariableName, vec.CodeName, vec.Value.x, vec.Value.y, vec.Value.z, vec.Value.w);
+						continue;
+					}
+					var f4s = inp as Float4Socket;
+					if (f4s != null)
+					{
+						attr.AppendFormat(nfi," {0}.ins.{1}.Value = new float4({2}f, {3}f, {4}f, {5}f);", VariableName, f4s.CodeName, f4s.Value.x, f4s.Value.y, f4s.Value.z, f4s.Value.w);
+						continue;
+					}
+					var strs = inp as StringSocket;
+					if (strs != null)
+					{
+						attr.AppendFormat(nfi, " {0}.ins.{1}.Value = \"{2}\";", VariableName, strs.CodeName, strs.Value);
+					}
+					attr.AppendLine();
+				}
+				attr.AppendLine();
+			}
+			return attr.ToString();
+		}
+
+		public virtual string CreateCode()
+		{
+			var cs = new StringBuilder($"var {VariableName} = new {ShaderNodeTypeCodeName}(\"{Name}\");", 1024);
+
+			cs.Append(CreateCodeAttributes());
+
+			return cs.ToString();
 		}
 
 		public virtual string CreateConnectCode()
 		{
-			return inputs != null ? inputs.Sockets.Aggregate("", (current, inp) => current + $"{inp.ConnectCode}\n") : "";
+			var sb = inputs.Sockets.Aggregate(new StringBuilder("", 1024), (current, inp) => current.Append($"{inp.ConnectCode}\n"));
+			return sb.ToString();
+		}
+
+		public virtual string CreateAddToShaderCode(string shader)
+		{
+			var sb = new StringBuilder(1024);
+
+			sb.Append($"{shader}.AddNode({VariableName});");
+
+			return sb.ToString();
 		}
 	}
 }

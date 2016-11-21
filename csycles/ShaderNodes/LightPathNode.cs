@@ -151,7 +151,7 @@ namespace ccl.ShaderNodes
 		public LightPathNode(string name)
 			: base(ShaderNodeType.LightPath, name)
 		{
-			inputs = null;
+			inputs = new LightPathInputs();
 			outputs = new LightPathOutputs(this);
 		}
 	}

@@ -20,8 +20,23 @@ using System.Xml;
 using ccl.ShaderNodes;
 using ccl.ShaderNodes.Sockets;
 
+namespace cclext
+{
+	public static class Extensions
+	{
+		public static string FirstCharacterToLower(string str)
+		{
+			if (string.IsNullOrEmpty(str) || char.IsLower(str, 0))
+				return str;
+			return char.ToLowerInvariant(str[0]) + str.Substring(1);
+		}
+	}
+}
+
 namespace ccl
 {
+
+
 	public class Utilities
 	{
 		public static Utilities g_utilities;

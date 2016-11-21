@@ -115,7 +115,7 @@ namespace ccl.ShaderNodes
 		public GeometryInfoNode(string name)
 			: base(ShaderNodeType.GeometryInfo, name)
 		{
-			inputs = null;
+			inputs = new GeometryInfoInputs();
 			outputs = new GeometryInfoOutputs(this);
 		}
 	}

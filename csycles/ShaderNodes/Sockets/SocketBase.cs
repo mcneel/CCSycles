@@ -23,6 +23,7 @@ namespace ccl.ShaderNodes.Sockets
 		public string Name { get; set; }
 
 		public string XmlName => Name.Replace(' ', '_').ToLowerInvariant();
+		public string CodeName => Name.Replace(" ", string.Empty);
 
 		public void Connect(SocketBase to)
 		{
@@ -45,7 +46,7 @@ namespace ccl.ShaderNodes.Sockets
 		/// <summary>
 		/// Get the C# connection code into this socket
 		/// </summary>
-		public string ConnectCode => ConnectionFrom != null ? $"{ConnectionFrom.Parent.Name}.outs.{ConnectionFrom.Name}.Connect({Parent.Name}.ins.{Name});" : "";
+		public string ConnectCode => ConnectionFrom != null ? $"{ConnectionFrom.Parent.VariableName}.outs.{ConnectionFrom.CodeName}.Connect({Parent.VariableName}.ins.{CodeName});" : "";
 
 		public string ConnectTag => ConnectionFrom != null ? $"<connect to=\"{Parent.Name} {XmlName}\" from=\"{ConnectionFrom.Parent.Name} {ConnectionFrom.XmlName}\" />": "";
 
