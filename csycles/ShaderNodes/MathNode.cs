@@ -15,6 +15,7 @@ limitations under the License.
 **/
 
 using System;
+using System.Text;
 using System.Xml;
 using ccl.ShaderNodes.Sockets;
 using ccl.Attributes;
@@ -230,6 +231,25 @@ namespace ccl.ShaderNodes
 			{
 				UseClamp = use_clamp.ToLowerInvariant().Equals("true");
 			}
+		}
+		public override string CreateXmlAttributes()
+		{
+			var codeattr = new StringBuilder(1024);
+
+			codeattr.Append($" type=\"{Operation}\" ");
+			codeattr.Append($" use_clamp=\"{UseClamp.ToString().ToLowerInvariant()}\" ");
+
+			return codeattr.ToString();
+		}
+
+		public override string CreateCodeAttributes()
+		{
+			var codeattr = new StringBuilder(1024);
+
+			codeattr.Append($"{VariableName}.Operation = MathNode.Operations.{Operation};");
+			codeattr.Append($"{VariableName}.UseClamp = {UseClamp.ToString().ToLowerInvariant()};");
+
+			return codeattr.ToString();
 		}
 	}
 }

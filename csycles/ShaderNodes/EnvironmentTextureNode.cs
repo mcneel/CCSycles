@@ -19,6 +19,7 @@ using ccl.ShaderNodes.Sockets;
 using ccl.Attributes;
 using System.Xml;
 using System.Drawing;
+using System.Text;
 
 namespace ccl.ShaderNodes
 {
@@ -168,6 +169,18 @@ namespace ccl.ShaderNodes
 			ImageParseXml(xmlNode);
 		}
 
+
+		public override string CreateXmlAttributes()
+		{
+			var code = new StringBuilder($" projection=\"{Projection}\" ", 1024);
+			code.Append($" color_space=\"{ColorSpace}\"");
+			code.Append($" extension=\"{Extension}\"");
+			code.Append($" interpolation=\"{Interpolation}\"");
+			code.Append($" is_linear=\"{IsLinear}\"");
+			code.Append(base.CreateCodeAttributes());
+
+			return code.ToString();
+		}
 		public override string CreateCodeAttributes()
 		{
 			var code = $"{VariableName}.Projection = {Projection};";

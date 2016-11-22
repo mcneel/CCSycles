@@ -16,6 +16,7 @@ limitations under the License.
 
 using System;
 using System.Drawing;
+using System.Text;
 using System.Xml;
 using ccl.ShaderNodes.Sockets;
 using ccl.Attributes;
@@ -166,17 +167,30 @@ namespace ccl.ShaderNodes
 			ImageParseXml(xmlNode);
 		}
 
+		public override string CreateXmlAttributes()
+		{
+			var code = new StringBuilder($" projection=\"{Projection}\" ", 1024);
+			code.Append($" color_space=\"{ColorSpace}\"");
+			code.Append($" extension=\"{Extension}\"");
+			code.Append($" interpolation=\"{Interpolation}\"");
+			code.Append($" use_alpha=\"{UseAlpha}\"");
+			code.Append($" is_linear=\"{IsLinear}\"");
+			code.Append(base.CreateCodeAttributes());
+
+			return code.ToString();
+		}
+
 		public override string CreateCodeAttributes()
 		{
-			var code = $"{VariableName}.Projection = {Projection};";
-			code += $"{VariableName}.ColorSpace = {ColorSpace};";
-			code += $"{VariableName}.Extension = {Extension};";
-			code += $"{VariableName}.Interpolation = {Interpolation};";
-			code += $"{VariableName}.UseAlpha = {UseAlpha};";
-			code += $"{VariableName}.IsLinear = {IsLinear};";
-			code += base.CreateCodeAttributes();
+			var code = new StringBuilder($"{VariableName}.Projection = {Projection};", 1024);
+			code.Append($"{VariableName}.ColorSpace = {ColorSpace};");
+			code.Append($"{VariableName}.Extension = {Extension};");
+			code.Append($"{VariableName}.Interpolation = {Interpolation};");
+			code.Append($"{VariableName}.UseAlpha = {UseAlpha};");
+			code.Append($"{VariableName}.IsLinear = {IsLinear};");
+			code.Append(base.CreateCodeAttributes());
 
-			return code;
+			return code.ToString();
 		}
 	}
 }

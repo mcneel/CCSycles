@@ -46,7 +46,7 @@ namespace ccl.ShaderNodes
 		{
 			get
 			{
-				var s = $"{ShaderNodeTypeCodeName}_{id}";
+				var s = $"{ShaderNodeTypeCodeName}{id}";
 				return Extensions.FirstCharacterToLower(s);
 			}
 		}
