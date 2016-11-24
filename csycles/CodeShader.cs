@@ -73,7 +73,7 @@ namespace ccl
 		/// </summary>
 		public override void FinalizeGraph()
 		{
-			var code = new StringBuilder($"var shader = new Shader({Type});", 10240);
+			var code = new StringBuilder($"var shader = new Shader(ccl.Shader.ShaderType.{Type});", 10240);
 
 			if (Verbose) System.Diagnostics.Debug.WriteLine($"Finalizing XML and Code {Name}");
 
