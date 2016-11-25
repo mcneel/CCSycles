@@ -55,6 +55,11 @@ void cycles_path_init(const char* path, const char* user_path)
 	ccl::path_init(string(path), string(user_path));
 }
 
+void cycles_putenv(const char* var, const char* val)
+{
+	_putenv_s(var, val);
+}
+
 void cycles_initialise()
 {
 	if (!initialised) {

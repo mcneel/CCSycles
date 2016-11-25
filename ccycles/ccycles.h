@@ -127,6 +127,12 @@ CCL_CAPI void __cdecl cycles_initialise();
 CCL_CAPI void __cdecl cycles_path_init(const char* path, const char* user_path);
 
 /**
+ * Set an environment variable for Cycles
+ * \ingroup ccycles
+ */
+CCL_CAPI void __cdecl cycles_putenv(const char* var, const char* val);
+
+/**
  * Clean up everything, we're done.
  * \ingroup ccycles
  * \todo Add session specific cleanup, so we don't accidently delete sessions that are in progress.

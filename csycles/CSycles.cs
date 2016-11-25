@@ -150,6 +150,20 @@ namespace ccl
 			cycles_path_init(path, userPath);
 		}
 
+		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_putenv", CharSet = CharSet.Ansi,
+			CallingConvention = CallingConvention.Cdecl)]
+		private static extern void cycles_putenv(string path, string userPath);
+		/// <summary>
+		/// Set variable environment in Cycles.
+		/// </summary>
+		/// <param name="var"></param>
+		/// <param name="val"></param>
+		public static void putenv([MarshalAs(UnmanagedType.LPStr)] string var, [MarshalAs(UnmanagedType.LPStr)] string val)
+		{
+			LoadCCycles();
+			cycles_putenv(var, val);
+		}
+
 		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_shutdown", CallingConvention = CallingConvention.Cdecl)]
 		private static extern void cycles_shutdown();
 		/// <summary>

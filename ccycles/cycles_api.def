@@ -1,6 +1,7 @@
 LIBRARY
 EXPORTS
   cycles_path_init
+  cycles_putenv
   cycles_initialise
   cycles_shutdown
   cycles_set_logger
