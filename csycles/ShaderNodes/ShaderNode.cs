@@ -248,42 +248,9 @@ namespace ccl.ShaderNodes
 			{
 				foreach (var inp in inputs.Sockets)
 				{
-					var fs = inp as FloatSocket;
-					if (fs != null)
-					{
-						attr.AppendFormat(nfi, " {0}.ins.{1}.Value = {2}f;", VariableName, fs.CodeName, fs.Value);
-						continue;
-					}
-					var ints = inp as IntSocket;
-					if (ints != null)
-					{
-						attr.AppendFormat(nfi, " {0}.ins.{1}.Value = {2};", VariableName, ints.CodeName, ints.Value);
-						continue;
-					}
-					var cols = inp as ColorSocket;
-					if (cols != null)
-					{
-						attr.AppendFormat(nfi, " {0}.ins.{1}.Value = new float4({2}f, {3}f, {4}f, {5}f);", VariableName, cols.CodeName, cols.Value.x, cols.Value.y, cols.Value.z, cols.Value.w);
-						continue;
-					}
-					var vec = inp as VectorSocket;
-					if (vec != null)
-					{
-						attr.AppendFormat(nfi, " {0}.ins.{1}.Value = new float4({2}f, {3}f, {4}f, {5}f);", VariableName, vec.CodeName, vec.Value.x, vec.Value.y, vec.Value.z, vec.Value.w);
-						continue;
-					}
-					var f4s = inp as Float4Socket;
-					if (f4s != null)
-					{
-						attr.AppendFormat(nfi," {0}.ins.{1}.Value = new float4({2}f, {3}f, {4}f, {5}f);", VariableName, f4s.CodeName, f4s.Value.x, f4s.Value.y, f4s.Value.z, f4s.Value.w);
-						continue;
-					}
-					var strs = inp as StringSocket;
-					if (strs != null)
-					{
-						attr.AppendFormat(nfi, " {0}.ins.{1}.Value = \"{2}\";", VariableName, strs.CodeName, strs.Value);
-					}
-					attr.AppendLine();
+					if (inp is ClosureSocket) continue;
+
+					attr.AppendFormat(nfi, " {0}.ins.{1}.Value = {2};", VariableName, inp.CodeName, inp);
 				}
 				attr.AppendLine();
 			}
