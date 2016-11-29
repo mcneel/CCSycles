@@ -38,5 +38,11 @@ namespace ccl.ShaderNodes.Sockets
 		{
 			Value = 0.0f;
 		}
+
+		public override string ToString()
+		{
+			var nfi = Utilities.Instance.NumberFormatInfo;
+			return string.Format(nfi, "{0}", SetValueCode ?? (Value.ToString(nfi) + "f"));
+		}
 	}
 }

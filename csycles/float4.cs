@@ -213,6 +213,12 @@ namespace ccl
 			w = source.w;
 		}
 
+		public override string ToString()
+		{
+			var nfi = Utilities.Instance.NumberFormatInfo;
+			return string.Format(nfi, "ccl.float4({0}f, {1}f, {2}f, {3}f)", x, y, z, w);
+		}
+
 		/// <summary>
 		/// Assume this float4 is a color representation and
 		/// apply gamma to the x, y and z channels if

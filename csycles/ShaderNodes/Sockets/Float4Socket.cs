@@ -35,6 +35,11 @@ namespace ccl.ShaderNodes.Sockets
 		{
 			Value = new float4();
 		}
+		public override string ToString()
+		{
+			var nfi = Utilities.Instance.NumberFormatInfo;
+			return $"new {SetValueCode ?? Value.ToString()}";
+		}
 	}
 
 	public class ColorSocket : Float4Socket {

@@ -38,6 +38,8 @@ namespace ccl.ShaderNodes.Sockets
 
 		internal SocketBase ConnectionFrom { get; set; }
 
+		public string SetValueCode { get; set; }
+
 		/// <summary>
 		/// Get string containing node name, type and socket name
 		/// </summary>
@@ -56,6 +58,11 @@ namespace ccl.ShaderNodes.Sockets
 		public void ClearConnections()
 		{
 			ConnectionFrom = null;
+		}
+
+		public override string ToString()
+		{
+			return "";
 		}
 	}
 }
