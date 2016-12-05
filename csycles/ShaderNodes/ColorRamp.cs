@@ -343,7 +343,7 @@ namespace ccl.ShaderNodes
 		}
 
 		public ColorRampNode(string name) :
-			base(ShaderNodeType.ColorRamp)
+			base(ShaderNodeType.ColorRamp, name)
 		{
 			inputs = new ColorRampInputs(this);
 			outputs = new ColorRampOutputs(this);
