@@ -242,24 +242,22 @@ namespace ccl.ShaderNodes
 
 		public virtual string CreateCodeAttributes()
 		{
-			var nfi = Utilities.Instance.NumberFormatInfo;
-			var attr = new StringBuilder(1024); 
-			if (inputs.Sockets.Any())
-			{
-				foreach (var inp in inputs.Sockets)
-				{
-					if (inp is ClosureSocket) continue;
-
-					attr.AppendFormat(nfi, " {0}.ins.{1}.Value = {2};", VariableName, inp.CodeName, inp);
-				}
-				attr.AppendLine();
-			}
-			return attr.ToString();
+			return "";
 		}
 
 		public virtual string CreateCode()
 		{
 			var cs = new StringBuilder($"var {VariableName} = new {ShaderNodeTypeCodeName}(\"{Name}\");", 1024);
+
+			var nfi = Utilities.Instance.NumberFormatInfo;
+			if (inputs.Sockets.Any())
+			{
+				foreach (var inp in inputs.Sockets.Where(inp => !(inp is ClosureSocket)))
+				{
+					cs.AppendFormat(nfi, " {0}.ins.{1}.Value = {2};", VariableName, inp.CodeName, inp);
+				}
+				cs.AppendLine();
+			}
 
 			cs.Append(CreateCodeAttributes());
 

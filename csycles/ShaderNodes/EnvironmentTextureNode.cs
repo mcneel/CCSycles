@@ -177,7 +177,6 @@ namespace ccl.ShaderNodes
 			code.Append($" extension=\"{Extension}\"");
 			code.Append($" interpolation=\"{Interpolation}\"");
 			code.Append($" is_linear=\"{IsLinear}\"");
-			code.Append(base.CreateCodeAttributes());
 
 			return code.ToString();
 		}
@@ -188,7 +187,6 @@ namespace ccl.ShaderNodes
 			code += $"{VariableName}.Extension = {Extension};";
 			code += $"{VariableName}.Interpolation = {Interpolation};";
 			code += $"{VariableName}.IsLinear = {IsLinear};";
-			code += base.CreateCodeAttributes();
 
 			return code;
 		}

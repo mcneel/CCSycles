@@ -248,7 +248,6 @@ namespace ccl.ShaderNodes
 
 			codeattr.Append($" {VariableName}.Operation = MathNode.Operations.{Operation};");
 			codeattr.Append($" {VariableName}.UseClamp = {UseClamp.ToString().ToLowerInvariant()};");
-			codeattr.Append(base.CreateCodeAttributes());
 
 			return codeattr.ToString();
 		}
