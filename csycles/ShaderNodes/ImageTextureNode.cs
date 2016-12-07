@@ -175,6 +175,10 @@ namespace ccl.ShaderNodes
 			code.Append($" interpolation=\"{Interpolation}\"");
 			code.Append($" use_alpha=\"{UseAlpha}\"");
 			code.Append($" is_linear=\"{IsLinear}\"");
+			if (Filename != null)
+			{
+				code.Append($" src=\"{Filename.Replace("\\", "\\\\")}\"");
+			}
 
 			return code.ToString();
 		}
