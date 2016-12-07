@@ -74,12 +74,14 @@ namespace ccl
 		public override void FinalizeGraph()
 		{
 			var code = new StringBuilder($"var shader = new Shader(ccl.Shader.ShaderType.{Type});", 10240);
+			var xml = new StringBuilder(1024);
 
 			if (Verbose) System.Diagnostics.Debug.WriteLine($"Finalizing XML and Code {Name}");
 
 			foreach (var node in m_nodes)
 			{
 				code.Append(node.CreateCode());
+				xml.Append(node.CreateXml());
 			}
 			foreach (var node in m_nodes)
 			{
@@ -88,12 +90,14 @@ namespace ccl
 			foreach (var node in m_nodes)
 			{
 				code.Append(node.CreateConnectCode());
+				xml.Append(node.CreateConnectXml());
 			}
 
 			// clean up unnecessary new lines
 			var regex = new Regex("(\n)(?<=\\1\\1)", RegexOptions.Compiled);
 
 			Code = regex.Replace(code.ToString(), string.Empty);
+			Xml = xml.ToString();
 		}
 
 	}
