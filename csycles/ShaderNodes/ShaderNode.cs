@@ -187,7 +187,6 @@ namespace ccl.ShaderNodes
 			var nfi = Utilities.Instance.NumberFormatInfo;
 			var xml = new StringBuilder($"<{ShaderNodeTypeName} name=\"{Name}\" ", 1024);
 
-
 			foreach (var inp in inputs.Sockets)
 			{
 				var fs = inp as FloatSocket;
