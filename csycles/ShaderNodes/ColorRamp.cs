@@ -16,6 +16,7 @@ limitations under the License.
 
 using System;
 using System.Collections.Generic;
+using System.Text;
 using ccl.ShaderNodes.Sockets;
 using ccl.Attributes;
 
@@ -387,7 +388,7 @@ namespace ccl.ShaderNodes
 			if (string.IsNullOrEmpty(interpolation))
 			{
 				ColorBand.Interpolations i;
-				if(Enum.TryParse<ColorBand.Interpolations>(interpolation, out i))
+				if(Enum.TryParse(interpolation, out i))
 				{
 					ColorBand.Interpolation = i;
 				}
@@ -405,6 +406,84 @@ namespace ccl.ShaderNodes
 				} while (xmlNode.ReadToNextSibling("stop"));
 
 			}
+		}
+		public override string CreateXml()
+		{
+			var nfi = Utilities.Instance.NumberFormatInfo;
+			var xml = new StringBuilder($"<{ShaderNodeTypeName} name=\"{Name}\" ", 1024);
+
+			foreach (var inp in inputs.Sockets)
+			{
+				var fs = inp as FloatSocket;
+				if (fs != null)
+				{
+					xml.AppendFormat(nfi, " {0}=\"{1}\"", fs.XmlName, fs.Value);
+					continue;
+				}
+				var ints = inp as IntSocket;
+				if (ints != null)
+				{
+					xml.AppendFormat(nfi, " {0}=\"{1}\"", ints.XmlName, ints.Value);
+					continue;
+				}
+				var cols = inp as ColorSocket;
+				if (cols != null)
+				{
+					xml.AppendFormat(nfi, " {0}=\"{1} {2} {3} {4}\"", cols.XmlName, cols.Value.x, cols.Value.y, cols.Value.z, cols.Value.w);
+					continue;
+				}
+				var vec = inp as VectorSocket;
+				if (vec != null)
+				{
+					xml.AppendFormat(nfi, " {0}=\"{1} {2} {3} {4}\"", vec.XmlName, vec.Value.x, vec.Value.y, vec.Value.z, vec.Value.w);
+					continue;
+				}
+				var f4s = inp as Float4Socket;
+				if (f4s != null)
+				{
+					xml.AppendFormat(nfi, " {0}=\"{1} {2} {3} {4}\"", f4s.XmlName, f4s.Value.x, f4s.Value.y, f4s.Value.z, f4s.Value.w);
+					continue;
+				}
+				var strs = inp as StringSocket;
+				if (strs != null)
+				{
+					xml.AppendFormat(nfi, " {0}=\"{1}\"", strs.XmlName, strs.Value);
+				}
+			}
+
+			xml.Append($" interpolate=\"{Interpolate.ToString().ToLowerInvariant()}\" ");
+			xml.Append($" interpolation=\"{ColorBand.Interpolation}\" ");
+			xml.Append(" >");
+
+			xml.Append(CreateXmlAttributes());
+
+			xml.Append($"</{ShaderNodeTypeName}>");
+
+			return xml.ToString();
+		}
+
+		public override string CreateXmlAttributes()
+		{
+			var attr = new StringBuilder(1024);
+			foreach (var stop in ColorBand.Stops)
+			{
+				attr.Append(
+					$" <stop color=\"{stop.Color.x} {stop.Color.y} {stop.Color.z} {stop.Color.w}\" position=\"{stop.Position}\" /> ");
+			}
+
+			return attr.ToString();
+		}
+
+		public override string CreateCodeAttributes()
+		{
+			var attr = new StringBuilder(1024);
+			foreach (var stop in ColorBand.Stops)
+			{
+				attr.Append(
+					$" {VariableName}.ColorBand.Stops.Add(new ccl.ShaderNodes.ColorStop() {{Color={stop.Color}, Position={stop.Position}}});");
+			}
+
+			return attr.ToString();
 		}
 	}
 }
