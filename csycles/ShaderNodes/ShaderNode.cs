@@ -37,7 +37,7 @@ namespace ccl.ShaderNodes
 		/// <summary>
 		/// Set a name for this node
 		/// </summary>
-		public string Name { get; }
+		public string Name { get; set; }
 
 		/// <summary>
 		/// Get name that can be used as variable name
@@ -46,7 +46,8 @@ namespace ccl.ShaderNodes
 		{
 			get
 			{
-				var s = $"{ShaderNodeTypeCodeName}{id}";
+				//var s = $"{ShaderNodeTypeCodeName}{id}";
+				var s = $"{Name}{id}";
 				return Extensions.FirstCharacterToLower(s);
 			}
 		}
@@ -185,7 +186,7 @@ namespace ccl.ShaderNodes
 		public virtual string CreateXml()
 		{
 			var nfi = Utilities.Instance.NumberFormatInfo;
-			var xml = new StringBuilder($"<{ShaderNodeTypeName} name=\"{Name}\" ", 1024);
+			var xml = new StringBuilder($"<{ShaderNodeTypeName} name=\"{VariableName}\" ", 1024);
 
 			foreach (var inp in inputs.Sockets)
 			{

@@ -50,7 +50,7 @@ namespace ccl.ShaderNodes.Sockets
 		/// </summary>
 		public string ConnectCode => ConnectionFrom != null ? $"{ConnectionFrom.Parent.VariableName}.outs.{ConnectionFrom.CodeName}.Connect({Parent.VariableName}.ins.{CodeName});" : "";
 
-		public string ConnectTag => ConnectionFrom != null ? $"<connect to=\"{Parent.Name} {XmlName}\" from=\"{ConnectionFrom.Parent.Name} {ConnectionFrom.XmlName}\" />": "";
+		public string ConnectTag => ConnectionFrom != null ? $"<connect to=\"{Parent.VariableName} {XmlName}\" from=\"{ConnectionFrom.Parent.VariableName} {ConnectionFrom.XmlName}\" />": "";
 
 		/// <summary>
 		/// Remove connections
