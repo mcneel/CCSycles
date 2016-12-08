@@ -61,11 +61,7 @@ namespace ccl.ShaderNodes
 	[ShaderNode("output")]
 	public class OutputNode : ShaderNode
 	{
-		/// <summary>
-		/// For code generation always return "shader.Output" so automatic
-		/// code generation gives result that can be directly copy/pasted.
-		/// </summary>
-		public override string VariableName => "shader.Output";
+		public override string VariableName => "output";
 
 		public OutputInputs ins => (OutputInputs) inputs;
 		public OutputOutputs outs => (OutputOutputs) outputs;
