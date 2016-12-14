@@ -108,7 +108,7 @@ namespace ccl.ShaderNodes
 		/// </summary>
 		public bool IsFloat { get; set; }
 		/// <summary>
-		/// ImageTexture use alpha changel if true
+		/// ImageTexture use alpha channel if true
 		/// </summary>
 		public bool UseAlpha { get; set; }
 
