@@ -16,6 +16,7 @@ limitations under the License.
 
 using ccl.ShaderNodes.Sockets;
 using ccl.Attributes;
+using System.Xml;
 
 namespace ccl.ShaderNodes
 {
@@ -82,6 +83,10 @@ namespace ccl.ShaderNodes
 		{
 			inputs = new ConvertRgbInputs(this);
 			outputs = new ConvertValOutputs(this);
+		}
+		internal override void ParseXml(XmlReader xmlNode)
+		{
+			Utilities.Instance.get_float4(ins.Color, xmlNode.GetAttribute("color"));
 		}
 	}
 }
