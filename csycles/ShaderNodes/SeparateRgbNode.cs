@@ -22,12 +22,12 @@ namespace ccl.ShaderNodes
 {
 	public class SeparateRgbInputs : Inputs
 	{
-		public ColorSocket Color { get; set; }
+		public ColorSocket Image { get; set; }
 
 		public SeparateRgbInputs(ShaderNode parentNode)
 		{
-			Color = new ColorSocket(parentNode, "Image");
-			AddSocket(Color);
+			Image = new ColorSocket(parentNode, "Image");
+			AddSocket(Image);
 		}
 	}
 
@@ -67,7 +67,7 @@ namespace ccl.ShaderNodes
 
 		internal override void ParseXml(XmlReader xmlNode)
 		{
-			Utilities.Instance.get_float4(ins.Color, xmlNode.GetAttribute("image"));
+			Utilities.Instance.get_float4(ins.Image, xmlNode.GetAttribute("image"));
 		}
 	}
 }
