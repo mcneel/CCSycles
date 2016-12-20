@@ -15,6 +15,7 @@ limitations under the License.
 **/
 
 using System;
+using System.Text;
 using System.Xml;
 using ccl.ShaderNodes.Sockets;
 using ccl.Attributes;
@@ -130,11 +131,31 @@ namespace ccl.ShaderNodes
 			Utilities.Instance.get_float4(ins.Color1, xmlNode.GetAttribute("color1"));
 			Utilities.Instance.get_float4(ins.Color2, xmlNode.GetAttribute("color2"));
 			Utilities.Instance.get_float(ins.Fac, xmlNode.GetAttribute("fac"));
+			bool useclamp = false;
+			Utilities.Instance.get_bool(ref useclamp, xmlNode.GetAttribute("use_clamp"));
+			UseClamp = useclamp;
+
 			var blendtype = xmlNode.GetAttribute("type");
 			if (!string.IsNullOrEmpty(blendtype))
 			{
 				SetBlendType(blendtype);
 			}
+		}
+
+		public override string CreateXmlAttributes()
+		{
+			var code = new StringBuilder($" type=\"{BlendType}\" ", 1024);
+			code.Append($" use_clamp=\"{UseClamp}\"");
+
+			return code.ToString();
+		}
+
+		public override string CreateCodeAttributes()
+		{
+			var code = new StringBuilder($"{VariableName}.BlendType = ccl.ShaderNodes.MixNode.BlendTypes.{BlendType};", 1024);
+			code.Append($"{VariableName}.UseClamp = {UseClamp.ToString().ToLowerInvariant()};");
+
+			return code.ToString();
 		}
 	}
 }
