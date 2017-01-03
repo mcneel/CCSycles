@@ -209,6 +209,15 @@ namespace ccl
 			cycles_integrator_set_sample_clamp_indirect(clientId, sceneId, value);
 		}
 
+		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_integrator_set_light_sampling_threshold", CallingConvention = CallingConvention.Cdecl)]
+		private static extern void cycles_integrator_set_light_sampling_threshold(uint clientId, uint sceneId, float value);
+		public static void integrator_set_light_sampling_threshold(uint clientId, uint sceneId, float value)
+		{
+			cycles_integrator_set_light_sampling_threshold(clientId, sceneId, value);
+		}
+
+  
+
 #endregion
 	}
 }

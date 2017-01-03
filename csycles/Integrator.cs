@@ -358,6 +358,17 @@ namespace ccl
 		}
 
 		/// <summary>
+		/// Set light sampling threshold. Contribution below given threshold will be discarded.
+		/// </summary>
+		public float LightSamplingThreshold
+		{
+			set
+			{
+				CSycles.integrator_set_light_sampling_threshold(Scene.Client.Id, Scene.Id, value);
+			}
+		}
+
+		/// <summary>
 		/// Set the sampling pattern to use (CMJ or Sobol).
 		/// </summary>
 		public SamplingPattern SamplingPattern

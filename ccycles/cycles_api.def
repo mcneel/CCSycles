@@ -86,9 +86,10 @@ EXPORTS
   cycles_integrator_set_volume_step_size
   cycles_integrator_set_volume_max_steps
   cycles_integrator_set_seed
+  cycles_integrator_set_sampling_pattern
   cycles_integrator_set_sample_clamp_direct
   cycles_integrator_set_sample_clamp_indirect
-  cycles_integrator_set_sampling_pattern
+  cycles_integrator_set_light_sampling_threshold
 
   cycles_create_shader
   cycles_scene_add_shader

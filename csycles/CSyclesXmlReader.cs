@@ -168,6 +168,7 @@ namespace ccl
 			if (Utilities.Instance.get_int(ref intvar, node.GetAttribute("seed"))) state.Scene.Integrator.Seed = intvar;
 			if (Utilities.Instance.get_float(ref floatvar, node.GetAttribute("sample_clamp_direct"))) state.Scene.Integrator.SampleClampDirect = floatvar;
 			if (Utilities.Instance.get_float(ref floatvar, node.GetAttribute("sample_clamp_indirect"))) state.Scene.Integrator.SampleClampIndirect = floatvar;
+			if (Utilities.Instance.get_float(ref floatvar, node.GetAttribute("light_sampling_threshold"))) state.Scene.Integrator.LightSamplingThreshold = floatvar;
 
 			if (Utilities.Instance.read_string(ref stringvar, node.GetAttribute("sampling_pattern")))
 				state.Scene.Integrator.SamplingPattern = stringvar.Equals("sobol") ? SamplingPattern.Sobol : SamplingPattern.CMJ;

@@ -340,6 +340,7 @@ enum class sampling_pattern : unsigned int {
 CCL_CAPI void __cdecl cycles_integrator_set_sampling_pattern(unsigned int client_id, unsigned int scene_id, sampling_pattern pattern);
 CCL_CAPI void __cdecl cycles_integrator_set_sample_clamp_direct(unsigned int client_id, unsigned int scene_id, float sample_clamp_direct);
 CCL_CAPI void __cdecl cycles_integrator_set_sample_clamp_indirect(unsigned int client_id, unsigned int scene_id, float sample_clamp_indirect);
+CCL_CAPI void __cdecl cycles_integrator_set_light_sampling_threshold(unsigned int client_id, unsigned int scene_id, float light_sampling_threshold);
 
 /** Different camera types. */
 enum class camera_type : unsigned int {

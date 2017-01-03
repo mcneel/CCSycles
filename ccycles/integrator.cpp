@@ -238,3 +238,10 @@ void cycles_integrator_set_sample_clamp_indirect(unsigned int client_id, unsigne
 		sce->integrator->sample_clamp_indirect = sample_clamp_indirect;
 	SCENE_FIND_END()
 }
+
+void cycles_integrator_set_light_sampling_threshold(unsigned int client_id, unsigned int scene_id, float light_sampling_threshold)
+{
+	SCENE_FIND(scene_id)
+		sce->integrator->light_sampling_threshold = light_sampling_threshold;
+	SCENE_FIND_END()
+}
