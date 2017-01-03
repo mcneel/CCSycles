@@ -303,18 +303,18 @@ namespace ccl
 			return cycles_progress_get_sample(clientId, sessionId);
 		}
 
-		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_progress_get_tile", CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_progress_get_tile(uint clientId, uint sessionId, out int tile, out double totalTime, out double sampleTime, out double tileTime);
-		public static void progress_get_tile(uint clientId, uint sessionId, out int tile, out double totalTime, out double sampleTime, out double tileTime)
+		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_progress_get_time", CallingConvention = CallingConvention.Cdecl)]
+		private static extern void cycles_progress_get_time(uint clientId, uint sessionId, out double totalTime, out double sampleTime);
+		public static void progress_get_time(uint clientId, uint sessionId, out double totalTime, out double sampleTime)
 		{
-			cycles_progress_get_tile(clientId, sessionId, out tile, out totalTime, out sampleTime, out tileTime);
+			cycles_progress_get_time(clientId, sessionId,  out totalTime, out sampleTime);
 		}
 
 		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_progress_get_progress", CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_progress_get_progress(uint clientId, uint sessionId, out float progress, out double totalTime, out double renderTime, out double tileTime);
-		public static void progress_get_progress(uint clientId, uint sessionId, out float progress, out double totalTime, out double renderTime, out double tileTime)
+		private static extern void cycles_progress_get_progress(uint clientId, uint sessionId, out float progress);
+		public static void progress_get_progress(uint clientId, uint sessionId, out float progress)
 		{
-			cycles_progress_get_progress(clientId, sessionId, out progress, out totalTime, out renderTime, out tileTime);
+			cycles_progress_get_progress(clientId, sessionId, out progress);
 		}
 
 		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_tilemanager_get_sample_info", CallingConvention = CallingConvention.Cdecl)]

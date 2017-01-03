@@ -167,7 +167,7 @@ EXPORTS
 
   cycles_tilemanager_get_sample_info
 
-  cycles_progress_get_tile
+  cycles_progress_get_time
   cycles_progress_get_sample
   cycles_progress_reset
   cycles_progress_get_status
