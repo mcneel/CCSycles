@@ -69,7 +69,7 @@ namespace csycles_tester
 				Samples = (int) samples,
 				TileSize = new Size(64, 64),
 				StartResolution = 64,
-				Threads = (uint)(dev.IsCpu ? 0 : 0),
+				Threads = 0,
 				ShadingSystem = ShadingSystem.SVM,
 				Background = true,
 				ProgressiveRefine = false,
