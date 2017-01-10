@@ -1,7 +1,11 @@
 // This file contains the version resources for ccycles.vcxproj
 // The version numbers and copyright information comes from the header file below.
 // Please do not modify this file unless you are certain you know what you are doing!
+#if !defined(STANDALONE)
 #include "..\..\..\..\..\version.h"
+#else
+#include "version.h"
+#endif
 
 VS_VERSION_INFO VERSIONINFO
  FILEVERSION VERSION_WITH_COMMAS

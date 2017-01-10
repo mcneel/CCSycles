@@ -38,6 +38,25 @@
   <PropertyGroup>
     <RunPostBuildEvent>Always</RunPostBuildEvent>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Stand-alone Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Stand-alone Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Stand-alone Release|AnyCPU'">
+    <OutputPath>bin\Stand-alone Release\</OutputPath>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Optimize>true</Optimize>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -49,7 +68,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\..\..\..\version.cs">
+    <Compile Condition="'$(Configuration)' == 'Release' Or '$(Configuration)' == 'Debug'" Include="..\..\..\..\..\version.cs">
+      <Link>Properties\version.cs</Link>
+    </Compile>
+    <Compile Condition="'$(Configuration)' == 'Stand-alone Release' Or '$(Configuration)' == 'Stand-alone Debug'" Include=".\version.cs">
       <Link>Properties\version.cs</Link>
     </Compile>
     <Compile Include="Attributes\ShaderNodeAttribute.cs" />
@@ -158,7 +180,7 @@
     <Content Include="license.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Release' Or '$(Configuration)' == 'Debug'">
     <PostBuildEvent>XCopy /Y "$(TargetDir)$(ProjectName).*" "$(ProjectDir)..\..\..\..\..\$(OutDir)Plug-ins"
 copy /Y "$(ProjectDir)..\ccycles\x64\$(ConfigurationName)\ccycles.dll" "$(SolutionDir)..\$(OutDir)Plug-ins"
 copy /Y "$(ProjectDir)..\ccycles\x64\$(ConfigurationName)\ccycles.pdb" "$(SolutionDir)..\$(OutDir)Plug-ins"
@@ -167,7 +189,6 @@ copy /Y "$(ProjectDir)..\pthreads\x64\$(ConfigurationName)\pthreads.dll" "$(Solu
 copy /Y "$(ProjectDir)..\..\..\..\..\boostbuild\stage$(ConfigurationName)\lib\boost_*" "$(SolutionDir)..\$(OutDir)"
 
 XCopy "$(SolutionDir)..\..\big_libs\RhinoCycles\lib" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\lib" /Y /I /Q
-
 
 XCopy "$(ProjectDir)..\cycles\src\kernel\closure" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\kernel\closure" /Y /I /Q
 XCopy "$(ProjectDir)..\cycles\src\kernel\geom" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\kernel\geom" /Y /I /Q
@@ -188,7 +209,69 @@ XCopy "$(ProjectDir)..\cycles\src\util\util_texture.h" "$(SolutionDir)..\$(OutDi
 XCopy "$(ProjectDir)..\cycles\src\util\util_transform.h" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\kernel" /Y /I /Q
 XCopy "$(ProjectDir)..\cycles\src\util\util_types.h" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\kernel" /Y /I /Q
 XCopy "$(ProjectDir)..\cycles\src\util\util_static_assert.h" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\kernel" /Y /I /Q
-</PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Stand-alone Release'">
+    <PostBuildEvent>XCopy /Y "$(TargetDir)$(ProjectName).*" "$(SolutionDir)$(OutDir)"
+copy /Y "$(ProjectDir)..\ccycles\x64\$(ConfigurationName)\ccycles.dll" "$(SolutionDir)$(OutDir)"
+copy /Y "$(ProjectDir)..\ccycles\x64\$(ConfigurationName)\ccycles.pdb" "$(SolutionDir)$(OutDir)"
+copy /Y "$(ProjectDir)..\OpenImageIO\x64\$(ConfigurationName)\OpenImageIOv13.dll" "$(SolutionDir)$(OutDir)"
+copy /Y "$(ProjectDir)..\pthreads\x64\$(ConfigurationName)\pthreads.dll" "$(SolutionDir)$(OutDir)"
+copy /Y "$(ProjectDir)..\boostbuild\stagerelease\lib\boost_*" "$(SolutionDir)$(OutDir)"
+
+XCopy "$(SolutionDir)lib" "$(SolutionDir)$(OutDir)lib" /Y /I /Q
+
+XCopy "$(ProjectDir)..\cycles\src\kernel\closure" "$(SolutionDir)$(OutDir)kernel\closure" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\kernel\geom" "$(SolutionDir)$(OutDir)kernel\geom" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\kernel\bvh" "$(SolutionDir)$(OutDir)kernel\bvh" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\kernel\svm" "$(SolutionDir)$(OutDir)kernel\svm" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\kernel\split" "$(SolutionDir)$(OutDir)kernel\split" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\kernel\kernels\opencl" "$(SolutionDir)$(OutDir)kernel\kernels\opencl" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\kernel\kernels\cuda" "$(SolutionDir)$(OutDir)kernel\kernels\cuda" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\kernel\kernel*.*" "$(SolutionDir)$(OutDir)kernel" /Y /I /Q
+
+XCopy "$(ProjectDir)..\cycles\src\util\util_atomic.h" "$(SolutionDir)$(OutDir)kernel" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\util\util_color.h" "$(SolutionDir)$(OutDir)kernel" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\util\util_half.h" "$(SolutionDir)$(OutDir)kernel" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\util\util_hash.h" "$(SolutionDir)$(OutDir)kernel" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\util\util_math.h" "$(SolutionDir)$(OutDir)kernel" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\util\util_math_fast.h" "$(SolutionDir)$(OutDir)kernel" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\util\util_texture.h" "$(SolutionDir)$(OutDir)kernel" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\util\util_transform.h" "$(SolutionDir)$(OutDir)kernel" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\util\util_types.h" "$(SolutionDir)$(OutDir)kernel" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\util\util_static_assert.h" "$(SolutionDir)$(OutDir)kernel" /Y /I /Q
+    </PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Stand-alone Debug'">
+    <PostBuildEvent>XCopy /Y "$(TargetDir)$(ProjectName).*" "$(SolutionDir)$(OutDir)"
+copy /Y "$(ProjectDir)..\ccycles\x64\$(ConfigurationName)\ccycles.dll" "$(SolutionDir)$(OutDir)"
+copy /Y "$(ProjectDir)..\ccycles\x64\$(ConfigurationName)\ccycles.pdb" "$(SolutionDir)$(OutDir)"
+copy /Y "$(ProjectDir)..\OpenImageIO\x64\$(ConfigurationName)\OpenImageIOv13.dll" "$(SolutionDir)$(OutDir)"
+copy /Y "$(ProjectDir)..\pthreads\x64\$(ConfigurationName)\pthreads.dll" "$(SolutionDir)$(OutDir)"
+copy /Y "$(ProjectDir)..\boostbuild\stagedebug\lib\boost_*" "$(SolutionDir)$(OutDir)"
+
+XCopy "$(SolutionDir)lib" "$(SolutionDir)$(OutDir)lib" /Y /I /Q
+
+XCopy "$(ProjectDir)..\cycles\src\kernel\closure" "$(SolutionDir)$(OutDir)kernel\closure" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\kernel\geom" "$(SolutionDir)$(OutDir)kernel\geom" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\kernel\bvh" "$(SolutionDir)$(OutDir)kernel\bvh" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\kernel\svm" "$(SolutionDir)$(OutDir)kernel\svm" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\kernel\split" "$(SolutionDir)$(OutDir)kernel\split" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\kernel\kernels\opencl" "$(SolutionDir)$(OutDir)kernel\kernels\opencl" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\kernel\kernels\cuda" "$(SolutionDir)$(OutDir)kernel\kernels\cuda" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\kernel\kernel*.*" "$(SolutionDir)$(OutDir)kernel" /Y /I /Q
+
+XCopy "$(ProjectDir)..\cycles\src\util\util_atomic.h" "$(SolutionDir)$(OutDir)kernel" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\util\util_color.h" "$(SolutionDir)$(OutDir)kernel" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\util\util_half.h" "$(SolutionDir)$(OutDir)kernel" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\util\util_hash.h" "$(SolutionDir)$(OutDir)kernel" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\util\util_math.h" "$(SolutionDir)$(OutDir)kernel" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\util\util_math_fast.h" "$(SolutionDir)$(OutDir)kernel" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\util\util_texture.h" "$(SolutionDir)$(OutDir)kernel" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\util\util_transform.h" "$(SolutionDir)$(OutDir)kernel" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\util\util_types.h" "$(SolutionDir)$(OutDir)kernel" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\util\util_static_assert.h" "$(SolutionDir)$(OutDir)kernel" /Y /I /Q
+    </PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PreBuildEvent>

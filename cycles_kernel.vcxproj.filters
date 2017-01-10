@@ -335,9 +335,6 @@
     <ClInclude Include="cycles\src\kernel\bvh\bvh.h">
       <Filter>BVH Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\bvh\bvh_nodes.h">
-      <Filter>BVH Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="cycles\src\kernel\bvh\bvh_shadow_all.h">
       <Filter>BVH Header Files</Filter>
     </ClInclude>
@@ -345,9 +342,6 @@
       <Filter>BVH Header Files</Filter>
     </ClInclude>
     <ClInclude Include="cycles\src\kernel\bvh\bvh_traversal.h">
-      <Filter>BVH Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\bvh\bvh_types.h">
       <Filter>BVH Header Files</Filter>
     </ClInclude>
     <ClInclude Include="cycles\src\kernel\bvh\bvh_volume.h">

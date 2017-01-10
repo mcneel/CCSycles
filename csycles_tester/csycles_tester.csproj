@@ -53,6 +53,26 @@
   <PropertyGroup>
     <RunPostBuildEvent>Always</RunPostBuildEvent>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Stand-alone Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Stand-alone Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Stand-alone Release|AnyCPU'">
+    <OutputPath>bin\Stand-alone Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Eto, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Eto.Forms.2.2.0\lib\net45\Eto.dll</HintPath>
@@ -108,13 +128,40 @@
     <Content Include="license.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Stand-alone Release'">
     <PostBuildEvent>copy /Y "$(ProjectDir)..\csycles\bin\$(ConfigurationName)\csycles.*" "$(TargetDir)"
 copy /Y "$(ProjectDir)..\ccycles\x64\$(ConfigurationName)\ccycles.dll" "$(TargetDir)"
 copy /Y "$(ProjectDir)..\ccycles\x64\$(ConfigurationName)\ccycles.pdb" "$(TargetDir)"
 copy /Y "$(ProjectDir)..\OpenImageIO\x64\$(ConfigurationName)\OpenImageIOv13.dll" "$(TargetDir)"
 copy /Y "$(ProjectDir)..\pthreads\x64\$(ConfigurationName)\pthreads.dll" "$(TargetDir)"
-copy /Y "$(ProjectDir)..\boostbuild\stage$(ConfigurationName)\lib\boost_*" "$(TargetDir)"
+copy /Y "$(ProjectDir)..\boostbuild\stagerelease\lib\boost_*" "$(TargetDir)"
+
+XCopy "$(ProjectDir)..\lib" "$(TargetDir)\lib" /Y /I /Q
+
+XCopy "$(ProjectDir)..\tests\*" "$(TargetDir)" /Y /I /Q
+XCopy "$(ProjectDir)..\tests\objects" "$(TargetDir)\objects" /Y /I /Q
+
+XCopy "$(ProjectDir)..\cycles\src\kernel\closure" "$(TargetDir)\kernel\closure" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\kernel\geom" "$(TargetDir)\kernel\geom" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\kernel\svm" "$(TargetDir)\kernel\svm" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\kernel\kernel*.*" "$(TargetDir)\kernel" /Y /I /Q
+
+XCopy "$(ProjectDir)..\cycles\src\util\util_color.h" "$(TargetDir)\kernel" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\util\util_half.h" "$(TargetDir)\kernel" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\util\util_math.h" "$(TargetDir)\kernel" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\util\util_math_fast.h" "$(TargetDir)\kernel" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\util\util_transform.h" "$(TargetDir)\kernel" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\util\util_types.h" "$(TargetDir)\kernel" /Y /I /Q
+
+Del "$(TargetDir)\*.pdb"</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Stand-alone Debug'">
+    <PostBuildEvent>copy /Y "$(ProjectDir)..\csycles\bin\$(ConfigurationName)\csycles.*" "$(TargetDir)"
+copy /Y "$(ProjectDir)..\ccycles\x64\$(ConfigurationName)\ccycles.dll" "$(TargetDir)"
+copy /Y "$(ProjectDir)..\ccycles\x64\$(ConfigurationName)\ccycles.pdb" "$(TargetDir)"
+copy /Y "$(ProjectDir)..\OpenImageIO\x64\$(ConfigurationName)\OpenImageIOv13.dll" "$(TargetDir)"
+copy /Y "$(ProjectDir)..\pthreads\x64\$(ConfigurationName)\pthreads.dll" "$(TargetDir)"
+copy /Y "$(ProjectDir)..\boostbuild\stagedebug\lib\boost_*" "$(TargetDir)"
 
 XCopy "$(ProjectDir)..\lib" "$(TargetDir)\lib" /Y /I /Q
 
