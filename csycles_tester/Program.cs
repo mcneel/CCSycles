@@ -88,9 +88,8 @@ namespace csycles_tester
 		static public void StatusUpdateCallback(uint sessionId)
 		{
 			float progress;
-			double total_time, render_time, tile_time;
 
-			CSycles.progress_get_progress(Client.Id, sessionId, out progress, out total_time, out render_time, out tile_time);
+			CSycles.progress_get_progress(Client.Id, sessionId, out progress);
 			var status = CSycles.progress_get_status(Client.Id, sessionId);
 			var substatus = CSycles.progress_get_substatus(Client.Id, sessionId);
 			uint samples;
@@ -105,7 +104,7 @@ namespace csycles_tester
 
 			status = "[" + status + "]";
 			if (!substatus.Equals(string.Empty)) status = status + ": " + substatus;
-			Console.WriteLine("C# status update: {0} {1} {2} {3} <|> {4:N}s {5:P}", CSycles.progress_get_sample(Client.Id, sessionId), status, samples, num_samples, total_time, progress);
+			Console.WriteLine("C# status update: {0} {1} {2} {3} <|> {4:P}", CSycles.progress_get_sample(Client.Id, sessionId), status, samples, num_samples, progress);
 		}
 
 		static public void WriteRenderTileCallback(uint sessionId, uint x, uint y, uint w, uint h, uint depth, int startSample, int numSamples, int sample, int resolution)
