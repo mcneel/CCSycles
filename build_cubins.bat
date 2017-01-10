@@ -1,7 +1,21 @@
 SET nvcc=C:\CUDA8\bin\nvcc.exe
 SET nvcc75=C:\CUDA8\bin\nvcc.exe
-SET cyclesroot=D:\Dev\Rhino\rhino\src4\rhino4\Plug-ins\RDK\cycles
-SET cyclesout=D:\Dev\Rhino\rhino\big_libs\RhinoCycles
+SET typechoice=%1
+
+IF "%typechoice%"=="standalone" (
+	SET cyclesroot=D:\Dev\CCSycles
+	SET cyclesout=D:\Dev\CCSycles
+) else (
+	SET cyclesroot=D:\Dev\Rhino\rhino\src4\rhino4\Plug-ins\RDK\cycles
+	SET cyclesout=D:\Dev\Rhino\rhino\big_libs\RhinoCycles
+)
+
+SHIFT
+
+IF NOT EXIST "%cyclesroot%/lib" (
+	MKDIR "%cyclesroot%/lib"
+)
+
 SET cudaversion=8
 SET cudaversion75=8
 SET shadermodelnum=%1
