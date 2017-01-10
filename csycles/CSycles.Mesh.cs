@@ -57,6 +57,15 @@ namespace ccl
 			}
 		}
 
+		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_mesh_set_triangle", CallingConvention = CallingConvention.Cdecl)]
+		private static extern void cycles_mesh_set_triangle(uint clientId, uint sceneId, uint meshId, uint tri_idx, uint v0, uint v1, uint v2, uint shaderId, uint smooth);
+
+		public static void mesh_set_triangle(uint clientId, uint sceneId, uint meshId, uint tri_idx, uint v0, uint v1, uint v2,
+			uint shaderId, bool smooth)
+		{
+			cycles_mesh_set_triangle(clientId, sceneId, meshId, tri_idx, v0, v1, v2, shaderId, (uint)(smooth ? 1 : 0));
+		}
+
 		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_mesh_add_triangle", CallingConvention = CallingConvention.Cdecl)]
 		private static extern void cycles_mesh_add_triangle(uint clientId, uint sceneId, uint meshId, uint v0, uint v1, uint v2, uint shaderId, uint smooth);
 

@@ -164,6 +164,18 @@ void cycles_mesh_set_tris(unsigned int client_id, unsigned int scene_id, unsigne
 	SCENE_FIND_END()
 }
 
+void cycles_mesh_set_triangle(unsigned int client_id, unsigned int scene_id, unsigned int mesh_id, unsigned tri_idx, unsigned int v0, unsigned int v1, unsigned int v2, unsigned int shader_id, unsigned int smooth)
+{
+	SCENE_FIND(scene_id)
+		ccl::Mesh* me = sce->meshes[mesh_id];
+		me->triangles[tri_idx] = (int)v0;
+		me->triangles[tri_idx + 1] = (int)v1;
+		me->triangles[tri_idx + 2] = (int)v2;
+		me->shader[tri_idx/3] = shader_id;
+		me->smooth[tri_idx/3] = smooth == 1;
+	SCENE_FIND_END()
+}
+
 void cycles_mesh_add_triangle(unsigned int client_id, unsigned int scene_id, unsigned int mesh_id, unsigned int v0, unsigned int v1, unsigned int v2, unsigned int shader_id, unsigned int smooth)
 {
 	SCENE_FIND(scene_id)

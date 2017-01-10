@@ -157,5 +157,19 @@ namespace ccl
 		{
 			CSycles.mesh_add_triangle(Client.Id, Client.Scene.Id, Id, v0, v1, v2, Client.Scene.GetShaderSceneId(shader), smooth);
 		}
+
+		/// <summary>
+		/// Set a triangle to the mesh at given triangle idx using the given vertex coordinates, shader and smooth flag
+		/// </summary>
+		/// <param name="idx"></param>
+		/// <param name="v0"></param>
+		/// <param name="v1"></param>
+		/// <param name="v2"></param>
+		/// <param name="shader"></param>
+		/// <param name="smooth"></param>
+		public void SetTri(uint idx, uint v0, uint v1, uint v2, Shader shader, bool smooth)
+		{
+			CSycles.mesh_set_triangle(Client.Id, Client.Scene.Id, Id, idx, v0, v1, v2, Client.Scene.GetShaderSceneId(shader), smooth);
+		}
 	}
 }

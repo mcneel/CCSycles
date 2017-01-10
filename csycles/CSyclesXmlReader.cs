@@ -305,6 +305,9 @@ namespace ccl
 			var nvertsints = Utilities.Instance.parse_ints(nverts);
 			var vertsints = Utilities.Instance.parse_ints(verts);
 
+			var fc = nvertsints.Aggregate(0, (total, next) =>
+																		next == 4 ? total + 2 : total + 1);
+
 			//var ob = new ccl.Object(Client) { Transform = state.Transform };
 			var me = new Mesh(Client, state.Shader);
 
@@ -312,12 +315,14 @@ namespace ccl
 
 			meshes.Add(name, me);
 
+			me.Resize((uint)pfloats.Length, (uint)fc);
+			me.Reserve((uint)pfloats.Length, (uint)fc);
+
 			me.SetVerts(ref pfloats);
 
 			var index_offset = 0;
+			var tri_idx = 0;
 			/* count triangles */
-			var fc = nvertsints.Aggregate(0, (total, next) =>
-																		next == 4 ? total + 2 : total + 1);
 
 			float[] uvs = null;
 			if(has_uv) uvs = new float[fc*3*2];
@@ -342,7 +347,8 @@ namespace ccl
 						uvoffs += 6;
 					}
 
-					me.AddTri((uint)v0, (uint)v1, (uint)v2, state.Shader, state.Smooth);
+					me.SetTri((uint)tri_idx, (uint)v0, (uint)v1, (uint)v2, state.Shader, state.Smooth);
+					tri_idx += 3;
 				}
 
 				index_offset += t;
