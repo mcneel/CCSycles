@@ -29,13 +29,13 @@ namespace ccl
 	/// </summary>
 	public class SocketCollection
 	{
-		readonly List<SocketBase> m_socketlist = new List<SocketBase>();
+		readonly List<ISocket> m_socketlist = new List<ISocket>();
 
 		/// <summary>
 		/// Add socket so it can actually be linked to and from.
 		/// </summary>
 		/// <param name="sock"></param>
-		internal void AddSocket(SocketBase sock)
+		internal void AddSocket(ISocket sock)
 		{
 			m_socketlist.Add(sock);
 		}
@@ -50,7 +50,7 @@ namespace ccl
 		/// </summary>
 		/// <param name="name"></param>
 		/// <returns></returns>
-		public SocketBase Socket(string name)
+		public ISocket Socket(string name)
 		{
 			foreach (var socket in Sockets)
 			{
@@ -96,7 +96,7 @@ namespace ccl
 		/// </summary>
 		/// <param name="idx"></param>
 		/// <returns></returns>
-		public SocketBase this[int idx]
+		public ISocket this[int idx]
 		{
 			get
 			{
@@ -111,6 +111,6 @@ namespace ccl
 		/// <summary>
 		/// Get an IEnumerable over sockets.
 		/// </summary>
-		public IEnumerable<SocketBase> Sockets => m_socketlist;
+		public IEnumerable<ISocket> Sockets => m_socketlist;
 	}
 }

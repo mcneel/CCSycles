@@ -19,10 +19,8 @@ namespace ccl.ShaderNodes.Sockets
 	/// <summary>
 	/// Base class to denote a closure socket
 	/// </summary>
-	public class ClosureSocket : SocketBase
+	public class ClosureSocket : SocketBase<object>
 	{
-		public object Value { get; set; }
-
 		public ClosureSocket(ShaderNode parentNode, string name)
 			: base(parentNode, name)
 		{

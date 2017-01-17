@@ -16,9 +16,8 @@ limitations under the License.
 
 namespace ccl.ShaderNodes.Sockets
 {
-	public class IntSocket : SocketBase
+	public class IntSocket : SocketBase<int>
 	{
-		public int Value { get; set; }
 		public IntSocket(ShaderNode parentNode, string name)
 			: base(parentNode, name)
 		{

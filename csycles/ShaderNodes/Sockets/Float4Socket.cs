@@ -19,12 +19,8 @@ namespace ccl.ShaderNodes.Sockets
 	/// <summary>
 	/// Float4Socket is used to communicate vectors between nodes.
 	/// </summary>
-	public class Float4Socket : SocketBase
+	public class Float4Socket : SocketBase<float4>
 	{
-		/// <summary>
-		/// Get or set the float4 value of the socket
-		/// </summary>
-		public float4 Value { get; set; }
 		/// <summary>
 		/// Create socket for parentNode. The name has to correspond to the socket name in Cycles.
 		/// </summary>

@@ -16,16 +16,67 @@ limitations under the License.
 
 namespace ccl.ShaderNodes.Sockets
 {
-	public class SocketBase
+
+	/// <summary>
+	/// Interface for Socket implementations.
+	/// </summary>
+	public interface ISocket
 	{
-		internal ShaderNode Parent { get; set; }
+		/// <summary>
+		/// Get or set the name for this socket.
+		/// </summary>
+		string Name { get; set; }
+
+		/// <summary>
+		/// Get the XML-valid name for this socket.
+		/// </summary>
+		string XmlName {get;}
+
+		/// <summary>
+		/// Get the XML-valid connect tag for this socket.
+		/// </summary>
+		string ConnectTag{get;}
+		/// <summary>
+		/// Get the code name for this socket.
+		/// </summary>
+		string CodeName {get;}
+		/// <summary>
+		/// Get the C# code for this socket connection.
+		/// </summary>
+		string ConnectCode {get;}
+		/// <summary>
+		/// Connect this socket to the given socket.
+		/// </summary>
+		void Connect(ISocket to);
+		/// <summary>
+		/// The connection from which is connected to this socket.
+		/// </summary>
+		ISocket ConnectionFrom { get; set; }
+		/// <summary>
+		/// The parent node for this socket.
+		/// </summary>
+		ShaderNode Parent { get; set; }
+		/// <summary>
+		/// A path to this socket.
+		/// </summary>
+		string Path {get;}
+	}
+
+
+	/// <summary>
+	/// Generic base class for sockets.
+	/// </summary>
+	public class SocketBase<T> : ISocket
+	{
+		public T Value { get; set; }
+		public ShaderNode Parent { get; set; }
 
 		public string Name { get; set; }
 
 		public string XmlName => Name.Replace(' ', '_').ToLowerInvariant();
 		public string CodeName => Name.Replace(" ", string.Empty);
 
-		public void Connect(SocketBase to)
+		public void Connect(ISocket to)
 		{
 			to.ConnectionFrom = this;
 		}
@@ -36,7 +87,7 @@ namespace ccl.ShaderNodes.Sockets
 			Name = name;
 		}
 
-		internal SocketBase ConnectionFrom { get; set; }
+		public ISocket ConnectionFrom { get; set; }
 
 		public string SetValueCode { get; set; }
 

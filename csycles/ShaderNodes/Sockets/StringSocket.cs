@@ -16,9 +16,8 @@ limitations under the License.
 
 namespace ccl.ShaderNodes.Sockets
 {
-	public class StringSocket : SocketBase
+	public class StringSocket : SocketBase<string>
 	{
-		public string Value { get; set; }
 		public StringSocket(ShaderNode parentNode, string name)
 			: base(parentNode, name)
 		{
