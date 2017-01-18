@@ -60,6 +60,14 @@ namespace ccl.ShaderNodes.Sockets
 		/// A path to this socket.
 		/// </summary>
 		string Path {get;}
+		/// <summary>
+		/// Clear any existing connections.
+		/// </summary>
+		void ClearConnections();
+		/// <summary>
+		/// Set value code.
+		/// </summary>
+		string SetValueCode { get; set; }
 	}
 
 
