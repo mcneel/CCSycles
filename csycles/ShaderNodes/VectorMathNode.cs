@@ -15,6 +15,7 @@ limitations under the License.
 **/
 
 using System;
+using System.Text;
 using System.Xml;
 using ccl.ShaderNodes.Sockets;
 using ccl.Attributes;
@@ -175,6 +176,23 @@ namespace ccl.ShaderNodes
 			{
 				SetOperation(operation);
 			}
+		}
+		public override string CreateXmlAttributes()
+		{
+			var codeattr = new StringBuilder(1024);
+
+			codeattr.Append($" type=\"{Operation}\" ");
+
+			return codeattr.ToString();
+		}
+
+		public override string CreateCodeAttributes()
+		{
+			var codeattr = new StringBuilder(1024);
+
+			codeattr.Append($" {VariableName}.Operation = VectorMathNode.Operations.{Operation};");
+
+			return codeattr.ToString();
 		}
 	}
 }
