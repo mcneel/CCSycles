@@ -15,8 +15,10 @@ limitations under the License.
 **/
 
 using System;
+using System.Xml;
 using ccl.ShaderNodes.Sockets;
 using ccl.Attributes;
+using System.Text;
 
 namespace ccl.ShaderNodes
 {
@@ -56,9 +58,9 @@ namespace ccl.ShaderNodes
 	{
 		public enum RefractionDistribution
 		{
-			Sharp = 22,
-			Beckmann = 23,
-			GGX = 24
+			Sharp = 26,
+			Beckmann = 27,
+			GGX = 28
 		}
 		public RefractionBsdfInputs ins => (RefractionBsdfInputs)inputs;
 		public RefractionBsdfOutputs outs => (RefractionBsdfOutputs)outputs;
@@ -70,7 +72,7 @@ namespace ccl.ShaderNodes
 			inputs = new RefractionBsdfInputs(this);
 			outputs = new RefractionBsdfOutputs(this);
 
-			Distribution = RefractionDistribution.Beckmann;
+			Distribution = RefractionDistribution.GGX;
 			ins.IOR.Value = 1.45f;
 			ins.Roughness.Value = 0.0f;
 			ins.Color.Value = new float4(0.8f);
@@ -86,6 +88,35 @@ namespace ccl.ShaderNodes
 		internal override void SetEnums(uint clientId, uint shaderId)
 		{
 			CSycles.shadernode_set_enum(clientId, shaderId, Id, Type, "distribution", (int)Distribution);
+		}
+
+		internal override void ParseXml(XmlReader xmlNode)
+		{
+			Utilities.Instance.get_float4(ins.Color, xmlNode.GetAttribute("color"));
+			Utilities.Instance.get_float(ins.IOR, xmlNode.GetAttribute("ior"));
+			Utilities.Instance.get_float(ins.Roughness, xmlNode.GetAttribute("roughness"));
+			var distribution = xmlNode.GetAttribute("distribution");
+			if (!string.IsNullOrEmpty(distribution))
+			{
+				SetDistribution(distribution);
+			}
+		}
+		public override string CreateXmlAttributes()
+		{
+			var codeattr = new StringBuilder(1024);
+
+			codeattr.Append($" distribution=\"{Distribution.ToString()}\" ");
+
+			return codeattr.ToString();
+		}
+
+		public override string CreateCodeAttributes()
+		{
+			var codeattr = new StringBuilder(1024);
+
+			codeattr.Append($" {VariableName}.Distribution = RefractionBsdfNode.RefractionDistribution.{Distribution.ToString()};");
+
+			return codeattr.ToString();
 		}
 	}
 }

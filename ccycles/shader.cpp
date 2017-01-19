@@ -181,12 +181,9 @@ unsigned int cycles_add_shader_node(unsigned int client_id, unsigned int shader_
 		node = new ccl::GlassBsdfNode();
 		break;
 	case shadernode_type::REFRACTION:
-	{
-		ccl::RefractionBsdfNode* refrnode = new ccl::RefractionBsdfNode();
-		refrnode->distribution = ccl::CLOSURE_BSDF_MICROFACET_BECKMANN_REFRACTION_ID;
-		node = dynamic_cast<ccl::ShaderNode *>(refrnode);
-	}
-	break;
+		node = new ccl::RefractionBsdfNode();
+		//refrnode->distribution = ccl::CLOSURE_BSDF_MICROFACET_BECKMANN_REFRACTION_ID;
+		break;
 	case shadernode_type::HAIR:
 		node = new ccl::HairBsdfNode();
 		break;
