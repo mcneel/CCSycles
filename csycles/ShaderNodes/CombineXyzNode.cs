@@ -71,9 +71,9 @@ namespace ccl.ShaderNodes
 
 		internal override void ParseXml(XmlReader xmlNode)
 		{
-			Utilities.Instance.get_float(ins.X, xmlNode.GetAttribute("X"));
-			Utilities.Instance.get_float(ins.Y, xmlNode.GetAttribute("Y"));
-			Utilities.Instance.get_float(ins.Z, xmlNode.GetAttribute("Z"));
+			Utilities.Instance.get_float(ins.X, xmlNode.GetAttribute("x"));
+			Utilities.Instance.get_float(ins.Y, xmlNode.GetAttribute("y"));
+			Utilities.Instance.get_float(ins.Z, xmlNode.GetAttribute("z"));
 		}
 	}
 }
