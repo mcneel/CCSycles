@@ -483,19 +483,20 @@ void cycles_session_rhinodraw(unsigned int client_id, unsigned int session_id, i
 		glLoadIdentity();
 
 		// set viewport
-		glViewport(-(width/2), -height/2, width, height);
+		//glViewport(-width/2, -height/2, width, height);
+		//glViewport(0, 0, width, height);
 		// let Cycles draw
 		session->draw(session_buf_params, draw_params);
 
 		// reset viewport
-		glViewport(0, 0, width, height);
+		//glViewport(0, 0, width, height);
 
 		//------------------------
 
 		// revert to matrices before our drawing
-		glMatrixMode(GL_PROJECTION);
-		glPopMatrix();
 		glMatrixMode(GL_MODELVIEW);
+		glPopMatrix();
+		glMatrixMode(GL_PROJECTION);
 		glPopMatrix();
 		// revert to old attributes
 		glPopAttrib();
