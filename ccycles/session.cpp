@@ -436,6 +436,108 @@ void cycles_session_copy_buffer(unsigned int client_id, unsigned int session_id,
 	SESSION_FIND_END()
 }
 
+bool initialize_shader_program(GLuint& program)
+{
+	static const GLchar* vs_src =
+#include "vshader.h"
+
+	static const GLchar* fs_src =
+#include "fshader.h"
+
+	GLuint vs = glCreateShader(GL_VERTEX_SHADER);
+	glShaderSource(vs, 1, &vs_src, nullptr);
+	glCompileShader(vs);
+
+#ifdef _DEBUG
+	{
+		GLint log_length;
+		glGetShaderiv(vs, GL_INFO_LOG_LENGTH, &log_length);
+
+		if (log_length > 0)
+		{
+			std::string log;
+			log.reserve(log_length);
+
+			glGetShaderInfoLog(vs, log_length, nullptr, (GLchar*)log.c_str());
+			OutputDebugStringA(log.c_str());
+		}
+	}
+#endif
+
+	GLint success = GL_FALSE;
+	glGetShaderiv(vs, GL_COMPILE_STATUS, &success);
+
+	if (success == GL_FALSE)
+	{
+		glDeleteShader(vs);
+		return false;
+	}
+
+	GLuint fs = glCreateShader(GL_FRAGMENT_SHADER);
+	glShaderSource(fs, 1, &fs_src, nullptr);
+	glCompileShader(fs);
+
+#ifdef _DEBUG
+	{
+		GLint log_length;
+		glGetShaderiv(fs, GL_INFO_LOG_LENGTH, &log_length);
+
+		if (log_length > 0)
+		{
+			std::string log;
+			log.reserve(log_length);
+
+			glGetShaderInfoLog(fs, log_length, nullptr, (GLchar*)log.c_str());
+			OutputDebugStringA(log.c_str());
+		}
+	}
+#endif
+
+	success = GL_FALSE;
+	glGetShaderiv(fs, GL_COMPILE_STATUS, &success);
+
+	if (success == GL_FALSE)
+	{
+		glDeleteShader(vs);
+		glDeleteShader(fs);
+		return false;
+	}
+
+	program = glCreateProgram();
+	glAttachShader(program, vs);
+	glAttachShader(program, fs);
+	glLinkProgram(program);
+
+#ifdef _DEBUG
+	{
+		GLint log_length;
+		glGetProgramiv(program, GL_INFO_LOG_LENGTH, &log_length);
+
+		if (log_length > 0)
+		{
+			std::string log;
+			log.reserve(log_length);
+
+			glGetProgramInfoLog(program, log_length, nullptr, (GLchar*)log.c_str());
+			OutputDebugStringA(log.c_str());
+		}
+	}
+#endif
+
+	glDeleteShader(vs);
+	glDeleteShader(fs);
+
+	success = GL_FALSE;
+	glGetProgramiv(program, GL_LINK_STATUS, &success);
+
+	if (success == GL_FALSE)
+	{
+		return false;
+	}
+
+	return true;
+}
+
 void cycles_session_rhinodraw(unsigned int client_id, unsigned int session_id, int width, int height)
 {
 	static ccl::DeviceDrawParams draw_params = ccl::DeviceDrawParams();
@@ -446,6 +548,12 @@ void cycles_session_rhinodraw(unsigned int client_id, unsigned int session_id, i
 		ccl::BufferParams session_buf_params;
 		session_buf_params.width = session_buf_params.full_width = width;
 		session_buf_params.height = session_buf_params.full_height = height;
+
+		if (ccsess->program == 0) {
+			if (!initialize_shader_program(ccsess->program)) return;
+		}
+
+		draw_params.program = ccsess->program;
 
 		// push attribs
 		glPushAttrib(GL_ENABLE_BIT | GL_DEPTH_BUFFER_BIT);
@@ -458,21 +566,9 @@ void cycles_session_rhinodraw(unsigned int client_id, unsigned int session_id, i
 		glDisable(GL_LIGHTING);
 		glDisable(GL_LOGIC_OP);
 		glDisable(GL_STENCIL_TEST);
-		glDisable(GL_TEXTURE_1D);
-		glDisable(GL_TEXTURE_2D);
-		glPixelTransferi(GL_MAP_COLOR, GL_FALSE);
-		glPixelTransferi(GL_RED_SCALE, 1);
-		glPixelTransferi(GL_RED_BIAS, 0);
-		glPixelTransferi(GL_GREEN_SCALE, 1);
-		glPixelTransferi(GL_GREEN_BIAS, 0);
-		glPixelTransferi(GL_BLUE_SCALE, 1);
-		glPixelTransferi(GL_BLUE_BIAS, 0);
-		glPixelTransferi(GL_ALPHA_SCALE, 1);
-		glPixelTransferi(GL_ALPHA_BIAS, 0);
-		glPixelStorei(GL_UNPACK_ALIGNMENT, 4);
 
 		glDisable(GL_DEPTH_TEST);
-		glDepthMask(GL_FALSE);
+		//glDepthMask(GL_FALSE);
 
 		// reset project/modelview
 		glMatrixMode(GL_PROJECTION);
@@ -485,18 +581,25 @@ void cycles_session_rhinodraw(unsigned int client_id, unsigned int session_id, i
 		// set viewport
 		//glViewport(-width/2, -height/2, width, height);
 		//glViewport(0, 0, width, height);
+		/*glClearColor(1.0f, 0.5f, 0.25f, 1.0f);
+		glClear(GL_COLOR_BUFFER_BIT);
+		glColor3f(0.25f, 0.5f, 1.0f);
+		glRectf(-0.75f, 0.75f, 0.75f, -0.75f);*/
+		glUseProgram(ccsess->program);
 		// let Cycles draw
 		session->draw(session_buf_params, draw_params);
+		glUseProgram(0);
 
 		// reset viewport
 		//glViewport(0, 0, width, height);
 
 		//------------------------
+		glEnable(GL_DEPTH_TEST);
 
 		// revert to matrices before our drawing
-		glMatrixMode(GL_MODELVIEW);
-		glPopMatrix();
 		glMatrixMode(GL_PROJECTION);
+		glPopMatrix();
+		glMatrixMode(GL_MODELVIEW);
 		glPopMatrix();
 		// revert to old attributes
 		glPopAttrib();
@@ -507,6 +610,8 @@ void cycles_session_rhinodraw(unsigned int client_id, unsigned int session_id, i
 void cycles_session_draw(unsigned int client_id, unsigned int session_id, int width, int height)
 {
 	static ccl::DeviceDrawParams draw_params = ccl::DeviceDrawParams();
+	draw_params.bind_display_space_shader_cb = nullptr;
+	draw_params.unbind_display_space_shader_cb = nullptr;
 
 	SESSION_FIND(session_id)
 		ccl::BufferParams session_buf_params;
