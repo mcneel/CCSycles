@@ -63,6 +63,7 @@ void cycles_putenv(const char* var, const char* val)
 void cycles_initialise()
 {
 	if (!initialised) {
+		mxCreateContext();
 		devices = ccl::Device::available_devices();
 		_init_shaders();
 		initialised = true;
