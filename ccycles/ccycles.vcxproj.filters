@@ -70,6 +70,12 @@
     <ClInclude Include="internal_types.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="vshader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="fshader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="license.txt" />

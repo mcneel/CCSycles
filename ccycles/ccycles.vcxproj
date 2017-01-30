@@ -225,7 +225,9 @@ copy /Y "$(ProjectDir)x64\$(ConfigurationName)\ccycles.pdb" "$(SolutionDir)bin\$
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="ccycles.h" />
+    <ClInclude Include="fshader.h" />
     <ClInclude Include="internal_types.h" />
+    <ClInclude Include="vshader.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="cycles_api.def" />
