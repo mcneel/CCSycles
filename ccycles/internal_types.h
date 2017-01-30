@@ -136,6 +136,8 @@ public:
 	ccl::SessionParams params;
 	ccl::Session* session = nullptr;
 
+	GLuint program = 0;
+
 	/* The status update handler for ccl::Session update callback.
 	 */
 	void status_update(void);
