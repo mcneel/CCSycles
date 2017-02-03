@@ -96,8 +96,8 @@ private:
 	 * an empty string.
 	 */
 	void logit_followup(unsigned int client_id) {
-		LOGGER_FUNC_CB logger_func = loggers[client_id];
 #if defined(DEBUG)
+		LOGGER_FUNC_CB logger_func = loggers[client_id];
 		if (logger_func) logger_func(logger_msg.str().c_str());
 
 		// also print to std::cout if wanted
