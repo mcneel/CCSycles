@@ -570,7 +570,6 @@ void cycles_session_rhinodraw(unsigned int client_id, unsigned int session_id, i
 		glDisable(GL_STENCIL_TEST);
 
 		glDisable(GL_DEPTH_TEST);
-		//glDepthMask(GL_FALSE);
 
 		// reset project/modelview
 		glMatrixMode(GL_PROJECTION);
@@ -580,20 +579,10 @@ void cycles_session_rhinodraw(unsigned int client_id, unsigned int session_id, i
 		glPushMatrix();
 		glLoadIdentity();
 
-		// set viewport
-		//glViewport(-width/2, -height/2, width, height);
-		//glViewport(0, 0, width, height);
-		/*glClearColor(1.0f, 0.5f, 0.25f, 1.0f);
-		glClear(GL_COLOR_BUFFER_BIT);
-		glColor3f(0.25f, 0.5f, 1.0f);
-		glRectf(-0.75f, 0.75f, 0.75f, -0.75f);*/
 		glUseProgram(ccsess->program);
 		// let Cycles draw
 		session->draw(session_buf_params, draw_params);
 		glUseProgram(0);
-
-		// reset viewport
-		//glViewport(0, 0, width, height);
 
 		//------------------------
 		glEnable(GL_DEPTH_TEST);
