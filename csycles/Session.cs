@@ -161,6 +161,33 @@ namespace ccl
 		}
 
 		/// <summary>
+		/// Set up the session for running through the sampler.
+		/// </summary>
+		public void PrepareRun()
+		{
+			if(Destroyed) return;
+			CSycles.session_prepare_run(Client.Id, Id);
+		}
+
+		/// <summary>
+		/// Sample one pass.
+		/// </summary>
+		public bool Sample()
+		{
+			if(Destroyed) return false;
+			return CSycles.session_sample(Client.Id, Id);
+		}
+
+		/// <summary>
+		/// Tear down the set up run for sampling.
+		/// </summary>
+		public void EndRun()
+		{
+			if(Destroyed) return;
+			CSycles.session_end_run(Client.Id, Id);
+		}
+
+		/// <summary>
 		/// Wait for the rendering session to complete
 		/// </summary>
 		public void Wait()

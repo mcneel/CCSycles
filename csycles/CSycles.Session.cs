@@ -103,6 +103,27 @@ namespace ccl
 			cycles_session_start(clientId, sessionId);
 		}
 
+		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_session_prepare_run", CallingConvention = CallingConvention.Cdecl)]
+		private static extern void cycles_session_prepare_run(uint clientId, uint sessionId);
+		public static void session_prepare_run(uint clientId, uint sessionId)
+		{
+			cycles_session_prepare_run(clientId, sessionId);
+		}
+
+		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_session_sample", CallingConvention = CallingConvention.Cdecl)]
+		private static extern bool cycles_session_sample(uint clientId, uint sessionId);
+		public static bool session_sample(uint clientId, uint sessionId)
+		{
+			return cycles_session_sample(clientId, sessionId);
+		}
+
+		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_session_end_run", CallingConvention = CallingConvention.Cdecl)]
+		private static extern void cycles_session_end_run(uint clientId, uint sessionId);
+		public static void session_end_run(uint clientId, uint sessionId)
+		{
+			cycles_session_end_run(clientId, sessionId);
+		}
+
 		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_session_wait", CallingConvention = CallingConvention.Cdecl)]
 		private static extern void cycles_session_wait(uint clientId, uint sessionId);
 		public static void session_wait(uint clientId, uint sessionId)

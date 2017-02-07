@@ -136,7 +136,7 @@ void cycles_mesh_set_verts(unsigned int client_id, unsigned int scene_id, unsign
 			f3.x = verts[i];
 			f3.y = verts[i+1];
 			f3.z = verts[i+2];
-			logger.logit(client_id, "v: ", f3.x, ",", f3.y, ",", f3.z);
+			//logger.logit(client_id, "v: ", f3.x, ",", f3.y, ",", f3.z);
 			me->verts[j] = f3;
 		}
 		me->geometry_flags = ccl::Mesh::GeometryFlags::GEOMETRY_TRIANGLES;
@@ -151,7 +151,7 @@ void cycles_mesh_set_tris(unsigned int client_id, unsigned int scene_id, unsigne
 		me->reserve_mesh(fcount * 3, fcount);
 
 		for (int i = 0, j = 0; i < (int)fcount*3; i += 3, j++) {
-			logger.logit(client_id, "f: ", faces[i], ",", faces[i + 1], ",", faces[i + 2]);
+			//logger.logit(client_id, "f: ", faces[i], ",", faces[i + 1], ",", faces[i + 2]);
 			me->triangles[i] = faces[i];
 			me->triangles[i + 1] = faces[i + 1];
 			me->triangles[i + 2] = faces[i + 2];

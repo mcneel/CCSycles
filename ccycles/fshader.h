@@ -11,5 +11,5 @@
 
 		"  vec4 px = texture(tex, tc);                \n"
 		"  Color = vec4(px.rgb, 1.0);                 \n"
-		//"  Color = vec4(0.2, 0.5, 0.8, 1.0);"
+		//"  Color = vec4(0.2, 0.5, 0.8, 1.0);          \n"
 		"}                                            \n";

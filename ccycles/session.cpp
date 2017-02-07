@@ -374,6 +374,32 @@ void cycles_session_start(unsigned int client_id, unsigned int session_id)
 	SESSION_FIND_END()
 }
 
+void cycles_session_prepare_run(unsigned int client_id, unsigned int session_id)
+{
+	SESSION_FIND(session_id)
+		logger.logit(client_id, "Preparing run for session ", session_id);
+		session->prepare_run();
+	SESSION_FIND_END()
+}
+
+void cycles_session_end_run(unsigned int client_id, unsigned int session_id)
+{
+	SESSION_FIND(session_id)
+		logger.logit(client_id, "Ending run for session ", session_id);
+		session->end_run();
+	SESSION_FIND_END()
+}
+
+bool cycles_session_sample(unsigned int client_id, unsigned int session_id)
+{
+	bool rc = false;
+	SESSION_FIND(session_id)
+		logger.logit(client_id, "Starting session ", session_id);
+		rc = session->sample();
+	SESSION_FIND_END()
+	return rc;
+}
+
 void cycles_session_wait(unsigned int client_id, unsigned int session_id)
 {
 	SESSION_FIND(session_id)

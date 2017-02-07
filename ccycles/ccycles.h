@@ -446,6 +446,9 @@ CCL_CAPI void __cdecl cycles_session_draw_nogl(unsigned int client_id, unsigned 
 CCL_CAPI void __cdecl cycles_session_rhinodraw(unsigned int client_id, unsigned int session_id, int width, int height);
 /** Get pixel data buffer pointer. */
 CCL_CAPI float* __cdecl cycles_session_get_buffer(unsigned int client_id, unsigned int session_id);
+CCL_CAPI void __cdecl cycles_session_prepare_run(unsigned int client_id, unsigned int session_id);
+CCL_CAPI bool __cdecl cycles_session_sample(unsigned int client_id, unsigned int session_id);
+CCL_CAPI void __cdecl cycles_session_end_run(unsigned int client_id, unsigned int session_id);
 
 
 /* session progress access. */
