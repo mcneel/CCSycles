@@ -643,7 +643,7 @@ void cycles_session_draw_nogl(unsigned int client_id, unsigned int session_id, i
 {
 	SESSION_FIND(session_id)
 		// lock moved to initial callback invocation
-		ccl::thread_scoped_lock pixels_lock(ccsess->pixels_mutex);
+		//ccl::thread_scoped_lock pixels_lock(ccsess->pixels_mutex);
 		if (!ccsess->pixels || ccsess->size_has_changed()) return;
 		ccl::BufferParams session_buf_params;
 		ccl::DeviceDrawParams draw_params;
