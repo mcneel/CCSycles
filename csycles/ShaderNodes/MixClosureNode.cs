@@ -101,6 +101,11 @@ namespace ccl.ShaderNodes
 			ins.Fac.Value = 0.5f;
 		}
 
+		public override ClosureSocket GetClosureSocket()
+		{
+			return outs.Closure;
+		}
+
 		internal override void ParseXml(XmlReader xmlNode)
 		{
 			Utilities.Instance.get_float(ins.Fac, xmlNode.GetAttribute("fac"));

@@ -91,6 +91,11 @@ namespace ccl.ShaderNodes
 		/// </summary>
 		public Outputs outputs { get; set; }
 
+		public virtual ClosureSocket GetClosureSocket()
+		{
+			throw new NotImplementedException($"Should implement GetClosureSocket for this node {Type}");
+		}
+
 		/// <summary>
 		/// Create node of type ShaderNodeType type
 		/// </summary>
