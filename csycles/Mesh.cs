@@ -45,6 +45,7 @@ namespace ccl
 			Shader = shader;
 
 			Id = CSycles.scene_add_mesh(Client.Id, Client.Scene.Id, Client.Scene.GetShaderSceneId(shader));
+			System.Diagnostics.Trace.WriteLine($"Created mesh {Id} with shader {shader.Id}\n");
 		}
 
 		/// <summary>
@@ -75,6 +76,7 @@ namespace ccl
 		/// <param name="shader"></param>
 		public void ReplaceShader(Shader shader)
 		{
+			System.Diagnostics.Trace.WriteLine($"on mesh {Id} replacing {Shader.Id} with {shader.Id}\n");
 			Shader = shader;
 			CSycles.mesh_set_shader(Client.Id, Client.Scene.Id, Id, Client.Scene.GetShaderSceneId(Shader));
 			TagRebuild();
