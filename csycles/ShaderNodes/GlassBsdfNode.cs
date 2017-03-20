@@ -58,10 +58,10 @@ namespace ccl.ShaderNodes
 
 		public enum GlassDistribution
 		{
-			Sharp = 28,
-			Beckmann = 25,
-			GGX = 26,
-			Multiscatter_GGX = 27
+			Sharp = 32,
+			Beckmann = 29,
+			GGX = 30,
+			Multiscatter_GGX = 31
 		}
 
 		public GlassInputs ins => (GlassInputs)inputs;
