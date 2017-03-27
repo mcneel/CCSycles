@@ -11,6 +11,8 @@ EXPORTS
 
   cycles_device_capabilities
   cycles_number_devices
+  cycles_number_multidevices
+  cycles_number_multi_subdevices
   cycles_number_cuda_devices
   cycles_device_description
   cycles_device_id
@@ -18,6 +20,7 @@ EXPORTS
   cycles_device_advanced_shading
   cycles_device_display_device
   cycles_device_pack_images
+  cycles_create_multidevice
   cycles_device_type
 
   cycles_scene_params_create

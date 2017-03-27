@@ -31,6 +31,7 @@ std::ostream& operator<<(std::ostream& out, shadernode_type const &snt) {
 
 /* Hold the device information found on the system after initialisation. */
 std::vector<ccl::DeviceInfo> devices;
+std::vector<ccl::DeviceInfo> multi_devices;
 
 /* Hold the logger function that potentially gets registered by a client. */
 LOGGER_FUNC_CB logger_func = nullptr;
@@ -63,6 +64,8 @@ void cycles_putenv(const char* var, const char* val)
 void cycles_initialise()
 {
 	if (!initialised) {
+		devices.clear();
+		multi_devices.clear();
 		devices = ccl::Device::available_devices();
 		_init_shaders();
 		initialised = true;

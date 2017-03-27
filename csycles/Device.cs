@@ -78,6 +78,11 @@ namespace ccl
 		public bool IsGpu => !IsCpu;
 
 		/// <summary>
+		/// True if this device is a Multi device
+		/// </summary>
+		public bool IsMulti => Type == DeviceType.Multi;
+
+		/// <summary>
 		/// True if this is a Multi CUDA device
 		/// </summary>
 		public bool IsMultiCuda => Type == DeviceType.Multi && Name.Contains("CUDA");
@@ -116,6 +121,12 @@ namespace ccl
 		static public uint Count => CSycles.number_devices();
 
 		/// <summary>
+		/// Get the number of available Cycles render multi-devices
+		/// </summary>
+		/// <returns></returns>
+		static public uint MultiCount => CSycles.number_multidevices();
+
+		/// <summary>
 		/// True if any of the available devices is a CUDA device
 		/// </summary>
 		/// <returns></returns>
@@ -124,6 +135,7 @@ namespace ccl
 			return CSycles.number_cuda_devices() > 0;
 		}
 
+		public const int MultiOffset = 100000;
 		/// <summary>
 		/// Enumerate over available devices.
 		/// </summary>
@@ -135,8 +147,14 @@ namespace ccl
 				{
 					yield return GetDevice(i);
 				}
+
+				for(var j = 0; j < MultiCount; j++)
+				{
+					yield return GetDevice(j+MultiOffset);
+				}
 			}
 		}
+
 
 		/// <summary>
 		/// Returns the first cuda device if it exists,
@@ -200,7 +218,8 @@ namespace ccl
 
 
 		/// <summary>
-		/// Get the device with specified index
+		/// Get the device with specified index. For a multi-device the 
+		/// ID starts at 100000
 		/// </summary>
 		/// <param name="idx"></param>
 		/// <returns></returns>
@@ -217,6 +236,24 @@ namespace ccl
 				DisplayDevice = CSycles.device_display_device(idx),
 				PackImages = CSycles.device_pack_images(idx)
 			};
+		}
+
+
+		/// <summary>
+		/// Create a multi-device from the given Device list.
+		/// </summary>
+		/// <param name="idx">List of Devices</param>
+		/// <returns>Device representing the multi-device</returns>
+		static public Device CreateMultiDevice(List<Device> idx)
+		{
+			idx.Sort((Device a, Device b) => {
+				if (a.Id == b.Id) return 0;
+				return a.Id < b.Id ? -1 : 1;
+				});
+			int[] sortedidx = idx.ConvertAll<int>((Device d) => ((int)d.Id)).ToArray();
+			var id = CSycles.create_multidevice(sortedidx.Length, ref sortedidx);
+			if (id < 0) return null;
+			return GetDevice(id);
 		}
 	}
 }

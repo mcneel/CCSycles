@@ -18,6 +18,7 @@ limitations under the License.
 
 // need access to devices
 extern std::vector<ccl::DeviceInfo> devices;
+extern std::vector<ccl::DeviceInfo> multi_devices;
 
 extern std::vector<ccl::SceneParams> scene_params;
 std::vector<CCScene> scenes;
@@ -100,6 +101,7 @@ unsigned int cycles_scene_create(unsigned int client_id, unsigned int scene_para
 
 	ccl::SceneParams params;
 	ccl::DeviceInfo di;
+	di.num = -1;
 
 	bool found_params{ false };
 	bool found_di{ false };
@@ -109,8 +111,8 @@ unsigned int cycles_scene_create(unsigned int client_id, unsigned int scene_para
 		found_params = true;
 	}
 
-	if (device_id >= 0 && device_id <= devices.size()) {
-		di = devices[device_id];
+	GETDEVICE(di, device_id);
+	if (di.num >= 0) {
 		found_di = true;
 	}
 

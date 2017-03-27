@@ -47,6 +47,17 @@ limitations under the License.
 
 #include "ccycles.h"
 
+#define MULTIDEVICEOFFSET 100000
+#define ISMULTIDEVICE(id) (id>=MULTIDEVICEOFFSET)
+#define MULTIDEVICEIDX(id) (id-MULTIDEVICEOFFSET)
+#define GETDEVICE(puthere, id) \
+	if (ISMULTIDEVICE(id)) { \
+		puthere = multi_devices[MULTIDEVICEIDX(id)]; \
+	} \
+	else { \
+		puthere = devices[id]; \
+	} 
+
 //extern LOGGER_FUNC_CB logger_func;
 extern std::vector<LOGGER_FUNC_CB> loggers;
 

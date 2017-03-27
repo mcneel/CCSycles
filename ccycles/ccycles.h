@@ -172,6 +172,18 @@ CCL_CAPI void __cdecl cycles_release_client(unsigned int client_id);
  */
 CCL_CAPI unsigned int __cdecl cycles_number_devices();
 
+/**
+ * Query number of available (created) multi-devices.
+ * \ingroup ccycles
+ */
+CCL_CAPI unsigned int __cdecl cycles_number_multidevices();
+
+/**
+ * Query number of devices in multi-device
+ * \ingroup ccycles
+ */
+CCL_CAPI unsigned int __cdecl cycles_number_multi_subdevices(int i);
+
 /* Query number of available CUDA devices. */
 CCL_CAPI unsigned int __cdecl cycles_number_cuda_devices();
 
@@ -195,6 +207,9 @@ CCL_CAPI bool __cdecl cycles_device_display_device(int i);
 
 /* Query if device supports packing images. */
 CCL_CAPI bool __cdecl cycles_device_pack_images(int i);
+
+/* Create or get multi device. Return value is index of multi-device in multi-device vector.*/
+CCL_CAPI int __cdecl cycles_create_multidevice(int count, int* idx);
 
 /** Query device type.
  * \param i device ID.

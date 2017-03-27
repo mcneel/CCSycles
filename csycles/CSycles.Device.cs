@@ -17,6 +17,29 @@ namespace ccl
 			return cycles_number_devices();
 		}
 
+		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_number_multidevices", CallingConvention = CallingConvention.Cdecl)]
+		private static extern uint cycles_number_multidevices();
+		/// <summary>
+		/// Get the number of available render multidevices.
+		/// </summary>
+		/// <returns>number of available render multidevices.</returns>
+		public static uint number_multidevices()
+		{
+			return cycles_number_multidevices();
+		}
+
+		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_number_multi_subdevices", CallingConvention = CallingConvention.Cdecl)]
+		private static extern uint cycles_number_multi_subdevices(int i);
+		/// <summary>
+		/// Get the number of available render multi_subdevices.
+		/// </summary>
+		/// <param name="i">ID of multi-device being queried</param>
+		/// <returns>number of available render multi_subdevices.</returns>
+		public static uint number_multi_subdevices(int i)
+		{
+			return cycles_number_multi_subdevices(i);
+		}
+
 		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_number_cuda_devices", CallingConvention = CallingConvention.Cdecl)]
 		private static extern uint cycles_number_cuda_devices();
 		/// <summary>
@@ -127,6 +150,25 @@ namespace ccl
 		public static bool device_pack_images(int i)
 		{
 			return cycles_device_pack_images(i);
+		}
+
+		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_create_multidevice", CallingConvention = CallingConvention.Cdecl)]
+		private unsafe static extern int cycles_create_multidevice(int count, int * idxbuffer);
+		/// <summary>
+		///  create a multi-device with given device ids.( Device.num)
+		/// </summary>
+		/// <param name="count">Number of device ids in idxBuffer</param>
+		/// <param name="idxBuffer">int buffer containing device ids.</param>
+		/// <returns>A number 100000 or larger if successful, or -1 otherwise.</returns>
+		public static int create_multidevice(int count, ref int[] idxBuffer)
+		{
+			unsafe
+			{
+				fixed (int* pidxBuffer = idxBuffer)
+				{
+					return cycles_create_multidevice(count, pidxBuffer);
+				}
+			}
 		}
 #endregion
 	}

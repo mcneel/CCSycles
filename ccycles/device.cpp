@@ -17,23 +17,38 @@ limitations under the License.
 #include "internal_types.h"
 
 extern std::vector<ccl::DeviceInfo> devices;
+extern std::vector<ccl::DeviceInfo> multi_devices;
 
 unsigned int cycles_number_devices() {
 	return (unsigned int)devices.size();
 }
 
+unsigned int cycles_number_multidevices() {
+	return (unsigned int)multi_devices.size();
+}
+
 unsigned int cycles_number_cuda_devices() {
 	int i{ 0 };
-	for (ccl::DeviceInfo di : devices) {
+	for (auto di : devices) {
 		if (di.type == ccl::DeviceType::DEVICE_CUDA) i++;
 	}
 
 	return i;
 }
 
+unsigned int cycles_number_multi_subdevices(int i) {
+	if (MULTIDEVICEIDX(i) >= 0 && MULTIDEVICEIDX(i) < multi_devices.size())
+		return multi_devices[MULTIDEVICEIDX(i)].multi_devices.size();
+	else
+		return -1;
+
+}
+
 const char *cycles_device_description(int i) {
 	if (i>= 0 && i < devices.size())
 		return devices[i].description.c_str();
+	else if(MULTIDEVICEIDX(i) >= 0 && MULTIDEVICEIDX(i) < multi_devices.size())
+		return multi_devices[MULTIDEVICEIDX(i)].description.c_str();
 	else
 		return "-";
 }
@@ -41,6 +56,8 @@ const char *cycles_device_description(int i) {
 const char *cycles_device_id(int i) {
 	if (i >= 0 && i < devices.size())
 		return devices[i].id.c_str();
+	else if(MULTIDEVICEIDX(i) >= 0 && MULTIDEVICEIDX(i) < multi_devices.size())
+		return multi_devices[MULTIDEVICEIDX(i)].id.c_str();
 	else
 		return "-";
 }
@@ -48,13 +65,17 @@ const char *cycles_device_id(int i) {
 int cycles_device_num(int i) {
 	if (i >= 0 && i < devices.size())
 		return devices[i].num;
+	else if(MULTIDEVICEIDX(i) >= 0 && MULTIDEVICEIDX(i) < multi_devices.size())
+		return multi_devices[MULTIDEVICEIDX(i)].num;
 	else
-		return INT_MIN;
+		return -1;
 }
 
 bool cycles_device_advanced_shading(int i) {
 	if (i >= 0 && i < devices.size())
 		return devices[i].advanced_shading;
+	else if(MULTIDEVICEIDX(i) >= 0 && MULTIDEVICEIDX(i) < multi_devices.size())
+		return multi_devices[MULTIDEVICEIDX(i)].advanced_shading;
 	else
 		return false;
 }
@@ -62,6 +83,8 @@ bool cycles_device_advanced_shading(int i) {
 bool cycles_device_display_device(int i) {
 	if (i >= 0 && i < devices.size())
 		return devices[i].display_device;
+	else if(MULTIDEVICEIDX(i) >= 0 && MULTIDEVICEIDX(i) < multi_devices.size())
+		return multi_devices[MULTIDEVICEIDX(i)].display_device;
 	else
 		return false;
 }
@@ -69,6 +92,8 @@ bool cycles_device_display_device(int i) {
 bool cycles_device_pack_images(int i) {
 	if (i >= 0 && i < devices.size())
 		return devices[i].pack_images;
+	else if(MULTIDEVICEIDX(i) >= 0 && MULTIDEVICEIDX(i) < multi_devices.size())
+		return multi_devices[MULTIDEVICEIDX(i)].pack_images;
 	else
 		return false;
 }
@@ -76,6 +101,8 @@ bool cycles_device_pack_images(int i) {
 unsigned int cycles_device_type(int i) {
 	if (i >= 0 && i < devices.size())
 		return devices[i].type;
+	else if(MULTIDEVICEIDX(i) >= 0 && MULTIDEVICEIDX(i) < multi_devices.size())
+		return multi_devices[MULTIDEVICEIDX(i)].type;
 	else
 		return 0;
 }
@@ -84,4 +111,35 @@ unsigned int cycles_device_type(int i) {
 const char* cycles_device_capabilities() {
 	static string capabilities = ccl::Device::device_capabilities();
 	return capabilities.c_str();
+}
+
+int cycles_create_multidevice(int count, int* idx) {
+	bool newmulti = false;
+	int foundidx = -1;
+
+	ccl::vector<ccl::DeviceInfo> subdevices;
+	for (int i = 0; i < count; i++)
+	{
+		ccl::DeviceInfo dev = devices[idx[i]];
+		subdevices.push_back(dev);
+	}
+	ccl::DeviceInfo themulti = ccl::Device::get_multi_device(subdevices);
+
+	bool found = false;
+	for (auto multi : multi_devices)
+	{
+		found = multi == themulti;
+		if (found) {
+			foundidx = multi.num;
+			break;
+		}
+	}
+
+	if (!found) {
+		themulti.num = multi_devices.size() + MULTIDEVICEOFFSET;
+		foundidx = themulti.num;
+		multi_devices.push_back(themulti);
+	}
+
+	return foundidx;
 }

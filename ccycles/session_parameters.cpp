@@ -17,6 +17,7 @@ limitations under the License.
 #include "internal_types.h"
 
 extern std::vector<ccl::DeviceInfo> devices;
+extern std::vector<ccl::DeviceInfo> multi_devices;
 
 /* Hold all created session parameters. */
 std::vector<ccl::SessionParams> session_params;
@@ -34,7 +35,7 @@ unsigned int cycles_session_params_create(unsigned int client_id, unsigned int d
 {
 	ccl::SessionParams params;
 
-	params.device = devices[device_id];
+	GETDEVICE(params.device, device_id);
 	session_params.push_back(params);
 	logger.logit(client_id, "Created session parameters for device ", device_id);
 
@@ -44,7 +45,7 @@ unsigned int cycles_session_params_create(unsigned int client_id, unsigned int d
 void cycles_session_params_set_device(unsigned int client_id, unsigned int session_params_id, unsigned int device)
 {
 	if (0 <= session_params_id && session_params_id < session_params.size()) {
-		session_params[session_params_id].device = devices[device];
+		GETDEVICE(session_params[session_params_id].device, device)
 	}
 }
 
