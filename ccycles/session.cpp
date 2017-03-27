@@ -470,7 +470,9 @@ bool initialize_shader_program(GLuint& program)
 	static const GLchar* fs_src =
 #include "fshader.h"
 
-		glewInit();
+	if (glewInit() != GLEW_OK) {
+		return false;
+	}
 
 	GLuint vs = glCreateShader(GL_VERTEX_SHADER);
 	glShaderSource(vs, 1, &vs_src, nullptr);
