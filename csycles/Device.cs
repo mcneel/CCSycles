@@ -123,8 +123,43 @@ namespace ccl
 		/// <summary>
 		/// Get the number of available Cycles render multi-devices
 		/// </summary>
-		/// <returns></returns>
 		static public uint MultiCount => CSycles.number_multidevices();
+
+		/// <summary>
+		/// Amount of sub-devices for this (multi-)device.
+		/// </summary>
+		public uint SubdeviceCount => CSycles.number_multi_subdevices((int)Id);
+
+		/// <summary>
+		/// Enumerator over subdevices of this multi devices.
+		/// </summary>
+		public IEnumerable<Device> Subdevices
+		{
+			get
+			{
+				for(var i = 0; i<SubdeviceCount; i++)
+				{
+					var j = CSycles.number_multidevice_subdevice_id((int)Id, i);
+					yield return GetDevice((int)j);
+				}
+			}
+		}
+
+		/// <summary>
+		/// Enumerate over sub-devices, returning a Tuple&lt;int, Device&gt; wher
+		/// the int is index into global regular device list.
+		/// </summary>
+		public IEnumerable<Tuple<int, Device>> SubdevicesIndex
+		{
+			get
+			{
+				for(var i = 0; i<SubdeviceCount; i++)
+				{
+					var j = CSycles.number_multidevice_subdevice_id((int)Id, i);
+					yield return new Tuple<int, Device>((int)j, GetDevice((int)j));
+				}
+			}
+		}
 
 		/// <summary>
 		/// True if any of the available devices is a CUDA device
@@ -254,6 +289,76 @@ namespace ccl
 			var id = CSycles.create_multidevice(sortedidx.Length, ref sortedidx);
 			if (id < 0) return null;
 			return GetDevice(id);
+		}
+
+		/// <summary>
+		/// Parse given string into a list of integers.
+		/// 
+		/// The integers should correspond to indices of devices in the
+		/// global list of regular render devices.
+		/// </summary>
+		/// <param name="res"></param>
+		/// <returns>
+		/// Sorted List of indices into global list of regular render devices.
+		/// </returns>
+		static public List<int> IdListFromString(string res)
+		{
+			var l = IdSetFromString(res).ToList();
+			l.Sort();
+			return l;
+		}
+		/// <summary>
+		/// Parse given string into a set of integers.
+		/// </summary>
+		/// <param name="res"></param>
+		/// <returns>
+		/// HashSet of indices into global list of regular render devices.
+		/// </returns>
+		static public HashSet<int> IdSetFromString(string res)
+		{
+			var cleaned = res.Trim().ToLowerInvariant().Split(',');
+			HashSet<int> set = new HashSet<int>();
+			foreach (var item in cleaned)
+			{
+				if (int.TryParse(item, out int x))
+				{
+					set.Add(x);
+				}
+			}
+			return set;
+		}
+
+		/// <summary>
+		/// Convert a list of id integers to a Device list.
+		/// 
+		/// The ids are indices into the global list of regular devices,
+		/// i.e. used with GetDevice(int idx);
+		/// </summary>
+		/// <param name="ids"></param>
+		/// <returns></returns>
+		static public List<Device> DeviceListFromIntList(List<int> ids)
+		{
+			return ids.ConvertAll((int id) => GetDevice(id));
+		}
+
+		/// <summary>
+		/// Get the device for given string. If the string doesn't parse correctly
+		/// the CPU device is picked.
+		/// </summary>
+		/// <param name="res"></param>
+		/// <returns></returns>
+		static public Device DeviceFromString(string res)
+		{
+			var l = IdListFromString(res);
+
+			if (l.Count == 0) return Default;
+			if(l.Count == 1)
+			{
+				return l[0] == -1 ? FirstCuda : GetDevice(l[0]);
+			}
+
+			return CreateMultiDevice(DeviceListFromIntList(l));
+
 		}
 	}
 }

@@ -184,6 +184,12 @@ CCL_CAPI unsigned int __cdecl cycles_number_multidevices();
  */
 CCL_CAPI unsigned int __cdecl cycles_number_multi_subdevices(int i);
 
+/**
+ * Query the index of the sub-device in the global device list.
+ * \ingroup ccycles
+ */
+CCL_CAPI unsigned int __cdecl cycles_get_multidevice_subdevice_id(int i, int j);
+
 /* Query number of available CUDA devices. */
 CCL_CAPI unsigned int __cdecl cycles_number_cuda_devices();
 

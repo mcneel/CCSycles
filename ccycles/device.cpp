@@ -41,8 +41,25 @@ unsigned int cycles_number_multi_subdevices(int i) {
 		return multi_devices[MULTIDEVICEIDX(i)].multi_devices.size();
 	else
 		return 0;
+}
+
+unsigned int cycles_get_multidevice_subdevice_id(int i, int j) {
+	if (MULTIDEVICEIDX(i) >= 0 && MULTIDEVICEIDX(i) < multi_devices.size())
+	{
+		auto d = multi_devices[MULTIDEVICEIDX(i)];
+		if (j >= 0 && j < d.multi_devices.size()) {
+			auto sd = d.multi_devices[j];
+			int k = 0;
+			for (auto di : devices) {
+				if (sd == di) return k;
+				k++;
+			}
+		}
+	}
+	return -1;
 
 }
+
 
 const char *cycles_device_description(int i) {
 	if (i>= 0 && i < devices.size())

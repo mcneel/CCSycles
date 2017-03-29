@@ -13,6 +13,7 @@ EXPORTS
   cycles_number_devices
   cycles_number_multidevices
   cycles_number_multi_subdevices
+  cycles_get_multidevice_subdevice_id
   cycles_number_cuda_devices
   cycles_device_description
   cycles_device_id
