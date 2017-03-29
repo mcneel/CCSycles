@@ -40,7 +40,7 @@ unsigned int cycles_number_multi_subdevices(int i) {
 	if (MULTIDEVICEIDX(i) >= 0 && MULTIDEVICEIDX(i) < multi_devices.size())
 		return multi_devices[MULTIDEVICEIDX(i)].multi_devices.size();
 	else
-		return -1;
+		return 0;
 
 }
 
