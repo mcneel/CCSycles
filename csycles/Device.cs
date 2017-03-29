@@ -37,6 +37,18 @@ namespace ccl
 		/// The name for the device
 		/// </summary>
 		public string Name { get; private set; }
+
+		public string NiceName
+		{
+			get
+			{
+				if( IsCuda)
+					return Name.Split('_')[1];
+				if(IsOpenCl)
+					return Name.Split('_')[2];
+				return Name;
+			}
+		}
 		/// <summary>
 		/// Get the Cycles num for the device
 		/// </summary>
@@ -85,12 +97,12 @@ namespace ccl
 		/// <summary>
 		/// True if this is a Multi CUDA device
 		/// </summary>
-		public bool IsMultiCuda => Type == DeviceType.Multi && Name.Contains("CUDA");
+		public bool IsMultiCuda => Type == DeviceType.Multi && Subdevices.Where((Device d) => d.Type == DeviceType.CUDA).Any();
 
 		/// <summary>
 		/// True if this is a Multi OpenCL device
 		/// </summary>
-		public bool IsMultiOpenCl => Type == DeviceType.Multi && Name.Contains("OPENCL");
+		public bool IsMultiOpenCl => Type == DeviceType.Multi && Subdevices.Where((Device d) => d.Type == DeviceType.OpenCL).Any();
 
 		/// <summary>
 		/// String representation of this device
@@ -113,6 +125,28 @@ namespace ccl
 		/// Get a device by using GetDevice(int idx). Constructor is private.
 		/// </summary>
 		private Device() { }
+
+		/// <summary>
+		/// Test if given ID is for this device
+		/// </summary>
+		/// <param name="id"></param>
+		/// <returns></returns>
+		public bool EqualsId(int id)
+		{
+			if (Type != DeviceType.Multi) return (int)Id == id;
+
+			foreach(var sd in Subdevices)
+			{
+				if ((int)sd.Id == id) return true;
+			}
+
+			return false;
+		}
+
+		public bool EqualsId(uint id)
+		{
+			return EqualsId((int)id);
+		}
 
 		/// <summary>
 		/// Get the number of available Cycles render devices
@@ -139,7 +173,7 @@ namespace ccl
 			{
 				for(var i = 0; i<SubdeviceCount; i++)
 				{
-					var j = CSycles.number_multidevice_subdevice_id((int)Id, i);
+					var j = CSycles.get_multidevice_subdevice_id((int)Id, i);
 					yield return GetDevice((int)j);
 				}
 			}
@@ -155,7 +189,7 @@ namespace ccl
 			{
 				for(var i = 0; i<SubdeviceCount; i++)
 				{
-					var j = CSycles.number_multidevice_subdevice_id((int)Id, i);
+					var j = CSycles.get_multidevice_subdevice_id((int)Id, i);
 					yield return new Tuple<int, Device>((int)j, GetDevice((int)j));
 				}
 			}

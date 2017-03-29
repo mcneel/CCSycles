@@ -40,17 +40,17 @@ namespace ccl
 			return cycles_number_multi_subdevices(i);
 		}
 
-		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_number_multidevice_subdevice_id", CallingConvention = CallingConvention.Cdecl)]
-		private static extern uint cycles_number_multidevice_subdevice_id(int i, int j);
+		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_get_multidevice_subdevice_id", CallingConvention = CallingConvention.Cdecl)]
+		private static extern uint cycles_get_multidevice_subdevice_id(int i, int j);
 		/// <summary>
-		/// Get the number of available render multidevice_subdevice_id.
+		/// Get the get of available render multidevice_subdevice_id.
 		/// </summary>
 		/// <param name="i">ID of multi-device being queried</param>
 		/// <param name="j">index of subdevice in multi subdevices to query.</param>
 		/// <returns>The index of the sub-device in the global device list</returns>
-		public static uint number_multidevice_subdevice_id(int i, int j)
+		public static uint get_multidevice_subdevice_id(int i, int j)
 		{
-			return cycles_number_multidevice_subdevice_id(i, j);
+			return cycles_get_multidevice_subdevice_id(i, j);
 		}
 
 		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_number_cuda_devices", CallingConvention = CallingConvention.Cdecl)]
