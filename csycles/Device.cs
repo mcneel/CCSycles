@@ -353,6 +353,11 @@ namespace ccl
 			return l;
 		}
 
+		/// <summary>
+		/// Generate string from device ID or IDs (in case of multidevice).
+		/// 
+		/// The resulting string can be used as input to DeviceFromString().
+		/// </summary>
 		public string DeviceString {
 			get {
 				if (!IsMulti) return $"{Id}";
