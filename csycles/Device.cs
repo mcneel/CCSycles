@@ -1,5 +1,5 @@
 ﻿/**
-Copyright 2014 Robert McNeel and Associates
+Copyright 2014-2017 Robert McNeel and Associates
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -42,10 +42,16 @@ namespace ccl
 		{
 			get
 			{
-				if( IsCuda)
+				if (IsCuda)
 					return Name.Split('_')[1];
-				if(IsOpenCl)
+				if (IsOpenCl)
 					return Name.Split('_')[2];
+				if (IsMulti)
+				{
+					var n = string.Join(",", (from sd in Subdevices select sd.NiceName).ToList());
+					var multiType = (from sd in Subdevices select sd.Type).First();
+					return $"Multi ({multiType}): {n}";
+				}
 				return Name;
 			}
 		}
@@ -135,7 +141,7 @@ namespace ccl
 		{
 			if (Type != DeviceType.Multi) return (int)Id == id;
 
-			foreach(var sd in Subdevices)
+			foreach (var sd in Subdevices)
 			{
 				if ((int)sd.Id == id) return true;
 			}
@@ -171,7 +177,7 @@ namespace ccl
 		{
 			get
 			{
-				for(var i = 0; i<SubdeviceCount; i++)
+				for (var i = 0; i < SubdeviceCount; i++)
 				{
 					var j = CSycles.get_multidevice_subdevice_id((int)Id, i);
 					yield return GetDevice((int)j);
@@ -187,7 +193,7 @@ namespace ccl
 		{
 			get
 			{
-				for(var i = 0; i<SubdeviceCount; i++)
+				for (var i = 0; i < SubdeviceCount; i++)
 				{
 					var j = CSycles.get_multidevice_subdevice_id((int)Id, i);
 					yield return new Tuple<int, Device>((int)j, GetDevice((int)j));
@@ -217,9 +223,9 @@ namespace ccl
 					yield return GetDevice(i);
 				}
 
-				for(var j = 0; j < MultiCount; j++)
+				for (var j = 0; j < MultiCount; j++)
 				{
-					yield return GetDevice(j+MultiOffset);
+					yield return GetDevice(j + MultiOffset);
 				}
 			}
 		}
@@ -234,8 +240,8 @@ namespace ccl
 			get
 			{
 				var d = (from device in Devices
-					where device.IsCuda || device.IsMultiCuda
-					select device).FirstOrDefault();
+								 where device.IsCuda || device.IsMultiCuda
+								 select device).FirstOrDefault();
 				return d ?? Default;
 			}
 		}
@@ -249,12 +255,12 @@ namespace ccl
 			get
 			{
 				var d = (from device in Devices
-					where device.IsOpenCl|| device.IsMultiOpenCl
-					select device).FirstOrDefault();
+								 where device.IsOpenCl || device.IsMultiOpenCl
+								 select device).FirstOrDefault();
 				return d ?? Default;
 			}
 		}
-		
+
 		/// <summary>
 		/// Returns the first Multi OpenCL device if it exists,
 		/// the default rendering device (CPU) if not.
@@ -264,8 +270,8 @@ namespace ccl
 			get
 			{
 				var d = (from device in Devices
-					where device.IsMultiOpenCl
-					select device).FirstOrDefault();
+								 where device.IsMultiOpenCl
+								 select device).FirstOrDefault();
 				return d ?? Default;
 			}
 		}
@@ -278,8 +284,8 @@ namespace ccl
 			get
 			{
 				var d = (from device in Devices
-					where device.IsGpu
-					select device).FirstOrDefault();
+								 where device.IsGpu
+								 select device).FirstOrDefault();
 				return d ?? Default;
 
 			}
@@ -318,7 +324,7 @@ namespace ccl
 			idx.Sort((Device a, Device b) => {
 				if (a.Id == b.Id) return 0;
 				return a.Id < b.Id ? -1 : 1;
-				});
+			});
 			int[] sortedidx = idx.ConvertAll<int>((Device d) => ((int)d.Id)).ToArray();
 			var id = CSycles.create_multidevice(sortedidx.Length, ref sortedidx);
 			if (id < 0) return null;
@@ -340,6 +346,13 @@ namespace ccl
 			var l = IdSetFromString(res).ToList();
 			l.Sort();
 			return l;
+		}
+
+		public string DeviceString {
+			get {
+				if (!IsMulti) return $"{Id}";
+				return string.Join(",", (from sd in Subdevices select sd.Id).ToList());
+			}
 		}
 		/// <summary>
 		/// Parse given string into a set of integers.
@@ -392,7 +405,6 @@ namespace ccl
 			}
 
 			return CreateMultiDevice(DeviceListFromIntList(l));
-
 		}
 	}
 }
