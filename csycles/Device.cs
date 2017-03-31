@@ -38,6 +38,11 @@ namespace ccl
 		/// </summary>
 		public string Name { get; private set; }
 
+		/// <summary>
+		/// Give a nice name for UI usage. PCI bus and other redundancy is removed.
+		/// 
+		/// For a multidevice the type of multi device and its subdevices is given.
+		/// </summary>
 		public string NiceName
 		{
 			get
