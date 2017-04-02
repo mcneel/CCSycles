@@ -142,7 +142,7 @@ namespace ccl
 		/// </summary>
 		/// <param name="id"></param>
 		/// <returns></returns>
-		public bool EqualsId(int id)
+		public bool HasId(int id)
 		{
 			if (Type != DeviceType.Multi) return (int)Id == id;
 
@@ -154,9 +154,14 @@ namespace ccl
 			return false;
 		}
 
-		public bool EqualsId(uint id)
+		/// <summary>
+		/// Test if given ID is for this device
+		/// </summary>
+		/// <param name="id"></param>
+		/// <returns></returns>
+		public bool HasId(uint id)
 		{
-			return EqualsId((int)id);
+			return HasId((int)id);
 		}
 
 		/// <summary>
