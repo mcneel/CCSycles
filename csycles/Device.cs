@@ -164,6 +164,32 @@ namespace ccl
 			return HasId((int)id);
 		}
 
+		public override bool Equals(object obj)
+		{
+			var dev = obj as Device;
+			if (dev == null) return false;
+			
+			return dev.Id == Id && dev.SubdeviceCount == SubdeviceCount && dev.Subdevices.SequenceEqual(Subdevices);
+		}
+
+		public override int GetHashCode()
+		{
+			return DeviceString.GetHashCode();
+		}
+
+		static public bool operator ==(Device a, Device b)
+		{
+			if (!ReferenceEquals(a, null) && ReferenceEquals(b, null)) return false;
+			if (ReferenceEquals(a, null) && !ReferenceEquals(b, null)) return false;
+			return a.Equals(b);
+		}
+		static public bool operator !=(Device a, Device b)
+		{
+			if (!ReferenceEquals(a, null) && ReferenceEquals(b, null)) return true;
+			if (ReferenceEquals(a, null) && !ReferenceEquals(b, null)) return true;
+			return !a.Equals(b);
+		}
+
 		/// <summary>
 		/// Get the number of available Cycles render devices
 		/// </summary>
