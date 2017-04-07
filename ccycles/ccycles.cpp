@@ -53,7 +53,7 @@ void _cleanup_loggers()
 
 void cycles_path_init(const char* path, const char* user_path)
 {
-	ccl::path_init(string(path), string(user_path));
+	ccl::path_init(std::string(path), std::string(user_path));
 }
 
 void cycles_putenv(const char* var, const char* val)

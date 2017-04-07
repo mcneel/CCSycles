@@ -131,7 +131,7 @@ void cycles_shader_new_graph(unsigned int client_id, unsigned int shader_id)
 
 void cycles_shader_set_name(unsigned int client_id, unsigned int shader_id, const char* name)
 {
-	SHADER_SET(shader_id, string, name, name);
+	SHADER_SET(shader_id, std::string, name, name);
 }
 
 void cycles_shader_set_use_mis(unsigned int client_id, unsigned int shader_id, unsigned int use_mis)
@@ -332,7 +332,7 @@ unsigned int cycles_add_shader_node(unsigned int client_id, unsigned int shader_
 		node = new ccl::MatrixMathNode();
 		break;
 	case shadernode_type::UBER_BSDF:
-		node = new ccl::DisneyBsdfNode();
+		node = new ccl::PrincipledBsdfNode();
 		break;
 	}
 
@@ -364,7 +364,7 @@ struct attrunion {
 
 void shadernode_set_attribute(unsigned int client_id, unsigned int shader_id, unsigned int shnode_id, const char* attribute_name, attrunion v)
 {
-	auto attr = string(attribute_name);
+	auto attr = std::string(attribute_name);
 	ccl::ShaderNode* shnode = _shader_node_find(shader_id, shnode_id);
 	if (shnode) {
 		for (ccl::ShaderInput* inp : shnode->inputs) {
@@ -423,7 +423,7 @@ void cycles_shadernode_texmapping_set_transformation(unsigned int client_id, uns
 {
 	ccl::ShaderNode* shnode = _shader_node_find(shader_id, shnode_id);
 	if (shnode) {
-		string tp{ "UNKNOWN" };
+		std::string tp{ "UNKNOWN" };
 		switch (transform_type) {
 		case 0:
 			tp = "TRANSLATION";
@@ -493,7 +493,7 @@ void cycles_shadernode_texmapping_set_type(unsigned int client_id, unsigned int 
  */
 void cycles_shadernode_set_enum(unsigned int client_id, unsigned int shader_id, unsigned int shnode_id, shadernode_type shn_type, const char* enum_name, int value)
 {
-	auto ename = string{ enum_name };
+	auto ename = std::string{ enum_name };
 
 	ccl::ShaderNode* shnode = _shader_node_find(shader_id, shnode_id);
 	if (shnode) {
@@ -608,13 +608,13 @@ void cycles_shadernode_set_enum(unsigned int client_id, unsigned int shader_id, 
 			break;
 		}
 		case shadernode_type::UBER_BSDF:
-			ccl::DisneyBsdfNode* node = dynamic_cast<ccl::DisneyBsdfNode*>(shnode);
+			ccl::PrincipledBsdfNode* node = dynamic_cast<ccl::PrincipledBsdfNode*>(shnode);
 			node->distribution = (ccl::ClosureType)value;
 		}
 	}
 }
 
-CCImage* find_existing_ccimage(string imgname, unsigned int width, unsigned int height, unsigned int depth, unsigned int channels, bool is_float)
+CCImage* find_existing_ccimage(std::string imgname, unsigned int width, unsigned int height, unsigned int depth, unsigned int channels, bool is_float)
 {
 	CCImage* existing_image = nullptr;
 	for (CCImage* im : images) {
@@ -633,7 +633,7 @@ CCImage* find_existing_ccimage(string imgname, unsigned int width, unsigned int 
 }
 
 template <class T>
-CCImage* get_ccimage(string imgname, T* img, unsigned int width, unsigned int height, unsigned int depth, unsigned int channels, bool is_float)
+CCImage* get_ccimage(std::string imgname, T* img, unsigned int width, unsigned int height, unsigned int depth, unsigned int channels, bool is_float)
 {
 	CCImage* existing_image = find_existing_ccimage(imgname, width, height, depth, channels, is_float);
 	CCImage* nimg = existing_image ? existing_image : new CCImage();
@@ -659,8 +659,8 @@ CCImage* get_ccimage(string imgname, T* img, unsigned int width, unsigned int he
 
 void cycles_shadernode_set_member_float_img(unsigned int client_id, unsigned int shader_id, unsigned int shnode_id, shadernode_type shn_type, const char* member_name, const char* img_name, float* img, unsigned int width, unsigned int height, unsigned int depth, unsigned int channels)
 {
-	auto mname = string{ member_name };
-	auto imname = string{ img_name };
+	auto mname = std::string{ member_name };
+	auto imname = std::string{ img_name };
 
 	ccl::ShaderNode* shnode = _shader_node_find(shader_id, shnode_id);
 	if (shnode) {
@@ -688,8 +688,8 @@ void cycles_shadernode_set_member_float_img(unsigned int client_id, unsigned int
 
 void cycles_shadernode_set_member_byte_img(unsigned int client_id, unsigned int shader_id, unsigned int shnode_id, shadernode_type shn_type, const char* member_name, const char* img_name, unsigned char* img, unsigned int width, unsigned int height, unsigned int depth, unsigned int channels)
 {
-	auto mname = string{ member_name };
-	auto imname = string{ img_name };
+	auto mname = std::string{ member_name };
+	auto imname = std::string{ img_name };
 	ccl::ShaderNode* shnode = _shader_node_find(shader_id, shnode_id);
 	if (shnode) {
 		switch (shn_type) {
@@ -715,7 +715,7 @@ void cycles_shadernode_set_member_byte_img(unsigned int client_id, unsigned int 
 
 void cycles_shadernode_set_member_bool(unsigned int client_id, unsigned int shader_id, unsigned int shnode_id, shadernode_type shn_type, const char* member_name, bool value)
 {
-	auto mname = string{ member_name };
+	auto mname = std::string{ member_name };
 	ccl::ShaderNode* shnode = _shader_node_find(shader_id, shnode_id);
 	if (shnode) {
 		switch (shn_type) {
@@ -791,7 +791,7 @@ void cycles_shadernode_set_member_bool(unsigned int client_id, unsigned int shad
 
 void cycles_shadernode_set_member_int(unsigned int client_id, unsigned int shader_id, unsigned int shnode_id, shadernode_type shn_type, const char* member_name, int value)
 {
-	auto mname = string{ member_name };
+	auto mname = std::string{ member_name };
 	ccl::ShaderNode* shnode = _shader_node_find(shader_id, shnode_id);
 	if (shnode) {
 		switch (shn_type) {
@@ -830,7 +830,7 @@ void cycles_shadernode_set_member_int(unsigned int client_id, unsigned int shade
 
 void cycles_shadernode_set_member_float(unsigned int client_id, unsigned int shader_id, unsigned int shnode_id, shadernode_type shn_type, const char* member_name, float value)
 {
-	auto mname = string{ member_name };
+	auto mname = std::string{ member_name };
 
 	ccl::ShaderNode* shnode = _shader_node_find(shader_id, shnode_id);
 	if (shnode) {
@@ -873,7 +873,7 @@ void cycles_shadernode_set_member_float(unsigned int client_id, unsigned int sha
 
 void cycles_shadernode_set_member_vec4_at_index(unsigned int client_id, unsigned int shader_id, unsigned int shnode_id, shadernode_type shn_type, const char* member_name, float x, float y, float z, float w, int index)
 {
-	auto mname = string{ member_name };
+	auto mname = std::string{ member_name };
 
 	ccl::ShaderNode* shnode = _shader_node_find(shader_id, shnode_id);
 	if (shnode) {
@@ -953,7 +953,7 @@ void cycles_shadernode_set_member_vec4_at_index(unsigned int client_id, unsigned
 
 void cycles_shadernode_set_member_vec(unsigned int client_id, unsigned int shader_id, unsigned int shnode_id, shadernode_type shn_type, const char* member_name, float x, float y, float z)
 {
-	auto mname = string{ member_name };
+	auto mname = std::string{ member_name };
 
 	ccl::ShaderNode* shnode = _shader_node_find(shader_id, shnode_id);
 	if (shnode) {
@@ -1026,7 +1026,7 @@ void cycles_shadernode_set_attribute_vec(unsigned int client_id, unsigned int sh
 }
 
 /*
-Set a string attribute with given name to value. shader_id is the global shader ID.
+Set a std::string attribute with given name to value. shader_id is the global shader ID.
 */
 void cycles_shadernode_set_attribute_string(unsigned int client_id, unsigned int shader_id, unsigned int shnode_id, const char* attribute_name, const char* value)
 {

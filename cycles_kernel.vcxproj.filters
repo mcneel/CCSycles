@@ -24,6 +24,9 @@
     <ClCompile Include="cycles\src\kernel\kernels\cpu\kernel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="cycles\src\kernel\kernels\cpu\kernel_split.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cycles\src\kernel\closure\alloc.h">
@@ -321,6 +324,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="cycles\src\kernel\kernels\cpu\kernel_cpu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\kernel\kernels\cpu\kernel_cpu_image.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="cycles\src\kernel\kernels\cpu\kernel_cpu_impl.h">

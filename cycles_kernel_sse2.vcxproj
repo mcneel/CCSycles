@@ -126,7 +126,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Full</Optimization>
-      <AdditionalIncludeDirectories>$(ProjectDir)cycles\src\util;$(ProjectDir)cycles\src\kernel;$(ProjectDir)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)cycles\src\util;$(ProjectDir)cycles\src;$(ProjectDir)cycles\third_party\atomic;$(ProjectDir)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WITH_CYCLES_OPTIMIZED_KERNEL_SSE2;_CRT_SECURE_NO_WARNINGS;CCL_NAMESPACE_BEGIN=namespace ccl {;CCL_NAMESPACE_END=};WITH_OPENCL;WITH_CUDA;WITH_MULTI;DEBUG;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <FloatingPointModel>Fast</FloatingPointModel>
@@ -151,7 +151,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Full</Optimization>
-      <AdditionalIncludeDirectories>$(ProjectDir)cycles\src\util;$(ProjectDir)cycles\src\kernel;$(ProjectDir)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)cycles\src\util;$(ProjectDir)cycles\src;$(ProjectDir)cycles\third_party\atomic;$(ProjectDir)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WITH_CYCLES_OPTIMIZED_KERNEL_SSE2;_CRT_SECURE_NO_WARNINGS;CCL_NAMESPACE_BEGIN=namespace ccl {;CCL_NAMESPACE_END=};WITH_OPENCL;WITH_CUDA;WITH_MULTI;DEBUG;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <FloatingPointModel>Fast</FloatingPointModel>
@@ -178,7 +178,7 @@
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>false</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(ProjectDir)cycles\src\util;$(ProjectDir)cycles\src\kernel;$(ProjectDir)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)cycles\src\util;$(ProjectDir)cycles\src;$(ProjectDir)cycles\third_party\atomic;$(ProjectDir)</AdditionalIncludeDirectories>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <WholeProgramOptimization>false</WholeProgramOptimization>
       <PreprocessorDefinitions>WITH_CYCLES_OPTIMIZED_KERNEL_SSE2;_CRT_SECURE_NO_WARNINGS;CCL_NAMESPACE_BEGIN=namespace ccl {;CCL_NAMESPACE_END=};WITH_OPENCL;WITH_CUDA;WITH_MULTI;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -206,7 +206,7 @@
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>false</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(ProjectDir)cycles\src\util;$(ProjectDir)cycles\src\kernel;$(ProjectDir)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)cycles\src\util;$(ProjectDir)cycles\src;$(ProjectDir)cycles\third_party\atomic;$(ProjectDir)</AdditionalIncludeDirectories>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <WholeProgramOptimization>false</WholeProgramOptimization>
       <PreprocessorDefinitions>WITH_CYCLES_OPTIMIZED_KERNEL_SSE2;_CRT_SECURE_NO_WARNINGS;CCL_NAMESPACE_BEGIN=namespace ccl {;CCL_NAMESPACE_END=};WITH_OPENCL;WITH_CUDA;WITH_MULTI;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -230,6 +230,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="cycles\src\kernel\kernels\cpu\kernel_sse2.cpp" />
+    <ClCompile Include="cycles\src\kernel\kernels\cpu\kernel_split_sse2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cycles\src\kernel\kernel.h" />

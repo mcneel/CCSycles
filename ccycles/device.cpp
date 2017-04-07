@@ -126,7 +126,7 @@ unsigned int cycles_device_type(int i) {
 
 
 const char* cycles_device_capabilities() {
-	static string capabilities = ccl::Device::device_capabilities();
+	static std::string capabilities = ccl::Device::device_capabilities();
 	return capabilities.c_str();
 }
 

@@ -61,7 +61,7 @@ unsigned int get_idx_for_shader_in_scene(ccl::Scene* sce, ccl::Shader* sh)
 
 /* implement CCScene methods*/
 
-void CCScene::builtin_image_info(const string& builtin_name, void* builtin_data, bool& is_float, int& width, int& height, int& depth, int& channels)
+void CCScene::builtin_image_info(const std::string& builtin_name, void* builtin_data, bool& is_float, int& width, int& height, int& depth, int& channels)
 {
 	CCImage* img = static_cast<CCImage*>(builtin_data);
 	width = img->width;
@@ -71,14 +71,14 @@ void CCScene::builtin_image_info(const string& builtin_name, void* builtin_data,
 	is_float = img->is_float;
 }
 
-bool CCScene::builtin_image_pixels(const string& builtin_name, void* builtin_data, unsigned char* pixels)
+bool CCScene::builtin_image_pixels(const std::string& builtin_name, void* builtin_data, unsigned char* pixels)
 {
 	CCImage* img = static_cast<CCImage*>(builtin_data);
 	memcpy(pixels, img->builtin_data, img->width*img->height*img->channels*sizeof(unsigned char));
 	return false;
 }
 
-bool CCScene::builtin_image_float_pixels(const string& builtin_name, void* builtin_data, float* pixels)
+bool CCScene::builtin_image_float_pixels(const std::string& builtin_name, void* builtin_data, float* pixels)
 {
 	CCImage* img = static_cast<CCImage*>(builtin_data);
 	memcpy(pixels, img->builtin_data, img->width*img->height*img->channels*sizeof(float));

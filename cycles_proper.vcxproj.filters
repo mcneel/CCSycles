@@ -58,9 +58,9 @@
     <ClCompile Include="cycles\src\util\util_transform.cpp">
       <Filter>util</Filter>
     </ClCompile>
-		<ClCompile Include="cycles\src\util\util_windows.cpp">
+    <ClCompile Include="cycles\src\util\util_windows.cpp">
       <Filter>util</Filter>
-		</ClCompile>
+    </ClCompile>
     <ClCompile Include="cycles\src\device\device.cpp">
       <Filter>device</Filter>
     </ClCompile>
@@ -77,6 +77,9 @@
       <Filter>device</Filter>
     </ClCompile>
     <ClCompile Include="cycles\src\device\device_opencl.cpp">
+      <Filter>device</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles\src\device\device_split_kernel.cpp">
       <Filter>device</Filter>
     </ClCompile>
     <ClCompile Include="cycles\src\device\opencl\opencl_base.cpp">
@@ -364,6 +367,9 @@
       <Filter>device</Filter>
     </ClInclude>
     <ClInclude Include="cycles\src\device\device_task.h">
+      <Filter>device</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\device\device_split_kernel.h">
       <Filter>device</Filter>
     </ClInclude>
     <ClInclude Include="cycles\src\device\opencl\opencl.h">

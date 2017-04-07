@@ -701,11 +701,11 @@ void cycles_progress_get_progress(unsigned int client_id, unsigned int session_i
 
 const char* cycles_progress_get_status(unsigned int client_id, unsigned int session_id)
 {
-	/* static here, since otherwise string goes out of scope on return. */
-	static string status;
+	/* static here, since otherwise std::string goes out of scope on return. */
+	static std::string status;
 	status = "";
 	SESSION_FIND(session_id)
-		string substatus{ "" };
+		std::string substatus{ "" };
 		session->progress.get_status(status, substatus);
 		return status.c_str();
 	SESSION_FIND_END()
@@ -715,11 +715,11 @@ const char* cycles_progress_get_status(unsigned int client_id, unsigned int sess
 
 const char* cycles_progress_get_substatus(unsigned int client_id, unsigned int session_id)
 {
-	/* static here, since otherwise string goes out of scope on return. */
-	static string substatus;
+	/* static here, since otherwise std::string goes out of scope on return. */
+	static std::string substatus;
 	substatus = "";
 	SESSION_FIND(session_id)
-		string status{ "" };
+		std::string status{ "" };
 		session->progress.get_status(status, substatus);
 		return substatus.c_str();
 	SESSION_FIND_END()

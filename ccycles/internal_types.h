@@ -19,6 +19,7 @@ limitations under the License.
 #include <ctime>
 #include <thread>
 #include <mutex>
+#include <string>
 
 #pragma warning ( push )
 
@@ -84,7 +85,7 @@ public:
 		 */
 		auto t = std::chrono::system_clock::now();
 		std::time_t ts = std::chrono::system_clock::to_time_t(t);
-		auto tsstr = string{std::ctime(&ts)};
+		auto tsstr = std::string{std::ctime(&ts)};
 		tsstr = tsstr.substr(0, tsstr.size() - 1);
 
 		/* start our new logger_msg with timestamp and head, then
@@ -117,9 +118,9 @@ private:
 		m.unlock();
 	}
 
-	stringstream logger_msg;
+	std::stringstream logger_msg;
 
-	mutex m;
+	std::mutex m;
 };
 
 /*
@@ -131,7 +132,7 @@ private:
 extern Logger logger;
 
 struct CCImage {
-		string filename;
+		std::string filename;
 		void *builtin_data;
 
 		int width;
@@ -214,9 +215,9 @@ public:
 
 	/* Note: depth>1 if volumetric texture (i.e smoke volume data) */
 
-	void builtin_image_info(const string& builtin_name, void* builtin_data, bool& is_float, int& width, int& height, int& depth, int& channels);
-	bool builtin_image_pixels(const string& builtin_name, void* builtin_data, unsigned char* pixels);
-	bool builtin_image_float_pixels(const string& builtin_name, void* builtin_data, float* pixels);
+	void builtin_image_info(const std::string& builtin_name, void* builtin_data, bool& is_float, int& width, int& height, int& depth, int& channels);
+	bool builtin_image_pixels(const std::string& builtin_name, void* builtin_data, unsigned char* pixels);
+	bool builtin_image_float_pixels(const std::string& builtin_name, void* builtin_data, float* pixels);
 };
 
 struct CCShader {

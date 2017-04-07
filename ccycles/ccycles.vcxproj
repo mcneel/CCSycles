@@ -126,7 +126,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>
       </SDLCheck>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\..\..\boost;$(ProjectDir)..\OpenImageIO\include;$(ProjectDir)..\pthreads;$(ProjectDir)..\glew\include;$(ProjectDir)..\cycles\third_party\atomic;$(ProjectDir)..\cycles\src\bvh;$(ProjectDir)..\cycles\src\device;$(ProjectDir)..\cycles\src\kernel;$(ProjectDir)..\cycles\src\render;$(ProjectDir)..\cycles\src\subd;$(ProjectDir)..\cycles\src\util;$(ProjectDir)..\cycles\src\kernel\svm;$(ProjectDir)..\cycles\src\graph</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\..\..\boost;$(ProjectDir)..\OpenImageIO\include;$(ProjectDir)..\pthreads;$(ProjectDir)..\glew\include;$(ProjectDir)..\cycles\third_party\atomic;$(ProjectDir)..\cycles\src\bvh;$(ProjectDir)..\cycles\src\device;$(ProjectDir)..\cycles\src\kernel;$(ProjectDir)..\cycles\src\render;$(ProjectDir)..\cycles\src\subd;$(ProjectDir)..\cycles\src\util;$(ProjectDir)..\cycles\src\kernel\svm;$(ProjectDir)..\cycles\src</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>DEBUG;NO_OIIO_LOADING;CCL_CAPI_DLL;GLEW_STATIC;BOOST_ALL_NO_LIB;_CRT_SECURE_NO_WARNINGS;CYCLES_STD_UNORDERED_MAP;CCL_NAMESPACE_BEGIN=namespace ccl {;CCL_NAMESPACE_END=};WITH_CYCLES_OPTIMIZED_KERNEL_SSE2;WITH_CYCLES_OPTIMIZED_KERNEL_SSE3;WITH_CYCLES_OPTIMIZED_KERNEL_SSE41;WITH_CYCLES_OPTIMIZED_KERNEL_AVX;WITH_CYCLES_OPTIMIZED_KERNEL_AVX2;HAVE_PTW32_CONFIG_H;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <BufferSecurityCheck>false</BufferSecurityCheck>
@@ -158,7 +158,7 @@ copy /Y "$(ProjectDir)x64\$(ConfigurationName)\ccycles.pdb" "$(SolutionDir)..\bi
       <Optimization>Disabled</Optimization>
       <SDLCheck>
       </SDLCheck>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\boost;$(ProjectDir)..\OpenImageIO\include;$(ProjectDir)..\pthreads;$(ProjectDir)..\glew\include;$(ProjectDir)..\cycles\third_party\atomic;$(ProjectDir)..\cycles\src\bvh;$(ProjectDir)..\cycles\src\device;$(ProjectDir)..\cycles\src\kernel;$(ProjectDir)..\cycles\src\render;$(ProjectDir)..\cycles\src\subd;$(ProjectDir)..\cycles\src\util;$(ProjectDir)..\cycles\src\kernel\svm;$(ProjectDir)..\cycles\src\graph</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\boost;$(ProjectDir)..\OpenImageIO\include;$(ProjectDir)..\pthreads;$(ProjectDir)..\glew\include;$(ProjectDir)..\cycles\third_party\atomic;$(ProjectDir)..\cycles\src\bvh;$(ProjectDir)..\cycles\src\device;$(ProjectDir)..\cycles\src\kernel;$(ProjectDir)..\cycles\src\render;$(ProjectDir)..\cycles\src\subd;$(ProjectDir)..\cycles\src\util;$(ProjectDir)..\cycles\src\kernel\svm;$(ProjectDir)..\cycles\src</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>DEBUG;STANDALONE;NO_OIIO_LOADING;CCL_CAPI_DLL;GLEW_STATIC;BOOST_ALL_NO_LIB;_CRT_SECURE_NO_WARNINGS;CYCLES_STD_UNORDERED_MAP;CCL_NAMESPACE_BEGIN=namespace ccl {;CCL_NAMESPACE_END=};WITH_CYCLES_OPTIMIZED_KERNEL_SSE2;WITH_CYCLES_OPTIMIZED_KERNEL_SSE3;WITH_CYCLES_OPTIMIZED_KERNEL_SSE41;WITH_CYCLES_OPTIMIZED_KERNEL_AVX;WITH_CYCLES_OPTIMIZED_KERNEL_AVX2;HAVE_PTW32_CONFIG_H;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <BufferSecurityCheck>false</BufferSecurityCheck>
@@ -195,7 +195,7 @@ copy /Y "$(ProjectDir)x64\$(ConfigurationName)\ccycles.pdb" "$(SolutionDir)bin\$
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>
       </SDLCheck>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\..\..\boost;$(ProjectDir)..\OpenImageIO\include;$(ProjectDir)..\pthreads;$(ProjectDir)..\glew\include;$(ProjectDir)..\cycles\third_party\atomic;$(ProjectDir)..\cycles\src\bvh;$(ProjectDir)..\cycles\src\device;$(ProjectDir)..\cycles\src\kernel;$(ProjectDir)..\cycles\src\render;$(ProjectDir)..\cycles\src\subd;$(ProjectDir)..\cycles\src\util;$(ProjectDir)..\cycles\src\kernel\svm;$(ProjectDir)..\cycles\src\graph</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\..\..\boost;$(ProjectDir)..\OpenImageIO\include;$(ProjectDir)..\pthreads;$(ProjectDir)..\glew\include;$(ProjectDir)..\cycles\third_party\atomic;$(ProjectDir)..\cycles\src\bvh;$(ProjectDir)..\cycles\src\device;$(ProjectDir)..\cycles\src\kernel;$(ProjectDir)..\cycles\src\render;$(ProjectDir)..\cycles\src\subd;$(ProjectDir)..\cycles\src\util;$(ProjectDir)..\cycles\src\kernel\svm;$(ProjectDir)..\cycles\src</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>NO_OIIO_LOADING;CCL_CAPI_DLL;GLEW_STATIC;BOOST_ALL_NO_LIB;_CRT_SECURE_NO_WARNINGS;CYCLES_STD_UNORDERED_MAP;CCL_NAMESPACE_BEGIN=namespace ccl {;CCL_NAMESPACE_END=};WITH_CYCLES_OPTIMIZED_KERNEL_SSE2;WITH_CYCLES_OPTIMIZED_KERNEL_SSE3;WITH_CYCLES_OPTIMIZED_KERNEL_SSE41;WITH_CYCLES_OPTIMIZED_KERNEL_AVX;WITH_CYCLES_OPTIMIZED_KERNEL_AVX2;HAVE_PTW32_CONFIG_H;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <FloatingPointModel>Fast</FloatingPointModel>
@@ -230,7 +230,7 @@ copy /Y "$(ProjectDir)x64\$(ConfigurationName)\ccycles.pdb" "$(SolutionDir)..\bi
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>
       </SDLCheck>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\boost;$(ProjectDir)..\OpenImageIO\include;$(ProjectDir)..\pthreads;$(ProjectDir)..\glew\include;$(ProjectDir)..\cycles\third_party\atomic;$(ProjectDir)..\cycles\src\bvh;$(ProjectDir)..\cycles\src\device;$(ProjectDir)..\cycles\src\kernel;$(ProjectDir)..\cycles\src\render;$(ProjectDir)..\cycles\src\subd;$(ProjectDir)..\cycles\src\util;$(ProjectDir)..\cycles\src\kernel\svm;$(ProjectDir)..\cycles\src\graph</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\boost;$(ProjectDir)..\OpenImageIO\include;$(ProjectDir)..\pthreads;$(ProjectDir)..\glew\include;$(ProjectDir)..\cycles\third_party\atomic;$(ProjectDir)..\cycles\src\bvh;$(ProjectDir)..\cycles\src\device;$(ProjectDir)..\cycles\src\kernel;$(ProjectDir)..\cycles\src\render;$(ProjectDir)..\cycles\src\subd;$(ProjectDir)..\cycles\src\util;$(ProjectDir)..\cycles\src\kernel\svm;$(ProjectDir)..\cycles\src</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>STANDALONE;NO_OIIO_LOADING;CCL_CAPI_DLL;GLEW_STATIC;BOOST_ALL_NO_LIB;_CRT_SECURE_NO_WARNINGS;CYCLES_STD_UNORDERED_MAP;CCL_NAMESPACE_BEGIN=namespace ccl {;CCL_NAMESPACE_END=};WITH_CYCLES_OPTIMIZED_KERNEL_SSE2;WITH_CYCLES_OPTIMIZED_KERNEL_SSE3;WITH_CYCLES_OPTIMIZED_KERNEL_SSE41;WITH_CYCLES_OPTIMIZED_KERNEL_AVX;WITH_CYCLES_OPTIMIZED_KERNEL_AVX2;HAVE_PTW32_CONFIG_H;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <FloatingPointModel>Fast</FloatingPointModel>
