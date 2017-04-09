@@ -24,7 +24,7 @@ namespace ccl.ShaderNodes
 	public class UberBsdfInputs : Inputs
 	{
 		public ColorSocket BaseColor { get; set; }
-		public ColorSocket SpecularColor { get; set; }
+		//public ColorSocket SpecularColor { get; set; }
 		public ColorSocket SubsurfaceColor { get; set; }
 		public FloatSocket Metallic { get; set; }
 		public FloatSocket Subsurface { get; set; }
@@ -50,8 +50,8 @@ namespace ccl.ShaderNodes
 
 			BaseColor = new ColorSocket(parentNode, "Base Color");
 			AddSocket(BaseColor);
-			SpecularColor = new ColorSocket(parentNode, "Specular Color");
-			AddSocket(SpecularColor);
+			//SpecularColor = new ColorSocket(parentNode, "Specular Color");
+			//AddSocket(SpecularColor);
 			SubsurfaceColor = new ColorSocket(parentNode, "Subsurface Color");
 			AddSocket(SubsurfaceColor);
 			Metallic = new FloatSocket(parentNode, "Metallic");
@@ -160,7 +160,7 @@ namespace ccl.ShaderNodes
 		internal override void ParseXml(XmlReader xmlNode)
 		{
 			Utilities.Instance.get_float4(ins.BaseColor, xmlNode);
-			Utilities.Instance.get_float4(ins.SpecularColor, xmlNode);
+			//Utilities.Instance.get_float4(ins.SpecularColor, xmlNode);
 			Utilities.Instance.get_float4(ins.SubsurfaceColor, xmlNode);
 			Utilities.Instance.get_float(ins.Metallic, xmlNode);
 			Utilities.Instance.get_float(ins.Subsurface, xmlNode);
