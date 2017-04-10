@@ -190,29 +190,29 @@ copy /Y "$(ProjectDir)..\..\..\..\..\boostbuild\stage$(ConfigurationName)\lib\bo
 
 XCopy "$(SolutionDir)..\..\big_libs\RhinoCycles\lib" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\lib" /Y /I /Q
 
-XCopy "$(ProjectDir)..\cycles\src\kernel\closure" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\kernel\closure" /Y /I /Q
-XCopy "$(ProjectDir)..\cycles\src\kernel\geom" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\kernel\geom" /Y /I /Q
-XCopy "$(ProjectDir)..\cycles\src\kernel\bvh" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\kernel\bvh" /Y /I /Q
-XCopy "$(ProjectDir)..\cycles\src\kernel\svm" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\kernel\svm" /Y /I /Q
-XCopy "$(ProjectDir)..\cycles\src\kernel\split" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\kernel\split" /Y /I /Q
-XCopy "$(ProjectDir)..\cycles\src\kernel\kernels\opencl" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\kernel\kernels\opencl" /Y /I /Q
-XCopy "$(ProjectDir)..\cycles\src\kernel\kernels\cuda" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\kernel\kernels\cuda" /Y /I /Q
-XCopy "$(ProjectDir)..\cycles\src\kernel\kernel*.*" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\kernel" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\kernel\closure" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\source\kernel\closure" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\kernel\geom" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\source\kernel\geom" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\kernel\bvh" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\source\kernel\bvh" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\kernel\svm" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\source\kernel\svm" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\kernel\split" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\source\kernel\split" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\kernel\kernels\opencl" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\source\kernel\kernels\opencl" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\kernel\kernels\cuda" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\source\kernel\kernels\cuda" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\kernel\kernel*.*" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\source\kernel" /Y /I /Q
 
-XCopy "$(ProjectDir)..\cycles\src\util\util_atomic.h" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\kernel" /Y /I /Q
-XCopy "$(ProjectDir)..\cycles\src\util\util_color.h" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\kernel" /Y /I /Q
-XCopy "$(ProjectDir)..\cycles\src\util\util_half.h" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\kernel" /Y /I /Q
-XCopy "$(ProjectDir)..\cycles\src\util\util_hash.h" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\kernel" /Y /I /Q
-XCopy "$(ProjectDir)..\cycles\src\util\util_math.h" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\kernel" /Y /I /Q
-XCopy "$(ProjectDir)..\cycles\src\util\util_math_fast.h" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\kernel" /Y /I /Q
-XCopy "$(ProjectDir)..\cycles\src\util\util_math_intersect.h" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\kernel" /Y /I /Q
-XCopy "$(ProjectDir)..\cycles\src\util\util_texture.h" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\kernel" /Y /I /Q
-XCopy "$(ProjectDir)..\cycles\src\util\util_transform.h" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\kernel" /Y /I /Q
-XCopy "$(ProjectDir)..\cycles\src\util\util_types.h" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\kernel" /Y /I /Q
-XCopy "$(ProjectDir)..\cycles\src\util\util_static_assert.h" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\kernel" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\util\util_atomic.h" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\source\util" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\util\util_color.h" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\source\util" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\util\util_half.h" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\source\util" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\util\util_hash.h" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\source\util" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\util\util_math.h" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\source\util" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\util\util_math_fast.h" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\source\util" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\util\util_math_intersect.h" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\source\util" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\util\util_texture.h" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\source\util" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\util\util_transform.h" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\source\util" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\util\util_types.h" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\source\util" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\util\util_static_assert.h" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\source\util" /Y /I /Q
     </PostBuildEvent>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)' == 'Stand-alone Release'">
+  <PropertyGroup Condition="'$(Configuration)' == 'Stand-alone Release' Or '$(Configuration)' == 'Stand-alone Debug'">
     <PostBuildEvent>XCopy /Y "$(TargetDir)$(ProjectName).*" "$(SolutionDir)$(OutDir)"
 copy /Y "$(ProjectDir)..\ccycles\x64\$(ConfigurationName)\ccycles.dll" "$(SolutionDir)$(OutDir)"
 copy /Y "$(ProjectDir)..\ccycles\x64\$(ConfigurationName)\ccycles.pdb" "$(SolutionDir)$(OutDir)"
@@ -222,56 +222,26 @@ copy /Y "$(ProjectDir)..\boostbuild\stagerelease\lib\boost_*" "$(SolutionDir)$(O
 
 XCopy "$(SolutionDir)lib" "$(SolutionDir)$(OutDir)lib" /Y /I /Q
 
-XCopy "$(ProjectDir)..\cycles\src\kernel\closure" "$(SolutionDir)$(OutDir)kernel\closure" /Y /I /Q
-XCopy "$(ProjectDir)..\cycles\src\kernel\geom" "$(SolutionDir)$(OutDir)kernel\geom" /Y /I /Q
-XCopy "$(ProjectDir)..\cycles\src\kernel\bvh" "$(SolutionDir)$(OutDir)kernel\bvh" /Y /I /Q
-XCopy "$(ProjectDir)..\cycles\src\kernel\svm" "$(SolutionDir)$(OutDir)kernel\svm" /Y /I /Q
-XCopy "$(ProjectDir)..\cycles\src\kernel\split" "$(SolutionDir)$(OutDir)kernel\split" /Y /I /Q
-XCopy "$(ProjectDir)..\cycles\src\kernel\kernels\opencl" "$(SolutionDir)$(OutDir)kernel\kernels\opencl" /Y /I /Q
-XCopy "$(ProjectDir)..\cycles\src\kernel\kernels\cuda" "$(SolutionDir)$(OutDir)kernel\kernels\cuda" /Y /I /Q
-XCopy "$(ProjectDir)..\cycles\src\kernel\kernel*.*" "$(SolutionDir)$(OutDir)kernel" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\kernel\closure" "$(SolutionDir)$(OutDir)source\kernel\closure" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\kernel\geom" "$(SolutionDir)$(OutDir)source\kernel\geom" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\kernel\bvh" "$(SolutionDir)$(OutDir)source\kernel\bvh" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\kernel\svm" "$(SolutionDir)$(OutDir)source\kernel\svm" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\kernel\split" "$(SolutionDir)$(OutDir)source\kernel\split" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\kernel\kernels\opencl" "$(SolutionDir)$(OutDir)source\kernel\kernels\opencl" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\kernel\kernels\cuda" "$(SolutionDir)$(OutDir)source\kernel\kernels\cuda" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\kernel\kernel*.*" "$(SolutionDir)$(OutDir)source\kernel" /Y /I /Q
 
-XCopy "$(ProjectDir)..\cycles\src\util\util_atomic.h" "$(SolutionDir)$(OutDir)kernel" /Y /I /Q
-XCopy "$(ProjectDir)..\cycles\src\util\util_color.h" "$(SolutionDir)$(OutDir)kernel" /Y /I /Q
-XCopy "$(ProjectDir)..\cycles\src\util\util_half.h" "$(SolutionDir)$(OutDir)kernel" /Y /I /Q
-XCopy "$(ProjectDir)..\cycles\src\util\util_hash.h" "$(SolutionDir)$(OutDir)kernel" /Y /I /Q
-XCopy "$(ProjectDir)..\cycles\src\util\util_math.h" "$(SolutionDir)$(OutDir)kernel" /Y /I /Q
-XCopy "$(ProjectDir)..\cycles\src\util\util_math_fast.h" "$(SolutionDir)$(OutDir)kernel" /Y /I /Q
-XCopy "$(ProjectDir)..\cycles\src\util\util_texture.h" "$(SolutionDir)$(OutDir)kernel" /Y /I /Q
-XCopy "$(ProjectDir)..\cycles\src\util\util_transform.h" "$(SolutionDir)$(OutDir)kernel" /Y /I /Q
-XCopy "$(ProjectDir)..\cycles\src\util\util_types.h" "$(SolutionDir)$(OutDir)kernel" /Y /I /Q
-XCopy "$(ProjectDir)..\cycles\src\util\util_static_assert.h" "$(SolutionDir)$(OutDir)kernel" /Y /I /Q
-    </PostBuildEvent>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)' == 'Stand-alone Debug'">
-    <PostBuildEvent>XCopy /Y "$(TargetDir)$(ProjectName).*" "$(SolutionDir)$(OutDir)"
-copy /Y "$(ProjectDir)..\ccycles\x64\$(ConfigurationName)\ccycles.dll" "$(SolutionDir)$(OutDir)"
-copy /Y "$(ProjectDir)..\ccycles\x64\$(ConfigurationName)\ccycles.pdb" "$(SolutionDir)$(OutDir)"
-copy /Y "$(ProjectDir)..\OpenImageIO\x64\$(ConfigurationName)\OpenImageIOv13.dll" "$(SolutionDir)$(OutDir)"
-copy /Y "$(ProjectDir)..\pthreads\x64\$(ConfigurationName)\pthreads.dll" "$(SolutionDir)$(OutDir)"
-copy /Y "$(ProjectDir)..\boostbuild\stagedebug\lib\boost_*" "$(SolutionDir)$(OutDir)"
-
-XCopy "$(SolutionDir)lib" "$(SolutionDir)$(OutDir)lib" /Y /I /Q
-
-XCopy "$(ProjectDir)..\cycles\src\kernel\closure" "$(SolutionDir)$(OutDir)kernel\closure" /Y /I /Q
-XCopy "$(ProjectDir)..\cycles\src\kernel\geom" "$(SolutionDir)$(OutDir)kernel\geom" /Y /I /Q
-XCopy "$(ProjectDir)..\cycles\src\kernel\bvh" "$(SolutionDir)$(OutDir)kernel\bvh" /Y /I /Q
-XCopy "$(ProjectDir)..\cycles\src\kernel\svm" "$(SolutionDir)$(OutDir)kernel\svm" /Y /I /Q
-XCopy "$(ProjectDir)..\cycles\src\kernel\split" "$(SolutionDir)$(OutDir)kernel\split" /Y /I /Q
-XCopy "$(ProjectDir)..\cycles\src\kernel\kernels\opencl" "$(SolutionDir)$(OutDir)kernel\kernels\opencl" /Y /I /Q
-XCopy "$(ProjectDir)..\cycles\src\kernel\kernels\cuda" "$(SolutionDir)$(OutDir)kernel\kernels\cuda" /Y /I /Q
-XCopy "$(ProjectDir)..\cycles\src\kernel\kernel*.*" "$(SolutionDir)$(OutDir)kernel" /Y /I /Q
-
-XCopy "$(ProjectDir)..\cycles\src\util\util_atomic.h" "$(SolutionDir)$(OutDir)kernel" /Y /I /Q
-XCopy "$(ProjectDir)..\cycles\src\util\util_color.h" "$(SolutionDir)$(OutDir)kernel" /Y /I /Q
-XCopy "$(ProjectDir)..\cycles\src\util\util_half.h" "$(SolutionDir)$(OutDir)kernel" /Y /I /Q
-XCopy "$(ProjectDir)..\cycles\src\util\util_hash.h" "$(SolutionDir)$(OutDir)kernel" /Y /I /Q
-XCopy "$(ProjectDir)..\cycles\src\util\util_math.h" "$(SolutionDir)$(OutDir)kernel" /Y /I /Q
-XCopy "$(ProjectDir)..\cycles\src\util\util_math_fast.h" "$(SolutionDir)$(OutDir)kernel" /Y /I /Q
-XCopy "$(ProjectDir)..\cycles\src\util\util_texture.h" "$(SolutionDir)$(OutDir)kernel" /Y /I /Q
-XCopy "$(ProjectDir)..\cycles\src\util\util_transform.h" "$(SolutionDir)$(OutDir)kernel" /Y /I /Q
-XCopy "$(ProjectDir)..\cycles\src\util\util_types.h" "$(SolutionDir)$(OutDir)kernel" /Y /I /Q
-XCopy "$(ProjectDir)..\cycles\src\util\util_static_assert.h" "$(SolutionDir)$(OutDir)kernel" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\util\util_atomic.h" "$(SolutionDir)$(OutDir)source\util" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\util\util_color.h" "$(SolutionDir)$(OutDir)source\util" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\util\util_half.h" "$(SolutionDir)$(OutDir)source\util" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\util\util_hash.h" "$(SolutionDir)$(OutDir)source\util" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\util\util_math.h" "$(SolutionDir)$(OutDir)source\util" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\util\util_math_fast.h" "$(SolutionDir)$(OutDir)source\util" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\util\util_math_intersect.h" "$(SolutionDir)$(OutDir)source\util" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\util\util_texture.h" "$(SolutionDir)$(OutDir)source\util" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\util\util_transform.h" "$(SolutionDir)$(OutDir)source\util" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\util\util_types.h" "$(SolutionDir)$(OutDir)source\util" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\util\util_static_assert.h" "$(SolutionDir)$(OutDir)source\util" /Y /I /Q
     </PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
