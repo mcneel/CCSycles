@@ -133,6 +133,37 @@ CCL_CAPI void __cdecl cycles_path_init(const char* path, const char* user_path);
 CCL_CAPI void __cdecl cycles_putenv(const char* var, const char* val);
 
 /**
+ * Set the CPU kernel type to use. 1 is split, 0 is regular.
+ * \ingroup ccycles
+ */
+CCL_CAPI void __cdecl cycles_debug_set_cpu_kernel(unsigned int state);
+
+/**
+ * Pass 1 to allow QBVH usage in CPU kernel.
+ * \ingroup ccycles
+ */
+CCL_CAPI void __cdecl cycles_debug_set_cpu_allow_qbvh(unsigned int state);
+
+/**
+ * Set the CUDA kernel type to use. 1 is split, 0 is regular.
+ * \ingroup ccycles
+ */
+CCL_CAPI void __cdecl cycles_debug_set_cuda_kernel(unsigned int state);
+
+/**
+ * Set the OpenCL kernel type to use. 1 is split, 0 is mega. -1 means decide
+ * automatically based on officially supported devices.
+ * \ingroup ccycles
+ */
+CCL_CAPI void __cdecl cycles_debug_set_opencl_kernel(unsigned int state);
+
+/**
+ * Set the OpenCL kernel to be compiled as single program with 1.
+ * \ingroup ccycles
+ */
+CCL_CAPI void __cdecl cycles_debug_set_opencl_single_program(unsigned int state);
+
+/**
  * Clean up everything, we're done.
  * \ingroup ccycles
  * \todo Add session specific cleanup, so we don't accidently delete sessions that are in progress.

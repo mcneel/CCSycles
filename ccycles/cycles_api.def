@@ -2,6 +2,11 @@ LIBRARY
 EXPORTS
   cycles_path_init
   cycles_putenv
+  cycles_debug_set_cpu_kernel
+  cycles_debug_set_cpu_allow_qbvh
+  cycles_debug_set_cuda_kernel
+  cycles_debug_set_opencl_kernel
+  cycles_debug_set_opencl_single_program
   cycles_initialise
   cycles_shutdown
   cycles_set_logger

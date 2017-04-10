@@ -16,6 +16,7 @@ limitations under the License.
 
 #include "internal_types.h"
 
+#include "util_debug.h"
 #include "util_path.h"
 #include "ccycles.h"
 
@@ -70,6 +71,36 @@ void cycles_initialise()
 		_init_shaders();
 		initialised = true;
 	}
+}
+
+void cycles_debug_set_cpu_kernel(unsigned int state)
+{
+	ccl::DebugFlags().cpu.split_kernel = state == 1;
+}
+
+void cycles_debug_set_cpu_allow_qbvh(unsigned int state)
+{
+	ccl::DebugFlags().cpu.qbvh = state == 1;
+}
+
+void cycles_debug_set_cuda_kernel(unsigned int state)
+{
+	ccl::DebugFlags().cuda.split_kernel = state == 1;
+}
+
+void cycles_debug_set_opencl_kernel(unsigned int state)
+{
+	if (state == -1)
+		ccl::DebugFlags().opencl.kernel_type = ccl::DebugFlags::OpenCL::KernelType::KERNEL_DEFAULT;
+	else if (state == 0)
+		ccl::DebugFlags().opencl.kernel_type = ccl::DebugFlags::OpenCL::KernelType::KERNEL_MEGA;
+	else if (state == 1)
+		ccl::DebugFlags().opencl.kernel_type = ccl::DebugFlags::OpenCL::KernelType::KERNEL_SPLIT;
+}
+
+void cycles_debug_set_opencl_single_program(unsigned int state)
+{
+	ccl::DebugFlags().opencl.single_program = state == 1;
 }
 
 void cycles_shutdown()

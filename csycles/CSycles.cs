@@ -230,6 +230,69 @@ namespace ccl
 		{
 			cycles_release_client(clientId);
 		}
+
+
+		[DllImport("ccycles.dll", SetLastError = false, CallingConvention = CallingConvention.Cdecl,
+			EntryPoint = "cycles_debug_set_cpu_kernel")]
+		private static extern void cycles_debug_set_cpu_kernel(int stdout);
+		/**
+		 * Set to true if logger output should be sent to std::cout as well.
+		 *
+		 * Note that this is global to the logger.
+		 */
+		public static void debug_set_cpu_kernel(bool split)
+		{
+			cycles_debug_set_cpu_kernel(split ? 1 : 0);
+		}
+		[DllImport("ccycles.dll", SetLastError = false, CallingConvention = CallingConvention.Cdecl,
+			EntryPoint = "cycles_debug_set_cpu_allow_qbvh")]
+		private static extern void cycles_debug_set_cpu_allow_qbvh(int stdout);
+		/**
+		 * Set to true if logger output should be sent to std::cout as well.
+		 *
+		 * Note that this is global to the logger.
+		 */
+		public static void debug_set_cpu_allow_qbvh(bool allowQbvh)
+		{
+			cycles_debug_set_cpu_allow_qbvh(allowQbvh ? 1 : 0);
+		}
+		[DllImport("ccycles.dll", SetLastError = false, CallingConvention = CallingConvention.Cdecl,
+			EntryPoint = "cycles_debug_set_cuda_kernel")]
+		private static extern void cycles_debug_set_cuda_kernel(int stdout);
+		/**
+		 * Set to true if logger output should be sent to std::cout as well.
+		 *
+		 * Note that this is global to the logger.
+		 */
+		public static void debug_set_cuda_kernel(bool useSplit)
+		{
+			cycles_debug_set_cuda_kernel(useSplit ? 1 : 0);
+		}
+		[DllImport("ccycles.dll", SetLastError = false, CallingConvention = CallingConvention.Cdecl,
+			EntryPoint = "cycles_debug_set_opencl_kernel")]
+		private static extern void cycles_debug_set_opencl_kernel(int stdout);
+		/**
+		 * Set to true if logger output should be sent to std::cout as well.
+		 *
+		 * Note that this is global to the logger.
+		 */
+		public static void debug_set_opencl_kernel(int kernelType)
+		{
+			cycles_debug_set_opencl_kernel(kernelType);
+		}
+		[DllImport("ccycles.dll", SetLastError = false, CallingConvention = CallingConvention.Cdecl,
+			EntryPoint = "cycles_debug_set_opencl_single_program")]
+		private static extern void cycles_debug_set_opencl_single_program(int stdout);
+		/**
+		 * Set to true if logger output should be sent to std::cout as well.
+		 *
+		 * Note that this is global to the logger.
+		 */
+		public static void debug_set_opencl_single_program(bool useSingleProgram)
+		{
+			cycles_debug_set_opencl_single_program(useSingleProgram ? 1 : 0);
+		}
+
 #endregion
 
 	}
