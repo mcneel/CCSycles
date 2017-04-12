@@ -116,8 +116,8 @@ namespace ccl.ShaderNodes
 	{
 		public enum Distributions
 		{
-			GGX = 31,
-			Multiscatter_GGX = 32
+			GGX = 33,
+			Multiscatter_GGX = 34
 		}
 
 		public UberBsdfInputs ins => (UberBsdfInputs)inputs;
