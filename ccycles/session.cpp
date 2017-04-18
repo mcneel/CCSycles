@@ -490,6 +490,7 @@ bool initialize_shader_program(GLuint& program)
 
 			glGetShaderInfoLog(vs, log_length, nullptr, (GLchar*)log.c_str());
 			OutputDebugStringA(log.c_str());
+			assert(false);
 		}
 	}
 #endif
@@ -500,6 +501,7 @@ bool initialize_shader_program(GLuint& program)
 	if (success == GL_FALSE)
 	{
 		glDeleteShader(vs);
+		assert(false);
 		return false;
 	}
 
@@ -519,6 +521,7 @@ bool initialize_shader_program(GLuint& program)
 
 			glGetShaderInfoLog(fs, log_length, nullptr, (GLchar*)log.c_str());
 			OutputDebugStringA(log.c_str());
+			assert(false);
 		}
 	}
 #endif
@@ -530,6 +533,7 @@ bool initialize_shader_program(GLuint& program)
 	{
 		glDeleteShader(vs);
 		glDeleteShader(fs);
+		assert(false);
 		return false;
 	}
 
@@ -550,6 +554,7 @@ bool initialize_shader_program(GLuint& program)
 
 			glGetProgramInfoLog(program, log_length, nullptr, (GLchar*)log.c_str());
 			OutputDebugStringA(log.c_str());
+			assert(false);
 		}
 	}
 #endif
@@ -562,6 +567,7 @@ bool initialize_shader_program(GLuint& program)
 
 	if (success == GL_FALSE)
 	{
+		assert(false);
 		return false;
 	}
 
@@ -585,43 +591,10 @@ void cycles_session_rhinodraw(unsigned int client_id, unsigned int session_id, i
 
 		draw_params.program = ccsess->program;
 
-		// push attribs
-		glPushAttrib(GL_ENABLE_BIT | GL_DEPTH_BUFFER_BIT);
-
-		// reset and disable about everything
-		glDisable(GL_ALPHA_TEST);
-		glDisable(GL_BLEND);
-		glDisable(GL_DITHER);
-		glDisable(GL_FOG);
-		glDisable(GL_LIGHTING);
-		glDisable(GL_LOGIC_OP);
-		glDisable(GL_STENCIL_TEST);
-
-		glDisable(GL_DEPTH_TEST);
-
-		// reset project/modelview
-		glMatrixMode(GL_PROJECTION);
-		glPushMatrix();
-		glLoadIdentity();
-		glMatrixMode(GL_MODELVIEW);
-		glPushMatrix();
-		glLoadIdentity();
-
 		glUseProgram(ccsess->program);
 		// let Cycles draw
 		session->draw(session_buf_params, draw_params);
 		glUseProgram(0);
-
-		//------------------------
-		glEnable(GL_DEPTH_TEST);
-
-		// revert to matrices before our drawing
-		glMatrixMode(GL_PROJECTION);
-		glPopMatrix();
-		glMatrixMode(GL_MODELVIEW);
-		glPopMatrix();
-		// revert to old attributes
-		glPopAttrib();
 
 	SESSION_FIND_END()
 }
