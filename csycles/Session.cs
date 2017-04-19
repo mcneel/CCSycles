@@ -285,6 +285,11 @@ namespace ccl
 			CSycles.session_reset(Client.Id, Id, width, height, samples);
 		}
 
+		public void Reset(int width, int height, int samples)
+		{
+			Reset((uint)width, (uint)height, (uint)samples);
+		}
+
 		/// <summary>
 		/// Pause or un-pause a render session.
 		/// </summary>
