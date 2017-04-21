@@ -89,6 +89,15 @@ void cycles_scene_object_set_is_shadowcatcher(unsigned int client, unsigned int 
 	SCENE_FIND_END()
 }
 
+void cycles_scene_object_set_mesh_light_no_cast_shadow(unsigned int client, unsigned int scene_id, unsigned int object_id, bool mesh_light_no_cast_shadow)
+{
+	SCENE_FIND(scene_id)
+		ccl::Object* ob = sce->objects[object_id];
+		ob->mesh_light_no_cast_shadow = mesh_light_no_cast_shadow;
+		ob->tag_update(sce);
+	SCENE_FIND_END()
+}
+
 void cycles_scene_object_set_matrix(unsigned int client_id, unsigned int scene_id, unsigned int object_id,
 	float a, float b, float c, float d,
 	float e, float f, float g, float h,

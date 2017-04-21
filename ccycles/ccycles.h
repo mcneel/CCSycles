@@ -324,6 +324,11 @@ CCL_CAPI void __cdecl cycles_scene_object_set_visibility(unsigned int client, un
  */
 CCL_CAPI void __cdecl cycles_scene_object_set_is_shadowcatcher(unsigned int client, unsigned int scene_id, unsigned int object_id, bool is_shadowcatcher);
 /**
+ * Set mesh_light_no_cast_shadow flag for object. This is to signal that this mesh light shouldn't cast shadows.
+ * \ingroup ccycles_object
+ */
+CCL_CAPI void __cdecl cycles_scene_object_set_mesh_light_no_cast_shadow(unsigned int client, unsigned int scene_id, unsigned int object_id, bool mesh_light_no_cast_shadow);
+/**
  * Tag object for update
  * \ingroup ccycles_object
  */

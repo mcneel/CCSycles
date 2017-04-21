@@ -91,11 +91,25 @@ namespace ccl
 			}
 		}
 
+		/// <summary>
+		/// Set to true if this object should act as shadow catcher.
+		/// </summary>
 		public bool IsShadowCatcher
 		{
 			set
 			{
 				CSycles.object_set_is_shadowcatcher(Client.Id, Client.Scene.Id, Id, value);
+			}
+		}
+
+		/// <summary>
+		/// Set to true to force mesh light to not cast shadows.
+		/// </summary>
+		public bool MeshLightNoCastShadow
+		{
+			set
+			{
+				CSycles.object_set_mesh_light_no_cast_shadow(Client.Id, Client.Scene.Id, Id, value);
 			}
 		}
 	}
