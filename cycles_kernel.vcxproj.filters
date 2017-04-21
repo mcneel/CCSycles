@@ -401,5 +401,38 @@
     <ClInclude Include="cycles\src\kernel\geom\geom_volume.h">
       <Filter>Geometry Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="cycles\src\kernel\split\kernel_background_buffer_update.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\kernel\split\kernel_data_init.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\kernel\split\kernel_direct_lighting.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\kernel\split\kernel_holdout_emission_blurring_pathtermination_ao.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\kernel\split\kernel_lamp_emission.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\kernel\split\kernel_next_iteration_setup.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\kernel\split\kernel_scene_intersect.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\kernel\split\kernel_shader_eval.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\kernel\split\kernel_shadow_blocked.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\kernel\split\kernel_split_common.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\kernel\split\kernel_sum_all_radiance.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

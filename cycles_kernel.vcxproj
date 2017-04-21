@@ -289,6 +289,17 @@
     <ClInclude Include="cycles\src\kernel\kernel_types.h" />
     <ClInclude Include="cycles\src\kernel\kernel_volume.h" />
     <ClInclude Include="cycles\src\kernel\kernel_work_stealing.h" />
+    <ClInclude Include="cycles\src\kernel\split\kernel_background_buffer_update.h" />
+    <ClInclude Include="cycles\src\kernel\split\kernel_data_init.h" />
+    <ClInclude Include="cycles\src\kernel\split\kernel_direct_lighting.h" />
+    <ClInclude Include="cycles\src\kernel\split\kernel_holdout_emission_blurring_pathtermination_ao.h" />
+    <ClInclude Include="cycles\src\kernel\split\kernel_lamp_emission.h" />
+    <ClInclude Include="cycles\src\kernel\split\kernel_next_iteration_setup.h" />
+    <ClInclude Include="cycles\src\kernel\split\kernel_scene_intersect.h" />
+    <ClInclude Include="cycles\src\kernel\split\kernel_shader_eval.h" />
+    <ClInclude Include="cycles\src\kernel\split\kernel_shadow_blocked.h" />
+    <ClInclude Include="cycles\src\kernel\split\kernel_split_common.h" />
+    <ClInclude Include="cycles\src\kernel\split\kernel_sum_all_radiance.h" />
     <ClInclude Include="cycles\src\kernel\svm\svm.h" />
     <ClInclude Include="cycles\src\kernel\svm\svm_attribute.h" />
     <ClInclude Include="cycles\src\kernel\svm\svm_blackbody.h" />
