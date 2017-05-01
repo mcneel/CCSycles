@@ -2,6 +2,7 @@
 
 "uniform sampler2D tex;                                           \n"
 "uniform vec4 subsize;                                            \n"
+"uniform float alpha;                                             \n"
 
 "out vec4 Color;                                                  \n"
 
@@ -14,7 +15,7 @@
 "  vec2 tc = cd / vp;                        \n"
 
 "  vec4 px = texture(tex, tc);                                    \n"
-"  Color = vec4(px.rgb, 1.0);                                     \n"
+"  Color = vec4(px.rgb, alpha);                             \n"
 //"  if(subsize.x > 2)"
 //"    Color = vec4(1.0, 0.0, 0.0, 1.0);                            \n"
 //"  else if(subsize.x > 1)"

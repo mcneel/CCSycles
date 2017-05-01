@@ -574,7 +574,7 @@ bool initialize_shader_program(GLuint& program)
 	return true;
 }
 
-void cycles_session_rhinodraw(unsigned int client_id, unsigned int session_id, int width, int height)
+void cycles_session_rhinodraw(unsigned int client_id, unsigned int session_id, int width, int height, float alpha)
 {
 	static ccl::DeviceDrawParams draw_params = ccl::DeviceDrawParams();
 	draw_params.bind_display_space_shader_cb = nullptr;
@@ -590,6 +590,7 @@ void cycles_session_rhinodraw(unsigned int client_id, unsigned int session_id, i
 		}
 
 		draw_params.program = ccsess->program;
+		draw_params.alpha = alpha;
 
 		glUseProgram(ccsess->program);
 		// let Cycles draw

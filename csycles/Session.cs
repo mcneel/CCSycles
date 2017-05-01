@@ -227,10 +227,10 @@ namespace ccl
 			CSycles.session_draw(Client.Id, Id, width, height);
 		}
 
-		public void RhinoDraw(int width, int height)
+		public void RhinoDraw(int width, int height, float alpha)
 		{
 			if (Destroyed) return;
-			CSycles.session_rhinodraw(Client.Id, Id, width, height);
+			CSycles.session_rhinodraw(Client.Id, Id, width, height, alpha);
 		}
 
 		public void DrawNogl(int width, int height)

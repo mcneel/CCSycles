@@ -174,10 +174,10 @@ namespace ccl
 		}
 
 		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_session_rhinodraw", CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_session_rhinodraw(uint clientId, uint sessionId, int width, int height);
-		public static void session_rhinodraw(uint clientId, uint sessionId, int width, int height)
+		private static extern void cycles_session_rhinodraw(uint clientId, uint sessionId, int width, int height, float alpha);
+		public static void session_rhinodraw(uint clientId, uint sessionId, int width, int height, float alpha)
 		{
-			cycles_session_rhinodraw(clientId, sessionId, width, height);
+			cycles_session_rhinodraw(clientId, sessionId, width, height, alpha);
 		}
 #endregion
 
