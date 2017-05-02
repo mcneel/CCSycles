@@ -225,6 +225,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="cycles\src\bvh\bvh.cpp" />
+    <ClCompile Include="cycles\src\bvh\bvh2.cpp" />
+    <ClCompile Include="cycles\src\bvh\bvh4.cpp" />
     <ClCompile Include="cycles\src\bvh\bvh_unaligned.cpp" />
     <ClCompile Include="cycles\src\bvh\bvh_binning.cpp" />
     <ClCompile Include="cycles\src\bvh\bvh_build.cpp" />
@@ -294,6 +296,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cycles\src\bvh\bvh.h" />
+    <ClInclude Include="cycles\src\bvh\bvh2.h" />
+    <ClInclude Include="cycles\src\bvh\bvh4.h" />
     <ClInclude Include="cycles\src\bvh\bvh_unaligned.h" />
     <ClInclude Include="cycles\src\bvh\bvh_binning.h" />
     <ClInclude Include="cycles\src\bvh\bvh_build.h" />

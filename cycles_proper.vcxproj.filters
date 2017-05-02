@@ -19,6 +19,12 @@
     <ClCompile Include="cycles\src\bvh\bvh.cpp">
       <Filter>bvh</Filter>
     </ClCompile>
+    <ClCompile Include="cycles\src\bvh\bvh2.cpp">
+      <Filter>bvh</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles\src\bvh\bvh4.cpp">
+      <Filter>bvh</Filter>
+    </ClCompile>
     <ClCompile Include="cycles\src\bvh\bvh_unaligned.cpp">
       <Filter>bvh</Filter>
     </ClCompile>
@@ -205,6 +211,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cycles\src\bvh\bvh.h">
+      <Filter>bvh</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\bvh\bvh2.h">
+      <Filter>bvh</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\bvh\bvh4.h">
       <Filter>bvh</Filter>
     </ClInclude>
     <ClInclude Include="cycles\src\bvh\bvh_unaligned.h">
