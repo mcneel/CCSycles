@@ -55,6 +55,20 @@ namespace ccl
 			cycles_scene_object_set_mesh_light_no_cast_shadow(clientId, sceneId, objectId, mesh_light_no_cast_shadow);
 		}
 
+		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_scene_object_set_cutout", CallingConvention = CallingConvention.Cdecl)]
+		private static extern void cycles_scene_object_set_cutout(uint clientId, uint sceneId, uint objectId, bool cutout);
+		public static void object_set_cutout(uint clientId, uint sceneId, uint objectId, bool cutout)
+		{
+			cycles_scene_object_set_cutout(clientId, sceneId, objectId, cutout);
+		}
+
+		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_scene_object_set_ignore_cutout", CallingConvention = CallingConvention.Cdecl)]
+		private static extern void cycles_scene_object_set_ignore_cutout(uint clientId, uint sceneId, uint objectId, bool ignore_cutout);
+		public static void object_set_ignore_cutout(uint clientId, uint sceneId, uint objectId, bool ignore_cutout)
+		{
+			cycles_scene_object_set_ignore_cutout(clientId, sceneId, objectId, ignore_cutout);
+		}
+
 		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_object_tag_update", CallingConvention = CallingConvention.Cdecl)]
 		private static extern void cycles_object_tag_update(uint clientId, uint sceneId, uint objectId);
 		public static void object_tag_update(uint clientId, uint sceneId, uint objectId)

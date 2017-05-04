@@ -98,6 +98,24 @@ void cycles_scene_object_set_mesh_light_no_cast_shadow(unsigned int client, unsi
 	SCENE_FIND_END()
 }
 
+void cycles_scene_object_set_cutout(unsigned int client, unsigned int scene_id, unsigned int object_id, bool cutout)
+{
+	SCENE_FIND(scene_id)
+		ccl::Object* ob = sce->objects[object_id];
+		ob->use_cutout = cutout;
+		ob->tag_update(sce);
+	SCENE_FIND_END()
+}
+
+void cycles_scene_object_set_ignore_cutout(unsigned int client, unsigned int scene_id, unsigned int object_id, bool ignore_cutout)
+{
+	SCENE_FIND(scene_id)
+		ccl::Object* ob = sce->objects[object_id];
+		ob->ignore_cutout = ignore_cutout;
+		ob->tag_update(sce);
+	SCENE_FIND_END()
+}
+
 void cycles_scene_object_set_matrix(unsigned int client_id, unsigned int scene_id, unsigned int object_id,
 	float a, float b, float c, float d,
 	float e, float f, float g, float h,

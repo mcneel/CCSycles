@@ -340,6 +340,16 @@ CCL_CAPI void __cdecl cycles_scene_object_set_is_shadowcatcher(unsigned int clie
  */
 CCL_CAPI void __cdecl cycles_scene_object_set_mesh_light_no_cast_shadow(unsigned int client, unsigned int scene_id, unsigned int object_id, bool mesh_light_no_cast_shadow);
 /**
+ * Set cutout flag for object. This object is used for cutout/clipping.
+ * \ingroup ccycles_object
+ */
+CCL_CAPI void __cdecl cycles_scene_object_set_cutout(unsigned int client, unsigned int scene_id, unsigned int object_id, bool cutout);
+/**
+ * Set ignore_cutout flag for object. Ignore cutout object.
+ * \ingroup ccycles_object
+ */
+CCL_CAPI void __cdecl cycles_scene_object_set_ignore_cutout(unsigned int client, unsigned int scene_id, unsigned int object_id, bool ignore_cutout);
+/**
  * Tag object for update
  * \ingroup ccycles_object
  */

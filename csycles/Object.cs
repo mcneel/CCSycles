@@ -112,5 +112,27 @@ namespace ccl
 				CSycles.object_set_mesh_light_no_cast_shadow(Client.Id, Client.Scene.Id, Id, value);
 			}
 		}
+
+		/// <summary>
+		/// Set to true to use this object as cutout
+		/// </summary>
+		public bool Cutout
+		{
+			set
+			{
+				CSycles.object_set_cutout(Client.Id, Client.Scene.Id, Id, value);
+			}
+		}
+
+		/// <summary>
+		/// Set to true to have this object ignore cutouts
+		/// </summary>
+		public bool IgnoreCutout
+		{
+			set
+			{
+				CSycles.object_set_ignore_cutout(Client.Id, Client.Scene.Id, Id, value);
+			}
+		}
 	}
 }
