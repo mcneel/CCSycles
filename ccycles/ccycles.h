@@ -155,13 +155,24 @@ CCL_CAPI void __cdecl cycles_debug_set_cuda_kernel(unsigned int state);
  * automatically based on officially supported devices.
  * \ingroup ccycles
  */
-CCL_CAPI void __cdecl cycles_debug_set_opencl_kernel(unsigned int state);
+CCL_CAPI void __cdecl cycles_debug_set_opencl_kernel(int state);
 
 /**
  * Set the OpenCL kernel to be compiled as single program with 1.
  * \ingroup ccycles
  */
-CCL_CAPI void __cdecl cycles_debug_set_opencl_single_program(unsigned int state);
+CCL_CAPI void __cdecl cycles_debug_set_opencl_single_program(int state);
+
+/**
+ * Set the OpenCL device type allowed.
+ * 0 = none
+ * 1 = all
+ * 2 = default
+ * 3 = CPU
+ * 4 = GPU
+ * 5 = accelerator
+ */
+CCL_CAPI void __cdecl cycles_debug_set_opencl_device_type(int type);
 
 /**
  * Clean up everything, we're done.

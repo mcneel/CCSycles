@@ -270,29 +270,46 @@ namespace ccl
 		}
 		[DllImport("ccycles.dll", SetLastError = false, CallingConvention = CallingConvention.Cdecl,
 			EntryPoint = "cycles_debug_set_opencl_kernel")]
-		private static extern void cycles_debug_set_opencl_kernel(int stdout);
-		/**
-		 * Set to true if logger output should be sent to std::cout as well.
-		 *
-		 * Note that this is global to the logger.
-		 */
+		private static extern void cycles_debug_set_opencl_kernel(int kernelType);
+		///<summary>
+		/// Set the OpenCL kernel type to use. 1 is split, 0 is mega. -1 means decide
+		/// automatically based on officially supported devices.
+		///</summary>
+		/// <param name="kernelType">1 = split, 0 = mega, -1 = default based on officially supported devices.</param>
 		public static void debug_set_opencl_kernel(int kernelType)
 		{
 			cycles_debug_set_opencl_kernel(kernelType);
 		}
 		[DllImport("ccycles.dll", SetLastError = false, CallingConvention = CallingConvention.Cdecl,
 			EntryPoint = "cycles_debug_set_opencl_single_program")]
-		private static extern void cycles_debug_set_opencl_single_program(int stdout);
-		/**
-		 * Set to true if logger output should be sent to std::cout as well.
-		 *
-		 * Note that this is global to the logger.
-		 */
+		private static extern void cycles_debug_set_opencl_single_program(int singleProgram);
+		/// <summary>
+		/// Give true to force OpenCL compilation to use single program
+		/// </summary>
+		/// <param name="useSingleProgram">true to compile as single program, false to compile as separate programs</param>
 		public static void debug_set_opencl_single_program(bool useSingleProgram)
 		{
 			cycles_debug_set_opencl_single_program(useSingleProgram ? 1 : 0);
 		}
 
+		[DllImport("ccycles.dll", SetLastError = false, CallingConvention = CallingConvention.Cdecl,
+			EntryPoint = "cycles_debug_set_opencl_device_type")]
+		private static extern void cycles_debug_set_opencl_device_type(int type);
+		/// <summary>
+		/// Set to govern what OpenCL device types will be queried.
+		/// </summary>
+		/// <param name="type">
+		/// 0 = force disable OpenCL
+		/// 1 = all
+		/// 2 = default
+		/// 3 = CPU
+		/// 4 = GPU
+		/// 5 = accelerator
+		/// </param>
+		public static void debug_set_opencl_device_type(int type)
+		{
+			cycles_debug_set_opencl_device_type(type);
+		}
 #endregion
 
 	}

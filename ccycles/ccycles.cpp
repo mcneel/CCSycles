@@ -88,7 +88,7 @@ void cycles_debug_set_cuda_kernel(unsigned int state)
 	ccl::DebugFlags().cuda.split_kernel = state == 1;
 }
 
-void cycles_debug_set_opencl_kernel(unsigned int state)
+void cycles_debug_set_opencl_kernel(int state)
 {
 	if (state == -1)
 		ccl::DebugFlags().opencl.kernel_type = ccl::DebugFlags::OpenCL::KernelType::KERNEL_DEFAULT;
@@ -98,9 +98,14 @@ void cycles_debug_set_opencl_kernel(unsigned int state)
 		ccl::DebugFlags().opencl.kernel_type = ccl::DebugFlags::OpenCL::KernelType::KERNEL_SPLIT;
 }
 
-void cycles_debug_set_opencl_single_program(unsigned int state)
+void cycles_debug_set_opencl_single_program(int state)
 {
 	ccl::DebugFlags().opencl.single_program = state == 1;
+}
+
+void cycles_debug_set_opencl_device_type(int type)
+{
+	ccl::DebugFlags().opencl.device_type = (ccl::DebugFlags::OpenCL::DeviceType)type;
 }
 
 void cycles_shutdown()
