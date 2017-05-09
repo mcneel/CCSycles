@@ -101,6 +101,7 @@ namespace ccl
 		internal static ShaderNodes.ShaderNode CreateShaderNode(string xmlName, string nodeName)
 		{
 			if (xmlName.Equals("shader")) return null;
+
 			if (g_registered_shadernodes.ContainsKey(xmlName))
 			{
 				var constructTypes = new Type[1];
@@ -236,9 +237,7 @@ namespace ccl
 			EntryPoint = "cycles_debug_set_cpu_kernel")]
 		private static extern void cycles_debug_set_cpu_kernel(int stdout);
 		/**
-		 * Set to true if logger output should be sent to std::cout as well.
-		 *
-		 * Note that this is global to the logger.
+		 * Set true to ensure CPU uses split kernel
 		 */
 		public static void debug_set_cpu_kernel(bool split)
 		{
