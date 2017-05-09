@@ -20,7 +20,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{7802B049-3A92-4338-B217-600D45E17018}</ProjectGuid>
-    <RootNamespace>cycles_kernel</RootNamespace>
+    <RootNamespace>ccl</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <Import Project="..\..\..\..\boostbuild\override.platform.props" Condition="exists('..\..\..\..\boostbuild\override.platform.props')" />
@@ -230,7 +230,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="cycles\src\kernel\kernels\cpu\kernel_sse2.cpp" />
-    <ClCompile Include="cycles\src\kernel\kernels\cpu\kernel_split_sse2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cycles\src\kernel\kernel.h" />

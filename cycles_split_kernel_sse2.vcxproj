@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{80F70079-E375-4A23-BD5C-E9E390DE2456}</ProjectGuid>
+    <ProjectGuid>{4EBBE9B9-102C-4C36-BC7B-5AF82AC24827}</ProjectGuid>
     <RootNamespace>ccl</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -105,29 +105,29 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <TargetExt>.lib</TargetExt>
     <OutDir>$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(Platform)\$(Configuration)_sse3\</IntDir>
+    <IntDir>$(Platform)\$(Configuration)_split_sse2\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Stand-alone Release|x64'">
     <TargetExt>.lib</TargetExt>
     <OutDir>$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(Platform)\$(Configuration)_sse3\</IntDir>
+    <IntDir>$(Platform)\$(Configuration)_split_sse2\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(Platform)\$(Configuration)\</OutDir>
     <TargetName>$(ProjectName)</TargetName>
-    <IntDir>$(Platform)\$(Configuration)_sse3\</IntDir>
+    <IntDir>$(Platform)\$(Configuration)_split_sse2\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Stand-alone Debug|x64'">
     <OutDir>$(Platform)\$(Configuration)\</OutDir>
     <TargetName>$(ProjectName)</TargetName>
-    <IntDir>$(Platform)\$(Configuration)_sse3\</IntDir>
+    <IntDir>$(Platform)\$(Configuration)_split_sse2\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Full</Optimization>
       <AdditionalIncludeDirectories>$(ProjectDir)cycles\src\util;$(ProjectDir)cycles\src;$(ProjectDir)cycles\third_party\atomic;$(ProjectDir)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WITH_KERNEL_SSE3;_CRT_SECURE_NO_WARNINGS;CCL_NAMESPACE_BEGIN=namespace ccl {;CCL_NAMESPACE_END=};WITH_OPENCL;WITH_CUDA;WITH_MULTI;DEBUG;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WITH_CYCLES_OPTIMIZED_KERNEL_SSE2;_CRT_SECURE_NO_WARNINGS;CCL_NAMESPACE_BEGIN=namespace ccl {;CCL_NAMESPACE_END=};WITH_OPENCL;WITH_CUDA;WITH_MULTI;DEBUG;_DEBUG;__SPLIT_KERNEL__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <FloatingPointModel>Fast</FloatingPointModel>
       <CompileAs>CompileAsCpp</CompileAs>
@@ -152,7 +152,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Full</Optimization>
       <AdditionalIncludeDirectories>$(ProjectDir)cycles\src\util;$(ProjectDir)cycles\src;$(ProjectDir)cycles\third_party\atomic;$(ProjectDir)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WITH_KERNEL_SSE3;_CRT_SECURE_NO_WARNINGS;CCL_NAMESPACE_BEGIN=namespace ccl {;CCL_NAMESPACE_END=};WITH_OPENCL;WITH_CUDA;WITH_MULTI;DEBUG;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WITH_CYCLES_OPTIMIZED_KERNEL_SSE2;_CRT_SECURE_NO_WARNINGS;CCL_NAMESPACE_BEGIN=namespace ccl {;CCL_NAMESPACE_END=};WITH_OPENCL;WITH_CUDA;WITH_MULTI;DEBUG;_DEBUG;__SPLIT_KERNEL__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <FloatingPointModel>Fast</FloatingPointModel>
       <CompileAs>CompileAsCpp</CompileAs>
@@ -181,7 +181,7 @@
       <AdditionalIncludeDirectories>$(ProjectDir)cycles\src\util;$(ProjectDir)cycles\src;$(ProjectDir)cycles\third_party\atomic;$(ProjectDir)</AdditionalIncludeDirectories>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <PreprocessorDefinitions>WITH_KERNEL_SSE3;_CRT_SECURE_NO_WARNINGS;CCL_NAMESPACE_BEGIN=namespace ccl {;CCL_NAMESPACE_END=};WITH_OPENCL;WITH_CUDA;WITH_MULTI;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WITH_CYCLES_OPTIMIZED_KERNEL_SSE2;_CRT_SECURE_NO_WARNINGS;CCL_NAMESPACE_BEGIN=namespace ccl {;CCL_NAMESPACE_END=};WITH_OPENCL;WITH_CUDA;WITH_MULTI;NDEBUG;__SPLIT_KERNEL__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <FloatingPointModel>Fast</FloatingPointModel>
       <CompileAs>CompileAsCpp</CompileAs>
       <DisableSpecificWarnings>4018;4065;4127;4181;4200;4244;4267;4305;4800</DisableSpecificWarnings>
@@ -209,7 +209,7 @@
       <AdditionalIncludeDirectories>$(ProjectDir)cycles\src\util;$(ProjectDir)cycles\src;$(ProjectDir)cycles\third_party\atomic;$(ProjectDir)</AdditionalIncludeDirectories>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <PreprocessorDefinitions>WITH_KERNEL_SSE3;_CRT_SECURE_NO_WARNINGS;CCL_NAMESPACE_BEGIN=namespace ccl {;CCL_NAMESPACE_END=};WITH_OPENCL;WITH_CUDA;WITH_MULTI;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WITH_CYCLES_OPTIMIZED_KERNEL_SSE2;_CRT_SECURE_NO_WARNINGS;CCL_NAMESPACE_BEGIN=namespace ccl {;CCL_NAMESPACE_END=};WITH_OPENCL;WITH_CUDA;WITH_MULTI;NDEBUG;__SPLIT_KERNEL__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <FloatingPointModel>Fast</FloatingPointModel>
       <CompileAs>CompileAsCpp</CompileAs>
       <DisableSpecificWarnings>4018;4065;4127;4181;4200;4244;4267;4305;4800</DisableSpecificWarnings>
@@ -229,7 +229,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="cycles\src\kernel\kernels\cpu\kernel_sse3.cpp" />
+    <ClCompile Include="cycles\src\kernel\kernels\cpu\kernel_split_sse2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cycles\src\kernel\kernel.h" />

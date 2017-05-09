@@ -2,26 +2,26 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{7C56F0AB-AFA5-46D9-9E92-BC7DDCDBA31F}</UniqueIdentifier>
+      <UniqueIdentifier>{D7C2BC6D-E47A-43D8-AFD8-7C659F29B395}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{A10D8E17-51B5-429B-9B79-8A40A69C52EE}</UniqueIdentifier>
+      <UniqueIdentifier>{CC7B0466-AD5B-4920-B388-4D6740CE5901}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
     <Filter Include="Geometry Header Files">
-      <UniqueIdentifier>{E57A3AD2-B3C9-4232-B915-74C896B72157}</UniqueIdentifier>
+      <UniqueIdentifier>{97D672B7-529B-41DD-BC2B-F9F1CA09FFCF}</UniqueIdentifier>
     </Filter>
     <Filter Include="BVH Header Files">
-      <UniqueIdentifier>{DA2C0F5D-FE4B-4741-81F1-3C81AA82F949}</UniqueIdentifier>
+      <UniqueIdentifier>{B7B5CEAD-A083-418C-A406-48C4B6A63500}</UniqueIdentifier>
     </Filter>
     <Filter Include="Resource Files">
-      <UniqueIdentifier>{F6429116-0E6C-42A5-928B-E0A4DFD715CB}</UniqueIdentifier>
+      <UniqueIdentifier>{13F6551A-807D-4C6C-83CD-F9C971F69D52}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="cycles\src\kernel\kernels\cpu\kernel.cpp">
+    <ClCompile Include="cycles\src\kernel\kernels\cpu\kernel_split.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

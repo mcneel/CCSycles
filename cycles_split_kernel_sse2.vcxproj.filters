@@ -2,30 +2,24 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{7C56F0AB-AFA5-46D9-9E92-BC7DDCDBA31F}</UniqueIdentifier>
+      <UniqueIdentifier>{BFFDDFEC-B4C6-4E23-ADF9-84A06FE7C1A4}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{A10D8E17-51B5-429B-9B79-8A40A69C52EE}</UniqueIdentifier>
+      <UniqueIdentifier>{9FAD3014-C43A-4F4D-895B-210CF95DF5C6}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
     <Filter Include="Resource Files">
-      <UniqueIdentifier>{F6429116-0E6C-42A5-928B-E0A4DFD715CB}</UniqueIdentifier>
+      <UniqueIdentifier>{B2CE55A8-C194-4288-AFDC-B5E5E47560C1}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="cycles\src\kernel\kernels\cpu\kernel_avx2.cpp">
+    <ClCompile Include="cycles\src\kernel\kernels\cpu\kernel_split_sse2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="cycles\src\kernel\kernels\cpu\kernel_cpu.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernels\cpu\kernel_cpu_impl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="cycles\src\kernel\kernel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -123,6 +117,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="cycles\src\kernel\kernel_work_stealing.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\kernel\kernels\cpu\kernel_cpu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\kernel\kernels\cpu\kernel_cpu_impl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="cycles\src\kernel\split\kernel_background_buffer_update.h">

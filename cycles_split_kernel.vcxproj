@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{80F70079-E375-4A23-BD5C-E9E390DE2456}</ProjectGuid>
+    <ProjectGuid>{99BEEA59-E2B7-43ED-8384-52B3014C97C6}</ProjectGuid>
     <RootNamespace>ccl</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -105,29 +105,29 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <TargetExt>.lib</TargetExt>
     <OutDir>$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(Platform)\$(Configuration)_sse3\</IntDir>
+    <IntDir>$(Platform)\$(Configuration)_split_vanilla\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Stand-alone Release|x64'">
     <TargetExt>.lib</TargetExt>
     <OutDir>$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(Platform)\$(Configuration)_sse3\</IntDir>
+    <IntDir>$(Platform)\$(Configuration)_split_vanilla\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(Platform)\$(Configuration)\</OutDir>
     <TargetName>$(ProjectName)</TargetName>
-    <IntDir>$(Platform)\$(Configuration)_sse3\</IntDir>
+    <IntDir>$(Platform)\$(Configuration)_split_vanilla\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Stand-alone Debug|x64'">
     <OutDir>$(Platform)\$(Configuration)\</OutDir>
     <TargetName>$(ProjectName)</TargetName>
-    <IntDir>$(Platform)\$(Configuration)_sse3\</IntDir>
+    <IntDir>$(Platform)\$(Configuration)_split_vanilla\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <Optimization>Full</Optimization>
+      <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>$(ProjectDir)cycles\src\util;$(ProjectDir)cycles\src;$(ProjectDir)cycles\third_party\atomic;$(ProjectDir)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WITH_KERNEL_SSE3;_CRT_SECURE_NO_WARNINGS;CCL_NAMESPACE_BEGIN=namespace ccl {;CCL_NAMESPACE_END=};WITH_OPENCL;WITH_CUDA;WITH_MULTI;DEBUG;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;CCL_NAMESPACE_BEGIN=namespace ccl {;CCL_NAMESPACE_END=};WITH_OPENCL;WITH_CUDA;WITH_MULTI;DEBUG;_DEBUG;WITH_CYCLES_OPTIMIZED_KERNEL_SSE2;WITH_CYCLES_OPTIMIZED_KERNEL_SSE3;WITH_CYCLES_OPTIMIZED_KERNEL_SSE41;WITH_CYCLES_OPTIMIZED_KERNEL_AVX;WITH_CYCLES_OPTIMIZED_KERNEL_AVX2;__SPLIT_KERNEL__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <FloatingPointModel>Fast</FloatingPointModel>
       <CompileAs>CompileAsCpp</CompileAs>
@@ -137,7 +137,6 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <FunctionLevelLinking>true</FunctionLevelLinking>
-      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -150,9 +149,9 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Stand-alone Debug|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <Optimization>Full</Optimization>
+      <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>$(ProjectDir)cycles\src\util;$(ProjectDir)cycles\src;$(ProjectDir)cycles\third_party\atomic;$(ProjectDir)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WITH_KERNEL_SSE3;_CRT_SECURE_NO_WARNINGS;CCL_NAMESPACE_BEGIN=namespace ccl {;CCL_NAMESPACE_END=};WITH_OPENCL;WITH_CUDA;WITH_MULTI;DEBUG;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;CCL_NAMESPACE_BEGIN=namespace ccl {;CCL_NAMESPACE_END=};WITH_OPENCL;WITH_CUDA;WITH_MULTI;DEBUG;_DEBUG;WITH_CYCLES_OPTIMIZED_KERNEL_SSE2;WITH_CYCLES_OPTIMIZED_KERNEL_SSE3;WITH_CYCLES_OPTIMIZED_KERNEL_SSE41;WITH_CYCLES_OPTIMIZED_KERNEL_AVX;WITH_CYCLES_OPTIMIZED_KERNEL_AVX2;__SPLIT_KERNEL__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <FloatingPointModel>Fast</FloatingPointModel>
       <CompileAs>CompileAsCpp</CompileAs>
@@ -162,7 +161,6 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <FunctionLevelLinking>true</FunctionLevelLinking>
-      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -181,7 +179,7 @@
       <AdditionalIncludeDirectories>$(ProjectDir)cycles\src\util;$(ProjectDir)cycles\src;$(ProjectDir)cycles\third_party\atomic;$(ProjectDir)</AdditionalIncludeDirectories>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <PreprocessorDefinitions>WITH_KERNEL_SSE3;_CRT_SECURE_NO_WARNINGS;CCL_NAMESPACE_BEGIN=namespace ccl {;CCL_NAMESPACE_END=};WITH_OPENCL;WITH_CUDA;WITH_MULTI;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;CCL_NAMESPACE_BEGIN=namespace ccl {;CCL_NAMESPACE_END=};WITH_OPENCL;WITH_CUDA;WITH_MULTI;NDEBUG;WITH_CYCLES_OPTIMIZED_KERNEL_SSE2;WITH_CYCLES_OPTIMIZED_KERNEL_SSE3;WITH_CYCLES_OPTIMIZED_KERNEL_SSE41;WITH_CYCLES_OPTIMIZED_KERNEL_AVX;WITH_CYCLES_OPTIMIZED_KERNEL_AVX2;__SPLIT_KERNEL__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <FloatingPointModel>Fast</FloatingPointModel>
       <CompileAs>CompileAsCpp</CompileAs>
       <DisableSpecificWarnings>4018;4065;4127;4181;4200;4244;4267;4305;4800</DisableSpecificWarnings>
@@ -209,7 +207,7 @@
       <AdditionalIncludeDirectories>$(ProjectDir)cycles\src\util;$(ProjectDir)cycles\src;$(ProjectDir)cycles\third_party\atomic;$(ProjectDir)</AdditionalIncludeDirectories>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <PreprocessorDefinitions>WITH_KERNEL_SSE3;_CRT_SECURE_NO_WARNINGS;CCL_NAMESPACE_BEGIN=namespace ccl {;CCL_NAMESPACE_END=};WITH_OPENCL;WITH_CUDA;WITH_MULTI;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;CCL_NAMESPACE_BEGIN=namespace ccl {;CCL_NAMESPACE_END=};WITH_OPENCL;WITH_CUDA;WITH_MULTI;NDEBUG;WITH_CYCLES_OPTIMIZED_KERNEL_SSE2;WITH_CYCLES_OPTIMIZED_KERNEL_SSE3;WITH_CYCLES_OPTIMIZED_KERNEL_SSE41;WITH_CYCLES_OPTIMIZED_KERNEL_AVX;WITH_CYCLES_OPTIMIZED_KERNEL_AVX2;__SPLIT_KERNEL__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <FloatingPointModel>Fast</FloatingPointModel>
       <CompileAs>CompileAsCpp</CompileAs>
       <DisableSpecificWarnings>4018;4065;4127;4181;4200;4244;4267;4305;4800</DisableSpecificWarnings>
@@ -229,11 +227,34 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="cycles\src\kernel\kernels\cpu\kernel_sse3.cpp" />
+    <ClCompile Include="cycles\src\kernel\kernels\cpu\kernel_split.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="cycles\src\kernel\closure\alloc.h" />
+    <ClInclude Include="cycles\src\kernel\closure\bsdf.h" />
+    <ClInclude Include="cycles\src\kernel\closure\bsdf_ashikhmin_shirley.h" />
+    <ClInclude Include="cycles\src\kernel\closure\bsdf_ashikhmin_velvet.h" />
+    <ClInclude Include="cycles\src\kernel\closure\bsdf_diffuse.h" />
+    <ClInclude Include="cycles\src\kernel\closure\bsdf_diffuse_ramp.h" />
+    <ClInclude Include="cycles\src\kernel\closure\bsdf_disney_diffuse.h" />
+    <ClInclude Include="cycles\src\kernel\closure\bsdf_disney_sheen.h" />
+    <ClInclude Include="cycles\src\kernel\closure\bsdf_hair.h" />
+    <ClInclude Include="cycles\src\kernel\closure\bsdf_microfacet.h" />
+    <ClInclude Include="cycles\src\kernel\closure\bsdf_microfacet_multi.h" />
+    <ClInclude Include="cycles\src\kernel\closure\bsdf_microfacet_multi_impl.h" />
+    <ClInclude Include="cycles\src\kernel\closure\bsdf_oren_nayar.h" />
+    <ClInclude Include="cycles\src\kernel\closure\bsdf_phong_ramp.h" />
+    <ClInclude Include="cycles\src\kernel\closure\bsdf_reflection.h" />
+    <ClInclude Include="cycles\src\kernel\closure\bsdf_refraction.h" />
+    <ClInclude Include="cycles\src\kernel\closure\bsdf_toon.h" />
+    <ClInclude Include="cycles\src\kernel\closure\bsdf_transparent.h" />
+    <ClInclude Include="cycles\src\kernel\closure\bsdf_util.h" />
+    <ClInclude Include="cycles\src\kernel\closure\bssrdf.h" />
+    <ClInclude Include="cycles\src\kernel\closure\emissive.h" />
+    <ClInclude Include="cycles\src\kernel\closure\volume.h" />
     <ClInclude Include="cycles\src\kernel\kernel.h" />
     <ClInclude Include="cycles\src\kernel\kernels\cpu\kernel_cpu.h" />
+    <ClInclude Include="cycles\src\kernel\kernels\cpu\kernel_cpu_image.h" />
     <ClInclude Include="cycles\src\kernel\kernels\cpu\kernel_cpu_impl.h" />
     <ClInclude Include="cycles\src\kernel\kernel_accumulate.h" />
     <ClInclude Include="cycles\src\kernel\kernel_bake.h" />
@@ -246,13 +267,13 @@
     <ClInclude Include="cycles\src\kernel\kernel_emission.h" />
     <ClInclude Include="cycles\src\kernel\kernel_film.h" />
     <ClInclude Include="cycles\src\kernel\kernel_globals.h" />
+    <ClInclude Include="cycles\src\kernel\kernel_image_opencl.h" />
     <ClInclude Include="cycles\src\kernel\kernel_jitter.h" />
     <ClInclude Include="cycles\src\kernel\kernel_light.h" />
     <ClInclude Include="cycles\src\kernel\kernel_math.h" />
     <ClInclude Include="cycles\src\kernel\kernel_montecarlo.h" />
     <ClInclude Include="cycles\src\kernel\kernel_passes.h" />
     <ClInclude Include="cycles\src\kernel\kernel_path.h" />
-    <ClInclude Include="cycles\src\kernel\kernel_path_branched.h" />
     <ClInclude Include="cycles\src\kernel\kernel_path_common.h" />
     <ClInclude Include="cycles\src\kernel\kernel_path_state.h" />
     <ClInclude Include="cycles\src\kernel\kernel_path_surface.h" />
@@ -278,6 +299,72 @@
     <ClInclude Include="cycles\src\kernel\split\kernel_shadow_blocked.h" />
     <ClInclude Include="cycles\src\kernel\split\kernel_split_common.h" />
     <ClInclude Include="cycles\src\kernel\split\kernel_sum_all_radiance.h" />
+    <ClInclude Include="cycles\src\kernel\svm\svm.h" />
+    <ClInclude Include="cycles\src\kernel\svm\svm_attribute.h" />
+    <ClInclude Include="cycles\src\kernel\svm\svm_blackbody.h" />
+    <ClInclude Include="cycles\src\kernel\svm\svm_brick.h" />
+    <ClInclude Include="cycles\src\kernel\svm\svm_brightness.h" />
+    <ClInclude Include="cycles\src\kernel\svm\svm_bump.h" />
+    <ClInclude Include="cycles\src\kernel\svm\svm_camera.h" />
+    <ClInclude Include="cycles\src\kernel\svm\svm_checker.h" />
+    <ClInclude Include="cycles\src\kernel\svm\svm_closure.h" />
+    <ClInclude Include="cycles\src\kernel\svm\svm_color_util.h" />
+    <ClInclude Include="cycles\src\kernel\svm\svm_convert.h" />
+    <ClInclude Include="cycles\src\kernel\svm\svm_displace.h" />
+    <ClInclude Include="cycles\src\kernel\svm\svm_fresnel.h" />
+    <ClInclude Include="cycles\src\kernel\svm\svm_gamma.h" />
+    <ClInclude Include="cycles\src\kernel\svm\svm_geometry.h" />
+    <ClInclude Include="cycles\src\kernel\svm\svm_gradient.h" />
+    <ClInclude Include="cycles\src\kernel\svm\svm_hsv.h" />
+    <ClInclude Include="cycles\src\kernel\svm\svm_image.h" />
+    <ClInclude Include="cycles\src\kernel\svm\svm_invert.h" />
+    <ClInclude Include="cycles\src\kernel\svm\svm_light_path.h" />
+    <ClInclude Include="cycles\src\kernel\svm\svm_magic.h" />
+    <ClInclude Include="cycles\src\kernel\svm\svm_mapping.h" />
+    <ClInclude Include="cycles\src\kernel\svm\svm_math.h" />
+    <ClInclude Include="cycles\src\kernel\svm\svm_math_util.h" />
+    <ClInclude Include="cycles\src\kernel\svm\svm_mix.h" />
+    <ClInclude Include="cycles\src\kernel\svm\svm_musgrave.h" />
+    <ClInclude Include="cycles\src\kernel\svm\svm_noise.h" />
+    <ClInclude Include="cycles\src\kernel\svm\svm_noisetex.h" />
+    <ClInclude Include="cycles\src\kernel\svm\svm_normal.h" />
+    <ClInclude Include="cycles\src\kernel\svm\svm_ramp.h" />
+    <ClInclude Include="cycles\src\kernel\svm\svm_ramp_util.h" />
+    <ClInclude Include="cycles\src\kernel\svm\svm_sepcomb_hsv.h" />
+    <ClInclude Include="cycles\src\kernel\svm\svm_sepcomb_vector.h" />
+    <ClInclude Include="cycles\src\kernel\svm\svm_sky.h" />
+    <ClInclude Include="cycles\src\kernel\svm\svm_texture.h" />
+    <ClInclude Include="cycles\src\kernel\svm\svm_tex_coord.h" />
+    <ClInclude Include="cycles\src\kernel\svm\svm_types.h" />
+    <ClInclude Include="cycles\src\kernel\svm\svm_value.h" />
+    <ClInclude Include="cycles\src\kernel\svm\svm_vector_transform.h" />
+    <ClInclude Include="cycles\src\kernel\svm\svm_voronoi.h" />
+    <ClInclude Include="cycles\src\kernel\svm\svm_wave.h" />
+    <ClInclude Include="cycles\src\kernel\svm\svm_wavelength.h" />
+    <ClInclude Include="cycles\src\kernel\svm\svm_wireframe.h" />
+    <ClInclude Include="cycles\src\kernel\geom\geom.h" />
+    <ClInclude Include="cycles\src\kernel\geom\geom_attribute.h" />
+    <ClInclude Include="cycles\src\kernel\bvh\bvh.h" />
+    <ClInclude Include="cycles\src\kernel\bvh\bvh_shadow_all.h" />
+    <ClInclude Include="cycles\src\kernel\bvh\bvh_subsurface.h" />
+    <ClInclude Include="cycles\src\kernel\bvh\bvh_traversal.h" />
+    <ClInclude Include="cycles\src\kernel\bvh\bvh_volume.h" />
+    <ClInclude Include="cycles\src\kernel\bvh\bvh_volume_all.h" />
+    <ClInclude Include="cycles\src\kernel\bvh\qbvh_shadow_all.h" />
+    <ClInclude Include="cycles\src\kernel\bvh\qbvh_subsurface.h" />
+    <ClInclude Include="cycles\src\kernel\bvh\qbvh_traversal.h" />
+    <ClInclude Include="cycles\src\kernel\bvh\qbvh_volume.h" />
+    <ClInclude Include="cycles\src\kernel\bvh\qbvh_volume_all.h" />
+    <ClInclude Include="cycles\src\kernel\geom\geom_curve.h" />
+    <ClInclude Include="cycles\src\kernel\geom\geom_motion_curve.h" />
+    <ClInclude Include="cycles\src\kernel\geom\geom_motion_triangle.h" />
+    <ClInclude Include="cycles\src\kernel\geom\geom_object.h" />
+    <ClInclude Include="cycles\src\kernel\geom\geom_patch.h" />
+    <ClInclude Include="cycles\src\kernel\geom\geom_primitive.h" />
+    <ClInclude Include="cycles\src\kernel\geom\geom_subd_triangle.h" />
+    <ClInclude Include="cycles\src\kernel\geom\geom_triangle.h" />
+    <ClInclude Include="cycles\src\kernel\geom\geom_triangle_intersect.h" />
+    <ClInclude Include="cycles\src\kernel\geom\geom_volume.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

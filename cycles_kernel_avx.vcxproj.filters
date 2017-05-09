@@ -18,9 +18,6 @@
     <ClCompile Include="cycles\src\kernel\kernels\cpu\kernel_avx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cycles\src\kernel\kernels\cpu\kernel_split_avx.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cycles\src\kernel\kernels\cpu\kernel_cpu.h">
