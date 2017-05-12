@@ -593,8 +593,19 @@ void cycles_session_rhinodraw(unsigned int client_id, unsigned int session_id, i
 		draw_params.alpha = alpha;
 
 		glUseProgram(ccsess->program);
+
+		bool depthEnabled = glIsEnabled(GL_DEPTH_TEST);
+		if (depthEnabled) {
+			glDisable(GL_DEPTH_TEST);
+		}
+
 		// let Cycles draw
 		session->draw(session_buf_params, draw_params);
+		if (depthEnabled)
+		{
+			glEnable(GL_DEPTH_TEST);
+		}
+
 		glUseProgram(0);
 
 	SESSION_FIND_END()
