@@ -186,7 +186,7 @@ copy /Y "$(ProjectDir)..\ccycles\x64\$(ConfigurationName)\ccycles.dll" "$(Soluti
 copy /Y "$(ProjectDir)..\ccycles\x64\$(ConfigurationName)\ccycles.pdb" "$(SolutionDir)..\$(OutDir)Plug-ins"
 copy /Y "$(ProjectDir)..\OpenImageIO\x64\$(ConfigurationName)\OpenImageIOv13.dll" "$(SolutionDir)..\$(OutDir)"
 copy /Y "$(ProjectDir)..\pthreads\x64\$(ConfigurationName)\pthreads.dll" "$(SolutionDir)..\$(OutDir)"
-copy /Y "$(ProjectDir)..\..\..\..\..\boostbuild\stage$(ConfigurationName)\lib\boost_*" "$(SolutionDir)..\$(OutDir)"
+copy /Y "$(ProjectDir)..\..\..\..\..\..\big_libs\boost\stage$(ConfigurationName)\lib\boost_*" "$(SolutionDir)..\$(OutDir)"
 
 XCopy "$(SolutionDir)..\..\big_libs\RhinoCycles\lib" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\lib" /Y /I /Q
 
