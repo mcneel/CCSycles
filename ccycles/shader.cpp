@@ -657,8 +657,10 @@ CCImage* get_ccimage(std::string imgname, T* img, unsigned int width, unsigned i
 	return nimg;
 }
 
-void cycles_shadernode_set_member_float_img(unsigned int client_id, unsigned int shader_id, unsigned int shnode_id, shadernode_type shn_type, const char* member_name, const char* img_name, float* img, unsigned int width, unsigned int height, unsigned int depth, unsigned int channels)
+void cycles_shadernode_set_member_float_img(unsigned int client_id, unsigned int scene_id, unsigned int shader_id, unsigned int shnode_id, shadernode_type shn_type, const char* member_name, const char* img_name, float* img, unsigned int width, unsigned int height, unsigned int depth, unsigned int channels)
 {
+	SCENE_FIND(scene_id)
+
 	auto mname = std::string{ member_name };
 	auto imname = std::string{ img_name };
 
@@ -670,8 +672,8 @@ void cycles_shadernode_set_member_float_img(unsigned int client_id, unsigned int
 			CCImage* nimg = get_ccimage<float>(imname, img, width, height, depth, channels, true);
 			ccl::ImageTextureNode* imtex = dynamic_cast<ccl::ImageTextureNode*>(shnode);
 			imtex->builtin_data = nimg;
-			imtex->interpolation = ccl::InterpolationType::INTERPOLATION_LINEAR;
 			imtex->filename = nimg->filename;
+			sce->image_manager->tag_reload_image(imname);
 		}
 		break;
 		case shadernode_type::ENVIRONMENT_TEXTURE:
@@ -680,14 +682,19 @@ void cycles_shadernode_set_member_float_img(unsigned int client_id, unsigned int
 			ccl::EnvironmentTextureNode* envtex = dynamic_cast<ccl::EnvironmentTextureNode*>(shnode);
 			envtex->builtin_data = nimg;
 			envtex->filename = nimg->filename;
+			sce->image_manager->tag_reload_image(imname);
 		}
 		break;
 		}
 	}
+
+	SCENE_FIND_END()
 }
 
-void cycles_shadernode_set_member_byte_img(unsigned int client_id, unsigned int shader_id, unsigned int shnode_id, shadernode_type shn_type, const char* member_name, const char* img_name, unsigned char* img, unsigned int width, unsigned int height, unsigned int depth, unsigned int channels)
+void cycles_shadernode_set_member_byte_img(unsigned int client_id, unsigned int scene_id, unsigned int shader_id, unsigned int shnode_id, shadernode_type shn_type, const char* member_name, const char* img_name, unsigned char* img, unsigned int width, unsigned int height, unsigned int depth, unsigned int channels)
 {
+	SCENE_FIND(scene_id)
+
 	auto mname = std::string{ member_name };
 	auto imname = std::string{ img_name };
 	ccl::ShaderNode* shnode = _shader_node_find(shader_id, shnode_id);
@@ -699,6 +706,7 @@ void cycles_shadernode_set_member_byte_img(unsigned int client_id, unsigned int 
 			ccl::ImageTextureNode* imtex = dynamic_cast<ccl::ImageTextureNode*>(shnode);
 			imtex->builtin_data = nimg;
 			imtex->filename = nimg->filename;
+			sce->image_manager->tag_reload_image(imname);
 		}
 		break;
 		case shadernode_type::ENVIRONMENT_TEXTURE:
@@ -707,10 +715,13 @@ void cycles_shadernode_set_member_byte_img(unsigned int client_id, unsigned int 
 			ccl::EnvironmentTextureNode* envtex = dynamic_cast<ccl::EnvironmentTextureNode*>(shnode);
 			envtex->builtin_data = nimg;
 			envtex->filename = nimg->filename;
+			sce->image_manager->tag_reload_image(imname);
 		}
 		break;
 		}
 	}
+
+	SCENE_FIND_END()
 }
 
 void cycles_shadernode_set_member_bool(unsigned int client_id, unsigned int shader_id, unsigned int shnode_id, shadernode_type shn_type, const char* member_name, bool value)

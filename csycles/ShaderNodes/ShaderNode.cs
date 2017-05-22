@@ -132,8 +132,9 @@ namespace ccl.ShaderNodes
 		/// it has direct members that need to be committed to Cycles
 		/// </summary>
 		/// <param name="clientId"></param>
+		/// <param name="sceneId"></param>
 		/// <param name="shaderId"></param>
-		virtual internal void SetDirectMembers(uint clientId, uint shaderId)
+		virtual internal void SetDirectMembers(uint clientId, uint sceneId, uint shaderId)
 		{
 			// do nothing
 		}

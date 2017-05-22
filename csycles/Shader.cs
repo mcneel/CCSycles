@@ -235,7 +235,7 @@ namespace ccl
 				node.SetEnums(Client.Id, Id);
 
 				/* set direct member variables */
-				node.SetDirectMembers(Client.Id, Id);
+				node.SetDirectMembers(Client.Id, Client.Scene.Id, Id);
 
 				if (node.inputs == null) continue;
 

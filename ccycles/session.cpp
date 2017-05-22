@@ -464,10 +464,7 @@ void cycles_session_copy_buffer(unsigned int client_id, unsigned int session_id,
 
 bool initialize_shader_program(GLuint& program)
 {
-	static const GLchar* vs_src =
 #include "vshader.h"
-
-	static const GLchar* fs_src =
 #include "fshader.h"
 
 	if (glewInit() != GLEW_OK) {

@@ -101,7 +101,7 @@ namespace ccl.ShaderNodes
 		public ccl.Transform ObjectTransform { get; set; }
 		public bool UseTransform { get; set; }
 
-		internal override void SetDirectMembers(uint clientId, uint shaderId)
+		internal override void SetDirectMembers(uint clientId, uint sceneId, uint shaderId)
 		{
 			CSycles.shadernode_set_member_bool(clientId, shaderId, Id, ShaderNodeType.TextureCoordinate, "use_transform", UseTransform);
 

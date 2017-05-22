@@ -84,7 +84,7 @@ namespace ccl.ShaderNodes
 			CSycles.shadernode_set_enum(clientId, shaderId, Id, Type, "sky", (int)SkyType);
 		}
 
-		internal override void SetDirectMembers(uint clientId, uint shaderId)
+		internal override void SetDirectMembers(uint clientId, uint sceneId, uint shaderId)
 		{
 			CSycles.shadernode_set_member_float(clientId, shaderId, Id, Type, "turbidity", Turbidity);
 			CSycles.shadernode_set_member_float(clientId, shaderId, Id, Type, "ground_albedo", GroundAlbedo);

@@ -119,7 +119,7 @@ namespace ccl.ShaderNodes
 			CSycles.shadernode_set_enum(clientId, shaderId, Id, Type, "interpolation", (int)Interpolation);
 		}
 
-		internal override void SetDirectMembers(uint clientId, uint shaderId)
+		internal override void SetDirectMembers(uint clientId, uint sceneId, uint shaderId)
 		{
 			CSycles.shadernode_set_member_float(clientId, shaderId, Id, Type, "projection_blend", ProjectionBlend);
 			CSycles.shadernode_set_member_int(clientId, shaderId, Id, Type, "extension", (int)Extension);
@@ -128,12 +128,12 @@ namespace ccl.ShaderNodes
 			if (FloatImage != null)
 			{
 				var flimg = FloatImage;
-				CSycles.shadernode_set_member_float_img(clientId, shaderId, Id, Type, "builtin-data", Filename ?? String.Format("{0}-{0}-{0}", clientId, shaderId, Id), ref flimg, Width, Height, 1, 4);
+				CSycles.shadernode_set_member_float_img(clientId, sceneId, shaderId, Id, Type, "builtin-data", Filename ?? String.Format("{0}-{0}-{0}", clientId, shaderId, Id), ref flimg, Width, Height, 1, 4);
 			}
 			else if (ByteImage != null)
 			{
 				var bimg = ByteImage;
-				CSycles.shadernode_set_member_byte_img(clientId, shaderId, Id, Type, "builtin-data", Filename ?? String.Format("{0}-{0}-{0}", clientId, shaderId, Id), ref bimg, Width, Height, 1, 4);
+				CSycles.shadernode_set_member_byte_img(clientId, sceneId, shaderId, Id, Type, "builtin-data", Filename ?? String.Format("{0}-{0}-{0}", clientId, shaderId, Id), ref bimg, Width, Height, 1, 4);
 			}
 		}
 		private void SetProjection(string projection)

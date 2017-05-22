@@ -76,17 +76,29 @@ namespace ccl.ShaderNodes
 		/// </summary>
 		public FloatSocket RayLength { get; set; }
 		/// <summary>
-		/// Ray depth. @todo find better description
+		/// Ray depth. Amount of ray bounces.
 		/// </summary>
 		public FloatSocket RayDepth { get; set; }
 		/// <summary>
-		/// Transparent depth. @todo find better description
+		/// Diffuse depth. Amount of diffuse bounces.
+		/// </summary>
+		public FloatSocket DiffuseDepth { get; set; }
+		/// <summary>
+		/// Glossy depth. Amount of glossy bounces.
+		/// </summary>
+		public FloatSocket GlossyDepth { get; set; }
+		/// <summary>
+		/// Transparent depth. Amount of transparent bounces.
 		/// </summary>
 		public FloatSocket TransparentDepth { get; set; }
 		/// <summary>
-		/// Transmission depth.
+		/// Transmission depth. Amount of transmission bounces.
 		/// </summary>
 		public FloatSocket TransmissionDepth { get; set; }
+		/// <summary>
+		/// No Ray set. Will be 1.0 if no path type ray has been set.
+		/// </summary>
+		public FloatSocket NoRaySet { get; set; }
 
 		internal LightPathOutputs(ShaderNode parentNode)
 		{
@@ -110,10 +122,16 @@ namespace ccl.ShaderNodes
 			AddSocket(RayLength);
 			RayDepth = new FloatSocket(parentNode, "Ray Depth");
 			AddSocket(RayDepth);
+			DiffuseDepth = new FloatSocket(parentNode, "Diffuse Depth");
+			AddSocket(DiffuseDepth);
+			GlossyDepth = new FloatSocket(parentNode, "Glossy Depth");
+			AddSocket(GlossyDepth);
 			TransparentDepth = new FloatSocket(parentNode, "Transparent Depth");
 			AddSocket(TransparentDepth);
 			TransmissionDepth = new FloatSocket(parentNode, "Transmission Depth");
 			AddSocket(TransmissionDepth);
+			NoRaySet = new FloatSocket(parentNode, "No Ray Set");
+			AddSocket(NoRaySet);
 		}
 	}
 

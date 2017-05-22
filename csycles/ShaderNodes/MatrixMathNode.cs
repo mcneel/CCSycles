@@ -117,7 +117,7 @@ namespace ccl.ShaderNodes
 			CSycles.shadernode_set_enum(clientId, shaderId, Id, Type, "operation", (int)Operation);
 		}
 
-		internal override void SetDirectMembers(uint clientId, uint shaderId)
+		internal override void SetDirectMembers(uint clientId, uint sceneId, uint shaderId)
 		{
 			var tfm = Transform;
 			CSycles.shadernode_set_member_vec4_at_index(clientId, shaderId, Id, Type, "tfm_x", tfm.x.x, tfm.x.y, tfm.x.z, tfm.x.w, 0);
