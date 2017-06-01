@@ -277,6 +277,30 @@ void cycles_session_destroy(unsigned int client_id, unsigned int session_id)
 	SESSION_FIND_END()
 }
 
+static ccl::array<ccl::Pass> _passes;
+ccl::array<ccl::Pass>& get_passes() {
+	ccl::Pass::add(ccl::PASS_COMBINED, _passes);
+	ccl::Pass::add(ccl::PASS_DEPTH, _passes);
+	ccl::Pass::add(ccl::PASS_NORMAL, _passes);
+	/*ccl::Pass::add(ccl::PASS_UV, passes);
+	ccl::Pass::add(ccl::PASS_DIFFUSE_COLOR, passes);
+	ccl::Pass::add(ccl::PASS_DIFFUSE_DIRECT, passes);
+	ccl::Pass::add(ccl::PASS_DIFFUSE_INDIRECT, passes);
+	ccl::Pass::add(ccl::PASS_GLOSSY_COLOR, passes);
+	ccl::Pass::add(ccl::PASS_GLOSSY_DIRECT, passes);
+	ccl::Pass::add(ccl::PASS_GLOSSY_INDIRECT, passes);
+	ccl::Pass::add(ccl::PASS_EMISSION, passes);
+	ccl::Pass::add(ccl::PASS_TRANSMISSION_COLOR, passes);
+	ccl::Pass::add(ccl::PASS_TRANSMISSION_DIRECT, passes);
+	ccl::Pass::add(ccl::PASS_TRANSMISSION_INDIRECT, passes);
+	ccl::Pass::add(ccl::PASS_SUBSURFACE_COLOR, passes);
+	ccl::Pass::add(ccl::PASS_SUBSURFACE_DIRECT, passes);
+	ccl::Pass::add(ccl::PASS_SUBSURFACE_INDIRECT, passes);
+	ccl::Pass::add(ccl::PASS_SHADOW, passes);*/
+	return _passes;
+}
+
+
 void cycles_session_reset(unsigned int client_id, unsigned int session_id, unsigned int width, unsigned int height, unsigned int samples)
 {
 	SESSION_FIND(session_id)
@@ -285,25 +309,7 @@ void cycles_session_reset(unsigned int client_id, unsigned int session_id, unsig
 		ccsess->reset(width, height, 4);
 		ccl::BufferParams bufParams;
 
-		ccl::array<ccl::Pass> passes;
-		ccl::Pass::add(ccl::PASS_COMBINED, passes);
-		ccl::Pass::add(ccl::PASS_DEPTH, passes);
-		ccl::Pass::add(ccl::PASS_NORMAL, passes);
-		ccl::Pass::add(ccl::PASS_UV, passes);
-		ccl::Pass::add(ccl::PASS_DIFFUSE_COLOR, passes);
-		ccl::Pass::add(ccl::PASS_DIFFUSE_DIRECT, passes);
-		ccl::Pass::add(ccl::PASS_DIFFUSE_INDIRECT, passes);
-		ccl::Pass::add(ccl::PASS_GLOSSY_COLOR, passes);
-		ccl::Pass::add(ccl::PASS_GLOSSY_DIRECT, passes);
-		ccl::Pass::add(ccl::PASS_GLOSSY_INDIRECT, passes);
-		ccl::Pass::add(ccl::PASS_EMISSION, passes);
-		ccl::Pass::add(ccl::PASS_TRANSMISSION_COLOR, passes);
-		ccl::Pass::add(ccl::PASS_TRANSMISSION_DIRECT, passes);
-		ccl::Pass::add(ccl::PASS_TRANSMISSION_INDIRECT, passes);
-		ccl::Pass::add(ccl::PASS_SUBSURFACE_COLOR, passes);
-		ccl::Pass::add(ccl::PASS_SUBSURFACE_DIRECT, passes);
-		ccl::Pass::add(ccl::PASS_SUBSURFACE_INDIRECT, passes);
-		ccl::Pass::add(ccl::PASS_SHADOW, passes);
+		ccl::array<ccl::Pass>& passes = get_passes();
 
 		session->scene->film->tag_passes_update(session->scene, passes);
 
@@ -612,8 +618,10 @@ void cycles_session_rhinodraw(unsigned int client_id, unsigned int session_id, i
 
 	SESSION_FIND(session_id)
 		ccl::BufferParams session_buf_params;
+		ccl::array<ccl::Pass>& passes = get_passes();
 		session_buf_params.width = session_buf_params.full_width = width;
 		session_buf_params.height = session_buf_params.full_height = height;
+		session_buf_params.passes = passes;
 
 		if (ccsess->program == 0) {
 			if (!initialize_shader_program(ccsess->program)) return;
