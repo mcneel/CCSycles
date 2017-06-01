@@ -226,4 +226,33 @@ namespace ccl
 		/* we need layer member flags to be the 20 upper bits */
 		LayerShift = (32 - 20)
 	}
+
+	public enum PassType : int
+	{
+		Combined = (1 << 0),
+		Depth = (1 << 1),
+		Normal = (1 << 2),
+		Uv = (1 << 3),
+		ObjectId = (1 << 4),
+		MaterialId = (1 << 5),
+		DiffuseColor = (1 << 6),
+		GlossyColor = (1 << 7),
+		TransmissionColor = (1 << 8),
+		DiffuseIndirect = (1 << 9),
+		GlossyIndirect = (1 << 10),
+		TransmissionIndirect = (1 << 11),
+		DiffuseDirect = (1 << 12),
+		GlossyDirect = (1 << 13),
+		TransmissionDirect = (1 << 14),
+		Emission = (1 << 15),
+		Background = (1 << 16),
+		Ao = (1 << 17),
+		Shadow = (1 << 18),
+		Motion = (1 << 19),
+		MotionWeight = (1 << 20),
+		Mist = (1 << 21),
+		SubsurfaceDirect = (1 << 22),
+		SubsurfaceIndirect = (1 << 23),
+		SubsurfaceColor = (1 << 24),
+	}
 }

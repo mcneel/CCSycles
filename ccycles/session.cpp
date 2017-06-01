@@ -97,19 +97,11 @@ void copy_pixels_to_ccsession(CCSession* se, ccl::RenderTile &tile) {
 /* Wrapper callback for render tile update. Copies tile result into session full image buffer. */
 void CCSession::update_render_tile(ccl::RenderTile &tile)
 {
-	ccl::thread_scoped_lock pixels_lock(pixels_mutex);
-	if (size_has_changed()) return;
-	copy_pixels_to_ccsession(this, tile);
-
-	ccl::RenderBuffers* buffers = tile.buffers;
-	ccl::BufferParams& params = buffers->params;
-
-	int tilex = params.full_x - session->tile_manager.params.full_x;
-	int tiley = params.full_y - session->tile_manager.params.full_y;
-
+	/*
 	if (update_cbs[this->id] != nullptr) {
-		update_cbs[this->id](this->id, tilex, tiley, params.width, params.height, 4, tile.start_sample, tile.num_samples, tile.sample, tile.resolution);
+		write_or_update_cb(this, tile, update_cbs[this->id]);
 	}
+	*/
 }
 
 /* Wrapper callback for render tile write. Copies tile result into session full image buffer. */
@@ -117,15 +109,30 @@ void CCSession::write_render_tile(ccl::RenderTile &tile)
 {
 	ccl::thread_scoped_lock pixels_lock(pixels_mutex);
 	if (size_has_changed()) return;
-	copy_pixels_to_ccsession(this, tile);
+	//copy_pixels_to_ccsession(session, tile);
 
 	ccl::RenderBuffers* buffers = tile.buffers;
 	ccl::BufferParams& params = buffers->params;
+	ccl::array<ccl::Pass>& passes = params.passes;
 
 	auto tilex = params.full_x - session->tile_manager.params.full_x;
 	auto tiley = params.full_y - session->tile_manager.params.full_y;
+
+	ccl::vector<float> px(params.width*params.height * 4);
+	float exposure = session->scene->film->exposure;
+	int sample = tile.sample;
+
 	if (write_cbs[this->id] != nullptr) {
-		write_cbs[this->id](this->id, tilex, tiley, params.width, params.height, 4, tile.start_sample, tile.num_samples, tile.sample, tile.resolution);
+		buffers->copy_from_device();
+		for(int i = 0, c = passes.size(); i < c; i++) {
+			ccl::Pass p = passes[i];
+			int components = p.components;
+			ccl::PassType pt = p.type;
+			int pixlen = params.width*params.height*components;
+			if (buffers->get_pass_rect(pt, p.exposure ? exposure : 1.0f, sample, components, &px[0])) {
+				write_cbs[this->id](id, tilex, tiley, params.width, params.height, sample, components, (int)p.type, &px[0], pixlen);
+			}
+		}
 	}
 }
 
@@ -277,9 +284,35 @@ void cycles_session_reset(unsigned int client_id, unsigned int session_id, unsig
 		ccl::thread_scoped_lock pixels_lock(ccsess->pixels_mutex);
 		ccsess->reset(width, height, 4);
 		ccl::BufferParams bufParams;
+
+		ccl::array<ccl::Pass> passes;
+		ccl::Pass::add(ccl::PASS_COMBINED, passes);
+		ccl::Pass::add(ccl::PASS_DEPTH, passes);
+		ccl::Pass::add(ccl::PASS_NORMAL, passes);
+		ccl::Pass::add(ccl::PASS_UV, passes);
+		ccl::Pass::add(ccl::PASS_DIFFUSE_COLOR, passes);
+		ccl::Pass::add(ccl::PASS_DIFFUSE_DIRECT, passes);
+		ccl::Pass::add(ccl::PASS_DIFFUSE_INDIRECT, passes);
+		ccl::Pass::add(ccl::PASS_GLOSSY_COLOR, passes);
+		ccl::Pass::add(ccl::PASS_GLOSSY_DIRECT, passes);
+		ccl::Pass::add(ccl::PASS_GLOSSY_INDIRECT, passes);
+		ccl::Pass::add(ccl::PASS_EMISSION, passes);
+		ccl::Pass::add(ccl::PASS_TRANSMISSION_COLOR, passes);
+		ccl::Pass::add(ccl::PASS_TRANSMISSION_DIRECT, passes);
+		ccl::Pass::add(ccl::PASS_TRANSMISSION_INDIRECT, passes);
+		ccl::Pass::add(ccl::PASS_SUBSURFACE_COLOR, passes);
+		ccl::Pass::add(ccl::PASS_SUBSURFACE_DIRECT, passes);
+		ccl::Pass::add(ccl::PASS_SUBSURFACE_INDIRECT, passes);
+		ccl::Pass::add(ccl::PASS_SHADOW, passes);
+
+		session->scene->film->tag_passes_update(session->scene, passes);
+
+		bufParams.passes = passes;
+
 		bufParams.width = bufParams.full_width = width;
 		bufParams.height = bufParams.full_height = height;
 		session->reset(bufParams, (int)samples);
+		
 	SESSION_FIND_END()
 }
 

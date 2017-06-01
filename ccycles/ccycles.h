@@ -104,7 +104,7 @@ typedef void(__cdecl *TEST_CANCEL_CB)(unsigned int session_id);
  * cycles_session_set_update_tile_callback
  * \ingroup ccycles ccycles_session
  */
-typedef void(__cdecl *RENDER_TILE_CB)(unsigned int session_id, unsigned int x, unsigned int y, unsigned int w, unsigned int h, unsigned int depth, int start_sample, int num_samples, int sample, int resolution);
+typedef void(__cdecl *RENDER_TILE_CB)(unsigned int session_id, unsigned int x, unsigned int y, unsigned int w, unsigned int h, unsigned int sample, unsigned int depth, int passtype, float* pixels, int pixlen);
 
 /**
  * Pixel buffer from DisplayBuffer update function signature.
