@@ -32,6 +32,7 @@ void cycles_scene_set_background_shader(unsigned int client_id, unsigned int sce
 		if (bg != nullptr) {
 			sce->default_background = bg;
 			sce->background->shader = bg;
+			sce->background->use_shader = true;
 			sce->background->tag_update(sce);
 			logger.logit(client_id, "Scene ", scene_id, " set background shader ", shader_id);
 		}
@@ -45,7 +46,7 @@ unsigned int cycles_scene_get_background_shader(unsigned int client_id, unsigned
 		auto bi = sce->shaders.cbegin();
 		auto ei = sce->shaders.cend();
 		while (bi != ei) {
-			if (*bi == sce->default_background) break;
+			if (*bi == sce->background->shader) break;
 			idx++;
 			bi++;
 		}
