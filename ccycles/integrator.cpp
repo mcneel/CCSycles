@@ -48,6 +48,13 @@ void cycles_integrator_set_no_caustics(unsigned int client_id, unsigned int scen
 	SCENE_FIND_END()
 }
 
+void cycles_integrator_set_no_shadows(unsigned int client_id, unsigned int scene_id, bool no_shadows)
+{
+	SCENE_FIND(scene_id)
+		sce->integrator->no_shadows = no_shadows;
+	SCENE_FIND_END()
+}
+
 void cycles_integrator_set_transparent_shadows(unsigned int client_id, unsigned int scene_id, bool transparent_shadows)
 {
 	SCENE_FIND(scene_id)

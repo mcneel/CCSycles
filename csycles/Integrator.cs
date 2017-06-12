@@ -152,6 +152,17 @@ namespace ccl
 		}
 
 		/// <summary>
+		/// Set to true if shadows shouldn't be traced
+		/// </summary>
+		public bool NoShadows
+		{
+			set
+			{
+				CSycles.integrator_set_no_shadows(Scene.Client.Id, Scene.Id, value);
+			}
+		}
+
+		/// <summary>
 		/// Set to true if transparent shadows should be traced.
 		/// </summary>
 		public bool TransparentShadows

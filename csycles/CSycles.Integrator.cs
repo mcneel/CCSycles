@@ -131,6 +131,13 @@ namespace ccl
 		{
 			cycles_integrator_set_no_caustics(clientId, sceneId, value);
 		}
+		
+		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_integrator_set_no_shadows", CallingConvention = CallingConvention.Cdecl)]
+		private static extern void cycles_integrator_set_no_shadows(uint clientId, uint sceneId, bool value);
+		public static void integrator_set_no_shadows(uint clientId, uint sceneId, bool value)
+		{
+			cycles_integrator_set_no_shadows(clientId, sceneId, value);
+		}
 
 		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_integrator_set_transparent_shadows", CallingConvention = CallingConvention.Cdecl)]
 		private static extern void cycles_integrator_set_transparent_shadows(uint clientId, uint sceneId, bool value);

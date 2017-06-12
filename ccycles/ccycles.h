@@ -365,6 +365,9 @@ CCL_CAPI void __cdecl cycles_integrator_set_min_bounce(unsigned int client_id, u
  * \todo split for caustics_reflective and caustics_refractive.
  */
 CCL_CAPI void __cdecl cycles_integrator_set_no_caustics(unsigned int client_id, unsigned int scene_id, bool no_caustics);
+/** Set to true if shadows shouldn't be traced.
+ */
+CCL_CAPI void __cdecl cycles_integrator_set_no_shadows(unsigned int client_id, unsigned int scene_id, bool no_shadows);
 /** Set to true if transparent shadows should be rendered. */
 CCL_CAPI void __cdecl cycles_integrator_set_transparent_shadows(unsigned int client_id, unsigned int scene_id, bool transparent_shadows);
 /** Set the amount of diffuse samples. */
