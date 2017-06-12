@@ -78,9 +78,9 @@ namespace ccl.ShaderNodes
 			AddSocket(ClearcoatGloss);
 			IOR = new FloatSocket(parentNode, "IOR");
 			AddSocket(IOR);
-			Transparency = new FloatSocket(parentNode, "Transparency");
+			Transparency = new FloatSocket(parentNode, "Transmission");
 			AddSocket(Transparency);
-			RefractionRoughness = new FloatSocket(parentNode, "Refraction Roughness");
+			RefractionRoughness = new FloatSocket(parentNode, "Transmission Roughness");
 			AddSocket(RefractionRoughness);
 			AnisotropicRotation = new FloatSocket(parentNode, "Anisotropic Rotation");
 			AddSocket(AnisotropicRotation);
@@ -116,8 +116,8 @@ namespace ccl.ShaderNodes
 	{
 		public enum Distributions
 		{
-			GGX = 33,
-			Multiscatter_GGX = 34
+			GGX = 32,
+			Multiscatter_GGX = 30
 		}
 
 		public UberBsdfInputs ins => (UberBsdfInputs)inputs;

@@ -95,7 +95,7 @@ void copy_pixels_to_ccsession(CCSession* se, ccl::RenderTile &tile) {
 }
 
 /* Wrapper callback for render tile update. Copies tile result into session full image buffer. */
-void CCSession::update_render_tile(ccl::RenderTile &tile)
+void CCSession::update_render_tile(ccl::RenderTile &tile, bool highlight)
 {
 	/*
 	if (update_cbs[this->id] != nullptr) {
@@ -358,7 +358,7 @@ void cycles_session_set_update_tile_callback(unsigned int client_id, unsigned in
 		CCSession* se = sessions[session_id];
 		update_cbs[session_id] = update_tile_cb;
 		if (update_tile_cb != nullptr) {
-			session->update_render_tile_cb = function_bind<void>(&CCSession::update_render_tile, ccsess, std::placeholders::_1);
+			session->update_render_tile_cb = function_bind<void>(&CCSession::update_render_tile, ccsess, std::placeholders::_1, std::placeholders::_2);
 		}
 		else {
 			session->update_render_tile_cb = nullptr;
@@ -385,6 +385,7 @@ void cycles_session_set_write_tile_callback(unsigned int client_id, unsigned int
 void cycles_session_set_display_update_callback(unsigned int client_id, unsigned int session_id, DISPLAY_UPDATE_CB display_update_cb)
 {
 	SESSION_FIND(session_id)
+#if 0
 		CCSession* se = sessions[session_id];
 		display_update_cbs[session_id] = display_update_cb;
 		if (display_update_cb != nullptr) {
@@ -394,6 +395,7 @@ void cycles_session_set_display_update_callback(unsigned int client_id, unsigned
 			session->display_update_cb = nullptr;
 		}
 		logger.logit(client_id, "Set display update callback for session ", session_id);
+#endif
 	SESSION_FIND_END()
 }
 
@@ -457,7 +459,7 @@ void cycles_session_set_pause(unsigned int client_id, unsigned int session_id, b
 bool cycles_session_is_paused(unsigned int client_id, unsigned int session_id)
 {
 	SESSION_FIND(session_id)
-		return session->is_paused();
+		return false; // session->is_paused();
 	SESSION_FIND_END()
 
 	return false;
@@ -669,6 +671,7 @@ void cycles_session_draw_nogl(unsigned int client_id, unsigned int session_id, i
 	SESSION_FIND(session_id)
 		// lock moved to initial callback invocation
 		//ccl::thread_scoped_lock pixels_lock(ccsess->pixels_mutex);
+#if 0
 		if (!ccsess->pixels || ccsess->size_has_changed()) return;
 		ccl::BufferParams session_buf_params;
 		ccl::DeviceDrawParams draw_params;
@@ -677,6 +680,7 @@ void cycles_session_draw_nogl(unsigned int client_id, unsigned int session_id, i
 		if (isgpu)
 			session->draw(session_buf_params, draw_params);
 		session->display->get_pixels(session->device, ccsess->pixels);
+#endif
 	SESSION_FIND_END()
 
 }

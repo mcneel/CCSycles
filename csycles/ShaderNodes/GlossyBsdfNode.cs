@@ -55,11 +55,11 @@ namespace ccl.ShaderNodes
 
 		public enum GlossyDistribution
 		{
-			Sharp = 9,
-			Beckmann = 13,
-			GGX = 10,
-			Asihkmin_Shirley = 16,
-			Multiscatter_GGX = 14
+			Sharp = 8,
+			Beckmann = 12,
+			GGX = 9,
+			Asihkmin_Shirley = 15,
+			Multiscatter_GGX = 13
 		}
 
 		public GlossyInputs ins => (GlossyInputs)inputs;

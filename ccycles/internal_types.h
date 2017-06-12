@@ -158,7 +158,7 @@ public:
 	void test_cancel(void);
 	/* The update render tile handler for ccl::Session rendertile update callback.
 	 */
-	void update_render_tile(ccl::RenderTile &tile);
+	void update_render_tile(ccl::RenderTile &tile, bool highlight);
 	/* The write render tile handler for ccl::Session rendertile write callback.
 	 */
 	void write_render_tile(ccl::RenderTile &tile);

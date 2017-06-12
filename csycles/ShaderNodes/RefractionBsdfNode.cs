@@ -58,9 +58,9 @@ namespace ccl.ShaderNodes
 	{
 		public enum RefractionDistribution
 		{
-			Sharp = 29,
-			Beckmann = 30,
-			GGX = 31 
+			Sharp = 27,
+			Beckmann = 28,
+			GGX = 29
 		}
 		public RefractionBsdfInputs ins => (RefractionBsdfInputs)inputs;
 		public RefractionBsdfOutputs outs => (RefractionBsdfOutputs)outputs;

@@ -66,9 +66,9 @@ namespace ccl.ShaderNodes
 	{
 		public enum FalloffTypes
 		{
-			Cubic = 41,
-			Guassian = 42,
-			Burley = 44
+			Cubic = 39,
+			Guassian = 40,
+			Burley = 42
 		}
 
 		public SubsurfaceScatteringInputs ins => (SubsurfaceScatteringInputs)inputs;

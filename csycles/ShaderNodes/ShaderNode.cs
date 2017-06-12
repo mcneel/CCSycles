@@ -16,7 +16,6 @@ limitations under the License.
 
 using System;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text;
 using System.Xml;
 using ccl.ShaderNodes.Sockets;
@@ -146,23 +145,19 @@ namespace ccl.ShaderNodes
 			{
 				foreach (var socket in inputs.Sockets)
 				{
-					var float_socket = socket as FloatSocket;
-					if (float_socket != null)
+					if (socket is FloatSocket float_socket)
 					{
 						CSycles.shadernode_set_attribute_float(clientId, shaderId, Id, float_socket.Name, float_socket.Value);
 					}
-					var int_socket = socket as IntSocket;
-					if (int_socket != null)
+					if (socket is IntSocket int_socket)
 					{
 						CSycles.shadernode_set_attribute_int(clientId, shaderId, Id, int_socket.Name, int_socket.Value);
 					}
-					var string_socket = socket as StringSocket;
-					if (string_socket != null)
+					if (socket is StringSocket string_socket)
 					{
 						CSycles.shadernode_set_attribute_string(clientId, shaderId, Id, socket.Name, string_socket.Value);
 					}
-					var float4_socket = socket as Float4Socket;
-					if (float4_socket != null)
+					if (socket is Float4Socket float4_socket)
 					{
 						CSycles.shadernode_set_attribute_vec(clientId, shaderId, Id, float4_socket.Name, float4_socket.Value);
 					}
@@ -196,38 +191,32 @@ namespace ccl.ShaderNodes
 
 			foreach (var inp in inputs.Sockets)
 			{
-				var fs = inp as FloatSocket;
-				if (fs != null)
+				if (inp is FloatSocket fs)
 				{
 					xml.AppendFormat(nfi, " {0}=\"{1}\"", fs.XmlName, fs.Value);
 					continue;
 				}
-				var ints = inp as IntSocket;
-				if (ints != null)
+				if (inp is IntSocket ints)
 				{
 					xml.AppendFormat(nfi, " {0}=\"{1}\"", ints.XmlName, ints.Value);
 					continue;
 				}
-				var cols = inp as ColorSocket;
-				if (cols != null)
+				if (inp is ColorSocket cols)
 				{
 					xml.AppendFormat(nfi, " {0}=\"{1} {2} {3} {4}\"", cols.XmlName, cols.Value.x, cols.Value.y, cols.Value.z, cols.Value.w);
 					continue;
 				}
-				var vec = inp as VectorSocket;
-				if (vec != null)
+				if (inp is VectorSocket vec)
 				{
 					xml.AppendFormat(nfi, " {0}=\"{1} {2} {3} {4}\"", vec.XmlName, vec.Value.x, vec.Value.y, vec.Value.z, vec.Value.w);
 					continue;
 				}
-				var f4s = inp as Float4Socket;
-				if (f4s != null)
+				if (inp is Float4Socket f4s)
 				{
 					xml.AppendFormat(nfi, " {0}=\"{1} {2} {3} {4}\"", f4s.XmlName, f4s.Value.x, f4s.Value.y, f4s.Value.z, f4s.Value.w);
 					continue;
 				}
-				var strs = inp as StringSocket;
-				if (strs != null)
+				if (inp is StringSocket strs)
 				{
 					xml.AppendFormat(nfi, " {0}=\"{1}\"", strs.XmlName, strs.Value);
 				}

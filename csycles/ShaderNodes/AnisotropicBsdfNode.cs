@@ -68,9 +68,9 @@ namespace ccl.ShaderNodes
 		public enum AnisotropicDistribution
 		{
 			Beckmann = 21,
-			GGX = 17,
-			Multiscatter_GGX = 19,
-			Asihkmin_Shirley = 22,
+			GGX = 16,
+			Multiscatter_GGX = 18,
+			Asihkmin_Shirley = 21,
 		}
 		public AnisotropicBsdfInputs ins => (AnisotropicBsdfInputs)inputs;
 		public AnisotropicBsdfOutputs outs => (AnisotropicBsdfOutputs)outputs;
