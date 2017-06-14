@@ -241,6 +241,7 @@ namespace ccl
 		 */
 		public static void debug_set_cpu_kernel(bool split)
 		{
+			LoadCCycles();
 			cycles_debug_set_cpu_kernel(split ? 1 : 0);
 		}
 		[DllImport("ccycles.dll", SetLastError = false, CallingConvention = CallingConvention.Cdecl,
@@ -253,6 +254,7 @@ namespace ccl
 		 */
 		public static void debug_set_cpu_allow_qbvh(bool allowQbvh)
 		{
+			LoadCCycles();
 			cycles_debug_set_cpu_allow_qbvh(allowQbvh ? 1 : 0);
 		}
 		[DllImport("ccycles.dll", SetLastError = false, CallingConvention = CallingConvention.Cdecl,
@@ -265,6 +267,7 @@ namespace ccl
 		 */
 		public static void debug_set_cuda_kernel(bool useSplit)
 		{
+			LoadCCycles();
 			cycles_debug_set_cuda_kernel(useSplit ? 1 : 0);
 		}
 		[DllImport("ccycles.dll", SetLastError = false, CallingConvention = CallingConvention.Cdecl,
@@ -277,6 +280,7 @@ namespace ccl
 		/// <param name="kernelType">1 = split, 0 = mega, -1 = default based on officially supported devices.</param>
 		public static void debug_set_opencl_kernel(int kernelType)
 		{
+			LoadCCycles();
 			cycles_debug_set_opencl_kernel(kernelType);
 		}
 		[DllImport("ccycles.dll", SetLastError = false, CallingConvention = CallingConvention.Cdecl,
@@ -288,6 +292,7 @@ namespace ccl
 		/// <param name="useSingleProgram">true to compile as single program, false to compile as separate programs</param>
 		public static void debug_set_opencl_single_program(bool useSingleProgram)
 		{
+			LoadCCycles();
 			cycles_debug_set_opencl_single_program(useSingleProgram ? 1 : 0);
 		}
 
@@ -307,6 +312,7 @@ namespace ccl
 		/// </param>
 		public static void debug_set_opencl_device_type(int type)
 		{
+			LoadCCycles();
 			cycles_debug_set_opencl_device_type(type);
 		}
 #endregion

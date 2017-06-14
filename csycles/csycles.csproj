@@ -191,6 +191,7 @@ copy /Y "$(ProjectDir)..\..\..\..\..\..\big_libs\boost\stage$(ConfigurationName)
 XCopy "$(SolutionDir)..\..\big_libs\RhinoCycles\lib" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\lib" /Y /I /Q
 
 XCopy "$(ProjectDir)..\cycles\src\kernel\closure" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\source\kernel\closure" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\kernel\filter" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\source\kernel\filter" /Y /I /Q
 XCopy "$(ProjectDir)..\cycles\src\kernel\geom" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\source\kernel\geom" /Y /I /Q
 XCopy "$(ProjectDir)..\cycles\src\kernel\bvh" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\source\kernel\bvh" /Y /I /Q
 XCopy "$(ProjectDir)..\cycles\src\kernel\svm" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\source\kernel\svm" /Y /I /Q
@@ -209,6 +210,7 @@ XCopy "$(ProjectDir)..\cycles\src\util\util_math*3.h" "$(SolutionDir)..\$(OutDir
 XCopy "$(ProjectDir)..\cycles\src\util\util_math*4.h" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\source\util\" /Y /I /Q
 XCopy "$(ProjectDir)..\cycles\src\util\util_math_fast.h" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\source\util\" /Y /I /Q
 XCopy "$(ProjectDir)..\cycles\src\util\util_math_intersect.h" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\source\util\" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\util\util_math_matrix.h" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\source\util\" /Y /I /Q
 XCopy "$(ProjectDir)..\cycles\src\util\util_texture.h" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\source\util\" /Y /I /Q
 XCopy "$(ProjectDir)..\cycles\src\util\util_transform.h" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\source\util\" /Y /I /Q
 XCopy "$(ProjectDir)..\cycles\src\util\util_types*.h" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\source\util\" /Y /I /Q
@@ -226,6 +228,7 @@ copy /Y "$(ProjectDir)..\boostbuild\stagerelease\lib\boost_*" "$(SolutionDir)$(O
 XCopy "$(SolutionDir)lib" "$(SolutionDir)$(OutDir)lib" /Y /I /Q
 
 XCopy "$(ProjectDir)..\cycles\src\kernel\closure" "$(SolutionDir)$(OutDir)source\kernel\closure" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\kernel\filter" "$(SolutionDir)$(OutDir)source\kernel\filter" /Y /I /Q
 XCopy "$(ProjectDir)..\cycles\src\kernel\geom" "$(SolutionDir)$(OutDir)source\kernel\geom" /Y /I /Q
 XCopy "$(ProjectDir)..\cycles\src\kernel\bvh" "$(SolutionDir)$(OutDir)source\kernel\bvh" /Y /I /Q
 XCopy "$(ProjectDir)..\cycles\src\kernel\svm" "$(SolutionDir)$(OutDir)source\kernel\svm" /Y /I /Q
@@ -244,6 +247,7 @@ XCopy "$(ProjectDir)..\cycles\src\util\util_math*3.h" "$(SolutionDir)$(OutDir)so
 XCopy "$(ProjectDir)..\cycles\src\util\util_math*4.h" "$(SolutionDir)$(OutDir)source\util\" /Y /I /Q
 XCopy "$(ProjectDir)..\cycles\src\util\util_math_fast.h" "$(SolutionDir)$(OutDir)source\util\" /Y /I /Q
 XCopy "$(ProjectDir)..\cycles\src\util\util_math_intersect.h" "$(SolutionDir)$(OutDir)source\util\" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\util\util_math_matrix.h" "$(SolutionDir)$(OutDir)source\util\" /Y /I /Q
 XCopy "$(ProjectDir)..\cycles\src\util\util_texture.h" "$(SolutionDir)$(OutDir)source\util\" /Y /I /Q
 XCopy "$(ProjectDir)..\cycles\src\util\util_transform.h" "$(SolutionDir)$(OutDir)source\util\" /Y /I /Q
 XCopy "$(ProjectDir)..\cycles\src\util\util_types*.h" "$(SolutionDir)$(OutDir)source\util\" /Y /I /Q
