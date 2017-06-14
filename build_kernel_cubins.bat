@@ -35,5 +35,6 @@ IF [%shadermodelnum%]==[] (
 	)
 ) ELSE (
 	"%nvcc%" -arch=%shadermodel% -m64 --cubin %cyclesroot%/cycles/src/kernel/kernels/cuda/kernel.cu -o %cyclesout%/lib/kernel_%shadermodel%.cubin --ptxas-options="-v" -D__KERNEL_CUDA_VERSION__=%cudaversion75% --use_fast_math -I%cyclesroot%/cycles/src -DCCL_NAMESPACE_BEGIN= -DCCL_NAMESPACE_END= -DNVCC
+	"%nvcc%" -arch=%shadermodel% -m64 --cubin %cyclesroot%/cycles/src/kernel/kernels/cuda/filter.cu -o %cyclesout%/lib/filter_%shadermodel%.cubin --ptxas-options="-v" -D__KERNEL_CUDA_VERSION__=%cudaversion75% --use_fast_math -I%cyclesroot%/cycles/src -DCCL_NAMESPACE_BEGIN= -DCCL_NAMESPACE_END= -DNVCC
 	"%nvcc%" -arch=%shadermodel% -m64 --cubin %cyclesroot%/cycles/src/kernel/kernels/cuda/kernel_split.cu -o %cyclesout%/lib/kernel_split_%shadermodel%.cubin --ptxas-options="-v" -D__KERNEL_CUDA_VERSION__=%cudaversion75% --use_fast_math -I%cyclesroot%/cycles/src -DCCL_NAMESPACE_BEGIN= -DCCL_NAMESPACE_END= -DNVCC
 )
