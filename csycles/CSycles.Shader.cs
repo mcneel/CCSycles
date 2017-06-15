@@ -162,6 +162,15 @@ namespace ccl
 			cycles_shadernode_set_member_vec(clientId, shaderId, shadernodeId, (uint)shnType, name, x, y, z);
 		}
 
+		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_shadernode_set_member_string", CharSet = CharSet.Ansi,
+			CallingConvention = CallingConvention.Cdecl)]
+		private static extern void cycles_shadernode_set_member_string(uint clientId, uint shaderId, uint shadernodeId, uint shnType, string name, string value);
+		public static void shadernode_set_member_string(uint clientId, uint shaderId, uint shadernodeId, ShaderNodeType shnType,
+			[MarshalAs(UnmanagedType.LPStr)] string name, [MarshalAs(UnmanagedType.LPStr)] string value)
+		{
+			cycles_shadernode_set_member_string(clientId, shaderId, shadernodeId, (uint)shnType, name, value);
+		}
+
 		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_shadernode_set_member_vec4_at_index", CharSet = CharSet.Ansi,
 			CallingConvention = CallingConvention.Cdecl)]
 		private static extern void cycles_shadernode_set_member_vec4_at_index(uint clientId, uint shaderId, uint shadernodeId, uint shnType, string name, float x, float y, float z, float w, int index);

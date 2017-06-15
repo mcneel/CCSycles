@@ -334,6 +334,9 @@ unsigned int cycles_add_shader_node(unsigned int client_id, unsigned int shader_
 	case shadernode_type::UBER_BSDF:
 		node = new ccl::PrincipledBsdfNode();
 		break;
+	case shadernode_type::ATTRIBUTE:
+		node = new ccl::AttributeNode();
+		break;
 	}
 
 	if (node) {
@@ -1000,6 +1003,24 @@ void cycles_shadernode_set_member_vec(unsigned int client_id, unsigned int shade
 			}
 		}
 		break;
+		}
+	}
+}
+
+void cycles_shadernode_set_member_string(unsigned int client_id, unsigned int shader_id, unsigned int shnode_id, shadernode_type shn_type, const char* member_name, const char* value)
+{
+	auto mname = std::string{ member_name };
+	auto mval = std::string{ value };
+
+	ccl::ShaderNode* shnode = _shader_node_find(shader_id, shnode_id);
+	if (shnode)
+	{
+		switch (shn_type)
+		{
+			case shadernode_type::ATTRIBUTE:
+				ccl::AttributeNode* attrn = dynamic_cast<ccl::AttributeNode*>(shnode);
+				attrn->attribute = mval;
+				break;
 		}
 	}
 }

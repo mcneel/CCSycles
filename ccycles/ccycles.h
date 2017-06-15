@@ -654,6 +654,7 @@ enum class shadernode_type : unsigned int {
 	VECT_MATH,
 	MATRIX_MATH,
 	UBER_BSDF,
+	ATTRIBUTE,
 };
 
 CCL_CAPI unsigned int __cdecl cycles_create_shader(unsigned int client_id);
@@ -686,6 +687,7 @@ CCL_CAPI void __cdecl cycles_shadernode_set_member_bool(unsigned int client_id, 
 CCL_CAPI void __cdecl cycles_shadernode_set_member_float(unsigned int client_id, unsigned int shader_id, unsigned int shnode_id, shadernode_type shn_type, const char* member_name, float value);
 CCL_CAPI void __cdecl cycles_shadernode_set_member_int(unsigned int client_id, unsigned int shader_id, unsigned int shnode_id, shadernode_type shn_type, const char* member_name, int value);
 CCL_CAPI void __cdecl cycles_shadernode_set_member_vec(unsigned int client_id, unsigned int shader_id, unsigned int shnode_id, shadernode_type shn_type, const char* member_name, float x, float y, float z);
+CCL_CAPI void __cdecl cycles_shadernode_set_member_string(unsigned int client_id, unsigned int shader_id, unsigned int shnode_id, shadernode_type shn_type, const char* member_name, const char* value);
 CCL_CAPI void __cdecl cycles_shadernode_set_member_vec4_at_index(unsigned int client_id, unsigned int shader_id, unsigned int shnode_id, shadernode_type shn_type, const char* member_name, float x, float y, float z, float w, int index);
 
 CCL_CAPI void __cdecl cycles_shadernode_set_member_float_img(unsigned int client_id, unsigned int scene_id, unsigned int shader_id, unsigned int shnode_id, shadernode_type shn_type, const char* member_name, const char* img_name, float* img, unsigned int width, unsigned int height, unsigned int depth, unsigned int channels);

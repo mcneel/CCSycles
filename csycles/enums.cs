@@ -137,6 +137,7 @@ namespace ccl
 		VectorMath,
 		MatrixMath,
 		Uber,
+		Attribute,
 	}
 
 	public enum BvhType : uint

@@ -96,6 +96,7 @@
     <Compile Include="Mesh.cs" />
     <Compile Include="Object.cs" />
     <Compile Include="CodeShader.cs" />
+    <Compile Include="ShaderNodes\AttributeNode.cs" />
     <Compile Include="ShaderNodes\ColorRamp.cs" />
     <Compile Include="ShaderNodes\CombineHsvNode.cs" />
     <Compile Include="ShaderNodes\CombineRgbNode.cs" />
