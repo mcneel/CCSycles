@@ -148,6 +148,15 @@ namespace ccl
 		}
 
 		/// <summary>
+		/// Set vertex colors
+		/// </summary>
+		/// <param name="uvs"></param>
+		public void SetVertexColors(ref float[] vertexcolors)
+		{
+			CSycles.mesh_set_vertex_colors(Client.Id, Client.Scene.Id, Id, ref vertexcolors, (uint) (vertexcolors.Length/3));
+		}
+
+		/// <summary>
 		/// Add a triangle to the mesh using the given vertex coordinates, shader and smooth flag
 		/// </summary>
 		/// <param name="v0"></param>

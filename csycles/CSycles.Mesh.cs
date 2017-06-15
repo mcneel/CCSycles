@@ -43,6 +43,18 @@ namespace ccl
 				}
 			}
 		}
+		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_mesh_set_vertex_colors", CallingConvention = CallingConvention.Cdecl)]
+		private unsafe static extern void cycles_mesh_set_vertex_colors(uint clientId, uint sceneId, uint meshId, float* vertex_colors, uint vccount);
+		public static void mesh_set_vertex_colors(uint clientId, uint sceneId, uint meshId, ref float[] vertex_colors, uint vccount)
+		{
+			unsafe
+			{
+				fixed (float* pvertex_colors = vertex_colors)
+				{
+					cycles_mesh_set_vertex_colors(clientId, sceneId, meshId, pvertex_colors, vccount);
+				}
+			}
+		}
 
 		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_mesh_set_tris", CallingConvention = CallingConvention.Cdecl)]
 		private unsafe static extern void cycles_mesh_set_tris(uint clientId, uint sceneId, uint meshId, int* faces, uint fcount, uint shaderId, uint smooth);

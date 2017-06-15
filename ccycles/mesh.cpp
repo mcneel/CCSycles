@@ -223,3 +223,26 @@ void cycles_mesh_set_vertex_normals(unsigned int client_id, unsigned int scene_i
 		me->geometry_flags = ccl::Mesh::GeometryFlags::GEOMETRY_TRIANGLES;
 	SCENE_FIND_END()
 }
+
+void cycles_mesh_set_vertex_colors(unsigned int client_id, unsigned int scene_id, unsigned int mesh_id, float *vcolors, unsigned int vcolorcount)
+{
+	SCENE_FIND(scene_id)
+		ccl::Mesh* me = sce->meshes[mesh_id];
+
+		ccl::Attribute *attr = me->attributes.add(ustring("vertexcolor"),
+                                             TypeDesc::TypeColor,
+                                             ccl::ATTR_ELEMENT_CORNER_BYTE);
+
+		ccl::uchar4 *cdata = attr->data_uchar4();
+
+		ccl::float3 f3;
+
+		for (int i = 0, j = 0; i < (int)vcolorcount * 3; i += 3, j++) {
+			f3.x = vcolors[i];
+			f3.y = vcolors[i + 1];
+			f3.z = vcolors[i + 2];
+			cdata[j] = ccl::color_float_to_byte(f3);
+		}
+		me->geometry_flags = ccl::Mesh::GeometryFlags::GEOMETRY_TRIANGLES;
+	SCENE_FIND_END()
+}

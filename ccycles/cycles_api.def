@@ -57,6 +57,7 @@ EXPORTS
   cycles_mesh_add_triangle
   cycles_mesh_set_uvs
   cycles_mesh_set_vertex_normals
+  cycles_mesh_set_vertex_colors
   cycles_mesh_set_smooth
   cycles_mesh_clear
   cycles_mesh_reserve
