@@ -208,6 +208,9 @@
     <ClCompile Include="cycles\src\graph\node_type.cpp">
       <Filter>graph</Filter>
     </ClCompile>
+    <ClCompile Include="cycles\src\device\device_denoising.cpp">
+      <Filter>device</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cycles\src\bvh\bvh.h">
@@ -693,6 +696,144 @@
     <ClInclude Include="cycles\src\kernel\split\kernel_sum_all_radiance.h">
       <Filter>kernel_split_headers</Filter>
     </ClInclude>
+    <ClInclude Include="cycles\src\device\device_denoising.h">
+      <Filter>device</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\kernel\filter\filter.h">
+      <Filter>kernel_denoising_headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\kernel\filter\filter_defines.h">
+      <Filter>kernel_denoising_headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\kernel\filter\filter_features.h">
+      <Filter>kernel_denoising_headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\kernel\filter\filter_features_sse.h">
+      <Filter>kernel_denoising_headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\kernel\filter\filter_kernel.h">
+      <Filter>kernel_denoising_headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\kernel\filter\filter_nlm_cpu.h">
+      <Filter>kernel_denoising_headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\kernel\filter\filter_nlm_gpu.h">
+      <Filter>kernel_denoising_headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\kernel\filter\filter_prefilter.h">
+      <Filter>kernel_denoising_headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\kernel\filter\filter_reconstruction.h">
+      <Filter>kernel_denoising_headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\kernel\filter\filter_transform.h">
+      <Filter>kernel_denoising_headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\kernel\filter\filter_transform_gpu.h">
+      <Filter>kernel_denoising_headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\kernel\filter\filter_transform_sse.h">
+      <Filter>kernel_denoising_headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\util\util_math_float2.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\util\util_math_float3.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\util\util_math_float4.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\util\util_math_int2.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\util\util_math_int3.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\util\util_math_int4.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\util\util_math_matrix.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\util\util_types_float2.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\util\util_types_float2_impl.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\util\util_types_float3.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\util\util_types_float3_impl.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\util\util_types_float4.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\util\util_types_float4_impl.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\util\util_types_int2.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\util\util_types_int2_impl.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\util\util_types_int3.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\util\util_types_int3_impl.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\util\util_types_int4.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\util\util_types_int4_impl.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\util\util_types_uchar2.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\util\util_types_uchar2_impl.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\util\util_types_uchar3.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\util\util_types_uchar3_impl.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\util\util_types_uchar4.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\util\util_types_uchar4_impl.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\util\util_types_uint2.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\util\util_types_uint2_impl.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\util\util_types_uint3.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\util\util_types_uint3_impl.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\util\util_types_uint4.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\util\util_types_uint4_impl.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\util\util_types_vector3.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\util\util_types_vector3_impl.h">
+      <Filter>util</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="util">
@@ -704,9 +845,9 @@
     <Filter Include="device">
       <UniqueIdentifier>{ee660968-f550-4ac9-a607-0fd603e741b8}</UniqueIdentifier>
     </Filter>
-		<Filter Include="device_opencl">
-			<UniqueIdentifier>{7A337C27-8330-4352-A751-2E9164E26B38}</UniqueIdentifier>
-		</Filter>
+    <Filter Include="device_opencl">
+      <UniqueIdentifier>{7A337C27-8330-4352-A751-2E9164E26B38}</UniqueIdentifier>
+    </Filter>
     <Filter Include="render">
       <UniqueIdentifier>{d1f838d0-de6f-45ec-8cf9-997a274df0f6}</UniqueIdentifier>
     </Filter>
@@ -718,6 +859,9 @@
     </Filter>
     <Filter Include="kernel_headers">
       <UniqueIdentifier>{b61e4075-a0f7-41bd-a86b-7bff792ab1ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="kernel_denoising_headers">
+      <UniqueIdentifier>{1bb90ff0-699c-4eed-9954-39b237b75a79}</UniqueIdentifier>
     </Filter>
     <Filter Include="kernel_geom_headers">
       <UniqueIdentifier>{F4243D13-A063-419A-A7BB-A621E7A5AD11}</UniqueIdentifier>
