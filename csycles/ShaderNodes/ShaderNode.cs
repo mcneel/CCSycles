@@ -63,7 +63,7 @@ namespace ccl.ShaderNodes
 		/// <summary>
 		/// Get the XML name of the node type as string.
 		/// </summary>
-		public string ShaderNodeTypeName
+		virtual public string ShaderNodeTypeName
 		{
 			get
 			{
