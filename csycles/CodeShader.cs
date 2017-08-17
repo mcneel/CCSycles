@@ -18,6 +18,7 @@ using System;
 using System.Text;
 using ccl.ShaderNodes;
 using System.Text.RegularExpressions;
+using System.Collections.Generic;
 
 namespace ccl
 {
@@ -44,7 +45,7 @@ namespace ccl
 		}
 
 		/// <summary>
-		/// Tag shader for device update. No-op for CodeShaderr
+		/// Tag shader for device update. No-op for CodeShader
 		/// </summary>
 		public override void Tag()
 		{
@@ -54,6 +55,20 @@ namespace ccl
 		public override void AddNode(ShaderNode node)
 		{
 			m_nodes.Add(node);
+		}
+
+		/// <summary>
+		/// Iterate over nodes in shader
+		/// </summary>
+		public IEnumerable<ShaderNode> Nodes
+		{
+			get
+			{
+				foreach(var n in m_nodes)
+				{
+					yield return n;
+				}
+			}
 		}
 
 		/// <summary>
