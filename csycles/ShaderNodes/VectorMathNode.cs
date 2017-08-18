@@ -195,4 +195,52 @@ namespace ccl.ShaderNodes
 			return codeattr.ToString();
 		}
 	}
+	[ShaderNode("vector_add")]
+	public class VectorAdd: VectorMathNode
+	{
+
+		public VectorAdd() : this("a vector add node") {}
+		public VectorAdd(string name) : base(name) { Operation = Operations.Add; }
+		public override string ShaderNodeTypeName => "vector_math";
+	}
+	[ShaderNode("vector_subtract")]
+	public class VectorSubtract: VectorMathNode
+	{
+
+		public VectorSubtract() : this("a vector subtract node") {}
+		public VectorSubtract(string name) : base(name) { Operation = Operations.Subtract; }
+		public override string ShaderNodeTypeName => "vector_math";
+	}
+	[ShaderNode("vector_average")]
+	public class VectorAverage: VectorMathNode
+	{
+
+		public VectorAverage() : this("a vector average node") {}
+		public VectorAverage(string name) : base(name) { Operation = Operations.Average; }
+		public override string ShaderNodeTypeName => "vector_math";
+	}
+	[ShaderNode("vector_cross")]
+	public class VectorCross_Product: VectorMathNode
+	{
+
+		public VectorCross_Product() : this("a vector cross node") {}
+		public VectorCross_Product(string name) : base(name) { Operation = Operations.Cross_Product; }
+		public override string ShaderNodeTypeName => "vector_math";
+	}
+	[ShaderNode("vector_dot")]
+	public class VectorDot_Product: VectorMathNode
+	{
+
+		public VectorDot_Product() : this("a vector dot node") {}
+		public VectorDot_Product(string name) : base(name) { Operation = Operations.Dot_Product; }
+		public override string ShaderNodeTypeName => "vector_math";
+	}
+	[ShaderNode("vector_normalize")]
+	public class VectorNormalize: VectorMathNode
+	{
+
+		public VectorNormalize() : this("a vector normalize node") {}
+		public VectorNormalize(string name) : base(name) { Operation = Operations.Normalize; }
+		public override string ShaderNodeTypeName => "vector_math";
+	}
 }
