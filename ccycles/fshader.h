@@ -3,18 +3,22 @@ static const GLchar* fs_src =
 
 "uniform sampler2D tex;                                           \n"
 "uniform vec4 subsize;                                            \n"
+"uniform vec4 vp_rect;                                            \n"
 "uniform float alpha;                                             \n"
 
 "out vec4 Color;                                                  \n"
 
 "void main()                                                      \n"
 "{                                                                \n"
-"  if(gl_FragCoord.y<subsize.z || gl_FragCoord.y>subsize.w)       \n"
-"    discard;                                                     \n"
-"  vec2 vp = vec2(subsize.y, subsize.w - subsize.z);              \n"
-"  vec2 cd = vec2(gl_FragCoord.x, gl_FragCoord.y - subsize.z);    \n"
-"  vec2 tc = cd / vp;                                             \n"
+"  vec2 shifted = gl_FragCoord.xy - vp_rect.xy;                   \n"
 
+"  if(shifted.x < subsize.x || shifted.x > subsize.x + subsize.z || \n"
+"     shifted.y < subsize.y || shifted.y > subsize.y + subsize.w)   \n"
+"  {                                                              \n"
+"    discard;                                                     \n"
+"  }                                                              \n"
+
+"  vec2 tc = shifted / vp_rect.zw;                                \n"
 "  vec4 px = texture(tex, tc);                                    \n"
 "  Color = vec4(px.rgb, alpha);                                   \n"
 "}                                                                \n";
