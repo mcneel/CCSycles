@@ -18,7 +18,7 @@ static const GLchar* fs_src =
 "    discard;                                                     \n"
 "  }                                                              \n"
 
-"  vec2 tc = shifted / vp_rect.zw;                                \n"
+"  vec2 tc = (shifted - subsize.xy) / subsize.zw;                 \n"
 "  vec4 px = texture(tex, tc);                                    \n"
 "  Color = vec4(px.rgb, alpha);                                   \n"
 "}                                                                \n";
