@@ -151,20 +151,6 @@ namespace ccl
 			return cycles_device_display_device(i);
 		}
 
-
-		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_device_pack_images", CallingConvention = CallingConvention.Cdecl)]
-		[return: MarshalAs(UnmanagedType.U1)]
-		private static extern bool cycles_device_pack_images(int i);
-		/// <summary>
-		/// Query if device supports packed images.
-		/// </summary>
-		/// <param name="i">Device ID to query.</param>
-		/// <returns>True if the device supports packed images.</returns>
-		public static bool device_pack_images(int i)
-		{
-			return cycles_device_pack_images(i);
-		}
-
 		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_create_multidevice", CallingConvention = CallingConvention.Cdecl)]
 		private unsafe static extern int cycles_create_multidevice(int count, int * idxbuffer);
 		/// <summary>

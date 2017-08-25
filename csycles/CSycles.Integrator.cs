@@ -19,13 +19,6 @@ namespace ccl
 			cycles_integrator_set_max_bounce(clientId, sceneId, value);
 		}
 
-		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_integrator_set_min_bounce", CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_integrator_set_min_bounce(uint clientId, uint sceneId, int value);
-		public static void integrator_set_min_bounce(uint clientId, uint sceneId, int value)
-		{
-			cycles_integrator_set_min_bounce(clientId, sceneId, value);
-		}
-
 		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_integrator_set_max_diffuse_bounce", CallingConvention = CallingConvention.Cdecl)]
 		private static extern void cycles_integrator_set_max_diffuse_bounce(uint clientId, uint sceneId, int value);
 		public static void integrator_set_max_diffuse_bounce(uint clientId, uint sceneId, int value)
@@ -59,13 +52,6 @@ namespace ccl
 		public static void integrator_set_transparent_max_bounce(uint clientId, uint sceneId, int value)
 		{
 			cycles_integrator_set_transparent_max_bounce(clientId, sceneId, value);
-		}
-
-		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_integrator_set_transparent_min_bounce", CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_integrator_set_transparent_min_bounce(uint clientId, uint sceneId, int value);
-		public static void integrator_set_transparent_min_bounce(uint clientId, uint sceneId, int value)
-		{
-			cycles_integrator_set_transparent_min_bounce(clientId, sceneId, value);
 		}
 
 
@@ -137,13 +123,6 @@ namespace ccl
 		public static void integrator_set_no_shadows(uint clientId, uint sceneId, bool value)
 		{
 			cycles_integrator_set_no_shadows(clientId, sceneId, value);
-		}
-
-		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_integrator_set_transparent_shadows", CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_integrator_set_transparent_shadows(uint clientId, uint sceneId, bool value);
-		public static void integrator_set_transparent_shadows(uint clientId, uint sceneId, bool value)
-		{
-			cycles_integrator_set_transparent_shadows(clientId, sceneId, value);
 		}
 
 		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_integrator_set_filter_glossy", CallingConvention = CallingConvention.Cdecl)]

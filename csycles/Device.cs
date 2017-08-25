@@ -77,10 +77,6 @@ namespace ccl
 		/// </summary>
 		public bool DisplayDevice { get; private set; }
 		/// <summary>
-		/// True if this device supports packed images
-		/// </summary>
-		public bool PackImages { get; private set; }
-		/// <summary>
 		/// True if this is a CUDA device
 		/// </summary>
 		public bool IsCuda => Type == DeviceType.CUDA;
@@ -119,7 +115,7 @@ namespace ccl
 		/// String representation of this device
 		/// </summary>
 		/// <returns>String representation of this device</returns>
-		public override string ToString() => $"{base.ToString()}: {Description} ({Type}), Id {Id} Num {Num} Name {Name} DisplayDevice {DisplayDevice} AdvancedShading {AdvancedShading} PackImages {PackImages}";
+		public override string ToString() => $"{base.ToString()}: {Description} ({Type}), Id {Id} Num {Num} Name {Name} DisplayDevice {DisplayDevice} AdvancedShading {AdvancedShading}";
 
 		/// <summary>
 		/// Get the default device (CPU)
@@ -345,7 +341,6 @@ namespace ccl
 				Type = CSycles.device_type(idx),
 				AdvancedShading = CSycles.device_advanced_shading(idx),
 				DisplayDevice = CSycles.device_display_device(idx),
-				PackImages = CSycles.device_pack_images(idx)
 			};
 		}
 

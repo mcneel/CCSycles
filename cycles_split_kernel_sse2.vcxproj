@@ -279,7 +279,6 @@
     <ClInclude Include="cycles\src\kernel\kernel_compat_cpu.h" />
     <ClInclude Include="cycles\src\kernel\kernel_compat_cuda.h" />
     <ClInclude Include="cycles\src\kernel\kernel_compat_opencl.h" />
-    <ClInclude Include="cycles\src\kernel\kernel_debug.h" />
     <ClInclude Include="cycles\src\kernel\kernel_differential.h" />
     <ClInclude Include="cycles\src\kernel\kernel_emission.h" />
     <ClInclude Include="cycles\src\kernel\kernel_film.h" />

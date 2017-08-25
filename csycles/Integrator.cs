@@ -56,28 +56,6 @@ namespace ccl
 		}
 
 		/// <summary>
-		/// Set the minimum amount of bounces for a ray.
-		/// </summary>
-		public int MinBounce
-		{
-			set
-			{
-				CSycles.integrator_set_min_bounce(Scene.Client.Id, Scene.Id, value);
-			}
-		}
-
-		/// <summary>
-		/// Set the minimum amount of bounces for a transparency ray.
-		/// </summary>
-		public int TransparentMinBounce
-		{
-			set
-			{
-				CSycles.integrator_set_transparent_min_bounce (Scene.Client.Id, Scene.Id, value);
-			}
-		}
-
-		/// <summary>
 		/// Set the maximum amount of bounces for a transparency ray.
 		/// 
 		/// Used when BranchedPath tracing is set.
@@ -159,17 +137,6 @@ namespace ccl
 			set
 			{
 				CSycles.integrator_set_no_shadows(Scene.Client.Id, Scene.Id, value);
-			}
-		}
-
-		/// <summary>
-		/// Set to true if transparent shadows should be traced.
-		/// </summary>
-		public bool TransparentShadows
-		{
-			set
-			{
-				CSycles.integrator_set_transparent_shadows(Scene.Client.Id, Scene.Id, value);
 			}
 		}
 

@@ -1,5 +1,5 @@
 /**
-Copyright 2014-2015 Robert McNeel and Associates
+Copyright 2014-2017 Robert McNeel and Associates
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -253,9 +253,6 @@ CCL_CAPI bool __cdecl cycles_device_advanced_shading(int i);
 /* Query if device is used as display device. */
 CCL_CAPI bool __cdecl cycles_device_display_device(int i);
 
-/* Query if device supports packing images. */
-CCL_CAPI bool __cdecl cycles_device_pack_images(int i);
-
 /* Create or get multi device. Return value is index of multi-device in multi-device vector.*/
 CCL_CAPI int __cdecl cycles_create_multidevice(int count, int* idx);
 
@@ -359,8 +356,6 @@ CCL_CAPI void __cdecl cycles_object_tag_update(unsigned int client_id, unsigned 
 CCL_CAPI void __cdecl cycles_integrator_tag_update(unsigned int client_id, unsigned int scene_id);
 /** Set the maximum bounces for integrator. */
 CCL_CAPI void __cdecl cycles_integrator_set_max_bounce(unsigned int client_id, unsigned int scene_id, int max_bounce);
-/** Set the minimum bounces for integrator. */
-CCL_CAPI void __cdecl cycles_integrator_set_min_bounce(unsigned int client_id, unsigned int scene_id, int min_bounce);
 /** Set to true if caustics should be skipped.
  * \todo split for caustics_reflective and caustics_refractive.
  */
@@ -368,8 +363,6 @@ CCL_CAPI void __cdecl cycles_integrator_set_no_caustics(unsigned int client_id, 
 /** Set to true if shadows shouldn't be traced.
  */
 CCL_CAPI void __cdecl cycles_integrator_set_no_shadows(unsigned int client_id, unsigned int scene_id, bool no_shadows);
-/** Set to true if transparent shadows should be rendered. */
-CCL_CAPI void __cdecl cycles_integrator_set_transparent_shadows(unsigned int client_id, unsigned int scene_id, bool transparent_shadows);
 /** Set the amount of diffuse samples. */
 CCL_CAPI void __cdecl cycles_integrator_set_diffuse_samples(unsigned int client_id, unsigned int scene_id, int diffuse_samples);
 /** Set the amount of glossy samples. */
@@ -392,8 +385,6 @@ CCL_CAPI void __cdecl cycles_integrator_set_max_glossy_bounce(unsigned int clien
 CCL_CAPI void __cdecl cycles_integrator_set_max_transmission_bounce(unsigned int client_id, unsigned int scene_id, int max_transmission_bounce);
 /** Set the maximum amount of volume bounces. */
 CCL_CAPI void __cdecl cycles_integrator_set_max_volume_bounce(unsigned int client_id, unsigned int scene_id, int max_volume_bounce);
-/** Set the minimum amount of transparency bounces. */
-CCL_CAPI void __cdecl cycles_integrator_set_transparent_min_bounce(unsigned int client_id, unsigned int scene_id, int transparent_min_bounce);
 /** Set the maximum amount of transparency bounces. */
 CCL_CAPI void __cdecl cycles_integrator_set_transparent_max_bounce(unsigned int client_id, unsigned int scene_id, int transparent_max_bounce);
 /** Set the amount of AA samples. */

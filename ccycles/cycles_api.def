@@ -26,7 +26,6 @@ EXPORTS
   cycles_device_num
   cycles_device_advanced_shading
   cycles_device_display_device
-  cycles_device_pack_images
   cycles_create_multidevice
   cycles_device_type
 
@@ -77,10 +76,8 @@ EXPORTS
 
   cycles_integrator_tag_update
   cycles_integrator_set_max_bounce
-  cycles_integrator_set_min_bounce
   cycles_integrator_set_no_caustics
   cycles_integrator_set_no_shadows
-  cycles_integrator_set_transparent_shadows
   cycles_integrator_set_diffuse_samples
   cycles_integrator_set_glossy_samples
   cycles_integrator_set_transmission_samples
@@ -92,7 +89,6 @@ EXPORTS
   cycles_integrator_set_max_glossy_bounce
   cycles_integrator_set_max_transmission_bounce
   cycles_integrator_set_max_volume_bounce
-  cycles_integrator_set_transparent_min_bounce
   cycles_integrator_set_transparent_max_bounce
   cycles_integrator_set_aa_samples
   cycles_integrator_set_filter_glossy

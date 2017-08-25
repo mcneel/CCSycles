@@ -142,7 +142,6 @@ namespace ccl
 			if (Utilities.Instance.get_int(ref intvar, node.GetAttribute("subsurface_samples"))) state.Scene.Integrator.SubsurfaceSamples = intvar;
 			if (Utilities.Instance.get_int(ref intvar, node.GetAttribute("volume_samples"))) state.Scene.Integrator.VolumeSamples = intvar;
 
-			if (Utilities.Instance.get_int(ref intvar, node.GetAttribute("min_bounce"))) state.Scene.Integrator.MinBounce = intvar;
 			if (Utilities.Instance.get_int(ref intvar, node.GetAttribute("max_bounce"))) state.Scene.Integrator.MaxBounce = intvar;
 
 			if (Utilities.Instance.get_int(ref intvar, node.GetAttribute("max_diffuse_bounce"))) state.Scene.Integrator.MaxDiffuseBounce = intvar;
@@ -150,9 +149,7 @@ namespace ccl
 			if (Utilities.Instance.get_int(ref intvar, node.GetAttribute("max_transmission_bounce"))) state.Scene.Integrator.MaxTransmissionBounce = intvar;
 			if (Utilities.Instance.get_int(ref intvar, node.GetAttribute("max_volume_bounce"))) state.Scene.Integrator.MaxVolumeBounce = intvar;
 
-			if (Utilities.Instance.get_int(ref intvar, node.GetAttribute("transparent_min_bounce"))) state.Scene.Integrator.TransparentMinBounce = intvar;
 			if (Utilities.Instance.get_int(ref intvar, node.GetAttribute("transparent_max_bounce"))) state.Scene.Integrator.TransparentMaxBounce = intvar;
-			if (Utilities.Instance.get_bool(ref boolvar, node.GetAttribute("transparent_shadows"))) state.Scene.Integrator.TransparentShadows = boolvar;
 
 			if (Utilities.Instance.get_float(ref floatvar, node.GetAttribute("volume_step_size"))) state.Scene.Integrator.VolumeStepSize = floatvar;
 			if (Utilities.Instance.get_int(ref intvar, node.GetAttribute("volume_max_steps"))) state.Scene.Integrator.VolumeMaxSteps = intvar;

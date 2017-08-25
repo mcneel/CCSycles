@@ -88,6 +88,9 @@
     <ClCompile Include="cycles\src\device\device_split_kernel.cpp">
       <Filter>device</Filter>
     </ClCompile>
+    <ClCompile Include="cycles\src\device\opencl\memory_manager.cpp">
+      <Filter>device_opencl</Filter>
+    </ClCompile>
     <ClCompile Include="cycles\src\device\opencl\opencl_base.cpp">
       <Filter>device_opencl</Filter>
     </ClCompile>
@@ -258,6 +261,9 @@
     <ClInclude Include="cycles\src\util\util_debug.h">
       <Filter>util</Filter>
     </ClInclude>
+    <ClInclude Include="cycles\src\util\util_defines.h">
+      <Filter>util</Filter>
+    </ClInclude>
     <ClInclude Include="cycles\src\util\util_foreach.h">
       <Filter>util</Filter>
     </ClInclude>
@@ -387,6 +393,9 @@
     <ClInclude Include="cycles\src\device\device_split_kernel.h">
       <Filter>device</Filter>
     </ClInclude>
+    <ClInclude Include="cycles\src\device\opencl\memory_manager.h">
+      <Filter>device_opencl</Filter>
+    </ClInclude>
     <ClInclude Include="cycles\src\device\opencl\opencl.h">
       <Filter>device_opencl</Filter>
     </ClInclude>
@@ -513,9 +522,6 @@
     <ClInclude Include="cycles\src\kernel\kernel_compat_opencl.h">
       <Filter>kernel_headers</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernel_debug.h">
-      <Filter>kernel_headers</Filter>
-    </ClInclude>
     <ClInclude Include="cycles\src\kernel\kernel_differential.h">
       <Filter>kernel_headers</Filter>
     </ClInclude>
@@ -622,6 +628,9 @@
       <Filter>kernel_geom_headers</Filter>
     </ClInclude>
     <ClInclude Include="cycles\src\kernel\geom\geom_curve.h">
+      <Filter>kernel_geom_headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\kernel\geom\geom_curve_intersect.h">
       <Filter>kernel_geom_headers</Filter>
     </ClInclude>
     <ClInclude Include="cycles\src\kernel\geom\geom_motion_curve.h">

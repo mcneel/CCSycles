@@ -1,5 +1,5 @@
 /**
-Copyright 2014-2015 Robert McNeel and Associates
+Copyright 2014-2017 Robert McNeel and Associates
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -102,15 +102,6 @@ bool cycles_device_display_device(int i) {
 		return devices[i].display_device;
 	else if(MULTIDEVICEIDX(i) >= 0 && MULTIDEVICEIDX(i) < multi_devices.size())
 		return multi_devices[MULTIDEVICEIDX(i)].display_device;
-	else
-		return false;
-}
-
-bool cycles_device_pack_images(int i) {
-	if (i >= 0 && i < devices.size())
-		return devices[i].pack_images;
-	else if(MULTIDEVICEIDX(i) >= 0 && MULTIDEVICEIDX(i) < multi_devices.size())
-		return multi_devices[MULTIDEVICEIDX(i)].pack_images;
 	else
 		return false;
 }

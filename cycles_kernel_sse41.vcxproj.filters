@@ -44,7 +44,6 @@
     <ClInclude Include="cycles\src\kernel\kernel_compat_opencl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernel_debug.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="cycles\src\kernel\kernel_differential.h">

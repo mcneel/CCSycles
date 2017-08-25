@@ -1,5 +1,5 @@
 /**
-Copyright 2014-2015 Robert McNeel and Associates
+Copyright 2014-2017 Robert McNeel and Associates
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -33,13 +33,6 @@ void cycles_integrator_set_max_bounce(unsigned int client_id, unsigned int scene
 	SCENE_FIND_END()
 }
 
-void cycles_integrator_set_min_bounce(unsigned int client_id, unsigned int scene_id, int min_bounce)
-{
-	SCENE_FIND(scene_id)
-		sce->integrator->min_bounce = min_bounce;
-	SCENE_FIND_END()
-}
-
 void cycles_integrator_set_no_caustics(unsigned int client_id, unsigned int scene_id, bool no_caustics)
 {
 	SCENE_FIND(scene_id)
@@ -50,16 +43,11 @@ void cycles_integrator_set_no_caustics(unsigned int client_id, unsigned int scen
 
 void cycles_integrator_set_no_shadows(unsigned int client_id, unsigned int scene_id, bool no_shadows)
 {
+#if 0
 	SCENE_FIND(scene_id)
 		sce->integrator->no_shadows = no_shadows;
 	SCENE_FIND_END()
-}
-
-void cycles_integrator_set_transparent_shadows(unsigned int client_id, unsigned int scene_id, bool transparent_shadows)
-{
-	SCENE_FIND(scene_id)
-		sce->integrator->transparent_shadows = transparent_shadows;
-	SCENE_FIND_END()
+#endif
 }
 
 void cycles_integrator_set_diffuse_samples(unsigned int client_id, unsigned int scene_id, int diffuse_samples)
@@ -136,13 +124,6 @@ void cycles_integrator_set_max_volume_bounce(unsigned int client_id, unsigned in
 {
 	SCENE_FIND(scene_id)
 		sce->integrator->max_volume_bounce = max_volume_bounce;
-	SCENE_FIND_END()
-}
-
-void cycles_integrator_set_transparent_min_bounce(unsigned int client_id, unsigned int scene_id, int transparent_min_bounce)
-{
-	SCENE_FIND(scene_id)
-		sce->integrator->transparent_min_bounce = transparent_min_bounce;
 	SCENE_FIND_END()
 }
 
