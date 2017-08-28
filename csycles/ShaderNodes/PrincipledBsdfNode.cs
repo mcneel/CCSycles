@@ -21,7 +21,7 @@ using ccl.Attributes;
 
 namespace ccl.ShaderNodes
 {
-	public class UberBsdfInputs : Inputs
+	public class PrincipledBsdfInputs : Inputs
 	{
 		public ColorSocket BaseColor { get; set; }
 		//public ColorSocket SpecularColor { get; set; }
@@ -38,66 +38,67 @@ namespace ccl.ShaderNodes
 		public FloatSocket Clearcoat { get; set; }
 		public FloatSocket ClearcoatGloss { get; set; }
 		public FloatSocket IOR { get; set; }
-		public FloatSocket Transparency { get; set; }
-		public FloatSocket RefractionRoughness { get; set; }
+		public FloatSocket Transmission { get; set; }
+		public FloatSocket TransmissionRoughness { get; set; }
 		public FloatSocket AnisotropicRotation { get; set; }
 		public VectorSocket Normal { get; set; }
 		public VectorSocket ClearcoatNormal { get; set; }
 		public VectorSocket Tangent { get; set; }
 
-		public UberBsdfInputs(ShaderNode parentNode)
+		public PrincipledBsdfInputs(ShaderNode parentNode)
 		{
 
 			BaseColor = new ColorSocket(parentNode, "Base Color");
+			//SpecularColor          = new ColorSocket(parentNode, "Specular Color");
+			Subsurface             = new FloatSocket(parentNode, "Subsurface");
+			SubsurfaceRadius       = new VectorSocket(parentNode, "Subsurface Radius");
+			SubsurfaceColor        = new ColorSocket(parentNode, "Subsurface Color");
+			Metallic               = new FloatSocket(parentNode, "Metallic");
+			Specular               = new FloatSocket(parentNode, "Specular");
+			SpecularTint           = new FloatSocket(parentNode, "Specular Tint");
+			Roughness              = new FloatSocket(parentNode, "Roughness");
+			Anisotropic            = new FloatSocket(parentNode, "Anisotropic");
+			Sheen                  = new FloatSocket(parentNode, "Sheen");
+			SheenTint              = new FloatSocket(parentNode, "Sheen Tint");
+			Clearcoat              = new FloatSocket(parentNode, "Clearcoat");
+			ClearcoatGloss         = new FloatSocket(parentNode, "Clearcoat Gloss");
+			IOR                    = new FloatSocket(parentNode, "IOR");
+			Transmission           = new FloatSocket(parentNode, "Transmission");
+			TransmissionRoughness  = new FloatSocket(parentNode, "Transmission Roughness");
+			AnisotropicRotation    = new FloatSocket(parentNode, "Anisotropic Rotation");
+			Normal                 = new VectorSocket(parentNode, "Normal");
+			ClearcoatNormal        = new VectorSocket(parentNode, "Clearcoat Normal");
+			Tangent                = new VectorSocket(parentNode, "Tangent");
+
 			AddSocket(BaseColor);
-			//SpecularColor = new ColorSocket(parentNode, "Specular Color");
 			//AddSocket(SpecularColor);
-			SubsurfaceColor = new ColorSocket(parentNode, "Subsurface Color");
-			AddSocket(SubsurfaceColor);
-			Metallic = new FloatSocket(parentNode, "Metallic");
-			AddSocket(Metallic);
-			Subsurface = new FloatSocket(parentNode, "Subsurface");
 			AddSocket(Subsurface);
-			SubsurfaceRadius = new VectorSocket(parentNode, "Subsurface Radius");
 			AddSocket(SubsurfaceRadius);
-			Specular = new FloatSocket(parentNode, "Specular");
+			AddSocket(SubsurfaceColor);
+			AddSocket(Metallic);
 			AddSocket(Specular);
-			Roughness = new FloatSocket(parentNode, "Roughness");
-			AddSocket(Roughness);
-			SpecularTint = new FloatSocket(parentNode, "Specular Tint");
 			AddSocket(SpecularTint);
-			Anisotropic = new FloatSocket(parentNode, "Anisotropic");
+			AddSocket(Roughness);
 			AddSocket(Anisotropic);
-			Sheen = new FloatSocket(parentNode, "Sheen");
-			AddSocket(Sheen);
-			SheenTint = new FloatSocket(parentNode, "Sheen Tint");
-			AddSocket(SheenTint);
-			Clearcoat = new FloatSocket(parentNode, "Clearcoat");
-			AddSocket(Clearcoat);
-			ClearcoatGloss = new FloatSocket(parentNode, "Clearcoat Gloss");
-			AddSocket(ClearcoatGloss);
-			IOR = new FloatSocket(parentNode, "IOR");
-			AddSocket(IOR);
-			Transparency = new FloatSocket(parentNode, "Transmission");
-			AddSocket(Transparency);
-			RefractionRoughness = new FloatSocket(parentNode, "Transmission Roughness");
-			AddSocket(RefractionRoughness);
-			AnisotropicRotation = new FloatSocket(parentNode, "Anisotropic Rotation");
 			AddSocket(AnisotropicRotation);
-			Normal = new VectorSocket(parentNode, "Normal");
+			AddSocket(Sheen);
+			AddSocket(SheenTint);
+			AddSocket(Clearcoat);
+			AddSocket(ClearcoatGloss);
+			AddSocket(IOR);
+			AddSocket(Transmission);
+			AddSocket(TransmissionRoughness);
 			AddSocket(Normal);
-			ClearcoatNormal = new VectorSocket(parentNode, "Clearcoat Normal");
 			AddSocket(ClearcoatNormal);
-			Tangent = new VectorSocket(parentNode, "Tangent");
 			AddSocket(Tangent);
 		}
 	}
 
-	public class UberBsdfOutputs : Outputs
+	public class PrincipledBsdfOutputs : Outputs
 	{
 		public ClosureSocket BSDF { get; set; }
 
-		public UberBsdfOutputs(ShaderNode parentNode)
+		public PrincipledBsdfOutputs(ShaderNode parentNode)
 		{
 			BSDF = new ClosureSocket(parentNode, "BSDF");
 			AddSocket(BSDF);
@@ -105,14 +106,14 @@ namespace ccl.ShaderNodes
 	}
 	
 	/// <summary>
-	/// A Uber BSDF closure.
+	/// A Principled BSDF closure.
 	/// This closure takes two inputs, <c>Color</c> and <c>Roughness</c>. The result
 	/// will be a regular diffuse shading.
 	/// 
 	/// There is one output <c>Closure</c>
 	/// </summary>
-	[ShaderNode("uber_bsdf")]
-	public class UberBsdfNode : ShaderNode
+	[ShaderNode("principled_bsdf")]
+	public class PrincipledBsdfNode : ShaderNode
 	{
 		public enum Distributions
 		{
@@ -120,22 +121,24 @@ namespace ccl.ShaderNodes
 			Multiscatter_GGX = 30
 		}
 
-		public UberBsdfInputs ins => (UberBsdfInputs)inputs;
-		public UberBsdfOutputs outs => (UberBsdfOutputs)outputs;
+		public PrincipledBsdfInputs ins => (PrincipledBsdfInputs)inputs;
+		public PrincipledBsdfOutputs outs => (PrincipledBsdfOutputs)outputs;
 
 		/// <summary>
-		/// Create a new Uber BSDF closure.
+		/// Create a new Principled BSDF closure.
 		/// </summary>
-		public UberBsdfNode() : this("a disney bsdf node") { }
-		public UberBsdfNode(string name) :
-			base(ShaderNodeType.Uber, name)
+		public PrincipledBsdfNode() : this("a principled bsdf node") { }
+		public PrincipledBsdfNode(string name) :
+			base(ShaderNodeType.Principled, name)
 		{
-			inputs = new UberBsdfInputs(this);
-			outputs = new UberBsdfOutputs(this);
+			inputs = new PrincipledBsdfInputs(this);
+			outputs = new PrincipledBsdfOutputs(this);
 			ins.BaseColor.Value = new float4(0.7f, 0.6f, 0.5f, 1.0f);
 			ins.Metallic.Value = 0.0f;
 			ins.Specular.Value = 0.5f;
 			ins.SpecularTint.Value = 0.0f;
+			ins.Subsurface.Value = 0.0f;
+			ins.SubsurfaceColor.Value = new float4(0.7f, 0.1f, 0.1f);
 			ins.SubsurfaceRadius.Value = new float4(0.7f, 1.0f, 1.0f, 1.0f);
 			ins.Roughness.Value = 0.0f;
 			ins.Anisotropic.Value = 0.0f;
@@ -145,9 +148,9 @@ namespace ccl.ShaderNodes
 			ins.Clearcoat.Value = 0.0f;
 			ins.ClearcoatGloss.Value = 1.0f;
 			ins.IOR.Value = 1.45f;
-			ins.Transparency.Value = 0.0f;
-			ins.RefractionRoughness.Value = 0.0f;
-			Distribution = Distributions.Multiscatter_GGX;
+			ins.Transmission.Value = 0.0f;
+			ins.TransmissionRoughness.Value = 0.0f;
+			Distribution = Distributions.GGX;
 		}
 
 		public Distributions Distribution { get; set; }
@@ -161,22 +164,22 @@ namespace ccl.ShaderNodes
 		{
 			Utilities.Instance.get_float4(ins.BaseColor, xmlNode);
 			//Utilities.Instance.get_float4(ins.SpecularColor, xmlNode);
-			Utilities.Instance.get_float4(ins.SubsurfaceColor, xmlNode);
-			Utilities.Instance.get_float(ins.Metallic, xmlNode);
 			Utilities.Instance.get_float(ins.Subsurface, xmlNode);
 			Utilities.Instance.get_float4(ins.SubsurfaceRadius, xmlNode);
+			Utilities.Instance.get_float4(ins.SubsurfaceColor, xmlNode);
+			Utilities.Instance.get_float(ins.Metallic, xmlNode);
 			Utilities.Instance.get_float(ins.Specular, xmlNode);
-			Utilities.Instance.get_float(ins.Roughness, xmlNode);
 			Utilities.Instance.get_float(ins.SpecularTint, xmlNode);
+			Utilities.Instance.get_float(ins.Roughness, xmlNode);
 			Utilities.Instance.get_float(ins.Anisotropic, xmlNode);
+			Utilities.Instance.get_float(ins.AnisotropicRotation, xmlNode);
 			Utilities.Instance.get_float(ins.Sheen, xmlNode);
 			Utilities.Instance.get_float(ins.SheenTint, xmlNode);
 			Utilities.Instance.get_float(ins.Clearcoat, xmlNode);
 			Utilities.Instance.get_float(ins.ClearcoatGloss, xmlNode);
 			Utilities.Instance.get_float(ins.IOR, xmlNode);
-			Utilities.Instance.get_float(ins.Transparency, xmlNode);
-			Utilities.Instance.get_float(ins.RefractionRoughness, xmlNode);
-			Utilities.Instance.get_float(ins.AnisotropicRotation, xmlNode);
+			Utilities.Instance.get_float(ins.Transmission, xmlNode);
+			Utilities.Instance.get_float(ins.TransmissionRoughness, xmlNode);
 			Utilities.Instance.get_float4(ins.Normal, xmlNode);
 			Utilities.Instance.get_float4(ins.ClearcoatNormal, xmlNode);
 			Utilities.Instance.get_float4(ins.Tangent, xmlNode);

@@ -644,7 +644,7 @@ enum class shadernode_type : unsigned int {
 	COLOR_RAMP,
 	VECT_MATH,
 	MATRIX_MATH,
-	UBER_BSDF,
+	PRINCIPLED_BSDF,
 	ATTRIBUTE,
 };
 

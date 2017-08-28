@@ -331,7 +331,7 @@ unsigned int cycles_add_shader_node(unsigned int client_id, unsigned int shader_
 	case shadernode_type::MATRIX_MATH:
 		node = new ccl::MatrixMathNode();
 		break;
-	case shadernode_type::UBER_BSDF:
+	case shadernode_type::PRINCIPLED_BSDF:
 		node = new ccl::PrincipledBsdfNode();
 		break;
 	case shadernode_type::ATTRIBUTE:
@@ -610,7 +610,7 @@ void cycles_shadernode_set_enum(unsigned int client_id, unsigned int shader_id, 
 			node->falloff = (ccl::ClosureType)value;
 			break;
 		}
-		case shadernode_type::UBER_BSDF:
+		case shadernode_type::PRINCIPLED_BSDF:
 			ccl::PrincipledBsdfNode* node = dynamic_cast<ccl::PrincipledBsdfNode*>(shnode);
 			node->distribution = (ccl::ClosureType)value;
 		}

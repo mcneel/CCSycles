@@ -136,7 +136,7 @@ namespace ccl
 		ColorRamp,
 		VectorMath,
 		MatrixMath,
-		Uber,
+		Principled,
 		Attribute,
 	}
 
