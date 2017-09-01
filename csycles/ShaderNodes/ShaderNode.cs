@@ -191,6 +191,8 @@ namespace ccl.ShaderNodes
 
 			foreach (var inp in inputs.Sockets)
 			{
+				if (inp.ConnectionFrom != null) continue;
+
 				if (inp is FloatSocket fs)
 				{
 					xml.AppendFormat(nfi, " {0}=\"{1}\"", fs.XmlName, fs.Value);
@@ -249,6 +251,8 @@ namespace ccl.ShaderNodes
 			{
 				foreach (var inp in inputs.Sockets.Where(inp => !(inp is ClosureSocket)))
 				{
+					if (inp.ConnectionFrom != null) continue;
+
 					cs.AppendFormat(nfi, " {0}.ins.{1}.Value = {2};", VariableName, inp.CodeName, inp);
 				}
 				cs.AppendLine();
