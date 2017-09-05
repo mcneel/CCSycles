@@ -116,7 +116,7 @@ namespace ccl.ShaderNodes
 			UseMax = false;
 			Translation = new float4(0.0f);
 			Rotation = new float4(0.0f);
-			Scale = new float4(0.0f);
+			Scale = new float4(1.0f);
 			Min = new float4(0.0f);
 			Max = new float4(0.0f);
 		}
