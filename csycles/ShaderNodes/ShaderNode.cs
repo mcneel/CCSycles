@@ -184,6 +184,11 @@ namespace ccl.ShaderNodes
 			return "";
 		}
 
+		public virtual string CreateChildNodes()
+		{
+			return "";
+		}
+
 		public virtual string CreateXml()
 		{
 			var nfi = Utilities.Instance.NumberFormatInfo;
@@ -226,7 +231,16 @@ namespace ccl.ShaderNodes
 
 			xml.Append(CreateXmlAttributes());
 
-			xml.Append(" />");
+			var childNodes = CreateChildNodes();
+			if (String.IsNullOrEmpty(childNodes))
+			{
+				xml.Append(" />");
+			} else
+			{
+				xml.Append(">");
+				xml.Append(childNodes);
+				xml.Append($"</{ShaderNodeTypeName}>");
+			}
 
 			return xml.ToString();
 		}
