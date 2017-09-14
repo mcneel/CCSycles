@@ -105,30 +105,8 @@ namespace ccl.ShaderNodes
 			Projection = (EnvironmentProjection)Enum.Parse(typeof(EnvironmentProjection), projection, true);
 		}
 
-		private string GetProjectionString(EnvironmentProjection projection)
-		{
-			var proj = "";
-			switch (projection)
-			{
-				case EnvironmentProjection.Equirectangular:
-					proj = "Equirectangular";
-					break;
-				case EnvironmentProjection.MirrorBall:
-					proj = "Mirror Ball";
-					break;
-				case EnvironmentProjection.Wallpaper:
-					proj = "Wallpaper";
-					break;
-				default:
-					proj = "Equirectangular";
-					break;
-			}
-			return proj;
-		}
-
 		internal override void SetEnums(uint clientId, uint shaderId)
 		{
-			var projection = GetProjectionString(Projection);
 			CSycles.shadernode_set_enum(clientId, shaderId, Id, Type, "projection", (int)Projection);
 			CSycles.shadernode_set_enum(clientId, shaderId, Id, Type, "color_space", (int)ColorSpace);
 			CSycles.shadernode_set_enum(clientId, shaderId, Id, Type, "interpolation", (int)Interpolation);
