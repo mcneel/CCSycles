@@ -64,7 +64,7 @@ namespace ccl.ShaderNodes
 	/// - Normal: Transform a normal vector with unit length
 	/// </summary>
 	[ShaderNode("mapping")]
-	public class MappingNode : ShaderNode
+	public class MappingNode : TextureNode
 	{
 		/// <summary>
 		/// MappingNode input sockets
@@ -76,28 +76,6 @@ namespace ccl.ShaderNodes
 		/// </summary>
 		public MappingOutputs outs => (MappingOutputs)outputs;
 
-		/// <summary>
-		/// Mapping type to transform according
-		/// </summary>
-		public enum MappingType : uint
-		{
-			/// <summary>
-			/// Transform as point
-			/// </summary>
-			Point = 0,
-			/// <summary>
-			/// Transform texture space
-			/// </summary>
-			Texture,
-			/// <summary>
-			/// Transform vector
-			/// </summary>
-			Vector,
-			/// <summary>
-			/// Transform normal
-			/// </summary>
-			Normal
-		}
 
 		/// <summary>
 		/// Create new MappingNode
@@ -111,72 +89,6 @@ namespace ccl.ShaderNodes
 		{
 			inputs = new MappingInputs(this);
 			outputs = new MappingOutputs(this);
-			Mapping = MappingType.Texture;
-			UseMin = false;
-			UseMax = false;
-			Translation = new float4(0.0f);
-			Rotation = new float4(0.0f);
-			Scale = new float4(1.0f);
-			Min = new float4(0.0f);
-			Max = new float4(0.0f);
-		}
-
-		
-		/// <summary>
-		/// Get or set the mapping type to use
-		/// </summary>
-		public MappingType Mapping { get; set; }
-
-		/// <summary>
-		/// Translate input vector with this
-		/// </summary>
-		public float4 Translation { get; set; }
-		/// <summary>
-		/// Rotate input vector with this
-		/// </summary>
-		public float4 Rotation { get; set; }
-		/// <summary>
-		/// Scale input vector with this
-		/// </summary>
-		public float4 Scale { get; set; }
-		/// <summary>
-		/// If set, use this as minimum values for resulting vector
-		/// </summary>
-		public float4 Min { get; set; }
-		/// <summary>
-		/// If set, use this as maximum values for resulting vector
-		/// </summary>
-		public float4 Max { get; set; }
-
-		/// <summary>
-		/// Set to true [IN] if mapping output in Value should be floored to Min
-		/// </summary>
-		public bool UseMin { get; set; }
-
-		/// <summary>
-		/// Set to true [IN] if mapping output in Value should be ceiled to Max
-		/// </summary>
-		public bool UseMax { get; set; }
-
-		internal override void SetDirectMembers(uint clientId, uint sceneId, uint shaderId)
-		{
-			CSycles.shadernode_set_member_bool(clientId, shaderId, Id, ShaderNodeType.Mapping, "useminmax", UseMin || UseMax);
-			if (UseMin)
-			{
-				CSycles.shadernode_set_member_vec(clientId, shaderId, Id, ShaderNodeType.Mapping, "min", Min.x, Min.y, Min.z);
-			}
-			if (UseMax)
-			{
-				CSycles.shadernode_set_member_vec(clientId, shaderId, Id, ShaderNodeType.Mapping, "max", Max.x, Max.y, Max.z);
-			}
-			var tr = Translation;
-			CSycles.shadernode_texmapping_set_transformation(clientId, shaderId, Id, ShaderNodeType.Mapping, 0, tr.x, tr.y, tr.z);
-			var rt = Rotation;
-			CSycles.shadernode_texmapping_set_transformation(clientId, shaderId, Id, ShaderNodeType.Mapping, 1, rt.x, rt.y, rt.z);
-			var sc = Scale;
-			CSycles.shadernode_texmapping_set_transformation(clientId, shaderId, Id, ShaderNodeType.Mapping, 2, sc.x, sc.y, sc.z);
-
-			CSycles.shadernode_texmapping_set_type(clientId, shaderId, Id, ShaderNodeType.Mapping, (uint)Mapping);
 		}
 
 		internal override void ParseXml(XmlReader xmlNode)

@@ -114,6 +114,8 @@ namespace ccl.ShaderNodes
 
 		internal override void SetDirectMembers(uint clientId, uint sceneId, uint shaderId)
 		{
+			base.SetDirectMembers(clientId, sceneId, shaderId);
+
 			CSycles.shadernode_set_member_bool(clientId, shaderId, Id, Type, "is_linear", IsLinear);
 			if (FloatImage != null)
 			{

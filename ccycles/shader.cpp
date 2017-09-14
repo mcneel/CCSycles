@@ -441,11 +441,74 @@ void cycles_shadernode_texmapping_set_transformation(unsigned int client_id, uns
 		logger.logit(client_id, "Setting texture map transformation (", tp, ") to ", x, ",", y, ",", z, " for shadernode type ", shn_type);
 		switch (shn_type) {
 		case shadernode_type::MAPPING:
+		{
 			ccl::MappingNode* node = dynamic_cast<ccl::MappingNode*>(shnode);
 			_set_texture_mapping_transformation(node->tex_mapping, transform_type, x, y, z);
-			break;
+		}
+		break;
+		case shadernode_type::ENVIRONMENT_TEXTURE:
+		{
+			ccl::EnvironmentTextureNode* node = dynamic_cast<ccl::EnvironmentTextureNode*>(shnode);
+			_set_texture_mapping_transformation(node->tex_mapping, transform_type, x, y, z);
+		}
+		break;
+		case shadernode_type::IMAGE_TEXTURE:
+		{
+			ccl::ImageTextureNode* node = dynamic_cast<ccl::ImageTextureNode*>(shnode);
+			_set_texture_mapping_transformation(node->tex_mapping, transform_type, x, y, z);
+		}
+		break;
+		case shadernode_type::GRADIENT_TEXTURE:
+		{
+			ccl::GradientTextureNode* node = dynamic_cast<ccl::GradientTextureNode*>(shnode);
+			_set_texture_mapping_transformation(node->tex_mapping, transform_type, x, y, z);
+		}
+		break;
+		case shadernode_type::WAVE_TEXTURE:
+		{
+			ccl::WaveTextureNode* node = dynamic_cast<ccl::WaveTextureNode*>(shnode);
+			_set_texture_mapping_transformation(node->tex_mapping, transform_type, x, y, z);
+		}
+		break;
+		case shadernode_type::VORONOI_TEXTURE:
+		{
+			ccl::VoronoiTextureNode* node = dynamic_cast<ccl::VoronoiTextureNode*>(shnode);
+			_set_texture_mapping_transformation(node->tex_mapping, transform_type, x, y, z);
+		}
+		break;
+		case shadernode_type::MUSGRAVE_TEXTURE:
+		{
+			ccl::MusgraveTextureNode* node = dynamic_cast<ccl::MusgraveTextureNode*>(shnode);
+			_set_texture_mapping_transformation(node->tex_mapping, transform_type, x, y, z);
+		}
+		break;
+		case shadernode_type::BRICK_TEXTURE:
+		{
+			ccl::BrickTextureNode* node = dynamic_cast<ccl::BrickTextureNode*>(shnode);
+			_set_texture_mapping_transformation(node->tex_mapping, transform_type, x, y, z);
+		}
+		break;
+		case shadernode_type::MAGIC_TEXTURE:
+		{
+			ccl::MagicTextureNode* node = dynamic_cast<ccl::MagicTextureNode*>(shnode);
+			_set_texture_mapping_transformation(node->tex_mapping, transform_type, x, y, z);
+		}
+		break;
+		case shadernode_type::NOISE_TEXTURE:
+		{
+			ccl::NoiseTextureNode* node = dynamic_cast<ccl::NoiseTextureNode*>(shnode);
+			_set_texture_mapping_transformation(node->tex_mapping, transform_type, x, y, z);
+		}
+		break;
 		}
 	}
+}
+
+void _set_texmapping_mapping(ccl::TextureMapping& tex_mapping, ccl::TextureMapping::Mapping x, ccl::TextureMapping::Mapping y, ccl::TextureMapping::Mapping z)
+{
+	tex_mapping.x_mapping = x;
+	tex_mapping.y_mapping = y;
+	tex_mapping.z_mapping = z;
 }
 
 void cycles_shadernode_texmapping_set_mapping(unsigned int client_id, unsigned int shader_id, unsigned int shnode_id, shadernode_type shn_type, ccl::TextureMapping::Mapping x, ccl::TextureMapping::Mapping y, ccl::TextureMapping::Mapping z)
@@ -455,11 +518,65 @@ void cycles_shadernode_texmapping_set_mapping(unsigned int client_id, unsigned i
 		logger.logit(client_id, "Setting texture map mapping to ", x, ",", y, ",", z, " for shadernode type ", shn_type);
 		switch (shn_type) {
 		case shadernode_type::MAPPING:
+		{
 			ccl::MappingNode* node = dynamic_cast<ccl::MappingNode*>(shnode);
-			node->tex_mapping.x_mapping = x;
-			node->tex_mapping.y_mapping = y;
-			node->tex_mapping.z_mapping = z;
-			break;
+			_set_texmapping_mapping(node->tex_mapping, x, y, z);
+		}
+		break;
+		case shadernode_type::ENVIRONMENT_TEXTURE:
+		{
+			ccl::EnvironmentTextureNode* node = dynamic_cast<ccl::EnvironmentTextureNode*>(shnode);
+			_set_texmapping_mapping(node->tex_mapping, x, y, z);
+		}
+		break;
+		case shadernode_type::IMAGE_TEXTURE:
+		{
+			ccl::ImageTextureNode* node = dynamic_cast<ccl::ImageTextureNode*>(shnode);
+			_set_texmapping_mapping(node->tex_mapping, x, y, z);
+		}
+		break;
+		case shadernode_type::GRADIENT_TEXTURE:
+		{
+			ccl::GradientTextureNode* node = dynamic_cast<ccl::GradientTextureNode*>(shnode);
+			_set_texmapping_mapping(node->tex_mapping, x, y, z);
+		}
+		break;
+		case shadernode_type::WAVE_TEXTURE:
+		{
+			ccl::WaveTextureNode* node = dynamic_cast<ccl::WaveTextureNode*>(shnode);
+			_set_texmapping_mapping(node->tex_mapping, x, y, z);
+		}
+		break;
+		case shadernode_type::VORONOI_TEXTURE:
+		{
+			ccl::VoronoiTextureNode* node = dynamic_cast<ccl::VoronoiTextureNode*>(shnode);
+			_set_texmapping_mapping(node->tex_mapping, x, y, z);
+		}
+		break;
+		case shadernode_type::MUSGRAVE_TEXTURE:
+		{
+			ccl::MusgraveTextureNode* node = dynamic_cast<ccl::MusgraveTextureNode*>(shnode);
+			_set_texmapping_mapping(node->tex_mapping, x, y, z);
+		}
+		break;
+		case shadernode_type::BRICK_TEXTURE:
+		{
+			ccl::BrickTextureNode* node = dynamic_cast<ccl::BrickTextureNode*>(shnode);
+			_set_texmapping_mapping(node->tex_mapping, x, y, z);
+		}
+		break;
+		case shadernode_type::MAGIC_TEXTURE:
+		{
+			ccl::MagicTextureNode* node = dynamic_cast<ccl::MagicTextureNode*>(shnode);
+			_set_texmapping_mapping(node->tex_mapping, x, y, z);
+		}
+		break;
+		case shadernode_type::NOISE_TEXTURE:
+		{
+			ccl::NoiseTextureNode* node = dynamic_cast<ccl::NoiseTextureNode*>(shnode);
+			_set_texmapping_mapping(node->tex_mapping, x, y, z);
+		}
+		break;
 		}
 	}
 }

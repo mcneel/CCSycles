@@ -121,6 +121,7 @@ namespace ccl.ShaderNodes
 
 		internal override void SetDirectMembers(uint clientId, uint sceneId, uint shaderId)
 		{
+			base.SetDirectMembers(clientId, sceneId, shaderId);
 			CSycles.shadernode_set_member_float(clientId, shaderId, Id, Type, "projection_blend", ProjectionBlend);
 			CSycles.shadernode_set_member_int(clientId, shaderId, Id, Type, "extension", (int)Extension);
 			CSycles.shadernode_set_member_bool(clientId, shaderId, Id, Type, "use_alpha", UseAlpha);
