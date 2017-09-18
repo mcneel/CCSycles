@@ -198,7 +198,7 @@ namespace ccl
 		/// <summary>
 		/// Conversion matrix for rhino-cycles camera
 		/// </summary>
-		static readonly public Transform RhinoToCyclesCam = new Transform(
+		static readonly public Transform RhinoToCyclesCam { get; private set; } = new Transform(
 			1.0f, 0.0f, 0.0f, 0.0f,
 			0.0f, 1.0f, 0.0f, 0.0f,
 			0.0f, 0.0f, -1.0f, 0.0f,
