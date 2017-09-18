@@ -73,7 +73,14 @@ namespace ccl.ShaderNodes
 			Equirectangular,
 			MirrorBall,
 			Wallpaper,
-			UseTexco
+			EnvironmentMap,
+			Box,
+			LightProbe,
+			CubeMap,
+			CubeMapHorizontal,
+			CubeMapVertical,
+			Hemispherical,
+			Spherical,
 		}
 
 		public enum AxisMapping
