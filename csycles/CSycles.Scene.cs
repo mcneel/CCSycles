@@ -108,6 +108,14 @@ namespace ccl
 			return cycles_scene_get_default_surface_shader(clientId, sceneId);
 		}
 
+		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_scene_set_background_transparent", CallingConvention = CallingConvention.Cdecl)]
+		private static extern void cycles_scene_set_background_transparent(uint clientId, uint sceneId, bool transparent);
+
+		public static void scene_set_background_transparent(uint clientId, uint sceneId, bool transparent)
+		{
+			cycles_scene_set_background_transparent(clientId, sceneId, transparent);
+		}
+
 		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_scene_set_background_ao_factor", CallingConvention = CallingConvention.Cdecl)]
 		private static extern void cycles_scene_set_background_ao_factor(uint clientId, uint sceneId, float aoFactor);
 

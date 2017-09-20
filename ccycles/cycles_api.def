@@ -40,6 +40,7 @@ EXPORTS
   cycles_scene_set_background_shader
   cycles_scene_get_background_shader
   cycles_scene_set_background_ao_factor
+  cycles_scene_set_background_transparent
   cycles_scene_set_background_ao_distance
   cycles_scene_set_background_visibility
   cycles_scene_reset

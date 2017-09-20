@@ -55,6 +55,15 @@ unsigned int cycles_scene_get_background_shader(unsigned int client_id, unsigned
 	return UINT_MAX;
 }
 
+void cycles_scene_set_background_transparent(unsigned int client_id, unsigned int scene_id, unsigned int transparent)
+{
+	SCENE_FIND(scene_id)
+		sce->background->transparent = transparent == 1;
+		sce->background->tag_update(sce);
+		logger.logit(client_id, "Scene ", scene_id, " set background transparent", transparent);
+	SCENE_FIND_END()
+}
+
 void cycles_scene_set_background_ao_factor(unsigned int client_id, unsigned int scene_id, float ao_factor)
 {
 	SCENE_FIND(scene_id)

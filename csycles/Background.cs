@@ -87,5 +87,16 @@ namespace ccl
 				CSycles.scene_set_background_visibility(Scene.Client.Id, Scene.Id, value);
 			}
 		}
+
+		/// <summary>
+		/// Set to true if you want the output with bg transparent.
+		/// </summary>
+		public bool Transparent
+		{
+			set
+			{
+				CSycles.scene_set_background_transparent(Scene.Client.Id, Scene.Id, value);
+			}
+		}
 	}
 }
