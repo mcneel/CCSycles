@@ -307,6 +307,13 @@ namespace ccl
 		{
 			cycles_session_params_set_shadingsystem(clientId, sessionParamsId, (uint)shadingSystem);
 		}
+
+		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_session_params_set_pixel_size", CallingConvention = CallingConvention.Cdecl)]
+		private static extern void cycles_session_params_set_pixel_size(uint clientId, uint sessionParamsId, uint pixel_size);
+		public static void session_params_set_pixel_size(uint clientId, uint sessionParamsId, uint pixelSize)
+		{
+			cycles_session_params_set_pixel_size(clientId, sessionParamsId, pixelSize);
+		}
 #endregion
 
 #region progress

@@ -235,5 +235,16 @@ namespace ccl
 				CSycles.session_params_set_shadingsystem(Client.Id, Id, value);
 			}
 		}
+
+		/// <summary>
+		/// Set the pixel size to use in this render session.
+		/// </summary>
+		public uint PixelSize
+		{
+			set
+			{
+				CSycles.session_params_set_pixel_size(Client.Id, Id, value);
+			}
+		}
 	}
 }

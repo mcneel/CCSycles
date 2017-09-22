@@ -551,6 +551,7 @@ CCL_CAPI void __cdecl cycles_session_params_set_cancel_timeout(unsigned int clie
 CCL_CAPI void __cdecl cycles_session_params_set_reset_timeout(unsigned int client_id, unsigned int session_params_id, double reset_timeout);
 CCL_CAPI void __cdecl cycles_session_params_set_text_timeout(unsigned int client_id, unsigned int session_params_id, double text_timeout);
 CCL_CAPI void __cdecl cycles_session_params_set_shadingsystem(unsigned int client_id, unsigned int session_params_id, unsigned int shadingsystem);
+CCL_CAPI void __cdecl cycles_session_params_set_pixel_size(unsigned int client_id, unsigned int session_params_id, unsigned int pixel_size);
 
 /* Create a new scene for specified device. */
 CCL_CAPI unsigned int __cdecl cycles_scene_create(unsigned int client_id, unsigned int scene_params_id, unsigned int device_id);

@@ -127,3 +127,8 @@ void cycles_session_params_set_shadingsystem(unsigned int client_id, unsigned in
 {
 	SESSION_PARAM_CAST(session_params_id, ccl::ShadingSystem, shadingsystem);
 }
+
+void cycles_session_params_set_pixel_size(unsigned int client_id, unsigned int session_params_id, unsigned int pixel_size)
+{
+	SESSION_PARAM(session_params_id, pixel_size);
+}

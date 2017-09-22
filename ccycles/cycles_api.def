@@ -210,6 +210,7 @@ EXPORTS
   cycles_session_params_set_reset_timeout
   cycles_session_params_set_text_timeout
   cycles_session_params_set_shadingsystem
+  cycles_session_params_set_pixel_size
 
   cycles_create_light
   cycles_light_set_type
