@@ -239,11 +239,11 @@ namespace ccl
 		/// <summary>
 		/// Set the pixel size to use in this render session.
 		/// </summary>
-		public uint PixelSize
+		public int PixelSize
 		{
 			set
 			{
-				CSycles.session_params_set_pixel_size(Client.Id, Id, value);
+				CSycles.session_params_set_pixel_size(Client.Id, Id, (uint)value);
 			}
 		}
 	}
