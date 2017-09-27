@@ -1,6 +1,6 @@
-REM call build_filter_cubins.bat
-REM call build_kernel_cubins.bat rhino 52 
-REM call build_kernel_cubins.bat rhino 60
+call build_filter_cubins.bat
+call build_kernel_cubins.bat rhino 52 
+call build_kernel_cubins.bat rhino 60
 
 call build_kernel_cubins.bat rhino 61
 
