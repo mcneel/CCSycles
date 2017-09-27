@@ -385,15 +385,15 @@ namespace ccl
 		/// </summary>
 		/// <param name="res"></param>
 		/// <returns></returns>
-		static public bool IsValidDeviceString(string res)
+		static public string ValidDeviceString(string res)
 		{
 			var l = IdListFromString(res);
 
 			var existing_l = from dev in Devices select dev.Id;
 
-			var rc = !(from id in l select !existing_l.Contains((uint)id)).Any();
+			var x = from id in l where existing_l.Contains((uint)id) select id;
 
-			return rc;
+			return string.Join(",", x.ToList());
 		}
 
 		/// <summary>
