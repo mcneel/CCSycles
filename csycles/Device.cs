@@ -309,7 +309,8 @@ namespace ccl
 		}
 
 		/// <summary>
-		/// Get the first GPU.
+		/// Get the first GPU if one exists,
+		/// the default rendering device (CPU) if not.
 		/// </summary>
 		static public Device FirstGpu
 		{
