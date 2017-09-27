@@ -380,6 +380,22 @@ namespace ccl
 		}
 
 		/// <summary>
+		/// Tell if given device id string constitutes a valid combo (do all device ids exist).
+		/// </summary>
+		/// <param name="res"></param>
+		/// <returns></returns>
+		static public bool IsValidDeviceString(string res)
+		{
+			var l = IdListFromString(res);
+
+			var existing_l = from dev in Devices select dev.Id;
+
+			var rc = !(from id in l select !existing_l.Contains((uint)id)).Any();
+
+			return rc;
+		}
+
+		/// <summary>
 		/// Generate string from device ID or IDs (in case of multidevice).
 		/// 
 		/// The resulting string can be used as input to DeviceFromString().
