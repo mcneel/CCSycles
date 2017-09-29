@@ -198,31 +198,37 @@ namespace ccl
 	public enum PathRay : uint
 	{
 		Hidden = 0,
-		Camera = 1,
-		Reflect = 2,
-		Transmit = 4,
-		Diffuse = 8,
-		Glossy = 16,
-		Singular = 32,
-		Transparent = 64,
+		Camera = 1 << 0,
+		Reflect = 1 << 1,
+		Transmit = 1 << 2,
+		Diffuse = 1 << 3,
+		Glossy = 1 << 4,
+		Singular = 1 << 5,
+		Transparent = 1 << 6,
 
-		ShadowOpaque = 128,
-		ShadowTransparent = 256,
+		ShadowOpaqueNonCatcher = 1 << 7,
+		ShadowOpaqueCatcher = 1 << 8,
+		ShadowOpaque = (ShadowOpaqueNonCatcher | ShadowOpaqueCatcher),
+		ShadowTransparentNonCatcher = 1 << 9,
+		ShadowTransparentCatcher = 1 << 10,
+		ShadowTransparent = (ShadowTransparentNonCatcher | ShadowTransparentCatcher),
+		ShadowNonCatcher = (ShadowOpaqueNonCatcher | ShadowTransparentNonCatcher),
 		Shadow = (ShadowOpaque | ShadowTransparent),
 
-		Curve = 512, /* visibility flag to define curve segments*/
-		VolumeScatter = 1024,
+		Curve = 1 << 11, /* visibility flag to define curve segments*/
+		VolumeScatter = 1 << 12,
+
+		NodeUnaligned = 1 << 13,
 
 		/* note that these can use maximum 12 bits, the other are for layers */
 
-		AllVisibility =
-			(Camera | Reflect | Transmit | Diffuse | Glossy | Singular | Transparent | Shadow | Curve | VolumeScatter),
+		AllVisibility = ((1 << 14) -1),
 
-		MisSkip = 2048,
-		DiffuseAncestor = 4096,
-		GlossyAncestor = 8192,
-		BssrdfAncestor = 16384,
-		SinglePassDone = 32768,
+		MisSkip = 1 << 15,
+		DiffuseAncestor = 1 << 16,
+		SinglePassDone = 1 << 17,
+		ShadowCatcher = 1 << 18,
+		StoreShadowInfo = 1 << 19,
 
 		/* we need layer member flags to be the 20 upper bits */
 		LayerShift = (32 - 20)
