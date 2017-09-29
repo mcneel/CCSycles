@@ -225,6 +225,8 @@ namespace ccl.ShaderNodes
 			CSycles.shadernode_texmapping_set_mapping(clientId, shaderId, Id, Type, (uint)XMapping, (uint)YMapping, (uint)ZMapping);
 
 			CSycles.shadernode_texmapping_set_type(clientId, shaderId, Id, Type, (uint)Mapping);
+
+			CSycles.shadernode_set_member_bool(clientId, shaderId, Id, Type, "is_linear", IsLinear);
 		}
 
 		protected void ImageParseXml(System.Xml.XmlReader xmlNode)
