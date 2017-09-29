@@ -33,7 +33,7 @@ namespace ccl
 		/// Reference to client for which light was created.
 		/// </summary>
 		public Client Client { get; internal set; }
-		public Shader Shader { get; internal set; }
+		public Shader Shader { get; set; }
 		/// <summary>
 		/// Create a new light.
 		/// 
