@@ -111,8 +111,8 @@ namespace ccl
 		}
 
 		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_session_sample", CallingConvention = CallingConvention.Cdecl)]
-		private static extern bool cycles_session_sample(uint clientId, uint sessionId);
-		public static bool session_sample(uint clientId, uint sessionId)
+		private static extern int cycles_session_sample(uint clientId, uint sessionId);
+		public static int session_sample(uint clientId, uint sessionId)
 		{
 			return cycles_session_sample(clientId, sessionId);
 		}

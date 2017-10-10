@@ -170,11 +170,11 @@ namespace ccl
 		}
 
 		/// <summary>
-		/// Sample one pass.
+		/// Sample one pass. Return -1 when no pass was rendered, zero or positive when something was rendered.
 		/// </summary>
-		public bool Sample()
+		public int Sample()
 		{
-			if(Destroyed) return false;
+			if(Destroyed) return -1;
 			return CSycles.session_sample(Client.Id, Id);
 		}
 

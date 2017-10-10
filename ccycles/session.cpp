@@ -431,9 +431,9 @@ void cycles_session_end_run(unsigned int client_id, unsigned int session_id)
 	SESSION_FIND_END()
 }
 
-bool cycles_session_sample(unsigned int client_id, unsigned int session_id)
+int cycles_session_sample(unsigned int client_id, unsigned int session_id)
 {
-	bool rc = false;
+	int rc = -1;
 	SESSION_FIND(session_id)
 		logger.logit(client_id, "Starting session ", session_id);
 		rc = session->sample();
