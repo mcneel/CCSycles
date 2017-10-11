@@ -387,6 +387,7 @@ namespace ccl
 		/// <returns></returns>
 		static public string ValidDeviceString(string res)
 		{
+			if (res.Equals("-1")) return res;
 			var l = IdListFromString(res);
 
 			var existing_l = from dev in Devices select dev.Id;
@@ -443,7 +444,7 @@ namespace ccl
 
 		/// <summary>
 		/// Get the device for given string. If the string doesn't parse correctly
-		/// the CPU device is picked.
+		/// the first CUDA device (or CPU if no CUDA device was found) is picked.
 		/// </summary>
 		/// <param name="res"></param>
 		/// <returns></returns>
@@ -451,7 +452,7 @@ namespace ccl
 		{
 			var l = IdListFromString(res);
 
-			if (l.Count == 0) return Default;
+			if (l.Count == 0) return FirstCuda;
 			if(l.Count == 1)
 			{
 				return l[0] == -1 ? FirstCuda : GetDevice(l[0]);
