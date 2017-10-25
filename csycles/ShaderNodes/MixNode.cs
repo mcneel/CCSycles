@@ -58,7 +58,7 @@ namespace ccl.ShaderNodes
 	{
 		public enum BlendTypes
 		{
-			Mix,
+			Blend,
 			Add,
 			Multiply,
 			Subtract,
@@ -99,7 +99,7 @@ namespace ccl.ShaderNodes
 			inputs = new MixInputs(this);
 			outputs = new MixOutputs(this);
 
-			BlendType = BlendTypes.Mix;
+			BlendType = BlendTypes.Blend;
 			UseClamp = false;
 
 			ins.Fac.Value = 0.5f;

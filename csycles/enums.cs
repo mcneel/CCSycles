@@ -138,6 +138,7 @@ namespace ccl
 		MatrixMath,
 		Principled,
 		Attribute,
+		NormalMap,
 	}
 
 	public enum BvhType : uint
