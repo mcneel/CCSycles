@@ -70,7 +70,7 @@
     <Compile Condition="'$(Configuration)' == 'Release' Or '$(Configuration)' == 'Debug'" Include="..\..\..\..\..\version.cs">
       <Link>Properties\version.cs</Link>
     </Compile>
-		<Compile Condition="'$(Configuration)' == 'Stand-alone Release' Or '$(Configuration)' == 'Stand-alone Debug'" Include=".\Properties\version.cs" />
+    <Compile Condition="'$(Configuration)' == 'Stand-alone Release' Or '$(Configuration)' == 'Stand-alone Debug'" Include=".\Properties\version.cs" />
     <Compile Include="Attributes\ShaderNodeAttribute.cs" />
     <Compile Include="Background.cs" />
     <Compile Include="Colors.cs" />
@@ -103,6 +103,8 @@
     <Compile Include="ShaderNodes\AnisotropicBsdfNode.cs" />
     <Compile Include="ShaderNodes\AbsorptionVolumeNode.cs" />
     <Compile Include="ShaderNodes\CameraDataNode.cs" />
+    <Compile Include="ShaderNodes\NormalMapNode.cs" />
+    <Compile Include="ShaderNodes\InvertNode.cs" />
     <Compile Include="ShaderNodes\PrincipledBsdfNode.cs" />
     <Compile Include="ShaderNodes\GeometryInfoNode.cs" />
     <Compile Include="ShaderNodes\SubsurfaceScatteringNode.cs" />

@@ -182,7 +182,6 @@ unsigned int cycles_add_shader_node(unsigned int client_id, unsigned int shader_
 		break;
 	case shadernode_type::REFRACTION:
 		node = new ccl::RefractionBsdfNode();
-		//refrnode->distribution = ccl::CLOSURE_BSDF_MICROFACET_BECKMANN_REFRACTION_ID;
 		break;
 	case shadernode_type::HAIR:
 		node = new ccl::HairBsdfNode();
@@ -336,6 +335,9 @@ unsigned int cycles_add_shader_node(unsigned int client_id, unsigned int shader_
 		break;
 	case shadernode_type::ATTRIBUTE:
 		node = new ccl::AttributeNode();
+		break;
+	case shadernode_type::NORMALMAP:
+		node = new ccl::NormalMapNode();
 		break;
 	}
 
@@ -728,8 +730,17 @@ void cycles_shadernode_set_enum(unsigned int client_id, unsigned int shader_id, 
 			break;
 		}
 		case shadernode_type::PRINCIPLED_BSDF:
+		{
 			ccl::PrincipledBsdfNode* node = dynamic_cast<ccl::PrincipledBsdfNode*>(shnode);
 			node->distribution = (ccl::ClosureType)value;
+			break;
+		}
+		case shadernode_type::NORMALMAP:
+		{
+			ccl::NormalMapNode* node = dynamic_cast<ccl::NormalMapNode*>(shnode);
+			node->space = (ccl::NodeNormalMapSpace)value;
+			break;
+		}
 		}
 	}
 }
