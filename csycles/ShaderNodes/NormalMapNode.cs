@@ -46,7 +46,7 @@ namespace ccl.ShaderNodes
 		}
 	}
 
-	[ShaderNode("emission")]
+	[ShaderNode("normalmap")]
 	public class NormalMapNode : ShaderNode
 	{
 		public enum Space
