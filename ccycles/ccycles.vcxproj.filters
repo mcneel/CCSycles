@@ -3,7 +3,7 @@
   <ItemGroup>
     <Filter Include="Source Files">
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;asm;asmx</Extensions>
     </Filter>
     <Filter Include="Header Files">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
@@ -13,10 +13,29 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="CUBIN Build Files">
+      <UniqueIdentifier>{FF05A97D-6E29-4C7B-BD92-37847DC9A4CA}</UniqueIdentifier>
+      <Extensions>bat</Extensions>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="cycles_api.def">
       <Filter>Source Files</Filter>
+    </None>
+    <None Include="..\build_all_cubins.bat">
+      <Filter>CUBIN Build Files</Filter>
+    </None>
+    <None Include="..\build_filter_cubins.bat">
+      <Filter>CUBIN Build Files</Filter>
+    </None>
+    <None Include="..\build_kernel_cubins.bat">
+      <Filter>CUBIN Build Files</Filter>
+    </None>
+    <None Include="..\build_my_cubins.bat">
+      <Filter>CUBIN Build Files</Filter>
+    </None>
+    <None Include="..\build_split_cubins.bat">
+      <Filter>CUBIN Build Files</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

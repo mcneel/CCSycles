@@ -267,6 +267,11 @@ copy /Y "$(ProjectDir)x64\$(ConfigurationName)\ccycles.pdb" "$(SolutionDir)bin\$
     <ClInclude Include="vshader.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\build_all_cubins.bat" />
+    <None Include="..\build_filter_cubins.bat" />
+    <None Include="..\build_kernel_cubins.bat" />
+    <None Include="..\build_my_cubins.bat" />
+    <None Include="..\build_split_cubins.bat" />
     <None Include="cycles_api.def" />
   </ItemGroup>
   <ItemGroup>
