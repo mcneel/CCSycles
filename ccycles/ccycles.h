@@ -17,10 +17,14 @@ limitations under the License.
 #ifndef __CYCLES__H__
 #define __CYCLES__H__
 
+#ifdef WIN32
 #ifdef CCL_CAPI_DLL
 #define CCL_CAPI __declspec (dllexport)
 #else
 #define CCL_CAPI __declspec (dllimport)
+#endif
+#else
+#define CCL_CAPI
 #endif
 /*
 
