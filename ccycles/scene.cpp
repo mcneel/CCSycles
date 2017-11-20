@@ -19,6 +19,7 @@ limitations under the License.
 // need access to devices
 extern std::vector<ccl::DeviceInfo> devices;
 extern std::vector<ccl::DeviceInfo> multi_devices;
+extern std::vector<CCSession*> sessions;
 
 extern std::vector<ccl::SceneParams> scene_params;
 std::vector<CCScene> scenes;
@@ -95,28 +96,22 @@ void _cleanup_scenes()
 	scenes.clear();
 }
 
-unsigned int cycles_scene_create(unsigned int client_id, unsigned int scene_params_id, unsigned int device_id)
+unsigned int cycles_scene_create(unsigned int client_id, unsigned int scene_params_id, unsigned int session_id)
 {
+	SESSION_FIND(session_id)
+
 	CCScene scene;
 
 	ccl::SceneParams params;
-	ccl::DeviceInfo di;
-	di.num = -1;
 
 	bool found_params{ false };
-	bool found_di{ false };
 
 	if (0 <= scene_params_id && scene_params_id < scene_params.size()) {
 		params = scene_params[scene_params_id];
 		found_params = true;
 	}
 
-	GETDEVICE(di, device_id);
-	if (di.num >= 0) {
-		found_di = true;
-	}
-
-	if (found_di && found_params) {
+	if (found_params) {
 		int cscid{ -1 };
 		if (scenes.size() > 0) {
 			int hid{ 0 };
@@ -139,18 +134,20 @@ unsigned int cycles_scene_create(unsigned int client_id, unsigned int scene_para
 			cscid = (unsigned int)(scenes.size() - 1);
 		}
 
-		scenes[cscid].scene = new ccl::Scene(params, di);
+		scenes[cscid].scene = new ccl::Scene(params, session->device);
 		scenes[cscid].params_id = scene_params_id;
 		scenes[cscid].scene->image_manager->builtin_image_info_cb = function_bind(&CCScene::builtin_image_info, scenes[cscid], std::placeholders::_1, std::placeholders::_2, std::placeholders::_3, std::placeholders::_4, std::placeholders::_5, std::placeholders::_6, std::placeholders::_7);
 		scenes[cscid].scene->image_manager->builtin_image_pixels_cb = function_bind(&CCScene::builtin_image_pixels, scenes[cscid], std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
 		scenes[cscid].scene->image_manager->builtin_image_float_pixels_cb = function_bind(&CCScene::builtin_image_float_pixels, scenes[cscid], std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
 
-		logger.logit(client_id, "Created scene ", cscid, " with scene_params ", scene_params_id, " and device ", di.id);
+		logger.logit(client_id, "Created scene ", cscid, " with scene_params ", scene_params_id, " and device ", session->device->info.id);
 		return cscid;
 	}
 	else {
 		return UINT_MAX;
 	}
+	SESSION_FIND_END()
+	return UINT_MAX;
 }
 
 void cycles_scene_set_default_surface_shader(unsigned int client_id, unsigned int scene_id, unsigned int shader_id)

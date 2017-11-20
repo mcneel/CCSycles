@@ -6,10 +6,10 @@ namespace ccl
 	{
 #region scene
 		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_scene_create", CallingConvention = CallingConvention.Cdecl)]
-		private static extern uint cycles_scene_create(uint clientId, uint sceneParamsId, uint deviceid);
-		public static uint scene_create(uint clientId, uint sceneParamsId, uint deviceid)
+		private static extern uint cycles_scene_create(uint clientId, uint sceneParamsId, uint sessionid);
+		public static uint scene_create(uint clientId, uint sceneParamsId, uint sessionid)
 		{
-			return cycles_scene_create(clientId, sceneParamsId, deviceid);
+			return cycles_scene_create(clientId, sceneParamsId, sessionid);
 		}
 
 		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_scene_reset", CallingConvention = CallingConvention.Cdecl)]

@@ -251,6 +251,7 @@ XCopy "$(ProjectDir)..\cycles\src\util\util_math*4.h" "$(SolutionDir)$(OutDir)so
 XCopy "$(ProjectDir)..\cycles\src\util\util_math_fast.h" "$(SolutionDir)$(OutDir)source\util\" /Y /I /Q
 XCopy "$(ProjectDir)..\cycles\src\util\util_math_intersect.h" "$(SolutionDir)$(OutDir)source\util\" /Y /I /Q
 XCopy "$(ProjectDir)..\cycles\src\util\util_math_matrix.h" "$(SolutionDir)$(OutDir)source\util\" /Y /I /Q
+XCopy "$(ProjectDir)..\cycles\src\util\util_rect.h" "$(SolutionDir)$(OutDir)source\util\" /Y /I /Q
 XCopy "$(ProjectDir)..\cycles\src\util\util_texture.h" "$(SolutionDir)$(OutDir)source\util\" /Y /I /Q
 XCopy "$(ProjectDir)..\cycles\src\util\util_transform.h" "$(SolutionDir)$(OutDir)source\util\" /Y /I /Q
 XCopy "$(ProjectDir)..\cycles\src\util\util_types*.h" "$(SolutionDir)$(OutDir)source\util\" /Y /I /Q
