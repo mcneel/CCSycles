@@ -131,7 +131,7 @@ int cycles_create_multidevice(int count, int* idx) {
 		ccl::DeviceInfo dev = devices[idx[i]];
 		subdevices.push_back(dev);
 	}
-	ccl::DeviceInfo themulti = ccl::Device::get_multi_device(subdevices);
+	ccl::DeviceInfo themulti = ccl::Device::get_multi_device(subdevices, 0, true);
 
 	bool found = false;
 	for (auto multi : multi_devices)

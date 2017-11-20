@@ -32,10 +32,12 @@ namespace ccl
 		/// True if the session has already been destroyed.
 		/// </summary>
 		private bool Destroyed { get; set; }
+
+		private Scene sc;
 		/// <summary>
-		/// Get the Scene used for this Session
+		/// Get or set the Scene used for this Session
 		/// </summary>
-		public Scene Scene { get; }
+		public Scene Scene { get { return sc; } set { CSycles.session_set_scene(Client.Id, Id, value.Id); sc = value; } }
 		/// <summary>
 		/// Get the SessionParams used for this Session
 		/// </summary>
@@ -55,12 +57,11 @@ namespace ccl
 		/// </summary>
 		/// <param name="sessionParams">Previously created SessionParameters to create Session with</param>
 		/// <param name="scene">Previously created Scene to create Session with</param>
-		public Session(Client client, SessionParameters sessionParams, Scene scene)
+		public Session(Client client, SessionParameters sessionParams)
 		{
 			Client = client;
 			SessionParams = sessionParams;
-			Scene = scene;
-			Id = CSycles.session_create(Client.Id, sessionParams.Id, scene.Id);
+			Id = CSycles.session_create(Client.Id, sessionParams.Id);
 		}
 
 		/// <summary>

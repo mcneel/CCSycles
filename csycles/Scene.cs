@@ -64,16 +64,15 @@ namespace ccl
 		/// </summary>
 		/// <param name="client">The client from C[CS]ycles API</param>
 		/// <param name="sceneParams">The SceneParameters to create scene with</param>
-		/// <param name="device">The Device to create scene for</param>
-		public Scene(Client client, SceneParameters sceneParams, Device device)
+		/// <param name="session">The Session to create scene for</param>
+		public Scene(Client client, SceneParameters sceneParams, Session session)
 		{
 			Client = client;
-			Id = CSycles.scene_create(Client.Id, sceneParams.Id, device.Id);
+			Id = CSycles.scene_create(Client.Id, sceneParams.Id, session.Id);
 			Background = new Background(this);
 			Camera = new Camera(this);
 			Integrator = new Integrator(this);
 			Film = new Film(this);
-			Device = device;
 
 			/* add simple wrappers for shadermanager created default shaders */
 			var surface = Shader.WrapDefaultSurfaceShader(client);

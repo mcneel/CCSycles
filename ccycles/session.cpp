@@ -205,22 +205,18 @@ bool CCSession::size_has_changed() {
 	return rc;
 }
 
-unsigned int cycles_session_create(unsigned int client_id, unsigned int session_params_id, unsigned int scene_id)
+unsigned int cycles_session_create(unsigned int client_id, unsigned int session_params_id)
 {
 	ccl::SessionParams params;
 	if (session_params_id >= 0 && session_params_id < session_params.size()) {
 		params = session_params[session_params_id];
 	}
 
-	CCScene& sce = scenes[scene_id];
-
 	int csesid{ -1 };
 	int hid{ 0 };
 
-	CCSession* session = CCSession::create(sce.scene->camera->width, sce.scene->camera->height, 4);
-	// TODO: pass ccl::Session into CCSession::create
+	CCSession* session = CCSession::create(10, 10, 4);
 	session->session = new ccl::Session(params);
-	session->session->scene = sce.scene;
 
 	auto csessit = sessions.begin();
 	auto csessend = sessions.end();
@@ -252,16 +248,22 @@ unsigned int cycles_session_create(unsigned int client_id, unsigned int session_
 
 	session->id = csesid;
 
-	logger.logit(client_id, "Created session ", session->id, " for scene ", scene_id, " with session_params ", session_params_id);
+	logger.logit(client_id, "Created session ", session->id, " with session_params ", session_params_id);
 
 	return session->id;
+}
+
+void cycles_session_set_scene(unsigned int client_id, unsigned int session_id, unsigned int scene_id)
+{
+	SESSION_FIND(session_id)
+		CCScene& sce = scenes[scene_id];
+		ccsess->session->scene = sce.scene;
+	SESSION_FIND_END()
 }
 
 void cycles_session_destroy(unsigned int client_id, unsigned int session_id)
 {
 	SESSION_FIND(session_id)
-
-	CCSession* ccses = sessions[session_id];
 
 	for (CCScene& csc : scenes) {
 		if (csc.scene == session->scene) {
@@ -270,7 +272,7 @@ void cycles_session_destroy(unsigned int client_id, unsigned int session_id)
 	}
 
 	delete ccsess->session;
-	delete ccses;
+	delete ccsess;
 
 	sessions[session_id] = nullptr;
 

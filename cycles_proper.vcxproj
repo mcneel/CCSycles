@@ -246,6 +246,7 @@
     <ClCompile Include="cycles\src\device\device_cpu.cpp" />
     <ClCompile Include="cycles\src\device\device_cuda.cpp" />
     <ClCompile Include="cycles\src\device\device_denoising.cpp" />
+    <ClCompile Include="cycles\src\device\device_memory.cpp" />
     <ClCompile Include="cycles\src\device\device_multi.cpp" />
     <ClCompile Include="cycles\src\device\device_network.cpp" />
     <ClCompile Include="cycles\src\device\device_opencl.cpp" />
