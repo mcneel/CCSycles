@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 48;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -202,7 +202,7 @@
 				};
 			};
 			buildConfigurationList = A11D68161FB596D800409EB3 /* Build configuration list for PBXProject "ccycles" */;
-			compatibilityVersion = "Xcode 8.0";
+			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -375,6 +375,10 @@
 					../../cycles/third_party/atomic,
 				);
 				LIBRARY_SEARCH_PATHS = ../../../../../../../big_libs/boost/stagerelease/lib;
+				OTHER_LDFLAGS = (
+					"-framework",
+					OpenGL,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -406,6 +410,10 @@
 					../../cycles/third_party/atomic,
 				);
 				LIBRARY_SEARCH_PATHS = ../../../../../../../big_libs/boost/stagerelease/lib;
+				OTHER_LDFLAGS = (
+					"-framework",
+					OpenGL,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
