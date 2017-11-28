@@ -111,7 +111,7 @@ namespace ccl
 
 			var shader = new Shader(Client, Shader.ShaderType.World) { Name = Guid.NewGuid().ToString() };
 
-			Utilities.Instance.ReadNodeGraph(ref shader, node.ReadSubtree());
+			Utilities.Instance.ReadNodeGraph(shader, node.ReadSubtree(), true);
 
 			state.Scene.AddShader(shader);
 			state.Scene.Background.Shader = shader;
@@ -544,7 +544,7 @@ namespace ccl
 
 			var shader = new Shader(Client, Shader.ShaderType.Material) {Name = name};
 
-			Utilities.Instance.ReadNodeGraph(ref shader, node.ReadSubtree());
+			Utilities.Instance.ReadNodeGraph(shader, node.ReadSubtree(), true);
 
 			state.Scene.AddShader(shader);
 		}
