@@ -324,12 +324,15 @@ namespace ccl
 		}
 
 		/// <summary>
-		/// Create node graph in the given shader from the passed XML
+		/// Create node graph in the given shader from the passed XML.
+		/// 
+		/// Note that you should call FinalizeGraph on shader if you are not further
+		/// changing the graph.
 		/// </summary>
-		/// <param name="shader"></param>
-		/// <param name="shaderXml"></param>
-		/// <returns></returns>
-		public static void ShaderFromXml(ref Shader shader, string shaderXml)
+		/// <param name="shader">Shader to populate with nodes from the XML representation.</param>
+		/// <param name="shaderXml">The XML representation for the shader.</param>
+		/// <param name="finalize">Set to true if the shader should be finalized.</param>
+		public static void ShaderFromXml(Shader shader, string shaderXml, bool finalize)
 		{
 			var xmlmem = Encoding.UTF8.GetBytes(shaderXml);
 			using (var xmlstream = new MemoryStream(xmlmem))
@@ -342,7 +345,7 @@ namespace ccl
 					IgnoreWhitespace = true
 				};
 				var reader = XmlReader.Create(xmlstream, settings);
-				Utilities.Instance.ReadNodeGraph(ref shader, reader);
+				Utilities.Instance.ReadNodeGraph(shader, reader, finalize);
 			}
 		}
 

@@ -222,7 +222,7 @@ namespace ccl
 		}
 
 
-		public void ReadNodeGraph(ref Shader shader, XmlReader xmlNode)
+		public void ReadNodeGraph(Shader shader, XmlReader xmlNode, bool finalize)
 		{
 			var nodes = new Dictionary<string, ShaderNode> {{"output", shader.Output}};
 
@@ -270,7 +270,7 @@ namespace ccl
 				}
 			}
 
-			shader.FinalizeGraph();
+			if(finalize) shader.FinalizeGraph();
 		}
 	}
 }
