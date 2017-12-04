@@ -113,6 +113,7 @@
     <Compile Include="ShaderNodes\HoldoutNode.cs" />
     <Compile Include="ShaderNodes\GradientTextureNode.cs" />
     <Compile Include="ShaderNodes\MatrixMathNode.cs" />
+    <Compile Include="ShaderNodes\ToonBsdfNode.cs" />
     <Compile Include="ShaderNodes\VectorMathNode.cs" />
     <Compile Include="ShaderNodes\RgbToLuminance.cs" />
     <Compile Include="ShaderNodes\TranslucentBsdfNode.cs" />
