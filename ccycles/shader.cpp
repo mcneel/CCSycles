@@ -650,6 +650,12 @@ void cycles_shadernode_set_enum(unsigned int client_id, unsigned int shader_id, 
 			node->distribution = (ccl::ClosureType)value;
 		}
 		break;
+		case shadernode_type::TOON:
+		{
+			ccl::ToonBsdfNode* node = dynamic_cast<ccl::ToonBsdfNode*>(shnode);
+			node->component = (ccl::ClosureType)value;
+		}
+		break;
 		case shadernode_type::GLOSSY:
 		{
 			ccl::GlossyBsdfNode* node = dynamic_cast<ccl::GlossyBsdfNode*>(shnode);
