@@ -479,15 +479,16 @@ CCL_CAPI void __cdecl cycles_camera_set_fisheye_fov(unsigned int client_id, unsi
 CCL_CAPI void __cdecl cycles_camera_set_fisheye_lens(unsigned int client_id, unsigned int scene_id, float fisheye_lens);
 
 /** Create a new session for scene id. */
-CCL_CAPI unsigned int __cdecl cycles_session_create(unsigned int client_id, unsigned int session_params_id, unsigned int scene_id);
+CCL_CAPI unsigned int __cdecl cycles_session_create(unsigned int client_id, unsigned int session_params_id);
+CCL_CAPI void __cdecl cycles_session_set_scene(unsigned int client_id, unsigned int session_id, unsigned int scene_id);
 
 /** Reset session. */
 CCL_CAPI void __cdecl cycles_session_reset(unsigned int client_id, unsigned int session_id, unsigned int width, unsigned int height, unsigned int samples);
 
 /** Set the status update callback for session. */
-CCL_CAPI void __cdecl cycles_session_set_update_callback(unsigned int client_id, unsigned int session_id, void(*update)(unsigned int));
+CCL_CAPI void __cdecl cycles_session_set_update_callback(unsigned int client_id, unsigned int session_id, void(*update)(unsigned int sid));
 /** Set the test cancel callback for session. */
-CCL_CAPI void __cdecl cycles_session_set_cancel_callback(unsigned int client_id, unsigned int session_id, void(*cancel)(unsigned int));
+CCL_CAPI void __cdecl cycles_session_set_cancel_callback(unsigned int client_id, unsigned int session_id, void(*cancel)(unsigned int sid));
 /** Set the render tile update callback for session. */
 CCL_CAPI void __cdecl cycles_session_set_update_tile_callback(unsigned int client_id, unsigned int session_id, RENDER_TILE_CB update_tile_cb);
 /** Set the render tile write callback for session. */
@@ -554,7 +555,7 @@ CCL_CAPI void __cdecl cycles_session_params_set_shadingsystem(unsigned int clien
 CCL_CAPI void __cdecl cycles_session_params_set_pixel_size(unsigned int client_id, unsigned int session_params_id, unsigned int pixel_size);
 
 /* Create a new scene for specified device. */
-CCL_CAPI unsigned int __cdecl cycles_scene_create(unsigned int client_id, unsigned int scene_params_id, unsigned int device_id);
+CCL_CAPI unsigned int __cdecl cycles_scene_create(unsigned int client_id, unsigned int scene_params_id, unsigned int session_id);
 CCL_CAPI void __cdecl cycles_scene_set_background_shader(unsigned int client_id, unsigned int scene_id, unsigned int shader_id);
 CCL_CAPI unsigned int __cdecl cycles_scene_get_background_shader(unsigned int client_id, unsigned int scene_id);
 CCL_CAPI void __cdecl cycles_scene_set_background_transparent(unsigned int client_id, unsigned int scene_id, unsigned int transparent);

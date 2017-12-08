@@ -214,6 +214,9 @@
     <ClCompile Include="cycles\src\device\device_denoising.cpp">
       <Filter>device</Filter>
     </ClCompile>
+    <ClCompile Include="cycles\src\device\device_memory.cpp">
+      <Filter>device</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cycles\src\bvh\bvh.h">

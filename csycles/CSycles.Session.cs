@@ -14,10 +14,17 @@ namespace ccl
 		}
 
 		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_session_create", CallingConvention = CallingConvention.Cdecl)]
-		private static extern uint cycles_session_create(uint clientId, uint sessionParamsId, uint sceneId);
-		public static uint session_create(uint clientId, uint sessionParamsId, uint sceneId)
+		private static extern uint cycles_session_create(uint clientId, uint sessionParamsId);
+		public static uint session_create(uint clientId, uint sessionParamsId)
 		{
-			return cycles_session_create(clientId, sessionParamsId, sceneId);
+			return cycles_session_create(clientId, sessionParamsId);
+		}
+
+		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_session_set_scene", CallingConvention = CallingConvention.Cdecl)]
+		private static extern uint cycles_session_set_scene(uint clientId, uint sessionId, uint sceneId);
+		public static uint session_set_scene(uint clientId, uint sessionId, uint sceneId)
+		{
+			return cycles_session_set_scene(clientId, sessionId, sceneId);
 		}
 
 		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_session_destroy", CallingConvention = CallingConvention.Cdecl)]
