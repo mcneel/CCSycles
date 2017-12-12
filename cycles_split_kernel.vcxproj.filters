@@ -406,6 +406,9 @@
     <ClInclude Include="cycles\src\kernel\split\kernel_do_volume.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="cycles\src\kernel\split\kernel_enqueue_inactive.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="cycles\src\kernel\split\kernel_holdout_emission_blurring_pathtermination_ao.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -431,6 +434,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="cycles\src\kernel\split\kernel_shader_eval.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\kernel\split\kernel_shader_setup.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\kernel\split\kernel_shader_sort.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="cycles\src\kernel\split\kernel_shadow_blocked_ao.h">
