@@ -312,6 +312,7 @@
     <ClInclude Include="cycles\src\kernel\split\kernel_data_init.h" />
     <ClInclude Include="cycles\src\kernel\split\kernel_direct_lighting.h" />
     <ClInclude Include="cycles\src\kernel\split\kernel_do_volume.h" />
+    <ClInclude Include="cycles\src\kernel\split\kernel_enqueue_inactive.h" />
     <ClInclude Include="cycles\src\kernel\split\kernel_holdout_emission_blurring_pathtermination_ao.h" />
     <ClInclude Include="cycles\src\kernel\split\kernel_indirect_background.h" />
     <ClInclude Include="cycles\src\kernel\split\kernel_indirect_subsurface.h" />

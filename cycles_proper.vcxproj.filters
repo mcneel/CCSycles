@@ -675,7 +675,7 @@
     <ClInclude Include="cycles\src\kernel\geom\geom_volume.h">
       <Filter>kernel_geom_headers</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\split\kernel_background_buffer_update.h">
+    <ClInclude Include="cycles\src\kernel\split\kernel_buffer_update.h">
       <Filter>kernel_split_headers</Filter>
     </ClInclude>
     <ClInclude Include="cycles\src\kernel\split\kernel_data_init.h">
@@ -684,7 +684,19 @@
     <ClInclude Include="cycles\src\kernel\split\kernel_direct_lighting.h">
       <Filter>kernel_split_headers</Filter>
     </ClInclude>
+    <ClInclude Include="cycles\src\kernel\split\kernel_do_volume.h">
+      <Filter>kernel_split_headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\kernel\split\kernel_enqueue_inactive.h">
+      <Filter>kernel_split_headers</Filter>
+    </ClInclude>
     <ClInclude Include="cycles\src\kernel\split\kernel_holdout_emission_blurring_pathtermination_ao.h">
+      <Filter>kernel_split_headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\kernel\split\kernel_indirect_background.h">
+      <Filter>kernel_split_headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\kernel\split\kernel_indirect_subsurface.h">
       <Filter>kernel_split_headers</Filter>
     </ClInclude>
     <ClInclude Include="cycles\src\kernel\split\kernel_lamp_emission.h">
@@ -693,19 +705,40 @@
     <ClInclude Include="cycles\src\kernel\split\kernel_next_iteration_setup.h">
       <Filter>kernel_split_headers</Filter>
     </ClInclude>
+    <ClInclude Include="cycles\src\kernel\split\kernel_path_init.h">
+      <Filter>kernel_split_headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\kernel\split\kernel_queue_enqueue.h">
+      <Filter>kernel_split_headers</Filter>
+    </ClInclude>
     <ClInclude Include="cycles\src\kernel\split\kernel_scene_intersect.h">
       <Filter>kernel_split_headers</Filter>
     </ClInclude>
     <ClInclude Include="cycles\src\kernel\split\kernel_shader_eval.h">
       <Filter>kernel_split_headers</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\split\kernel_shadow_blocked.h">
+    <ClInclude Include="cycles\src\kernel\split\kernel_shader_setup.h">
+      <Filter>kernel_split_headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\kernel\split\kernel_shader_sort.h">
+      <Filter>kernel_split_headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\kernel\split\kernel_shadow_blocked_ao.h">
+      <Filter>kernel_split_headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\kernel\split\kernel_shadow_blocked_dl.h">
       <Filter>kernel_split_headers</Filter>
     </ClInclude>
     <ClInclude Include="cycles\src\kernel\split\kernel_split_common.h">
       <Filter>kernel_split_headers</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\split\kernel_sum_all_radiance.h">
+    <ClInclude Include="cycles\src\kernel\split\kernel_split_data.h">
+      <Filter>kernel_split_headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\kernel\split\kernel_split_data_types.h">
+      <Filter>kernel_split_headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\kernel\split\kernel_subsurface_scatter.h">
       <Filter>kernel_split_headers</Filter>
     </ClInclude>
     <ClInclude Include="cycles\src\device\device_denoising.h">
