@@ -238,6 +238,7 @@
 		A100CA581FB5E9D600BC046C /* util_md5.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A100C9F11FB5E9D500BC046C /* util_md5.cpp */; };
 		A100CA591FB5E9D600BC046C /* util_logging.h in Headers */ = {isa = PBXBuildFile; fileRef = A100C9F21FB5E9D500BC046C /* util_logging.h */; };
 		A100CA5A1FB5E9D600BC046C /* util_debug.h in Headers */ = {isa = PBXBuildFile; fileRef = A100C9F31FB5E9D500BC046C /* util_debug.h */; };
+		D8CA42571FE1572B007AF679 /* device_memory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D8CA42561FE1572B007AF679 /* device_memory.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -476,6 +477,7 @@
 		A100C9F21FB5E9D500BC046C /* util_logging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = util_logging.h; path = ../../cycles/src/util/util_logging.h; sourceTree = "<group>"; };
 		A100C9F31FB5E9D500BC046C /* util_debug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = util_debug.h; path = ../../cycles/src/util/util_debug.h; sourceTree = "<group>"; };
 		A11D68041FB5936400409EB3 /* libcycles_proper.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libcycles_proper.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D8CA42561FE1572B007AF679 /* device_memory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = device_memory.cpp; path = ../../cycles/src/device/device_memory.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -526,6 +528,7 @@
 				A100C8821FB5E78700BC046C /* device_denoising.cpp */,
 				A100C8831FB5E78800BC046C /* device_denoising.h */,
 				A100C8791FB5E78700BC046C /* device_intern.h */,
+				D8CA42561FE1572B007AF679 /* device_memory.cpp */,
 				A100C8771FB5E78600BC046C /* device_memory.h */,
 				A100C8861FB5E78800BC046C /* device_multi.cpp */,
 				A100C87E1FB5E78700BC046C /* device_network.cpp */,
@@ -1056,6 +1059,7 @@
 				A100C9491FB5E96300BC046C /* object.cpp in Sources */,
 				A100C8911FB5E78800BC046C /* device_task.cpp in Sources */,
 				A100C8921FB5E78800BC046C /* device_denoising.cpp in Sources */,
+				D8CA42571FE1572B007AF679 /* device_memory.cpp in Sources */,
 				A100C9891FB5E99300BC046C /* subd_patch_table.cpp in Sources */,
 				A100C9631FB5E96300BC046C /* sobol.cpp in Sources */,
 				A100CA081FB5E9D500BC046C /* util_string.cpp in Sources */,
