@@ -324,6 +324,7 @@
 					../../OpenEXR/Half,
 					../../../../../../../big_libs/boost,
 				);
+				INSTALL_PATH = "@rpath";
 				LIBRARY_SEARCH_PATHS = (
 					../../../../../../../big_libs/boost/stagerelease/lib,
 					"$(SDKROOT)/usr/lib/system",
@@ -349,6 +350,7 @@
 					../../OpenEXR/Half,
 					../../../../../../../big_libs/boost,
 				);
+				INSTALL_PATH = "@rpath";
 				LIBRARY_SEARCH_PATHS = (
 					../../../../../../../big_libs/boost/stagerelease/lib,
 					"$(SDKROOT)/usr/lib/system",

@@ -374,6 +374,7 @@
 					../../glew/include,
 					../../cycles/third_party/atomic,
 				);
+				INSTALL_PATH = "@rpath";
 				LIBRARY_SEARCH_PATHS = ../../../../../../../big_libs/boost/stagerelease/lib;
 				OTHER_LDFLAGS = (
 					"-framework",
@@ -409,6 +410,7 @@
 					../../glew/include,
 					../../cycles/third_party/atomic,
 				);
+				INSTALL_PATH = "@rpath";
 				LIBRARY_SEARCH_PATHS = ../../../../../../../big_libs/boost/stagerelease/lib;
 				OTHER_LDFLAGS = (
 					"-framework",
