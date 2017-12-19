@@ -272,6 +272,24 @@
     <ClCompile Include="cycles\src\util\util_windows.cpp" />
     <ClCompile Include="cycles\src\graph\node.cpp" />
     <ClCompile Include="cycles\src\graph\node_type.cpp" />
+    <ClCompile Include="cycles\src\kernel\kernels\cpu\filter.cpp" />
+    <ClCompile Include="cycles\src\kernel\kernels\cpu\filter_avx.cpp" />
+    <ClCompile Include="cycles\src\kernel\kernels\cpu\filter_avx2.cpp" />
+    <ClCompile Include="cycles\src\kernel\kernels\cpu\filter_sse2.cpp" />
+    <ClCompile Include="cycles\src\kernel\kernels\cpu\filter_sse3.cpp" />
+    <ClCompile Include="cycles\src\kernel\kernels\cpu\filter_sse41.cpp" />
+    <ClCompile Include="cycles\src\kernel\kernels\cpu\kernel.cpp" />
+    <ClCompile Include="cycles\src\kernel\kernels\cpu\kernel_avx.cpp" />
+    <ClCompile Include="cycles\src\kernel\kernels\cpu\kernel_avx2.cpp" />
+    <ClCompile Include="cycles\src\kernel\kernels\cpu\kernel_sse2.cpp" />
+    <ClCompile Include="cycles\src\kernel\kernels\cpu\kernel_sse3.cpp" />
+    <ClCompile Include="cycles\src\kernel\kernels\cpu\kernel_sse41.cpp" />
+    <ClCompile Include="cycles\src\kernel\kernels\cpu\kernel_split.cpp" />
+    <ClCompile Include="cycles\src\kernel\kernels\cpu\kernel_split_avx.cpp" />
+    <ClCompile Include="cycles\src\kernel\kernels\cpu\kernel_split_avx2.cpp" />
+    <ClCompile Include="cycles\src\kernel\kernels\cpu\kernel_split_sse2.cpp" />
+    <ClCompile Include="cycles\src\kernel\kernels\cpu\kernel_split_sse3.cpp" />
+    <ClCompile Include="cycles\src\kernel\kernels\cpu\kernel_split_sse41.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cycles\src\bvh\bvh.h" />
@@ -495,6 +513,11 @@
     <ClInclude Include="cycles\src\graph\node.h" />
     <ClInclude Include="cycles\src\graph\node_enum.h" />
     <ClInclude Include="cycles\src\graph\node_type.h" />
+    <ClInclude Include="cycles\src\kernel\kernels\filter_cpu.h" />
+    <ClInclude Include="cycles\src\kernel\kernels\filter_cpu_impl.h" />
+    <ClInclude Include="cycles\src\kernel\kernels\kernel_cpu.h" />
+    <ClInclude Include="cycles\src\kernel\kernels\kernel_cpu_image.h" />
+    <ClInclude Include="cycles\src\kernel\kernels\kernel_cpu_impl.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
