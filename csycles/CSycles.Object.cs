@@ -5,7 +5,7 @@ namespace ccl
 	public partial class CSycles
 	{
 #region object
-		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_scene_object_set_matrix", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		private static extern void cycles_scene_object_set_matrix(uint clientId, uint sceneId, uint objectId,
 			float a, float b, float c, float d,
 			float e, float f, float g, float h,
@@ -20,56 +20,56 @@ namespace ccl
 				t.w.x, t.w.y, t.w.z, t.w.w);
 		}
 
-		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_scene_object_set_mesh", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		private static extern void cycles_scene_object_set_mesh(uint clientId, uint sceneId, uint objectId, uint meshId);
 		public static void object_set_mesh(uint clientId, uint sceneId, uint objectId, uint meshId)
 		{
 			cycles_scene_object_set_mesh(clientId, sceneId, objectId, meshId);
 		}
 
-		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_scene_object_get_mesh", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		private static extern uint cycles_scene_object_get_mesh(uint clientId, uint sceneId, uint objectId);
 		public static uint object_get_mesh(uint clientId, uint sceneId, uint objectId)
 		{
 			return cycles_scene_object_get_mesh(clientId, sceneId, objectId);
 		}
 
-		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_scene_object_set_visibility", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		private static extern void cycles_scene_object_set_visibility(uint clientId, uint sceneId, uint objectId, uint visibility);
 		public static void object_set_visibility(uint clientId, uint sceneId, uint objectId, PathRay visibility)
 		{
 			cycles_scene_object_set_visibility(clientId, sceneId, objectId, (uint)visibility);
 		}
 
-		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_scene_object_set_is_shadowcatcher", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		private static extern void cycles_scene_object_set_is_shadowcatcher(uint clientId, uint sceneId, uint objectId, bool is_shadowcatcher);
 		public static void object_set_is_shadowcatcher(uint clientId, uint sceneId, uint objectId, bool is_shadowcatcher)
 		{
 			cycles_scene_object_set_is_shadowcatcher(clientId, sceneId, objectId, is_shadowcatcher);
 		}
 
-		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_scene_object_set_mesh_light_no_cast_shadow", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		private static extern void cycles_scene_object_set_mesh_light_no_cast_shadow(uint clientId, uint sceneId, uint objectId, bool mesh_light_no_cast_shadow);
 		public static void object_set_mesh_light_no_cast_shadow(uint clientId, uint sceneId, uint objectId, bool mesh_light_no_cast_shadow)
 		{
 			cycles_scene_object_set_mesh_light_no_cast_shadow(clientId, sceneId, objectId, mesh_light_no_cast_shadow);
 		}
 
-		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_scene_object_set_cutout", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		private static extern void cycles_scene_object_set_cutout(uint clientId, uint sceneId, uint objectId, bool cutout);
 		public static void object_set_cutout(uint clientId, uint sceneId, uint objectId, bool cutout)
 		{
 			cycles_scene_object_set_cutout(clientId, sceneId, objectId, cutout);
 		}
 
-		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_scene_object_set_ignore_cutout", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		private static extern void cycles_scene_object_set_ignore_cutout(uint clientId, uint sceneId, uint objectId, bool ignore_cutout);
 		public static void object_set_ignore_cutout(uint clientId, uint sceneId, uint objectId, bool ignore_cutout)
 		{
 			cycles_scene_object_set_ignore_cutout(clientId, sceneId, objectId, ignore_cutout);
 		}
 
-		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_object_tag_update", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		private static extern void cycles_object_tag_update(uint clientId, uint sceneId, uint objectId);
 		public static void object_tag_update(uint clientId, uint sceneId, uint objectId)
 		{
