@@ -22,13 +22,13 @@ namespace ccl
 
 	internal struct _tfmApi
 	{
-		[DllImport("ccycles.dll", SetLastError = false,  CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Constants.ccycles, SetLastError = false,  CallingConvention = CallingConvention.Cdecl)]
 		static public extern void cycles_tfm_inverse([In, MarshalAs(UnmanagedType.Struct)] _Transform t, [In, Out, MarshalAs(UnmanagedType.Struct)]ref _Transform res);
 
-		[DllImport("ccycles.dll", SetLastError = false,  CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Constants.ccycles, SetLastError = false,  CallingConvention = CallingConvention.Cdecl)]
 		static public extern void cycles_tfm_lookat([In, MarshalAs(UnmanagedType.Struct)] _float4 position, [In, MarshalAs(UnmanagedType.Struct)] _float4 look, [In, MarshalAs(UnmanagedType.Struct)] _float4 up, [In, Out, MarshalAs(UnmanagedType.Struct)]ref _Transform res);
 
-		[DllImport("ccycles.dll", SetLastError = false,  CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Constants.ccycles, SetLastError = false,  CallingConvention = CallingConvention.Cdecl)]
 		static public extern void cycles_tfm_rotate_around_axis(float angle, [In, MarshalAs(UnmanagedType.Struct)] _float4 axis, [In, Out, MarshalAs(UnmanagedType.Struct)]ref _Transform res);
 
 	}

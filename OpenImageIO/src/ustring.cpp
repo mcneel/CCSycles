@@ -40,7 +40,8 @@
 
 #include "ustring.h"
 
-#include <boost/unordered_map.hpp>
+//#include <boost/unordered_map.hpp>
+#include <unordered_map>
 
 OIIO_NAMESPACE_ENTER
 {
@@ -68,7 +69,7 @@ typedef null_lock<null_mutex> ustring_write_lock_t;
 #endif
 
 
-typedef boost::unordered_map <const char *, ustring::TableRep *, Strutil::StringHash, Strutil::StringEqual> UstringTable;
+typedef std::unordered_map <const char *, ustring::TableRep *, Strutil::StringHash, Strutil::StringEqual> UstringTable;
 
 std::string ustring::empty_std_string ("");
 
@@ -87,10 +88,21 @@ static ustring_mutex_t & ustring_mutex ()
     return the_real_mutex;
 }
 
+UstringTable *the_table = nullptr;
+
 static UstringTable & ustring_table ()
 {
-    static UstringTable table;
-    return table;
+    if (the_table == nullptr) the_table = new UstringTable();
+    //static UstringTable table;
+    return *the_table;
+}
+
+static void ustring_table_clear()
+{
+    //UstringTable &table(ustring_table());
+    //table.clear();
+    delete the_table;
+    the_table = nullptr;
 }
 
 };          // end anonymous namespace
@@ -213,6 +225,10 @@ ustring::TableRep::~TableRep ()
 }
 
 
+void ustring::cleanup_table()
+{
+    ustring_table_clear();
+}
 
 const char *
 ustring::make_unique (const char *str)
