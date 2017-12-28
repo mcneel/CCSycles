@@ -185,13 +185,13 @@
     <CCSyclesFiles Include="$(TargetDir)$(ProjectName).*" />
   </ItemGroup>
   <ItemGroup>
-    <CUDAFiles Include="$(SolutionDir)..\..\big_libs\RhinoCycles\lib" />
+    <CUDAFiles Include="$(SolutionDir)..\..\big_libs\RhinoCycles\lib\**\*" />
   </ItemGroup>
   <ItemGroup>
-    <KernelFiles Include="$(ProjecDir)..\cycles\src\kernel\*" />
+    <KernelFiles Include="$(ProjecDir)..\cycles\src\kernel\**\*" />
   </ItemGroup>
   <ItemGroup>
-    <UtilFiles Include="$(ProjecDir)..\cycles\src\util\*" />
+    <UtilFiles Include="$(ProjecDir)..\cycles\src\util\**\*" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup Condition="'$(Configuration)' == 'Release' Or '$(Configuration)' == 'Debug'">
@@ -279,17 +279,17 @@ XCopy "$(ProjectDir)..\cycles\src\util\util_static_assert.h" "$(SolutionDir)$(Ou
   <Target Name="BeforeBuild">
   </Target>
   <Target Name="AfterBuild">
-    <Copy SourceFiles="$(CCSyclesFiles)" DestinationFolder="$(ProjectDir)..\..\..\..\..\$(OutDir)Plug-ins\" />
+    <Copy SourceFiles="@(CCSyclesFiles)" DestinationFolder="$(ProjectDir)..\..\..\..\..\$(OutDir)Plug-ins\" />
     <!--<Copy SourceFiles="$(ProjectDir)..\ccycles\x64\$(ConfigurationName)\ccycles.dll" DestinationFolder="$(SolutionDir)..\$(OutDir)Plug-ins" />
     <Copy SourceFiles="$(ProjectDir)..\ccycles\x64\$(ConfigurationName)\ccycles.pdb" DestinationFolder="$(SolutionDir)..\$(OutDir)Plug-ins" />
     <Copy SourceFiles="$(ProjectDir)..\OpenImageIO\x64\$(ConfigurationName)\OpenImageIOv13.dll" DestinationFolder="$(SolutionDir)..\$(OutDir)" />
     <Copy SourceFiles="$(ProjectDir)..\pthreads\x64\$(ConfigurationName)\pthreads.dll" DestinationFolder="$(SolutionDir)..\$(OutDir)" />
     <Copy SourceFiles="$(SolutionDir)..\..\big_libs\boost\stage$(ConfigurationName)\lib\boost_*" DestinationFolder="$(SolutionDir)..\$(OutDir)" />-->
 
-    <Copy SourceFiles="$(CUDAFiles)" DestinationFolder="$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\" />
+    <Copy SourceFiles="@(CUDAFiles)" DestinationFolder="$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\lib\%(RecursiveDir)" />
 
-    <Copy SourceFiles="$(KernelFiles)" DestinationFolder="$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\source\kernel\" />
+		<Copy SourceFiles="@(KernelFiles)" DestinationFolder="$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\source\kernel\%(RecursiveDir)" />
 
-    <Copy SourceFiles="$(UtilFiles)" DestinationFolder="$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\source\util\" />
+    <Copy SourceFiles="@(UtilFiles)" DestinationFolder="$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\source\util\%(RecursiveDir)" />
   </Target>
 </Project>
