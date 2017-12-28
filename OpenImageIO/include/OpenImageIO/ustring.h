@@ -581,6 +581,8 @@ public:
     /// the canonical unique copy of the characters.
     static const char * make_unique (const char *str);
 
+    static void cleanup_table ();
+
     /// Is this character pointer a unique ustring representation of
     /// those characters?  Useful for diagnostics and debugging.
     static bool is_unique (const char *str) {

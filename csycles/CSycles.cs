@@ -117,7 +117,7 @@ namespace ccl
 			throw new InvalidDataException($"Node with xmlname '{xmlName}' not found.");
 		}
 
-		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_initialise", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		private static extern void cycles_initialise();
 		/// <summary>
 		/// Initialise the Cycles render engine.
@@ -135,7 +135,7 @@ namespace ccl
 			cycles_initialise();
 		}
 
-		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_path_init", CharSet = CharSet.Ansi,
+		[DllImport(Constants.ccycles, SetLastError = false, CharSet = CharSet.Ansi,
 			CallingConvention = CallingConvention.Cdecl)]
 		private static extern void cycles_path_init(string path, string userPath);
 		/// <summary>
@@ -151,7 +151,7 @@ namespace ccl
 			cycles_path_init(path, userPath);
 		}
 
-		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_putenv", CharSet = CharSet.Ansi,
+		[DllImport(Constants.ccycles, SetLastError = false, CharSet = CharSet.Ansi,
 			CallingConvention = CallingConvention.Cdecl)]
 		private static extern void cycles_putenv(string path, string userPath);
 		/// <summary>
@@ -165,7 +165,7 @@ namespace ccl
 			cycles_putenv(var, val);
 		}
 
-		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_shutdown", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		private static extern void cycles_shutdown();
 		/// <summary>
 		/// Clean up CSycles, CCycles and Cycles.
@@ -185,7 +185,7 @@ namespace ccl
 		 */
 		public delegate void LoggerCallback([MarshalAsAttribute(UnmanagedType.LPStr)] string msg);
 
-		[DllImport("ccycles.dll", SetLastError = false, CallingConvention = CallingConvention.Cdecl, EntryPoint = "cycles_set_logger")]
+		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		private static extern void cycles_set_logger(uint clientId, IntPtr loggerCb);
 		/// <summary>
 		/// Set the logger function to CCycles.
@@ -203,8 +203,7 @@ namespace ccl
 			cycles_set_logger(clientId, IntPtr.Zero);
 		}
 
-		[DllImport("ccycles.dll", SetLastError = false, CallingConvention = CallingConvention.Cdecl,
-			EntryPoint = "cycles_log_to_stdout")]
+		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		private static extern void cycles_log_to_stdout(int stdout);
 		/**
 		 * Set to true if logger output should be sent to std::cout as well.
@@ -216,16 +215,14 @@ namespace ccl
 			cycles_log_to_stdout(stdOut ? 1 : 0);
 		}
 
-		[DllImport("ccycles.dll", SetLastError = false, CallingConvention = CallingConvention.Cdecl,
-			EntryPoint = "cycles_new_client")]
+		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		private static extern uint cycles_new_client();
 		public static uint new_client()
 		{
 			return cycles_new_client();
 		}
 
-		[DllImport("ccycles.dll", SetLastError = false, CallingConvention = CallingConvention.Cdecl,
-			EntryPoint = "cycles_release_client")]
+		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		private static extern void cycles_release_client(uint clientId);
 		public static void release_client(uint clientId)
 		{
@@ -233,8 +230,7 @@ namespace ccl
 		}
 
 
-		[DllImport("ccycles.dll", SetLastError = false, CallingConvention = CallingConvention.Cdecl,
-			EntryPoint = "cycles_debug_set_cpu_kernel")]
+		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		private static extern void cycles_debug_set_cpu_kernel(int stdout);
 		/**
 		 * Set true to ensure CPU uses split kernel
@@ -244,8 +240,7 @@ namespace ccl
 			LoadCCycles();
 			cycles_debug_set_cpu_kernel(split ? 1 : 0);
 		}
-		[DllImport("ccycles.dll", SetLastError = false, CallingConvention = CallingConvention.Cdecl,
-			EntryPoint = "cycles_debug_set_cpu_allow_qbvh")]
+		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		private static extern void cycles_debug_set_cpu_allow_qbvh(int stdout);
 		/**
 		 * Set to true if logger output should be sent to std::cout as well.
@@ -257,8 +252,7 @@ namespace ccl
 			LoadCCycles();
 			cycles_debug_set_cpu_allow_qbvh(allowQbvh ? 1 : 0);
 		}
-		[DllImport("ccycles.dll", SetLastError = false, CallingConvention = CallingConvention.Cdecl,
-			EntryPoint = "cycles_debug_set_cuda_kernel")]
+		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		private static extern void cycles_debug_set_cuda_kernel(int stdout);
 		/**
 		 * Set to true if logger output should be sent to std::cout as well.
@@ -270,8 +264,7 @@ namespace ccl
 			LoadCCycles();
 			cycles_debug_set_cuda_kernel(useSplit ? 1 : 0);
 		}
-		[DllImport("ccycles.dll", SetLastError = false, CallingConvention = CallingConvention.Cdecl,
-			EntryPoint = "cycles_debug_set_opencl_kernel")]
+		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		private static extern void cycles_debug_set_opencl_kernel(int kernelType);
 		///<summary>
 		/// Set the OpenCL kernel type to use. 1 is split, 0 is mega. -1 means decide
@@ -283,8 +276,7 @@ namespace ccl
 			LoadCCycles();
 			cycles_debug_set_opencl_kernel(kernelType);
 		}
-		[DllImport("ccycles.dll", SetLastError = false, CallingConvention = CallingConvention.Cdecl,
-			EntryPoint = "cycles_debug_set_opencl_single_program")]
+		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		private static extern void cycles_debug_set_opencl_single_program(int singleProgram);
 		/// <summary>
 		/// Give true to force OpenCL compilation to use single program
@@ -296,8 +288,7 @@ namespace ccl
 			cycles_debug_set_opencl_single_program(useSingleProgram ? 1 : 0);
 		}
 
-		[DllImport("ccycles.dll", SetLastError = false, CallingConvention = CallingConvention.Cdecl,
-			EntryPoint = "cycles_debug_set_opencl_device_type")]
+		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		private static extern void cycles_debug_set_opencl_device_type(int type);
 		/// <summary>
 		/// Set to govern what OpenCL device types will be queried.

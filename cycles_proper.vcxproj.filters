@@ -1,6 +1,113 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <Filter Include="util">
+      <UniqueIdentifier>{a3c9e2ce-3b7e-43a4-bd53-fceb830a2eb8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="graph">
+      <UniqueIdentifier>{F943DDEB-390F-4F83-A075-7AC89149A35E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="device">
+      <UniqueIdentifier>{ee660968-f550-4ac9-a607-0fd603e741b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="device_opencl">
+      <UniqueIdentifier>{7A337C27-8330-4352-A751-2E9164E26B38}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="render">
+      <UniqueIdentifier>{d1f838d0-de6f-45ec-8cf9-997a274df0f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="bvh">
+      <UniqueIdentifier>{12bc6c85-ce3d-426f-bdf0-4972af4a9c6e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="subd">
+      <UniqueIdentifier>{c052acf9-1852-4578-8f5e-c8da6d4c8303}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="kernel_headers">
+      <UniqueIdentifier>{b61e4075-a0f7-41bd-a86b-7bff792ab1ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="kernel_denoising_headers">
+      <UniqueIdentifier>{1bb90ff0-699c-4eed-9954-39b237b75a79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="kernel_geom_headers">
+      <UniqueIdentifier>{F4243D13-A063-419A-A7BB-A621E7A5AD11}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="kernel_split_headers">
+      <UniqueIdentifier>{B898C955-7640-4795-AA2E-B6397E0957BC}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="kernel_cpu">
+      <UniqueIdentifier>{D0CDB504-7BB6-48A1-B5CD-5C6B877F34EB}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="kernel_cpu_avx">
+      <UniqueIdentifier>{D27A63A4-7486-4BB7-9E36-C3B044333435}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="kernel_cpu_avx2">
+      <UniqueIdentifier>{737B3A1C-3DD3-46A8-AD68-E9C61A1E6C56}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="kernel_cpu_sse2">
+      <UniqueIdentifier>{FB3A6E0F-00C6-487C-AB43-44D7FF4D99CC}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="kernel_cpu_sse3">
+      <UniqueIdentifier>{C1806F9C-F48F-4E94-84E2-90F4B442E990}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="kernel_cpu_sse41">
+      <UniqueIdentifier>{203CBDF5-E52E-4A27-AEB3-D26D4A552A44}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="cycles\src\kernel\kernels\cpu\filter.cpp">
+      <Filter>kernel_cpu</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles\src\kernel\kernels\cpu\kernel.cpp">
+      <Filter>kernel_cpu</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles\src\kernel\kernels\cpu\kernel_split.cpp">
+      <Filter>kernel_cpu</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles\src\kernel\kernels\cpu\filter_avx.cpp">
+      <Filter>kernel_cpu_avx</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles\src\kernel\kernels\cpu\kernel_avx.cpp">
+      <Filter>kernel_cpu_avx</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles\src\kernel\kernels\cpu\kernel_split_avx.cpp">
+      <Filter>kernel_cpu_avx</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles\src\kernel\kernels\cpu\filter_avx2.cpp">
+      <Filter>kernel_cpu_avx2</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles\src\kernel\kernels\cpu\kernel_avx2.cpp">
+      <Filter>kernel_cpu_avx2</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles\src\kernel\kernels\cpu\kernel_split_avx2.cpp">
+      <Filter>kernel_cpu_avx2</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles\src\kernel\kernels\cpu\filter_sse2.cpp">
+      <Filter>kernel_cpu_sse2</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles\src\kernel\kernels\cpu\kernel_sse2.cpp">
+      <Filter>kernel_cpu_sse2</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles\src\kernel\kernels\cpu\kernel_split_sse2.cpp">
+      <Filter>kernel_cpu_sse2</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles\src\kernel\kernels\cpu\filter_sse3.cpp">
+      <Filter>kernel_cpu_sse3</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles\src\kernel\kernels\cpu\kernel_sse3.cpp">
+      <Filter>kernel_cpu_sse3</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles\src\kernel\kernels\cpu\kernel_split_sse3.cpp">
+      <Filter>kernel_cpu_sse3</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles\src\kernel\kernels\cpu\filter_sse41.cpp">
+      <Filter>kernel_cpu_sse41</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles\src\kernel\kernels\cpu\kernel_sse41.cpp">
+      <Filter>kernel_cpu_sse41</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles\src\kernel\kernels\cpu\kernel_split_sse41.cpp">
+      <Filter>kernel_cpu_sse41</Filter>
+    </ClCompile>
     <ClCompile Include="cycles\src\bvh\bvh_binning.cpp">
       <Filter>bvh</Filter>
     </ClCompile>
@@ -741,6 +848,21 @@
     <ClInclude Include="cycles\src\kernel\split\kernel_subsurface_scatter.h">
       <Filter>kernel_split_headers</Filter>
     </ClInclude>
+    <ClInclude Include="cycles\src\kernel\kernels\filter_cpu.h">
+      <Filter>kernel_cpu</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\kernel\kernels\filter_cpu_impl.h">
+      <Filter>kernel_cpu</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\kernel\kernels\kernel_cpu.h">
+      <Filter>kernel_cpu</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\kernel\kernels\kernel_cpu_image.h">
+      <Filter>kernel_cpu</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\kernel\kernels\kernel_cpu_impl.h">
+      <Filter>kernel_cpu</Filter>
+    </ClInclude>
     <ClInclude Include="cycles\src\device\device_denoising.h">
       <Filter>device</Filter>
     </ClInclude>
@@ -879,40 +1001,5 @@
     <ClInclude Include="cycles\src\util\util_types_vector3_impl.h">
       <Filter>util</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Filter Include="util">
-      <UniqueIdentifier>{a3c9e2ce-3b7e-43a4-bd53-fceb830a2eb8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="graph">
-      <UniqueIdentifier>{F943DDEB-390F-4F83-A075-7AC89149A35E}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="device">
-      <UniqueIdentifier>{ee660968-f550-4ac9-a607-0fd603e741b8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="device_opencl">
-      <UniqueIdentifier>{7A337C27-8330-4352-A751-2E9164E26B38}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="render">
-      <UniqueIdentifier>{d1f838d0-de6f-45ec-8cf9-997a274df0f6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="bvh">
-      <UniqueIdentifier>{12bc6c85-ce3d-426f-bdf0-4972af4a9c6e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="subd">
-      <UniqueIdentifier>{c052acf9-1852-4578-8f5e-c8da6d4c8303}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="kernel_headers">
-      <UniqueIdentifier>{b61e4075-a0f7-41bd-a86b-7bff792ab1ba}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="kernel_denoising_headers">
-      <UniqueIdentifier>{1bb90ff0-699c-4eed-9954-39b237b75a79}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="kernel_geom_headers">
-      <UniqueIdentifier>{F4243D13-A063-419A-A7BB-A621E7A5AD11}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="kernel_split_headers">
-      <UniqueIdentifier>{B898C955-7640-4795-AA2E-B6397E0957BC}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
 </Project>

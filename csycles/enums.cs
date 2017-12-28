@@ -18,6 +18,11 @@ using System;
 
 namespace ccl
 {
+
+	public static class Constants
+	{
+		public const string ccycles = "ccycles";
+	}
 	/// <summary>
 	/// Device types that Cycles can support.
 	/// 

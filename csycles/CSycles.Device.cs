@@ -6,7 +6,7 @@ namespace ccl
 	public partial class CSycles
 	{
 #region devices
-		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_number_devices", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		private static extern uint cycles_number_devices();
 		/// <summary>
 		/// Get the number of available render devices.
@@ -17,7 +17,7 @@ namespace ccl
 			return cycles_number_devices();
 		}
 
-		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_number_multidevices", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		private static extern uint cycles_number_multidevices();
 		/// <summary>
 		/// Get the number of available render multidevices.
@@ -28,7 +28,7 @@ namespace ccl
 			return cycles_number_multidevices();
 		}
 
-		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_number_multi_subdevices", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		private static extern uint cycles_number_multi_subdevices(int i);
 		/// <summary>
 		/// Get the number of available render multi_subdevices.
@@ -40,7 +40,7 @@ namespace ccl
 			return cycles_number_multi_subdevices(i);
 		}
 
-		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_get_multidevice_subdevice_id", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		private static extern uint cycles_get_multidevice_subdevice_id(int i, int j);
 		/// <summary>
 		/// Get the get of available render multidevice_subdevice_id.
@@ -53,7 +53,7 @@ namespace ccl
 			return cycles_get_multidevice_subdevice_id(i, j);
 		}
 
-		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_number_cuda_devices", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		private static extern uint cycles_number_cuda_devices();
 		/// <summary>
 		/// Get the number of available CUDA devices.
@@ -64,7 +64,7 @@ namespace ccl
 			return cycles_number_cuda_devices();
 		}
 
-		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_device_capabilities", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Constants.ccycles, SetLastError = false, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
 		private static extern IntPtr cycles_device_capabilities();
 		/// <summary>
 		/// Get the device capabilities for all devices Cycles can see.
@@ -75,7 +75,7 @@ namespace ccl
 			return Marshal.PtrToStringAnsi(cycles_device_capabilities());
 		}
 
-		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_device_description", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Constants.ccycles, SetLastError = false, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
 		private static extern IntPtr cycles_device_description(int i);
 		/// <summary>
 		/// Get the device description for specified device.
@@ -87,7 +87,7 @@ namespace ccl
 			return Marshal.PtrToStringAnsi(cycles_device_description(i));
 		}
 
-		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_device_id", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Constants.ccycles, SetLastError = false, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
 		private static extern IntPtr cycles_device_id(int i);
 		/// <summary>
 		/// Get the device ID string
@@ -99,7 +99,7 @@ namespace ccl
 			return Marshal.PtrToStringAnsi(cycles_device_id(i));
 		}
 
-		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_device_num", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		private static extern uint cycles_device_num(int i);
 		/// <summary>
 		/// Return device enumeration number
@@ -111,7 +111,7 @@ namespace ccl
 			return cycles_device_num(i);
 		}
 
-		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_device_type", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		private static extern uint cycles_device_type(int i);
 		/// <summary>
 		/// Get the <c>DeviceType</c> of th specified device
@@ -123,7 +123,7 @@ namespace ccl
 			return (DeviceType)cycles_device_type(i);
 		}
 
-		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_device_advanced_shading", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		[return: MarshalAs(UnmanagedType.U1)]
 		private static extern bool cycles_device_advanced_shading(int i);
 		/// <summary>
@@ -138,7 +138,7 @@ namespace ccl
 			return cycles_device_advanced_shading(i);
 		}
 
-		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_device_display_device", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		[return: MarshalAs(UnmanagedType.U1)]
 		private static extern bool cycles_device_display_device(int i);
 		/// <summary>
@@ -151,7 +151,7 @@ namespace ccl
 			return cycles_device_display_device(i);
 		}
 
-		[DllImport("ccycles.dll", SetLastError = false, EntryPoint = "cycles_create_multidevice", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		private unsafe static extern int cycles_create_multidevice(int count, int * idxbuffer);
 		/// <summary>
 		///  create a multi-device with given device ids.( Device.num)

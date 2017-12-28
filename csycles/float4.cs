@@ -21,17 +21,17 @@ namespace ccl
 {
 	internal struct _f4Api
 	{
-		[DllImport("ccycles.dll", SetLastError = false,  CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Constants.ccycles, SetLastError = false,  CallingConvention = CallingConvention.Cdecl)]
 		[return: MarshalAs(UnmanagedType.LPStruct)]
 		static public extern void cycles_f4_add([MarshalAs(UnmanagedType.Struct)] _float4 a, [MarshalAs(UnmanagedType.Struct)] _float4 b, [In, Out, MarshalAs(UnmanagedType.Struct)]ref _float4 res);
 
-		[DllImport("ccycles.dll", SetLastError = false,  CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Constants.ccycles, SetLastError = false,  CallingConvention = CallingConvention.Cdecl)]
 		[return: MarshalAs(UnmanagedType.LPStruct)]
 		static public extern void cycles_f4_sub([MarshalAs(UnmanagedType.Struct)] _float4 a, [MarshalAs(UnmanagedType.Struct)] _float4 b, [In, Out, MarshalAs(UnmanagedType.Struct)]ref _float4 res);
-		[DllImport("ccycles.dll", SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		[return: MarshalAs(UnmanagedType.LPStruct)]
 		static public extern void cycles_f4_mul([MarshalAs(UnmanagedType.Struct)] _float4 a, [MarshalAs(UnmanagedType.Struct)] _float4 b, [In, Out, MarshalAs(UnmanagedType.Struct)]ref _float4 res);
-		[DllImport("ccycles.dll", SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		[return: MarshalAs(UnmanagedType.LPStruct)]
 		static public extern void cycles_f4_div([MarshalAs(UnmanagedType.Struct)] _float4 a, [MarshalAs(UnmanagedType.Struct)] _float4 b, [In, Out, MarshalAs(UnmanagedType.Struct)]ref _float4 res);
 
