@@ -181,6 +181,18 @@
   <ItemGroup>
     <Content Include="license.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <CCSyclesFiles Include="$(TargetDir)$(ProjectName).*" />
+  </ItemGroup>
+  <ItemGroup>
+    <CUDAFiles Include="$(SolutionDir)..\..\big_libs\RhinoCycles\lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <KernelFiles Include="$(ProjecDir)..\cycles\src\kernel\*" />
+  </ItemGroup>
+  <ItemGroup>
+    <UtilFiles Include="$(ProjecDir)..\cycles\src\util\*" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup Condition="'$(Configuration)' == 'Release' Or '$(Configuration)' == 'Debug'">
     <PostBuildEvent Condition="'$(OS)' == 'Windows_NT'">XCopy /Y "$(TargetDir)$(ProjectName).*" "$(ProjectDir)..\..\..\..\..\$(OutDir)Plug-ins"
@@ -222,7 +234,8 @@ XCopy "$(ProjectDir)..\cycles\src\util\util_static_assert.h" "$(SolutionDir)..\$
     </PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Stand-alone Release' Or '$(Configuration)' == 'Stand-alone Debug'">
-    <PostBuildEvent Condition="'$(OS)' == 'Windows_NT'">XCopy /Y "$(TargetDir)$(ProjectName).*" "$(SolutionDir)$(OutDir)"
+    <PostBuildEvent Condition="'$(OS)' == 'Windows_NT'">
+XCopy /Y "$(TargetDir)$(ProjectName).*" "$(SolutionDir)$(OutDir)"
 copy /Y "$(ProjectDir)..\ccycles\x64\$(ConfigurationName)\ccycles.dll" "$(SolutionDir)$(OutDir)"
 copy /Y "$(ProjectDir)..\ccycles\x64\$(ConfigurationName)\ccycles.pdb" "$(SolutionDir)$(OutDir)"
 copy /Y "$(ProjectDir)..\OpenImageIO\x64\$(ConfigurationName)\OpenImageIOv13.dll" "$(SolutionDir)$(OutDir)"
@@ -263,11 +276,20 @@ XCopy "$(ProjectDir)..\cycles\src\util\util_static_assert.h" "$(SolutionDir)$(Ou
     <PreBuildEvent>
     </PreBuildEvent>
   </PropertyGroup>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>
   <Target Name="AfterBuild">
+    <Copy SourceFiles="$(CCSyclesFiles)" DestinationFolder="$(ProjectDir)..\..\..\..\..\$(OutDir)Plug-ins\" />
+    <!--<Copy SourceFiles="$(ProjectDir)..\ccycles\x64\$(ConfigurationName)\ccycles.dll" DestinationFolder="$(SolutionDir)..\$(OutDir)Plug-ins" />
+    <Copy SourceFiles="$(ProjectDir)..\ccycles\x64\$(ConfigurationName)\ccycles.pdb" DestinationFolder="$(SolutionDir)..\$(OutDir)Plug-ins" />
+    <Copy SourceFiles="$(ProjectDir)..\OpenImageIO\x64\$(ConfigurationName)\OpenImageIOv13.dll" DestinationFolder="$(SolutionDir)..\$(OutDir)" />
+    <Copy SourceFiles="$(ProjectDir)..\pthreads\x64\$(ConfigurationName)\pthreads.dll" DestinationFolder="$(SolutionDir)..\$(OutDir)" />
+    <Copy SourceFiles="$(SolutionDir)..\..\big_libs\boost\stage$(ConfigurationName)\lib\boost_*" DestinationFolder="$(SolutionDir)..\$(OutDir)" />-->
+
+    <Copy SourceFiles="$(CUDAFiles)" DestinationFolder="$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\" />
+
+    <Copy SourceFiles="$(KernelFiles)" DestinationFolder="$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\source\kernel\" />
+
+    <Copy SourceFiles="$(UtilFiles)" DestinationFolder="$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\source\util\" />
   </Target>
-  -->
 </Project>
