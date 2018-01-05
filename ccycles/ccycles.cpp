@@ -59,7 +59,11 @@ void cycles_path_init(const char* path, const char* user_path)
 
 void cycles_putenv(const char* var, const char* val)
 {
+#if defined(_WIN32)
 	_putenv_s(var, val);
+#else
+	setenv(var, val, 1);
+#endif
 }
 
 void cycles_initialise()

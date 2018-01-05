@@ -21,3 +21,5 @@ boostbuild/build.log
 packages/
 *.patch
 *.diff
+
+xcuserdata/
