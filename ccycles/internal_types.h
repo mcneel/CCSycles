@@ -166,7 +166,7 @@ public:
 	/* The display update handler for ccl::Session.
 	 *
 	 */
-	void CCSession::display_update(int sample);
+	void display_update(int sample);
 
 	/* Hold the pixel buffer with the final result for the attached session.
 	 * Gets updated by update_render_tile and write_render_tile.
@@ -256,21 +256,21 @@ extern unsigned int get_idx_for_shader_in_scene(ccl::Scene* sce, ccl::Shader* sh
 /* Set boolean parameter varname of param_type. */
 #define PARAM_BOOL(param_type, params_id, varname) \
 	if (0 <= params_id && params_id < param_type.size()) { \
-		param_type[params_id].##varname = varname == 1; \
+		param_type[params_id]. varname = varname == 1; \
 		logger.logit(client_id, "Set " #param_type " " #varname " to ", varname); \
 	}
 
 /* Set parameter varname of param_type. */
 #define PARAM(param_type, params_id, varname) \
 	if (0 <= params_id && params_id < param_type.size()) { \
-		param_type[params_id].##varname = varname; \
+		param_type[params_id]. varname = varname; \
 		logger.logit(client_id, "Set " #param_type " " #varname " to ", varname); \
 	}
 
 /* Set parameter varname of param_type, casting to typecast*/
 #define PARAM_CAST(param_type, params_id, typecast, varname) \
 	if (0 <= params_id && params_id < param_type.size()) { \
-		param_type[params_id].##varname = static_cast<typecast>(varname); \
+		param_type[params_id]. varname = static_cast<typecast>(varname); \
 		logger.logit(client_id, "Set " #param_type " " #varname " to ", varname, " casting to " #typecast); \
 	}
 
@@ -282,10 +282,12 @@ extern unsigned int get_idx_for_shader_in_scene(ccl::Scene* sce, ccl::Shader* sh
 	l->tag_update(sce); \
 	SCENE_FIND_END()
 
+#define SHADER_VAR2(a,b) a ## b
+#define SHADER_VAR(a, b) SHADER_VAR2(a,b)
 /* Set a var of shader to val of type. */
 #define SHADER_SET(shid, type, var, val) \
 	CCShader* sh = shaders[shid]; \
-	sh->shader->##var = (type)(val); \
+    sh->shader-> var = (type)(val); \
 	logger.logit(client_id, "Set " #var " of shader ", shid, " to ", val, " casting to " #type);
 
 #if 0

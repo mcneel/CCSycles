@@ -129,9 +129,9 @@ void cycles_shader_new_graph(unsigned int client_id, unsigned int shader_id)
 }
 
 
-void cycles_shader_set_name(unsigned int client_id, unsigned int shader_id, const char* name)
+void cycles_shader_set_name(unsigned int client_id, unsigned int shader_id, const char* _name)
 {
-	SHADER_SET(shader_id, std::string, name, name);
+	SHADER_SET(shader_id,std::string,name,_name);
 }
 
 void cycles_shader_set_use_mis(unsigned int client_id, unsigned int shader_id, unsigned int use_mis)

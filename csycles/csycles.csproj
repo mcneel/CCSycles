@@ -181,48 +181,25 @@
   <ItemGroup>
     <Content Include="license.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <CCSyclesFiles Include="$(TargetDir)$(ProjectName).*" />
+  </ItemGroup>
+  <ItemGroup>
+    <CUDAFiles Include="$(SolutionDir)..\..\big_libs\RhinoCycles\lib\**\*" />
+  </ItemGroup>
+  <ItemGroup>
+    <KernelFiles Include="$(ProjecDir)..\cycles\src\kernel\**\*" Exclude="$(ProjecDir)..\cycles\src\kernel\**\CMakeLists.txt" />
+  </ItemGroup>
+	<ItemGroup>
+    <BoostFiles Include="$(SolutionDir)..\..\big_libs\boost\stage$(ConfigurationName)\lib\boost_*.dll" />
+	</ItemGroup>
+  <ItemGroup>
+    <UtilFiles Include="$(ProjecDir)..\cycles\src\util\**\*" Exclude="$(ProjecDir)..\cycles\src\util\**\CMakeLists.txt"/>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup Condition="'$(Configuration)' == 'Release' Or '$(Configuration)' == 'Debug'">
-    <PostBuildEvent Condition="'$(OS)' == 'Windows_NT'">XCopy /Y "$(TargetDir)$(ProjectName).*" "$(ProjectDir)..\..\..\..\..\$(OutDir)Plug-ins"
-copy /Y "$(ProjectDir)..\ccycles\x64\$(ConfigurationName)\ccycles.dll" "$(SolutionDir)..\$(OutDir)Plug-ins"
-copy /Y "$(ProjectDir)..\ccycles\x64\$(ConfigurationName)\ccycles.pdb" "$(SolutionDir)..\$(OutDir)Plug-ins"
-copy /Y "$(ProjectDir)..\OpenImageIO\x64\$(ConfigurationName)\OpenImageIOv13.dll" "$(SolutionDir)..\$(OutDir)"
-copy /Y "$(ProjectDir)..\pthreads\x64\$(ConfigurationName)\pthreads.dll" "$(SolutionDir)..\$(OutDir)"
-copy /Y "$(ProjectDir)..\..\..\..\..\..\big_libs\boost\stage$(ConfigurationName)\lib\boost_*" "$(SolutionDir)..\$(OutDir)"
-
-XCopy "$(SolutionDir)..\..\big_libs\RhinoCycles\lib" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\lib" /Y /I /Q
-
-XCopy "$(ProjectDir)..\cycles\src\kernel\closure" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\source\kernel\closure" /Y /I /Q
-XCopy "$(ProjectDir)..\cycles\src\kernel\filter" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\source\kernel\filter" /Y /I /Q
-XCopy "$(ProjectDir)..\cycles\src\kernel\geom" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\source\kernel\geom" /Y /I /Q
-XCopy "$(ProjectDir)..\cycles\src\kernel\bvh" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\source\kernel\bvh" /Y /I /Q
-XCopy "$(ProjectDir)..\cycles\src\kernel\svm" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\source\kernel\svm" /Y /I /Q
-XCopy "$(ProjectDir)..\cycles\src\kernel\split" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\source\kernel\split" /Y /I /Q
-XCopy "$(ProjectDir)..\cycles\src\kernel\kernels\opencl" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\source\kernel\kernels\opencl" /Y /I /Q
-XCopy "$(ProjectDir)..\cycles\src\kernel\kernels\cuda" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\source\kernel\kernels\cuda" /Y /I /Q
-XCopy "$(ProjectDir)..\cycles\src\kernel\kernel*.*" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\source\kernel" /Y /I /Q
-
-XCopy "$(ProjectDir)..\cycles\src\util\util_atomic.h" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\source\util\" /Y /I /Q
-XCopy "$(ProjectDir)..\cycles\src\util\util_color.h" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\source\util\" /Y /I /Q
-XCopy "$(ProjectDir)..\cycles\src\util\util_defines.h" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\source\util\" /Y /I /Q
-XCopy "$(ProjectDir)..\cycles\src\util\util_half.h" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\source\util\" /Y /I /Q
-XCopy "$(ProjectDir)..\cycles\src\util\util_hash.h" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\source\util\" /Y /I /Q
-XCopy "$(ProjectDir)..\cycles\src\util\util_math.h" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\source\util\" /Y /I /Q
-XCopy "$(ProjectDir)..\cycles\src\util\util_math*2.h" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\source\util\" /Y /I /Q
-XCopy "$(ProjectDir)..\cycles\src\util\util_math*3.h" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\source\util\" /Y /I /Q
-XCopy "$(ProjectDir)..\cycles\src\util\util_math*4.h" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\source\util\" /Y /I /Q
-XCopy "$(ProjectDir)..\cycles\src\util\util_math_fast.h" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\source\util\" /Y /I /Q
-XCopy "$(ProjectDir)..\cycles\src\util\util_math_intersect.h" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\source\util\" /Y /I /Q
-XCopy "$(ProjectDir)..\cycles\src\util\util_math_matrix.h" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\source\util\" /Y /I /Q
-XCopy "$(ProjectDir)..\cycles\src\util\util_rect.h" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\source\util\" /Y /I /Q
-XCopy "$(ProjectDir)..\cycles\src\util\util_texture.h" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\source\util\" /Y /I /Q
-XCopy "$(ProjectDir)..\cycles\src\util\util_transform.h" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\source\util\" /Y /I /Q
-XCopy "$(ProjectDir)..\cycles\src\util\util_types*.h" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\source\util\" /Y /I /Q
-XCopy "$(ProjectDir)..\cycles\src\util\util_static_assert.h" "$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\source\util\" /Y /I /Q
-    </PostBuildEvent>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Stand-alone Release' Or '$(Configuration)' == 'Stand-alone Debug'">
-    <PostBuildEvent Condition="'$(OS)' == 'Windows_NT'">XCopy /Y "$(TargetDir)$(ProjectName).*" "$(SolutionDir)$(OutDir)"
+    <PostBuildEvent Condition="'$(OS)' == 'Windows_NT'">
+XCopy /Y "$(TargetDir)$(ProjectName).*" "$(SolutionDir)$(OutDir)"
 copy /Y "$(ProjectDir)..\ccycles\x64\$(ConfigurationName)\ccycles.dll" "$(SolutionDir)$(OutDir)"
 copy /Y "$(ProjectDir)..\ccycles\x64\$(ConfigurationName)\ccycles.pdb" "$(SolutionDir)$(OutDir)"
 copy /Y "$(ProjectDir)..\OpenImageIO\x64\$(ConfigurationName)\OpenImageIOv13.dll" "$(SolutionDir)$(OutDir)"
@@ -263,11 +240,15 @@ XCopy "$(ProjectDir)..\cycles\src\util\util_static_assert.h" "$(SolutionDir)$(Ou
     <PreBuildEvent>
     </PreBuildEvent>
   </PropertyGroup>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>
   <Target Name="AfterBuild">
+    <Copy SourceFiles="@(CCSyclesFiles)" DestinationFolder="$(ProjectDir)..\..\..\..\..\$(OutDir)Plug-ins\" />
+    <Copy SourceFiles="$(ProjectDir)..\OpenImageIO\x64\$(ConfigurationName)\OpenImageIOv13.dll" DestinationFolder="$(SolutionDir)..\$(OutDir)" Condition="'$(OS)' == 'Windows_NT'" />
+    <Copy SourceFiles="$(ProjectDir)..\pthreads\x64\$(ConfigurationName)\pthreads.dll" DestinationFolder="$(SolutionDir)..\$(OutDir)" Condition="'$(OS)' == 'Windows_NT'" />
+    <Copy SourceFiles="@(BoostFiles)" DestinationFolder="$(SolutionDir)..\$(OutDir)" Condition="'$(OS)' == 'Windows_NT'" />
+    <Copy SourceFiles="@(CUDAFiles)" DestinationFolder="$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\lib\%(RecursiveDir)" />
+		<Copy SourceFiles="@(KernelFiles)" DestinationFolder="$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\source\kernel\%(RecursiveDir)" />
+    <Copy SourceFiles="@(UtilFiles)" DestinationFolder="$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\source\util\%(RecursiveDir)" />
   </Target>
-  -->
 </Project>
