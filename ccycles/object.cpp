@@ -98,6 +98,15 @@ void cycles_scene_object_set_mesh_light_no_cast_shadow(unsigned int client, unsi
 	SCENE_FIND_END()
 }
 
+void cycles_scene_object_set_is_block_instance(unsigned int client, unsigned int scene_id, unsigned int object_id, bool is_block_instance)
+{
+	SCENE_FIND(scene_id)
+		ccl::Object* ob = sce->objects[object_id];
+		ob->is_block_instance = is_block_instance;
+		ob->tag_update(sce);
+	SCENE_FIND_END()
+}
+
 void cycles_scene_object_set_cutout(unsigned int client, unsigned int scene_id, unsigned int object_id, bool cutout)
 {
 	SCENE_FIND(scene_id)
