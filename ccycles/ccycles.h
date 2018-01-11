@@ -341,6 +341,12 @@ CCL_CAPI void __cdecl cycles_scene_object_set_is_shadowcatcher(unsigned int clie
  */
 CCL_CAPI void __cdecl cycles_scene_object_set_mesh_light_no_cast_shadow(unsigned int client, unsigned int scene_id, unsigned int object_id, bool mesh_light_no_cast_shadow);
 /**
+ * Set is_block_instance flag for object. This ensures we can handle meshes
+ * properly also when only one block instance for a mesh is in the scene.
+ * \ingroup ccycles_object
+ */
+CCL_CAPI void __cdecl cycles_scene_object_set_is_block_instance(unsigned int client, unsigned int scene_id, unsigned int object_id, bool is_block_instance);
+/**
  * Set cutout flag for object. This object is used for cutout/clipping.
  * \ingroup ccycles_object
  */

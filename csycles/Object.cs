@@ -42,7 +42,7 @@ namespace ccl
 			Id = CSycles.scene_add_object(Client.Id, Client.Scene.Id);
 		}
 
-		private Mesh m_mesh;
+		private Mesh m_mesh = null;
 		/// <summary>
 		/// Get or set the mesh
 		/// </summary>
@@ -50,9 +50,7 @@ namespace ccl
 		{
 			get
 			{
-				if (m_mesh != null) return m_mesh;
-				var mid = CSycles.object_get_mesh(Client.Id, Client.Scene.Id, Id);
-				return new Mesh(Client, mid, null);
+				return m_mesh;
 			}
 			set
 			{
@@ -110,6 +108,17 @@ namespace ccl
 			set
 			{
 				CSycles.object_set_mesh_light_no_cast_shadow(Client.Id, Client.Scene.Id, Id, value);
+			}
+		}
+
+		/// <summary>
+		/// Set to true if object is a block instance.
+		/// </summary>
+		public bool IsBlockInstance
+		{
+			set
+			{
+				CSycles.object_set_is_block_instance(Client.Id, Client.Scene.Id, Id, value);
 			}
 		}
 

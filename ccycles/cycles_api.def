@@ -71,6 +71,7 @@ EXPORTS
   cycles_scene_object_set_visibility
   cycles_scene_object_set_is_shadowcatcher
   cycles_scene_object_set_mesh_light_no_cast_shadow
+  cycles_scene_object_set_is_block_instance
   cycles_scene_object_set_cutout
   cycles_scene_object_set_ignore_cutout
   cycles_object_tag_update
