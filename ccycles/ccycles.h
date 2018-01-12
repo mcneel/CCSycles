@@ -704,7 +704,7 @@ CCL_CAPI void __cdecl cycles_shader_set_use_transparent_shadow(unsigned int clie
 CCL_CAPI void __cdecl cycles_shader_set_heterogeneous_volume(unsigned int client_id, unsigned int shader_id, unsigned int heterogeneous_volume);
 CCL_CAPI void __cdecl cycles_shader_new_graph(unsigned int client_id, unsigned int shader_id);
 
-CCL_CAPI void __cdecl cycles_shader_connect_nodes(unsigned int client_id, unsigned int shader_id, unsigned int from_id, const std::string from, unsigned int to_id, const std::string to);
+CCL_CAPI void __cdecl cycles_shader_connect_nodes(unsigned int client_id, unsigned int shader_id, unsigned int from_id, const char* from, unsigned int to_id, const char* to);
 
 /***** LIGHTS ****/
 
