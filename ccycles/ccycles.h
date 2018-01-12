@@ -37,7 +37,7 @@ ccl::Transform camConvertMat = ccl::make_transform(
 
 */
 
-#ifdef __clplusplus
+#ifdef __cplusplus
 extern "C" {
 #endif
 
@@ -704,7 +704,7 @@ CCL_CAPI void __cdecl cycles_shader_set_use_transparent_shadow(unsigned int clie
 CCL_CAPI void __cdecl cycles_shader_set_heterogeneous_volume(unsigned int client_id, unsigned int shader_id, unsigned int heterogeneous_volume);
 CCL_CAPI void __cdecl cycles_shader_new_graph(unsigned int client_id, unsigned int shader_id);
 
-CCL_CAPI void __cdecl cycles_shader_connect_nodes(unsigned int client_id, unsigned int shader_id, unsigned int from_id, const std::string from, unsigned int to_id, const std::string to);
+CCL_CAPI void __cdecl cycles_shader_connect_nodes(unsigned int client_id, unsigned int shader_id, unsigned int from_id, const char* from, unsigned int to_id, const char* to);
 
 /***** LIGHTS ****/
 
@@ -752,7 +752,7 @@ CCL_CAPI void __cdecl cycles_tfm_inverse(const ccl::Transform& t, ccl::Transform
 CCL_CAPI void __cdecl cycles_tfm_lookat(const ccl::float3& position, const ccl::float3& look, const ccl::float3& up, ccl::Transform& res);
 CCL_CAPI void __cdecl cycles_tfm_rotate_around_axis(float angle, const ccl::float3& axis, ccl::Transform& res);
 
-#ifdef __clplusplus
+#ifdef __cplusplus
 }
 #endif
 

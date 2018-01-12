@@ -112,7 +112,8 @@
       </ShowProgress>
       <RandomizedBaseAddress>true</RandomizedBaseAddress>
       <NoEntryPoint>false</NoEntryPoint>
-      <ModuleDefinitionFile>cycles_api.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
     </Link>
     <PostBuildEvent>
       <Command>copy /Y "$(ProjectDir)x64\$(ConfigurationName)\ccycles.dll" "$(SolutionDir)..\bin\$(ConfigurationName)\Plug-ins"
