@@ -308,6 +308,7 @@
 		A11D67B41FB5054D00409EB3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -319,6 +320,7 @@
 					"BOOST_LIB_BUILDID=$(PlatformToolset)",
 					"$(inherited)",
 				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				HEADER_SEARCH_PATHS = (
 					include/OpenImageIO,
 					../../OpenEXR/Half,
@@ -336,6 +338,7 @@
 		A11D67B51FB5054D00409EB3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -345,6 +348,7 @@
 					BOOST_ALL_NO_LIB,
 					OpenImageIO_EXPORTS,
 				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				HEADER_SEARCH_PATHS = (
 					include/OpenImageIO,
 					../../OpenEXR/Half,
