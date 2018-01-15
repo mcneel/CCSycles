@@ -350,6 +350,7 @@
 		A11D68201FB596D800409EB3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -364,6 +365,7 @@
 					"CCL_NAMESPACE_END=}",
 					"DEBUG=1",
 				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				HEADER_SEARCH_PATHS = (
 					../../cycles/src,
 					../../ccycles,
@@ -387,6 +389,7 @@
 		A11D68211FB596D800409EB3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -400,6 +403,7 @@
 					"CCL_NAMESPACE_BEGIN=\"namespace ccl {\"",
 					"CCL_NAMESPACE_END=}",
 				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				HEADER_SEARCH_PATHS = (
 					../../cycles/src,
 					../../ccycles,

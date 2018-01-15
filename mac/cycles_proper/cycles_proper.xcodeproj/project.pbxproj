@@ -1224,6 +1224,7 @@
 		A11D68091FB5936400409EB3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				EXECUTABLE_PREFIX = lib;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1246,6 +1247,7 @@
 					__NO_SOBOL__,
 					"DEBUG=1",
 				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				HEADER_SEARCH_PATHS = (
 					../../cycles/src,
 					../../ccycles,
@@ -1266,6 +1268,7 @@
 		A11D680A1FB5936400409EB3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				EXECUTABLE_PREFIX = lib;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1287,6 +1290,7 @@
 					WITH_CUDA_DYNLOAD,
 					__NO_SOBOL__,
 				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				HEADER_SEARCH_PATHS = (
 					../../cycles/src,
 					../../ccycles,
