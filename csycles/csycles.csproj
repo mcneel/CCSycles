@@ -17,7 +17,8 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants Condition=" '$(Platform)' == 'Windows_NT' ">DEBUG;TRACE;WIN32</DefineConstants>
+    <DefineConstants Condition=" '$(Platform)' != 'Windows_NT' ">DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -25,14 +26,17 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>none</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants Condition=" '$(Platform)' == 'Windows_NT' ">TRACE;WIN32</DefineConstants>
+    <DefineConstants Condition=" '$(Platform)' != 'Windows_NT' ">TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <PlatformTarget>AnyCPU</PlatformTarget>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup>
     <RunPostBuildEvent>Always</RunPostBuildEvent>
@@ -40,7 +44,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Stand-alone Debug|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\Stand-alone Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants Condition=" '$(Platform)' == 'Windows_NT' ">DEBUG;TRACE;WIN32</DefineConstants>
+    <DefineConstants Condition=" '$(Platform)' != 'Windows_NT' ">DEBUG;TRACE</DefineConstants>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <DebugType>full</DebugType>
@@ -51,6 +56,10 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Stand-alone Release|AnyCPU'">
     <OutputPath>bin\Stand-alone Release\</OutputPath>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DefineConstants Condition=" '$(Platform)' == 'Windows_NT' ">TRACE;WIN32</DefineConstants>
+    <DefineConstants Condition=" '$(Platform)' != 'Windows_NT' ">TRACE</DefineConstants>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
     <Optimize>true</Optimize>
     <PlatformTarget>x64</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
