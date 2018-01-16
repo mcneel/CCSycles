@@ -44,7 +44,7 @@ unsigned int cycles_session_params_create(unsigned int client_id, unsigned int d
 
 void cycles_session_params_set_device(unsigned int client_id, unsigned int session_params_id, unsigned int device)
 {
-	if (0 <= session_params_id && session_params_id < session_params.size()) {
+	if (session_params_id < session_params.size()) {
 		GETDEVICE(session_params[session_params_id].device, device)
 	}
 }
@@ -60,7 +60,7 @@ void cycles_session_params_set_progressive_refine(unsigned int client_id, unsign
 }
 void cycles_session_params_set_output_path(unsigned int client_id, unsigned int session_params_id, const char *output_path)
 {
-	if (0 <= session_params_id && session_params_id < session_params.size()) {
+	if (session_params_id < session_params.size()) {
 		session_params[session_params_id].output_path = std::string(output_path);
 		logger.logit(client_id, "Set output_path to: ", session_params[session_params_id].output_path);
 	}
@@ -83,7 +83,7 @@ void cycles_session_params_set_samples(unsigned int client_id, unsigned int sess
 
 void cycles_session_params_set_tile_size(unsigned int client_id, unsigned int session_params_id, unsigned int x, unsigned int y)
 {
-	if (0 <= session_params_id && session_params_id < session_params.size()) {
+	if (session_params_id < session_params.size()) {
 		session_params[session_params_id].tile_size = ccl::make_int2(x, y);
 	}
 }

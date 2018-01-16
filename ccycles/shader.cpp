@@ -49,7 +49,10 @@ void _cleanup_images()
 	for (CCImage* img : images) {
 		if (img == nullptr) continue;
 
-		delete[] img->builtin_data;
+		if(img->is_float)
+			delete (float*)img->builtin_data;
+		else
+			delete (unsigned char*)img->builtin_data;
 		img->builtin_data = nullptr;
 
 		delete img;

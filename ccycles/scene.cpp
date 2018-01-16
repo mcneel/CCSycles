@@ -47,7 +47,6 @@ unsigned int get_idx_for_shader_in_scene(ccl::Scene* sce, ccl::Shader* sh)
 {
 	auto b = sce->shaders.cbegin();
 	auto e = sce->shaders.cend();
-	ccl::Shader* bg = nullptr;
 	unsigned int idx = 0;
 	while (b != e) {
 		if (*b == sh) {
@@ -106,7 +105,7 @@ unsigned int cycles_scene_create(unsigned int client_id, unsigned int scene_para
 
 	bool found_params{ false };
 
-	if (0 <= scene_params_id && scene_params_id < scene_params.size()) {
+	if (scene_params_id < scene_params.size()) {
 		params = scene_params[scene_params_id];
 		found_params = true;
 	}

@@ -122,7 +122,6 @@ const char* cycles_device_capabilities() {
 }
 
 int cycles_create_multidevice(int count, int* idx) {
-	bool newmulti = false;
 	int foundidx = -1;
 
 	ccl::vector<ccl::DeviceInfo> subdevices;

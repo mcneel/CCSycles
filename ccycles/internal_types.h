@@ -250,7 +250,7 @@ extern unsigned int get_idx_for_shader_in_scene(ccl::Scene* sce, ccl::Shader* sh
 #define SESSION_FIND(sid) \
 	if (0 <= (sid) && (sid) < sessions.size()) { \
 		CCSession* ccsess = sessions[sid]; \
-		ccl::Session* session = sessions[sid]->session;
+		ccl::Session* session = ccsess->session;
 #define SESSION_FIND_END() }
 
 /* Set boolean parameter varname of param_type. */
