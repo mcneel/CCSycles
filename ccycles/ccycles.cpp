@@ -217,7 +217,7 @@ static void _tfm_copy(const ccl::Transform& source, ccl::Transform& target) {
 void cycles_tfm_inverse(const ccl::Transform& t, ccl::Transform& res) {
 	ccl::Transform r = ccl::transform_inverse(t);
 
-	_tfm_copy(t, res);
+	_tfm_copy(r, res);
 }
 
 void cycles_tfm_rotate_around_axis(float angle, const ccl::float3& axis, ccl::Transform& res)
