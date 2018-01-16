@@ -17,8 +17,8 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants Condition=" '$(Platform)' == 'Windows_NT' ">DEBUG;TRACE;WIN32</DefineConstants>
-    <DefineConstants Condition=" '$(Platform)' != 'Windows_NT' ">DEBUG;TRACE</DefineConstants>
+    <DefineConstants Condition=" '$(OS)' == 'Windows_NT' ">DEBUG;TRACE;WIN32</DefineConstants>
+    <DefineConstants Condition=" '$(OS)' != 'Windows_NT' ">DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -30,8 +30,8 @@
     <DebugType>full</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants Condition=" '$(Platform)' == 'Windows_NT' ">TRACE;WIN32</DefineConstants>
-    <DefineConstants Condition=" '$(Platform)' != 'Windows_NT' ">TRACE</DefineConstants>
+    <DefineConstants Condition=" '$(OS)' == 'Windows_NT' ">TRACE;WIN32</DefineConstants>
+    <DefineConstants Condition=" '$(OS)' != 'Windows_NT' ">TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -44,8 +44,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Stand-alone Debug|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\Stand-alone Debug\</OutputPath>
-    <DefineConstants Condition=" '$(Platform)' == 'Windows_NT' ">DEBUG;TRACE;WIN32</DefineConstants>
-    <DefineConstants Condition=" '$(Platform)' != 'Windows_NT' ">DEBUG;TRACE</DefineConstants>
+    <DefineConstants Condition=" '$(OS)' == 'Windows_NT' ">DEBUG;TRACE;WIN32</DefineConstants>
+    <DefineConstants Condition=" '$(OS)' != 'Windows_NT' ">DEBUG;TRACE</DefineConstants>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <DebugType>full</DebugType>
@@ -56,8 +56,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Stand-alone Release|AnyCPU'">
     <OutputPath>bin\Stand-alone Release\</OutputPath>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <DefineConstants Condition=" '$(Platform)' == 'Windows_NT' ">TRACE;WIN32</DefineConstants>
-    <DefineConstants Condition=" '$(Platform)' != 'Windows_NT' ">TRACE</DefineConstants>
+    <DefineConstants Condition=" '$(OS)' == 'Windows_NT' ">TRACE;WIN32</DefineConstants>
+    <DefineConstants Condition=" '$(OS)' != 'Windows_NT' ">TRACE</DefineConstants>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>true</Optimize>
@@ -257,7 +257,7 @@ XCopy "$(ProjectDir)..\cycles\src\util\util_static_assert.h" "$(SolutionDir)$(Ou
     <Copy SourceFiles="$(ProjectDir)..\pthreads\x64\$(ConfigurationName)\pthreads.dll" DestinationFolder="$(SolutionDir)..\$(OutDir)" Condition="'$(OS)' == 'Windows_NT'" />
     <Copy SourceFiles="@(BoostFiles)" DestinationFolder="$(SolutionDir)..\$(OutDir)" Condition="'$(OS)' == 'Windows_NT'" />
     <Copy SourceFiles="@(CUDAFiles)" DestinationFolder="$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\lib\%(RecursiveDir)" />
-		<Copy SourceFiles="@(KernelFiles)" DestinationFolder="$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\source\kernel\%(RecursiveDir)" />
+    <Copy SourceFiles="@(KernelFiles)" DestinationFolder="$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\source\kernel\%(RecursiveDir)" />
     <Copy SourceFiles="@(UtilFiles)" DestinationFolder="$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\source\util\%(RecursiveDir)" />
   </Target>
 </Project>
