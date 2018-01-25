@@ -194,16 +194,24 @@
     <CCSyclesFiles Include="$(TargetDir)$(ProjectName).*" />
   </ItemGroup>
   <ItemGroup>
-    <CUDAFiles Include="$(SolutionDir)..\..\big_libs\RhinoCycles\lib\**\*" />
+    <CUDAFiles Include="$(SolutionDir)..\..\big_libs\RhinoCycles\lib\**\*">
+    <Link>Dependencies\CUDAFiles\%(RecursiveDir)%(Filename)%(Extension)</Link>
+		</CUDAFiles>
   </ItemGroup>
   <ItemGroup>
-    <KernelFiles Include="$(ProjecDir)..\cycles\src\kernel\**\*" Exclude="$(ProjecDir)..\cycles\src\kernel\**\CMakeLists.txt" />
+    <KernelFiles Include="$(ProjecDir)..\cycles\src\kernel\**\*" Exclude="$(ProjecDir)..\cycles\src\kernel\**\CMakeLists.txt">
+    <Link>Dependencies\KernelFiles\%(RecursiveDir)%(Filename)%(Extension)</Link>
+    </KernelFiles>
   </ItemGroup>
 	<ItemGroup>
-    <BoostFiles Include="$(SolutionDir)..\..\big_libs\boost\stage$(ConfigurationName)\lib\boost_*.dll" />
+    <BoostFiles Include="$(SolutionDir)..\..\big_libs\boost\stage$(ConfigurationName)\lib\boost_*.dll">
+    <Link>Dependencies\BoostFiles\%(RecursiveDir)%(Filename)%(Extension)</Link>
+		</BoostFiles>
 	</ItemGroup>
   <ItemGroup>
-    <UtilFiles Include="$(ProjecDir)..\cycles\src\util\**\*" Exclude="$(ProjecDir)..\cycles\src\util\**\CMakeLists.txt"/>
+    <UtilFiles Include="$(ProjecDir)..\cycles\src\util\**\*" Exclude="$(ProjecDir)..\cycles\src\util\**\CMakeLists.txt">
+    <Link>Dependencies\util\%(RecursiveDir)%(Filename)%(Extension)</Link>
+    </UtilFiles>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup Condition="'$(Configuration)' == 'Stand-alone Release' Or '$(Configuration)' == 'Stand-alone Debug'">
