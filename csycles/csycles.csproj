@@ -188,7 +188,9 @@
     <Compile Include="XmlReadState.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="license.txt" />
+		<Content Include="license.txt">
+			<Link>License\license.txt</Link>
+		</Content>
   </ItemGroup>
   <ItemGroup>
     <CCSyclesFiles Include="$(TargetDir)$(ProjectName).*" />
@@ -199,7 +201,7 @@
 		</CUDAFiles>
   </ItemGroup>
   <ItemGroup>
-    <KernelFiles Include="$(ProjecDir)..\cycles\src\kernel\**\*" Exclude="$(ProjecDir)..\cycles\src\kernel\**\CMakeLists.txt">
+    <KernelFiles Include="$(ProjecDir)..\cycles\src\kernel\**\*" Exclude="$(ProjecDir)..\cycles\src\kernel\**\CMakeLists.*">
     <Link>Dependencies\KernelFiles\%(RecursiveDir)%(Filename)%(Extension)</Link>
     </KernelFiles>
   </ItemGroup>
@@ -209,7 +211,7 @@
 		</BoostFiles>
 	</ItemGroup>
   <ItemGroup>
-    <UtilFiles Include="$(ProjecDir)..\cycles\src\util\**\*" Exclude="$(ProjecDir)..\cycles\src\util\**\CMakeLists.txt">
+    <UtilFiles Include="$(ProjecDir)..\cycles\src\util\**\*.h" Exclude="$(ProjecDir)..\cycles\src\util\**\CMakeLists.*">
     <Link>Dependencies\util\%(RecursiveDir)%(Filename)%(Extension)</Link>
     </UtilFiles>
   </ItemGroup>
