@@ -35,12 +35,12 @@ unsigned int cycles_scene_params_create(unsigned int client_id,
 	params.shadingsystem = (ccl::ShadingSystem)shadingsystem;
 	params.bvh_type = (ccl::SceneParams::BVHType)bvh_type;
 	params.use_bvh_spatial_split = use_bvh_spatial_split == 1;
-	params.use_qbvh = use_qbvh == 1;
+	params.bvh_layout = (use_qbvh == 1) ? ccl::BVHLayout::BVH_LAYOUT_BVH4 : ccl::BVHLayout::BVH_LAYOUT_BVH2;
 	params.persistent_data = persistent_data == 1;
 
 	scene_params.push_back(params);
 
-	logger.logit(client_id, "Created scene parameters ", scene_params.size() - 1, "\n\tshading system: ", params.shadingsystem, "\n\tbvh_type: ", params.bvh_type, "\n\tuse_bvh_spatial_split: ", params.use_bvh_spatial_split, "\n\tuse_qbvh: ", params.use_qbvh, "\n\tpersistent data: ", params.persistent_data);
+	logger.logit(client_id, "Created scene parameters ", scene_params.size() - 1, "\n\tshading system: ", params.shadingsystem, "\n\tbvh_type: ", params.bvh_type, "\n\tuse_bvh_spatial_split: ", params.use_bvh_spatial_split, "\n\tuse_qbvh: ", params.bvh_layout, "\n\tpersistent data: ", params.persistent_data);
 
 	return (unsigned int)(scene_params.size() - 1);
 }
@@ -57,7 +57,8 @@ void cycles_scene_params_set_bvh_spatial_split(unsigned int client_id, unsigned 
 }
 void cycles_scene_params_set_qbvh(unsigned int client_id, unsigned int scene_params_id, unsigned int use_qbvh)
 {
-	SCENE_PARAM_BOOL(scene_params_id, use_qbvh)
+	ccl::BVHLayout bvh_layout = (use_qbvh == 1) ? ccl::BVHLayout::BVH_LAYOUT_BVH4 : ccl::BVHLayout::BVH_LAYOUT_BVH2;
+	SCENE_PARAM_CAST(scene_params_id, ccl::BVHLayout, bvh_layout)
 }
 
 void cycles_scene_params_set_shadingsystem(unsigned int client_id, unsigned int scene_params_id, unsigned int shadingsystem)
