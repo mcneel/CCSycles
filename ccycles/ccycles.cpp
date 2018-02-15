@@ -84,7 +84,8 @@ void cycles_debug_set_cpu_kernel(unsigned int state)
 
 void cycles_debug_set_cpu_allow_qbvh(unsigned int state)
 {
-	ccl::DebugFlags().cpu.qbvh = state == 1;
+	ccl::BVHLayout bvh_layout = (state == 1) ? ccl::BVHLayout::BVH_LAYOUT_BVH4 : ccl::BVHLayout::BVH_LAYOUT_BVH2;
+	ccl::DebugFlags().cpu.bvh_layout = bvh_layout;
 }
 
 void cycles_debug_set_cuda_kernel(unsigned int state)

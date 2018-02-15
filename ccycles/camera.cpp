@@ -105,7 +105,7 @@ void cycles_camera_update(unsigned int client_id, unsigned int scene_id)
 	SCENE_FIND(scene_id)
 		logger.logit(client_id, "Updating camera for scene ", scene_id); 
 		sce->camera->need_update = true;
-		sce->camera->update();
+		sce->camera->update(sce);
 	SCENE_FIND_END()
 }
 
