@@ -144,6 +144,7 @@ namespace ccl
 		Principled,
 		Attribute,
 		NormalMap,
+		Wireframe,
 	}
 
 	public enum BvhType : uint
