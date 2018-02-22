@@ -342,6 +342,9 @@ unsigned int cycles_add_shader_node(unsigned int client_id, unsigned int shader_
 	case shadernode_type::NORMALMAP:
 		node = new ccl::NormalMapNode();
 		break;
+	case shadernode_type::WIREFRAME:
+		node = new ccl::WireframeNode();
+		break;
 	}
 
 	if (node) {

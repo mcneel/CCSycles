@@ -660,6 +660,7 @@ enum class shadernode_type : unsigned int {
 	PRINCIPLED_BSDF,
 	ATTRIBUTE,
 	NORMALMAP,
+	WIREFRAME,
 };
 
 CCL_CAPI unsigned int __cdecl cycles_create_shader(unsigned int client_id);
