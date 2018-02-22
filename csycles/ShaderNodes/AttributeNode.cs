@@ -14,6 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 **/
 
+using System.Text;
 using System.Xml;
 using ccl.Attributes;
 using ccl.ShaderNodes.Sockets;
@@ -119,6 +120,17 @@ namespace ccl.ShaderNodes
 			{
 				Attribute = attr;
 			}
+		}
+
+		public override string CreateXmlAttributes()
+		{
+			var code = new StringBuilder($" Attribute=\"{Attribute}\" ", 1024);
+			return code.ToString();
+		}
+		public override string CreateCodeAttributes()
+		{
+			var code = $"{VariableName}.Attribute = {Attribute};";
+			return code;
 		}
 	}
 }
