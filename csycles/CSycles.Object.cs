@@ -42,6 +42,13 @@ namespace ccl
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		private static extern void cycles_scene_object_set_shader(uint clientId, uint sceneId, uint objectId, uint shader);
+		public static void object_set_shader(uint clientId, uint sceneId, uint objectId, uint shader)
+		{
+			cycles_scene_object_set_shader(clientId, sceneId, objectId, shader);
+		}
+
+		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		private static extern void cycles_scene_object_set_is_shadowcatcher(uint clientId, uint sceneId, uint objectId, bool is_shadowcatcher);
 		public static void object_set_is_shadowcatcher(uint clientId, uint sceneId, uint objectId, bool is_shadowcatcher)
 		{
