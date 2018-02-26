@@ -331,6 +331,11 @@ CCL_CAPI unsigned int __cdecl cycles_scene_object_get_mesh(unsigned int client_i
  */
 CCL_CAPI void __cdecl cycles_scene_object_set_visibility(unsigned int client, unsigned int scene_id, unsigned int object_id, unsigned int visibility);
 /**
+ * Set object shader
+ * \ingroup ccycles_object
+ */
+CCL_CAPI void __cdecl cycles_scene_object_set_shader(unsigned int client, unsigned int scene_id, unsigned int object_id, unsigned int shader_id);
+/**
  * Set is_shadow_catcher flag for object
  * \ingroup ccycles_object
  */

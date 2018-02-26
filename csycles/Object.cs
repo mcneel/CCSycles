@@ -89,6 +89,14 @@ namespace ccl
 			}
 		}
 
+		public uint Shader
+		{
+			set
+			{
+				CSycles.object_set_shader(Client.Id, Client.Scene.Id, Id, value);
+			}
+		}
+
 		/// <summary>
 		/// Set to true if this object should act as shadow catcher.
 		/// </summary>

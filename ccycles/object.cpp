@@ -80,6 +80,15 @@ void cycles_scene_object_set_visibility(unsigned int client, unsigned int scene_
 	SCENE_FIND_END()
 }
 
+void cycles_scene_object_set_shader(unsigned int client, unsigned int scene_id, unsigned int object_id, unsigned int shader_id)
+{
+	SCENE_FIND(scene_id)
+		ccl::Object* ob = sce->objects[object_id];
+		ob->shader = shader_id;
+		ob->tag_update(sce);
+	SCENE_FIND_END()
+}
+
 void cycles_scene_object_set_is_shadowcatcher(unsigned int client, unsigned int scene_id, unsigned int object_id, bool is_shadowcatcher)
 {
 	SCENE_FIND(scene_id)
