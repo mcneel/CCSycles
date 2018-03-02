@@ -84,7 +84,10 @@ void cycles_scene_object_set_shader(unsigned int client, unsigned int scene_id, 
 {
 	SCENE_FIND(scene_id)
 		ccl::Object* ob = sce->objects[object_id];
-		ob->shader = shader_id;
+		ccl::Shader* sh = find_shader_in_scene(sce, shader_id);
+		ob->shader = sh;
+		sh->tag_update(sce);
+		sh->tag_used(sce);
 		ob->tag_update(sce);
 	SCENE_FIND_END()
 }
