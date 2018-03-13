@@ -175,14 +175,16 @@ namespace ccl
 
 		static public bool operator ==(Device a, Device b)
 		{
-			if (!ReferenceEquals(a, null) && ReferenceEquals(b, null)) return false;
-			if (ReferenceEquals(a, null) && !ReferenceEquals(b, null)) return false;
+			if (!(a is null) && b is null) return false;
+			if (a is null && !(b is null)) return false;
+			if (a is null && b is null) return true;
 			return a.Equals(b);
 		}
 		static public bool operator !=(Device a, Device b)
 		{
-			if (!ReferenceEquals(a, null) && ReferenceEquals(b, null)) return true;
-			if (ReferenceEquals(a, null) && !ReferenceEquals(b, null)) return true;
+			if (!(a is null) && b is null) return true;
+			if (a is null && !(b is null)) return true;
+			if (a is null && b is null) return false;
 			return !a.Equals(b);
 		}
 
