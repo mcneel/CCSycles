@@ -15,13 +15,7 @@
     <ClCompile Include="src\typedesc.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="src\ustring.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
     <ClCompile Include="src\sysutil.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="src\strutil.cpp">
       <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>
