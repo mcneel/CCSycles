@@ -9,9 +9,7 @@
 /* Begin PBXBuildFile section */
 		A11D67BB1FB5057700409EB3 /* paramlist.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A11D67B61FB5057700409EB3 /* paramlist.cpp */; };
 		A11D67BC1FB5057700409EB3 /* typedesc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A11D67B71FB5057700409EB3 /* typedesc.cpp */; };
-		A11D67BD1FB5057700409EB3 /* ustring.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A11D67B81FB5057700409EB3 /* ustring.cpp */; };
 		A11D67BE1FB5057700409EB3 /* sysutil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A11D67B91FB5057700409EB3 /* sysutil.cpp */; };
-		A11D67BF1FB5057700409EB3 /* strutil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A11D67BA1FB5057700409EB3 /* strutil.cpp */; };
 		A11D67CC1FB5059200409EB3 /* strutil.h in Headers */ = {isa = PBXBuildFile; fileRef = A11D67C01FB5059100409EB3 /* strutil.h */; };
 		A11D67CD1FB5059200409EB3 /* osdep.h in Headers */ = {isa = PBXBuildFile; fileRef = A11D67C11FB5059100409EB3 /* osdep.h */; };
 		A11D67CE1FB5059200409EB3 /* thread.h in Headers */ = {isa = PBXBuildFile; fileRef = A11D67C21FB5059100409EB3 /* thread.h */; };
@@ -33,9 +31,7 @@
 		A11D67AF1FB5054D00409EB3 /* libOpenImageIO.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libOpenImageIO.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		A11D67B61FB5057700409EB3 /* paramlist.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = paramlist.cpp; path = ../src/paramlist.cpp; sourceTree = "<group>"; };
 		A11D67B71FB5057700409EB3 /* typedesc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = typedesc.cpp; path = ../src/typedesc.cpp; sourceTree = "<group>"; };
-		A11D67B81FB5057700409EB3 /* ustring.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ustring.cpp; path = ../src/ustring.cpp; sourceTree = "<group>"; };
 		A11D67B91FB5057700409EB3 /* sysutil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sysutil.cpp; path = ../src/sysutil.cpp; sourceTree = "<group>"; };
-		A11D67BA1FB5057700409EB3 /* strutil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = strutil.cpp; path = ../src/strutil.cpp; sourceTree = "<group>"; };
 		A11D67C01FB5059100409EB3 /* strutil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = strutil.h; path = ../include/OpenImageIO/strutil.h; sourceTree = "<group>"; };
 		A11D67C11FB5059100409EB3 /* osdep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = osdep.h; path = ../include/OpenImageIO/osdep.h; sourceTree = "<group>"; };
 		A11D67C21FB5059100409EB3 /* thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = thread.h; path = ../include/OpenImageIO/thread.h; sourceTree = "<group>"; };
@@ -84,10 +80,8 @@
 				A11D67C51FB5059100409EB3 /* ustring.h */,
 				A11D67C81FB5059200409EB3 /* version.h */,
 				A11D67B61FB5057700409EB3 /* paramlist.cpp */,
-				A11D67BA1FB5057700409EB3 /* strutil.cpp */,
 				A11D67B91FB5057700409EB3 /* sysutil.cpp */,
 				A11D67B71FB5057700409EB3 /* typedesc.cpp */,
-				A11D67B81FB5057700409EB3 /* ustring.cpp */,
 				A11D67B01FB5054D00409EB3 /* Products */,
 				A11D67D81FB50D4F00409EB3 /* Frameworks */,
 			);
@@ -191,8 +185,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A11D67BD1FB5057700409EB3 /* ustring.cpp in Sources */,
-				A11D67BF1FB5057700409EB3 /* strutil.cpp in Sources */,
 				A11D67BE1FB5057700409EB3 /* sysutil.cpp in Sources */,
 				A11D67BC1FB5057700409EB3 /* typedesc.cpp in Sources */,
 				A11D67BB1FB5057700409EB3 /* paramlist.cpp in Sources */,
