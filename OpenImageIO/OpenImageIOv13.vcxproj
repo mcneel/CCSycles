@@ -20,10 +20,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\paramlist.cpp" />
-    <ClCompile Include="src\strutil.cpp" />
     <ClCompile Include="src\sysutil.cpp" />
     <ClCompile Include="src\typedesc.cpp" />
-    <ClCompile Include="src\ustring.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\OpenImageIO\dassert.h" />

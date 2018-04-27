@@ -127,8 +127,6 @@ void cycles_shutdown()
 	_cleanup_sessions();
 	_cleanup_shaders();
 
-	ustring::cleanup_table();
-
 }
 
 void cycles_log_to_stdout(int tostdout)
