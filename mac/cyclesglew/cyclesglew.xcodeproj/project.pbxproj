@@ -14,6 +14,16 @@
 		A100CA791FB6091000BC046C /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A100CA781FB608F500BC046C /* OpenGL.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		D86DF16120A81EDA00444230 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D86DF15520A81CDA00444230 /* MacDotNet.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = DFAC1D871BCEE62900711C6C;
+			remoteInfo = MacDotNet;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		A100CA661FB600FD00BC046C /* libcyclesglew.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libcyclesglew.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A100CA6D1FB6012000BC046C /* glew.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = glew.c; path = ../../glew/src/glew.c; sourceTree = "<group>"; };
@@ -21,6 +31,7 @@
 		A100CA701FB6013800BC046C /* wglew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = wglew.h; path = ../../glew/include/GL/wglew.h; sourceTree = "<group>"; };
 		A100CA711FB6013800BC046C /* glxew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = glxew.h; path = ../../glew/include/GL/glxew.h; sourceTree = "<group>"; };
 		A100CA781FB608F500BC046C /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		D86DF15520A81CDA00444230 /* MacDotNet.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MacDotNet.xcodeproj; path = ../../../../../../BuildSolutions/MacDotNet.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,9 +69,17 @@
 		A100CA771FB608F500BC046C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D86DF15520A81CDA00444230 /* MacDotNet.xcodeproj */,
 				A100CA781FB608F500BC046C /* OpenGL.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D86DF15620A81CDA00444230 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -90,6 +109,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				D86DF16220A81EDA00444230 /* PBXTargetDependency */,
 			);
 			name = cyclesglew;
 			productName = cyclesglew;
@@ -121,6 +141,12 @@
 			mainGroup = A100CA5D1FB600FD00BC046C;
 			productRefGroup = A100CA671FB600FD00BC046C /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = D86DF15620A81CDA00444230 /* Products */;
+					ProjectRef = D86DF15520A81CDA00444230 /* MacDotNet.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				A100CA651FB600FD00BC046C /* cyclesglew */,
@@ -138,6 +164,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D86DF16220A81EDA00444230 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = MacDotNet;
+			targetProxy = D86DF16120A81EDA00444230 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		A100CA681FB600FD00BC046C /* Debug */ = {
