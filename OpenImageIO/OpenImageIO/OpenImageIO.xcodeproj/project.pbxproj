@@ -27,6 +27,16 @@
 		A11D67DD1FB50DA200409EB3 /* libHalf.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A11D67DE1FB50DA200409EB3 /* libHalf.a */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		D86DF16520A81EF100444230 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D86DF15D20A81D0E00444230 /* MacDotNet.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = DFAC1D871BCEE62900711C6C;
+			remoteInfo = MacDotNet;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		A11D67AF1FB5054D00409EB3 /* libOpenImageIO.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libOpenImageIO.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		A11D67B61FB5057700409EB3 /* paramlist.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = paramlist.cpp; path = ../src/paramlist.cpp; sourceTree = "<group>"; };
@@ -48,6 +58,7 @@
 		A11D67DA1FB50D4F00409EB3 /* libboost_thread-mt.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_thread-mt.dylib"; path = "../../../../../../../big_libs/boost/stagerelease/lib/libboost_thread-mt.dylib"; sourceTree = "<group>"; };
 		A11D67DE1FB50DA200409EB3 /* libHalf.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libHalf.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A11D67F91FB590D900409EB3 /* libsystem_pthread.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsystem_pthread.tbd; path = usr/lib/system/libsystem_pthread.tbd; sourceTree = SDKROOT; };
+		D86DF15D20A81D0E00444230 /* MacDotNet.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MacDotNet.xcodeproj; path = ../../../../../../BuildSolutions/MacDotNet.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,12 +109,20 @@
 		A11D67D81FB50D4F00409EB3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D86DF15D20A81D0E00444230 /* MacDotNet.xcodeproj */,
 				A11D67F91FB590D900409EB3 /* libsystem_pthread.tbd */,
 				A11D67DE1FB50DA200409EB3 /* libHalf.a */,
 				A11D67D91FB50D4F00409EB3 /* libboost_system-mt.dylib */,
 				A11D67DA1FB50D4F00409EB3 /* libboost_thread-mt.dylib */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D86DF15E20A81D0E00444230 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -142,6 +161,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				D86DF16620A81EF100444230 /* PBXTargetDependency */,
 			);
 			name = OpenImageIO;
 			productName = OpenImageIO;
@@ -173,6 +193,12 @@
 			mainGroup = A11D67A61FB5054D00409EB3;
 			productRefGroup = A11D67B01FB5054D00409EB3 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = D86DF15E20A81D0E00444230 /* Products */;
+					ProjectRef = D86DF15D20A81D0E00444230 /* MacDotNet.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				A11D67AE1FB5054D00409EB3 /* OpenImageIO */,
@@ -192,6 +218,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D86DF16620A81EF100444230 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = MacDotNet;
+			targetProxy = D86DF16520A81EF100444230 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		A11D67B11FB5054D00409EB3 /* Debug */ = {

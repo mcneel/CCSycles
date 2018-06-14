@@ -37,6 +37,86 @@
 		A11D689C1FB59ACF00409EB3 /* internal_types.h in Headers */ = {isa = PBXBuildFile; fileRef = A11D68871FB59ACD00409EB3 /* internal_types.h */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		D86DF16320A81EE700444230 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D86DF15920A81CF800444230 /* MacDotNet.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = DFAC1D871BCEE62900711C6C;
+			remoteInfo = MacDotNet;
+		};
+		D86DF16B20A81F1200444230 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D86DF16720A81F1200444230 /* cycles_proper.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A11D68041FB5936400409EB3;
+			remoteInfo = cycles_proper;
+		};
+		D86DF16D20A81F1C00444230 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D86DF16720A81F1200444230 /* cycles_proper.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = A11D68031FB5936400409EB3;
+			remoteInfo = cycles_proper;
+		};
+		D86DF17320A81F3900444230 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D86DF16F20A81F3900444230 /* cyclesglew.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A100CA661FB600FD00BC046C;
+			remoteInfo = cyclesglew;
+		};
+		D86DF17520A81F3E00444230 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D86DF16F20A81F3900444230 /* cyclesglew.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = A100CA651FB600FD00BC046C;
+			remoteInfo = cyclesglew;
+		};
+		D86DF17B20A81F4F00444230 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D86DF17720A81F4F00444230 /* cuew.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A11D67631FB4AFA700409EB3;
+			remoteInfo = cuew;
+		};
+		D86DF18120A81F5500444230 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D86DF17D20A81F5500444230 /* clew.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A11D672B1FB49CD900409EB3;
+			remoteInfo = clew;
+		};
+		D86DF18720A81F7700444230 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D86DF18320A81F7600444230 /* OpenImageIO.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A11D67AF1FB5054D00409EB3;
+			remoteInfo = OpenImageIO;
+		};
+		D86DF18920A81F8100444230 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D86DF18320A81F7600444230 /* OpenImageIO.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = A11D67AE1FB5054D00409EB3;
+			remoteInfo = OpenImageIO;
+		};
+		D86DF18B20A81F8500444230 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D86DF17D20A81F5500444230 /* clew.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = A11D672A1FB49CD900409EB3;
+			remoteInfo = clew;
+		};
+		D86DF18D20A81F8A00444230 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D86DF17720A81F4F00444230 /* cuew.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = A11D67621FB4AFA700409EB3;
+			remoteInfo = cuew;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		A100C8111FB5D63D00BC046C /* libcycles_proper.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libcycles_proper.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A100CA5C1FB5F8B300BC046C /* libOpenImageIO.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libOpenImageIO.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -73,6 +153,12 @@
 		A11D68861FB59ACD00409EB3 /* background.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = background.cpp; path = ../../ccycles/background.cpp; sourceTree = "<group>"; };
 		A11D68871FB59ACD00409EB3 /* internal_types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = internal_types.h; path = ../../ccycles/internal_types.h; sourceTree = "<group>"; };
 		A11D68881FB59ACE00409EB3 /* ccycles_version.rc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ccycles_version.rc; path = ../../ccycles/ccycles_version.rc; sourceTree = "<group>"; };
+		D86DF15920A81CF800444230 /* MacDotNet.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MacDotNet.xcodeproj; path = ../../../../../../BuildSolutions/MacDotNet.xcodeproj; sourceTree = "<group>"; };
+		D86DF16720A81F1200444230 /* cycles_proper.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = cycles_proper.xcodeproj; path = ../cycles_proper/cycles_proper.xcodeproj; sourceTree = "<group>"; };
+		D86DF16F20A81F3900444230 /* cyclesglew.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = cyclesglew.xcodeproj; path = ../cyclesglew/cyclesglew.xcodeproj; sourceTree = "<group>"; };
+		D86DF17720A81F4F00444230 /* cuew.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = cuew.xcodeproj; path = ../../cuew/cuew/cuew.xcodeproj; sourceTree = "<group>"; };
+		D86DF17D20A81F5500444230 /* clew.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = clew.xcodeproj; path = ../../clew/clew.xcodeproj; sourceTree = "<group>"; };
+		D86DF18320A81F7600444230 /* OpenImageIO.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OpenImageIO.xcodeproj; path = ../../OpenImageIO/OpenImageIO/OpenImageIO.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +224,12 @@
 		A11D68221FB596E400409EB3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D86DF18320A81F7600444230 /* OpenImageIO.xcodeproj */,
+				D86DF17D20A81F5500444230 /* clew.xcodeproj */,
+				D86DF17720A81F4F00444230 /* cuew.xcodeproj */,
+				D86DF16F20A81F3900444230 /* cyclesglew.xcodeproj */,
+				D86DF16720A81F1200444230 /* cycles_proper.xcodeproj */,
+				D86DF15920A81CF800444230 /* MacDotNet.xcodeproj */,
 				A100CA761FB601F700BC046C /* libcyclesglew.a */,
 				A100CA5C1FB5F8B300BC046C /* libOpenImageIO.dylib */,
 				A100C8111FB5D63D00BC046C /* libcycles_proper.a */,
@@ -149,6 +241,53 @@
 				A11D68241FB596E400409EB3 /* libcycles_proper.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D86DF15A20A81CF800444230 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D86DF16820A81F1200444230 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D86DF16C20A81F1200444230 /* libcycles_proper.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D86DF17020A81F3900444230 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D86DF17420A81F3900444230 /* libcyclesglew.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D86DF17820A81F4F00444230 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D86DF17C20A81F4F00444230 /* libcuew.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D86DF17E20A81F5500444230 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D86DF18220A81F5500444230 /* libclew.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D86DF18420A81F7600444230 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D86DF18820A81F7700444230 /* libOpenImageIO.dylib */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -180,6 +319,12 @@
 			buildRules = (
 			);
 			dependencies = (
+				D86DF18E20A81F8A00444230 /* PBXTargetDependency */,
+				D86DF18C20A81F8500444230 /* PBXTargetDependency */,
+				D86DF18A20A81F8100444230 /* PBXTargetDependency */,
+				D86DF17620A81F3E00444230 /* PBXTargetDependency */,
+				D86DF16E20A81F1C00444230 /* PBXTargetDependency */,
+				D86DF16420A81EE700444230 /* PBXTargetDependency */,
 			);
 			name = ccycles;
 			productName = ccycles;
@@ -211,12 +356,76 @@
 			mainGroup = A11D68121FB596D800409EB3;
 			productRefGroup = A11D681C1FB596D800409EB3 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = D86DF17E20A81F5500444230 /* Products */;
+					ProjectRef = D86DF17D20A81F5500444230 /* clew.xcodeproj */;
+				},
+				{
+					ProductGroup = D86DF17820A81F4F00444230 /* Products */;
+					ProjectRef = D86DF17720A81F4F00444230 /* cuew.xcodeproj */;
+				},
+				{
+					ProductGroup = D86DF16820A81F1200444230 /* Products */;
+					ProjectRef = D86DF16720A81F1200444230 /* cycles_proper.xcodeproj */;
+				},
+				{
+					ProductGroup = D86DF17020A81F3900444230 /* Products */;
+					ProjectRef = D86DF16F20A81F3900444230 /* cyclesglew.xcodeproj */;
+				},
+				{
+					ProductGroup = D86DF15A20A81CF800444230 /* Products */;
+					ProjectRef = D86DF15920A81CF800444230 /* MacDotNet.xcodeproj */;
+				},
+				{
+					ProductGroup = D86DF18420A81F7600444230 /* Products */;
+					ProjectRef = D86DF18320A81F7600444230 /* OpenImageIO.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				A11D681A1FB596D800409EB3 /* ccycles */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		D86DF16C20A81F1200444230 /* libcycles_proper.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libcycles_proper.a;
+			remoteRef = D86DF16B20A81F1200444230 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D86DF17420A81F3900444230 /* libcyclesglew.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libcyclesglew.a;
+			remoteRef = D86DF17320A81F3900444230 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D86DF17C20A81F4F00444230 /* libcuew.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libcuew.a;
+			remoteRef = D86DF17B20A81F4F00444230 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D86DF18220A81F5500444230 /* libclew.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libclew.a;
+			remoteRef = D86DF18120A81F5500444230 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D86DF18820A81F7700444230 /* libOpenImageIO.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libOpenImageIO.dylib;
+			remoteRef = D86DF18720A81F7700444230 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A11D68171FB596D800409EB3 /* Sources */ = {
@@ -242,6 +451,39 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D86DF16420A81EE700444230 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = MacDotNet;
+			targetProxy = D86DF16320A81EE700444230 /* PBXContainerItemProxy */;
+		};
+		D86DF16E20A81F1C00444230 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = cycles_proper;
+			targetProxy = D86DF16D20A81F1C00444230 /* PBXContainerItemProxy */;
+		};
+		D86DF17620A81F3E00444230 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = cyclesglew;
+			targetProxy = D86DF17520A81F3E00444230 /* PBXContainerItemProxy */;
+		};
+		D86DF18A20A81F8100444230 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = OpenImageIO;
+			targetProxy = D86DF18920A81F8100444230 /* PBXContainerItemProxy */;
+		};
+		D86DF18C20A81F8500444230 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = clew;
+			targetProxy = D86DF18B20A81F8500444230 /* PBXContainerItemProxy */;
+		};
+		D86DF18E20A81F8A00444230 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = cuew;
+			targetProxy = D86DF18D20A81F8A00444230 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		A11D681D1FB596D800409EB3 /* Debug */ = {
