@@ -364,6 +364,8 @@ namespace ccl
 			var me = meshes[meshname];
 			var ob = new ccl.Object(Client) { Transform = state.Transform, IsShadowCatcher = state.IsShadowCatcher };
 			ob.Mesh = me;
+			ob.Shader = state.Shader.Id;
+			ob.TagUpdate();
 		}
 
 		private void ReadLight(ref XmlReadState state, System.Xml.XmlReader node)

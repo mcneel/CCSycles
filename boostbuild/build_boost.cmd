@@ -6,7 +6,7 @@ REM properly.
 
 SETLOCAL ENABLEEXTENSIONS
 
-SET vBoostVersion=1_59
+SET vBoostVersion=1_67
 
 SET vFrom=%CD%
 SET vBinv2=%CD%\bin.v2
@@ -18,8 +18,8 @@ SET vBitness=%2
 SET vVsVersion=%3
 
 REM by default assume vc120
-SET vPlatformToolset=vc120
-SET vBuildId=v120
+SET vPlatformToolset=vc140
+SET vBuildId=v140
 
 REM but change to vc140 when compiling with VS2015
 IF "%vVsVersion%"=="14.0" (SET vPlatformToolset=vc140)
@@ -58,7 +58,10 @@ IF EXIST "%vStageStatic%" @RMDIR /S /Q %vStageStatic%
 IF EXIST "%vBuildStatic%" @RMDIR /S /Q %vBuildStatic%
 
 ECHO Bootstrapping and building boost. %vConfiguration% %vBitness% %vToolset%.
+ECHO %vFrom%
+ECHO "-------"
 @CALL %vFrom%\bootstrap.bat > NUL
+ECHO "-------"
 
 REM The following libraries can be built for boost:
 REM    atomic

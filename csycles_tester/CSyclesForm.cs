@@ -45,39 +45,65 @@ namespace csycles_tester
 		const uint samples = 50;
 		Random r = new Random();
 		private static CSycles.RenderTileCallback g_write_render_tile_callback;
-		public void WriteRenderTileCallback(uint sessionId, uint x, uint y, uint w, uint h, uint depth, int startSample, int numSamples, int sample, int resolution)
+		public void WriteRenderTileCallback(uint sessionId, uint tx, uint ty, uint tw, uint th, uint sample, uint depth, PassType passtype, float[] px, int len)
 		{
-			Console.WriteLine("C# Write Render Tile for session {0} at ({1},{2}) [{3}]", sessionId, x, y, depth);
+			if (passtype != PassType.Combined) return;
+			if (sample < samples) return;
+			Console.WriteLine($"C# Write Render Tile sample {sample} for session {sessionId} at ({tx},{ty}x{tw},{th}) [{depth}] {width}x{height}");
+
+			for (var x = 0; x < (int)tw; x++)
+			{
+				for (var y = 0; y < (int)th; y++)
+				{
+					var i = y * tw * depth + x * depth;
+					var ti = (ty + y) * width * depth + (tx + x) * depth;
+					pixels[ti] = px[i];
+					pixels[ti + 1] = px[i + 1];
+					pixels[ti + 2] = px[i + 2];
+					pixels[ti + 3] = px[i + 3];
+				}
+			}
 		}
+
+		float[] pixels;
+		int height;
+		int width;
 
 		public void RenderScene(string scenename)
 		{
 			var dev = Device.FirstGpu;
 			Console.WriteLine("Using device {0} {1}", dev.Name, dev.Description);
 
-			var scene_params = new SceneParameters(Client, ShadingSystem.SVM, BvhType.Static, false, false, false);
-			var scene = new Scene(Client, scene_params, dev);
-
-			var xml = new CSyclesXmlReader(Client, scenename);
-			xml.Parse(false);
-			var width = (uint)scene.Camera.Size.Width;
-			var height = (uint)scene.Camera.Size.Height;
+			Size tilesize = dev.IsGpu ? new Size(512, 512) : new Size(64, 64);
 
 			var session_params = new SessionParameters(Client, dev)
 			{
 				Experimental = false,
 				Samples = (int) samples,
-				TileSize = new Size(64, 64),
-				StartResolution = 64,
+				TileSize = tilesize,
+				//StartResolution = 64,
 				Threads = 0,
 				ShadingSystem = ShadingSystem.SVM,
 				Background = true,
 				ProgressiveRefine = false,
 				Progressive = false,
-				TileOrder = TileOrder.HilbertSpiral
+				//TileOrder = TileOrder.HilbertSpiral
 			};
-			var Session = new Session(Client, session_params, scene);
-			Session.Reset(width, height, samples);
+			//var Session = new Session(Client, session_params, scene);
+			var Session = new Session(Client, session_params);
+
+			var scene_params = new SceneParameters(Client, ShadingSystem.SVM, BvhType.Static, false, false, false);
+			var scene = new Scene(Client, scene_params, Session);
+			Session.Scene = scene;
+
+			var xml = new CSyclesXmlReader(Client, scenename);
+			xml.Parse(false);
+			width = scene.Camera.Size.Width;
+			height = scene.Camera.Size.Height;
+
+			pixels = new float[width * height * 4];
+			Session.Reset((uint)width, (uint)height, samples);
+
 
 			g_write_render_tile_callback = WriteRenderTileCallback;
 			Session.WriteTileCallback = g_write_render_tile_callback;
@@ -93,11 +119,6 @@ namespace csycles_tester
 
 			Session.Start();
 			Session.Wait();
-
-			uint bufsize;
-			uint bufstride;
-			CSycles.session_get_buffer_info(Client.Id, Session.Id, out bufsize, out bufstride);
-			var pixels = CSycles.session_copy_buffer(Client.Id, Session.Id, bufsize);
 
 			var bmp = new ed.Bitmap((int)width, (int)height, Eto.Drawing.PixelFormat.Format32bppRgba);
 			for (var x = 0; x < width; x++)
