@@ -34,6 +34,9 @@
     <Filter Include="kernel_split_headers">
       <UniqueIdentifier>{B898C955-7640-4795-AA2E-B6397E0957BC}</UniqueIdentifier>
     </Filter>
+    <Filter Include="svm_headers">
+      <UniqueIdentifier>{6ed2008e-00d9-46ee-8355-edcbd3bdffb5}</UniqueIdentifier>
+    </Filter>
     <Filter Include="kernel_cpu">
       <UniqueIdentifier>{D0CDB504-7BB6-48A1-B5CD-5C6B877F34EB}</UniqueIdentifier>
     </Filter>
@@ -1000,6 +1003,9 @@
     </ClInclude>
     <ClInclude Include="cycles\src\util\util_types_vector3_impl.h">
       <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\kernel\svm\*.h">
+      <Filter>svm_headers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
