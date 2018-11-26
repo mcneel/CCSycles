@@ -58,6 +58,23 @@ namespace ccl.ShaderNodes
 			Intensity,
 			Cells,
 		}
+
+		public enum Metrics
+		{
+			Distance,
+			Manhattan,
+			Chebychev,
+			Minkowski,
+		}
+
+		public enum Features
+		{
+			F1,
+			F2,
+			F3,
+			F4,
+			F2F1,
+		}
 		public VoronoiInputs ins => (VoronoiInputs)inputs;
 		public VoronoiOutputs outs => (VoronoiOutputs)outputs;
 
@@ -69,8 +86,6 @@ namespace ccl.ShaderNodes
 			outputs = new VoronoiOutputs(this);
 
 			ins.Scale.Value = 1.0f;
-
-			Coloring = ColoringTypes.Cells;
 		}
 
 		/// <summary>
@@ -78,11 +93,15 @@ namespace ccl.ShaderNodes
 		/// - Cells
 		/// - Intensity
 		/// </summary>
-		public ColoringTypes Coloring { get; set; }
+		public ColoringTypes Coloring { get; set; } = ColoringTypes.Cells;
+		public Metrics Metric { get; set; } = Metrics.Distance;
+		public Features Feature { get; set; } = Features.F1;
 
 		internal override void SetEnums(uint clientId, uint shaderId)
 		{
 			CSycles.shadernode_set_enum(clientId, shaderId, Id, Type, "coloring", (int)Coloring);
+			CSycles.shadernode_set_enum(clientId, shaderId, Id, Type, "metric", (int)Metric);
+			CSycles.shadernode_set_enum(clientId, shaderId, Id, Type, "feature", (int)Feature);
 		}
 
 		internal override void ParseXml(XmlReader xmlNode)

@@ -146,7 +146,7 @@ void cycles_scene_object_set_matrix(unsigned int client_id, unsigned int scene_i
 {
 	SCENE_FIND(scene_id)
 		ccl::Object* ob = sce->objects[object_id];
-		ccl::Transform mat = ccl::make_transform(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p);
+		ccl::Transform mat = ccl::make_transform(a, b, c, d, e, f, g, h, i, j, k, l);
 		ob->tfm = mat;
 		ob->tag_update(sce);
 	SCENE_FIND_END()

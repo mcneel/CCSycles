@@ -67,7 +67,7 @@ namespace ccl.ShaderNodes
 	{
 		public enum AnisotropicDistribution
 		{
-			Beckmann = 21,
+			Beckmann = 20,
 			GGX = 16,
 			Multiscatter_GGX = 18,
 			Asihkmin_Shirley = 21,

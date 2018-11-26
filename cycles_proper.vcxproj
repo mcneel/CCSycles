@@ -106,6 +106,10 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <LanguageStandard>
+      </LanguageStandard>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <OpenMPSupport>true</OpenMPSupport>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -158,6 +162,10 @@
       <AdditionalOptions>/w34062 /J /Gs- %(AdditionalOptions)</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <BufferSecurityCheck>false</BufferSecurityCheck>
+      <LanguageStandard>
+      </LanguageStandard>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <OpenMPSupport>true</OpenMPSupport>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -200,78 +208,13 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="cycles\src\bvh\bvh.cpp" />
-    <ClCompile Include="cycles\src\bvh\bvh2.cpp" />
-    <ClCompile Include="cycles\src\bvh\bvh4.cpp" />
-    <ClCompile Include="cycles\src\bvh\bvh_unaligned.cpp" />
-    <ClCompile Include="cycles\src\bvh\bvh_binning.cpp" />
-    <ClCompile Include="cycles\src\bvh\bvh_build.cpp" />
-    <ClCompile Include="cycles\src\bvh\bvh_node.cpp" />
-    <ClCompile Include="cycles\src\bvh\bvh_sort.cpp" />
-    <ClCompile Include="cycles\src\bvh\bvh_split.cpp" />
-    <ClCompile Include="cycles\src\device\device.cpp" />
-    <ClCompile Include="cycles\src\device\device_cpu.cpp" />
-    <ClCompile Include="cycles\src\device\device_cuda.cpp" />
-    <ClCompile Include="cycles\src\device\device_denoising.cpp" />
-    <ClCompile Include="cycles\src\device\device_memory.cpp" />
-    <ClCompile Include="cycles\src\device\device_multi.cpp" />
-    <ClCompile Include="cycles\src\device\device_network.cpp" />
-    <ClCompile Include="cycles\src\device\device_opencl.cpp" />
-    <ClCompile Include="cycles\src\device\device_split_kernel.cpp" />
-    <ClCompile Include="cycles\src\device\opencl\memory_manager.cpp" />
-    <ClCompile Include="cycles\src\device\opencl\opencl_base.cpp" />
-    <ClCompile Include="cycles\src\device\opencl\opencl_mega.cpp" />
-    <ClCompile Include="cycles\src\device\opencl\opencl_split.cpp" />
-    <ClCompile Include="cycles\src\device\opencl\opencl_util.cpp" />
-    <ClCompile Include="cycles\src\device\device_task.cpp" />
-    <ClCompile Include="cycles\src\render\attribute.cpp" />
-    <ClCompile Include="cycles\src\render\background.cpp" />
-    <ClCompile Include="cycles\src\render\bake.cpp" />
-    <ClCompile Include="cycles\src\render\buffers.cpp" />
-    <ClCompile Include="cycles\src\render\camera.cpp" />
-    <ClCompile Include="cycles\src\render\constant_fold.cpp" />
-    <ClCompile Include="cycles\src\render\curves.cpp" />
-    <ClCompile Include="cycles\src\render\film.cpp" />
-    <ClCompile Include="cycles\src\render\graph.cpp" />
-    <ClCompile Include="cycles\src\render\image.cpp" />
-    <ClCompile Include="cycles\src\render\integrator.cpp" />
-    <ClCompile Include="cycles\src\render\light.cpp" />
-    <ClCompile Include="cycles\src\render\mesh.cpp" />
-    <ClCompile Include="cycles\src\render\mesh_displace.cpp" />
-    <ClCompile Include="cycles\src\render\mesh_subdivision.cpp" />
-    <ClCompile Include="cycles\src\render\nodes.cpp" />
-    <ClCompile Include="cycles\src\render\object.cpp" />
-    <ClCompile Include="cycles\src\render\osl.cpp" />
-    <ClCompile Include="cycles\src\render\particles.cpp" />
-    <ClCompile Include="cycles\src\render\scene.cpp" />
-    <ClCompile Include="cycles\src\render\session.cpp" />
-    <ClCompile Include="cycles\src\render\shader.cpp" />
-    <ClCompile Include="cycles\src\render\sobol.cpp" />
-    <ClCompile Include="cycles\src\render\svm.cpp" />
-    <ClCompile Include="cycles\src\render\tables.cpp" />
-    <ClCompile Include="cycles\src\render\tile.cpp" />
-    <ClCompile Include="cycles\src\subd\subd_dice.cpp" />
-    <ClCompile Include="cycles\src\subd\subd_patch.cpp" />
-    <ClCompile Include="cycles\src\subd\subd_patch_table.cpp" />
-    <ClCompile Include="cycles\src\subd\subd_split.cpp" />
-    <ClCompile Include="cycles\src\util\util_aligned_malloc.cpp" />
-    <ClCompile Include="cycles\src\util\util_debug.cpp" />
-    <ClCompile Include="cycles\src\util\util_guarded_allocator.cpp" />
-    <ClCompile Include="cycles\src\util\util_logging.cpp" />
-    <ClCompile Include="cycles\src\util\util_math_cdf.cpp" />
-    <ClCompile Include="cycles\src\util\util_md5.cpp" />
-    <ClCompile Include="cycles\src\util\util_path.cpp" />
-    <ClCompile Include="cycles\src\util\util_simd.cpp" />
-    <ClCompile Include="cycles\src\util\util_sky_model.cpp" />
-    <ClCompile Include="cycles\src\util\util_string.cpp" />
-    <ClCompile Include="cycles\src\util\util_system.cpp" />
-    <ClCompile Include="cycles\src\util\util_task.cpp" />
-    <ClCompile Include="cycles\src\util\util_thread.cpp" />
-    <ClCompile Include="cycles\src\util\util_time.cpp" />
-    <ClCompile Include="cycles\src\util\util_transform.cpp" />
-    <ClCompile Include="cycles\src\util\util_windows.cpp" />
-    <ClCompile Include="cycles\src\graph\node.cpp" />
-    <ClCompile Include="cycles\src\graph\node_type.cpp" />
+    <ClCompile Include="cycles\src\bvh\*.cpp" />
+    <ClCompile Include="cycles\src\device\*.cpp" />
+    <ClCompile Include="cycles\src\device\opencl\*.cpp" />
+    <ClCompile Include="cycles\src\render\*.cpp" />
+    <ClCompile Include="cycles\src\subd\*.cpp" />
+    <ClCompile Include="cycles\src\util\*.cpp" />
+    <ClCompile Include="cycles\src\graph\*.cpp" />
     <ClCompile Include="cycles\src\kernel\kernels\cpu\filter.cpp" />
     <ClCompile Include="cycles\src\kernel\kernels\cpu\filter_avx.cpp" />
     <ClCompile Include="cycles\src\kernel\kernels\cpu\filter_avx2.cpp" />
@@ -292,25 +235,9 @@
     <ClCompile Include="cycles\src\kernel\kernels\cpu\kernel_split_sse41.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="cycles\src\bvh\bvh.h" />
-    <ClInclude Include="cycles\src\bvh\bvh2.h" />
-    <ClInclude Include="cycles\src\bvh\bvh4.h" />
-    <ClInclude Include="cycles\src\bvh\bvh_unaligned.h" />
-    <ClInclude Include="cycles\src\bvh\bvh_binning.h" />
-    <ClInclude Include="cycles\src\bvh\bvh_build.h" />
-    <ClInclude Include="cycles\src\bvh\bvh_node.h" />
-    <ClInclude Include="cycles\src\bvh\bvh_params.h" />
-    <ClInclude Include="cycles\src\bvh\bvh_sort.h" />
-    <ClInclude Include="cycles\src\bvh\bvh_split.h" />
-    <ClInclude Include="cycles\src\device\device.h" />
-    <ClInclude Include="cycles\src\device\device_denoising.h" />
-    <ClInclude Include="cycles\src\device\device_intern.h" />
-    <ClInclude Include="cycles\src\device\device_memory.h" />
-    <ClInclude Include="cycles\src\device\device_network.h" />
-    <ClInclude Include="cycles\src\device\device_split_kernel.h" />
-    <ClInclude Include="cycles\src\device\device_task.h" />
-    <ClInclude Include="cycles\src\device\opencl\memory_manager.h" />
-    <ClInclude Include="cycles\src\device\opencl\opencl.h" />
+    <ClInclude Include="cycles\src\bvh\*.h" />
+    <ClInclude Include="cycles\src\device\*.h" />
+    <ClInclude Include="cycles\src\device\opencl\*.h" />
     <ClInclude Include="cycles\src\kernel\kernel.h" />
     <ClInclude Include="cycles\src\kernel\filter\filter.h" />
     <ClInclude Include="cycles\src\kernel\filter\filter_defines.h" />
@@ -324,39 +251,8 @@
     <ClInclude Include="cycles\src\kernel\filter\filter_transform.h" />
     <ClInclude Include="cycles\src\kernel\filter\filter_transform_gpu.h" />
     <ClInclude Include="cycles\src\kernel\filter\filter_transform_sse.h" />
-    <ClInclude Include="cycles\src\kernel\kernels\cpu\kernel_cpu.h" />
-    <ClInclude Include="cycles\src\kernel\kernels\cpu\kernel_cpu_impl.h" />
-    <ClInclude Include="cycles\src\kernel\kernel_accumulate.h" />
-    <ClInclude Include="cycles\src\kernel\kernel_bake.h" />
-    <ClInclude Include="cycles\src\kernel\kernel_camera.h" />
-    <ClInclude Include="cycles\src\kernel\kernel_compat_cpu.h" />
-    <ClInclude Include="cycles\src\kernel\kernel_compat_cuda.h" />
-    <ClInclude Include="cycles\src\kernel\kernel_compat_opencl.h" />
-    <ClInclude Include="cycles\src\kernel\kernel_differential.h" />
-    <ClInclude Include="cycles\src\kernel\kernel_emission.h" />
-    <ClInclude Include="cycles\src\kernel\kernel_film.h" />
-    <ClInclude Include="cycles\src\kernel\kernel_globals.h" />
-    <ClInclude Include="cycles\src\kernel\kernel_jitter.h" />
-    <ClInclude Include="cycles\src\kernel\kernel_light.h" />
-    <ClInclude Include="cycles\src\kernel\kernel_math.h" />
-    <ClInclude Include="cycles\src\kernel\kernel_montecarlo.h" />
-    <ClInclude Include="cycles\src\kernel\kernel_passes.h" />
-    <ClInclude Include="cycles\src\kernel\kernel_path.h" />
-    <ClInclude Include="cycles\src\kernel\kernel_path_branched.h" />
-    <ClInclude Include="cycles\src\kernel\kernel_path_common.h" />
-    <ClInclude Include="cycles\src\kernel\kernel_path_state.h" />
-    <ClInclude Include="cycles\src\kernel\kernel_path_surface.h" />
-    <ClInclude Include="cycles\src\kernel\kernel_path_volume.h" />
-    <ClInclude Include="cycles\src\kernel\kernel_projection.h" />
-    <ClInclude Include="cycles\src\kernel\kernel_queues.h" />
-    <ClInclude Include="cycles\src\kernel\kernel_random.h" />
-    <ClInclude Include="cycles\src\kernel\kernel_shader.h" />
-    <ClInclude Include="cycles\src\kernel\kernel_shadow.h" />
-    <ClInclude Include="cycles\src\kernel\kernel_subsurface.h" />
-    <ClInclude Include="cycles\src\kernel\kernel_textures.h" />
-    <ClInclude Include="cycles\src\kernel\kernel_types.h" />
-    <ClInclude Include="cycles\src\kernel\kernel_volume.h" />
-    <ClInclude Include="cycles\src\kernel\kernel_work_stealing.h" />
+    <ClInclude Include="cycles\src\kernel\kernels\cpu\kernel_*.h" />
+    <ClInclude Include="cycles\src\kernel\kernel_*.h" />
     <ClInclude Include="cycles\src\kernel\geom\geom.h" />
     <ClInclude Include="cycles\src\kernel\geom\geom_attribute.h" />
     <ClInclude Include="cycles\src\kernel\geom\geom_bvh.h" />
@@ -403,122 +299,16 @@
     <ClInclude Include="cycles\src\kernel\split\kernel_split_data.h" />
     <ClInclude Include="cycles\src\kernel\split\kernel_split_data_types.h" />
     <ClInclude Include="cycles\src\kernel\split\kernel_subsurface_scatter.h" />
-    <ClInclude Include="cycles\src\render\attribute.h" />
-    <ClInclude Include="cycles\src\render\background.h" />
-    <ClInclude Include="cycles\src\render\bake.h" />
-    <ClInclude Include="cycles\src\render\buffers.h" />
-    <ClInclude Include="cycles\src\render\camera.h" />
-    <ClInclude Include="cycles\src\render\constant_fold.h" />
-    <ClInclude Include="cycles\src\render\curves.h" />
-    <ClInclude Include="cycles\src\render\film.h" />
-    <ClInclude Include="cycles\src\render\graph.h" />
-    <ClInclude Include="cycles\src\render\image.h" />
-    <ClInclude Include="cycles\src\render\integrator.h" />
-    <ClInclude Include="cycles\src\render\light.h" />
-    <ClInclude Include="cycles\src\render\mesh.h" />
-    <ClInclude Include="cycles\src\render\nodes.h" />
-    <ClInclude Include="cycles\src\render\object.h" />
-    <ClInclude Include="cycles\src\render\osl.h" />
-    <ClInclude Include="cycles\src\render\particles.h" />
-    <ClInclude Include="cycles\src\render\scene.h" />
-    <ClInclude Include="cycles\src\render\session.h" />
-    <ClInclude Include="cycles\src\render\shader.h" />
-    <ClInclude Include="cycles\src\render\sobol.h" />
-    <ClInclude Include="cycles\src\render\svm.h" />
-    <ClInclude Include="cycles\src\render\tables.h" />
-    <ClInclude Include="cycles\src\render\tile.h" />
-    <ClInclude Include="cycles\src\subd\subd_dice.h" />
-    <ClInclude Include="cycles\src\subd\subd_patch.h" />
-    <ClInclude Include="cycles\src\subd\subd_patch_table.h" />
-    <ClInclude Include="cycles\src\subd\subd_split.h" />
-    <ClInclude Include="cycles\src\util\util_algorithm.h" />
-    <ClInclude Include="cycles\src\util\util_aligned_malloc.h" />
-    <ClInclude Include="cycles\src\util\util_args.h" />
-    <ClInclude Include="cycles\src\util\util_boundbox.h" />
-    <ClInclude Include="cycles\src\util\util_debug.h" />
-    <ClInclude Include="cycles\src\util\util_defines.h" />
-    <ClInclude Include="cycles\src\util\util_foreach.h" />
-    <ClInclude Include="cycles\src\util\util_function.h" />
-    <ClInclude Include="cycles\src\util\util_guarded_allocator.h" />
-    <ClInclude Include="cycles\src\util\util_half.h" />
-    <ClInclude Include="cycles\src\util\util_hash.h" />
-    <ClInclude Include="cycles\src\util\util_image.h" />
-    <ClInclude Include="cycles\src\util\util_list.h" />
-    <ClInclude Include="cycles\src\util\util_logging.h" />
-    <ClInclude Include="cycles\src\util\util_map.h" />
-    <ClInclude Include="cycles\src\util\util_math.h" />
-    <ClInclude Include="cycles\src\util\util_math_float2.h" />
-    <ClInclude Include="cycles\src\util\util_math_float3.h" />
-    <ClInclude Include="cycles\src\util\util_math_float4.h" />
-    <ClInclude Include="cycles\src\util\util_math_int2.h" />
-    <ClInclude Include="cycles\src\util\util_math_int3.h" />
-    <ClInclude Include="cycles\src\util\util_math_int4.h" />
-    <ClInclude Include="cycles\src\util\util_math_matrix.h" />
-    <ClInclude Include="cycles\src\util\util_math_cdf.h" />
-    <ClInclude Include="cycles\src\util\util_math_fast.h" />
-    <ClInclude Include="cycles\src\util\util_md5.h" />
-    <ClInclude Include="cycles\src\util\util_opengl.h" />
-    <ClInclude Include="cycles\src\util\util_optimization.h" />
-    <ClInclude Include="cycles\src\util\util_param.h" />
-    <ClInclude Include="cycles\src\util\util_path.h" />
-    <ClInclude Include="cycles\src\util\util_progress.h" />
-    <ClInclude Include="cycles\src\util\util_set.h" />
-    <ClInclude Include="cycles\src\util\util_simd.h" />
-    <ClInclude Include="cycles\src\util\util_static_assert.h" />
-    <ClInclude Include="cycles\src\util\util_stack_allocator.h" />
-    <ClInclude Include="cycles\src\util\util_sky_model.h" />
-    <ClInclude Include="cycles\src\util\util_sky_model_data.h" />
-    <ClInclude Include="cycles\src\util\util_sseb.h" />
-    <ClInclude Include="cycles\src\util\util_ssef.h" />
-    <ClInclude Include="cycles\src\util\util_ssei.h" />
-    <ClInclude Include="cycles\src\util\util_stats.h" />
-    <ClInclude Include="cycles\src\util\util_string.h" />
-    <ClInclude Include="cycles\src\util\util_system.h" />
-    <ClInclude Include="cycles\src\util\util_task.h" />
-    <ClInclude Include="cycles\src\util\util_texture.h" />
-    <ClInclude Include="cycles\src\util\util_thread.h" />
-    <ClInclude Include="cycles\src\util\util_time.h" />
-    <ClInclude Include="cycles\src\util\util_transform.h" />
-    <ClInclude Include="cycles\src\util\util_types.h" />
-    <ClInclude Include="cycles\src\util\util_vector.h" />
-    <ClInclude Include="cycles\src\util\util_version.h" />
-    <ClInclude Include="cycles\src\util\util_view.h" />
-    <ClInclude Include="cycles\src\util\util_windows.h" />
-    <ClInclude Include="cycles\src\util\util_types_float2.h" />
-    <ClInclude Include="cycles\src\util\util_types_float2_impl.h" />
-    <ClInclude Include="cycles\src\util\util_types_float3.h" />
-    <ClInclude Include="cycles\src\util\util_types_float3_impl.h" />
-    <ClInclude Include="cycles\src\util\util_types_float4.h" />
-    <ClInclude Include="cycles\src\util\util_types_float4_impl.h" />
-    <ClInclude Include="cycles\src\util\util_types_int2.h" />
-    <ClInclude Include="cycles\src\util\util_types_int2_impl.h" />
-    <ClInclude Include="cycles\src\util\util_types_int3.h" />
-    <ClInclude Include="cycles\src\util\util_types_int3_impl.h" />
-    <ClInclude Include="cycles\src\util\util_types_int4.h" />
-    <ClInclude Include="cycles\src\util\util_types_int4_impl.h" />
-    <ClInclude Include="cycles\src\util\util_types_uchar2.h" />
-    <ClInclude Include="cycles\src\util\util_types_uchar2_impl.h" />
-    <ClInclude Include="cycles\src\util\util_types_uchar3.h" />
-    <ClInclude Include="cycles\src\util\util_types_uchar3_impl.h" />
-    <ClInclude Include="cycles\src\util\util_types_uchar4.h" />
-    <ClInclude Include="cycles\src\util\util_types_uchar4_impl.h" />
-    <ClInclude Include="cycles\src\util\util_types_uint2.h" />
-    <ClInclude Include="cycles\src\util\util_types_uint2_impl.h" />
-    <ClInclude Include="cycles\src\util\util_types_uint3.h" />
-    <ClInclude Include="cycles\src\util\util_types_uint3_impl.h" />
-    <ClInclude Include="cycles\src\util\util_types_uint4.h" />
-    <ClInclude Include="cycles\src\util\util_types_uint4_impl.h" />
-    <ClInclude Include="cycles\src\util\util_types_vector3.h" />
-    <ClInclude Include="cycles\src\util\util_types_vector3_impl.h" />
-    <ClInclude Include="cycles\src\graph\node.h" />
-    <ClInclude Include="cycles\src\graph\node_enum.h" />
-    <ClInclude Include="cycles\src\graph\node_type.h" />
+    <ClInclude Include="cycles\src\render\*.h" />
+    <ClInclude Include="cycles\src\subd\*.h" />
+    <ClInclude Include="cycles\src\util\*.h" />
+    <ClInclude Include="cycles\src\graph\*.h" />
     <ClInclude Include="cycles\src\kernel\kernels\filter_cpu.h" />
     <ClInclude Include="cycles\src\kernel\kernels\filter_cpu_impl.h" />
     <ClInclude Include="cycles\src\kernel\kernels\kernel_cpu.h" />
     <ClInclude Include="cycles\src\kernel\kernels\kernel_cpu_image.h" />
     <ClInclude Include="cycles\src\kernel\kernels\kernel_cpu_impl.h" />
-		<ClInclude Include="cycles\src\kernel\svm\*.h" />
+    <ClInclude Include="cycles\src\kernel\svm\*.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

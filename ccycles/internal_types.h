@@ -216,7 +216,7 @@ public:
 
 	/* Note: depth>1 if volumetric texture (i.e smoke volume data) */
 
-	void builtin_image_info(const std::string& builtin_name, void* builtin_data, bool& is_float, int& width, int& height, int& depth, int& channels);
+	void builtin_image_info(const std::string& builtin_name, void* builtin_data, ccl::ImageMetaData& meta); // bool& is_float, int& width, int& height, int& depth, int& channels);
 	bool builtin_image_pixels(const std::string& builtin_name, void* builtin_data, unsigned char* pixels);
 	bool builtin_image_float_pixels(const std::string& builtin_name, void* builtin_data, float* pixels);
 };
