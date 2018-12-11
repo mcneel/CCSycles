@@ -238,6 +238,22 @@
 		D847C328202D8D3A00D124A3 /* kernel_split.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D847C311202D8D3A00D124A3 /* kernel_split.cpp */; };
 		D847C329202D8D3A00D124A3 /* kernel_split_sse2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D847C312202D8D3A00D124A3 /* kernel_split_sse2.cpp */; };
 		D847C32A202D8D3A00D124A3 /* kernel_cpu_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = D847C313202D8D3A00D124A3 /* kernel_cpu_impl.h */; };
+		D8AB774021BFC0320054D367 /* util_ies.h in Headers */ = {isa = PBXBuildFile; fileRef = D8AB773821BFC0310054D367 /* util_ies.h */; };
+		D8AB774121BFC0320054D367 /* util_rect.h in Headers */ = {isa = PBXBuildFile; fileRef = D8AB773921BFC0310054D367 /* util_rect.h */; };
+		D8AB774221BFC0320054D367 /* util_ies.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D8AB773A21BFC0310054D367 /* util_ies.cpp */; };
+		D8AB774321BFC0320054D367 /* util_avxb.h in Headers */ = {isa = PBXBuildFile; fileRef = D8AB773B21BFC0310054D367 /* util_avxb.h */; };
+		D8AB774421BFC0320054D367 /* util_projection.h in Headers */ = {isa = PBXBuildFile; fileRef = D8AB773C21BFC0310054D367 /* util_projection.h */; };
+		D8AB774521BFC0320054D367 /* util_types_float8.h in Headers */ = {isa = PBXBuildFile; fileRef = D8AB773D21BFC0320054D367 /* util_types_float8.h */; };
+		D8AB774621BFC0320054D367 /* util_types_ushort4.h in Headers */ = {isa = PBXBuildFile; fileRef = D8AB773E21BFC0320054D367 /* util_types_ushort4.h */; };
+		D8AB774721BFC0320054D367 /* util_types_float8_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = D8AB773F21BFC0320054D367 /* util_types_float8_impl.h */; };
+		D8AB774B21BFC0700054D367 /* stats.h in Headers */ = {isa = PBXBuildFile; fileRef = D8AB774821BFC0700054D367 /* stats.h */; };
+		D8AB774C21BFC0700054D367 /* mesh_volume.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D8AB774921BFC0700054D367 /* mesh_volume.cpp */; };
+		D8AB774D21BFC0700054D367 /* stats.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D8AB774A21BFC0700054D367 /* stats.cpp */; };
+		D8AB775621BFC0CE0054D367 /* kernel_color.h in Headers */ = {isa = PBXBuildFile; fileRef = D8AB774E21BFC0CC0054D367 /* kernel_color.h */; };
+		D8AB775B21BFC1610054D367 /* node_xml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D8AB775921BFC1610054D367 /* node_xml.cpp */; };
+		D8AB775C21BFC1610054D367 /* node_xml.h in Headers */ = {isa = PBXBuildFile; fileRef = D8AB775A21BFC1610054D367 /* node_xml.h */; };
+		D8AB775F21BFC1B40054D367 /* bvh8.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D8AB775D21BFC1B40054D367 /* bvh8.cpp */; };
+		D8AB776021BFC1B40054D367 /* bvh8.h in Headers */ = {isa = PBXBuildFile; fileRef = D8AB775E21BFC1B40054D367 /* bvh8.h */; };
 		D8CA42571FE1572B007AF679 /* device_memory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D8CA42561FE1572B007AF679 /* device_memory.cpp */; };
 		D8F5C9242020D56B00D87FDB /* kernel_compat_opencl.h in Headers */ = {isa = PBXBuildFile; fileRef = D8F5C8F92020D56400D87FDB /* kernel_compat_opencl.h */; };
 		D8F5C9252020D56B00D87FDB /* kernel_path_subsurface.h in Headers */ = {isa = PBXBuildFile; fileRef = D8F5C8FB2020D56400D87FDB /* kernel_path_subsurface.h */; };
@@ -510,11 +526,34 @@
 		D847C311202D8D3A00D124A3 /* kernel_split.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = kernel_split.cpp; path = ../../cycles/src/kernel/kernels/cpu/kernel_split.cpp; sourceTree = "<group>"; };
 		D847C312202D8D3A00D124A3 /* kernel_split_sse2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = kernel_split_sse2.cpp; path = ../../cycles/src/kernel/kernels/cpu/kernel_split_sse2.cpp; sourceTree = "<group>"; };
 		D847C313202D8D3A00D124A3 /* kernel_cpu_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = kernel_cpu_impl.h; path = ../../cycles/src/kernel/kernels/cpu/kernel_cpu_impl.h; sourceTree = "<group>"; };
+		D8AB773821BFC0310054D367 /* util_ies.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = util_ies.h; path = ../../cycles/src/util/util_ies.h; sourceTree = "<group>"; };
+		D8AB773921BFC0310054D367 /* util_rect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = util_rect.h; path = ../../cycles/src/util/util_rect.h; sourceTree = "<group>"; };
+		D8AB773A21BFC0310054D367 /* util_ies.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = util_ies.cpp; path = ../../cycles/src/util/util_ies.cpp; sourceTree = "<group>"; };
+		D8AB773B21BFC0310054D367 /* util_avxb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = util_avxb.h; path = ../../cycles/src/util/util_avxb.h; sourceTree = "<group>"; };
+		D8AB773C21BFC0310054D367 /* util_projection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = util_projection.h; path = ../../cycles/src/util/util_projection.h; sourceTree = "<group>"; };
+		D8AB773D21BFC0320054D367 /* util_types_float8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = util_types_float8.h; path = ../../cycles/src/util/util_types_float8.h; sourceTree = "<group>"; };
+		D8AB773E21BFC0320054D367 /* util_types_ushort4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = util_types_ushort4.h; path = ../../cycles/src/util/util_types_ushort4.h; sourceTree = "<group>"; };
+		D8AB773F21BFC0320054D367 /* util_types_float8_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = util_types_float8_impl.h; path = ../../cycles/src/util/util_types_float8_impl.h; sourceTree = "<group>"; };
+		D8AB774821BFC0700054D367 /* stats.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = stats.h; path = ../../cycles/src/render/stats.h; sourceTree = "<group>"; };
+		D8AB774921BFC0700054D367 /* mesh_volume.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mesh_volume.cpp; path = ../../cycles/src/render/mesh_volume.cpp; sourceTree = "<group>"; };
+		D8AB774A21BFC0700054D367 /* stats.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = stats.cpp; path = ../../cycles/src/render/stats.cpp; sourceTree = "<group>"; };
+		D8AB774E21BFC0CC0054D367 /* kernel_color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = kernel_color.h; path = ../../cycles/src/kernel/kernel_color.h; sourceTree = "<group>"; };
+		D8AB774F21BFC0CD0054D367 /* closure */ = {isa = PBXFileReference; lastKnownFileType = folder; name = closure; path = ../../cycles/src/kernel/closure; sourceTree = "<group>"; };
+		D8AB775021BFC0CD0054D367 /* bvh */ = {isa = PBXFileReference; lastKnownFileType = folder; name = bvh; path = ../../cycles/src/kernel/bvh; sourceTree = "<group>"; };
+		D8AB775121BFC0CD0054D367 /* shaders */ = {isa = PBXFileReference; lastKnownFileType = folder; name = shaders; path = ../../cycles/src/kernel/shaders; sourceTree = "<group>"; };
+		D8AB775221BFC0CD0054D367 /* geom */ = {isa = PBXFileReference; lastKnownFileType = folder; name = geom; path = ../../cycles/src/kernel/geom; sourceTree = "<group>"; };
+		D8AB775321BFC0CD0054D367 /* split */ = {isa = PBXFileReference; lastKnownFileType = folder; name = split; path = ../../cycles/src/kernel/split; sourceTree = "<group>"; };
+		D8AB775421BFC0CE0054D367 /* svm */ = {isa = PBXFileReference; lastKnownFileType = folder; name = svm; path = ../../cycles/src/kernel/svm; sourceTree = "<group>"; };
+		D8AB775521BFC0CE0054D367 /* filter */ = {isa = PBXFileReference; lastKnownFileType = folder; name = filter; path = ../../cycles/src/kernel/filter; sourceTree = "<group>"; };
+		D8AB775721BFC1410054D367 /* osl */ = {isa = PBXFileReference; lastKnownFileType = folder; name = osl; path = ../../cycles/src/kernel/osl; sourceTree = "<group>"; };
+		D8AB775821BFC1410054D367 /* kernels */ = {isa = PBXFileReference; lastKnownFileType = folder; name = kernels; path = ../../cycles/src/kernel/kernels; sourceTree = "<group>"; };
+		D8AB775921BFC1610054D367 /* node_xml.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = node_xml.cpp; path = ../../cycles/src/graph/node_xml.cpp; sourceTree = "<group>"; };
+		D8AB775A21BFC1610054D367 /* node_xml.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = node_xml.h; path = ../../cycles/src/graph/node_xml.h; sourceTree = "<group>"; };
+		D8AB775D21BFC1B40054D367 /* bvh8.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bvh8.cpp; path = ../../cycles/src/bvh/bvh8.cpp; sourceTree = "<group>"; };
+		D8AB775E21BFC1B40054D367 /* bvh8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bvh8.h; path = ../../cycles/src/bvh/bvh8.h; sourceTree = "<group>"; };
 		D8CA42561FE1572B007AF679 /* device_memory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = device_memory.cpp; path = ../../cycles/src/device/device_memory.cpp; sourceTree = "<group>"; };
 		D8F5C8F92020D56400D87FDB /* kernel_compat_opencl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = kernel_compat_opencl.h; path = ../../cycles/src/kernel/kernel_compat_opencl.h; sourceTree = "<group>"; };
-		D8F5C8FA2020D56400D87FDB /* shaders */ = {isa = PBXFileReference; lastKnownFileType = folder; name = shaders; path = ../../cycles/src/kernel/shaders; sourceTree = "<group>"; };
 		D8F5C8FB2020D56400D87FDB /* kernel_path_subsurface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = kernel_path_subsurface.h; path = ../../cycles/src/kernel/kernel_path_subsurface.h; sourceTree = "<group>"; };
-		D8F5C8FC2020D56400D87FDB /* split */ = {isa = PBXFileReference; lastKnownFileType = folder; name = split; path = ../../cycles/src/kernel/split; sourceTree = "<group>"; };
 		D8F5C8FD2020D56400D87FDB /* kernel_globals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = kernel_globals.h; path = ../../cycles/src/kernel/kernel_globals.h; sourceTree = "<group>"; };
 		D8F5C8FE2020D56500D87FDB /* kernel_emission.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = kernel_emission.h; path = ../../cycles/src/kernel/kernel_emission.h; sourceTree = "<group>"; };
 		D8F5C8FF2020D56500D87FDB /* kernel_compat_cpu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = kernel_compat_cpu.h; path = ../../cycles/src/kernel/kernel_compat_cpu.h; sourceTree = "<group>"; };
@@ -522,19 +561,15 @@
 		D8F5C9012020D56500D87FDB /* kernel_accumulate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = kernel_accumulate.h; path = ../../cycles/src/kernel/kernel_accumulate.h; sourceTree = "<group>"; };
 		D8F5C9022020D56500D87FDB /* kernel_camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = kernel_camera.h; path = ../../cycles/src/kernel/kernel_camera.h; sourceTree = "<group>"; };
 		D8F5C9032020D56500D87FDB /* kernel_path.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = kernel_path.h; path = ../../cycles/src/kernel/kernel_path.h; sourceTree = "<group>"; };
-		D8F5C9042020D56600D87FDB /* osl */ = {isa = PBXFileReference; lastKnownFileType = folder; name = osl; path = ../../cycles/src/kernel/osl; sourceTree = "<group>"; };
 		D8F5C9052020D56600D87FDB /* kernel_film.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = kernel_film.h; path = ../../cycles/src/kernel/kernel_film.h; sourceTree = "<group>"; };
 		D8F5C9062020D56600D87FDB /* kernel_subsurface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = kernel_subsurface.h; path = ../../cycles/src/kernel/kernel_subsurface.h; sourceTree = "<group>"; };
-		D8F5C9072020D56600D87FDB /* kernels */ = {isa = PBXFileReference; lastKnownFileType = folder; name = kernels; path = ../../cycles/src/kernel/kernels; sourceTree = "<group>"; };
 		D8F5C9082020D56600D87FDB /* kernel_textures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = kernel_textures.h; path = ../../cycles/src/kernel/kernel_textures.h; sourceTree = "<group>"; };
 		D8F5C9092020D56600D87FDB /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = CMakeLists.txt; path = ../../cycles/src/kernel/CMakeLists.txt; sourceTree = "<group>"; };
 		D8F5C90A2020D56600D87FDB /* kernel_path_surface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = kernel_path_surface.h; path = ../../cycles/src/kernel/kernel_path_surface.h; sourceTree = "<group>"; };
 		D8F5C90B2020D56600D87FDB /* kernel_random.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = kernel_random.h; path = ../../cycles/src/kernel/kernel_random.h; sourceTree = "<group>"; };
 		D8F5C90C2020D56700D87FDB /* kernel_shader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = kernel_shader.h; path = ../../cycles/src/kernel/kernel_shader.h; sourceTree = "<group>"; };
-		D8F5C90D2020D56700D87FDB /* geom */ = {isa = PBXFileReference; lastKnownFileType = folder; name = geom; path = ../../cycles/src/kernel/geom; sourceTree = "<group>"; };
 		D8F5C90E2020D56700D87FDB /* kernel_work_stealing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = kernel_work_stealing.h; path = ../../cycles/src/kernel/kernel_work_stealing.h; sourceTree = "<group>"; };
 		D8F5C90F2020D56700D87FDB /* kernel_bake.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = kernel_bake.h; path = ../../cycles/src/kernel/kernel_bake.h; sourceTree = "<group>"; };
-		D8F5C9102020D56700D87FDB /* closure */ = {isa = PBXFileReference; lastKnownFileType = folder; name = closure; path = ../../cycles/src/kernel/closure; sourceTree = "<group>"; };
 		D8F5C9112020D56800D87FDB /* kernel_jitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = kernel_jitter.h; path = ../../cycles/src/kernel/kernel_jitter.h; sourceTree = "<group>"; };
 		D8F5C9122020D56800D87FDB /* kernel_math.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = kernel_math.h; path = ../../cycles/src/kernel/kernel_math.h; sourceTree = "<group>"; };
 		D8F5C9132020D56800D87FDB /* kernel_queues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = kernel_queues.h; path = ../../cycles/src/kernel/kernel_queues.h; sourceTree = "<group>"; };
@@ -543,17 +578,14 @@
 		D8F5C9162020D56900D87FDB /* kernel_volume.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = kernel_volume.h; path = ../../cycles/src/kernel/kernel_volume.h; sourceTree = "<group>"; };
 		D8F5C9172020D56900D87FDB /* kernel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = kernel.h; path = ../../cycles/src/kernel/kernel.h; sourceTree = "<group>"; };
 		D8F5C9182020D56900D87FDB /* kernel_compat_cuda.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = kernel_compat_cuda.h; path = ../../cycles/src/kernel/kernel_compat_cuda.h; sourceTree = "<group>"; };
-		D8F5C9192020D56900D87FDB /* filter */ = {isa = PBXFileReference; lastKnownFileType = folder; name = filter; path = ../../cycles/src/kernel/filter; sourceTree = "<group>"; };
 		D8F5C91A2020D56900D87FDB /* kernel_projection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = kernel_projection.h; path = ../../cycles/src/kernel/kernel_projection.h; sourceTree = "<group>"; };
 		D8F5C91B2020D56900D87FDB /* kernel_light.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = kernel_light.h; path = ../../cycles/src/kernel/kernel_light.h; sourceTree = "<group>"; };
 		D8F5C91C2020D56900D87FDB /* kernel_differential.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = kernel_differential.h; path = ../../cycles/src/kernel/kernel_differential.h; sourceTree = "<group>"; };
 		D8F5C91D2020D56A00D87FDB /* kernel_path_branched.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = kernel_path_branched.h; path = ../../cycles/src/kernel/kernel_path_branched.h; sourceTree = "<group>"; };
 		D8F5C91E2020D56A00D87FDB /* kernel_montecarlo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = kernel_montecarlo.h; path = ../../cycles/src/kernel/kernel_montecarlo.h; sourceTree = "<group>"; };
 		D8F5C91F2020D56A00D87FDB /* kernel_passes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = kernel_passes.h; path = ../../cycles/src/kernel/kernel_passes.h; sourceTree = "<group>"; };
-		D8F5C9202020D56A00D87FDB /* bvh */ = {isa = PBXFileReference; lastKnownFileType = folder; name = bvh; path = ../../cycles/src/kernel/bvh; sourceTree = "<group>"; };
 		D8F5C9212020D56A00D87FDB /* kernel_path_state.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = kernel_path_state.h; path = ../../cycles/src/kernel/kernel_path_state.h; sourceTree = "<group>"; };
 		D8F5C9222020D56B00D87FDB /* kernel_path_volume.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = kernel_path_volume.h; path = ../../cycles/src/kernel/kernel_path_volume.h; sourceTree = "<group>"; };
-		D8F5C9232020D56B00D87FDB /* svm */ = {isa = PBXFileReference; lastKnownFileType = folder; name = svm; path = ../../cycles/src/kernel/svm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -589,6 +621,8 @@
 				A100C8621FB5E75700BC046C /* bvh2.h */,
 				A100C85B1FB5E75600BC046C /* bvh4.cpp */,
 				A100C85C1FB5E75600BC046C /* bvh4.h */,
+				D8AB775D21BFC1B40054D367 /* bvh8.cpp */,
+				D8AB775E21BFC1B40054D367 /* bvh8.h */,
 				A100C8601FB5E75700BC046C /* CMakeLists.txt */,
 			);
 			name = bvh;
@@ -640,6 +674,8 @@
 				A100C8AB1FB5E7E500BC046C /* node_enum.h */,
 				A100C8AD1FB5E7E500BC046C /* node_type.cpp */,
 				A100C8AC1FB5E7E500BC046C /* node_type.h */,
+				D8AB775921BFC1610054D367 /* node_xml.cpp */,
+				D8AB775A21BFC1610054D367 /* node_xml.h */,
 				A100C8AE1FB5E7E500BC046C /* node.cpp */,
 				A100C8AA1FB5E7E500BC046C /* node.h */,
 			);
@@ -649,15 +685,16 @@
 		A100C8B61FB5E7F100BC046C /* kernel */ = {
 			isa = PBXGroup;
 			children = (
-				D8F5C98D2020D87600D87FDB /* cpu */,
-				D8F5C9202020D56A00D87FDB /* bvh */,
-				D8F5C9102020D56700D87FDB /* closure */,
+				D8AB775021BFC0CD0054D367 /* bvh */,
+				D8AB774F21BFC0CD0054D367 /* closure */,
 				D8F5C9092020D56600D87FDB /* CMakeLists.txt */,
-				D8F5C9192020D56900D87FDB /* filter */,
-				D8F5C90D2020D56700D87FDB /* geom */,
+				D8F5C98D2020D87600D87FDB /* cpu */,
+				D8AB775521BFC0CE0054D367 /* filter */,
+				D8AB775221BFC0CD0054D367 /* geom */,
 				D8F5C9012020D56500D87FDB /* kernel_accumulate.h */,
 				D8F5C90F2020D56700D87FDB /* kernel_bake.h */,
 				D8F5C9022020D56500D87FDB /* kernel_camera.h */,
+				D8AB774E21BFC0CC0054D367 /* kernel_color.h */,
 				D8F5C8FF2020D56500D87FDB /* kernel_compat_cpu.h */,
 				D8F5C9182020D56900D87FDB /* kernel_compat_cuda.h */,
 				D8F5C8F92020D56400D87FDB /* kernel_compat_opencl.h */,
@@ -688,11 +725,11 @@
 				D8F5C9162020D56900D87FDB /* kernel_volume.h */,
 				D8F5C90E2020D56700D87FDB /* kernel_work_stealing.h */,
 				D8F5C9172020D56900D87FDB /* kernel.h */,
-				D8F5C9072020D56600D87FDB /* kernels */,
-				D8F5C9042020D56600D87FDB /* osl */,
-				D8F5C8FA2020D56400D87FDB /* shaders */,
-				D8F5C8FC2020D56400D87FDB /* split */,
-				D8F5C9232020D56B00D87FDB /* svm */,
+				D8AB775821BFC1410054D367 /* kernels */,
+				D8AB775721BFC1410054D367 /* osl */,
+				D8AB775121BFC0CD0054D367 /* shaders */,
+				D8AB775321BFC0CD0054D367 /* split */,
+				D8AB775421BFC0CE0054D367 /* svm */,
 			);
 			name = kernel;
 			sourceTree = "<group>";
@@ -727,6 +764,7 @@
 				A100C9261FB5E95F00BC046C /* light.h */,
 				A100C93C1FB5E96100BC046C /* mesh_displace.cpp */,
 				A100C9451FB5E96200BC046C /* mesh_subdivision.cpp */,
+				D8AB774921BFC0700054D367 /* mesh_volume.cpp */,
 				A100C9481FB5E96300BC046C /* mesh.cpp */,
 				A100C92D1FB5E95F00BC046C /* mesh.h */,
 				A100C9421FB5E96200BC046C /* nodes.cpp */,
@@ -745,6 +783,8 @@
 				A100C9221FB5E95E00BC046C /* shader.h */,
 				A100C9301FB5E96000BC046C /* sobol.cpp */,
 				A100C9281FB5E95F00BC046C /* sobol.h */,
+				D8AB774A21BFC0700054D367 /* stats.cpp */,
+				D8AB774821BFC0700054D367 /* stats.h */,
 				A100C9361FB5E96100BC046C /* svm.cpp */,
 				A100C93A1FB5E96100BC046C /* svm.h */,
 				A100C9431FB5E96200BC046C /* tables.cpp */,
@@ -778,6 +818,7 @@
 				A100C9ED1FB5E9D500BC046C /* util_aligned_malloc.h */,
 				A100C9DC1FB5E9D300BC046C /* util_args.h */,
 				A100C9981FB5E9C600BC046C /* util_atomic.h */,
+				D8AB773B21BFC0310054D367 /* util_avxb.h */,
 				A100C9971FB5E9C600BC046C /* util_avxf.h */,
 				A100C9AC1FB5E9C800BC046C /* util_boundbox.h */,
 				A100C9C21FB5E9CB00BC046C /* util_color.h */,
@@ -790,6 +831,8 @@
 				A100C9C31FB5E9CB00BC046C /* util_guarded_allocator.h */,
 				A100C9DE1FB5E9D300BC046C /* util_half.h */,
 				A100C9B81FB5E9CA00BC046C /* util_hash.h */,
+				D8AB773A21BFC0310054D367 /* util_ies.cpp */,
+				D8AB773821BFC0310054D367 /* util_ies.h */,
 				A100C99A1FB5E9C600BC046C /* util_image_impl.h */,
 				A100C9C11FB5E9CA00BC046C /* util_image.h */,
 				A100C9C41FB5E9CB00BC046C /* util_list.h */,
@@ -816,7 +859,9 @@
 				A100C9EE1FB5E9D500BC046C /* util_path.cpp */,
 				A100C9A31FB5E9C700BC046C /* util_path.h */,
 				A100C9A51FB5E9C700BC046C /* util_progress.h */,
+				D8AB773C21BFC0310054D367 /* util_projection.h */,
 				A100C9D81FB5E9D200BC046C /* util_queue.h */,
+				D8AB773921BFC0310054D367 /* util_rect.h */,
 				A100C9B31FB5E9C900BC046C /* util_set.h */,
 				A100C9E31FB5E9D400BC046C /* util_simd.cpp */,
 				A100C9921FB5E9C500BC046C /* util_simd.h */,
@@ -848,6 +893,8 @@
 				A100C99F1FB5E9C700BC046C /* util_types_float3.h */,
 				A100C9DF1FB5E9D300BC046C /* util_types_float4_impl.h */,
 				A100C9AE1FB5E9C800BC046C /* util_types_float4.h */,
+				D8AB773F21BFC0320054D367 /* util_types_float8_impl.h */,
+				D8AB773D21BFC0320054D367 /* util_types_float8.h */,
 				A100C9E91FB5E9D400BC046C /* util_types_int2_impl.h */,
 				A100C9901FB5E9C500BC046C /* util_types_int2.h */,
 				A100C9D01FB5E9D100BC046C /* util_types_int3_impl.h */,
@@ -866,6 +913,7 @@
 				A100C9B41FB5E9C900BC046C /* util_types_uint3.h */,
 				A100C9BF1FB5E9CA00BC046C /* util_types_uint4_impl.h */,
 				A100C98D1FB5E9C500BC046C /* util_types_uint4.h */,
+				D8AB773E21BFC0320054D367 /* util_types_ushort4.h */,
 				A100C9B21FB5E9C900BC046C /* util_types_vector3_impl.h */,
 				A100C9EA1FB5E9D400BC046C /* util_types_vector3.h */,
 				A100C9CA1FB5E9CB00BC046C /* util_types.h */,
@@ -939,6 +987,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8AB776021BFC1B40054D367 /* bvh8.h in Headers */,
+				D8AB774621BFC0320054D367 /* util_types_ushort4.h in Headers */,
 				A100CA4F1FB5E9D600BC046C /* util_algorithm.h in Headers */,
 				D8F5C93A2020D56B00D87FDB /* kernel_volume.h in Headers */,
 				A100C8751FB5E75700BC046C /* bvh2.h in Headers */,
@@ -974,14 +1024,18 @@
 				A100CA541FB5E9D600BC046C /* util_aligned_malloc.h in Headers */,
 				A100CA0A1FB5E9D500BC046C /* util_path.h in Headers */,
 				A100C86B1FB5E75700BC046C /* bvh_params.h in Headers */,
+				D8AB774B21BFC0700054D367 /* stats.h in Headers */,
 				A100CA121FB5E9D500BC046C /* util_math.h in Headers */,
 				D8F5C9332020D56B00D87FDB /* kernel_work_stealing.h in Headers */,
 				D8F5C93D2020D56B00D87FDB /* kernel_projection.h in Headers */,
+				D8AB774721BFC0320054D367 /* util_types_float8_impl.h in Headers */,
 				D847C31F202D8D3A00D124A3 /* kernel_cpu.h in Headers */,
 				D8F5C9282020D56B00D87FDB /* kernel_compat_cpu.h in Headers */,
 				A100CA1A1FB5E9D600BC046C /* util_set.h in Headers */,
 				D8F5C92C2020D56B00D87FDB /* kernel_path.h in Headers */,
 				A100C8B31FB5E7E500BC046C /* node_type.h in Headers */,
+				D8AB774021BFC0320054D367 /* util_ies.h in Headers */,
+				D8AB774521BFC0320054D367 /* util_types_float8.h in Headers */,
 				A100CA451FB5E9D600BC046C /* util_half.h in Headers */,
 				A100CA171FB5E9D500BC046C /* util_xml.h in Headers */,
 				A100C88A1FB5E78800BC046C /* device_intern.h in Headers */,
@@ -1011,6 +1065,7 @@
 				A100C9F91FB5E9D500BC046C /* util_simd.h in Headers */,
 				A100CA4B1FB5E9D600BC046C /* util_types_uchar2.h in Headers */,
 				A100CA311FB5E9D600BC046C /* util_types.h in Headers */,
+				D8AB774421BFC0320054D367 /* util_projection.h in Headers */,
 				A100C9FB1FB5E9D500BC046C /* util_md5.h in Headers */,
 				A100CA061FB5E9D500BC046C /* util_types_float3.h in Headers */,
 				A100C8B21FB5E7E500BC046C /* node_enum.h in Headers */,
@@ -1030,6 +1085,7 @@
 				A100CA251FB5E9D600BC046C /* util_math_fast.h in Headers */,
 				A100CA461FB5E9D600BC046C /* util_types_float4_impl.h in Headers */,
 				A100CA111FB5E9D500BC046C /* util_math_int2.h in Headers */,
+				D8AB774121BFC0320054D367 /* util_rect.h in Headers */,
 				A100C95B1FB5E96300BC046C /* sobol.h in Headers */,
 				D8F5C9252020D56B00D87FDB /* kernel_path_subsurface.h in Headers */,
 				A100CA4C1FB5E9D600BC046C /* util_math_intersect.h in Headers */,
@@ -1043,6 +1099,7 @@
 				A100CA0B1FB5E9D500BC046C /* util_math_float3.h in Headers */,
 				D8F5C9442020D56B00D87FDB /* kernel_path_volume.h in Headers */,
 				A100CA501FB5E9D600BC046C /* util_types_int2_impl.h in Headers */,
+				D8AB774321BFC0320054D367 /* util_avxb.h in Headers */,
 				D8F5C9372020D56B00D87FDB /* kernel_queues.h in Headers */,
 				A100CA3F1FB5E9D600BC046C /* util_queue.h in Headers */,
 				A100C9F81FB5E9D500BC046C /* util_math_matrix.h in Headers */,
@@ -1082,12 +1139,14 @@
 				A100C8891FB5E78800BC046C /* device.h in Headers */,
 				A100C9711FB5E96300BC046C /* integrator.h in Headers */,
 				D8F5C93C2020D56B00D87FDB /* kernel_compat_cuda.h in Headers */,
+				D8AB775621BFC0CE0054D367 /* kernel_color.h in Headers */,
 				A100CA2B1FB5E9D600BC046C /* util_list.h in Headers */,
 				A100CA391FB5E9D600BC046C /* util_thread.h in Headers */,
 				A100C88F1FB5E78800BC046C /* device_split_kernel.h in Headers */,
 				A100CA371FB5E9D600BC046C /* util_types_int3_impl.h in Headers */,
 				A100C8881FB5E78800BC046C /* device_memory.h in Headers */,
 				A100C9581FB5E96300BC046C /* background.h in Headers */,
+				D8AB775C21BFC1610054D367 /* node_xml.h in Headers */,
 				D8F5C9392020D56B00D87FDB /* kernel_path_common.h in Headers */,
 				A100CA411FB5E9D600BC046C /* util_math_int4.h in Headers */,
 				A100CA591FB5E9D600BC046C /* util_logging.h in Headers */,
@@ -1180,14 +1239,17 @@
 				A100C9691FB5E96300BC046C /* svm.cpp in Sources */,
 				D847C326202D8D3A00D124A3 /* kernel_sse2.cpp in Sources */,
 				A100C88E1FB5E78800BC046C /* device_network.cpp in Sources */,
+				D8AB774221BFC0320054D367 /* util_ies.cpp in Sources */,
 				A100CA4A1FB5E9D600BC046C /* util_simd.cpp in Sources */,
 				A100C86A1FB5E75700BC046C /* bvh_sort.cpp in Sources */,
 				A100CA041FB5E9D500BC046C /* util_debug.cpp in Sources */,
 				A100CA0D1FB5E9D500BC046C /* util_transform.cpp in Sources */,
 				A100C9661FB5E96300BC046C /* camera.cpp in Sources */,
+				D8AB775B21BFC1610054D367 /* node_xml.cpp in Sources */,
 				D847C324202D8D3A00D124A3 /* filter_sse3.cpp in Sources */,
 				A100C95D1FB5E96300BC046C /* scene.cpp in Sources */,
 				A100C8971FB5E78800BC046C /* device.cpp in Sources */,
+				D8AB775F21BFC1B40054D367 /* bvh8.cpp in Sources */,
 				A100C8A51FB5E7AE00BC046C /* memory_manager.cpp in Sources */,
 				A100C96F1FB5E96300BC046C /* mesh_displace.cpp in Sources */,
 				A100CA2C1FB5E9D600BC046C /* util_logging.cpp in Sources */,
@@ -1200,10 +1262,12 @@
 				A100C9521FB5E96300BC046C /* bake.cpp in Sources */,
 				A100C9491FB5E96300BC046C /* object.cpp in Sources */,
 				A100C8911FB5E78800BC046C /* device_task.cpp in Sources */,
+				D8AB774C21BFC0700054D367 /* mesh_volume.cpp in Sources */,
 				A100C8921FB5E78800BC046C /* device_denoising.cpp in Sources */,
 				D847C327202D8D3A00D124A3 /* kernel_sse41.cpp in Sources */,
 				D8CA42571FE1572B007AF679 /* device_memory.cpp in Sources */,
 				A100C9891FB5E99300BC046C /* subd_patch_table.cpp in Sources */,
+				D8AB774D21BFC0700054D367 /* stats.cpp in Sources */,
 				D847C322202D8D3A00D124A3 /* kernel_sse3.cpp in Sources */,
 				A100C9631FB5E96300BC046C /* sobol.cpp in Sources */,
 				A100CA081FB5E9D500BC046C /* util_string.cpp in Sources */,
