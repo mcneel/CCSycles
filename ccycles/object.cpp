@@ -140,8 +140,7 @@ void cycles_scene_object_set_ignore_cutout(unsigned int client, unsigned int sce
 void cycles_scene_object_set_matrix(unsigned int client_id, unsigned int scene_id, unsigned int object_id,
 	float a, float b, float c, float d,
 	float e, float f, float g, float h,
-	float i, float j, float k, float l,
-	float m, float n, float o, float p
+	float i, float j, float k, float l
 	)
 {
 	SCENE_FIND(scene_id)
