@@ -206,11 +206,6 @@ static void _tfm_copy(const ccl::Transform& source, ccl::Transform& target) {
 	target.z.y = source.z.y;
 	target.z.z = source.z.z;
 	target.z.w = source.z.w;
-
-	target.w.x = source.w.x;
-	target.w.y = source.w.y;
-	target.w.z = source.w.z;
-	target.w.w = source.w.w;
 }
 
 void cycles_tfm_inverse(const ccl::Transform& t, ccl::Transform& res) {

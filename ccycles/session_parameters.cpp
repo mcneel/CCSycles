@@ -60,10 +60,10 @@ void cycles_session_params_set_progressive_refine(unsigned int client_id, unsign
 }
 void cycles_session_params_set_output_path(unsigned int client_id, unsigned int session_params_id, const char *output_path)
 {
-	if (session_params_id < session_params.size()) {
+	/*if (session_params_id < session_params.size()) {
 		session_params[session_params_id].output_path = std::string(output_path);
 		logger.logit(client_id, "Set output_path to: ", session_params[session_params_id].output_path);
-	}
+	}*/
 }
 
 void cycles_session_params_set_progressive(unsigned int client_id, unsigned int session_params_id, unsigned int progressive)
@@ -108,7 +108,7 @@ void cycles_session_params_set_display_buffer_linear(unsigned int client_id, uns
 }
 void cycles_session_params_set_skip_linear_to_srgb_conversion(unsigned int client_id, unsigned int session_params_id, unsigned int skip_linear_to_srgb_conversion)
 {
-	SESSION_PARAM_BOOL(session_params_id, skip_linear_to_srgb_conversion)
+	// SESSION_PARAM_BOOL(session_params_id, skip_linear_to_srgb_conversion)
 }
 void cycles_session_params_set_cancel_timeout(unsigned int client_id, unsigned int session_params_id, double cancel_timeout)
 {

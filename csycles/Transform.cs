@@ -39,18 +39,15 @@ namespace ccl
 		public _float4 x;
 		public _float4 y;
 		public _float4 z;
-		public _float4 w;
 		public _Transform(
 			float a, float b, float c, float d,
 			float e, float f, float g, float h,
-			float i, float j, float k, float l,
-			float m, float n, float o, float p
+			float i, float j, float k, float l
 		)
 		{
 			x = new _float4(a, b, c, d);
 			y = new _float4(e, f, g, h);
 			z = new _float4(i, j, k, l);
-			w = new _float4(m, n, o, p);
 		}
 		public _float4 this[int index]
 		{
@@ -64,10 +61,8 @@ namespace ccl
 						return y;
 					case 2:
 						return z;
-					case 3:
-						return w;
 					default:
-						throw new IndexOutOfRangeException("Only 0-3 are acceptable");
+						throw new IndexOutOfRangeException("Only indices [0..2] are acceptable");
 				}
 			}
 			set
@@ -83,11 +78,8 @@ namespace ccl
 					case 2:
 						z = value;
 						break;
-					case 3:
-						w = value;
-						break;
 					default:
-						throw new IndexOutOfRangeException("Only 0-3 are acceptable");
+						throw new IndexOutOfRangeException("Only indices [0..2] are acceptable");
 				}
 				
 			}
@@ -109,11 +101,6 @@ namespace ccl
 			target.z.y = z.y;
 			target.z.z = z.z;
 			target.z.w = z.w;
-
-			target.w.x = w.x;
-			target.w.y = w.y;
-			target.w.z = w.z;
-			target.w.w = w.w;
 		}
 
 		public void CopyFrom(Transform source)
@@ -132,11 +119,6 @@ namespace ccl
 			z.y = source.z.y;
 			z.z = source.z.z;
 			z.w = source.z.w;
-
-			w.x = source.w.x;
-			w.y = source.w.y;
-			w.z = source.w.z;
-			w.w = source.w.w;
 		}
 
 		public static explicit operator Transform(_Transform t)
@@ -146,7 +128,6 @@ namespace ccl
 				x = (float4) t.x,
 				y = (float4) t.y,
 				z = (float4) t.z,
-				w = (float4) t.w
 			};
 
 
@@ -160,7 +141,6 @@ namespace ccl
 				x = (_float4) t.x,
 				y = (_float4) t.y,
 				z = (_float4) t.z,
-				w = (_float4) t.w
 			};
 
 			return conv;
@@ -201,8 +181,7 @@ namespace ccl
 		static public Transform RhinoToCyclesCam { get; } = new Transform(
 			1.0f, 0.0f, 0.0f, 0.0f,
 			0.0f, 1.0f, 0.0f, 0.0f,
-			0.0f, 0.0f, -1.0f, 0.0f,
-			0.0f, 0.0f, 0.0f, 1.0f
+			0.0f, 0.0f, -1.0f, 0.0f
 		);
 
 		/// <summary>
@@ -217,10 +196,6 @@ namespace ccl
 		/// Z row, elements M20-M23
 		/// </summary>
 		public float4 z;
-		/// <summary>
-		/// W row, elements M30-M33
-		/// </summary>
-		public float4 w;
 
 		/// <summary>
 		/// Create a new transform using the given
@@ -238,28 +213,22 @@ namespace ccl
 		/// <param name="j">M21</param>
 		/// <param name="k">M22</param>
 		/// <param name="l">M23</param>
-		/// <param name="m">M30</param>
-		/// <param name="n">M31</param>
-		/// <param name="o">M32</param>
-		/// <param name="p">M33</param>
 		public Transform(
 			float a, float b, float c, float d,
 			float e, float f, float g, float h,
-			float i, float j, float k, float l,
-			float m, float n, float o, float p
+			float i, float j, float k, float l
 		)
 		{
 			x = new float4(a, b, c, d);
 			y = new float4(e, f, g, h);
 			z = new float4(i, j, k, l);
-			w = new float4(m, n, o, p);
 
 		}
 		/// <summary>
 		/// Create new transform with all cells set to 0.0f
 		/// </summary>
 		public Transform()
-			: this(0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f)
+			: this(0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f)
 		{
 		}
 
@@ -271,8 +240,7 @@ namespace ccl
 			: this (
 				old.x.x, old.x.y, old.x.z, old.x.w,
 				old.y.x, old.y.y, old.y.z, old.y.w,
-				old.z.x, old.z.y, old.z.z, old.z.w,
-				old.w.x, old.w.y, old.w.z, old.w.w
+				old.z.x, old.z.y, old.z.z, old.z.w
 			)
 		{
 		}
@@ -280,19 +248,19 @@ namespace ccl
 		/// <summary>
 		/// Construct a Transform using a float array
 		/// </summary>
-		/// <param name="m">Array of 16 floats</param>
+		/// <param name="m">Array of 12 floats</param>
 		public Transform(float[] m)
-			: this(m[0], m[1], m[2], m[3], m[4], m[5], m[6], m[7], m[8], m[9], m[10], m[11], m[12], m[13], m[14], m[15])
+			: this(m[0], m[1], m[2], m[3], m[4], m[5], m[6], m[7], m[8], m[9], m[10], m[11])
 		{
 		}
 
 		/// <summary>
 		/// Set all matrix cells with elements from the given float array.
 		/// </summary>
-		/// <param name="m">float array of at least 16 elements. If the array is larger only the first 16 elements will be used.</param>
+		/// <param name="m">float array of at least 12 elements. If the array is larger only the first 12 elements will be used.</param>
 		public void SetMatrix(float[] m)
 		{
-			if(m.Length < 16) throw new ArgumentException("float array too short, must contain at least 16 float elements.");
+			if(m.Length < 12) throw new ArgumentException("float array too short, must contain at least 12 float elements.");
 			x.x = m[0];
 			x.y = m[1];
 			x.z = m[2];
@@ -305,11 +273,13 @@ namespace ccl
 			z.y = m[9];
 			z.z = m[10];
 			z.w = m[11];
-			w.x = m[12];
-			w.y = m[13];
-			w.z = m[14];
-			w.w = m[15];
 		}
+
+		/// <summary>
+		/// Index the transformation, 0=x, 1=y, 2=z
+		/// </summary>
+		/// <param name="index">0<=index<=2</param>
+		/// <returns>float4 designated by the index</returns>
 		public float4 this[int index]
 		{
 			get
@@ -322,10 +292,8 @@ namespace ccl
 						return y;
 					case 2:
 						return z;
-					case 3:
-						return w;
 					default:
-						throw new IndexOutOfRangeException("Only 0-3 are acceptable");
+						throw new IndexOutOfRangeException("Only indices [0..2] are acceptable");
 				}
 			}
 			set
@@ -341,11 +309,8 @@ namespace ccl
 					case 2:
 						z = value;
 						break;
-					case 3:
-						w = value;
-						break;
 					default:
-						throw new IndexOutOfRangeException("Only 0-3 are acceptable");
+						throw new IndexOutOfRangeException("Only indices [0..2] are acceptable");
 				}
 				
 			}
@@ -368,12 +333,14 @@ namespace ccl
 		/// <returns></returns>
 		static public Transform operator *(Transform a, Transform b)
 		{
-			var c = Transpose(b);
+			float4 c_x = new float4(b.x.x, b.y.x, b.z.x, 0.0f);
+			float4 c_y = new float4(b.x.y, b.y.y, b.z.y, 0.0f);
+			float4 c_z = new float4(b.x.z, b.y.z, b.z.z, 0.0f);
+			float4 c_w = new float4(b.x.w, b.y.w, b.z.w, 1.0f);
 			return new Transform(
-				float4.Dot(a.x, c.x), float4.Dot(a.x, c.y), float4.Dot(a.x, c.z), float4.Dot(a.x, c.w),
-				float4.Dot(a.y, c.x), float4.Dot(a.y, c.y), float4.Dot(a.y, c.z), float4.Dot(a.y, c.w),
-				float4.Dot(a.z, c.x), float4.Dot(a.z, c.y), float4.Dot(a.z, c.z), float4.Dot(a.z, c.w),
-				float4.Dot(a.w, c.x), float4.Dot(a.w, c.y), float4.Dot(a.w, c.z), float4.Dot(a.w, c.w)
+				float4.Dot(a.x, c_x), float4.Dot(a.x, c_y), float4.Dot(a.x, c_z), float4.Dot(a.x, c_w),
+				float4.Dot(a.y, c_x), float4.Dot(a.y, c_y), float4.Dot(a.y, c_z), float4.Dot(a.y, c_w),
+				float4.Dot(a.z, c_x), float4.Dot(a.z, c_y), float4.Dot(a.z, c_z), float4.Dot(a.z, c_w)
 			);
 		}
 
@@ -406,29 +373,12 @@ namespace ccl
 				axis.z * axis.x * t - s * axis.y,
 				axis.z * axis.y * t + s * axis.x,
 				axis.z * axis.z * t + c,
-				0.0f,
+				0.0f
 
-				0.0f, 0.0f, 0.0f, 1.0f);
+				);
 
 		}
 
-		/// <summary>
-		/// Give transposed matrix of a
-		/// </summary>
-		/// <param name="a"></param>
-		/// <returns></returns>
-		static public Transform Transpose(Transform a)
-		{
-			var t = new Transform
-			{
-				x = {x = a.x.x, y = a.y.x, z = a.z.x, w = a.w.x},
-				y = {x = a.x.y, y = a.y.y, z = a.z.y, w = a.w.y},
-				z = {x = a.x.z, y = a.y.z, z = a.z.z, w = a.w.z},
-				w = {x = a.x.w, y = a.y.w, z = a.z.w, w = a.w.w}
-			};
-
-			return t;
-		}
 
 		public void SetTranslate(float4 t)
 		{
@@ -457,8 +407,8 @@ namespace ccl
 			return new Transform(
 				1, 0, 0, t.x,
 				0, 1, 0, t.y,
-				0, 0, 1, t.z,
-				0, 0, 0, 1);
+				0, 0, 1, t.z
+				);
 		}
 
 		/// <summary>
@@ -485,8 +435,7 @@ namespace ccl
 			return new Transform(
 				x, 0.0f, 0.0f, 0.0f,
 				0.0f, y, 0.0f, 0.0f,
-				0.0f, 0.0f, z, 0.0f,
-				0.0f, 0.0f, 0.0f, 1.0f
+				0.0f, 0.0f, z, 0.0f
 				);
 		}
 
@@ -510,7 +459,7 @@ namespace ccl
 		override public string ToString()
 		{
 			return
-				$"[{x.x}, {x.y}, {x.z}, {x.w}, {y.x}, {y.y}, {y.z}, {y.w}, {z.x}, {z.y}, {z.z}, {z.w}, {w.x}, {w.y}, {w.z}, {w.w}]";
+				$"[{x.x}, {x.y}, {x.z}, {x.w}, {y.x}, {y.y}, {y.z}, {y.w}, {z.x}, {z.y}, {z.z}, {z.w}]";
 		}
 	}
 

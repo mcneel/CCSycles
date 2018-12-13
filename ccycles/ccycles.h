@@ -32,8 +32,7 @@ limitations under the License.
 ccl::Transform camConvertMat = ccl::make_transform(
 1.0f, 0.0f, 0.0f, 0.0f,
 0.0f, -1.0f, 0.0f, 0.0f,
-0.0f, 0.0f, -1.0f, 1.0f,
-0.0f, 0.0f, 0.0f, 1.0f
+0.0f, 0.0f, -1.0f, 1.0f
 
 */
 
@@ -312,8 +311,7 @@ CCL_CAPI unsigned int __cdecl cycles_scene_add_object(unsigned int client_id, un
 CCL_CAPI void __cdecl cycles_scene_object_set_matrix(unsigned int client_id, unsigned int scene_id, unsigned int object_id,
 	float a, float b, float c, float d,
 	float e, float f, float g, float h,
-	float i, float j, float k, float l,
-	float m, float n, float o, float p
+	float i, float j, float k, float l
 	);
 /**
  * Set object mesh
@@ -457,8 +455,7 @@ CCL_CAPI void __cdecl cycles_camera_set_panorama_type(unsigned int client_id, un
 CCL_CAPI void __cdecl cycles_camera_set_matrix(unsigned int client_id, unsigned int scene_id,
 	float a, float b, float c, float d,
 	float e, float f, float g, float h,
-	float i, float j, float k, float l,
-	float m, float n, float o, float p
+	float i, float j, float k, float l
 	);
 /** Compute the auto viewplane for scene camera. */
 CCL_CAPI void __cdecl cycles_camera_compute_auto_viewplane(unsigned int client_id, unsigned int scene_id);
