@@ -9,8 +9,14 @@ SET nvcc10=C:\CUDA10\bin\nvcc.exe
 SET typechoice=%1
 
 SET _apptype=0
-IF "%typechoice%"=="standalone" SET _apptype=1
-IF "%typechoice%"=="rhino" SET _apptype=1
+IF "%typechoice%"=="standalone" (
+	SET _apptype=1
+	SHIFT
+)
+IF "%typechoice%"=="rhino" (
+	SET _apptype=1
+	SHIFT
+)
 
 
 IF %_apptype% EQU 1 (
@@ -21,7 +27,6 @@ IF %_apptype% EQU 1 (
 		SET cyclesroot=%parent%
 		SET cyclesout=%parent%..\..\..\..\..\big_libs\RhinoCycles\
 	)
-	SHIFT
 ) else (
 	SET cyclesroot=%parent%
 	SET cyclesout=%parent%..\..\..\..\..\big_libs\RhinoCycles\
