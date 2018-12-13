@@ -46,7 +46,7 @@ namespace ccl.ShaderNodes
 		}
 	}
 
-	[ShaderNode("normalmap")]
+	[ShaderNode("normal_map")]
 	public class NormalMapNode : ShaderNode
 	{
 		public enum Space
@@ -69,6 +69,8 @@ namespace ccl.ShaderNodes
 
 			ins.Color.Value = new float4(0.8f);
 			ins.Strength.Value = 1.0f;
+
+			/* TODO: Add Attribute property for custom maps*/
 		}
 
 		public Space SpaceType { get; set; } = Space.Tangent;

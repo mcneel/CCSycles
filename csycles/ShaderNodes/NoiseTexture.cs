@@ -66,6 +66,10 @@ namespace ccl.ShaderNodes
 		{
 			inputs = new NoiseInputs(this);
 			outputs = new NoiseOutputs(this);
+
+			ins.Scale.Value = 1.0f;
+			ins.Detail.Value = 2.0f;
+			ins.Distortion.Value = 0.0f;
 		}
 
 		internal override void ParseXml(XmlReader xmlNode)

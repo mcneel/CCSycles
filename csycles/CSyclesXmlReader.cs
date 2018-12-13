@@ -239,7 +239,6 @@ namespace ccl
 			transform.x = res.x;
 			transform.y = res.y;
 			transform.z = res.z;
-			transform.w = res.w;
 		}
 
 		private void ReadState(ref XmlReadState state, System.Xml.XmlReader node)

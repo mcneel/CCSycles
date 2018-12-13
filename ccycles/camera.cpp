@@ -64,17 +64,15 @@ void cycles_camera_set_panorama_type(unsigned int client_id, unsigned int scene_
 void cycles_camera_set_matrix(unsigned int client_id, unsigned int scene_id,
 	float a, float b, float c, float d,
 	float e, float f, float g, float h,
-	float i, float j, float k, float l,
-	float m, float n, float o, float p
+	float i, float j, float k, float l
 	)
 {
 	SCENE_FIND(scene_id)
-		ccl::Transform mat = ccl::make_transform(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p);
+		ccl::Transform mat = ccl::make_transform(a, b, c, d, e, f, g, h, i, j, k, l);
 		logger.logit(client_id, "Setting camera matrix in scene ", scene_id, " to\n",
 			"\t[", a, ",", b, ",", c, ",", d, "\n",
 			"\t ", e, ",", f, ",", g, ",", h, "\n",
-			"\t ", i, ",", j, ",", k, ",", l, "\n",
-			"\t ", m, ",", n, ",", o, ",", p, "]\n"
+			"\t ", i, ",", j, ",", k, ",", l, "\n"
 			);
 		sce->camera->matrix = mat;
 	SCENE_FIND_END()

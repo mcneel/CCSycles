@@ -61,14 +61,14 @@ unsigned int get_idx_for_shader_in_scene(ccl::Scene* sce, ccl::Shader* sh)
 
 /* implement CCScene methods*/
 
-void CCScene::builtin_image_info(const std::string& builtin_name, void* builtin_data, bool& is_float, int& width, int& height, int& depth, int& channels)
+void CCScene::builtin_image_info(const std::string& builtin_name, void* builtin_data, ccl::ImageMetaData& imdata) //bool& is_float, int& width, int& height, int& depth, int& channels)
 {
 	CCImage* img = static_cast<CCImage*>(builtin_data);
-	width = img->width;
-	height = img->height;
-	depth = img->depth;
-	channels = img->channels;
-	is_float = img->is_float;
+	imdata.width = img->width;
+	imdata.height = img->height;
+	imdata.depth = img->depth;
+	imdata.channels = img->channels;
+	imdata.is_float = img->is_float;
 }
 
 bool CCScene::builtin_image_pixels(const std::string& builtin_name, void* builtin_data, unsigned char* pixels)
@@ -135,7 +135,7 @@ unsigned int cycles_scene_create(unsigned int client_id, unsigned int scene_para
 
 		scenes[cscid].scene = new ccl::Scene(params, session->device);
 		scenes[cscid].params_id = scene_params_id;
-		scenes[cscid].scene->image_manager->builtin_image_info_cb = function_bind(&CCScene::builtin_image_info, scenes[cscid], std::placeholders::_1, std::placeholders::_2, std::placeholders::_3, std::placeholders::_4, std::placeholders::_5, std::placeholders::_6, std::placeholders::_7);
+		scenes[cscid].scene->image_manager->builtin_image_info_cb = function_bind(&CCScene::builtin_image_info, scenes[cscid], std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
 		scenes[cscid].scene->image_manager->builtin_image_pixels_cb = function_bind(&CCScene::builtin_image_pixels, scenes[cscid], std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
 		scenes[cscid].scene->image_manager->builtin_image_float_pixels_cb = function_bind(&CCScene::builtin_image_float_pixels, scenes[cscid], std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
 

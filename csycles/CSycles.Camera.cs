@@ -30,15 +30,13 @@ namespace ccl
 		private static extern void cycles_camera_set_matrix(uint clientId, uint sceneId,
 			float a, float b, float c, float d,
 			float e, float f, float g, float h,
-			float i, float j, float k, float l,
-			float m, float n, float o, float p);
+			float i, float j, float k, float l);
 		public static void camera_set_matrix(uint clientId, uint sceneId, Transform t)
 		{
 			cycles_camera_set_matrix(clientId, sceneId,
 				t.x.x, t.x.y, t.x.z, t.x.w,
 				t.y.x, t.y.y, t.y.z, t.y.w,
-				t.z.x, t.z.y, t.z.z, t.z.w,
-				t.w.x, t.w.y, t.w.z, t.w.w);
+				t.z.x, t.z.y, t.z.z, t.z.w);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
