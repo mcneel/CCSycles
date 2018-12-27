@@ -61,7 +61,7 @@ namespace ccl.ShaderNodes
 			Sheen                  = new FloatSocket(parentNode, "Sheen");
 			SheenTint              = new FloatSocket(parentNode, "Sheen Tint");
 			Clearcoat              = new FloatSocket(parentNode, "Clearcoat");
-			ClearcoatGloss         = new FloatSocket(parentNode, "Clearcoat Gloss");
+			ClearcoatGloss         = new FloatSocket(parentNode, "Clearcoat Roughness");
 			IOR                    = new FloatSocket(parentNode, "IOR");
 			Transmission           = new FloatSocket(parentNode, "Transmission");
 			TransmissionRoughness  = new FloatSocket(parentNode, "Transmission Roughness");
