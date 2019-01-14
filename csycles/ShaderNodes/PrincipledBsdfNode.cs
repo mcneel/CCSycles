@@ -198,5 +198,10 @@ namespace ccl.ShaderNodes
 				if (Enum.TryParse(str, true, out d)) Distribution = d;
 			}
 		}
+
+		public override ClosureSocket GetClosureSocket()
+		{
+			return outs.BSDF;
+		}
 	}
 }
