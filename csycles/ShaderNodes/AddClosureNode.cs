@@ -108,5 +108,10 @@ namespace ccl.ShaderNodes
 			inputs = new AddClosureInputs(this);
 			outputs = new AddClosureOutputs(this);
 		}
+
+		public override ClosureSocket GetClosureSocket()
+		{
+			return outs.Closure;
+		}
 	}
 }
