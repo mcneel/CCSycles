@@ -666,7 +666,7 @@ enum class shadernode_type : unsigned int {
 };
 
 CCL_CAPI unsigned int __cdecl cycles_create_shader(unsigned int client_id);
-CCL_CAPI void __cdecl cycles_scene_tag_shader(unsigned int client_id, unsigned int scene_id, unsigned int shader_id);
+CCL_CAPI void __cdecl cycles_scene_tag_shader(unsigned int client_id, unsigned int scene_id, unsigned int shader_id, bool use);
 CCL_CAPI unsigned int __cdecl cycles_scene_add_shader(unsigned int client_id, unsigned int scene_id, unsigned int shader_id);
 /** Set shader_id as default surface shader for scene_id.
  * Note that shader_id is the ID for the shader specific to this scene.
