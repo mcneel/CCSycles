@@ -104,12 +104,13 @@ unsigned int cycles_scene_add_shader(unsigned int client_id, unsigned int scene_
 		return (unsigned int)(-1);
 }
 
-void cycles_scene_tag_shader(unsigned int client_id, unsigned int scene_id, unsigned int shader_id)
+void cycles_scene_tag_shader(unsigned int client_id, unsigned int scene_id, unsigned int shader_id, bool use)
 {
 	SCENE_FIND(scene_id)
 		CCShader* sh = shaders[shader_id];
 	sh->shader->tag_update(sce);
-	sh->shader->tag_used(sce);
+	if(use)
+		sh->shader->tag_used(sce);
 	SCENE_FIND_END()
 }
 

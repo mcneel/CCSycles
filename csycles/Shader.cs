@@ -120,7 +120,11 @@ namespace ccl
 		/// </summary>
 		public virtual void Tag()
 		{
-			CSycles.scene_tag_shader(Client.Id, Client.Scene.Id, Id);
+			Tag(true);
+		}
+		public virtual void Tag(bool use)
+		{
+			CSycles.scene_tag_shader(Client.Id, Client.Scene.Id, Id, use);
 		}
 
 		/// <summary>
