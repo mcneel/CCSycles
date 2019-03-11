@@ -236,6 +236,7 @@ namespace ccl.ShaderNodes
 			{
 				using (var bmp = new System.Drawing.Bitmap(imgsrc))
 				{
+					bmp.RotateFlip(System.Drawing.RotateFlipType.RotateNoneFlipY);
 					var l = bmp.Width * bmp.Height * 4;
 					var bmpdata = new byte[l];
 					for (var x = 0; x < bmp.Width; x++)
