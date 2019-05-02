@@ -4,28 +4,24 @@ C[CS]?ycles : CCycles and CSycles for Cycles
 C[CS]?ycles aims to provide a C API around Cycles. Building on CCycles also a
 C# wrapper is available.
 
-*Note 1* Cycles code is now pulled from upstream developer.blender.org. This is
-done through submodule, so after cloning be sure you init and pull for the
-submodule as well to get all changes. On subsequent pulls on master you'll have
-to `cd` into `cycles/` and pull there as well.
+*Note 1* Cycles code is forked at https://github.com/mcneel/cycles. Clone this
+CCSycles repository recursively so that the submodules get initialized and pulled
+correctly as well.
 
-*Note 2* Boost 1.60.0 has been tested in the master branch. Download it from
-http://boost.org and extract it to the root of this repository. The folder
-should be called boost/.
+*Note 2* Use the `standalone` branch to work from
 
-*Note 3* This is currently targeted at Windows 64bit platform only, but patches
-to improve cross-platform compiling and executing are likely candidates for
-acceptance
+*Note 3* Download the boost.zip archive from
 
-*Note 4* The grand plan is to improve CCycles and CSycles and prepare for
-submission to Blender upstream repository. There are still many hurdles to jump
-over before this project is ready for that. Until that moment main development
-of both parts is conducted in this repository.
+https://drive.google.com/open?id=1hqhWd5ZZ38-Bn7U_JE0SGgNwIi1ZPKFJ
 
-*Note 5* No OSL support effort has been made, as for the RhinoCycles plugin the
+if you want to use the Boost that I use. Extract its contents outside of the root
+of this repository. So if you have C:\Dev\CCSycles, then you should end up with
+C:\Dev\boost, which is the top folder contained in the zip.
+
+*Note 4* No OSL support effort has been made, as for the RhinoCycles plugin the
 focus is on CUDA support.
 
-*Note 6* The C[CS]?ycles main developer is Nathan Letwory. You can contact him
+*Note 5* The C[CS]?ycles main developer is Nathan Letwory. You can contact him
 at nathan@mcneel.com or find him as jesterKing in IRC channel #blendercoders of
 the Freenode network.
 
@@ -78,11 +74,11 @@ cuew is the CUDA execution wrangler library
 C-API and C# wrapper code
 =========================
 
-ccycles (C API)
-csycles (C# wrapper around CCycles)
-csycles_tester (C# tester program, reimplementation of Cycles
+* ccycles (C API)
+* csycles (C# wrapper around CCycles)
+* csycles_tester (C# tester program, reimplementation of Cycles
                 standalone)
-csycles_diag (C# diagnostics program, text output only)
+* csycles_diag (C# diagnostics program, text output only)
 
 Building
 ========
@@ -91,13 +87,15 @@ Building
 2. Get Boost and extract it to the root of the repository, rename the folder to
 boost/
 3. Open cycles.sln
+4. Select one of the stand-alone configurations (debug or release)
 4. Build solution for csycles_tester
-5. run csycles_tester with an XML test file
+5. run csycles_tester, it as very simple GUI program. It will list in its menu
+   any XML that is in its directory
 
 License for CCycles and CSycles
 ===============================
 
-Copyright 2014 Robert McNeel and Associates
+Copyright 2014-2019 Robert McNeel and Associates
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
