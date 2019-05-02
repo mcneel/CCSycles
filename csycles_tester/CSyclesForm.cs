@@ -45,6 +45,7 @@ namespace csycles_tester
 		const uint samples = 50;
 		Random r = new Random();
 		private static CSycles.RenderTileCallback g_write_render_tile_callback;
+		private static CSycles.RenderTileCallback g_update_render_tile_callback;
 		public void WriteRenderTileCallback(uint sessionId, uint tx, uint ty, uint tw, uint th, uint sample, uint depth, PassType passtype, float[] px, int len)
 		{
 			if (passtype != PassType.Combined) return;
@@ -64,6 +65,29 @@ namespace csycles_tester
 				}
 			}
 		}
+		private static CSycles.UpdateCallback g_update_callback;
+		public void StatusUpdateCallback(uint sessionId)
+		{
+			float progress;
+
+			CSycles.progress_get_progress(Client.Id, sessionId, out progress);
+			var status = CSycles.progress_get_status(Client.Id, sessionId);
+			var substatus = CSycles.progress_get_substatus(Client.Id, sessionId);
+			uint samples;
+			uint num_samples;
+
+			CSycles.tilemanager_get_sample_info(Client.Id, sessionId, out samples, out num_samples);
+
+			if (status.Equals("Finished"))
+			{
+				Console.WriteLine("wohoo... :D");
+			}
+
+			status = "[" + status + "]";
+			if (!substatus.Equals(string.Empty)) status = status + ": " + substatus;
+			Console.WriteLine("C# status update: {0} {1} {2} {3} <|> {4:P}", CSycles.progress_get_sample(Client.Id, sessionId), status, samples, num_samples, progress);
+		}
+
 
 		float[] pixels;
 		int height;
@@ -81,16 +105,23 @@ namespace csycles_tester
 				Experimental = false,
 				Samples = (int) samples,
 				TileSize = tilesize,
-				//StartResolution = 64,
+				TileOrder = TileOrder.Center,
 				Threads = 0,
 				ShadingSystem = ShadingSystem.SVM,
 				Background = true,
-				ProgressiveRefine = false,
-				Progressive = false,
-				//TileOrder = TileOrder.HilbertSpiral
+				DisplayBufferLinear = false,
+				ProgressiveRefine = true,
+				Progressive = true,
+				PixelSize = 1
 			};
-			//var Session = new Session(Client, session_params, scene);
 			var Session = new Session(Client, session_params);
+
+			g_write_render_tile_callback = WriteRenderTileCallback;
+			g_update_callback = StatusUpdateCallback;
+
+			Session.UpdateCallback = g_update_callback;
+			Session.UpdateTileCallback = null;
+			Session.WriteTileCallback = g_write_render_tile_callback;
 
 			var scene_params = new SceneParameters(Client, ShadingSystem.SVM, BvhType.Static, false, false, false);
 			var scene = new Scene(Client, scene_params, Session);
@@ -102,23 +133,15 @@ namespace csycles_tester
 			height = scene.Camera.Size.Height;
 
 			pixels = new float[width * height * 4];
+			Session.PrepareRun();
 			Session.Reset((uint)width, (uint)height, samples);
 
-
-			g_write_render_tile_callback = WriteRenderTileCallback;
-			Session.WriteTileCallback = g_write_render_tile_callback;
-
-			/*if (!silent)
-			{
-				Session.UpdateCallback = g_update_callback;
-				Session.UpdateTileCallback = g_update_render_tile_callback;
-				Session.WriteTileCallback = g_write_render_tile_callback;
+			bool stillRendering = true;
+			while(stillRendering) {
+				stillRendering = Session.Sample() > -1;
 			}
-			CSycles.set_logger(Client.Id, g_logger_callback);
-			*/
 
-			Session.Start();
-			Session.Wait();
+			Session.EndRun();
 
 			var bmp = new ed.Bitmap((int)width, (int)height, Eto.Drawing.PixelFormat.Format32bppRgba);
 			for (var x = 0; x < width; x++)

@@ -85,28 +85,6 @@ namespace csycles_tester
 			return some_setup;
 		}
 
-		static public void StatusUpdateCallback(uint sessionId)
-		{
-			float progress;
-
-			CSycles.progress_get_progress(Client.Id, sessionId, out progress);
-			var status = CSycles.progress_get_status(Client.Id, sessionId);
-			var substatus = CSycles.progress_get_substatus(Client.Id, sessionId);
-			uint samples;
-			uint num_samples;
-
-			CSycles.tilemanager_get_sample_info(Client.Id, sessionId, out samples, out num_samples);
-
-			if (status.Equals("Finished"))
-			{
-				Console.WriteLine("wohoo... :D");
-			}
-
-			status = "[" + status + "]";
-			if (!substatus.Equals(string.Empty)) status = status + ": " + substatus;
-			Console.WriteLine("C# status update: {0} {1} {2} {3} <|> {4:P}", CSycles.progress_get_sample(Client.Id, sessionId), status, samples, num_samples, progress);
-		}
-
 		static public void WriteRenderTileCallback(uint sessionId, uint x, uint y, uint w, uint h, uint depth, int startSample, int numSamples, int sample, int resolution)
 		{
 			Console.WriteLine("C# Write Render Tile for session {0} at ({1},{2}) [{3}]", sessionId, x, y, depth);
