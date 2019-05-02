@@ -104,12 +104,13 @@ unsigned int cycles_scene_add_shader(unsigned int client_id, unsigned int scene_
 		return (unsigned int)(-1);
 }
 
-void cycles_scene_tag_shader(unsigned int client_id, unsigned int scene_id, unsigned int shader_id)
+void cycles_scene_tag_shader(unsigned int client_id, unsigned int scene_id, unsigned int shader_id, bool use)
 {
 	SCENE_FIND(scene_id)
 		CCShader* sh = shaders[shader_id];
 	sh->shader->tag_update(sce);
-	sh->shader->tag_used(sce);
+	if(use)
+		sh->shader->tag_used(sce);
 	SCENE_FIND_END()
 }
 
@@ -694,8 +695,18 @@ void cycles_shadernode_set_enum(unsigned int client_id, unsigned int shader_id, 
 		break;
 		case shadernode_type::VORONOI_TEXTURE:
 		{
-			ccl::VoronoiTextureNode* node = dynamic_cast<ccl::VoronoiTextureNode*>(shnode);
-			node->coloring = (ccl::NodeVoronoiColoring)value;
+			if (ename == "coloring") {
+				ccl::VoronoiTextureNode* node = dynamic_cast<ccl::VoronoiTextureNode*>(shnode);
+				node->coloring = (ccl::NodeVoronoiColoring)value;
+			}
+			if (ename == "metric") {
+				ccl::VoronoiTextureNode* node = dynamic_cast<ccl::VoronoiTextureNode*>(shnode);
+				node->metric = (ccl::NodeVoronoiDistanceMetric)value;
+			}
+			if (ename == "feature") {
+				ccl::VoronoiTextureNode* node = dynamic_cast<ccl::VoronoiTextureNode*>(shnode);
+				node->metric = (ccl::NodeVoronoiDistanceMetric)value;
+			}
 		}
 		break;
 		case shadernode_type::SKY_TEXTURE:
@@ -1064,12 +1075,6 @@ void cycles_shadernode_set_member_vec4_at_index(unsigned int client_id, unsigned
 				texco->ob_tfm.z.z = z;
 				texco->ob_tfm.z.w = w;
 			}
-			if (index == 3) {
-				texco->ob_tfm.w.x = x;
-				texco->ob_tfm.w.y = y;
-				texco->ob_tfm.w.z = z;
-				texco->ob_tfm.w.w = w;
-			}
 		}
 		break;
 		case shadernode_type::MATRIX_MATH:
@@ -1092,12 +1097,6 @@ void cycles_shadernode_set_member_vec4_at_index(unsigned int client_id, unsigned
 				matmath->tfm.z.y = y;
 				matmath->tfm.z.z = z;
 				matmath->tfm.z.w = w;
-			}
-			if (index == 3) {
-				matmath->tfm.w.x = x;
-				matmath->tfm.w.y = y;
-				matmath->tfm.w.z = z;
-				matmath->tfm.w.w = w;
 			}
 		}
 		break;

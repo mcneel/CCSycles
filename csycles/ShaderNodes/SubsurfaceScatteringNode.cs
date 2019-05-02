@@ -66,9 +66,10 @@ namespace ccl.ShaderNodes
 	{
 		public enum FalloffTypes
 		{
-			Cubic = 39,
-			Guassian = 40,
-			Burley = 42
+			Cubic = 40,
+			Guassian = 41,
+			Burley = 43,
+			RandomWalk = 44
 		}
 
 		public SubsurfaceScatteringInputs ins => (SubsurfaceScatteringInputs)inputs;
@@ -84,12 +85,12 @@ namespace ccl.ShaderNodes
 			inputs = new SubsurfaceScatteringInputs(this);
 			outputs = new SubsurfaceScatteringOutputs(this);
 			ins.Color.Value = new float4(1.0f);
-			ins.Scale.Value = 1.0f;
+			ins.Scale.Value = 0.01f;
 			ins.Sharpness.Value = 0.0f;
 			ins.TextureBlur.Value = 0.0f;
 			ins.Radius.Value = new float4(1.0f);
 			ins.Normal.Value = new float4(0.0f);
-			Falloff = FalloffTypes.Cubic;
+			Falloff = FalloffTypes.Burley;
 		}
 
 		public FalloffTypes Falloff { get; set; }

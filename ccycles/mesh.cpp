@@ -16,6 +16,8 @@ limitations under the License.
 
 #include "internal_types.h"
 
+using namespace OIIO;
+
 extern std::vector<CCScene> scenes;
 
 unsigned int cycles_scene_add_mesh(unsigned int client_id, unsigned int scene_id, unsigned int shader_id)

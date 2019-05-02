@@ -158,7 +158,27 @@ namespace ccl.ShaderNodes
 			/// <summary>
 			/// Value = abs(Value1). Value2 ignored
 			/// </summary>
-			Absolute
+			Absolute,
+			/// <summary>
+			/// Value = atan2f(Value1, Value2)
+			/// </summary>
+			Arctan2,
+			/// <summary>
+			/// Value = floorf(Value1)
+			/// </summary>
+			Floor,
+			/// <summary>
+			/// Value = ceilf(Value1)
+			/// </summary>
+			Ceil,
+			/// <summary>
+			/// Value = Value1 - floorf(Value1)
+			/// </summary>
+			Fract,
+			/// <summary>
+			/// Value = sqrtf(Value1)
+			/// </summary>
+			Sqrt,
 		}
 
 		/// <summary>

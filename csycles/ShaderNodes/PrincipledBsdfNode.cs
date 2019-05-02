@@ -61,7 +61,7 @@ namespace ccl.ShaderNodes
 			Sheen                  = new FloatSocket(parentNode, "Sheen");
 			SheenTint              = new FloatSocket(parentNode, "Sheen Tint");
 			Clearcoat              = new FloatSocket(parentNode, "Clearcoat");
-			ClearcoatGloss         = new FloatSocket(parentNode, "Clearcoat Gloss");
+			ClearcoatGloss         = new FloatSocket(parentNode, "Clearcoat Roughness");
 			IOR                    = new FloatSocket(parentNode, "IOR");
 			Transmission           = new FloatSocket(parentNode, "Transmission");
 			TransmissionRoughness  = new FloatSocket(parentNode, "Transmission Roughness");
@@ -121,6 +121,12 @@ namespace ccl.ShaderNodes
 			Multiscatter_GGX = 30
 		}
 
+		public enum ScatterMethod
+		{
+			Burley = 42,
+			RandomWalk = 45,
+		}
+
 		public PrincipledBsdfInputs ins => (PrincipledBsdfInputs)inputs;
 		public PrincipledBsdfOutputs outs => (PrincipledBsdfOutputs)outputs;
 
@@ -131,6 +137,7 @@ namespace ccl.ShaderNodes
 		public PrincipledBsdfNode(string name) :
 			base(ShaderNodeType.Principled, name)
 		{
+			/* TODO: Add scatter method property */
 			inputs = new PrincipledBsdfInputs(this);
 			outputs = new PrincipledBsdfOutputs(this);
 			ins.BaseColor.Value = new float4(0.7f, 0.6f, 0.5f, 1.0f);
@@ -190,6 +197,11 @@ namespace ccl.ShaderNodes
 				Distributions d;
 				if (Enum.TryParse(str, true, out d)) Distribution = d;
 			}
+		}
+
+		public override ClosureSocket GetClosureSocket()
+		{
+			return outs.BSDF;
 		}
 	}
 }

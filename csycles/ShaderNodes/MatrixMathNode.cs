@@ -123,7 +123,6 @@ namespace ccl.ShaderNodes
 			CSycles.shadernode_set_member_vec4_at_index(clientId, shaderId, Id, Type, "tfm_x", tfm.x.x, tfm.x.y, tfm.x.z, tfm.x.w, 0);
 			CSycles.shadernode_set_member_vec4_at_index(clientId, shaderId, Id, Type, "tfm_y", tfm.y.x, tfm.y.y, tfm.y.z, tfm.y.w, 1);
 			CSycles.shadernode_set_member_vec4_at_index(clientId, shaderId, Id, Type, "tfm_z", tfm.z.x, tfm.z.y, tfm.z.z, tfm.z.w, 2);
-			CSycles.shadernode_set_member_vec4_at_index(clientId, shaderId, Id, Type, "tfm_w", tfm.w.x, tfm.w.y, tfm.w.z, tfm.w.w, 3);
 		}
 
 		internal override void ParseXml(XmlReader xmlNode)
