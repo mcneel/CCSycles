@@ -167,8 +167,8 @@ XCopy "$(ProjectDir)..\cycles\src\util\util*" "$(TargetDir)\kernel" /Y /I /Q
 Del "$(TargetDir)\*.pdb"</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PreBuildEvent>
-    </PreBuildEvent>
+    <PreBuildEvent>XCopy "$(ProjectDir)..\tests\*" "$(TargetDir)" /Y /I /Q
+XCopy "$(ProjectDir)..\tests\objects" "$(TargetDir)\objects" /Y /I /Q</PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
