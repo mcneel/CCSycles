@@ -157,6 +157,9 @@ unsigned int cycles_add_shader_node(unsigned int client_id, unsigned int shader_
 {
 	ccl::ShaderNode* node = nullptr;
 	switch (shn_type) {
+	case shadernode_type::OUTPUT:
+		node = new ccl::OutputNode();
+		break;
 	case shadernode_type::BACKGROUND:
 		node = new ccl::BackgroundNode();
 		break;
@@ -346,6 +349,9 @@ unsigned int cycles_add_shader_node(unsigned int client_id, unsigned int shader_
 	case shadernode_type::WIREFRAME:
 		node = new ccl::WireframeNode();
 		break;
+	case shadernode_type::BRIGHT_CONTRAST:
+		node = new ccl::BrightContrastNode();
+		break;
 	}
 
 	if (node) {
@@ -509,6 +515,8 @@ void cycles_shadernode_texmapping_set_transformation(unsigned int client_id, uns
 			_set_texture_mapping_transformation(node->tex_mapping, transform_type, x, y, z);
 		}
 		break;
+		default:
+		break;
 		}
 	}
 }
@@ -586,6 +594,8 @@ void cycles_shadernode_texmapping_set_mapping(unsigned int client_id, unsigned i
 			_set_texmapping_mapping(node->tex_mapping, x, y, z);
 		}
 		break;
+		default:
+		break;
 		}
 	}
 }
@@ -597,8 +607,12 @@ void cycles_shadernode_texmapping_set_projection(unsigned int client_id, unsigne
 		logger.logit(client_id, "Setting texture map projection type to ", tm_projection, " for shadernode type ", shn_type);
 		switch (shn_type) {
 		case shadernode_type::MAPPING:
-			ccl::MappingNode* node = dynamic_cast<ccl::MappingNode*>(shnode);
-			node->tex_mapping.projection = tm_projection;
+			{
+				ccl::MappingNode* node = dynamic_cast<ccl::MappingNode*>(shnode);
+				node->tex_mapping.projection = tm_projection;
+			}
+			break;
+		default:
 			break;
 		}
 	}
@@ -611,8 +625,12 @@ void cycles_shadernode_texmapping_set_type(unsigned int client_id, unsigned int 
 		logger.logit(client_id, "Setting texture map type to ", tm_type, " for shadernode type ", shn_type);
 		switch (shn_type) {
 		case shadernode_type::MAPPING:
-			ccl::MappingNode* node = dynamic_cast<ccl::MappingNode*>(shnode);
-			node->tex_mapping.type = tm_type;
+			{
+				ccl::MappingNode* node = dynamic_cast<ccl::MappingNode*>(shnode);
+				node->tex_mapping.type = tm_type;
+			}
+			break;
+		default:
 			break;
 		}
 	}
@@ -764,6 +782,8 @@ void cycles_shadernode_set_enum(unsigned int client_id, unsigned int shader_id, 
 			node->space = (ccl::NodeNormalMapSpace)value;
 			break;
 		}
+		default:
+			break;
 		}
 	}
 }
@@ -839,6 +859,8 @@ void cycles_shadernode_set_member_float_img(unsigned int client_id, unsigned int
 			sce->image_manager->tag_reload_image(imname);
 		}
 		break;
+		default:
+			break;
 		}
 	}
 
@@ -872,6 +894,8 @@ void cycles_shadernode_set_member_byte_img(unsigned int client_id, unsigned int 
 			sce->image_manager->tag_reload_image(imname);
 		}
 		break;
+		default:
+			break;
 		}
 	}
 
@@ -950,6 +974,8 @@ void cycles_shadernode_set_member_bool(unsigned int client_id, unsigned int shad
 			}
 		}
 		break;
+		default:
+			break;
 		}
 	}
 }
@@ -988,6 +1014,8 @@ void cycles_shadernode_set_member_int(unsigned int client_id, unsigned int shade
 			}
 		}
 		break;
+		default:
+			break;
 		}
 	}
 }
@@ -1032,6 +1060,8 @@ void cycles_shadernode_set_member_float(unsigned int client_id, unsigned int sha
 				skynode->ground_albedo = value;
 		}
 		break;
+		default:
+			break;
 		}
 	}
 }
@@ -1100,6 +1130,8 @@ void cycles_shadernode_set_member_vec4_at_index(unsigned int client_id, unsigned
 			}
 		}
 		break;
+		default:
+			break;
 		}
 	}
 }
@@ -1142,6 +1174,8 @@ void cycles_shadernode_set_member_vec(unsigned int client_id, unsigned int shade
 			}
 		}
 		break;
+		default:
+			break;
 		}
 	}
 }
@@ -1157,8 +1191,12 @@ void cycles_shadernode_set_member_string(unsigned int client_id, unsigned int sh
 		switch (shn_type)
 		{
 			case shadernode_type::ATTRIBUTE:
-				ccl::AttributeNode* attrn = dynamic_cast<ccl::AttributeNode*>(shnode);
-				attrn->attribute = mval;
+				{
+					ccl::AttributeNode* attrn = dynamic_cast<ccl::AttributeNode*>(shnode);
+					attrn->attribute = mval;
+				}
+				break;
+			default:
 				break;
 		}
 	}
