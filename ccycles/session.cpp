@@ -474,6 +474,7 @@ void cycles_session_set_samples(unsigned int client_id, unsigned int session_id,
 void cycles_session_get_buffer_info(unsigned int client_id, unsigned int session_id, unsigned int* buffer_size, unsigned int* buffer_stride)
 {
 	SESSION_FIND(session_id)
+		(void)session;
 		*buffer_size = ccsess->buffer_size;
 		*buffer_stride = ccsess->buffer_stride;
 		logger.logit(client_id, "Session ", session_id, " get_buffer_info. size ", *buffer_size, " stride ", *buffer_stride);
@@ -483,6 +484,7 @@ void cycles_session_get_buffer_info(unsigned int client_id, unsigned int session
 float* cycles_session_get_buffer(unsigned int client_id, unsigned int session_id)
 {
 	SESSION_FIND(session_id);
+		(void)session;
 		return ccsess->pixels;
 	SESSION_FIND_END();
 
@@ -492,6 +494,7 @@ float* cycles_session_get_buffer(unsigned int client_id, unsigned int session_id
 void cycles_session_copy_buffer(unsigned int client_id, unsigned int session_id, float* pixel_buffer)
 {
 	SESSION_FIND(session_id)
+		(void)session;
 		ccl::thread_scoped_lock pixels_lock(ccsess->pixels_mutex);
 		if (ccsess->size_has_changed()) return;
 		memcpy(pixel_buffer, ccsess->pixels, ccsess->buffer_size*sizeof(float));
