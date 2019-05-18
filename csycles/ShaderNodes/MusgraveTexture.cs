@@ -17,6 +17,7 @@ limitations under the License.
 using System.Xml;
 using ccl.ShaderNodes.Sockets;
 using ccl.Attributes;
+using System.Text;
 
 namespace ccl.ShaderNodes
 {
@@ -132,6 +133,18 @@ namespace ccl.ShaderNodes
 			{
 				SetType(musgravetype);
 			}
+		}
+		public override string CreateXmlAttributes()
+		{
+			var code = new StringBuilder($" musgrave_type=\"{MusgraveType}\" ", 1024);
+
+			return code.ToString();
+		}
+		public override string CreateCodeAttributes()
+		{
+			var code = new StringBuilder($"{VariableName}.MusgraveType = {MusgraveType};", 1024);
+
+			return code.ToString();
 		}
 	}
 }

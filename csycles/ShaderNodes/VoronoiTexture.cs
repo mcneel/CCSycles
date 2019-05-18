@@ -18,6 +18,7 @@ using System;
 using System.Xml;
 using ccl.ShaderNodes.Sockets;
 using ccl.Attributes;
+using System.Text;
 
 namespace ccl.ShaderNodes
 {
@@ -111,10 +112,37 @@ namespace ccl.ShaderNodes
 			var coloring = xmlNode.GetAttribute("coloring");
 			if (!string.IsNullOrEmpty(coloring))
 			{
-				ColoringTypes ct;
-				if(Enum.TryParse(coloring, out ct))
+				if (Enum.TryParse(coloring, out ColoringTypes ct))
 					Coloring = ct;
 			}
+			var metric = xmlNode.GetAttribute("metric");
+			if (!string.IsNullOrEmpty(metric))
+			{
+				if (Enum.TryParse(metric, out Metrics ct))
+					Metric = ct;
+			}
+			var feature = xmlNode.GetAttribute("feature");
+			if (!string.IsNullOrEmpty(feature))
+			{
+				if (Enum.TryParse(feature, out Features ct))
+					Feature = ct;
+			}
+		}
+		public override string CreateXmlAttributes()
+		{
+			var code = new StringBuilder($" coloring=\"{Coloring}\" ", 1024);
+			code.Append($" metric=\"{Metric}\" ");
+			code.Append($" feature=\"{Feature}\" ");
+
+			return code.ToString();
+		}
+		public override string CreateCodeAttributes()
+		{
+			var code = new StringBuilder($"{VariableName}.Coloring = {Coloring};", 1024);
+			code.Append( $"{VariableName}.Metric = {Metric};");
+			code.Append($"{VariableName}.Feature = {Feature};");
+
+			return code.ToString();
 		}
 	}
 }

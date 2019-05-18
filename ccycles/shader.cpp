@@ -723,8 +723,14 @@ void cycles_shadernode_set_enum(unsigned int client_id, unsigned int shader_id, 
 			}
 			if (ename == "feature") {
 				ccl::VoronoiTextureNode* node = dynamic_cast<ccl::VoronoiTextureNode*>(shnode);
-				node->metric = (ccl::NodeVoronoiDistanceMetric)value;
+				node->feature = (ccl::NodeVoronoiFeature)value;
 			}
+		}
+		break;
+		case shadernode_type::MUSGRAVE_TEXTURE:
+		{
+			ccl::MusgraveTextureNode* node = dynamic_cast<ccl::MusgraveTextureNode*>(shnode);
+			node->type = (ccl::NodeMusgraveType)value;
 		}
 		break;
 		case shadernode_type::SKY_TEXTURE:
