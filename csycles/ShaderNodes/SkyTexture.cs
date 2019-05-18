@@ -18,6 +18,7 @@ using System;
 using System.Xml;
 using ccl.ShaderNodes.Sockets;
 using ccl.Attributes;
+using System.Text;
 
 namespace ccl.ShaderNodes
 {
@@ -118,12 +119,29 @@ namespace ccl.ShaderNodes
 			}
 			if (!string.IsNullOrEmpty(sky_type))
 			{
-				SkyTypes st;
-				if (Enum.TryParse(sky_type, out st))
+				if (Enum.TryParse(sky_type, out SkyTypes st))
 				{
 					SkyType = st;
 				}
 			}
+		}
+		public override string CreateXmlAttributes()
+		{
+			var code = new StringBuilder($" type=\"{SkyType}\" ", 1024);
+			code.Append($" ground_albedo=\"{GroundAlbedo}\" ");
+			code.Append($" turbidity=\"{Turbidity}\" ");
+			code.Append($" sun_direction=\"{SunDirection.x} {SunDirection.y} {SunDirection.z}\" ");
+
+			return code.ToString();
+		}
+		public override string CreateCodeAttributes()
+		{
+			var code = new StringBuilder($"{VariableName}.SkyType = {SkyType};", 1024);
+			code.Append( $"{VariableName}.GroundAlbedo = {GroundAlbedo};");
+			code.Append($"{VariableName}.Turbidity = {Turbidity};");
+			code.Append($"{VariableName}.SunDirection = new float4({SunDirection.x} , {SunDirection.y}, {SunDirection.z}, 0.0);");
+
+			return code.ToString();
 		}
 	}
 }

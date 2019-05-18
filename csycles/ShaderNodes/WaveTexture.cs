@@ -18,6 +18,7 @@ using System;
 using System.Xml;
 using ccl.ShaderNodes.Sockets;
 using ccl.Attributes;
+using System.Text;
 
 namespace ccl.ShaderNodes
 {
@@ -130,6 +131,21 @@ namespace ccl.ShaderNodes
 				if (Enum.TryParse(waveprofile, out wp))
 					WaveProfile = wp;
 			}
+		}
+
+		public override string CreateXmlAttributes()
+		{
+			var code = new StringBuilder($" wave_type=\"{WaveType}\" ", 1024);
+			code.Append($" wave_profile=\"{WaveProfile}\" ");
+
+			return code.ToString();
+		}
+		public override string CreateCodeAttributes()
+		{
+			var code = new StringBuilder($"{VariableName}.WaveType = {WaveType};", 1024);
+			code.Append($"{VariableName}.WaveProfile = {WaveProfile};");
+
+			return code.ToString();
 		}
 	}
 }
