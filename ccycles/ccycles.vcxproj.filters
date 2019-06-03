@@ -17,6 +17,10 @@
       <UniqueIdentifier>{FF05A97D-6E29-4C7B-BD92-37847DC9A4CA}</UniqueIdentifier>
       <Extensions>bat</Extensions>
     </Filter>
+    <Filter Include="mikktspace">
+      <UniqueIdentifier>{B5FFC6FE-F476-4425-A350-7C2DBEA9D82D}</UniqueIdentifier>
+      <Extensions>c;h</Extensions>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="cycles_api.def">
@@ -81,6 +85,9 @@
     <ClCompile Include="film.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="mikktspace.c">
+      <Filter>mikktspace</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ccycles.h">
@@ -94,6 +101,9 @@
     </ClInclude>
     <ClInclude Include="fshader.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mikktspace.h">
+      <Filter>mikktspace</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

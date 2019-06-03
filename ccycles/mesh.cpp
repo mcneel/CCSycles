@@ -16,6 +16,10 @@ limitations under the License.
 
 #include "internal_types.h"
 
+#include "util_algorithm.h"
+#include "util_foreach.h"
+#include "util_math.h"
+
 using namespace OIIO;
 
 extern std::vector<CCScene> scenes;
@@ -248,3 +252,346 @@ void cycles_mesh_set_vertex_colors(unsigned int client_id, unsigned int scene_id
 		me->geometry_flags = ccl::Mesh::GeometryFlags::GEOMETRY_TRIANGLES;
 	SCENE_FIND_END()
 }
+
+#include "mikktspace.h"
+struct MikkUserData {
+	MikkUserData(
+			 const char *layer_name,
+			 const ccl::Mesh *mesh,
+			 ccl::float3 *tangent,
+			 float *tangent_sign)
+		: mesh(mesh),
+		  texface(NULL),
+		  tangent(tangent),
+		  tangent_sign(tangent_sign)
+	{
+		const ccl::AttributeSet& attributes = mesh->attributes;
+
+		ccl::Attribute *attr_vN = attributes.find(ccl::ATTR_STD_VERTEX_NORMAL);
+		vertex_normal = attr_vN->data_float3();
+
+		ccl::Attribute *attr_uv = attributes.find(ustring(layer_name));
+		if(attr_uv != NULL) {
+			texface = attr_uv->data_float3();
+		}
+	}
+
+	const ccl::Mesh *mesh;
+	int num_faces;
+
+	ccl::float3 *vertex_normal;
+	ccl::float3 *texface;
+
+	ccl::float3 *tangent;
+	float *tangent_sign;
+};
+
+static int mikk_get_num_faces(const SMikkTSpaceContext *context)
+{
+	const MikkUserData *userdata = (const MikkUserData *)context->m_pUserData;
+	return userdata->mesh->num_triangles();
+}
+
+static int mikk_get_num_verts_of_face(const SMikkTSpaceContext *context,
+									  const int face_num)
+{
+	return 3;
+}
+
+static int mikk_vertex_index(const ccl::Mesh *mesh, const int face_num, const int vert_num)
+{
+	return mesh->triangles[face_num * 3 + vert_num];
+}
+
+static int mikk_corner_index(const ccl::Mesh *mesh, const int face_num, const int vert_num)
+{
+	return face_num * 3 + vert_num;
+}
+
+static void mikk_get_position(const SMikkTSpaceContext *context,
+							  float P[3],
+							  const int face_num, const int vert_num)
+{
+	const MikkUserData *userdata = (const MikkUserData *)context->m_pUserData;
+	const ccl::Mesh *mesh = userdata->mesh;
+	const int vertex_index = mikk_vertex_index(mesh, face_num, vert_num);
+	const ccl::float3 vP = mesh->verts[vertex_index];
+	P[0] = vP.x;
+	P[1] = vP.y;
+	P[2] = vP.z;
+}
+
+static void mikk_get_texture_coordinate(const SMikkTSpaceContext *context,
+										float uv[2],
+										const int face_num, const int vert_num)
+{
+	const MikkUserData *userdata = (const MikkUserData *)context->m_pUserData;
+	const ccl::Mesh *mesh = userdata->mesh;
+	if(userdata->texface != NULL) {
+		const int corner_index = mikk_corner_index(mesh, face_num, vert_num);
+		ccl::float3 tfuv = userdata->texface[corner_index];
+		uv[0] = tfuv.x;
+		uv[1] = tfuv.y;
+	}
+	else {
+		uv[0] = 0.0f;
+		uv[1] = 0.0f;
+	}
+}
+
+static void mikk_get_normal(const SMikkTSpaceContext *context, float N[3],
+							const int face_num, const int vert_num)
+{
+	const MikkUserData *userdata = (const MikkUserData *)context->m_pUserData;
+	const ccl::Mesh *mesh = userdata->mesh;
+	ccl::float3 vN;
+	if(mesh->smooth[face_num]) {
+		const int vertex_index = mikk_vertex_index(mesh, face_num, vert_num);
+		vN = userdata->vertex_normal[vertex_index];
+	}
+	else {
+		const ccl::Mesh::Triangle tri = mesh->get_triangle(face_num);
+		vN = tri.compute_normal(&mesh->verts[0]);
+	}
+	N[0] = vN.x;
+	N[1] = vN.y;
+	N[2] = vN.z;
+}
+
+static void mikk_set_tangent_space(const SMikkTSpaceContext *context,
+								   const float T[],
+								   const float sign,
+								   const int face_num, const int vert_num)
+{
+	MikkUserData *userdata = (MikkUserData *)context->m_pUserData;
+	const ccl::Mesh *mesh = userdata->mesh;
+	const int corner_index = mikk_corner_index(mesh, face_num, vert_num);
+	userdata->tangent[corner_index] = ccl::make_float3(T[0], T[1], T[2]);
+	if(userdata->tangent_sign != NULL) {
+		userdata->tangent_sign[corner_index] = sign;
+	}
+}
+
+static void mikk_compute_tangents(ccl::Mesh *mesh, bool need_sign)
+{
+	/* Create tangent attributes. */
+	ccl::AttributeSet& attributes = mesh->attributes;
+	ccl::Attribute *attr;
+	ustring name = ustring("uvmap.tangent");
+	attr = attributes.add(ccl::ATTR_STD_UV_TANGENT, name);
+
+	ccl::float3 *tangent = attr->data_float3();
+	/* Create bitangent sign attribute. */
+	float *tangent_sign = NULL;
+	ccl::Attribute *attr_sign;
+	ustring name_sign = ustring("uvmap.tangent_sign");
+
+	attr_sign = attributes.add(ccl::ATTR_STD_UV_TANGENT_SIGN, name_sign);
+	tangent_sign = attr_sign->data_float();
+	/* Setup userdata. */
+	MikkUserData userdata("uvmap", mesh, tangent, tangent_sign);
+	/* Setup interface. */
+	SMikkTSpaceInterface sm_interface;
+	memset(&sm_interface, 0, sizeof(sm_interface));
+	sm_interface.m_getNumFaces = mikk_get_num_faces;
+	sm_interface.m_getNumVerticesOfFace = mikk_get_num_verts_of_face;
+	sm_interface.m_getPosition = mikk_get_position;
+	sm_interface.m_getTexCoord = mikk_get_texture_coordinate;
+	sm_interface.m_getNormal = mikk_get_normal;
+	sm_interface.m_setTSpaceBasic = mikk_set_tangent_space;
+	/* Setup context. */
+	SMikkTSpaceContext context;
+	memset(&context, 0, sizeof(context));
+	context.m_pUserData = &userdata;
+	context.m_pInterface = &sm_interface;
+	/* Compute tangents. */
+	genTangSpaceDefault(&context);
+}
+
+void cycles_mesh_attr_tangentspace(unsigned int client_id, unsigned int scene_id, unsigned int mesh_id)
+{
+	SCENE_FIND(scene_id)
+		ccl::Mesh* me = sce->meshes[mesh_id];
+		ccl::AttributeStandard sign_std = ccl::ATTR_STD_UV_TANGENT_SIGN;
+		ustring sign_name = ustring("uvmap.tangent_sign");
+		bool need_sign = true;
+		mikk_compute_tangents(me, need_sign);
+	SCENE_FIND_END()
+}
+
+#if 0 // POINTINESS
+/* Compare vertices by sum of their coordinates. */
+class VertexAverageComparator {
+public:
+	VertexAverageComparator(const ccl::array<ccl::float3>& verts)
+			: verts_(verts) {
+	}
+
+	bool operator()(const int& vert_idx_a, const int& vert_idx_b)
+	{
+		const ccl::float3 &vert_a = verts_[vert_idx_a];
+		const ccl::float3 &vert_b = verts_[vert_idx_b];
+		if(vert_a == vert_b) {
+			/* Special case for doubles, so we ensure ordering. */
+			return vert_idx_a > vert_idx_b;
+		}
+		const float x1 = vert_a.x + vert_a.y + vert_a.z;
+		const float x2 = vert_b.x + vert_b.y + vert_b.z;
+		return x1 < x2;
+	}
+
+protected:
+	const ccl::array<ccl::float3>& verts_;
+};
+	
+void attr_create_pointiness(ccl::Mesh *mesh)
+{
+	const int num_verts = mesh->verts.size();
+	if(num_verts == 0) {
+		return;
+	}
+	/* STEP 1: Find out duplicated vertices and point duplicates to a single
+	 *         original vertex.
+	 */
+	ccl::vector<int> sorted_vert_indeices(num_verts);
+	for(int vert_index = 0; vert_index < num_verts; ++vert_index) {
+		sorted_vert_indeices[vert_index] = vert_index;
+	}
+	VertexAverageComparator compare(mesh->verts);
+	sort(sorted_vert_indeices.begin(), sorted_vert_indeices.end(), compare);
+	/* This array stores index of the original vertex for the given vertex
+	 * index.
+	 */
+	ccl::vector<int> vert_orig_index(num_verts);
+	for(int sorted_vert_index = 0;
+		sorted_vert_index < num_verts;
+		++sorted_vert_index)
+	{
+		const int vert_index = sorted_vert_indeices[sorted_vert_index];
+		const ccl::float3 &vert_co = mesh->verts[vert_index];
+		bool found = false;
+		for(int other_sorted_vert_index = sorted_vert_index + 1;
+			other_sorted_vert_index < num_verts;
+			++other_sorted_vert_index)
+		{
+			const int other_vert_index =
+					sorted_vert_indeices[other_sorted_vert_index];
+			const ccl::float3 &other_vert_co = mesh->verts[other_vert_index];
+			/* We are too far away now, we wouldn't have duplicate. */
+			if((other_vert_co.x + other_vert_co.y + other_vert_co.z) -
+			   (vert_co.x + vert_co.y + vert_co.z) > 3 * FLT_EPSILON)
+			{
+				break;
+			}
+			/* Found duplicate. */
+			if(len_squared(other_vert_co - vert_co) < FLT_EPSILON) {
+				found = true;
+				vert_orig_index[vert_index] = other_vert_index;
+				break;
+			}
+		}
+		if(!found) {
+			vert_orig_index[vert_index] = vert_index;
+		}
+	}
+	/* Make sure we always points to the very first orig vertex. */
+	for(int vert_index = 0; vert_index < num_verts; ++vert_index) {
+		int orig_index = vert_orig_index[vert_index];
+		while(orig_index != vert_orig_index[orig_index]) {
+			orig_index = vert_orig_index[orig_index];
+		}
+		vert_orig_index[vert_index] = orig_index;
+	}
+	sorted_vert_indeices.free_memory();
+	/* STEP 2: Calculate vertex normals taking into account their possible
+	 *         duplicates which gets "welded" together.
+	 */
+	ccl::vector<ccl::float3> vert_normal(num_verts, ccl::make_float3(0.0f, 0.0f, 0.0f));
+	/* First we accumulate all vertex normals in the original index. */
+	for(int vert_index = 0; vert_index < num_verts; ++vert_index) {
+		const ccl::float3 normal = ccl::make_float3(0.0f);// [TODO] ccl::get_float3(b_mesh.vertices[vert_index].normal());
+		const int orig_index = vert_orig_index[vert_index];
+		vert_normal[orig_index] += normal;
+	}
+	/* Then we normalize the accumulated result and flush it to all duplicates
+	 * as well.
+	 */
+	for(int vert_index = 0; vert_index < num_verts; ++vert_index) {
+		const int orig_index = vert_orig_index[vert_index];
+		vert_normal[vert_index] = normalize(vert_normal[orig_index]);
+	}
+	/* STEP 3: Calculate pointiness using single ring neighborhood. */
+	ccl::vector<int> counter(num_verts, 0);
+	ccl::vector<float> raw_data(num_verts, 0.0f);
+	ccl::vector<ccl::float3> edge_accum(num_verts, ccl::make_float3(0.0f, 0.0f, 0.0f));
+#if 0  // TODO FIXUP
+	BL::Mesh::edges_iterator e;
+	EdgeMap visited_edges;
+	int edge_index = 0;
+	memset(&counter[0], 0, sizeof(int) * counter.size());
+	for(b_mesh.edges.begin(e); e != b_mesh.edges.end(); ++e, ++edge_index) {
+		const int v0 = vert_orig_index[b_mesh.edges[edge_index].vertices()[0]],
+				  v1 = vert_orig_index[b_mesh.edges[edge_index].vertices()[1]];
+		if(visited_edges.exists(v0, v1)) {
+			continue;
+		}
+		visited_edges.insert(v0, v1);
+		ccl::float3 co0 = get_ccl::float3(b_mesh.vertices[v0].co()),
+			   co1 = get_ccl::float3(b_mesh.vertices[v1].co());
+		ccl::float3 edge = normalize(co1 - co0);
+		edge_accum[v0] += edge;
+		edge_accum[v1] += -edge;
+		++counter[v0];
+		++counter[v1];
+	}
+	for(int vert_index = 0; vert_index < num_verts; ++vert_index) {
+		const int orig_index = vert_orig_index[vert_index];
+		if(orig_index != vert_index) {
+			/* Skip duplicates, they'll be overwritten later on. */
+			continue;
+		}
+		if(counter[vert_index] > 0) {
+			const ccl::float3 normal = vert_normal[vert_index];
+			const float angle =
+					safe_acosf(dot(normal,
+								   edge_accum[vert_index] / counter[vert_index]));
+			raw_data[vert_index] = angle * M_1_PI_F;
+		}
+		else {
+			raw_data[vert_index] = 0.0f;
+		}
+	}
+#endif
+	/* STEP 3: Blur vertices to approximate 2 ring neighborhood. */
+	ccl::AttributeSet& attributes = mesh->attributes;
+	ccl::Attribute *attr = attributes.add(ccl::ATTR_STD_POINTINESS);
+	float *data = attr->data_float();
+	memcpy(data, &raw_data[0], sizeof(float) * raw_data.size());
+	memset(&counter[0], 0, sizeof(int) * counter.size());
+#if 0 // TODO FIXUP
+	edge_index = 0;
+	visited_edges.clear();
+	for(b_mesh.edges.begin(e); e != b_mesh.edges.end(); ++e, ++edge_index) {
+		const int v0 = vert_orig_index[b_mesh.edges[edge_index].vertices()[0]],
+				  v1 = vert_orig_index[b_mesh.edges[edge_index].vertices()[1]];
+		if(visited_edges.exists(v0, v1)) {
+			continue;
+		}
+		visited_edges.insert(v0, v1);
+		data[v0] += raw_data[v1];
+		data[v1] += raw_data[v0];
+		++counter[v0];
+		++counter[v1];
+	}
+#endif
+	for(int vert_index = 0; vert_index < num_verts; ++vert_index) {
+		data[vert_index] /= counter[vert_index] + 1;
+	}
+	/* STEP 4: Copy attribute to the duplicated vertices. */
+	for(int vert_index = 0; vert_index < num_verts; ++vert_index) {
+		const int orig_index = vert_orig_index[vert_index];
+		data[vert_index] = data[orig_index];
+	}
+}
+
+#endif

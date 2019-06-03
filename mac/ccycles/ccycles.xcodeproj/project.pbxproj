@@ -35,6 +35,8 @@
 		A11D689A1FB59ACF00409EB3 /* vshader.h in Headers */ = {isa = PBXBuildFile; fileRef = A11D68851FB59ACD00409EB3 /* vshader.h */; };
 		A11D689B1FB59ACF00409EB3 /* background.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A11D68861FB59ACD00409EB3 /* background.cpp */; };
 		A11D689C1FB59ACF00409EB3 /* internal_types.h in Headers */ = {isa = PBXBuildFile; fileRef = A11D68871FB59ACD00409EB3 /* internal_types.h */; };
+		D81624C122A51149009F428E /* mikktspace.h in Headers */ = {isa = PBXBuildFile; fileRef = D81624BF22A51149009F428E /* mikktspace.h */; };
+		D81624C222A51149009F428E /* mikktspace.c in Sources */ = {isa = PBXBuildFile; fileRef = D81624C022A51149009F428E /* mikktspace.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -153,6 +155,8 @@
 		A11D68861FB59ACD00409EB3 /* background.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = background.cpp; path = ../../ccycles/background.cpp; sourceTree = "<group>"; };
 		A11D68871FB59ACD00409EB3 /* internal_types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = internal_types.h; path = ../../ccycles/internal_types.h; sourceTree = "<group>"; };
 		A11D68881FB59ACE00409EB3 /* ccycles_version.rc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ccycles_version.rc; path = ../../ccycles/ccycles_version.rc; sourceTree = "<group>"; };
+		D81624BF22A51149009F428E /* mikktspace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mikktspace.h; path = ../../ccycles/mikktspace.h; sourceTree = "<group>"; };
+		D81624C022A51149009F428E /* mikktspace.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = mikktspace.c; path = ../../ccycles/mikktspace.c; sourceTree = "<group>"; };
 		D86DF15920A81CF800444230 /* MacDotNet.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MacDotNet.xcodeproj; path = ../../../../../../BuildSolutions/MacDotNet.xcodeproj; sourceTree = "<group>"; };
 		D86DF16720A81F1200444230 /* cycles_proper.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = cycles_proper.xcodeproj; path = ../cycles_proper/cycles_proper.xcodeproj; sourceTree = "<group>"; };
 		D86DF16F20A81F3900444230 /* cyclesglew.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = cyclesglew.xcodeproj; path = ../cyclesglew/cyclesglew.xcodeproj; sourceTree = "<group>"; };
@@ -199,6 +203,8 @@
 				A11D68771FB59ACB00409EB3 /* license.txt */,
 				A11D68791FB59ACC00409EB3 /* light.cpp */,
 				A11D687C1FB59ACC00409EB3 /* mesh.cpp */,
+				D81624C022A51149009F428E /* mikktspace.c */,
+				D81624BF22A51149009F428E /* mikktspace.h */,
 				A11D68731FB59ACB00409EB3 /* object.cpp */,
 				A11D68781FB59ACB00409EB3 /* scene_parameters.cpp */,
 				A11D68701FB59ACA00409EB3 /* scene.cpp */,
@@ -297,6 +303,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D81624C122A51149009F428E /* mikktspace.h in Headers */,
 				A11D689A1FB59ACF00409EB3 /* vshader.h in Headers */,
 				A11D688D1FB59ACF00409EB3 /* fshader.h in Headers */,
 				A11D68991FB59ACF00409EB3 /* version.h in Headers */,
@@ -442,6 +449,7 @@
 				A11D688A1FB59ACF00409EB3 /* transform.cpp in Sources */,
 				A11D68961FB59ACF00409EB3 /* camera.cpp in Sources */,
 				A11D688C1FB59ACF00409EB3 /* object.cpp in Sources */,
+				D81624C222A51149009F428E /* mikktspace.c in Sources */,
 				A11D68931FB59ACF00409EB3 /* integrator.cpp in Sources */,
 				A11D68941FB59ACF00409EB3 /* session.cpp in Sources */,
 				A11D68901FB59ACF00409EB3 /* ccycles.cpp in Sources */,

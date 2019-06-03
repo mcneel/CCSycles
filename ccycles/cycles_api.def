@@ -64,6 +64,7 @@ EXPORTS
   cycles_mesh_resize
   cycles_mesh_tag_rebuild
   cycles_mesh_set_shader
+  cycles_mesh_attr_tangentspace
 
   cycles_scene_object_set_matrix
   cycles_scene_object_set_mesh
