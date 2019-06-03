@@ -233,6 +233,7 @@ copy /Y "$(ProjectDir)x64\$(ConfigurationName)\ccycles.pdb" "$(SolutionDir)bin\$
     <ClInclude Include="fshader.h" />
     <ClInclude Include="internal_types.h" />
     <ClInclude Include="vshader.h" />
+    <ClInclude Include="mikktspace.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\build_all_cubins.bat" />
@@ -257,6 +258,7 @@ copy /Y "$(ProjectDir)x64\$(ConfigurationName)\ccycles.pdb" "$(SolutionDir)bin\$
     <ClCompile Include="session.cpp" />
     <ClCompile Include="session_parameters.cpp" />
     <ClCompile Include="shader.cpp" />
+    <ClCompile Include="mikktspace.c" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="license.txt" />

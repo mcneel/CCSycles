@@ -135,6 +135,14 @@ namespace ccl
 			cycles_mesh_tag_rebuild(clientId, sceneId, meshId);
 		}
 
+		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		private static extern void cycles_mesh_attr_tangentspace(uint clientId, uint sceneId, uint meshId);
+
+		public static void mesh_attr_tangentspace(uint clientId, uint sceneId, uint meshId)
+		{
+			cycles_mesh_attr_tangentspace(clientId, sceneId, meshId);
+		}
+
 #endregion
 
 	}

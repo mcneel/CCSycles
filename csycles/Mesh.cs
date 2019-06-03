@@ -91,6 +91,14 @@ namespace ccl
 		}
 
 		/// <summary>
+		/// Compute tangent space data
+		/// </summary>
+		public void AttrTangentSpace()
+		{
+			CSycles.mesh_attr_tangentspace(Client.Id, Client.Scene.Id, Id);
+		}
+
+		/// <summary>
 		/// Reserve memory for mesh data
 		/// </summary>
 		/// <param name="vcount"></param>
