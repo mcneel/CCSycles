@@ -151,5 +151,27 @@ namespace ccl
 				CSycles.object_set_ignore_cutout(Client.Id, Client.Scene.Id, Id, value);
 			}
 		}
+
+		/// <summary>
+		/// Set object pass id.
+		/// </summary>
+		public int PassId
+		{
+			set
+			{
+				CSycles.object_set_pass_id(Client.Id, Client.Scene.Id, Id, value);
+			}
+		}
+
+		/// <summary>
+		/// Set object random id.
+		/// </summary>
+		public uint RandomId
+		{
+			set
+			{
+				CSycles.object_set_random_id(Client.Id, Client.Scene.Id, Id, value);
+			}
+		}
 	}
 }

@@ -365,6 +365,18 @@ CCL_CAPI void __cdecl cycles_scene_object_set_ignore_cutout(unsigned int client,
  */
 CCL_CAPI void __cdecl cycles_object_tag_update(unsigned int client_id, unsigned int scene_id, unsigned int object_id);
 
+/**
+ * Set the pass id
+ * \ingroup ccycles_object
+ */
+CCL_CAPI void __cdecl cycles_object_set_pass_id(unsigned int client_id, unsigned int scene_id, unsigned int object_id, int pass_id);
+
+/**
+ * Set the random id
+ * \ingroup ccycles_object
+ */
+CCL_CAPI void __cdecl cycles_object_set_random_id(unsigned int client_id, unsigned int scene_id, unsigned int object_id, unsigned int random_id);
+
 /** Tag integrator for update. */
 CCL_CAPI void __cdecl cycles_integrator_tag_update(unsigned int client_id, unsigned int scene_id);
 /** Set the maximum bounces for integrator. */
@@ -664,6 +676,7 @@ enum class shadernode_type : unsigned int {
 	ATTRIBUTE,
 	NORMALMAP,
 	WIREFRAME,
+	OBJECTINFO,
 };
 
 CCL_CAPI unsigned int __cdecl cycles_create_shader(unsigned int client_id);
