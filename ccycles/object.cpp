@@ -150,3 +150,19 @@ void cycles_scene_object_set_matrix(unsigned int client_id, unsigned int scene_i
 		ob->tag_update(sce);
 	SCENE_FIND_END()
 }
+
+void cycles_object_set_pass_id(unsigned int client_id, unsigned int scene_id, unsigned int object_id, int pass_id)
+{
+	SCENE_FIND(scene_id)
+		ccl::Object* ob = sce->objects[object_id];
+		ob->pass_id = pass_id;
+	SCENE_FIND_END()
+}
+
+void cycles_object_set_random_id(unsigned int client_id, unsigned int scene_id, unsigned int object_id, unsigned int random_id)
+{
+	SCENE_FIND(scene_id)
+		ccl::Object* ob = sce->objects[object_id];
+		ob->random_id = random_id;
+	SCENE_FIND_END()
+}

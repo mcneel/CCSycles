@@ -145,6 +145,7 @@ namespace ccl
 		Attribute,
 		NormalMap,
 		Wireframe,
+		ObjectInfo,
 	}
 
 	public enum BvhType : uint

@@ -76,6 +76,8 @@ EXPORTS
   cycles_scene_object_set_cutout
   cycles_scene_object_set_ignore_cutout
   cycles_object_tag_update
+  cycles_object_set_pass_id
+  cycles_object_set_random_id
 
   cycles_integrator_tag_update
   cycles_integrator_set_max_bounce

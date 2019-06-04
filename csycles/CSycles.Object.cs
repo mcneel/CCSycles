@@ -88,6 +88,20 @@ namespace ccl
 			cycles_object_tag_update(clientId, sceneId, objectId);
 		}
 
+		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		private static extern void cycles_object_set_pass_id(uint clientId, uint sceneId, uint objectId, int pass_id);
+		public static void object_set_pass_id(uint clientId, uint sceneId, uint objectId, int pass_id)
+		{
+			cycles_object_set_pass_id(clientId, sceneId, objectId, pass_id);
+		}
+
+		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		private static extern void cycles_object_set_random_id(uint clientId, uint sceneId, uint objectId, uint random_id);
+		public static void object_set_random_id(uint clientId, uint sceneId, uint objectId, uint random_id)
+		{
+			cycles_object_set_random_id(clientId, sceneId, objectId, random_id);
+		}
+
 		#endregion
 	}
 }
