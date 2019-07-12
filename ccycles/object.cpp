@@ -121,20 +121,20 @@ void cycles_scene_object_set_is_block_instance(unsigned int client, unsigned int
 
 void cycles_scene_object_set_cutout(unsigned int client, unsigned int scene_id, unsigned int object_id, bool cutout)
 {
-	/*SCENE_FIND(scene_id)
+	SCENE_FIND(scene_id)
 		ccl::Object* ob = sce->objects[object_id];
 		ob->use_cutout = cutout;
 		ob->tag_update(sce);
-	SCENE_FIND_END()*/
+	SCENE_FIND_END()
 }
 
 void cycles_scene_object_set_ignore_cutout(unsigned int client, unsigned int scene_id, unsigned int object_id, bool ignore_cutout)
 {
-	/*SCENE_FIND(scene_id)
+	SCENE_FIND(scene_id)
 		ccl::Object* ob = sce->objects[object_id];
 		ob->ignore_cutout = ignore_cutout;
 		ob->tag_update(sce);
-	SCENE_FIND_END()*/
+	SCENE_FIND_END()
 }
 
 void cycles_scene_object_set_matrix(unsigned int client_id, unsigned int scene_id, unsigned int object_id,
