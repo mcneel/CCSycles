@@ -377,6 +377,25 @@ CCL_CAPI void __cdecl cycles_object_set_pass_id(unsigned int client_id, unsigned
  */
 CCL_CAPI void __cdecl cycles_object_set_random_id(unsigned int client_id, unsigned int scene_id, unsigned int object_id, unsigned int random_id);
 
+/**
+ * Clear clipping planes list.
+ */
+CCL_CAPI void __cdecl cycles_scene_clear_clipping_planes(unsigned int client_id, unsigned int scene_id);
+
+/**
+ * Add a clipping plane equation.
+ */
+CCL_CAPI unsigned int __cdecl cycles_scene_add_clipping_plane(unsigned int client_id, unsigned int scene_id, float a, float b, float c, float d);
+
+/**
+ * Discard clipping plane (abcd are all set to FLT_MAX).
+ */
+CCL_CAPI void __cdecl cycles_scene_discard_clipping_plane(unsigned int client_id, unsigned int scene_id, unsigned int cp_id);
+
+/**
+ * Set a clipping plane equation.
+ */
+CCL_CAPI void __cdecl cycles_scene_set_clipping_plane(unsigned int client_id, unsigned int scene_id, unsigned int cp_id, float a, float b, float c, float d);
 /** Tag integrator for update. */
 CCL_CAPI void __cdecl cycles_integrator_tag_update(unsigned int client_id, unsigned int scene_id);
 /** Set the maximum bounces for integrator. */

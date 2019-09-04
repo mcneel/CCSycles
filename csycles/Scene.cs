@@ -199,5 +199,10 @@ namespace ccl
 		{
 			CSycles.scene_unlock(Client.Id, Id);
 		}
+
+		public void ClearClippingPlanes()
+		{
+			CSycles.scene_clear_clipping_planes(Client.Id, Id);
+		}
 	}
 }

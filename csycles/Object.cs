@@ -16,6 +16,46 @@ limitations under the License.
 
 namespace ccl
 {
+
+	public class ClippingPlane
+	{
+		/// <summary>
+		/// Id of the Cycles object.
+		/// </summary>
+		public uint Id { get; }
+		/// <summary>
+		/// Reference to the client.
+		/// </summary>
+		private Client Client { get; }
+
+		/// <summary>
+		/// Add a new clipping plane using given equation.
+		/// </summary>
+		/// <param name="client"></param>
+		/// <param name="equation"></param>
+		public ClippingPlane(Client client, float4 equation) {
+			Client = client;
+			Id = CSycles.scene_add_clipping_plane(client.Id, client.Scene.Id, equation);
+		}
+
+		/// <summary>
+		/// Set new equation for the clipping plane.
+		/// </summary>
+		/// <param name="equation"></param>
+		public void SetEquation(float4 equation) 
+		{
+			CSycles.scene_set_clipping_plane(Client.Id, Client.Scene.Id, Id, equation);
+		}
+
+		/// <summary>
+		/// Mark the clipping plane as not used.
+		/// </summary>
+		public void Discard()
+		{
+			CSycles.scene_discard_clipping_plane(Client.Id, Client.Scene.Id, Id);
+		}
+
+	}
 	/// <summary>
 	/// Representation of a Cycles object.
 	/// </summary>

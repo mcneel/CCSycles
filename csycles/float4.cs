@@ -154,6 +154,9 @@ namespace ccl
 			z = z_;
 			w = w_;
 		}
+		public float4(double x_, double y_, double z_, double w_) :
+			this((float)x_, (float)y_, (float)z_, (float)w_) { }
+		public float4(double[] arr) : this(arr[0], arr[1], arr[2], arr[3]) { }
 		/// <summary>
 		/// Copy constructor
 		/// </summary>

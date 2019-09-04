@@ -166,3 +166,44 @@ void cycles_object_set_random_id(unsigned int client_id, unsigned int scene_id, 
 		ob->random_id = random_id;
 	SCENE_FIND_END()
 }
+
+void cycles_scene_clear_clipping_planes(unsigned int client_id, unsigned int scene_id)
+{
+	SCENE_FIND(scene_id)
+		sce->clipping_planes.clear();
+		sce->object_manager->need_clipping_plane_update = true;
+	SCENE_FIND_END()
+}
+
+unsigned int cycles_scene_add_clipping_plane(unsigned int client_id, unsigned int scene_id, float a, float b, float c, float d)
+{
+	SCENE_FIND(scene_id)
+		ccl::float4 cp = ccl::make_float4(a, b, c, d);
+		sce->clipping_planes.push_back(cp);
+
+		logger.logit(client_id, "Added clipping plane ", sce->clipping_planes.size() - 1, " to scene ", scene_id);
+
+		sce->object_manager->need_clipping_plane_update = true;
+
+		return (unsigned int)(sce->clipping_planes.size() - 1);
+	SCENE_FIND_END()
+
+	return UINT_MAX;
+}
+
+void cycles_scene_discard_clipping_plane(unsigned int client_id, unsigned int scene_id, unsigned int cp_id)
+{
+	cycles_scene_set_clipping_plane(client_id, scene_id, cp_id, FLT_MAX, FLT_MAX, FLT_MAX, FLT_MAX);
+}
+
+void cycles_scene_set_clipping_plane(unsigned int client_id, unsigned int scene_id, unsigned int cp_id, float a, float b, float c, float d)
+{
+	SCENE_FIND(scene_id)
+		ccl::float4 cp = ccl::make_float4(a, b, c, d);
+		sce->clipping_planes[cp_id] = cp;
+
+		logger.logit(client_id, "Setting clipping plane ", sce->clipping_planes.size() - 1, " to scene ", scene_id);
+
+		sce->object_manager->need_clipping_plane_update = true;
+	SCENE_FIND_END()
+}

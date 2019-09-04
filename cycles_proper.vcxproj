@@ -309,9 +309,6 @@
     <ClInclude Include="cycles\src\graph\*.h" />
     <ClInclude Include="cycles\src\kernel\kernels\filter_cpu.h" />
     <ClInclude Include="cycles\src\kernel\kernels\filter_cpu_impl.h" />
-    <ClInclude Include="cycles\src\kernel\kernels\kernel_cpu.h" />
-    <ClInclude Include="cycles\src\kernel\kernels\kernel_cpu_image.h" />
-    <ClInclude Include="cycles\src\kernel\kernels\kernel_cpu_impl.h" />
     <ClInclude Include="cycles\src\kernel\svm\*.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
