@@ -1786,7 +1786,7 @@ static void GenerateReverseLookup(const int piTriListIn[],
     // Nothing to allocate, all triangles are degenerate.
     return;
   }
-  pLookupCtx->pLookup = malloc(sizeof(int) * (pLookupCtx->iMaxVertIndex + 1));
+  pLookupCtx->pLookup = (int *)malloc(sizeof(int) * (pLookupCtx->iMaxVertIndex + 1));
   if (pLookupCtx->pLookup == NULL) {
     // Most likely run out of memory.
     return;

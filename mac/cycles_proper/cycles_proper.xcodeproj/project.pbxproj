@@ -552,6 +552,9 @@
 		D8AB775D21BFC1B40054D367 /* bvh8.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bvh8.cpp; path = ../../cycles/src/bvh/bvh8.cpp; sourceTree = "<group>"; };
 		D8AB775E21BFC1B40054D367 /* bvh8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bvh8.h; path = ../../cycles/src/bvh/bvh8.h; sourceTree = "<group>"; };
 		D8CA42561FE1572B007AF679 /* device_memory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = device_memory.cpp; path = ../../cycles/src/device/device_memory.cpp; sourceTree = "<group>"; };
+		D8F3C9B8233219BC00AB35CA /* LibDistribution.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = LibDistribution.xcconfig; path = ../../../../../../Mac/XCConfig/LibDistribution.xcconfig; sourceTree = "<group>"; };
+		D8F3C9B9233219BC00AB35CA /* LibDebug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = LibDebug.xcconfig; path = ../../../../../../Mac/XCConfig/LibDebug.xcconfig; sourceTree = "<group>"; };
+		D8F3C9BA233219BC00AB35CA /* LibRelease.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = LibRelease.xcconfig; path = ../../../../../../Mac/XCConfig/LibRelease.xcconfig; sourceTree = "<group>"; };
 		D8F5C8F92020D56400D87FDB /* kernel_compat_opencl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = kernel_compat_opencl.h; path = ../../cycles/src/kernel/kernel_compat_opencl.h; sourceTree = "<group>"; };
 		D8F5C8FB2020D56400D87FDB /* kernel_path_subsurface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = kernel_path_subsurface.h; path = ../../cycles/src/kernel/kernel_path_subsurface.h; sourceTree = "<group>"; };
 		D8F5C8FD2020D56400D87FDB /* kernel_globals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = kernel_globals.h; path = ../../cycles/src/kernel/kernel_globals.h; sourceTree = "<group>"; };
@@ -939,6 +942,7 @@
 				A100C8761FB5E76200BC046C /* device */,
 				A100C83A1FB5D6C100BC046C /* bvh */,
 				A11D68051FB5936400409EB3 /* Products */,
+				D8F3C9B4233218E400AB35CA /* Support */,
 			);
 			sourceTree = "<group>";
 		};
@@ -948,6 +952,16 @@
 				A11D68041FB5936400409EB3 /* libcycles_proper.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		D8F3C9B4233218E400AB35CA /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				D8F3C9B9233219BC00AB35CA /* LibDebug.xcconfig */,
+				D8F3C9B8233219BC00AB35CA /* LibDistribution.xcconfig */,
+				D8F3C9BA233219BC00AB35CA /* LibRelease.xcconfig */,
+			);
+			name = Support;
 			sourceTree = "<group>";
 		};
 		D8F5C98D2020D87600D87FDB /* cpu */ = {
@@ -1385,7 +1399,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -1436,7 +1449,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 			};
@@ -1573,7 +1585,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 			};

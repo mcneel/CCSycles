@@ -372,7 +372,7 @@ static void mikk_set_tangent_space(const SMikkTSpaceContext *context,
 	}
 }
 
-static void mikk_compute_tangents(ccl::Mesh *mesh, bool need_sign)
+static void mikk_compute_tangents(ccl::Mesh *mesh)
 {
 	/* Create tangent attributes. */
 	ccl::AttributeSet& attributes = mesh->attributes;
@@ -412,10 +412,7 @@ void cycles_mesh_attr_tangentspace(unsigned int client_id, unsigned int scene_id
 {
 	SCENE_FIND(scene_id)
 		ccl::Mesh* me = sce->meshes[mesh_id];
-		ccl::AttributeStandard sign_std = ccl::ATTR_STD_UV_TANGENT_SIGN;
-		ustring sign_name = ustring("uvmap.tangent_sign");
-		bool need_sign = true;
-		mikk_compute_tangents(me, need_sign);
+		mikk_compute_tangents(me);
 	SCENE_FIND_END()
 }
 
