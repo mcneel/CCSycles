@@ -59,6 +59,9 @@
 		A11D67DE1FB50DA200409EB3 /* libHalf.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libHalf.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A11D67F91FB590D900409EB3 /* libsystem_pthread.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsystem_pthread.tbd; path = usr/lib/system/libsystem_pthread.tbd; sourceTree = SDKROOT; };
 		D86DF15D20A81D0E00444230 /* MacDotNet.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MacDotNet.xcodeproj; path = ../../../../../../BuildSolutions/MacDotNet.xcodeproj; sourceTree = "<group>"; };
+		D8F3C9AD2331870D00AB35CA /* LibDistribution.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = LibDistribution.xcconfig; path = ../../../../../../Mac/XCConfig/LibDistribution.xcconfig; sourceTree = "<group>"; };
+		D8F3C9AE2331870D00AB35CA /* LibRelease.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = LibRelease.xcconfig; path = ../../../../../../Mac/XCConfig/LibRelease.xcconfig; sourceTree = "<group>"; };
+		D8F3C9AF2331870D00AB35CA /* LibDebug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = LibDebug.xcconfig; path = ../../../../../../Mac/XCConfig/LibDebug.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +98,7 @@
 				A11D67B71FB5057700409EB3 /* typedesc.cpp */,
 				A11D67B01FB5054D00409EB3 /* Products */,
 				A11D67D81FB50D4F00409EB3 /* Frameworks */,
+				D8F3C9AC233186CB00AB35CA /* Support */,
 			);
 			sourceTree = "<group>";
 		};
@@ -123,6 +127,16 @@
 			children = (
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		D8F3C9AC233186CB00AB35CA /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				D8F3C9AF2331870D00AB35CA /* LibDebug.xcconfig */,
+				D8F3C9AD2331870D00AB35CA /* LibDistribution.xcconfig */,
+				D8F3C9AE2331870D00AB35CA /* LibRelease.xcconfig */,
+			);
+			name = Support;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -179,7 +193,7 @@
 				TargetAttributes = {
 					A11D67AE1FB5054D00409EB3 = {
 						CreatedOnToolsVersion = 9.1;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -231,6 +245,7 @@
 /* Begin XCBuildConfiguration section */
 		A11D67B11FB5054D00409EB3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D8F3C9AF2331870D00AB35CA /* LibDebug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -279,15 +294,16 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = "$(inherited) $(PROJECT_DIR) $(PROJECT_DIR)/** $(PROJECT_DIR)/../include $(PROJECT_DIR)/../include/**";
 			};
 			name = Debug;
 		};
 		A11D67B21FB5054D00409EB3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D8F3C9AE2331870D00AB35CA /* LibRelease.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -330,9 +346,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = "$(inherited) $(PROJECT_DIR) $(PROJECT_DIR)/** $(PROJECT_DIR)/../include $(PROJECT_DIR)/../include/**";
 			};
 			name = Release;
 		};
@@ -394,6 +410,7 @@
 		};
 		DF87B4A92203BA0A002AA65E /* Distribution */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D8F3C9AD2331870D00AB35CA /* LibDistribution.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -436,9 +453,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = "$(inherited) $(PROJECT_DIR) $(PROJECT_DIR)/** $(PROJECT_DIR)/../include $(PROJECT_DIR)/../include/**";
 			};
 			name = Distribution;
 		};
