@@ -146,6 +146,7 @@ namespace ccl
 		NormalMap,
 		Wireframe,
 		ObjectInfo,
+		Tangent,
 	}
 
 	public enum BvhType : uint

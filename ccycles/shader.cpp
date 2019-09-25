@@ -356,6 +356,11 @@ unsigned int cycles_add_shader_node(unsigned int client_id, unsigned int shader_
 	case shadernode_type::OBJECTINFO:
 		node = new ccl::ObjectInfoNode();
 		break;
+	case shadernode_type::TANGENT:
+		node = new ccl::TangentNode();
+		dynamic_cast<ccl::TangentNode*>(node)->attribute = OpenImageIO::v1_3::ustring("uvmap");
+		dynamic_cast<ccl::TangentNode*>(node)->direction_type = ccl::NodeTangentDirectionType::NODE_TANGENT_UVMAP;
+		break;
 	}
 
 	if (node) {

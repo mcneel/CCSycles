@@ -696,6 +696,7 @@ enum class shadernode_type : unsigned int {
 	NORMALMAP,
 	WIREFRAME,
 	OBJECTINFO,
+	TANGENT,
 };
 
 CCL_CAPI unsigned int __cdecl cycles_create_shader(unsigned int client_id);

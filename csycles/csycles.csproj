@@ -112,6 +112,7 @@
     <Compile Include="ShaderNodes\AnisotropicBsdfNode.cs" />
     <Compile Include="ShaderNodes\AbsorptionVolumeNode.cs" />
     <Compile Include="ShaderNodes\CameraDataNode.cs" />
+    <Compile Include="ShaderNodes\TangentNode.cs" />
     <Compile Include="ShaderNodes\ObjectInfoNode.cs" />
     <Compile Include="ShaderNodes\WireframeNode.cs" />
     <Compile Include="ShaderNodes\NormalMapNode.cs" />
