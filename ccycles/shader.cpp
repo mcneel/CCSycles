@@ -963,6 +963,9 @@ void cycles_shadernode_set_member_bool(unsigned int client_id, unsigned int shad
 			else if (mname == "is_linear") {
 				imgtex->is_linear = value;
 			}
+			else if (mname == "alternate_tiles") {
+				imgtex->alternate_tiles = value;
+			}
 		}
 		break;
 		case shadernode_type::ENVIRONMENT_TEXTURE:

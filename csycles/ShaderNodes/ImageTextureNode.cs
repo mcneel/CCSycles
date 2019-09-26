@@ -88,6 +88,7 @@ namespace ccl.ShaderNodes
 			outputs = new ImageTextureOutputs(this);
 
 			UseAlpha = true;
+			AlternateTiles = false;
 			ProjectionBlend = 0.0f;
 			Interpolation = InterpolationType.Linear;
 			ColorSpace = TextureColorSpace.None;
@@ -111,6 +112,10 @@ namespace ccl.ShaderNodes
 		/// ImageTexture use alpha channel if true
 		/// </summary>
 		public bool UseAlpha { get; set; }
+		/// <summary>
+		/// Set to true to alternate UV grid tiling. (Rhino specific)
+		/// </summary>
+		public bool AlternateTiles { get; set; }
 
 		internal override void SetEnums(uint clientId, uint shaderId)
 		{
@@ -126,6 +131,7 @@ namespace ccl.ShaderNodes
 			CSycles.shadernode_set_member_int(clientId, shaderId, Id, Type, "extension", (int)Extension);
 			CSycles.shadernode_set_member_bool(clientId, shaderId, Id, Type, "use_alpha", UseAlpha);
 			CSycles.shadernode_set_member_bool(clientId, shaderId, Id, Type, "is_linear", IsLinear);
+			CSycles.shadernode_set_member_bool(clientId, shaderId, Id, Type, "alternate_tiles", AlternateTiles);
 			if (FloatImage != null)
 			{
 				var flimg = FloatImage;
@@ -176,6 +182,7 @@ namespace ccl.ShaderNodes
 			code.Append($" interpolation=\"{Interpolation}\"");
 			code.Append($" use_alpha=\"{UseAlpha}\"");
 			code.Append($" is_linear=\"{IsLinear}\"");
+			code.Append($" alternate_tiles=\"{AlternateTiles}\"");
 			if (Filename != null)
 			{
 				code.Append($" src=\"{Filename.Replace("\\", "\\\\")}\"");
@@ -192,6 +199,7 @@ namespace ccl.ShaderNodes
 			code.Append($"{VariableName}.Interpolation = {Interpolation};");
 			code.Append($"{VariableName}.UseAlpha = {UseAlpha};");
 			code.Append($"{VariableName}.IsLinear = {IsLinear};");
+			code.Append($"{VariableName}.AlternateTiles = {AlternateTiles};");
 
 			return code.ToString();
 		}
