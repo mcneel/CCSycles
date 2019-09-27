@@ -139,7 +139,7 @@
 				TargetAttributes = {
 					A100CA651FB600FD00BC046C = {
 						CreatedOnToolsVersion = 9.1;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -191,15 +191,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D8F3C9AA2331839F00AB35CA /* CLibDebug.xcconfig */;
 			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CODE_SIGN_IDENTITY = "-";
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				MTL_ENABLE_DEBUG_INFO = YES;
 				USER_HEADER_SEARCH_PATHS = "$(inherited) $(PROJECT_DIR) $(PROJECT_DIR)/** $(PROJECT_DIR)/../../glew $(PROJECT_DIR)/../../glew/**";
 			};
 			name = Debug;
@@ -208,11 +199,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D8F3C9AB2331839F00AB35CA /* CLibRelease.xcconfig */;
 			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CODE_SIGN_IDENTITY = "-";
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				MTL_ENABLE_DEBUG_INFO = NO;
 				USER_HEADER_SEARCH_PATHS = "$(inherited) $(PROJECT_DIR) $(PROJECT_DIR)/** $(PROJECT_DIR)/../../glew $(PROJECT_DIR)/../../glew/**";
 			};
 			name = Release;
@@ -220,8 +206,6 @@
 		A100CA6B1FB600FD00BC046C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_WARN_STRICT_PROTOTYPES = NO;
-				CODE_SIGN_STYLE = Automatic;
 				EXECUTABLE_PREFIX = lib;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					DEBUG,
@@ -247,8 +231,6 @@
 		A100CA6C1FB600FD00BC046C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_WARN_STRICT_PROTOTYPES = NO;
-				CODE_SIGN_STYLE = Automatic;
 				EXECUTABLE_PREFIX = lib;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					__SSE__,
@@ -273,11 +255,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D8F3C9AB2331839F00AB35CA /* CLibRelease.xcconfig */;
 			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CODE_SIGN_IDENTITY = "-";
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				MTL_ENABLE_DEBUG_INFO = NO;
 				USER_HEADER_SEARCH_PATHS = "$(inherited) $(PROJECT_DIR) $(PROJECT_DIR)/** $(PROJECT_DIR)/../../glew $(PROJECT_DIR)/../../glew/**";
 			};
 			name = Distribution;
@@ -285,8 +262,6 @@
 		DFBF841A2203942C00BF1536 /* Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_WARN_STRICT_PROTOTYPES = NO;
-				CODE_SIGN_STYLE = Automatic;
 				EXECUTABLE_PREFIX = lib;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					__SSE__,

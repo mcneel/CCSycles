@@ -137,15 +137,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D8F3C9A72331812C00AB35CA /* CLibDebug.xcconfig */;
 			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CODE_SIGN_IDENTITY = "-";
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				MTL_ENABLE_DEBUG_INFO = YES;
 				USER_HEADER_SEARCH_PATHS = "$(inherited) $(PROJECT_DIR) $(PROJECT_DIR)/** $(PROJECT_DIR)/../../cycles/third_party/cuew $(PROJECT_DIR)/../../cycles/third_party/cuew/**";
 			};
 			name = Debug;
@@ -154,11 +145,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D8F3C9A82331812C00AB35CA /* CLibRelease.xcconfig */;
 			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CODE_SIGN_IDENTITY = "-";
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				MTL_ENABLE_DEBUG_INFO = NO;
 				USER_HEADER_SEARCH_PATHS = "$(inherited) $(PROJECT_DIR) $(PROJECT_DIR)/** $(PROJECT_DIR)/../../cycles/third_party/cuew $(PROJECT_DIR)/../../cycles/third_party/cuew/**";
 			};
 			name = Release;
@@ -183,11 +169,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D8F3C9A82331812C00AB35CA /* CLibRelease.xcconfig */;
 			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CODE_SIGN_IDENTITY = "-";
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				MTL_ENABLE_DEBUG_INFO = NO;
 				USER_HEADER_SEARCH_PATHS = "$(inherited) $(PROJECT_DIR) $(PROJECT_DIR)/** $(PROJECT_DIR)/../../cycles/third_party/cuew $(PROJECT_DIR)/../../cycles/third_party/cuew/**";
 			};
 			name = Distribution;
