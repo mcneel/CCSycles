@@ -22,8 +22,8 @@
 		A11D67D51FB5059200409EB3 /* paramlist.h in Headers */ = {isa = PBXBuildFile; fileRef = A11D67C91FB5059200409EB3 /* paramlist.h */; };
 		A11D67D61FB5059200409EB3 /* export.h in Headers */ = {isa = PBXBuildFile; fileRef = A11D67CA1FB5059200409EB3 /* export.h */; };
 		A11D67D71FB5059200409EB3 /* tinyformat.h in Headers */ = {isa = PBXBuildFile; fileRef = A11D67CB1FB5059200409EB3 /* tinyformat.h */; };
-		A11D67DB1FB50D4F00409EB3 /* libboost_system-mt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A11D67D91FB50D4F00409EB3 /* libboost_system-mt.dylib */; };
-		A11D67DC1FB50D4F00409EB3 /* libboost_thread-mt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A11D67DA1FB50D4F00409EB3 /* libboost_thread-mt.dylib */; };
+		A11D67DB1FB50D4F00409EB3 /* libboost_system-mt-x64.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A11D67D91FB50D4F00409EB3 /* libboost_system-mt-x64.dylib */; };
+		A11D67DC1FB50D4F00409EB3 /* libboost_thread-mt-x64.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A11D67DA1FB50D4F00409EB3 /* libboost_thread-mt-x64.dylib */; };
 		A11D67DD1FB50DA200409EB3 /* libHalf.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A11D67DE1FB50DA200409EB3 /* libHalf.a */; };
 /* End PBXBuildFile section */
 
@@ -54,8 +54,8 @@
 		A11D67C91FB5059200409EB3 /* paramlist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = paramlist.h; path = ../include/OpenImageIO/paramlist.h; sourceTree = "<group>"; };
 		A11D67CA1FB5059200409EB3 /* export.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = export.h; path = ../include/OpenImageIO/export.h; sourceTree = "<group>"; };
 		A11D67CB1FB5059200409EB3 /* tinyformat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tinyformat.h; path = ../include/OpenImageIO/tinyformat.h; sourceTree = "<group>"; };
-		A11D67D91FB50D4F00409EB3 /* libboost_system-mt.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_system-mt.dylib"; path = "../../../../../../../big_libs/boost/stagerelease/lib/libboost_system-mt.dylib"; sourceTree = "<group>"; };
-		A11D67DA1FB50D4F00409EB3 /* libboost_thread-mt.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_thread-mt.dylib"; path = "../../../../../../../big_libs/boost/stagerelease/lib/libboost_thread-mt.dylib"; sourceTree = "<group>"; };
+		A11D67D91FB50D4F00409EB3 /* libboost_system-mt-x64.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_system-mt-x64.dylib"; path = "../../../../../../../big_libs/boost/stagerelease/lib/libboost_system-mt-x64.dylib"; sourceTree = "<group>"; };
+		A11D67DA1FB50D4F00409EB3 /* libboost_thread-mt-x64.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_thread-mt-x64.dylib"; path = "../../../../../../../big_libs/boost/stagerelease/lib/libboost_thread-mt-x64.dylib"; sourceTree = "<group>"; };
 		A11D67DE1FB50DA200409EB3 /* libHalf.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libHalf.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A11D67F91FB590D900409EB3 /* libsystem_pthread.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsystem_pthread.tbd; path = usr/lib/system/libsystem_pthread.tbd; sourceTree = SDKROOT; };
 		D86DF15D20A81D0E00444230 /* MacDotNet.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MacDotNet.xcodeproj; path = ../../../../../../BuildSolutions/MacDotNet.xcodeproj; sourceTree = "<group>"; };
@@ -70,8 +70,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				A11D67DD1FB50DA200409EB3 /* libHalf.a in Frameworks */,
-				A11D67DB1FB50D4F00409EB3 /* libboost_system-mt.dylib in Frameworks */,
-				A11D67DC1FB50D4F00409EB3 /* libboost_thread-mt.dylib in Frameworks */,
+				A11D67DB1FB50D4F00409EB3 /* libboost_system-mt-x64.dylib in Frameworks */,
+				A11D67DC1FB50D4F00409EB3 /* libboost_thread-mt-x64.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -116,8 +116,8 @@
 				D86DF15D20A81D0E00444230 /* MacDotNet.xcodeproj */,
 				A11D67F91FB590D900409EB3 /* libsystem_pthread.tbd */,
 				A11D67DE1FB50DA200409EB3 /* libHalf.a */,
-				A11D67D91FB50D4F00409EB3 /* libboost_system-mt.dylib */,
-				A11D67DA1FB50D4F00409EB3 /* libboost_thread-mt.dylib */,
+				A11D67D91FB50D4F00409EB3 /* libboost_system-mt-x64.dylib */,
+				A11D67DA1FB50D4F00409EB3 /* libboost_thread-mt-x64.dylib */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

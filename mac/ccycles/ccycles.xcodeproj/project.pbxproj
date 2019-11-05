@@ -13,8 +13,8 @@
 		A11D68271FB596FC00409EB3 /* libHalf.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A11D68281FB596FC00409EB3 /* libHalf.a */; };
 		A11D68291FB5970000409EB3 /* libclew.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A11D682A1FB5970000409EB3 /* libclew.a */; };
 		A11D682B1FB5970500409EB3 /* libcuew.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A11D682C1FB5970500409EB3 /* libcuew.a */; };
-		A11D682E1FB5972100409EB3 /* libboost_system-mt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A11D682D1FB5972100409EB3 /* libboost_system-mt.dylib */; };
-		A11D68301FB5973200409EB3 /* libboost_thread-mt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A11D682F1FB5973100409EB3 /* libboost_thread-mt.dylib */; };
+		A11D682E1FB5972100409EB3 /* libboost_system-mt-x64.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A11D682D1FB5972100409EB3 /* libboost_system-mt-x64.dylib */; };
+		A11D68301FB5973200409EB3 /* libboost_thread-mt-x64.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A11D682F1FB5973100409EB3 /* libboost_thread-mt-x64.dylib */; };
 		A11D68891FB59ACF00409EB3 /* scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A11D68701FB59ACA00409EB3 /* scene.cpp */; };
 		A11D688A1FB59ACF00409EB3 /* transform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A11D68711FB59ACB00409EB3 /* transform.cpp */; };
 		A11D688B1FB59ACF00409EB3 /* session_parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A11D68721FB59ACB00409EB3 /* session_parameters.cpp */; };
@@ -128,8 +128,8 @@
 		A11D68281FB596FC00409EB3 /* libHalf.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libHalf.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A11D682A1FB5970000409EB3 /* libclew.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libclew.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A11D682C1FB5970500409EB3 /* libcuew.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libcuew.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		A11D682D1FB5972100409EB3 /* libboost_system-mt.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_system-mt.dylib"; path = "../../../../../../../big_libs/boost/stagerelease/lib/libboost_system-mt.dylib"; sourceTree = "<group>"; };
-		A11D682F1FB5973100409EB3 /* libboost_thread-mt.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_thread-mt.dylib"; path = "../../../../../../../big_libs/boost/stagerelease/lib/libboost_thread-mt.dylib"; sourceTree = "<group>"; };
+		A11D682D1FB5972100409EB3 /* libboost_system-mt-x64.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_system-mt-x64.dylib"; path = "../../../../../../../big_libs/boost/stagerelease/lib/libboost_system-mt-x64.dylib"; sourceTree = "<group>"; };
+		A11D682F1FB5973100409EB3 /* libboost_thread-mt-x64.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_thread-mt-x64.dylib"; path = "../../../../../../../big_libs/boost/stagerelease/lib/libboost_thread-mt-x64.dylib"; sourceTree = "<group>"; };
 		A11D68701FB59ACA00409EB3 /* scene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = scene.cpp; path = ../../ccycles/scene.cpp; sourceTree = "<group>"; };
 		A11D68711FB59ACB00409EB3 /* transform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = transform.cpp; path = ../../ccycles/transform.cpp; sourceTree = "<group>"; };
 		A11D68721FB59ACB00409EB3 /* session_parameters.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = session_parameters.cpp; path = ../../ccycles/session_parameters.cpp; sourceTree = "<group>"; };
@@ -176,8 +176,8 @@
 				A100CA751FB601F700BC046C /* libcyclesglew.a in Frameworks */,
 				A100CA5B1FB5F8B300BC046C /* libOpenImageIO.dylib in Frameworks */,
 				A100C8101FB5D63D00BC046C /* libcycles_proper.a in Frameworks */,
-				A11D68301FB5973200409EB3 /* libboost_thread-mt.dylib in Frameworks */,
-				A11D682E1FB5972100409EB3 /* libboost_system-mt.dylib in Frameworks */,
+				A11D68301FB5973200409EB3 /* libboost_thread-mt-x64.dylib in Frameworks */,
+				A11D682E1FB5972100409EB3 /* libboost_system-mt-x64.dylib in Frameworks */,
 				A11D682B1FB5970500409EB3 /* libcuew.a in Frameworks */,
 				A11D68291FB5970000409EB3 /* libclew.a in Frameworks */,
 				A11D68271FB596FC00409EB3 /* libHalf.a in Frameworks */,
@@ -243,8 +243,8 @@
 				A100CA761FB601F700BC046C /* libcyclesglew.a */,
 				A100CA5C1FB5F8B300BC046C /* libOpenImageIO.dylib */,
 				A100C8111FB5D63D00BC046C /* libcycles_proper.a */,
-				A11D682F1FB5973100409EB3 /* libboost_thread-mt.dylib */,
-				A11D682D1FB5972100409EB3 /* libboost_system-mt.dylib */,
+				A11D682F1FB5973100409EB3 /* libboost_thread-mt-x64.dylib */,
+				A11D682D1FB5972100409EB3 /* libboost_system-mt-x64.dylib */,
 				A11D682C1FB5970500409EB3 /* libcuew.a */,
 				A11D682A1FB5970000409EB3 /* libclew.a */,
 				A11D68281FB596FC00409EB3 /* libHalf.a */,
