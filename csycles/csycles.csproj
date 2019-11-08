@@ -12,6 +12,21 @@
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
+  <PropertyGroup Label="Globals">
+    <PlatformVersion Condition="'$(VisualStudioVersion)'=='14.0'">v140</PlatformVersion>
+    <PlatformVersion Condition="'$(VisualStudioVersion)'=='15.0'">v141</PlatformVersion>
+    <PlatformVersion Condition="'$(VisualStudioVersion)'=='16.0'">v142</PlatformVersion>
+    <BoostConfig Condition="$(Configuration.Contains('Debug'))">gd-</BoostConfig>
+    <BoostConfig Condition="$(Configuration.Contains('Release'))"></BoostConfig>
+    <OpenEXRVersion Condition="$(Configuration.Contains('Debug'))">2_4_d</OpenEXRVersion>
+    <OpenEXRVersion Condition="$(Configuration.Contains('Release'))">2_4</OpenEXRVersion>
+    <!--<OpenEXRVersion>2_4</OpenEXRVersion>-->
+    <OpenImageIOVersion Condition="$(Configuration.Contains('Debug'))">2_0_12_d</OpenImageIOVersion>
+    <OpenImageIOVersion Condition="$(Configuration.Contains('Release'))">2_0_12</OpenImageIOVersion>
+    <EmbreeVersion Condition="$(Configuration.Contains('Debug'))">_d</EmbreeVersion>
+    <EmbreeVersion Condition="$(Configuration.Contains('Release'))"></EmbreeVersion>
+    <BoostToolset>$(BoostConfig)x64-$(PlatformVersion)</BoostToolset>
+  </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
@@ -76,10 +91,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Condition="'$(Configuration)' == 'Release' Or '$(Configuration)' == 'Debug'" Include="..\..\..\..\..\version.cs">
+    <Compile Condition="!$(Configuration.Contains('Stand-alone'))" Include="..\..\..\..\..\version.cs">
       <Link>Properties\version.cs</Link>
     </Compile>
-    <Compile Condition="'$(Configuration)' == 'Stand-alone Release' Or '$(Configuration)' == 'Stand-alone Debug'" Include=".\Properties\version.cs" />
+    <Compile Condition="$(Configuration.Contains('Stand-alone'))" Include=".\Properties\version.cs" />
     <Compile Include="Attributes\ShaderNodeAttribute.cs" />
     <Compile Include="Background.cs" />
     <Compile Include="Colors.cs" />
@@ -197,28 +212,27 @@
   </ItemGroup>
   <ItemGroup>
     <CCSyclesFiles Include="$(TargetDir)$(ProjectName).*" />
-  </ItemGroup>
-  <ItemGroup>
+    <EmbreeFiles Include="$(SolutionDir)..\..\big_libs\embree-3.6.1.x64.vc14.windows\lib\embree3$(EmbreeVersion).dll">
+      <Link>Dependencies\EmbreeFiles\%(Filename)%(Extension)</Link>
+    </EmbreeFiles>
+    <OpenEXRFiles Include="$(SolutionDir)..\..\big_libs\OpenEXR-2.4.0\bin\*$(OpenEXRVersion).dll">
+      <Link>Dependencies\OpenEXRFiles\%(Filename)%(Extension)</Link>
+    </OpenEXRFiles>
+    <OpenImageIOFiles Include="$(SolutionDir)..\..\big_libs\OpenImageIO-2.0.12\bin\*$(OpenImageIOVersion).dll">
+      <Link>Dependencies\OpenImageIOFiles\%(Filename)%(Extension)</Link>
+    </OpenImageIOFiles>
     <CUDAFiles Include="$(SolutionDir)..\..\big_libs\RhinoCycles\lib\**\*">
       <Link>Dependencies\CUDAFiles\%(RecursiveDir)%(Filename)%(Extension)</Link>
     </CUDAFiles>
-  </ItemGroup>
-  <ItemGroup>
     <KernelFiles Include="$(ProjecDir)..\cycles\src\kernel\**\*" Exclude="$(ProjecDir)..\cycles\src\kernel\**\CMakeLists.*">
       <Link>Dependencies\KernelFiles\%(RecursiveDir)%(Filename)%(Extension)</Link>
     </KernelFiles>
-  </ItemGroup>
-  <ItemGroup>
-    <BoostFiles Include="$(SolutionDir)..\..\big_libs\boost\stage$(ConfigurationName)\lib\boost_*.dll">
+    <BoostFiles Include="$(SolutionDir)..\..\big_libs\boost\stage$(ConfigurationName)\lib\boost_*$(BoostToolset).dll">
       <Link>Dependencies\BoostFiles\%(RecursiveDir)%(Filename)%(Extension)</Link>
     </BoostFiles>
-  </ItemGroup>
-  <ItemGroup>
     <UtilFiles Include="$(ProjecDir)..\cycles\src\util\**\*.h" Exclude="$(ProjecDir)..\cycles\src\util\**\CMakeLists.*">
       <Link>Dependencies\util\%(RecursiveDir)%(Filename)%(Extension)</Link>
     </UtilFiles>
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="License\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
@@ -269,7 +283,9 @@ XCopy "$(ProjectDir)..\cycles\src\util\util_static_assert.h" "$(SolutionDir)$(Ou
   </Target>
   <Target Name="AfterBuild">
     <Copy SourceFiles="@(CCSyclesFiles)" DestinationFolder="$(ProjectDir)..\..\..\..\..\$(OutDir)Plug-ins\" />
-    <Copy SourceFiles="$(ProjectDir)..\OpenImageIO\x64\$(ConfigurationName)\OpenImageIOv13.dll" DestinationFolder="$(SolutionDir)..\$(OutDir)" Condition="'$(OS)' == 'Windows_NT'" />
+    <Copy SourceFiles="@(OpenImageIOFiles)" DestinationFolder="$(SolutionDir)..\$(OutDir)" Condition="'$(OS)' == 'Windows_NT'" />
+    <Copy SourceFiles="@(EmbreeFiles)" DestinationFolder="$(SolutionDir)..\$(OutDir)" Condition="'$(OS)' == 'Windows_NT'" />
+    <Copy SourceFiles="@(OpenEXRFiles)" DestinationFolder="$(SolutionDir)..\$(OutDir)" Condition="'$(OS)' == 'Windows_NT'" />
     <Copy SourceFiles="$(ProjectDir)..\pthreads\x64\$(ConfigurationName)\pthreads.dll" DestinationFolder="$(SolutionDir)..\$(OutDir)" Condition="'$(OS)' == 'Windows_NT'" />
     <Copy SourceFiles="@(BoostFiles)" DestinationFolder="$(SolutionDir)..\$(OutDir)" Condition="'$(OS)' == 'Windows_NT'" />
     <Copy SourceFiles="@(CUDAFiles)" DestinationFolder="$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\lib\%(RecursiveDir)" />

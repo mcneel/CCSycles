@@ -272,7 +272,7 @@ CCL_CAPI int __cdecl cycles_create_multidevice(int count, int* idx);
 CCL_CAPI unsigned int __cdecl cycles_device_type(int i);
 
 /* Create scene parameters, to be used when creating a new scene. */
-CCL_CAPI unsigned int __cdecl cycles_scene_params_create(unsigned int client_id, unsigned int shadingsystem, unsigned int bvh_type, unsigned int use_bvh_spatial_split, unsigned int use_qbvh, unsigned int persistent_data);
+CCL_CAPI unsigned int __cdecl cycles_scene_params_create(unsigned int client_id, unsigned int shadingsystem, unsigned int bvh_type, unsigned int use_bvh_spatial_split, int bvh_layout, unsigned int persistent_data);
 
 /* Set scene parameters*/
 
@@ -400,6 +400,8 @@ CCL_CAPI void __cdecl cycles_scene_set_clipping_plane(unsigned int client_id, un
 CCL_CAPI void __cdecl cycles_integrator_tag_update(unsigned int client_id, unsigned int scene_id);
 /** Set the maximum bounces for integrator. */
 CCL_CAPI void __cdecl cycles_integrator_set_max_bounce(unsigned int client_id, unsigned int scene_id, int max_bounce);
+/** Set the minimum bounces for integrator. */
+CCL_CAPI void __cdecl cycles_integrator_set_min_bounce(unsigned int client_id, unsigned int scene_id, int min_bounce);
 /** Set to true if caustics should be skipped.
  * \todo split for caustics_reflective and caustics_refractive.
  */
@@ -431,6 +433,8 @@ CCL_CAPI void __cdecl cycles_integrator_set_max_transmission_bounce(unsigned int
 CCL_CAPI void __cdecl cycles_integrator_set_max_volume_bounce(unsigned int client_id, unsigned int scene_id, int max_volume_bounce);
 /** Set the maximum amount of transparency bounces. */
 CCL_CAPI void __cdecl cycles_integrator_set_transparent_max_bounce(unsigned int client_id, unsigned int scene_id, int transparent_max_bounce);
+/** Set the minimum amount of transparency bounces. */
+CCL_CAPI void __cdecl cycles_integrator_set_transparent_min_bounce(unsigned int client_id, unsigned int scene_id, int transparent_min_bounce);
 /** Set the amount of AA samples. */
 CCL_CAPI void __cdecl cycles_integrator_set_aa_samples(unsigned int client_id, unsigned int scene_id, int aa_samples);
 /** Set the glossiness filter. */
@@ -628,6 +632,8 @@ CCL_CAPI void __cdecl cycles_mesh_attr_tangentspace(unsigned int client_id, unsi
 
 /* Shader API */
 
+#undef TRANSPARENT
+
 // NOTE: keep in sync with available Cycles nodes
 enum class shadernode_type : unsigned int {
 	BACKGROUND = 0,
@@ -718,12 +724,11 @@ CCL_CAPI unsigned int __cdecl cycles_add_shader_node(unsigned int client_id, uns
 CCL_CAPI void __cdecl cycles_shadernode_set_attribute_int(unsigned int client_id, unsigned int shader_id, unsigned int shnode_id, const char* attribute_name, int value);
 CCL_CAPI void __cdecl cycles_shadernode_set_attribute_float(unsigned int client_id, unsigned int shader_id, unsigned int shnode_id, const char* attribute_name, float value);
 CCL_CAPI void __cdecl cycles_shadernode_set_attribute_vec(unsigned int client_id, unsigned int shader_id, unsigned int shnode_id, const char* attribute_name, float x, float y, float z);
-CCL_CAPI void __cdecl cycles_shadernode_set_attribute_string(unsigned int client_id, unsigned int shader_id, unsigned int shnode_id, const char* attribute_name, const char* value);
 CCL_CAPI void __cdecl cycles_shadernode_set_enum(unsigned int client_id, unsigned int shader_id, unsigned int shnode_id, shadernode_type shn_type, const char* enum_name, int value);
 CCL_CAPI void __cdecl cycles_shadernode_texmapping_set_transformation(unsigned int client_id, unsigned int shader_id, unsigned int shnode_id, shadernode_type shn_type, int transform_type, float x, float y, float z);
 CCL_CAPI void __cdecl cycles_shadernode_texmapping_set_mapping(unsigned int client_id, unsigned int shader_id, unsigned int shnode_id, shadernode_type shn_type, ccl::TextureMapping::Mapping x, ccl::TextureMapping::Mapping y, ccl::TextureMapping::Mapping z);
 CCL_CAPI void __cdecl cycles_shadernode_texmapping_set_projection(unsigned int client_id, unsigned int shader_id, unsigned int shnode_id, shadernode_type shn_type, ccl::TextureMapping::Projection tm_projection);
-CCL_CAPI void __cdecl cycles_shadernode_texmapping_set_type(unsigned int client_id, unsigned int shader_id, unsigned int shnode_id, shadernode_type shn_type, ccl::TextureMapping::Type tm_type);
+CCL_CAPI void __cdecl cycles_shadernode_texmapping_set_type(unsigned int client_id, unsigned int shader_id, unsigned int shnode_id, shadernode_type shn_type, ccl::NodeMappingType tm_type);
 
 CCL_CAPI void __cdecl cycles_shadernode_set_member_bool(unsigned int client_id, unsigned int shader_id, unsigned int shnode_id, shadernode_type shn_type, const char* member_name, bool value);
 CCL_CAPI void __cdecl cycles_shadernode_set_member_float(unsigned int client_id, unsigned int shader_id, unsigned int shnode_id, shadernode_type shn_type, const char* member_name, float value);

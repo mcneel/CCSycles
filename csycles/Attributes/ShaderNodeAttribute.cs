@@ -25,6 +25,10 @@ namespace ccl.Attributes
 			IsBase = base_class;
 		}
 
+		/// <summary>
+		/// Shadernode attribute with given name. Non-base class.
+		/// </summary>
+		/// <param name="name"></param>
 		public ShaderNodeAttribute(string name)
 		{
 			Name = name;

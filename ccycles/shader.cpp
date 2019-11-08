@@ -76,6 +76,16 @@ ccl::ShaderNode* _shader_node_find(unsigned int shader_id, unsigned int shnode_i
 	return nullptr;
 }
 
+void _set_colorspace(OpenImageIO_v2_0::ustring& colorspace, int value)
+{
+	if (value == 0) {
+		colorspace = ccl::u_colorspace_raw;
+	}
+	else {
+		colorspace = ccl::u_colorspace_auto;
+	}
+}
+
 /* Create a new shader.
  TODO: name for shader
 */
@@ -345,7 +355,7 @@ unsigned int cycles_add_shader_node(unsigned int client_id, unsigned int shader_
 		break;
 	case shadernode_type::NORMALMAP:
 		node = new ccl::NormalMapNode();
-		dynamic_cast<ccl::NormalMapNode*>(node)->attribute = OpenImageIO::v1_3::ustring("uvmap");
+		dynamic_cast<ccl::NormalMapNode*>(node)->attribute = OpenImageIO_v2_0::ustring("uvmap");
 		break;
 	case shadernode_type::WIREFRAME:
 		node = new ccl::WireframeNode();
@@ -358,7 +368,7 @@ unsigned int cycles_add_shader_node(unsigned int client_id, unsigned int shader_
 		break;
 	case shadernode_type::TANGENT:
 		node = new ccl::TangentNode();
-		dynamic_cast<ccl::TangentNode*>(node)->attribute = OpenImageIO::v1_3::ustring("uvmap");
+		dynamic_cast<ccl::TangentNode*>(node)->attribute = OpenImageIO_v2_0::ustring("uvmap");
 		dynamic_cast<ccl::TangentNode*>(node)->direction_type = ccl::NodeTangentDirectionType::NODE_TANGENT_UVMAP;
 		break;
 	}
@@ -376,7 +386,6 @@ enum class attr_type {
 	INT,
 	FLOAT,
 	FLOAT4,
-	CHARP
 };
 
 struct attrunion {
@@ -385,7 +394,6 @@ struct attrunion {
 		int i;
 		float f;
 		ccl::float4 f4;
-		const char* cp;
 	};
 };
 
@@ -414,10 +422,6 @@ void shadernode_set_attribute(unsigned int client_id, unsigned int shader_id, un
 					inp->set(f3);
 					logger.logit(client_id, "shader_id: ", shader_id, " -> shnode_id: ", shnode_id, " |> setting attribute: ", attribute_name, " to: ", v.f4.x, ",", v.f4.y, ",", v.f4.z);
 					break;
-				case attr_type::CHARP:
-					inp->set(OpenImageIO::v1_3::ustring(v.cp));
-					logger.logit(client_id, "shader_id: ", shader_id, " -> shnode_id: ", shnode_id, " |> setting attribute: ", attribute_name, " to: ", v.cp);
-					break;
 				}
 				return;
 			}
@@ -445,6 +449,26 @@ void _set_texture_mapping_transformation(ccl::TextureMapping& mapping, int trans
 		break;
 	}
 }
+void _set_mapping_node(ccl::MappingNode* node, int transform_type, float x, float y, float z)
+{
+	switch (transform_type) {
+	case 0:
+		node->location.x = x;
+		node->location.y = y;
+		node->location.z = z;
+		break;
+	case 1:
+		node->rotation.x = x;
+		node->rotation.y = y;
+		node->rotation.z = z;
+		break;
+	case 2:
+		node->scale.x = x;
+		node->scale.y = y;
+		node->scale.z = z;
+		break;
+	}
+}
 
 void cycles_shadernode_texmapping_set_transformation(unsigned int client_id, unsigned int shader_id, unsigned int shnode_id, shadernode_type shn_type, int transform_type, float x, float y, float z)
 {
@@ -467,7 +491,7 @@ void cycles_shadernode_texmapping_set_transformation(unsigned int client_id, uns
 		case shadernode_type::MAPPING:
 		{
 			ccl::MappingNode* node = dynamic_cast<ccl::MappingNode*>(shnode);
-			_set_texture_mapping_transformation(node->tex_mapping, transform_type, x, y, z);
+			_set_mapping_node(node, transform_type, x, y, z);
 		}
 		break;
 		case shadernode_type::ENVIRONMENT_TEXTURE:
@@ -545,8 +569,10 @@ void cycles_shadernode_texmapping_set_mapping(unsigned int client_id, unsigned i
 		switch (shn_type) {
 		case shadernode_type::MAPPING:
 		{
+			/*
 			ccl::MappingNode* node = dynamic_cast<ccl::MappingNode*>(shnode);
 			_set_texmapping_mapping(node->tex_mapping, x, y, z);
+			*/
 		}
 		break;
 		case shadernode_type::ENVIRONMENT_TEXTURE:
@@ -611,6 +637,7 @@ void cycles_shadernode_texmapping_set_mapping(unsigned int client_id, unsigned i
 
 void cycles_shadernode_texmapping_set_projection(unsigned int client_id, unsigned int shader_id, unsigned int shnode_id, shadernode_type shn_type, ccl::TextureMapping::Projection tm_projection)
 {
+	/*
 	ccl::ShaderNode* shnode = _shader_node_find(shader_id, shnode_id);
 	if (shnode) {
 		logger.logit(client_id, "Setting texture map projection type to ", tm_projection, " for shadernode type ", shn_type);
@@ -625,9 +652,10 @@ void cycles_shadernode_texmapping_set_projection(unsigned int client_id, unsigne
 			break;
 		}
 	}
+	*/
 }
 
-void cycles_shadernode_texmapping_set_type(unsigned int client_id, unsigned int shader_id, unsigned int shnode_id, shadernode_type shn_type, ccl::TextureMapping::Type tm_type)
+void cycles_shadernode_texmapping_set_type(unsigned int client_id, unsigned int shader_id, unsigned int shnode_id, shadernode_type shn_type, ccl::NodeMappingType tm_type)
 {
 	ccl::ShaderNode* shnode = _shader_node_find(shader_id, shnode_id);
 	if (shnode) {
@@ -636,7 +664,7 @@ void cycles_shadernode_texmapping_set_type(unsigned int client_id, unsigned int 
 		case shadernode_type::MAPPING:
 			{
 				ccl::MappingNode* node = dynamic_cast<ccl::MappingNode*>(shnode);
-				node->tex_mapping.type = tm_type;
+				node->type = tm_type;
 			}
 			break;
 		default:
@@ -657,13 +685,13 @@ void cycles_shadernode_set_enum(unsigned int client_id, unsigned int shader_id, 
 		case shadernode_type::MATH:
 		{
 			ccl::MathNode* node = dynamic_cast<ccl::MathNode*>(shnode);
-			node->type = (ccl::NodeMath)value;
+			node->type = (ccl::NodeMathType)value;
 		}
 		break;
 		case shadernode_type::VECT_MATH:
 		{
 			ccl::VectorMathNode *node = dynamic_cast<ccl::VectorMathNode*>(shnode);
-			node->type = (ccl::NodeVectorMath)value;
+			node->type = (ccl::NodeVectorMathType)value;
 		}
 		break;
 		case shadernode_type::MATRIX_MATH:
@@ -722,10 +750,10 @@ void cycles_shadernode_set_enum(unsigned int client_id, unsigned int shader_id, 
 		break;
 		case shadernode_type::VORONOI_TEXTURE:
 		{
-			if (ename == "coloring") {
+			/*if (ename == "coloring") {
 				ccl::VoronoiTextureNode* node = dynamic_cast<ccl::VoronoiTextureNode*>(shnode);
 				node->coloring = (ccl::NodeVoronoiColoring)value;
-			}
+			}*/
 			if (ename == "metric") {
 				ccl::VoronoiTextureNode* node = dynamic_cast<ccl::VoronoiTextureNode*>(shnode);
 				node->metric = (ccl::NodeVoronoiDistanceMetric)value;
@@ -752,7 +780,7 @@ void cycles_shadernode_set_enum(unsigned int client_id, unsigned int shader_id, 
 		{
 			ccl::EnvironmentTextureNode* node = dynamic_cast<ccl::EnvironmentTextureNode*>(shnode);
 			if (ename == "color_space") {
-				node->color_space = (ccl::NodeImageColorSpace)value;
+				_set_colorspace(node->colorspace, value);
 			}
 			else if (ename == "projection") {
 				node->projection = (ccl::NodeEnvironmentProjection)value;
@@ -766,7 +794,7 @@ void cycles_shadernode_set_enum(unsigned int client_id, unsigned int shader_id, 
 		{
 			ccl::ImageTextureNode* node = dynamic_cast<ccl::ImageTextureNode*>(shnode);
 			if (ename == "color_space") {
-				node->color_space = (ccl::NodeImageColorSpace)value;
+				_set_colorspace(node->colorspace, value);
 			}
 			else if (ename == "projection") {
 				node->projection = (ccl::NodeImageProjection)value;
@@ -931,10 +959,10 @@ void cycles_shadernode_set_member_bool(unsigned int client_id, unsigned int shad
 		break;
 		case shadernode_type::MAPPING:
 		{
-			ccl::MappingNode* mapping = dynamic_cast<ccl::MappingNode*>(shnode);
+			/*ccl::MappingNode* mapping = dynamic_cast<ccl::MappingNode*>(shnode);
 			if (mname == "useminmax") {
 				mapping->tex_mapping.use_minmax = value;
-			}
+			}*/
 		}
 		break;
 		case shadernode_type::COLOR_RAMP:
@@ -958,11 +986,16 @@ void cycles_shadernode_set_member_bool(unsigned int client_id, unsigned int shad
 		{
 			ccl::ImageTextureNode* imgtex = dynamic_cast<ccl::ImageTextureNode*>(shnode);
 			if (mname == "use_alpha") {
-				imgtex->use_alpha = value;
+				if (value) {
+					imgtex->alpha_type = ccl::ImageAlphaType::IMAGE_ALPHA_AUTO;
+				}
+				else {
+					imgtex->alpha_type = ccl::ImageAlphaType::IMAGE_ALPHA_IGNORE;
+				}
 			}
-			else if (mname == "is_linear") {
+			/*else if (mname == "is_linear") {
 				imgtex->is_linear = value;
-			}
+			}*/
 			else if (mname == "alternate_tiles") {
 				imgtex->alternate_tiles = value;
 			}
@@ -970,10 +1003,10 @@ void cycles_shadernode_set_member_bool(unsigned int client_id, unsigned int shad
 		break;
 		case shadernode_type::ENVIRONMENT_TEXTURE:
 		{
-			ccl::EnvironmentTextureNode* envtex = dynamic_cast<ccl::EnvironmentTextureNode*>(shnode);
+			/*ccl::EnvironmentTextureNode* envtex = dynamic_cast<ccl::EnvironmentTextureNode*>(shnode);
 			if (mname == "is_linear") {
 				envtex->is_linear = value;
-			}
+			}*/
 		}
 		break;
 		case shadernode_type::TEXTURE_COORDINATE:
@@ -1179,7 +1212,7 @@ void cycles_shadernode_set_member_vec(unsigned int client_id, unsigned int shade
 		break;
 		case shadernode_type::MAPPING:
 		{
-			ccl::MappingNode* mapping = dynamic_cast<ccl::MappingNode*>(shnode);
+			/*ccl::MappingNode* mapping = dynamic_cast<ccl::MappingNode*>(shnode);
 			if (mname == "min") {
 				mapping->tex_mapping.min.x = x;
 				mapping->tex_mapping.min.y = y;
@@ -1189,7 +1222,7 @@ void cycles_shadernode_set_member_vec(unsigned int client_id, unsigned int shade
 				mapping->tex_mapping.max.x = x;
 				mapping->tex_mapping.max.y = y;
 				mapping->tex_mapping.max.z = z;
-			}
+			}*/
 		}
 		break;
 		default:
@@ -1249,17 +1282,6 @@ void cycles_shadernode_set_attribute_vec(unsigned int client_id, unsigned int sh
 	v.f4.x = x;
 	v.f4.y = y;
 	v.f4.z = z;
-	shadernode_set_attribute(client_id, shader_id, shnode_id, attribute_name, v);
-}
-
-/*
-Set a std::string attribute with given name to value. shader_id is the global shader ID.
-*/
-void cycles_shadernode_set_attribute_string(unsigned int client_id, unsigned int shader_id, unsigned int shnode_id, const char* attribute_name, const char* value)
-{
-	attrunion v;
-	v.type = attr_type::CHARP;
-	v.cp = value;
 	shadernode_set_attribute(client_id, shader_id, shnode_id, attribute_name, v);
 }
 
