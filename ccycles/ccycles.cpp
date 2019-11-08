@@ -95,17 +95,21 @@ void cycles_debug_set_cuda_kernel(unsigned int state)
 
 void cycles_debug_set_opencl_kernel(int state)
 {
+#if 0
 	if (state == -1)
 		ccl::DebugFlags().opencl.kernel_type = ccl::DebugFlags::OpenCL::KernelType::KERNEL_DEFAULT;
 	else if (state == 0)
 		ccl::DebugFlags().opencl.kernel_type = ccl::DebugFlags::OpenCL::KernelType::KERNEL_MEGA;
 	else if (state == 1)
 		ccl::DebugFlags().opencl.kernel_type = ccl::DebugFlags::OpenCL::KernelType::KERNEL_SPLIT;
+#endif
 }
 
 void cycles_debug_set_opencl_single_program(int state)
 {
+#if 0
 	ccl::DebugFlags().opencl.single_program = state == 1;
+#endif
 }
 
 void cycles_debug_set_opencl_device_type(int type)

@@ -5,7 +5,7 @@
   <PropertyGroup />
   <ItemDefinitionGroup>
     <ClCompile>
-      <PreprocessorDefinitions>__NO_CAMERA_MOTION__;__NO_OBJECT_MOTION__;__NO_HAIR__;__NO_BAKING__;__NO_VOLUME__;__NO_BRANCHED_PATH__;__NO_PATCH_EVAL__;__NO_DENOISING__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>__NO_DENOISING__;__NO_CAMERA_MOTION__;__NO_OBJECT_MOTION__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup />

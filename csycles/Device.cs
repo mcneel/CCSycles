@@ -92,6 +92,11 @@ namespace ccl
 		public bool IsCpu => Type == DeviceType.CPU;
 
 		/// <summary>
+		/// True if this device is an OptiX device
+		/// </summary>
+		public bool IsOptix => Type == DeviceType.Optix;
+
+		/// <summary>
 		/// True if this device is a GPU
 		/// </summary>
 		public bool IsGpu => !IsCpu;
@@ -322,6 +327,22 @@ namespace ccl
 								 where device.IsGpu
 								 select device).FirstOrDefault();
 				return d ?? Default;
+
+			}
+		}
+
+		/// <summary>
+		/// Get the first CPU if one exists,
+		/// the default rendering device (CPU) if not.
+		/// </summary>
+		static public Device FirstCpu
+		{
+			get
+			{
+				var d = (from device in Devices
+								 where device.IsCpu
+								 select device).FirstOrDefault();
+				return d ?? null;
 
 			}
 		}

@@ -4,6 +4,9 @@
     <Filter Include="util">
       <UniqueIdentifier>{a3c9e2ce-3b7e-43a4-bd53-fceb830a2eb8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="numaapi">
+      <UniqueIdentifier>{7cdf731e-a01b-4f40-9412-a597ff1485fd}</UniqueIdentifier>
+    </Filter>
     <Filter Include="graph">
       <UniqueIdentifier>{F943DDEB-390F-4F83-A075-7AC89149A35E}</UniqueIdentifier>
     </Filter>
@@ -25,6 +28,9 @@
     <Filter Include="kernel_headers">
       <UniqueIdentifier>{b61e4075-a0f7-41bd-a86b-7bff792ab1ba}</UniqueIdentifier>
     </Filter>
+    <Filter Include="kernel_shaders">
+      <UniqueIdentifier>{2a9c50ad-9197-49af-99ea-26a85b840634}</UniqueIdentifier>
+    </Filter>
     <Filter Include="kernel_denoising_headers">
       <UniqueIdentifier>{1bb90ff0-699c-4eed-9954-39b237b75a79}</UniqueIdentifier>
     </Filter>
@@ -34,7 +40,7 @@
     <Filter Include="kernel_split_headers">
       <UniqueIdentifier>{B898C955-7640-4795-AA2E-B6397E0957BC}</UniqueIdentifier>
     </Filter>
-    <Filter Include="svm_headers">
+    <Filter Include="SVM Headers">
       <UniqueIdentifier>{6ed2008e-00d9-46ee-8355-edcbd3bdffb5}</UniqueIdentifier>
     </Filter>
     <Filter Include="kernel_cpu">
@@ -55,6 +61,10 @@
     <Filter Include="kernel_cpu_sse41">
       <UniqueIdentifier>{203CBDF5-E52E-4A27-AEB3-D26D4A552A44}</UniqueIdentifier>
     </Filter>
+		<Filter Include="OpenCL source">
+			<UniqueIdentifier>{8995B300-C6CF-4C17-A6F5-B4D519AB7DA5}</UniqueIdentifier>
+      <Extensions>cl</Extensions>
+		</Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="cycles\src\kernel\kernels\cpu\filter.cpp">
@@ -132,79 +142,22 @@
     <ClCompile Include="cycles\src\graph\*.cpp">
       <Filter>graph</Filter>
     </ClCompile>
-    <ClCompile Include="cycles\src\bvh\*.cpp" />
-    <ClCompile Include="cycles\src\bvh\*.cpp" />
-    <ClCompile Include="cycles\src\bvh\*.cpp" />
-    <ClCompile Include="cycles\src\bvh\*.cpp" />
-    <ClCompile Include="cycles\src\bvh\*.cpp" />
-    <ClCompile Include="cycles\src\bvh\*.cpp" />
-    <ClCompile Include="cycles\src\bvh\*.cpp" />
-    <ClCompile Include="cycles\src\bvh\*.cpp" />
-    <ClCompile Include="cycles\src\bvh\*.cpp" />
-    <ClCompile Include="cycles\src\device\*.cpp" />
-    <ClCompile Include="cycles\src\device\*.cpp" />
-    <ClCompile Include="cycles\src\device\*.cpp" />
-    <ClCompile Include="cycles\src\device\*.cpp" />
-    <ClCompile Include="cycles\src\device\*.cpp" />
-    <ClCompile Include="cycles\src\device\*.cpp" />
-    <ClCompile Include="cycles\src\device\*.cpp" />
-    <ClCompile Include="cycles\src\device\*.cpp" />
-    <ClCompile Include="cycles\src\device\*.cpp" />
-    <ClCompile Include="cycles\src\device\opencl\*.cpp" />
-    <ClCompile Include="cycles\src\device\opencl\*.cpp" />
-    <ClCompile Include="cycles\src\device\opencl\*.cpp" />
-    <ClCompile Include="cycles\src\device\opencl\*.cpp" />
-    <ClCompile Include="cycles\src\render\*.cpp" />
-    <ClCompile Include="cycles\src\render\*.cpp" />
-    <ClCompile Include="cycles\src\render\*.cpp" />
-    <ClCompile Include="cycles\src\render\*.cpp" />
-    <ClCompile Include="cycles\src\render\*.cpp" />
-    <ClCompile Include="cycles\src\render\*.cpp" />
-    <ClCompile Include="cycles\src\render\*.cpp" />
-    <ClCompile Include="cycles\src\render\*.cpp" />
-    <ClCompile Include="cycles\src\render\*.cpp" />
-    <ClCompile Include="cycles\src\render\*.cpp" />
-    <ClCompile Include="cycles\src\render\*.cpp" />
-    <ClCompile Include="cycles\src\render\*.cpp" />
-    <ClCompile Include="cycles\src\render\*.cpp" />
-    <ClCompile Include="cycles\src\render\*.cpp" />
-    <ClCompile Include="cycles\src\render\*.cpp" />
-    <ClCompile Include="cycles\src\render\*.cpp" />
-    <ClCompile Include="cycles\src\render\*.cpp" />
-    <ClCompile Include="cycles\src\render\*.cpp" />
-    <ClCompile Include="cycles\src\render\*.cpp" />
-    <ClCompile Include="cycles\src\render\*.cpp" />
-    <ClCompile Include="cycles\src\render\*.cpp" />
-    <ClCompile Include="cycles\src\render\*.cpp" />
-    <ClCompile Include="cycles\src\render\*.cpp" />
-    <ClCompile Include="cycles\src\render\*.cpp" />
-    <ClCompile Include="cycles\src\render\*.cpp" />
-    <ClCompile Include="cycles\src\render\*.cpp" />
-    <ClCompile Include="cycles\src\render\*.cpp" />
-    <ClCompile Include="cycles\src\subd\*.cpp" />
-    <ClCompile Include="cycles\src\subd\*.cpp" />
-    <ClCompile Include="cycles\src\subd\*.cpp" />
-    <ClCompile Include="cycles\src\util\*.cpp" />
-    <ClCompile Include="cycles\src\util\*.cpp" />
-    <ClCompile Include="cycles\src\util\*.cpp" />
-    <ClCompile Include="cycles\src\util\*.cpp" />
-    <ClCompile Include="cycles\src\util\*.cpp" />
-    <ClCompile Include="cycles\src\util\*.cpp" />
-    <ClCompile Include="cycles\src\util\*.cpp" />
-    <ClCompile Include="cycles\src\util\*.cpp" />
-    <ClCompile Include="cycles\src\util\*.cpp" />
-    <ClCompile Include="cycles\src\util\*.cpp" />
-    <ClCompile Include="cycles\src\util\*.cpp" />
-    <ClCompile Include="cycles\src\util\*.cpp" />
-    <ClCompile Include="cycles\src\util\*.cpp" />
-    <ClCompile Include="cycles\src\util\*.cpp" />
-    <ClCompile Include="cycles\src\util\*.cpp" />
-    <ClCompile Include="cycles\src\util\*.cpp" />
-    <ClCompile Include="cycles\src\util\*.cpp" />
-    <ClCompile Include="cycles\src\graph\*.cpp" />
-    <ClCompile Include="cycles\src\graph\*.cpp" />
+    <ClCompile Include="cycles\third_party\numaapi\source\*.c">
+      <Filter>numaapi</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <KernelFiles Include="$(ProjecDir)..\cycles\src\kernel\**\*" Exclude="$(ProjecDir)..\cycles\src\kernel\**\CMakeLists.*">
+      <Link>Dependencies\KernelFiles\%(RecursiveDir)%(Filename)%(Extension)</Link>
+    </KernelFiles>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="cycles\third_party\numaapi\include\*.h">
+      <Filter>numaapi</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\third_party\numaapi\source\*.h">
+      <Filter>numaapi</Filter>
+    </ClInclude>
     <ClInclude Include="cycles\src\bvh\*.h">
       <Filter>bvh</Filter>
     </ClInclude>
@@ -226,6 +179,9 @@
     <ClInclude Include="cycles\src\graph\*.h">
       <Filter>graph</Filter>
     </ClInclude>
+    <ClInclude Include="cycles\src\kernel\shaders\*.h">
+      <Filter>kernel_shaders</Filter>
+    </ClInclude>
     <ClInclude Include="cycles\src\kernel\kernel.h">
       <Filter>kernel_headers</Filter>
     </ClInclude>
@@ -235,139 +191,10 @@
     <ClInclude Include="cycles\src\kernel\kernels\cpu\kernel_*.h">
       <Filter>kernel_headers</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\geom\geom.h">
+    <ClInclude Include="cycles\src\kernel\geom\*.h">
       <Filter>kernel_geom_headers</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\geom\geom_attribute.h">
-      <Filter>kernel_geom_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\geom\geom_bvh.h">
-      <Filter>kernel_geom_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\geom\geom_bvh_shadow.h">
-      <Filter>kernel_geom_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\geom\geom_bvh_subsurface.h">
-      <Filter>kernel_geom_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\geom\geom_bvh_traversal.h">
-      <Filter>kernel_geom_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\geom\geom_bvh_volume.h">
-      <Filter>kernel_geom_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\geom\geom_bvh_volume_all.h">
-      <Filter>kernel_geom_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\geom\geom_curve.h">
-      <Filter>kernel_geom_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\geom\geom_curve_intersect.h">
-      <Filter>kernel_geom_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\geom\geom_motion_curve.h">
-      <Filter>kernel_geom_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\geom\geom_motion_triangle.h">
-      <Filter>kernel_geom_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\geom\geom_object.h">
-      <Filter>kernel_geom_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\geom\geom_primitive.h">
-      <Filter>kernel_geom_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\geom\geom_qbvh.h">
-      <Filter>kernel_geom_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\geom\geom_qbvh_shadow.h">
-      <Filter>kernel_geom_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\geom\geom_qbvh_subsurface.h">
-      <Filter>kernel_geom_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\geom\geom_qbvh_traversal.h">
-      <Filter>kernel_geom_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\geom\geom_qbvh_volume.h">
-      <Filter>kernel_geom_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\geom\geom_qbvh_volume_all.h">
-      <Filter>kernel_geom_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\geom\geom_triangle.h">
-      <Filter>kernel_geom_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\geom\geom_triangle_intersect.h">
-      <Filter>kernel_geom_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\geom\geom_volume.h">
-      <Filter>kernel_geom_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\split\kernel_buffer_update.h">
-      <Filter>kernel_split_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\split\kernel_data_init.h">
-      <Filter>kernel_split_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\split\kernel_direct_lighting.h">
-      <Filter>kernel_split_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\split\kernel_do_volume.h">
-      <Filter>kernel_split_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\split\kernel_enqueue_inactive.h">
-      <Filter>kernel_split_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\split\kernel_holdout_emission_blurring_pathtermination_ao.h">
-      <Filter>kernel_split_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\split\kernel_indirect_background.h">
-      <Filter>kernel_split_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\split\kernel_indirect_subsurface.h">
-      <Filter>kernel_split_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\split\kernel_lamp_emission.h">
-      <Filter>kernel_split_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\split\kernel_next_iteration_setup.h">
-      <Filter>kernel_split_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\split\kernel_path_init.h">
-      <Filter>kernel_split_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\split\kernel_queue_enqueue.h">
-      <Filter>kernel_split_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\split\kernel_scene_intersect.h">
-      <Filter>kernel_split_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\split\kernel_shader_eval.h">
-      <Filter>kernel_split_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\split\kernel_shader_setup.h">
-      <Filter>kernel_split_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\split\kernel_shader_sort.h">
-      <Filter>kernel_split_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\split\kernel_shadow_blocked_ao.h">
-      <Filter>kernel_split_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\split\kernel_shadow_blocked_dl.h">
-      <Filter>kernel_split_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\split\kernel_split_common.h">
-      <Filter>kernel_split_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\split\kernel_split_data.h">
-      <Filter>kernel_split_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\split\kernel_split_data_types.h">
-      <Filter>kernel_split_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\split\kernel_subsurface_scatter.h">
+    <ClInclude Include="cycles\src\kernel\split\*.h">
       <Filter>kernel_split_headers</Filter>
     </ClInclude>
     <ClInclude Include="cycles\src\kernel\kernels\filter_cpu.h">
@@ -376,264 +203,16 @@
     <ClInclude Include="cycles\src\kernel\kernels\filter_cpu_impl.h">
       <Filter>kernel_cpu</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\filter\filter.h">
-      <Filter>kernel_denoising_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\filter\filter_defines.h">
-      <Filter>kernel_denoising_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\filter\filter_features.h">
-      <Filter>kernel_denoising_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\filter\filter_features_sse.h">
-      <Filter>kernel_denoising_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\filter\filter_kernel.h">
-      <Filter>kernel_denoising_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\filter\filter_nlm_cpu.h">
-      <Filter>kernel_denoising_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\filter\filter_nlm_gpu.h">
-      <Filter>kernel_denoising_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\filter\filter_prefilter.h">
-      <Filter>kernel_denoising_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\filter\filter_reconstruction.h">
-      <Filter>kernel_denoising_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\filter\filter_transform.h">
-      <Filter>kernel_denoising_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\filter\filter_transform_gpu.h">
-      <Filter>kernel_denoising_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\filter\filter_transform_sse.h">
+    <ClInclude Include="cycles\src\kernel\filter\*.h">
       <Filter>kernel_denoising_headers</Filter>
     </ClInclude>
     <ClInclude Include="cycles\src\kernel\svm\*.h">
-      <Filter>svm_headers</Filter>
+      <Filter>SVM Headers</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\split\kernel_branched.h" />
-    <ClInclude Include="cycles\src\bvh\*.h" />
-    <ClInclude Include="cycles\src\bvh\*.h" />
-    <ClInclude Include="cycles\src\bvh\*.h" />
-    <ClInclude Include="cycles\src\bvh\*.h" />
-    <ClInclude Include="cycles\src\bvh\*.h" />
-    <ClInclude Include="cycles\src\bvh\*.h" />
-    <ClInclude Include="cycles\src\bvh\*.h" />
-    <ClInclude Include="cycles\src\bvh\*.h" />
-    <ClInclude Include="cycles\src\bvh\*.h" />
-    <ClInclude Include="cycles\src\bvh\*.h" />
-    <ClInclude Include="cycles\src\device\*.h" />
-    <ClInclude Include="cycles\src\device\*.h" />
-    <ClInclude Include="cycles\src\device\*.h" />
-    <ClInclude Include="cycles\src\device\*.h" />
-    <ClInclude Include="cycles\src\device\*.h" />
-    <ClInclude Include="cycles\src\device\*.h" />
-    <ClInclude Include="cycles\src\device\opencl\*.h" />
-    <ClInclude Include="cycles\src\kernel\kernels\cpu\kernel_*.h" />
-    <ClInclude Include="cycles\src\kernel\kernels\cpu\kernel_*.h" />
-    <ClInclude Include="cycles\src\kernel\kernel_*.h" />
-    <ClInclude Include="cycles\src\kernel\kernel_*.h" />
-    <ClInclude Include="cycles\src\kernel\kernel_*.h" />
-    <ClInclude Include="cycles\src\kernel\kernel_*.h" />
-    <ClInclude Include="cycles\src\kernel\kernel_*.h" />
-    <ClInclude Include="cycles\src\kernel\kernel_*.h" />
-    <ClInclude Include="cycles\src\kernel\kernel_*.h" />
-    <ClInclude Include="cycles\src\kernel\kernel_*.h" />
-    <ClInclude Include="cycles\src\kernel\kernel_*.h" />
-    <ClInclude Include="cycles\src\kernel\kernel_*.h" />
-    <ClInclude Include="cycles\src\kernel\kernel_*.h" />
-    <ClInclude Include="cycles\src\kernel\kernel_*.h" />
-    <ClInclude Include="cycles\src\kernel\kernel_*.h" />
-    <ClInclude Include="cycles\src\kernel\kernel_*.h" />
-    <ClInclude Include="cycles\src\kernel\kernel_*.h" />
-    <ClInclude Include="cycles\src\kernel\kernel_*.h" />
-    <ClInclude Include="cycles\src\kernel\kernel_*.h" />
-    <ClInclude Include="cycles\src\kernel\kernel_*.h" />
-    <ClInclude Include="cycles\src\kernel\kernel_*.h" />
-    <ClInclude Include="cycles\src\kernel\kernel_*.h" />
-    <ClInclude Include="cycles\src\kernel\kernel_*.h" />
-    <ClInclude Include="cycles\src\kernel\kernel_*.h" />
-    <ClInclude Include="cycles\src\kernel\kernel_*.h" />
-    <ClInclude Include="cycles\src\kernel\kernel_*.h" />
-    <ClInclude Include="cycles\src\kernel\kernel_*.h" />
-    <ClInclude Include="cycles\src\kernel\kernel_*.h" />
-    <ClInclude Include="cycles\src\kernel\kernel_*.h" />
-    <ClInclude Include="cycles\src\kernel\kernel_*.h" />
-    <ClInclude Include="cycles\src\kernel\kernel_*.h" />
-    <ClInclude Include="cycles\src\kernel\kernel_*.h" />
-    <ClInclude Include="cycles\src\kernel\kernel_*.h" />
-    <ClInclude Include="cycles\src\kernel\kernel_*.h" />
-    <ClInclude Include="cycles\src\render\*.h" />
-    <ClInclude Include="cycles\src\render\*.h" />
-    <ClInclude Include="cycles\src\render\*.h" />
-    <ClInclude Include="cycles\src\render\*.h" />
-    <ClInclude Include="cycles\src\render\*.h" />
-    <ClInclude Include="cycles\src\render\*.h" />
-    <ClInclude Include="cycles\src\render\*.h" />
-    <ClInclude Include="cycles\src\render\*.h" />
-    <ClInclude Include="cycles\src\render\*.h" />
-    <ClInclude Include="cycles\src\render\*.h" />
-    <ClInclude Include="cycles\src\render\*.h" />
-    <ClInclude Include="cycles\src\render\*.h" />
-    <ClInclude Include="cycles\src\render\*.h" />
-    <ClInclude Include="cycles\src\render\*.h" />
-    <ClInclude Include="cycles\src\render\*.h" />
-    <ClInclude Include="cycles\src\render\*.h" />
-    <ClInclude Include="cycles\src\render\*.h" />
-    <ClInclude Include="cycles\src\render\*.h" />
-    <ClInclude Include="cycles\src\render\*.h" />
-    <ClInclude Include="cycles\src\render\*.h" />
-    <ClInclude Include="cycles\src\render\*.h" />
-    <ClInclude Include="cycles\src\render\*.h" />
-    <ClInclude Include="cycles\src\render\*.h" />
-    <ClInclude Include="cycles\src\render\*.h" />
-    <ClInclude Include="cycles\src\subd\*.h" />
-    <ClInclude Include="cycles\src\subd\*.h" />
-    <ClInclude Include="cycles\src\subd\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\util\*.h" />
-    <ClInclude Include="cycles\src\graph\*.h" />
-    <ClInclude Include="cycles\src\graph\*.h" />
-    <ClInclude Include="cycles\src\graph\*.h" />
-    <ClInclude Include="cycles\src\kernel\svm\*.h" />
-    <ClInclude Include="cycles\src\kernel\svm\*.h" />
-    <ClInclude Include="cycles\src\kernel\svm\*.h" />
-    <ClInclude Include="cycles\src\kernel\svm\*.h" />
-    <ClInclude Include="cycles\src\kernel\svm\*.h" />
-    <ClInclude Include="cycles\src\kernel\svm\*.h" />
-    <ClInclude Include="cycles\src\kernel\svm\*.h" />
-    <ClInclude Include="cycles\src\kernel\svm\*.h" />
-    <ClInclude Include="cycles\src\kernel\svm\*.h" />
-    <ClInclude Include="cycles\src\kernel\svm\*.h" />
-    <ClInclude Include="cycles\src\kernel\svm\*.h" />
-    <ClInclude Include="cycles\src\kernel\svm\*.h" />
-    <ClInclude Include="cycles\src\kernel\svm\*.h" />
-    <ClInclude Include="cycles\src\kernel\svm\*.h" />
-    <ClInclude Include="cycles\src\kernel\svm\*.h" />
-    <ClInclude Include="cycles\src\kernel\svm\*.h" />
-    <ClInclude Include="cycles\src\kernel\svm\*.h" />
-    <ClInclude Include="cycles\src\kernel\svm\*.h" />
-    <ClInclude Include="cycles\src\kernel\svm\*.h" />
-    <ClInclude Include="cycles\src\kernel\svm\*.h" />
-    <ClInclude Include="cycles\src\kernel\svm\*.h" />
-    <ClInclude Include="cycles\src\kernel\svm\*.h" />
-    <ClInclude Include="cycles\src\kernel\svm\*.h" />
-    <ClInclude Include="cycles\src\kernel\svm\*.h" />
-    <ClInclude Include="cycles\src\kernel\svm\*.h" />
-    <ClInclude Include="cycles\src\kernel\svm\*.h" />
-    <ClInclude Include="cycles\src\kernel\svm\*.h" />
-    <ClInclude Include="cycles\src\kernel\svm\*.h" />
-    <ClInclude Include="cycles\src\kernel\svm\*.h" />
-    <ClInclude Include="cycles\src\kernel\svm\*.h" />
-    <ClInclude Include="cycles\src\kernel\svm\*.h" />
-    <ClInclude Include="cycles\src\kernel\svm\*.h" />
-    <ClInclude Include="cycles\src\kernel\svm\*.h" />
-    <ClInclude Include="cycles\src\kernel\svm\*.h" />
-    <ClInclude Include="cycles\src\kernel\svm\*.h" />
-    <ClInclude Include="cycles\src\kernel\svm\*.h" />
-    <ClInclude Include="cycles\src\kernel\svm\*.h" />
-    <ClInclude Include="cycles\src\kernel\svm\*.h" />
-    <ClInclude Include="cycles\src\kernel\svm\*.h" />
-    <ClInclude Include="cycles\src\kernel\svm\*.h" />
-    <ClInclude Include="cycles\src\kernel\svm\*.h" />
-    <ClInclude Include="cycles\src\kernel\svm\*.h" />
-    <ClInclude Include="cycles\src\kernel\svm\*.h" />
-    <ClInclude Include="cycles\src\kernel\svm\*.h" />
-    <ClInclude Include="cycles\src\kernel\svm\*.h" />
-    <ClInclude Include="cycles\src\kernel\svm\*.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="cycles\src\kernel\kernels\opencl\*.cl">
+      <Filter>OpenCL source</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -33,6 +33,13 @@ void cycles_integrator_set_max_bounce(unsigned int client_id, unsigned int scene
 	SCENE_FIND_END()
 }
 
+void cycles_integrator_set_min_bounce(unsigned int client_id, unsigned int scene_id, int min_bounce)
+{
+	SCENE_FIND(scene_id)
+		sce->integrator->min_bounce = min_bounce;
+	SCENE_FIND_END()
+}
+
 void cycles_integrator_set_no_caustics(unsigned int client_id, unsigned int scene_id, bool no_caustics)
 {
 	SCENE_FIND(scene_id)
@@ -131,6 +138,13 @@ void cycles_integrator_set_transparent_max_bounce(unsigned int client_id, unsign
 {
 	SCENE_FIND(scene_id)
 		sce->integrator->transparent_max_bounce = transparent_max_bounce;
+	SCENE_FIND_END()
+}
+
+void cycles_integrator_set_transparent_min_bounce(unsigned int client_id, unsigned int scene_id, int transparent_min_bounce)
+{
+	SCENE_FIND(scene_id)
+		sce->integrator->transparent_min_bounce = transparent_min_bounce;
 	SCENE_FIND_END()
 }
 

@@ -143,10 +143,10 @@ namespace ccl
 
 #region scene parameters
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern uint cycles_scene_params_create(uint clientId, uint shadingsystem, uint bvhtype, uint bvhspatialsplit, uint qbvh, uint persistentdata);
-		public static uint scene_params_create(uint clientId, ShadingSystem shadingSystem, BvhType bvhType, bool bvhSpatialSplit, bool qbvh, bool persistentData)
+		private static extern uint cycles_scene_params_create(uint clientId, uint shadingsystem, uint bvhtype, uint bvhspatialsplit, int bvhlayout, uint persistentdata);
+		public static uint scene_params_create(uint clientId, ShadingSystem shadingSystem, BvhType bvhType, bool bvhSpatialSplit, BvhLayout bvhLayout, bool persistentData)
 		{
-			return cycles_scene_params_create(clientId, (uint)shadingSystem, (uint)bvhType, (uint)(bvhSpatialSplit?1:0), (uint)(qbvh?1:0), (uint)(persistentData?1:0));
+			return cycles_scene_params_create(clientId, (uint)shadingSystem, (uint)bvhType, (uint)(bvhSpatialSplit?1:0), (int)(bvhLayout), (uint)(persistentData?1:0));
 		}
 		  
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]

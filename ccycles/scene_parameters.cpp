@@ -28,14 +28,14 @@ std::vector<ccl::SceneParams> scene_params;
 unsigned int cycles_scene_params_create(unsigned int client_id, 
 	unsigned int shadingsystem, unsigned int bvh_type, 
 	unsigned int use_bvh_spatial_split, 
-	unsigned int use_qbvh, unsigned int persistent_data)
+	int bvh_layout, unsigned int persistent_data)
 {
 	ccl::SceneParams params;
 
 	params.shadingsystem = (ccl::ShadingSystem)shadingsystem;
 	params.bvh_type = (ccl::SceneParams::BVHType)bvh_type;
 	params.use_bvh_spatial_split = use_bvh_spatial_split == 1;
-	params.bvh_layout = (use_qbvh == 1) ? ccl::BVHLayout::BVH_LAYOUT_BVH4 : ccl::BVHLayout::BVH_LAYOUT_BVH2;
+	params.bvh_layout = (ccl::BVHLayout)bvh_layout;
 	params.persistent_data = persistent_data == 1;
 
 	scene_params.push_back(params);

@@ -36,6 +36,7 @@ namespace ccl
 		CPU,
 		OpenCL,
 		CUDA,
+		Optix,
 		Network,
 		Multi
 	}
@@ -155,6 +156,18 @@ namespace ccl
 		Static
 	}
 
+	public enum BvhLayout {
+	
+  Bvh2 = (1 << 0),
+  Bvh4 = (1 << 1),
+  Bvh8 = (1 << 2),
+
+  Embree = (1 << 3),
+  OptiX = (1 << 4),
+
+  Default = Bvh8,
+	}
+
 	public enum TileOrder : uint
 	{
 		Center,
@@ -182,7 +195,8 @@ namespace ccl
 	public enum FilterType : uint
 	{
 		Box = 0,
-		Gaussian
+		Gaussian = 1,
+		BlackmanHarris = 2,
 	}
 
 	public enum LightType : uint
@@ -203,7 +217,7 @@ namespace ccl
 		Smart = 3,
 	}
 
-	[FlagsAttribute]
+	[Flags]
 	public enum PathRay : uint
 	{
 		Hidden = 0,
