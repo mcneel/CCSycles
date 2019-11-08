@@ -1,4 +1,5 @@
-﻿using System.Runtime.InteropServices;
+﻿using System;
+using System.Runtime.InteropServices;
 
 namespace ccl
 {
@@ -70,6 +71,7 @@ namespace ccl
 		[DllImport(Constants.ccycles, SetLastError = false,
 			CallingConvention = CallingConvention.Cdecl)]
 		private static extern void cycles_shadernode_texmapping_set_projection(uint clientId, uint shaderId, uint shadernodeId, uint shnType, uint projection);
+		[Obsolete("No longer existing")]
 		public static void shadernode_texmapping_set_projection(uint clientId, uint shaderId, uint shadernodeId, ShaderNodeType shnType, uint projection)
 		{
 			cycles_shadernode_texmapping_set_projection(clientId, shaderId, shadernodeId, (uint) shnType, projection);
@@ -119,13 +121,6 @@ namespace ccl
 		public static void shadernode_set_attribute_vec(uint clientId, uint shaderId, uint shadernodeId,  [MarshalAs(UnmanagedType.LPStr)] string name, float4 val)
 		{
 			cycles_shadernode_set_attribute_vec(clientId, shaderId, shadernodeId, name, val.x, val.y, val.z);
-		}
-		[DllImport(Constants.ccycles, SetLastError = false, CharSet = CharSet.Ansi,
-			CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_shadernode_set_attribute_string(uint clientId, uint shaderId, uint shadernodeId, string name, string val);
-		public static void shadernode_set_attribute_string(uint clientId, uint shaderId, uint shadernodeId,  [MarshalAs(UnmanagedType.LPStr)] string name, [MarshalAs(UnmanagedType.LPStr)] string val)
-		{
-			cycles_shadernode_set_attribute_string(clientId, shaderId, shadernodeId, name, val);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CharSet = CharSet.Ansi,

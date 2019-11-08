@@ -123,6 +123,8 @@ void cycles_session_params_set_text_timeout(unsigned int client_id, unsigned int
 	SESSION_PARAM(session_params_id, text_timeout);
 }
 
+/* TODO [NATHANLOOK] see if progressive_update_timeout needs to be APIfied. */
+
 void cycles_session_params_set_shadingsystem(unsigned int client_id, unsigned int session_params_id, unsigned int shadingsystem)
 {
 	SESSION_PARAM_CAST(session_params_id, ccl::ShadingSystem, shadingsystem);

@@ -110,6 +110,8 @@ namespace ccl.ShaderNodes
 		public bool IsFloat { get; set; }
 		/// <summary>
 		/// ImageTexture use alpha channel if true
+		///
+		/// TODO [NATHANLOOK] hook up different alpha usage types. For now auto (true), ignore (false)
 		/// </summary>
 		public bool UseAlpha { get; set; }
 		/// <summary>

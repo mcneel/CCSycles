@@ -89,11 +89,13 @@ int cycles_device_num(int i) {
 }
 
 bool cycles_device_advanced_shading(int i) {
+#if 0
 	if (i >= 0 && i < devices.size())
 		return devices[i].advanced_shading;
 	else if(MULTIDEVICEIDX(i) >= 0 && MULTIDEVICEIDX(i) < multi_devices.size())
 		return multi_devices[MULTIDEVICEIDX(i)].advanced_shading;
 	else
+#endif
 		return false;
 }
 

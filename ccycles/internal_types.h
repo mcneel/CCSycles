@@ -27,6 +27,7 @@ limitations under the License.
 
 #include "background.h"
 #include "camera.h"
+#include "colorspace.h"
 #include "device.h"
 #include "film.h"
 #include "graph.h"
@@ -142,6 +143,10 @@ struct CCImage {
 		int channels;
 		bool is_float;
 };
+
+#ifndef GLuint
+typedef unsigned int GLuint;
+#endif
 
 class CCSession final {
 public:

@@ -85,6 +85,7 @@ EXPORTS
 
   cycles_integrator_tag_update
   cycles_integrator_set_max_bounce
+  cycles_integrator_set_min_bounce
   cycles_integrator_set_no_caustics
   cycles_integrator_set_no_shadows
   cycles_integrator_set_diffuse_samples
@@ -99,6 +100,7 @@ EXPORTS
   cycles_integrator_set_max_transmission_bounce
   cycles_integrator_set_max_volume_bounce
   cycles_integrator_set_transparent_max_bounce
+  cycles_integrator_set_transparent_min_bounce
   cycles_integrator_set_aa_samples
   cycles_integrator_set_filter_glossy
   cycles_integrator_set_method

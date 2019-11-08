@@ -196,15 +196,14 @@ void cycles_mesh_set_uvs(unsigned int client_id, unsigned int scene_id, unsigned
 		ccl::Mesh* me = sce->meshes[mesh_id];
 
 		ccl::Attribute* attr = me->attributes.add(ccl::ATTR_STD_UV, ccl::ustring("uvmap"));
-		ccl::float3* fdata = attr->data_float3();
+		ccl::float2* fdata = attr->data_float2();
 
-		ccl::float3 f3;
+		ccl::float2 f2;
 
 		for (int i = 0, j = 0; i < (int)uvcount * 2; i += 2, j++) {
-			f3.x = uvs[i];
-			f3.y = uvs[i + 1];
-			f3.z = 0.0f;
-			fdata[j] = f3;
+			f2.x = uvs[i];
+			f2.y = uvs[i + 1];
+			fdata[j] = f2;
 		}
 		me->geometry_flags = ccl::Mesh::GeometryFlags::GEOMETRY_TRIANGLES;
 	SCENE_FIND_END()
@@ -272,7 +271,7 @@ struct MikkUserData {
 
 		ccl::Attribute *attr_uv = attributes.find(ustring(layer_name));
 		if(attr_uv != NULL) {
-			texface = attr_uv->data_float3();
+			texface = attr_uv->data_float2();
 		}
 	}
 
@@ -280,7 +279,7 @@ struct MikkUserData {
 	int num_faces;
 
 	ccl::float3 *vertex_normal;
-	ccl::float3 *texface;
+	ccl::float2 *texface;
 
 	ccl::float3 *tangent;
 	float *tangent_sign;
@@ -329,7 +328,7 @@ static void mikk_get_texture_coordinate(const SMikkTSpaceContext *context,
 	const ccl::Mesh *mesh = userdata->mesh;
 	if(userdata->texface != NULL) {
 		const int corner_index = mikk_corner_index(mesh, face_num, vert_num);
-		ccl::float3 tfuv = userdata->texface[corner_index];
+		ccl::float2 tfuv = userdata->texface[corner_index];
 		uv[0] = tfuv.x;
 		uv[1] = tfuv.y;
 	}

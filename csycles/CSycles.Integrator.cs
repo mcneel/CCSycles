@@ -18,6 +18,13 @@ namespace ccl
 		{
 			cycles_integrator_set_max_bounce(clientId, sceneId, value);
 		}
+		
+		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		private static extern void cycles_integrator_set_min_bounce(uint clientId, uint sceneId, int value);
+		public static void integrator_set_min_bounce(uint clientId, uint sceneId, int value)
+		{
+			cycles_integrator_set_min_bounce(clientId, sceneId, value);
+		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		private static extern void cycles_integrator_set_max_diffuse_bounce(uint clientId, uint sceneId, int value);
@@ -54,6 +61,12 @@ namespace ccl
 			cycles_integrator_set_transparent_max_bounce(clientId, sceneId, value);
 		}
 
+		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		private static extern void cycles_integrator_set_transparent_min_bounce(uint clientId, uint sceneId, int value);
+		public static void integrator_set_transparent_min_bounce(uint clientId, uint sceneId, int value)
+		{
+			cycles_integrator_set_transparent_min_bounce(clientId, sceneId, value);
+		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		private static extern void cycles_integrator_set_diffuse_samples(uint clientId, uint sceneId, int value);

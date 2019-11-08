@@ -72,7 +72,7 @@ void copy_pixels_to_ccsession(CCSession* se, ccl::RenderTile &tile) {
 	int tiley = params.full_y - se->session->tile_manager.params.full_y;
 
 	/* Copy the tile buffer to pixels. */
-	if (!buffers->get_pass_rect(ccl::PassType::PASS_COMBINED, 1.0f, tile.sample, stride, &pixels[0])) {
+	if (!buffers->get_pass_rect(ccl::PassType::PASS_COMBINED, 1.0f, tile.sample, stride, &pixels[0], "")) {
 		return;
 	}
 
@@ -112,7 +112,7 @@ void CCSession::write_render_tile(ccl::RenderTile &tile)
 
 	ccl::RenderBuffers* buffers = tile.buffers;
 	ccl::BufferParams& params = buffers->params;
-	ccl::array<ccl::Pass>& passes = params.passes;
+	ccl::vector<ccl::Pass>& passes = params.passes;
 
 	auto tilex = params.full_x - session->tile_manager.params.full_x;
 	auto tiley = params.full_y - session->tile_manager.params.full_y;
@@ -128,7 +128,7 @@ void CCSession::write_render_tile(ccl::RenderTile &tile)
 			int components = p.components;
 			ccl::PassType pt = p.type;
 			int pixlen = params.width*params.height*components;
-			if (buffers->get_pass_rect(pt, p.exposure ? exposure : 1.0f, sample, components, &px[0])) {
+			if (buffers->get_pass_rect(pt, p.exposure ? exposure : 1.0f, sample, components, &px[0], "")) {
 				write_cbs[this->id](id, tilex, tiley, params.width, params.height, sample, components, (int)p.type, &px[0], pixlen);
 			}
 		}
@@ -278,8 +278,8 @@ void cycles_session_destroy(unsigned int client_id, unsigned int session_id)
 	SESSION_FIND_END()
 }
 
-static ccl::array<ccl::Pass> _passes;
-ccl::array<ccl::Pass>& get_passes() {
+static ccl::vector<ccl::Pass> _passes;
+ccl::vector<ccl::Pass>& get_passes() {
 	ccl::Pass::add(ccl::PASS_COMBINED, _passes);
 	ccl::Pass::add(ccl::PASS_DEPTH, _passes);
 	ccl::Pass::add(ccl::PASS_NORMAL, _passes);
@@ -310,7 +310,7 @@ void cycles_session_reset(unsigned int client_id, unsigned int session_id, unsig
 		ccsess->reset(width, height, 4);
 		ccl::BufferParams bufParams;
 
-		ccl::array<ccl::Pass>& passes = get_passes();
+		ccl::vector<ccl::Pass>& passes = get_passes();
 
 		session->scene->film->tag_passes_update(session->scene, passes);
 
@@ -619,7 +619,7 @@ void cycles_session_rhinodraw(unsigned int client_id, unsigned int session_id, i
 
 	SESSION_FIND(session_id)
 		ccl::BufferParams session_buf_params;
-		ccl::array<ccl::Pass>& passes = get_passes();
+		ccl::vector<ccl::Pass>& passes = get_passes();
 		session_buf_params.width = session_buf_params.full_width = width;
 		session_buf_params.height = session_buf_params.full_height = height;
 		session_buf_params.passes = passes;

@@ -30,11 +30,20 @@ namespace ccl.ShaderNodes
 		/// MappingNode input vector that should be transformed
 		/// </summary>
 		public VectorSocket Vector { get; set; }
+		public VectorSocket Location { get; set; }
+		public VectorSocket Rotation { get; set; }
+		public VectorSocket Scale { get; set; }
 
 		internal MappingInputs(ShaderNode parentNode)
 		{
 			Vector = new VectorSocket(parentNode, "Vector");
 			AddSocket(Vector);
+			Location = new VectorSocket(parentNode, "Location");
+			AddSocket(Location);
+			Rotation = new VectorSocket(parentNode, "Rotation");
+			AddSocket(Rotation);
+			Scale = new VectorSocket(parentNode, "Scale");
+			AddSocket(Scale);
 		}
 	}
 

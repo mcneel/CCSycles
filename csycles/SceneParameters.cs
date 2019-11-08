@@ -40,12 +40,12 @@ namespace ccl
 		/// <param name="bvhType">BvhType to use (dynamic or static)</param>
 		/// <param name="bvhCache">True if BVH should be cached</param>
 		/// <param name="bvhSpatialSplit">True if BVH spatial splits should be used</param>
-		/// <param name="qbvh">True if QBVH should be used</param>
+		/// <param name="bvhLayout">BvhLayout to use. Default means Bvh8</param>
 		/// <param name="persistentData">True if data should be persisted</param>
-		public SceneParameters(Client client, ShadingSystem shadingSystem, BvhType bvhType, bool bvhSpatialSplit, bool qbvh, bool persistentData)
+		public SceneParameters(Client client, ShadingSystem shadingSystem, BvhType bvhType, bool bvhSpatialSplit, BvhLayout bvhLayout, bool persistentData)
 		{
 			Client = client;
-			Id = CSycles.scene_params_create(Client.Id, shadingSystem, bvhType, bvhSpatialSplit, qbvh, persistentData);
+			Id = CSycles.scene_params_create(Client.Id, shadingSystem, bvhType, bvhSpatialSplit, bvhLayout, persistentData);
 		}
 
 		/// <summary>

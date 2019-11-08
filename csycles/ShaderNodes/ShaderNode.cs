@@ -153,10 +153,6 @@ namespace ccl.ShaderNodes
 					{
 						CSycles.shadernode_set_attribute_int(clientId, shaderId, Id, int_socket.Name, int_socket.Value);
 					}
-					if (socket is StringSocket string_socket)
-					{
-						CSycles.shadernode_set_attribute_string(clientId, shaderId, Id, socket.Name, string_socket.Value);
-					}
 					if (socket is Float4Socket float4_socket)
 					{
 						CSycles.shadernode_set_attribute_vec(clientId, shaderId, Id, float4_socket.Name, float4_socket.Value);
