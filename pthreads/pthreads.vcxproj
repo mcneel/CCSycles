@@ -21,6 +21,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{1F63EB7F-7A6E-49FA-AB49-52A5E66DCB8D}</ProjectGuid>
     <RootNamespace>pthreads</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <Import Project="..\..\..\..\..\boostbuild\override.platform.props" Condition="exists('..\..\..\..\..\boostbuild\override.platform.props')" />
@@ -58,7 +59,7 @@
         <ConfigurationType>DynamicLibrary</ConfigurationType>
         <UseDebugLibraries>true</UseDebugLibraries>
         <CharacterSet>MultiByte</CharacterSet>
-		<PlatformToolset Condition="'$(VisualStudioVersion)'=='16.0'">v141</PlatformToolset>
+        <PlatformToolset Condition="'$(VisualStudioVersion)'=='16.0'">v142</PlatformToolset>
         <PlatformToolset Condition="'$(VisualStudioVersion)'=='15.0'">v141</PlatformToolset>
         <PlatformToolset Condition="'$(VisualStudioVersion)'=='14.0'">v140</PlatformToolset>
       </PropertyGroup>
@@ -66,7 +67,7 @@
         <ConfigurationType>DynamicLibrary</ConfigurationType>
         <UseDebugLibraries>true</UseDebugLibraries>
         <CharacterSet>MultiByte</CharacterSet>
-		<PlatformToolset Condition="'$(VisualStudioVersion)'=='16.0'">v141</PlatformToolset>
+        <PlatformToolset Condition="'$(VisualStudioVersion)'=='16.0'">v142</PlatformToolset>
         <PlatformToolset Condition="'$(VisualStudioVersion)'=='15.0'">v141</PlatformToolset>
         <PlatformToolset Condition="'$(VisualStudioVersion)'=='14.0'">v140</PlatformToolset>
       </PropertyGroup>
@@ -75,7 +76,7 @@
         <UseDebugLibraries>false</UseDebugLibraries>
         <WholeProgramOptimization>false</WholeProgramOptimization>
         <CharacterSet>MultiByte</CharacterSet>
-		<PlatformToolset Condition="'$(VisualStudioVersion)'=='16.0'">v141</PlatformToolset>
+        <PlatformToolset Condition="'$(VisualStudioVersion)'=='16.0'">v142</PlatformToolset>
         <PlatformToolset Condition="'$(VisualStudioVersion)'=='15.0'">v141</PlatformToolset>
         <PlatformToolset Condition="'$(VisualStudioVersion)'=='14.0'">v140</PlatformToolset>
       </PropertyGroup>
@@ -84,7 +85,7 @@
         <UseDebugLibraries>false</UseDebugLibraries>
         <WholeProgramOptimization>false</WholeProgramOptimization>
         <CharacterSet>MultiByte</CharacterSet>
-		<PlatformToolset Condition="'$(VisualStudioVersion)'=='16.0'">v141</PlatformToolset>
+        <PlatformToolset Condition="'$(VisualStudioVersion)'=='16.0'">v142</PlatformToolset>
         <PlatformToolset Condition="'$(VisualStudioVersion)'=='15.0'">v141</PlatformToolset>
         <PlatformToolset Condition="'$(VisualStudioVersion)'=='14.0'">v140</PlatformToolset>
       </PropertyGroup>
