@@ -21,6 +21,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{B8C1A4CB-6207-49F7-BA7D-D8B5AF75F965}</ProjectGuid>
     <RootNamespace>clew</RootNamespace>
+	<VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <Import Project="..\..\..\..\..\boostbuild\override.platform.props" Condition="exists('..\..\..\..\..\boostbuild\override.platform.props')" />
