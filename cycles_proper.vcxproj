@@ -35,10 +35,11 @@
     <UseDebugLibraries Condition="$(Configuration.Contains('Release'))">false</UseDebugLibraries>
     <OutDir>$(Platform)\$(Configuration)\</OutDir>
     <LinkIncremental>false</LinkIncremental>
-		<Defs Condition="$(Configuration.Contains('Debug'))">__KERNEL_DEBUG__;USE_TBB=0;BOOST_NO_RTTI;BOOST_NO_TYPEID;WITH_EMBREE;OS_WIN;WITH_CUDA_DYNLOAD;GLEW_STATIC;BOOST_ALL_NO_LIB;_WINSOCK_DEPRECATED_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;DEBUG;_DEBUG;CCL_NAMESPACE_BEGIN=namespace ccl {;CCL_NAMESPACE_END=};WITH_OPENCL;WITH_CUDA;WITH_MULTI;CYCLES_STD_UNORDERED_MAP;WITH_CYCLES_OPTIMIZED_KERNEL_SSE2;WITH_CYCLES_OPTIMIZED_KERNEL_SSE3;WITH_CYCLES_OPTIMIZED_KERNEL_SSE41;WITH_CYCLES_OPTIMIZED_KERNEL_AVX;WITH_CYCLES_OPTIMIZED_KERNEL_AVX2;HAVE_PTW32_CONFIG_H;HAVE_CONFIG_H</Defs>
+    <Defs Condition="$(Configuration.Contains('Debug'))">__KERNEL_DEBUG__;USE_TBB=0;BOOST_NO_RTTI;BOOST_NO_TYPEID;WITH_EMBREE;OS_WIN;WITH_CUDA_DYNLOAD;GLEW_STATIC;BOOST_ALL_NO_LIB;_WINSOCK_DEPRECATED_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;DEBUG;_DEBUG;CCL_NAMESPACE_BEGIN=namespace ccl {;CCL_NAMESPACE_END=};WITH_OPENCL;WITH_CUDA;WITH_MULTI;CYCLES_STD_UNORDERED_MAP;WITH_CYCLES_OPTIMIZED_KERNEL_SSE2;WITH_CYCLES_OPTIMIZED_KERNEL_SSE3;WITH_CYCLES_OPTIMIZED_KERNEL_SSE41;WITH_CYCLES_OPTIMIZED_KERNEL_AVX;WITH_CYCLES_OPTIMIZED_KERNEL_AVX2;HAVE_PTW32_CONFIG_H;HAVE_CONFIG_H</Defs>
     <Defs Condition="$(Configuration.Contains('Release'))">USE_TBB=0;BOOST_NO_RTTI;BOOST_NO_TYPEID;WITH_EMBREE;OS_WIN;WITH_CUDA_DYNLOAD;GLEW_STATIC;BOOST_ALL_NO_LIB;_WINSOCK_DEPRECATED_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;NDEBUG;CCL_NAMESPACE_BEGIN=namespace ccl {;CCL_NAMESPACE_END=};WITH_OPENCL;WITH_CUDA;WITH_MULTI;CYCLES_STD_UNORDERED_MAP;WITH_CYCLES_OPTIMIZED_KERNEL_SSE2;WITH_CYCLES_OPTIMIZED_KERNEL_SSE3;WITH_CYCLES_OPTIMIZED_KERNEL_SSE41;WITH_CYCLES_OPTIMIZED_KERNEL_AVX;WITH_CYCLES_OPTIMIZED_KERNEL_AVX2;HAVE_PTW32_CONFIG_H;HAVE_CONFIG_H</Defs>
 
       <AddIncDirs Condition="$(Configuration.Contains('Stand-alone'))">$(ProjectDir)..\..\..\..\..\big_libs\boost;$(ProjectDir)pthreads;$(ProjectDir)..\..\..\..\..\big_libs\OpenImageIO-2.0.12\include;$(ProjectDir)..\..\..\..\..\big_libs\OpenEXR-2.4.0\include;$(ProjectDir)..\..\..\..\..\big_libs\embree-3.6.1.x64.vc14.windows\include;$(ProjectDir)glew\include;$(ProjectDir)cycles\third_party\atomic;$(ProjectDir)cycles\third_party\cuew\include;$(ProjectDir)cycles\third_party\clew\include;$(ProjectDir)cycles\third_party\numaapi\include;$(ProjectDir)cycles\src\render;$(ProjectDir)cycles\src;$(ProjectDir)cycles\src\kernel\svm;$(ProjectDir)cycles\src\kernel\osl;$(ProjectDir)cycles\src\util;$(ProjectDir)cycles\src\device;$(ProjectDir)cycles\src\bvh;$(ProjectDir)cycles\src\subd;$(ProjectDir)cycles\src\graph;$(ProjectDir)</AddIncDirs>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
@@ -211,15 +212,15 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-		<ClCompile Include="cycles\src\bvh\*.cpp" />
+    <ClCompile Include="cycles\src\bvh\*.cpp" />
     <ClCompile Include="cycles\src\device\*.cpp" />
     <ClCompile Include="cycles\src\device\opencl\*.cpp" />
     <ClCompile Include="cycles\src\render\*.cpp" />
     <ClCompile Include="cycles\src\subd\*.cpp" />
     <ClCompile Include="cycles\src\util\*.cpp" Exclude="cycles\src\util\*view.cpp" />
     <ClCompile Include="cycles\src\graph\*.cpp" Exclude="cycles\src\graph\*xml.cpp" />
-		<ClCompile Include="cycles\src\kernel\kernels\cpu\*.cpp" />
-		<ClCompile Include="cycles\third_party\numaapi\source\*.c" />
+    <ClCompile Include="cycles\src\kernel\kernels\cpu\*.cpp" />
+    <ClCompile Include="cycles\third_party\numaapi\source\*.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cycles\src\bvh\*.h" />
@@ -227,7 +228,7 @@
     <ClInclude Include="cycles\src\device\opencl\*.h" />
     <ClInclude Include="cycles\src\kernel\*.h" />
     <ClInclude Include="cycles\src\kernel\filter\*.h" />
-		<ClInclude Include="cycles\src\kernel\shaders\*.h" />
+    <ClInclude Include="cycles\src\kernel\shaders\*.h" />
     <ClInclude Include="cycles\src\kernel\geom\*.h" />
     <ClInclude Include="cycles\src\kernel\split\*.h" />
     <ClInclude Include="cycles\src\render\*.h" />
@@ -236,8 +237,8 @@
     <ClInclude Include="cycles\src\graph\*.h" />
     <ClInclude Include="cycles\src\kernel\kernels\*.h" />
     <ClInclude Include="cycles\src\kernel\svm\*.h" />
-		<ClInclude Include="cycles\third_party\numaapi\include\*.h" />
-		<ClInclude Include="cycles\third_party\numaapi\source\*.h" />
+    <ClInclude Include="cycles\third_party\numaapi\include\*.h" />
+    <ClInclude Include="cycles\third_party\numaapi\source\*.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
