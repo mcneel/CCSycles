@@ -1,12 +1,6 @@
-call build_cubinmain.bat filter rhino 60
-call build_cubinmain.bat filter rhino 61
 call build_cubinmain.bat filter rhino 70
 call build_cubinmain.bat filter rhino 75
-call build_cubinmain.bat kernel rhino 60
-call build_cubinmain.bat kernel rhino 61
 call build_cubinmain.bat kernel rhino 70
 call build_cubinmain.bat kernel rhino 75
-call build_cubinmain.bat kernel_split rhino 60
-call build_cubinmain.bat kernel_split rhino 61
 call build_cubinmain.bat kernel_split rhino 70
 call build_cubinmain.bat kernel_split rhino 75
