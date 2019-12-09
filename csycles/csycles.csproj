@@ -18,9 +18,9 @@
     <PlatformVersion Condition="'$(VisualStudioVersion)'=='16.0'">v142</PlatformVersion>
     <BoostConfig Condition="$(Configuration.Contains('Debug'))">gd-</BoostConfig>
     <BoostConfig Condition="$(Configuration.Contains('Release'))"></BoostConfig>
-    <!--<OpenEXRVersion Condition="$(Configuration.Contains('Debug'))">2_4_d</OpenEXRVersion>
-    <OpenEXRVersion Condition="$(Configuration.Contains('Release'))">2_4</OpenEXRVersion>-->
-    <OpenEXRVersion>2_4</OpenEXRVersion>
+    <OpenEXRVersion Condition="$(Configuration.Contains('Debug'))">2_4_d</OpenEXRVersion>
+    <OpenEXRVersion Condition="$(Configuration.Contains('Release'))">2_4</OpenEXRVersion>
+    <!--<OpenEXRVersion>2_4</OpenEXRVersion>-->
     <OpenImageIOVersion Condition="$(Configuration.Contains('Debug'))">2_0_12_d</OpenImageIOVersion>
     <OpenImageIOVersion Condition="$(Configuration.Contains('Release'))">2_0_12</OpenImageIOVersion>
     <BoostToolset>$(BoostConfig)x64-$(PlatformVersion)</BoostToolset>
