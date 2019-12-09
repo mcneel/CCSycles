@@ -18,8 +18,9 @@
     <PlatformVersion Condition="'$(VisualStudioVersion)'=='16.0'">v142</PlatformVersion>
     <BoostConfig Condition="$(Configuration.Contains('Debug'))">gd-</BoostConfig>
     <BoostConfig Condition="$(Configuration.Contains('Release'))"></BoostConfig>
-    <OpenEXRVersion Condition="$(Configuration.Contains('Debug'))">2_4_d</OpenEXRVersion>
-    <OpenEXRVersion Condition="$(Configuration.Contains('Release'))">2_4</OpenEXRVersion>
+    <!--<OpenEXRVersion Condition="$(Configuration.Contains('Debug'))">2_4_d</OpenEXRVersion>
+    <OpenEXRVersion Condition="$(Configuration.Contains('Release'))">2_4</OpenEXRVersion>-->
+    <OpenEXRVersion>2_4</OpenEXRVersion>
     <OpenImageIOVersion Condition="$(Configuration.Contains('Debug'))">2_0_12_d</OpenImageIOVersion>
     <OpenImageIOVersion Condition="$(Configuration.Contains('Release'))">2_0_12</OpenImageIOVersion>
     <BoostToolset>$(BoostConfig)x64-$(PlatformVersion)</BoostToolset>
@@ -209,13 +210,13 @@
   </ItemGroup>
   <ItemGroup>
     <CCSyclesFiles Include="$(TargetDir)$(ProjectName).*" />
-		<EmbreeFiles Include="$(SolutionDir)..\..\big_libs\embree-3.6.1.x64.vc14.windows\lib\embree3.dll">
+    <EmbreeFiles Include="$(SolutionDir)..\..\big_libs\embree-3.6.1.x64.vc14.windows\lib\embree3.dll">
       <Link>Dependencies\EmbreeFiles\%(Filename)%(Extension)</Link>
     </EmbreeFiles>
-		<OpenEXRFiles Include="$(SolutionDir)..\..\big_libs\OpenEXR-2.4.0\bin\*$(OpenEXRVersion).dll">
+    <OpenEXRFiles Include="$(SolutionDir)..\..\big_libs\OpenEXR-2.4.0\bin\*$(OpenEXRVersion).dll">
       <Link>Dependencies\OpenEXRFiles\%(Filename)%(Extension)</Link>
     </OpenEXRFiles>
-		<OpenImageIOFiles Include="$(SolutionDir)..\..\big_libs\OpenImageIO-2.0.12\bin\*$(OpenImageIOVersion).dll">
+    <OpenImageIOFiles Include="$(SolutionDir)..\..\big_libs\OpenImageIO-2.0.12\bin\*$(OpenImageIOVersion).dll">
       <Link>Dependencies\OpenImageIOFiles\%(Filename)%(Extension)</Link>
     </OpenImageIOFiles>
     <CUDAFiles Include="$(SolutionDir)..\..\big_libs\RhinoCycles\lib\**\*">
