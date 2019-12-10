@@ -386,7 +386,6 @@ enum class attr_type {
 	INT,
 	FLOAT,
 	FLOAT4,
-	CHARP
 };
 
 struct attrunion {
@@ -395,7 +394,6 @@ struct attrunion {
 		int i;
 		float f;
 		ccl::float4 f4;
-		const char* cp;
 	};
 };
 
@@ -1292,10 +1290,12 @@ Set a std::string attribute with given name to value. shader_id is the global sh
 */
 void cycles_shadernode_set_attribute_string(unsigned int client_id, unsigned int shader_id, unsigned int shnode_id, const char* attribute_name, const char* value)
 {
+#if 0
 	attrunion v;
 	v.type = attr_type::CHARP;
 	v.cp = value;
 	shadernode_set_attribute(client_id, shader_id, shnode_id, attribute_name, v);
+#endif
 }
 
 void cycles_shader_connect_nodes(unsigned int client_id, unsigned int shader_id, unsigned int from_id, const char* from, unsigned int to_id, const char* to)
