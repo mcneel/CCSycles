@@ -108,7 +108,7 @@ void CCSession::write_render_tile(ccl::RenderTile &tile)
 {
 	ccl::thread_scoped_lock pixels_lock(pixels_mutex);
 	if (size_has_changed()) return;
-	//copy_pixels_to_ccsession(session, tile);
+	copy_pixels_to_ccsession(this, tile);
 
 	ccl::RenderBuffers* buffers = tile.buffers;
 	ccl::BufferParams& params = buffers->params;
@@ -122,15 +122,19 @@ void CCSession::write_render_tile(ccl::RenderTile &tile)
 	int sample = tile.sample;
 
 	if (write_cbs[this->id] != nullptr) {
-		buffers->copy_from_device();
+		//buffers->copy_from_device();
 		for(int i = 0, c = passes.size(); i < c; i++) {
 			ccl::Pass p = passes[i];
 			int components = p.components;
 			ccl::PassType pt = p.type;
 			int pixlen = params.width*params.height*components;
-			if (buffers->get_pass_rect(pt, p.exposure ? exposure : 1.0f, sample, components, &px[0])) {
+			if (pt == ccl::PassType::PASS_COMBINED) {
 				write_cbs[this->id](id, tilex, tiley, params.width, params.height, sample, components, (int)p.type, &px[0], pixlen);
 			}
+			/*if (buffers->get_pass_rect(pt, p.exposure ? exposure : 1.0f, sample, components, &px[0])) {
+				// write data into ccsess->pixels
+				write_cbs[this->id](id, tilex, tiley, params.width, params.height, sample, components, (int)p.type, &px[0], pixlen);
+			}*/
 		}
 	}
 }

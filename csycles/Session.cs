@@ -273,6 +273,7 @@ namespace ccl
 			CSycles.session_get_buffer_info(Client.Id, Id, out bufferSize, out bufferStride);
 		}
 
+
 		/// <summary>
 		/// Reset a Session
 		/// </summary>
