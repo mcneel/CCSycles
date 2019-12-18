@@ -124,7 +124,6 @@ EXPORTS
   cycles_shadernode_set_attribute_int
   cycles_shadernode_set_attribute_float
   cycles_shadernode_set_attribute_vec
-  cycles_shadernode_set_attribute_string
   cycles_shadernode_texmapping_set_transformation
   cycles_shadernode_texmapping_set_mapping
   cycles_shadernode_texmapping_set_projection
