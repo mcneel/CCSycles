@@ -1,9 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project
-  InitialTargets="Logging"
-  DefaultTargets="Build"
-  ToolsVersion="15.0"
-  xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project InitialTargets="Logging" DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|x64">
       <Configuration>Debug</Configuration>
@@ -27,16 +23,18 @@
     <RootNamespace>c_api</RootNamespace>
     <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
     <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <CharacterSet>MultiByte</CharacterSet>
+    <CharacterSet>NotSet</CharacterSet>
     <TargetName>$(ProjectName)</TargetName>
     <PlatformToolset Condition="'$(VisualStudioVersion)'=='14.0'">v140</PlatformToolset>
     <PlatformToolset Condition="'$(VisualStudioVersion)'=='15.0'">v141</PlatformToolset>
     <PlatformToolset Condition="'$(VisualStudioVersion)'=='16.0'">v142</PlatformToolset>
     <BoostConfig Condition="$(Configuration.Contains('Debug'))">gd-</BoostConfig>
-    <BoostConfig Condition="$(Configuration.Contains('Release'))"></BoostConfig>
+    <BoostConfig Condition="$(Configuration.Contains('Release'))">
+    </BoostConfig>
     <BoostToolset>$(BoostConfig)x64-$(PlatformToolset)</BoostToolset>
     <OIIOConfig Condition="$(Configuration.Contains('Debug'))">_d</OIIOConfig>
-    <OIIOConfig Condition="$(Configuration.Contains('Release'))"></OIIOConfig>
+    <OIIOConfig Condition="$(Configuration.Contains('Release'))">
+    </OIIOConfig>
     <UseDebugLibraries Condition="$(Configuration.Contains('Debug'))">true</UseDebugLibraries>
     <UseDebugLibraries Condition="$(Configuration.Contains('Release'))">false</UseDebugLibraries>
     <OutDir>$(Platform)\$(Configuration)\</OutDir>
@@ -47,7 +45,7 @@
     <AddIncDirs Condition="$(Configuration.Contains('Stand-alone'))">$(ProjectDir)..\..\..\..\..\..\big_libs\boost;$(ProjectDir)..\..\..\..\..\..\big_libs\OpenImageIO-2.0.12\include;$(ProjectDir)..\..\..\..\..\..\big_libs\OpenEXR-2.4.0\include;$(ProjectDir)..\..\..\..\..\..\big_libs\embree-3.6.1.x64.vc14.windows\include;$(ProjectDir)..\pthreads;$(ProjectDir)..\glew\include;$(ProjectDir)..\cycles\third_party\atomic;$(ProjectDir)..\cycles\src\bvh;$(ProjectDir)..\cycles\src\device;$(ProjectDir)..\cycles\src\kernel;$(ProjectDir)..\cycles\src\render;$(ProjectDir)..\cycles\src\subd;$(ProjectDir)..\cycles\src\util;$(ProjectDir)..\cycles\src\kernel\svm;$(ProjectDir)..\cycles\src</AddIncDirs>
     <Defs Condition="$(Configuration.Contains('Debug'))">DEBUG;WITH_EMBREE;OS_WIN;CCL_CAPI_DLL;GLEW_STATIC;BOOST_ALL_NO_LIB;_CRT_SECURE_NO_WARNINGS;CYCLES_STD_UNORDERED_MAP;CCL_NAMESPACE_BEGIN=namespace ccl {;CCL_NAMESPACE_END=};HAVE_PTW32_CONFIG_H</Defs>
     <Defs Condition="$(Configuration.Contains('Release'))">USE_TBB=0;BOOST_NO_RTTI;BOOST_NO_TYPEID;WITH_EMBREE;OS_WIN;CCL_CAPI_DLL;GLEW_STATIC;BOOST_ALL_NO_LIB;_CRT_SECURE_NO_WARNINGS;CYCLES_STD_UNORDERED_MAP;CCL_NAMESPACE_BEGIN=namespace ccl {;CCL_NAMESPACE_END=};HAVE_PTW32_CONFIG_H</Defs>
-    <AddDeps>libboost_serialization-mt-$(BoostToolset).lib;libboost_filesystem-mt-$(BoostToolset).lib;libboost_chrono-mt-$(BoostToolset).lib;libboost_date_time-mt-$(BoostToolset).lib;libboost_locale-mt-$(BoostToolset).lib;libboost_regex-mt-$(BoostToolset).lib;libboost_system-mt-$(BoostToolset).lib;libboost_thread-mt-$(BoostToolset).lib;cuew.lib;clew.lib;glew.lib;pthreads.lib;embree3.lib;OpenImageIO_2_0_12$(OIIOConfig).lib;OpenImageIO_Util_2_0_12$(OIIOConfig).lib;opengl32.lib;cycles_proper.lib</AddDeps>
+    <AddDeps>libboost_serialization-mt-$(BoostToolset).lib;libboost_filesystem-mt-$(BoostToolset).lib;libboost_chrono-mt-$(BoostToolset).lib;libboost_date_time-mt-$(BoostToolset).lib;libboost_locale-mt-$(BoostToolset).lib;libboost_regex-mt-$(BoostToolset).lib;libboost_system-mt-$(BoostToolset).lib;libboost_thread-mt-$(BoostToolset).lib;cuew.lib;clew.lib;glew.lib;pthreads.lib;embree3$(OIIOConfig).lib;OpenImageIO_2_0_12$(OIIOConfig).lib;OpenImageIO_Util_2_0_12$(OIIOConfig).lib;opengl32.lib;cycles_proper.lib</AddDeps>
   </PropertyGroup>
   <Target Name="Logging">
     <Message Importance="High" Text="Configuration: $(Configuration)" />
@@ -80,15 +78,16 @@
       </SDLCheck>
       <AdditionalIncludeDirectories>$(AddIncDirs)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>$(Defs);%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalOptions>/w34062 /MDd %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/w34062 /J /MDd %(AdditionalOptions)</AdditionalOptions>
       <MinimalRebuild>false</MinimalRebuild>
-      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <BufferSecurityCheck>true</BufferSecurityCheck>
       <FloatingPointModel>Fast</FloatingPointModel>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <DisableSpecificWarnings>4018;4146;4065;4127;4181;4200;4244;4267;4305;4800</DisableSpecificWarnings>
       <TreatWarningAsError>true</TreatWarningAsError>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -114,7 +113,7 @@ copy /Y "$(ProjectDir)x64\$(ConfigurationName)\ccycles.pdb" "$(SolutionDir)..\bi
       </SDLCheck>
       <AdditionalIncludeDirectories>$(AddIncDirs)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>$(Defs);%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalOptions>/w34062 /MDd %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/w34062 /J /MDd %(AdditionalOptions)</AdditionalOptions>
       <MinimalRebuild>false</MinimalRebuild>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <FloatingPointModel>Fast</FloatingPointModel>
@@ -152,7 +151,7 @@ copy /Y "$(ProjectDir)x64\$(ConfigurationName)\ccycles.pdb" "$(SolutionDir)bin\$
       </SDLCheck>
       <AdditionalIncludeDirectories>$(AddIncDirs)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>$(Defs);%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalOptions>/w34062 /MD %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/w34062 /J /MD %(AdditionalOptions)</AdditionalOptions>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <FloatingPointModel>Fast</FloatingPointModel>
       <DebugInformationFormat>None</DebugInformationFormat>
@@ -188,7 +187,7 @@ copy /Y "$(ProjectDir)x64\$(ConfigurationName)\ccycles.pdb" "$(SolutionDir)..\bi
       </SDLCheck>
       <AdditionalIncludeDirectories>$(AddIncDirs)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>$(Defs);%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalOptions>/w34062 /MD %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/w34062 /J /MD %(AdditionalOptions)</AdditionalOptions>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <FloatingPointModel>Fast</FloatingPointModel>
       <DebugInformationFormat>None</DebugInformationFormat>

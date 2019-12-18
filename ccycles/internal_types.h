@@ -215,9 +215,9 @@ protected:
 class CCScene final {
 public:
 	/* Hold the Cycles scene. */
-	ccl::Scene* scene;
+	ccl::Scene* scene = nullptr;
 
-	unsigned int params_id;
+	unsigned int params_id = -1;
 
 	/* Note: depth>1 if volumetric texture (i.e smoke volume data) */
 

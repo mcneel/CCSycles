@@ -23,6 +23,8 @@
     <!--<OpenEXRVersion>2_4</OpenEXRVersion>-->
     <OpenImageIOVersion Condition="$(Configuration.Contains('Debug'))">2_0_12_d</OpenImageIOVersion>
     <OpenImageIOVersion Condition="$(Configuration.Contains('Release'))">2_0_12</OpenImageIOVersion>
+    <EmbreeVersion Condition="$(Configuration.Contains('Debug'))">_d</EmbreeVersion>
+    <EmbreeVersion Condition="$(Configuration.Contains('Release'))"></EmbreeVersion>
     <BoostToolset>$(BoostConfig)x64-$(PlatformVersion)</BoostToolset>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -210,7 +212,7 @@
   </ItemGroup>
   <ItemGroup>
     <CCSyclesFiles Include="$(TargetDir)$(ProjectName).*" />
-    <EmbreeFiles Include="$(SolutionDir)..\..\big_libs\embree-3.6.1.x64.vc14.windows\lib\embree3.dll">
+    <EmbreeFiles Include="$(SolutionDir)..\..\big_libs\embree-3.6.1.x64.vc14.windows\lib\embree3$(EmbreeVersion).dll">
       <Link>Dependencies\EmbreeFiles\%(Filename)%(Extension)</Link>
     </EmbreeFiles>
     <OpenEXRFiles Include="$(SolutionDir)..\..\big_libs\OpenEXR-2.4.0\bin\*$(OpenEXRVersion).dll">
