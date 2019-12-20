@@ -103,7 +103,6 @@ bool CCScene::builtin_image_float_pixels(const std::string& builtin_name, void* 
 
 void _cleanup_scenes()
 {
-#if 0
 	// clear out scene params vector
 	scene_params.clear();
 	auto scend = scenes.end();
@@ -117,7 +116,6 @@ void _cleanup_scenes()
 	}
 
 	scenes.clear();
-#endif
 }
 
 unsigned int cycles_scene_create(unsigned int client_id, unsigned int scene_params_id, unsigned int session_id)
