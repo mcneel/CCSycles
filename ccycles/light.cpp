@@ -16,18 +16,18 @@ limitations under the License.
 
 #include "internal_types.h"
 
-extern std::vector<CCScene> scenes;
-
 unsigned int cycles_create_light(unsigned int client_id, unsigned int scene_id, unsigned int light_shader_id)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		ccl::Light* l = new ccl::Light();
 		ccl::Shader* lightshader = find_shader_in_scene(sce, light_shader_id);
 		l->shader = lightshader;
 		sce->lights.push_back(l);
 		logger.logit(client_id, "Adding light ", sce->lights.size() - 1, " to scene ", scene_id, " using light shader ", light_shader_id);
 		return (unsigned int)(sce->lights.size() - 1);
-	SCENE_FIND_END()
+	}
 
 	return UINT_MAX;
 }

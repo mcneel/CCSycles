@@ -17,10 +17,6 @@ limitations under the License.
 #include "internal_types.h"
 #include "util_opengl.h"
 
-extern std::vector<CCScene> scenes;
-extern std::vector<ccl::DeviceInfo> devices;
-extern std::vector<ccl::SessionParams> session_params;
-
 /* Hold all created sessions. */
 std::vector<CCSession*> sessions;
 
@@ -34,6 +30,17 @@ std::vector<TEST_CANCEL_CB> cancel_cbs;
 std::vector<RENDER_TILE_CB> update_cbs;
 std::vector<RENDER_TILE_CB> write_cbs;
 std::vector<DISPLAY_UPDATE_CB> display_update_cbs;
+
+/* Find pointers for CCSession and ccl::Session. Return false if either fails. */
+bool session_find(unsigned int sid, CCSession** ccsess, ccl::Session** session)
+{
+	if (0 <= (sid) && (sid) < sessions.size()) {
+		*ccsess = sessions[sid];
+		if(*ccsess!=nullptr) *session = (*ccsess)->session;
+		return *ccsess!=nullptr && *session!=nullptr;
+	}
+	return false;
+}
 
 /* Wrap status update callback. */
 void CCSession::status_update(void) {
@@ -150,6 +157,7 @@ void CCSession::display_update(int sample)
  */
 void _cleanup_sessions()
 {
+#if 0
 	for (CCSession* se : sessions) {
 		if (se == nullptr) continue;
 
@@ -170,6 +178,7 @@ void _cleanup_sessions()
 	update_cbs.clear();
 	write_cbs.clear();
 	update_cbs.clear();
+#endif
 }
 
 CCSession* CCSession::create(int width, int height, unsigned int buffer_stride) {
@@ -206,7 +215,7 @@ bool CCSession::size_has_changed() {
 
 unsigned int cycles_session_create(unsigned int client_id, unsigned int session_params_id)
 {
-	ccl::SessionParams params;
+	ccl::SessionParams* params = nullptr;
 	if (session_params_id < session_params.size()) {
 		params = session_params[session_params_id];
 	}
@@ -215,7 +224,7 @@ unsigned int cycles_session_create(unsigned int client_id, unsigned int session_
 	int hid{ 0 };
 
 	CCSession* session = CCSession::create(10, 10, 4);
-	session->session = new ccl::Session(params);
+	session->session = new ccl::Session(*params);
 
 	auto csessit = sessions.begin();
 	auto csessend = sessions.end();
@@ -254,28 +263,32 @@ unsigned int cycles_session_create(unsigned int client_id, unsigned int session_
 
 void cycles_session_set_scene(unsigned int client_id, unsigned int session_id, unsigned int scene_id)
 {
-	SESSION_FIND(session_id)
-		CCScene& sce = scenes[scene_id];
-		session->scene = sce.scene;
-	SESSION_FIND_END()
+	CCSession* ccsess = nullptr;
+	ccl::Session* session = nullptr;
+	if (session_find(session_id, &ccsess, &session)) {
+		CCScene* csce = nullptr;
+		ccl::Scene* sce = nullptr;
+		if (scene_find(scene_id, &csce, &sce)) {
+			session->scene = sce;
+		}
+	}
 }
 
 void cycles_session_destroy(unsigned int client_id, unsigned int session_id)
 {
-	SESSION_FIND(session_id)
+#if 0
+	CCSession* ccsess = nullptr;
+	ccl::Session* session = nullptr;
+	if (session_find(session_id, &ccsess, &session)) {
 
-	for (CCScene& csc : scenes) {
-		if (csc.scene == session->scene) {
-			csc.scene = nullptr; /* don't delete here, since session deconstructor takes care of it. */
-		}
+		scene_clear_pointer(session->scene);
+
+		delete ccsess->session;
+		delete ccsess;
+
+		sessions[session_id] = nullptr;
 	}
-
-	delete ccsess->session;
-	delete ccsess;
-
-	sessions[session_id] = nullptr;
-
-	SESSION_FIND_END()
+#endif
 }
 
 static ccl::vector<ccl::Pass> _passes;
@@ -304,7 +317,9 @@ ccl::vector<ccl::Pass>& get_passes() {
 
 void cycles_session_reset(unsigned int client_id, unsigned int session_id, unsigned int width, unsigned int height, unsigned int samples)
 {
-	SESSION_FIND(session_id)
+	CCSession* ccsess = nullptr;
+	ccl::Session* session = nullptr;
+	if (session_find(session_id, &ccsess, &session)) {
 		logger.logit(client_id, "Reset session ", session_id, ". width ", width, " height ", height, " samples ", samples);
 		ccl::thread_scoped_lock pixels_lock(ccsess->pixels_mutex);
 		ccsess->reset(width, height, 4);
@@ -319,13 +334,15 @@ void cycles_session_reset(unsigned int client_id, unsigned int session_id, unsig
 		bufParams.width = bufParams.full_width = width;
 		bufParams.height = bufParams.full_height = height;
 		session->reset(bufParams, (int)samples);
-		
-	SESSION_FIND_END()
+
+	}
 }
 
 void cycles_session_set_update_callback(unsigned int client_id, unsigned int session_id, void(*update)(unsigned int sid))
 {
-	SESSION_FIND(session_id)
+	CCSession* ccsess = nullptr;
+	ccl::Session* session = nullptr;
+	if (session_find(session_id, &ccsess, &session)) {
 		CCSession* se = sessions[session_id];
 		status_cbs[session_id] = update;
 		if (update != nullptr) {
@@ -335,12 +352,14 @@ void cycles_session_set_update_callback(unsigned int client_id, unsigned int ses
 			session->progress.set_update_callback(nullptr);
 		}
 		logger.logit(client_id, "Set status update callback for session ", session_id);
-	SESSION_FIND_END()
+	}
 }
 
 void cycles_session_set_cancel_callback(unsigned int client_id, unsigned int session_id, void(*cancel)(unsigned int sid))
 {
-	SESSION_FIND(session_id)
+	CCSession* ccsess = nullptr;
+	ccl::Session* session = nullptr;
+	if (session_find(session_id, &ccsess, &session)) {
 		CCSession* se = sessions[session_id];
 		cancel_cbs[session_id] = cancel;
 		if (cancel != nullptr) {
@@ -350,12 +369,14 @@ void cycles_session_set_cancel_callback(unsigned int client_id, unsigned int ses
 			session->progress.set_cancel_callback(nullptr);
 		}
 		logger.logit(client_id, "Set status cancel callback for session ", session_id);
-	SESSION_FIND_END()
+	}
 }
 
 void cycles_session_set_update_tile_callback(unsigned int client_id, unsigned int session_id, RENDER_TILE_CB update_tile_cb)
 {
-	SESSION_FIND(session_id)
+	CCSession* ccsess = nullptr;
+	ccl::Session* session = nullptr;
+	if (session_find(session_id, &ccsess, &session)) {
 		update_cbs[session_id] = update_tile_cb;
 		if (update_tile_cb != nullptr) {
 			session->update_render_tile_cb = function_bind<void>(&CCSession::update_render_tile, ccsess, std::placeholders::_1, std::placeholders::_2);
@@ -364,12 +385,14 @@ void cycles_session_set_update_tile_callback(unsigned int client_id, unsigned in
 			session->update_render_tile_cb = nullptr;
 		}
 		logger.logit(client_id, "Set render tile update callback for session ", session_id);
-	SESSION_FIND_END()
+	}
 }
 
 void cycles_session_set_write_tile_callback(unsigned int client_id, unsigned int session_id, RENDER_TILE_CB write_tile_cb)
 {
-	SESSION_FIND(session_id)
+	CCSession* ccsess = nullptr;
+	ccl::Session* session = nullptr;
+	if (session_find(session_id, &ccsess, &session)) {
 		write_cbs[session_id] = write_tile_cb;
 		if (write_tile_cb != nullptr) {
 			session->write_render_tile_cb = function_bind<void>(&CCSession::write_render_tile, ccsess, std::placeholders::_1);
@@ -378,13 +401,15 @@ void cycles_session_set_write_tile_callback(unsigned int client_id, unsigned int
 			session->write_render_tile_cb = nullptr;
 		}
 		logger.logit(client_id, "Set render tile write callback for session ", session_id);
-	SESSION_FIND_END()
+	}
 }
 
 void cycles_session_set_display_update_callback(unsigned int client_id, unsigned int session_id, DISPLAY_UPDATE_CB display_update_cb)
 {
 #if 0
-	SESSION_FIND(session_id)
+	CCSession* ccsess = nullptr;
+	ccl::Session* session = nullptr;
+	if (session_find(session_id, &ccsess, &session)) {
 		CCSession* se = sessions[session_id];
 		display_update_cbs[session_id] = display_update_cb;
 		if (display_update_cb != nullptr) {
@@ -394,112 +419,137 @@ void cycles_session_set_display_update_callback(unsigned int client_id, unsigned
 			session->display_update_cb = nullptr;
 		}
 		logger.logit(client_id, "Set display update callback for session ", session_id);
-	SESSION_FIND_END()
+	}
 #endif
 }
 
 void cycles_session_cancel(unsigned int client_id, unsigned int session_id, const char *cancel_message)
 {
-	SESSION_FIND(session_id)
+	CCSession* ccsess = nullptr;
+	ccl::Session* session = nullptr;
+	if (session_find(session_id, &ccsess, &session)) {
 		logger.logit(client_id, "Cancel session ", session_id, " with message ", cancel_message);
 		session->progress.set_cancel(std::string(cancel_message));
-	SESSION_FIND_END()
+	}
 }
 
 void cycles_session_start(unsigned int client_id, unsigned int session_id)
 {
-	SESSION_FIND(session_id)
+	CCSession* ccsess = nullptr;
+	ccl::Session* session = nullptr;
+	if (session_find(session_id, &ccsess, &session)) {
 		logger.logit(client_id, "Starting session ", session_id);
 		session->start();
-	SESSION_FIND_END()
+	}
 }
 
 void cycles_session_prepare_run(unsigned int client_id, unsigned int session_id)
 {
-	SESSION_FIND(session_id)
+	CCSession* ccsess = nullptr;
+	ccl::Session* session = nullptr;
+	if (session_find(session_id, &ccsess, &session)) {
 		logger.logit(client_id, "Preparing run for session ", session_id);
 		session->prepare_run();
-	SESSION_FIND_END()
+	}
 }
 
 void cycles_session_end_run(unsigned int client_id, unsigned int session_id)
 {
-	SESSION_FIND(session_id)
+	CCSession* ccsess = nullptr;
+	ccl::Session* session = nullptr;
+	if (session_find(session_id, &ccsess, &session)) {
 		logger.logit(client_id, "Ending run for session ", session_id);
 		session->end_run();
-	SESSION_FIND_END()
+	}
 }
 
 int cycles_session_sample(unsigned int client_id, unsigned int session_id)
 {
 	int rc = -1;
-	SESSION_FIND(session_id)
+	CCSession* ccsess = nullptr;
+	ccl::Session* session = nullptr;
+	if (session_find(session_id, &ccsess, &session)) {
 		logger.logit(client_id, "Starting session ", session_id);
 		rc = session->sample();
-	SESSION_FIND_END()
+	}
 	return rc;
 }
 
 void cycles_session_wait(unsigned int client_id, unsigned int session_id)
 {
-	SESSION_FIND(session_id)
+	CCSession* ccsess = nullptr;
+	ccl::Session* session = nullptr;
+	if (session_find(session_id, &ccsess, &session)) {
 		logger.logit(client_id, "Waiting for session ", session_id);
 		session->wait();
-	SESSION_FIND_END()
+	}
 }
 
 void cycles_session_set_pause(unsigned int client_id, unsigned int session_id, bool pause)
 {
-	SESSION_FIND(session_id)
+	CCSession* ccsess = nullptr;
+	ccl::Session* session = nullptr;
+	if (session_find(session_id, &ccsess, &session)) {
 		session->set_pause(pause);
-	SESSION_FIND_END()
+	}
 }
 
 bool cycles_session_is_paused(unsigned int client_id, unsigned int session_id)
 {
-/*	SESSION_FIND(session_id)
+/*
+	CCSession* ccsess = nullptr;
+	ccl::Session* session = nullptr;
+	if (session_find(session_id, &ccsess, &session)) {
 		return false; // session->is_paused();
-	SESSION_FIND_END()*/
+	}*/
 
 	return false;
 }
 
 void cycles_session_set_samples(unsigned int client_id, unsigned int session_id, int samples)
 {
-	SESSION_FIND(session_id)
+	CCSession* ccsess = nullptr;
+	ccl::Session* session = nullptr;
+	if (session_find(session_id, &ccsess, &session)) {
 		session->set_samples(samples);
-	SESSION_FIND_END()
+	}
 }
 
 void cycles_session_get_buffer_info(unsigned int client_id, unsigned int session_id, unsigned int* buffer_size, unsigned int* buffer_stride)
 {
-	SESSION_FIND(session_id)
+	CCSession* ccsess = nullptr;
+	ccl::Session* session = nullptr;
+	if (session_find(session_id, &ccsess, &session)) {
 		(void)session;
 		*buffer_size = ccsess->buffer_size;
 		*buffer_stride = ccsess->buffer_stride;
 		logger.logit(client_id, "Session ", session_id, " get_buffer_info. size ", *buffer_size, " stride ", *buffer_stride);
-	SESSION_FIND_END()
+	}
 }
 
 float* cycles_session_get_buffer(unsigned int client_id, unsigned int session_id)
 {
-	SESSION_FIND(session_id);
+	CCSession* ccsess = nullptr;
+	ccl::Session* session = nullptr;
+	if (session_find(session_id, &ccsess, &session)) {
 		(void)session;
 		return ccsess->pixels;
-	SESSION_FIND_END();
+	};
 
 	return nullptr;
 }
 
 void cycles_session_copy_buffer(unsigned int client_id, unsigned int session_id, float* pixel_buffer)
 {
-	SESSION_FIND(session_id)
+	CCSession* ccsess = nullptr;
+	ccl::Session* session = nullptr;
+	if (session_find(session_id, &ccsess, &session)) {
 		(void)session;
 		ccl::thread_scoped_lock pixels_lock(ccsess->pixels_mutex);
 		if (ccsess->size_has_changed()) return;
 		memcpy(pixel_buffer, ccsess->pixels, ccsess->buffer_size*sizeof(float));
 		logger.logit(client_id, "Session ", session_id, " copy complete pixel buffer");
-	SESSION_FIND_END()
+	}
 }
 
 bool initialize_shader_program(GLuint& program)
@@ -617,7 +667,9 @@ void cycles_session_rhinodraw(unsigned int client_id, unsigned int session_id, i
 	draw_params.bind_display_space_shader_cb = nullptr;
 	draw_params.unbind_display_space_shader_cb = nullptr;
 
-	SESSION_FIND(session_id)
+	CCSession* ccsess = nullptr;
+	ccl::Session* session = nullptr;
+	if (session_find(session_id, &ccsess, &session)) {
 		ccl::BufferParams session_buf_params;
 		ccl::vector<ccl::Pass>& passes = get_passes();
 		session_buf_params.width = session_buf_params.full_width = width;
@@ -647,7 +699,7 @@ void cycles_session_rhinodraw(unsigned int client_id, unsigned int session_id, i
 
 		glUseProgram(0);
 
-	SESSION_FIND_END()
+	}
 }
 
 void cycles_session_draw(unsigned int client_id, unsigned int session_id, int width, int height)
@@ -656,19 +708,23 @@ void cycles_session_draw(unsigned int client_id, unsigned int session_id, int wi
 	draw_params.bind_display_space_shader_cb = nullptr;
 	draw_params.unbind_display_space_shader_cb = nullptr;
 
-	SESSION_FIND(session_id)
+	CCSession* ccsess = nullptr;
+	ccl::Session* session = nullptr;
+	if (session_find(session_id, &ccsess, &session)) {
 		ccl::BufferParams session_buf_params;
 		session_buf_params.width = session_buf_params.full_width = width;
 		session_buf_params.height = session_buf_params.full_height = height;
 
 		session->draw(session_buf_params, draw_params);
-	SESSION_FIND_END()
+	}
 }
 
 void cycles_session_draw_nogl(unsigned int client_id, unsigned int session_id, int width, int height, bool isgpu)
 {
 #if 0
-	SESSION_FIND(session_id)
+	CCSession* ccsess = nullptr;
+	ccl::Session* session = nullptr;
+	if (session_find(session_id, &ccsess, &session)) {
 		// lock moved to initial callback invocation
 		//ccl::thread_scoped_lock pixels_lock(ccsess->pixels_mutex);
 		if (!ccsess->pixels || ccsess->size_has_changed()) return;
@@ -679,49 +735,59 @@ void cycles_session_draw_nogl(unsigned int client_id, unsigned int session_id, i
 		if (isgpu)
 			session->draw(session_buf_params, draw_params);
 		session->display->get_pixels(session->device, ccsess->pixels);
-	SESSION_FIND_END()
+	}
 #endif
 }
 
 void cycles_progress_reset(unsigned int client_id, unsigned int session_id)
 {
-	SESSION_FIND(session_id)
+	CCSession* ccsess = nullptr;
+	ccl::Session* session = nullptr;
+	if (session_find(session_id, &ccsess, &session)) {
 		session->progress.reset();
-	SESSION_FIND_END()
+	}
 }
 
 int cycles_progress_get_sample(unsigned int client_id, unsigned int session_id)
 {
-	SESSION_FIND(session_id)
+	CCSession* ccsess = nullptr;
+	ccl::Session* session = nullptr;
+	if (session_find(session_id, &ccsess, &session)) {
 		ccl::TileManager &tm = session->tile_manager;
 		return tm.state.sample;
-	SESSION_FIND_END()
+	}
 
 	return INT_MIN;
 }
 
 void cycles_progress_get_time(unsigned int client_id, unsigned int session_id, double *total_time, double* sample_time)
 {
-	SESSION_FIND(session_id)
+	CCSession* ccsess = nullptr;
+	ccl::Session* session = nullptr;
+	if (session_find(session_id, &ccsess, &session)) {
 		return session->progress.get_time(*total_time, *sample_time);
-	SESSION_FIND_END()
+	}
 }
 
 void cycles_tilemanager_get_sample_info(unsigned int client_id, unsigned int session_id, unsigned int* samples, unsigned int* total_samples)
 {
-	SESSION_FIND(session_id)
+	CCSession* ccsess = nullptr;
+	ccl::Session* session = nullptr;
+	if (session_find(session_id, &ccsess, &session)) {
 		*samples = session->tile_manager.state.sample + 1;
 		*total_samples = session->tile_manager.num_samples;
-	SESSION_FIND_END()
+	}
 }
 
 /* Get cycles render progress. Note that progress will be clamped to 1.0f. */
 void cycles_progress_get_progress(unsigned int client_id, unsigned int session_id, float* progress)
 {
-	SESSION_FIND(session_id)
+	CCSession* ccsess = nullptr;
+	ccl::Session* session = nullptr;
+	if (session_find(session_id, &ccsess, &session)) {
 		*progress = session->progress.get_progress();
 		if (*progress > 1.0f) *progress = 1.0f;
-	SESSION_FIND_END()
+	}
 }
 
 const char* cycles_progress_get_status(unsigned int client_id, unsigned int session_id)
@@ -729,11 +795,13 @@ const char* cycles_progress_get_status(unsigned int client_id, unsigned int sess
 	/* static here, since otherwise std::string goes out of scope on return. */
 	static std::string status;
 	status = "";
-	SESSION_FIND(session_id)
+	CCSession* ccsess = nullptr;
+	ccl::Session* session = nullptr;
+	if (session_find(session_id, &ccsess, &session)) {
 		std::string substatus{ "" };
 		session->progress.get_status(status, substatus);
 		return status.c_str();
-	SESSION_FIND_END()
+	}
 
 	return nullptr;
 }
@@ -743,11 +811,13 @@ const char* cycles_progress_get_substatus(unsigned int client_id, unsigned int s
 	/* static here, since otherwise std::string goes out of scope on return. */
 	static std::string substatus;
 	substatus = "";
-	SESSION_FIND(session_id)
+	CCSession* ccsess = nullptr;
+	ccl::Session* session = nullptr;
+	if (session_find(session_id, &ccsess, &session)) {
 		std::string status{ "" };
 		session->progress.get_status(status, substatus);
 		return substatus.c_str();
-	SESSION_FIND_END()
+	}
 
 	return nullptr;
 }

@@ -14,6 +14,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 **/
 
+#pragma once
+
 #include <vector>
 #include <chrono>
 #include <ctime>
@@ -55,10 +57,10 @@ limitations under the License.
 #define MULTIDEVICEIDX(id) (id-MULTIDEVICEOFFSET)
 #define GETDEVICE(puthere, id) \
 	if (ISMULTIDEVICE(id)) { \
-		puthere = multi_devices[MULTIDEVICEIDX(id)]; \
+		(puthere) = multi_devices[MULTIDEVICEIDX(id)]; \
 	} \
 	else { \
-		puthere = devices[id]; \
+		(puthere) = devices[id]; \
 	} 
 
 //extern LOGGER_FUNC_CB logger_func;
@@ -195,11 +197,11 @@ public:
 	bool size_has_changed();
 	ccl::thread_mutex pixels_mutex;
 
-	~CCSession() {
+	/*~CCSession() {
 		ccl::thread_scoped_lock pixels_lock(pixels_mutex);
 		delete[] pixels;
 		pixels = nullptr;
-	}
+	}*/
 
 private:
 	bool _size_has_changed;
@@ -235,57 +237,64 @@ struct CCShader {
 	std::map<unsigned int, unsigned int> scene_mapping;
 };
 
+/* data */
+extern std::vector<ccl::SceneParams*> scene_params;
+extern std::vector<ccl::DeviceInfo> devices;
+extern std::vector<ccl::DeviceInfo> multi_devices;
+extern std::vector<ccl::SessionParams*> session_params;
+
+
+
 /********************************/
 /* Some utility functions       */
 /********************************/
 
 extern ccl::Shader* find_shader_in_scene(ccl::Scene* sce, unsigned int shader_id);
 extern unsigned int get_idx_for_shader_in_scene(ccl::Scene* sce, ccl::Shader* sh);
+extern bool scene_find(unsigned int scid, CCScene** csce, ccl::Scene** sce);
+extern bool session_find(unsigned int sid, CCSession** ccsess, ccl::Session** session);
+extern void scene_clear_pointer(ccl::Scene* sce);
+
+extern void _cleanup_scenes();
+extern void _cleanup_sessions();
+extern void _cleanup_shaders();
+extern void _init_shaders();
 
 /********************************/
 /* Some useful defines          */
 /********************************/
 
-#define SCENE_FIND(scid) \
-	if (0 <= (scid) && (scid) < scenes.size()) { \
-		ccl::Scene* sce = scenes[(scid)].scene; 
-
-#define SCENE_FIND_END() }
-
-#define SESSION_FIND(sid) \
-	if (0 <= (sid) && (sid) < sessions.size()) { \
-		CCSession* ccsess = sessions[sid]; \
-		ccl::Session* session = ccsess->session;
-#define SESSION_FIND_END() }
 
 /* Set boolean parameter varname of param_type. */
 #define PARAM_BOOL(param_type, params_id, varname) \
 	if (0 <= params_id && params_id < param_type.size()) { \
-		param_type[params_id]. varname = varname == 1; \
+		param_type[params_id]-> varname = varname == 1; \
 		logger.logit(client_id, "Set " #param_type " " #varname " to ", varname); \
 	}
 
 /* Set parameter varname of param_type. */
 #define PARAM(param_type, params_id, varname) \
 	if (0 <= params_id && params_id < param_type.size()) { \
-		param_type[params_id]. varname = varname; \
+		param_type[params_id]-> varname = varname; \
 		logger.logit(client_id, "Set " #param_type " " #varname " to ", varname); \
 	}
 
 /* Set parameter varname of param_type, casting to typecast*/
 #define PARAM_CAST(param_type, params_id, typecast, varname) \
 	if (0 <= params_id && params_id < param_type.size()) { \
-		param_type[params_id]. varname = static_cast<typecast>(varname); \
+		param_type[params_id]-> varname = static_cast<typecast>(varname); \
 		logger.logit(client_id, "Set " #param_type " " #varname " to ", varname, " casting to " #typecast); \
 	}
 
 #define LIGHT_FIND(scene_id, light_id) \
-	SCENE_FIND(scene_id) \
-	ccl::Light* l = sce->lights[light_id]; \
+	CCScene* csce = nullptr; \
+	ccl::Scene* sce = nullptr; \
+	if(scene_find(scene_id, &csce, &sce)) { \
+		ccl::Light* l = sce->lights[light_id]; \
 
 #define LIGHT_FIND_END() \
-	l->tag_update(sce); \
-	SCENE_FIND_END()
+		l->tag_update(sce); \
+	}
 
 #define SHADER_VAR2(a,b) a ## b
 #define SHADER_VAR(a, b) SHADER_VAR2(a,b)
@@ -295,18 +304,3 @@ extern unsigned int get_idx_for_shader_in_scene(ccl::Scene* sce, ccl::Shader* sh
     sh->shader-> var = (type)(val); \
 	logger.logit(client_id, "Set " #var " of shader ", shid, " to ", val, " casting to " #type);
 
-#if 0
-#define SHADERNODE_FIND(shader_id, shnode_id) \
-	CCShader* sh = shaders[shader_id]; \
-	auto psh = sh->graph->nodes.begin(); \
-	auto end = sh->graph->nodes.end(); \
-	while (psh != end) \
-	{ \
-		if ((*psh)->id == shnode_id) {
-
-#define SHADERNODE_FIND_END() \
-			break; \
-		} \
-		++psh; \
-	}
-#endif

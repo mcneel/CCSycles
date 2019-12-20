@@ -16,9 +16,6 @@ limitations under the License.
 
 #include "internal_types.h"
 
-extern std::vector<ccl::DeviceInfo> devices;
-extern std::vector<ccl::DeviceInfo> multi_devices;
-
 unsigned int cycles_number_devices() {
 	return (unsigned int)devices.size();
 }
