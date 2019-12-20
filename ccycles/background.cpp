@@ -16,9 +16,6 @@ limitations under the License.
 
 #include "internal_types.h"
 
-extern std::vector<CCShader*> shaders;
-extern std::vector<CCScene> scenes;
-
 /* Set shader_id as default background shader for scene_id.
  * Note that shader_id is the ID for the shader specific to this scene.
  * 
@@ -27,7 +24,9 @@ extern std::vector<CCScene> scenes;
  */
 void cycles_scene_set_background_shader(unsigned int client_id, unsigned int scene_id, unsigned int shader_id)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		ccl::Shader* bg = find_shader_in_scene(sce, shader_id);
 		if (bg != nullptr) {
 			sce->default_background = bg;
@@ -36,12 +35,14 @@ void cycles_scene_set_background_shader(unsigned int client_id, unsigned int sce
 			sce->background->tag_update(sce);
 			logger.logit(client_id, "Scene ", scene_id, " set background shader ", shader_id);
 		}
-	SCENE_FIND_END()
+	}
 }
 
 unsigned int cycles_scene_get_background_shader(unsigned int client_id, unsigned int scene_id)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		unsigned int idx = 0;
 		auto bi = sce->shaders.cbegin();
 		auto ei = sce->shaders.cend();
@@ -51,42 +52,50 @@ unsigned int cycles_scene_get_background_shader(unsigned int client_id, unsigned
 			bi++;
 		}
 		return idx;
-	SCENE_FIND_END()
+	}
 	return UINT_MAX;
 }
 
 void cycles_scene_set_background_transparent(unsigned int client_id, unsigned int scene_id, unsigned int transparent)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		sce->background->transparent = transparent == 1;
 		sce->background->tag_update(sce);
 		logger.logit(client_id, "Scene ", scene_id, " set background transparent", transparent);
-	SCENE_FIND_END()
+	}
 }
 
 void cycles_scene_set_background_ao_factor(unsigned int client_id, unsigned int scene_id, float ao_factor)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		sce->background->ao_factor = ao_factor;
 		sce->background->tag_update(sce);
 		logger.logit(client_id, "Scene ", scene_id, " set background ao factor ", ao_factor);
-	SCENE_FIND_END()
+	}
 }
 
 void cycles_scene_set_background_ao_distance(unsigned int client_id, unsigned int scene_id, float ao_distance)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		sce->background->ao_distance = ao_distance;
 		sce->background->tag_update(sce);
 		logger.logit(client_id, "Scene ", scene_id, " set background ao distance ", ao_distance);
-	SCENE_FIND_END()
+	}
 }
 
 void cycles_scene_set_background_visibility(unsigned int client_id, unsigned int scene_id, unsigned int path_ray_flag)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		sce->background->visibility = (ccl::PathRayFlag)path_ray_flag;
 		sce->background->tag_update(sce);
 		logger.logit(client_id, "Scene ", scene_id, " set background path ray visibility ", path_ray_flag);
-	SCENE_FIND_END()
+	}
 }

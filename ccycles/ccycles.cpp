@@ -20,11 +20,6 @@ limitations under the License.
 #include "util_path.h"
 #include "ccycles.h"
 
-extern void _cleanup_scenes();
-extern void _cleanup_sessions();
-extern void _cleanup_shaders();
-extern void _init_shaders();
-
 std::ostream& operator<<(std::ostream& out, shadernode_type const &snt) {
 	out << (int)snt;
 	return out;
@@ -146,6 +141,7 @@ void cycles_set_logger(unsigned int client_id, LOGGER_FUNC_CB logger_func_)
 unsigned int cycles_new_client()
 {
 	unsigned int logfunc_count{ 0 };
+	//std::vector<int*>* lotsonumbers = new std::vector<int*>(100000);
 	for(auto logfunc : loggers) {
 		if (logfunc == nullptr)
 		{

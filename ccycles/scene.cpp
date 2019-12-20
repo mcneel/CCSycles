@@ -16,13 +16,27 @@ limitations under the License.
 
 #include "internal_types.h"
 
-// need access to devices
-extern std::vector<ccl::DeviceInfo> devices;
-extern std::vector<ccl::DeviceInfo> multi_devices;
-extern std::vector<CCSession*> sessions;
+std::vector<CCScene*> scenes;
 
-extern std::vector<ccl::SceneParams> scene_params;
-std::vector<CCScene> scenes;
+/* Find pointers for CCScene and ccl::Scene. Return false if either fails. */
+bool scene_find(unsigned int scid, CCScene** csce, ccl::Scene** sce)
+{
+	if (0 <= (scid) && (scid) < scenes.size()) {
+		*csce = scenes[scid];
+		if((*csce)!=nullptr) *sce = (*csce)->scene;
+		return *sce != nullptr && *csce!=nullptr;
+	}
+	return false;
+}
+
+void scene_clear_pointer(ccl::Scene* sce)
+{
+		for (CCScene* csc : scenes) {
+			if (csc->scene == sce) {
+				csc->scene = nullptr; /* don't delete here, since session deconstructor takes care of it. */
+			}
+		}
+}
 
 /* Find a ccl::Shader in a given ccl::Scene, based on shader_id
 */
@@ -74,14 +88,14 @@ void CCScene::builtin_image_info(const std::string& builtin_name, void* builtin_
 bool CCScene::builtin_image_pixels(const std::string& builtin_name, void* builtin_data, unsigned char* pixels, const size_t pixels_size, const bool associate_alpha, const bool free_cache)
 {
 	CCImage* img = static_cast<CCImage*>(builtin_data);
-	memcpy(pixels, img->builtin_data, img->width*img->height*img->channels*sizeof(unsigned char));
+	memcpy(pixels, img->builtin_data, (size_t)(img->width*img->height*img->channels)*sizeof(unsigned char));
 	return false;
 }
 
 bool CCScene::builtin_image_float_pixels(const std::string& builtin_name, void* builtin_data, float* pixels, const size_t pixels_size, const bool associate_alpha, const bool free_cache)
 {
 	CCImage* img = static_cast<CCImage*>(builtin_data);
-	memcpy(pixels, img->builtin_data, img->width*img->height*img->channels*sizeof(float));
+	memcpy(pixels, img->builtin_data, (size_t)(img->width*img->height*img->channels)*sizeof(float));
 	return false;
 }
 
@@ -91,108 +105,126 @@ void _cleanup_scenes()
 {
 	// clear out scene params vector
 	scene_params.clear();
+	auto scend = scenes.end();
+	auto scit = scenes.begin();
+
+	for (CCScene* sce : scenes) {
+		if (sce->scene) {
+			delete sce->scene;
+		}
+		delete sce;
+	}
 
 	scenes.clear();
 }
 
 unsigned int cycles_scene_create(unsigned int client_id, unsigned int scene_params_id, unsigned int session_id)
 {
-	SESSION_FIND(session_id)
+	CCSession* ccsess = nullptr;
+	ccl::Session* session = nullptr;
+	if (session_find(session_id, &ccsess, &session)) {
 
-	CCScene scene;
+		ccl::SceneParams* params = nullptr;
+		bool found_params{ false };
 
-	ccl::SceneParams params;
-
-	bool found_params{ false };
-
-	if (scene_params_id < scene_params.size()) {
-		params = scene_params[scene_params_id];
-		found_params = true;
-	}
-
-	if (found_params) {
-		int cscid{ -1 };
-		if (scenes.size() > 0) {
-			int hid{ 0 };
-
-			auto scend = scenes.end();
-			auto scit = scenes.begin();
-
-			while (scit != scend) {
-				if ((*scit).scene == nullptr) {
-					cscid = hid;
-					break;
-				}
-				++hid;
-				++scit;
-			}
-
-		} 
-		if (cscid == -1) {
-			scenes.push_back(scene);
-			cscid = (unsigned int)(scenes.size() - 1);
+		if (scene_params_id < scene_params.size()) {
+			params = scene_params[scene_params_id];
+			found_params = true;
 		}
 
-		scenes[cscid].scene = new ccl::Scene(params, session->device);
-		scenes[cscid].params_id = scene_params_id;
-		scenes[cscid].scene->image_manager->builtin_image_info_cb = function_bind(&CCScene::builtin_image_info, scenes[cscid], std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
-		scenes[cscid].scene->image_manager->builtin_image_pixels_cb = function_bind(&CCScene::builtin_image_pixels, scenes[cscid], std::placeholders::_1, std::placeholders::_2, std::placeholders::_3, std::placeholders::_4, std::placeholders::_5, std::placeholders::_6);
-		scenes[cscid].scene->image_manager->builtin_image_float_pixels_cb = function_bind(&CCScene::builtin_image_float_pixels, scenes[cscid], std::placeholders::_1, std::placeholders::_2, std::placeholders::_3, std::placeholders::_4, std::placeholders::_5, std::placeholders::_6);
+		if (found_params && params!=nullptr) {
+			int cscid{ -1 };
+			if (scenes.size() > 0) {
+				int hid{ 0 };
 
-		logger.logit(client_id, "Created scene ", cscid, " with scene_params ", scene_params_id, " and device ", session->device->info.id);
-		return cscid;
+				// look for first CCScene that has no ccl::Scene set.
+				// if we find one, use it. Otherwise we'll just create a new one.
+				for (CCScene* sce : scenes) {
+					if (sce->scene == nullptr) {
+						cscid = hid;
+						break;
+					}
+					++hid;
+				}
+			}
+			if (cscid == -1) {
+				CCScene* scene = new CCScene();
+				scenes.push_back(scene);
+				cscid = (unsigned int)(scenes.size() - 1);
+			}
+
+			scenes[cscid]->scene = new ccl::Scene(*params, session->device);
+			scenes[cscid]->params_id = scene_params_id;
+			scenes[cscid]->scene->image_manager->builtin_image_info_cb = function_bind(&CCScene::builtin_image_info, scenes[cscid], std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
+			scenes[cscid]->scene->image_manager->builtin_image_pixels_cb = function_bind(&CCScene::builtin_image_pixels, scenes[cscid], std::placeholders::_1, std::placeholders::_2, std::placeholders::_3, std::placeholders::_4, std::placeholders::_5, std::placeholders::_6);
+			scenes[cscid]->scene->image_manager->builtin_image_float_pixels_cb = function_bind(&CCScene::builtin_image_float_pixels, scenes[cscid], std::placeholders::_1, std::placeholders::_2, std::placeholders::_3, std::placeholders::_4, std::placeholders::_5, std::placeholders::_6);
+
+			logger.logit(client_id, "Created scene ", cscid, " with scene_params ", scene_params_id, " and device ", session->device->info.id);
+			return cscid;
+		}
+		else {
+			return UINT_MAX;
+		}
 	}
-	else {
-		return UINT_MAX;
-	}
-	SESSION_FIND_END()
 	return UINT_MAX;
 }
 
 void cycles_scene_set_default_surface_shader(unsigned int client_id, unsigned int scene_id, unsigned int shader_id)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		ccl::Shader* sh = find_shader_in_scene(sce, shader_id);
 		sce->default_surface = sh;
 		logger.logit(client_id, "Scene ", scene_id, " set default surface shader ", shader_id);
-	SCENE_FIND_END()
+	}
 }
 
 unsigned int cycles_scene_get_default_surface_shader(unsigned int client_id, unsigned int scene_id)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		return get_idx_for_shader_in_scene(sce, sce->default_surface);
-	SCENE_FIND_END()
+	}
 
 	return UINT_MAX;
 }
 
 void cycles_scene_reset(unsigned int client_id, unsigned int scene_id)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		sce->reset();
-	SCENE_FIND_END()
+	}
 }
 
 bool cycles_scene_try_lock(unsigned int client_id, unsigned int scene_id)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		return sce->mutex.try_lock();
-	SCENE_FIND_END()
+	}
 	return false;
 }
 
 void cycles_scene_lock(unsigned int client_id, unsigned int scene_id)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		sce->mutex.lock();
-	SCENE_FIND_END()
+	}
 }
 
 void cycles_scene_unlock(unsigned int client_id, unsigned int scene_id)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		sce->mutex.unlock();
-	SCENE_FIND_END()
+	}
 }
 

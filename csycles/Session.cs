@@ -37,7 +37,14 @@ namespace ccl
 		/// <summary>
 		/// Get or set the Scene used for this Session
 		/// </summary>
-		public Scene Scene { get { return sc; } set { CSycles.session_set_scene(Client.Id, Id, value.Id); sc = value; } }
+		public Scene Scene
+		{
+			get { return sc; }
+			set {
+				CSycles.session_set_scene(Client.Id, Id, value.Id);
+				sc = value;
+			}
+		}
 		/// <summary>
 		/// Get the SessionParams used for this Session
 		/// </summary>

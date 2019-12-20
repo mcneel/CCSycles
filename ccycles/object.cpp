@@ -16,11 +16,11 @@ limitations under the License.
 
 #include "internal_types.h"
 
-extern std::vector<CCScene> scenes;
-
 unsigned int cycles_scene_add_object(unsigned int client_id, unsigned int scene_id)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		ccl::Object* ob = new ccl::Object();
 		// TODO: APIfy object matrix setting, for now hard-code to be closer to PoC plugin
 		ob->tfm = ccl::transform_identity();
@@ -31,32 +31,38 @@ unsigned int cycles_scene_add_object(unsigned int client_id, unsigned int scene_
 		ob->tag_update(sce);
 
 		return (unsigned int)(sce->objects.size() - 1);
-	SCENE_FIND_END()
+	}
 
 	return UINT_MAX;
 }
 
 void cycles_scene_object_set_mesh(unsigned int client_id, unsigned int scene_id, unsigned int object_id, unsigned int mesh_id)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		ccl::Object* ob = sce->objects[object_id];
 		ccl::Mesh* me = sce->meshes[mesh_id];
 		ob->mesh = me;
 		ob->tag_update(sce);
-	SCENE_FIND_END()
+	}
 }
 
 void cycles_object_tag_update(unsigned int client_id, unsigned int scene_id, unsigned int object_id)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		ccl::Object* ob = sce->objects[object_id];
 		ob->tag_update(sce);
-	SCENE_FIND_END()
+	}
 }
 
 unsigned int cycles_scene_object_get_mesh(unsigned int client_id, unsigned int scene_id, unsigned int object_id)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		ccl::Object* ob = sce->objects[object_id];
 		auto cmeshit = sce->meshes.begin();
 		auto cmeshend = sce->meshes.end();
@@ -67,74 +73,88 @@ unsigned int cycles_scene_object_get_mesh(unsigned int client_id, unsigned int s
 			}
 			++i;
 		}
-	SCENE_FIND_END()
+	}
 	return UINT_MAX;
 }
 
 void cycles_scene_object_set_visibility(unsigned int client, unsigned int scene_id, unsigned int object_id, unsigned int visibility)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		ccl::Object* ob = sce->objects[object_id];
 		ob->visibility = visibility;
 		ob->tag_update(sce);
-	SCENE_FIND_END()
+	}
 }
 
 void cycles_scene_object_set_shader(unsigned int client, unsigned int scene_id, unsigned int object_id, unsigned int shader_id)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		ccl::Object* ob = sce->objects[object_id];
 		ccl::Shader* sh = find_shader_in_scene(sce, shader_id);
 		ob->shader = sh;
 		sh->tag_update(sce);
 		sh->tag_used(sce);
 		ob->tag_update(sce);
-	SCENE_FIND_END()
+	}
 }
 
 void cycles_scene_object_set_is_shadowcatcher(unsigned int client, unsigned int scene_id, unsigned int object_id, bool is_shadowcatcher)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		ccl::Object* ob = sce->objects[object_id];
 		ob->is_shadow_catcher = is_shadowcatcher;
 		ob->tag_update(sce);
-	SCENE_FIND_END()
+	}
 }
 
 void cycles_scene_object_set_mesh_light_no_cast_shadow(unsigned int client, unsigned int scene_id, unsigned int object_id, bool mesh_light_no_cast_shadow)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		ccl::Object* ob = sce->objects[object_id];
 		ob->mesh_light_no_cast_shadow = mesh_light_no_cast_shadow;
 		ob->tag_update(sce);
-	SCENE_FIND_END()
+	}
 }
 
 void cycles_scene_object_set_is_block_instance(unsigned int client, unsigned int scene_id, unsigned int object_id, bool is_block_instance)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		ccl::Object* ob = sce->objects[object_id];
 		ob->is_block_instance = is_block_instance;
 		ob->tag_update(sce);
-	SCENE_FIND_END()
+	}
 }
 
 void cycles_scene_object_set_cutout(unsigned int client, unsigned int scene_id, unsigned int object_id, bool cutout)
 {
-	/*SCENE_FIND(scene_id)
+	/*CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		ccl::Object* ob = sce->objects[object_id];
 		ob->use_cutout = cutout;
 		ob->tag_update(sce);
-	SCENE_FIND_END()*/
+	}*/
 }
 
 void cycles_scene_object_set_ignore_cutout(unsigned int client, unsigned int scene_id, unsigned int object_id, bool ignore_cutout)
 {
-	/*SCENE_FIND(scene_id)
+	/*CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		ccl::Object* ob = sce->objects[object_id];
 		ob->ignore_cutout = ignore_cutout;
 		ob->tag_update(sce);
-	SCENE_FIND_END()*/
+	}*/
 }
 
 void cycles_scene_object_set_matrix(unsigned int client_id, unsigned int scene_id, unsigned int object_id,
@@ -143,41 +163,51 @@ void cycles_scene_object_set_matrix(unsigned int client_id, unsigned int scene_i
 	float i, float j, float k, float l
 	)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		ccl::Object* ob = sce->objects[object_id];
 		ccl::Transform mat = ccl::make_transform(a, b, c, d, e, f, g, h, i, j, k, l);
 		ob->tfm = mat;
 		ob->tag_update(sce);
-	SCENE_FIND_END()
+	}
 }
 
 void cycles_object_set_pass_id(unsigned int client_id, unsigned int scene_id, unsigned int object_id, int pass_id)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		ccl::Object* ob = sce->objects[object_id];
 		ob->pass_id = pass_id;
-	SCENE_FIND_END()
+	}
 }
 
 void cycles_object_set_random_id(unsigned int client_id, unsigned int scene_id, unsigned int object_id, unsigned int random_id)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		ccl::Object* ob = sce->objects[object_id];
 		ob->random_id = random_id;
-	SCENE_FIND_END()
+	}
 }
 
 void cycles_scene_clear_clipping_planes(unsigned int client_id, unsigned int scene_id)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		sce->clipping_planes.clear();
 		sce->object_manager->need_clipping_plane_update = true;
-	SCENE_FIND_END()
+	}
 }
 
 unsigned int cycles_scene_add_clipping_plane(unsigned int client_id, unsigned int scene_id, float a, float b, float c, float d)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		ccl::float4 cp = ccl::make_float4(a, b, c, d);
 		sce->clipping_planes.push_back(cp);
 
@@ -186,7 +216,7 @@ unsigned int cycles_scene_add_clipping_plane(unsigned int client_id, unsigned in
 		sce->object_manager->need_clipping_plane_update = true;
 
 		return (unsigned int)(sce->clipping_planes.size() - 1);
-	SCENE_FIND_END()
+	}
 
 	return UINT_MAX;
 }
@@ -198,12 +228,14 @@ void cycles_scene_discard_clipping_plane(unsigned int client_id, unsigned int sc
 
 void cycles_scene_set_clipping_plane(unsigned int client_id, unsigned int scene_id, unsigned int cp_id, float a, float b, float c, float d)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		ccl::float4 cp = ccl::make_float4(a, b, c, d);
 		sce->clipping_planes[cp_id] = cp;
 
 		logger.logit(client_id, "Setting clipping plane ", sce->clipping_planes.size() - 1, " to scene ", scene_id);
 
 		sce->object_manager->need_clipping_plane_update = true;
-	SCENE_FIND_END()
+	}
 }

@@ -16,11 +16,8 @@ limitations under the License.
 
 #include "internal_types.h"
 
-extern std::vector<ccl::DeviceInfo> devices;
-extern std::vector<ccl::DeviceInfo> multi_devices;
-
 /* Hold all created session parameters. */
-std::vector<ccl::SessionParams> session_params;
+std::vector<ccl::SessionParams*> session_params;
 
 #define SESSION_PARAM_BOOL(session_params_id, varname) \
 	PARAM_BOOL(session_params, session_params_id, varname)
@@ -33,9 +30,9 @@ std::vector<ccl::SessionParams> session_params;
 
 unsigned int cycles_session_params_create(unsigned int client_id, unsigned int device_id)
 {
-	ccl::SessionParams params;
+	ccl::SessionParams* params = new ccl::SessionParams();
 
-	GETDEVICE(params.device, device_id);
+	GETDEVICE(params->device, device_id);
 	session_params.push_back(params);
 	logger.logit(client_id, "Created session parameters for device ", device_id);
 
@@ -45,7 +42,7 @@ unsigned int cycles_session_params_create(unsigned int client_id, unsigned int d
 void cycles_session_params_set_device(unsigned int client_id, unsigned int session_params_id, unsigned int device)
 {
 	if (session_params_id < session_params.size()) {
-		GETDEVICE(session_params[session_params_id].device, device)
+		GETDEVICE(session_params[session_params_id]->device, device)
 	}
 }
 
@@ -84,7 +81,7 @@ void cycles_session_params_set_samples(unsigned int client_id, unsigned int sess
 void cycles_session_params_set_tile_size(unsigned int client_id, unsigned int session_params_id, unsigned int x, unsigned int y)
 {
 	if (session_params_id < session_params.size()) {
-		session_params[session_params_id].tile_size = ccl::make_int2(x, y);
+		session_params[session_params_id]->tile_size = ccl::make_int2(x, y);
 	}
 }
 
