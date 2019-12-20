@@ -36,7 +36,7 @@ bool session_find(unsigned int sid, CCSession** ccsess, ccl::Session** session)
 {
 	if (0 <= (sid) && (sid) < sessions.size()) {
 		*ccsess = sessions[sid];
-		*session = (*ccsess)->session;
+		if(*ccsess!=nullptr) *session = (*ccsess)->session;
 		return *ccsess!=nullptr && *session!=nullptr;
 	}
 	return false;
