@@ -16,8 +16,6 @@ limitations under the License.
 
 #include "internal_types.h"
 
-extern std::vector<CCScene> scenes;
-
 std::vector<CCShader*> shaders;
 
 std::vector<CCImage*> images;
@@ -38,7 +36,7 @@ void _cleanup_shaders()
 			sh->graph = nullptr;
 			sh->shader = nullptr;
 			sh->scene_mapping.clear();
-			delete sh;
+			//delete sh;
 		}
 	}
 	shaders.clear();
@@ -46,17 +44,17 @@ void _cleanup_shaders()
 
 void _cleanup_images()
 {
-	for (CCImage* img : images) {
+	/*for (CCImage* img : images) {
 		if (img == nullptr) continue;
 
-		if(img->is_float)
+		if (img->is_float)
 			delete (float*)img->builtin_data;
 		else
 			delete (unsigned char*)img->builtin_data;
 		img->builtin_data = nullptr;
 
 		delete img;
-	}
+	}*/
 	images.clear();
 }
 
@@ -101,27 +99,31 @@ unsigned int cycles_create_shader(unsigned int client_id)
 /* Add shader to specified scene. */
 unsigned int cycles_scene_add_shader(unsigned int client_id, unsigned int scene_id, unsigned int shader_id)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if (scene_find(scene_id, &csce, &sce)) {
 		CCShader* sh = shaders[shader_id];
-	sce->shaders.push_back(sh->shader);
-	sh->shader->tag_update(sce);
-	sh->shader->tag_used(sce);
-	unsigned int shid = (unsigned int)(sce->shaders.size() - 1);
-	sh->scene_mapping.insert({ scene_id, shid });
-	return shid;
-	SCENE_FIND_END()
+		sce->shaders.push_back(sh->shader);
+		sh->shader->tag_update(sce);
+		sh->shader->tag_used(sce);
+		unsigned int shid = (unsigned int)(sce->shaders.size() - 1);
+		sh->scene_mapping.insert({ scene_id, shid });
+		return shid;
+	}
 
-		return (unsigned int)(-1);
+	return (unsigned int)(-1);
 }
 
 void cycles_scene_tag_shader(unsigned int client_id, unsigned int scene_id, unsigned int shader_id, bool use)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if (scene_find(scene_id, &csce, &sce)) {
 		CCShader* sh = shaders[shader_id];
-	sh->shader->tag_update(sce);
-	if(use)
-		sh->shader->tag_used(sce);
-	SCENE_FIND_END()
+		sh->shader->tag_update(sce);
+		if (use)
+			sh->shader->tag_used(sce);
+	}
 }
 
 /* Get Cycles shader ID in specific scene. */
@@ -145,7 +147,7 @@ void cycles_shader_new_graph(unsigned int client_id, unsigned int shader_id)
 
 void cycles_shader_set_name(unsigned int client_id, unsigned int shader_id, const char* _name)
 {
-	SHADER_SET(shader_id,std::string,name,_name);
+	SHADER_SET(shader_id, std::string, name, _name);
 }
 
 void cycles_shader_set_use_mis(unsigned int client_id, unsigned int shader_id, unsigned int use_mis)
@@ -549,7 +551,7 @@ void cycles_shadernode_texmapping_set_transformation(unsigned int client_id, uns
 		}
 		break;
 		default:
-		break;
+			break;
 		}
 	}
 }
@@ -630,7 +632,7 @@ void cycles_shadernode_texmapping_set_mapping(unsigned int client_id, unsigned i
 		}
 		break;
 		default:
-		break;
+			break;
 		}
 	}
 }
@@ -662,11 +664,11 @@ void cycles_shadernode_texmapping_set_type(unsigned int client_id, unsigned int 
 		logger.logit(client_id, "Setting texture map type to ", tm_type, " for shadernode type ", shn_type);
 		switch (shn_type) {
 		case shadernode_type::MAPPING:
-			{
-				ccl::MappingNode* node = dynamic_cast<ccl::MappingNode*>(shnode);
-				node->type = tm_type;
-			}
-			break;
+		{
+			ccl::MappingNode* node = dynamic_cast<ccl::MappingNode*>(shnode);
+			node->type = tm_type;
+		}
+		break;
 		default:
 			break;
 		}
@@ -690,13 +692,13 @@ void cycles_shadernode_set_enum(unsigned int client_id, unsigned int shader_id, 
 		break;
 		case shadernode_type::VECT_MATH:
 		{
-			ccl::VectorMathNode *node = dynamic_cast<ccl::VectorMathNode*>(shnode);
+			ccl::VectorMathNode* node = dynamic_cast<ccl::VectorMathNode*>(shnode);
 			node->type = (ccl::NodeVectorMathType)value;
 		}
 		break;
 		case shadernode_type::MATRIX_MATH:
 		{
-			ccl::MatrixMathNode *node = dynamic_cast<ccl::MatrixMathNode*>(shnode);
+			ccl::MatrixMathNode* node = dynamic_cast<ccl::MatrixMathNode*>(shnode);
 			node->type = (ccl::NodeMatrixMath)value;
 		}
 		break;
@@ -855,8 +857,8 @@ CCImage* get_ccimage(std::string imgname, T* img, unsigned int width, unsigned i
 	CCImage* existing_image = find_existing_ccimage(imgname, width, height, depth, channels, is_float);
 	CCImage* nimg = existing_image ? existing_image : new CCImage();
 	if (!existing_image) {
-		T* imgdata = new T[width*height*channels*depth];
-		memcpy(imgdata, img, sizeof(T)*width*height*channels*depth);
+		T* imgdata = new T[width * height * channels * depth];
+		memcpy(imgdata, img, sizeof(T) * width * height * channels * depth);
 		nimg->builtin_data = imgdata;
 		nimg->filename = imgname;
 		nimg->width = (int)width;
@@ -867,7 +869,7 @@ CCImage* get_ccimage(std::string imgname, T* img, unsigned int width, unsigned i
 		images.push_back(nimg);
 	}
 	else {
-		memcpy(existing_image->builtin_data, img, sizeof(T)*width*height*channels*depth);
+		memcpy(existing_image->builtin_data, img, sizeof(T) * width * height * channels * depth);
 	}
 
 
@@ -876,73 +878,77 @@ CCImage* get_ccimage(std::string imgname, T* img, unsigned int width, unsigned i
 
 void cycles_shadernode_set_member_float_img(unsigned int client_id, unsigned int scene_id, unsigned int shader_id, unsigned int shnode_id, shadernode_type shn_type, const char* member_name, const char* img_name, float* img, unsigned int width, unsigned int height, unsigned int depth, unsigned int channels)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if (scene_find(scene_id, &csce, &sce)) {
 
-	auto mname = std::string{ member_name };
-	auto imname = std::string{ img_name };
+		auto mname = std::string{ member_name };
+		auto imname = std::string{ img_name };
 
-	ccl::ShaderNode* shnode = _shader_node_find(shader_id, shnode_id);
-	if (shnode) {
-		switch (shn_type) {
-		case shadernode_type::IMAGE_TEXTURE:
-		{
-			CCImage* nimg = get_ccimage<float>(imname, img, width, height, depth, channels, true);
-			ccl::ImageTextureNode* imtex = dynamic_cast<ccl::ImageTextureNode*>(shnode);
-			imtex->builtin_data = nimg;
-			imtex->filename = nimg->filename;
-			sce->image_manager->tag_reload_image(imname);
-		}
-		break;
-		case shadernode_type::ENVIRONMENT_TEXTURE:
-		{
-			CCImage* nimg = get_ccimage<float>(imname, img, width, height, depth, channels, true);
-			ccl::EnvironmentTextureNode* envtex = dynamic_cast<ccl::EnvironmentTextureNode*>(shnode);
-			envtex->builtin_data = nimg;
-			envtex->filename = nimg->filename;
-			sce->image_manager->tag_reload_image(imname);
-		}
-		break;
-		default:
+		ccl::ShaderNode* shnode = _shader_node_find(shader_id, shnode_id);
+		if (shnode) {
+			switch (shn_type) {
+			case shadernode_type::IMAGE_TEXTURE:
+			{
+				CCImage* nimg = get_ccimage<float>(imname, img, width, height, depth, channels, true);
+				ccl::ImageTextureNode* imtex = dynamic_cast<ccl::ImageTextureNode*>(shnode);
+				imtex->builtin_data = nimg;
+				imtex->filename = nimg->filename;
+				sce->image_manager->tag_reload_image(imname);
+			}
 			break;
+			case shadernode_type::ENVIRONMENT_TEXTURE:
+			{
+				CCImage* nimg = get_ccimage<float>(imname, img, width, height, depth, channels, true);
+				ccl::EnvironmentTextureNode* envtex = dynamic_cast<ccl::EnvironmentTextureNode*>(shnode);
+				envtex->builtin_data = nimg;
+				envtex->filename = nimg->filename;
+				sce->image_manager->tag_reload_image(imname);
+			}
+			break;
+			default:
+				break;
+			}
 		}
-	}
 
-	SCENE_FIND_END()
+	}
 }
 
 void cycles_shadernode_set_member_byte_img(unsigned int client_id, unsigned int scene_id, unsigned int shader_id, unsigned int shnode_id, shadernode_type shn_type, const char* member_name, const char* img_name, unsigned char* img, unsigned int width, unsigned int height, unsigned int depth, unsigned int channels)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if (scene_find(scene_id, &csce, &sce)) {
 
-	auto mname = std::string{ member_name };
-	auto imname = std::string{ img_name };
-	ccl::ShaderNode* shnode = _shader_node_find(shader_id, shnode_id);
-	if (shnode) {
-		switch (shn_type) {
-		case shadernode_type::IMAGE_TEXTURE:
-		{
-			CCImage* nimg = get_ccimage<unsigned char>(imname, img, width, height, depth, channels, false);
-			ccl::ImageTextureNode* imtex = dynamic_cast<ccl::ImageTextureNode*>(shnode);
-			imtex->builtin_data = nimg;
-			imtex->filename = nimg->filename;
-			sce->image_manager->tag_reload_image(imname);
-		}
-		break;
-		case shadernode_type::ENVIRONMENT_TEXTURE:
-		{
-			CCImage* nimg = get_ccimage<unsigned char>(imname, img, width, height, depth, channels, false);
-			ccl::EnvironmentTextureNode* envtex = dynamic_cast<ccl::EnvironmentTextureNode*>(shnode);
-			envtex->builtin_data = nimg;
-			envtex->filename = nimg->filename;
-			sce->image_manager->tag_reload_image(imname);
-		}
-		break;
-		default:
+		auto mname = std::string{ member_name };
+		auto imname = std::string{ img_name };
+		ccl::ShaderNode* shnode = _shader_node_find(shader_id, shnode_id);
+		if (shnode) {
+			switch (shn_type) {
+			case shadernode_type::IMAGE_TEXTURE:
+			{
+				CCImage* nimg = get_ccimage<unsigned char>(imname, img, width, height, depth, channels, false);
+				ccl::ImageTextureNode* imtex = dynamic_cast<ccl::ImageTextureNode*>(shnode);
+				imtex->builtin_data = nimg;
+				imtex->filename = nimg->filename;
+				sce->image_manager->tag_reload_image(imname);
+			}
 			break;
+			case shadernode_type::ENVIRONMENT_TEXTURE:
+			{
+				CCImage* nimg = get_ccimage<unsigned char>(imname, img, width, height, depth, channels, false);
+				ccl::EnvironmentTextureNode* envtex = dynamic_cast<ccl::EnvironmentTextureNode*>(shnode);
+				envtex->builtin_data = nimg;
+				envtex->filename = nimg->filename;
+				sce->image_manager->tag_reload_image(imname);
+			}
+			break;
+			default:
+				break;
+			}
 		}
-	}
 
-	SCENE_FIND_END()
+	}
 }
 
 void cycles_shadernode_set_member_bool(unsigned int client_id, unsigned int shader_id, unsigned int shnode_id, shadernode_type shn_type, const char* member_name, bool value)
@@ -1241,14 +1247,14 @@ void cycles_shadernode_set_member_string(unsigned int client_id, unsigned int sh
 	{
 		switch (shn_type)
 		{
-			case shadernode_type::ATTRIBUTE:
-				{
-					ccl::AttributeNode* attrn = dynamic_cast<ccl::AttributeNode*>(shnode);
-					attrn->attribute = mval;
-				}
-				break;
-			default:
-				break;
+		case shadernode_type::ATTRIBUTE:
+		{
+			ccl::AttributeNode* attrn = dynamic_cast<ccl::AttributeNode*>(shnode);
+			attrn->attribute = mval;
+		}
+		break;
+		default:
+			break;
 		}
 	}
 }

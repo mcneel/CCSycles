@@ -22,11 +22,11 @@ limitations under the License.
 
 using namespace OIIO;
 
-extern std::vector<CCScene> scenes;
-
 unsigned int cycles_scene_add_mesh(unsigned int client_id, unsigned int scene_id, unsigned int shader_id)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		ccl::Mesh* mesh = new ccl::Mesh();
 
 		ccl::Shader* sh = find_shader_in_scene(sce, shader_id);
@@ -37,14 +37,16 @@ unsigned int cycles_scene_add_mesh(unsigned int client_id, unsigned int scene_id
 		logger.logit(client_id, "Add mesh ", sce->meshes.size() - 1, " in scene ", scene_id, " using default surface shader ", shader_id);
 
 		return (unsigned int)(sce->meshes.size() - 1);
-	SCENE_FIND_END()
+	}
 
 	return UINT_MAX;
 }
 
 unsigned int cycles_scene_add_mesh_object(unsigned int client_id, unsigned int scene_id, unsigned int object_id, unsigned int shader_id)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		ccl::Mesh* mesh = new ccl::Mesh();
 		ccl::Shader* sh = find_shader_in_scene(sce, shader_id);
 		
@@ -58,14 +60,16 @@ unsigned int cycles_scene_add_mesh_object(unsigned int client_id, unsigned int s
 		logger.logit(client_id, "Add mesh ", sce->meshes.size() - 1, " to object ", object_id, " in scene ", scene_id, " using default surface shader ", shader_id);
 
 		return (unsigned int)(sce->meshes.size() - 1);
-	SCENE_FIND_END()
+	}
 
 	return UINT_MAX;
 }
 
 void cycles_mesh_set_shader(unsigned int client_id, unsigned int scene_id, unsigned int mesh_id, unsigned int shader_id)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		ccl::Mesh* me = sce->meshes[mesh_id];
 		ccl::Shader* sh = find_shader_in_scene(sce, shader_id);
 
@@ -80,60 +84,72 @@ void cycles_mesh_set_shader(unsigned int client_id, unsigned int scene_id, unsig
 		sh->tag_update(sce);
 		sh->tag_used(sce);
 
-	SCENE_FIND_END()
+	}
 }
 
 void cycles_mesh_clear(unsigned int client_id, unsigned int scene_id, unsigned int mesh_id)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		ccl::Mesh* me = sce->meshes[mesh_id];
 		me->clear();
-	SCENE_FIND_END()
+	}
 }
 
 void cycles_mesh_tag_rebuild(unsigned int client_id, unsigned int scene_id, unsigned int mesh_id)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		ccl::Mesh* me = sce->meshes[mesh_id];
 		me->tag_update(sce, true);
-	SCENE_FIND_END()
+	}
 }
 
 void cycles_mesh_set_smooth(unsigned int client_id, unsigned int scene_id, unsigned int mesh_id, unsigned int smooth)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		ccl::Mesh* me = sce->meshes[mesh_id];
 		bool use_smooth = smooth == 1;
 		me->smooth.resize(me->triangles.size());
 		for (int i = 0; i < me->triangles.size(); i++) {
 			me->smooth[i] = use_smooth;
 		}
-	SCENE_FIND_END()
+	}
 }
 
 
 void cycles_mesh_reserve(unsigned int client_id, unsigned int scene_id, unsigned int mesh_id, unsigned vcount, unsigned fcount)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		ccl::Mesh* me = sce->meshes[mesh_id];
 
 		me->reserve_mesh(vcount, fcount);
-	SCENE_FIND_END()
+	}
 }
 
 void cycles_mesh_resize(unsigned int client_id, unsigned int scene_id, unsigned int mesh_id, unsigned vcount, unsigned fcount)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		ccl::Mesh* me = sce->meshes[mesh_id];
 
 		me->resize_mesh(vcount, fcount);
-	SCENE_FIND_END()
+	}
 }
 
 
 void cycles_mesh_set_verts(unsigned int client_id, unsigned int scene_id, unsigned int mesh_id, float *verts, unsigned int vcount)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		ccl::Mesh* me = sce->meshes[mesh_id];
 
 		ccl::float3 f3;
@@ -146,12 +162,14 @@ void cycles_mesh_set_verts(unsigned int client_id, unsigned int scene_id, unsign
 			me->verts[j] = f3;
 		}
 		me->geometry_flags = ccl::Mesh::GeometryFlags::GEOMETRY_TRIANGLES;
-	SCENE_FIND_END()
+	}
 }
 
 void cycles_mesh_set_tris(unsigned int client_id, unsigned int scene_id, unsigned int mesh_id, int *faces, unsigned int fcount, unsigned int shader_id, unsigned int smooth)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		ccl::Mesh* me = sce->meshes[mesh_id];
 
 		me->reserve_mesh(fcount * 3, fcount);
@@ -167,32 +185,38 @@ void cycles_mesh_set_tris(unsigned int client_id, unsigned int scene_id, unsigne
 		me->geometry_flags = ccl::Mesh::GeometryFlags::GEOMETRY_TRIANGLES;
 
 		cycles_mesh_set_shader(client_id, scene_id, mesh_id, shader_id);
-	SCENE_FIND_END()
+	}
 }
 
 void cycles_mesh_set_triangle(unsigned int client_id, unsigned int scene_id, unsigned int mesh_id, unsigned tri_idx, unsigned int v0, unsigned int v1, unsigned int v2, unsigned int shader_id, unsigned int smooth)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		ccl::Mesh* me = sce->meshes[mesh_id];
 		me->triangles[tri_idx] = (int)v0;
 		me->triangles[tri_idx + 1] = (int)v1;
 		me->triangles[tri_idx + 2] = (int)v2;
 		me->shader[tri_idx/3] = shader_id;
 		me->smooth[tri_idx/3] = smooth == 1;
-	SCENE_FIND_END()
+	}
 }
 
 void cycles_mesh_add_triangle(unsigned int client_id, unsigned int scene_id, unsigned int mesh_id, unsigned int v0, unsigned int v1, unsigned int v2, unsigned int shader_id, unsigned int smooth)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		ccl::Mesh* me = sce->meshes[mesh_id];
 		me->add_triangle((int)v0, (int)v1, (int)v2, shader_id, smooth == 1);
-	SCENE_FIND_END()
+	}
 }
 
 void cycles_mesh_set_uvs(unsigned int client_id, unsigned int scene_id, unsigned int mesh_id, float *uvs, unsigned int uvcount)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		ccl::Mesh* me = sce->meshes[mesh_id];
 
 		ccl::Attribute* attr = me->attributes.add(ccl::ATTR_STD_UV, ccl::ustring("uvmap"));
@@ -206,12 +230,14 @@ void cycles_mesh_set_uvs(unsigned int client_id, unsigned int scene_id, unsigned
 			fdata[j] = f2;
 		}
 		me->geometry_flags = ccl::Mesh::GeometryFlags::GEOMETRY_TRIANGLES;
-	SCENE_FIND_END()
+	}
 }
 
 void cycles_mesh_set_vertex_normals(unsigned int client_id, unsigned int scene_id, unsigned int mesh_id, float *vnormals, unsigned int vnormalcount)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		ccl::Mesh* me = sce->meshes[mesh_id];
 
 		ccl::Attribute* attr = me->attributes.add(ccl::ATTR_STD_VERTEX_NORMAL);
@@ -226,12 +252,14 @@ void cycles_mesh_set_vertex_normals(unsigned int client_id, unsigned int scene_i
 			fdata[j] = f3;
 		}
 		me->geometry_flags = ccl::Mesh::GeometryFlags::GEOMETRY_TRIANGLES;
-	SCENE_FIND_END()
+	}
 }
 
 void cycles_mesh_set_vertex_colors(unsigned int client_id, unsigned int scene_id, unsigned int mesh_id, float *vcolors, unsigned int vcolorcount)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		ccl::Mesh* me = sce->meshes[mesh_id];
 
 		ccl::Attribute *attr = me->attributes.add(ustring("vertexcolor"),
@@ -249,7 +277,7 @@ void cycles_mesh_set_vertex_colors(unsigned int client_id, unsigned int scene_id
 			cdata[j] = ccl::color_float_to_byte(f3);
 		}
 		me->geometry_flags = ccl::Mesh::GeometryFlags::GEOMETRY_TRIANGLES;
-	SCENE_FIND_END()
+	}
 }
 
 #include "mikktspace.h"
@@ -409,10 +437,12 @@ static void mikk_compute_tangents(ccl::Mesh *mesh)
 
 void cycles_mesh_attr_tangentspace(unsigned int client_id, unsigned int scene_id, unsigned int mesh_id)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		ccl::Mesh* me = sce->meshes[mesh_id];
 		mikk_compute_tangents(me);
-	SCENE_FIND_END()
+	}
 }
 
 #if 0 // POINTINESS

@@ -16,234 +16,296 @@ limitations under the License.
 
 #include "internal_types.h"
 
-extern std::vector<CCScene> scenes;
-
 void cycles_integrator_tag_update(unsigned int client_id, unsigned int scene_id)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		sce->integrator->tag_update(sce);
-	SCENE_FIND_END()
+	}
 }
 
 // Integrator settings
 void cycles_integrator_set_max_bounce(unsigned int client_id, unsigned int scene_id, int max_bounce)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		sce->integrator->max_bounce = max_bounce;
-	SCENE_FIND_END()
+	}
 }
 
 void cycles_integrator_set_min_bounce(unsigned int client_id, unsigned int scene_id, int min_bounce)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		sce->integrator->min_bounce = min_bounce;
-	SCENE_FIND_END()
+	}
 }
 
 void cycles_integrator_set_no_caustics(unsigned int client_id, unsigned int scene_id, bool no_caustics)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		sce->integrator->caustics_reflective = !no_caustics;
 		sce->integrator->caustics_refractive = !no_caustics;
-	SCENE_FIND_END()
+	}
 }
 
 void cycles_integrator_set_no_shadows(unsigned int client_id, unsigned int scene_id, bool no_shadows)
 {
 #if 0
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		sce->integrator->no_shadows = no_shadows;
-	SCENE_FIND_END()
+	}
 #endif
 }
 
 void cycles_integrator_set_diffuse_samples(unsigned int client_id, unsigned int scene_id, int diffuse_samples)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		sce->integrator->diffuse_samples = diffuse_samples;
-	SCENE_FIND_END()
+	}
 }
 
 void cycles_integrator_set_glossy_samples(unsigned int client_id, unsigned int scene_id, int glossy_samples)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		sce->integrator->glossy_samples = glossy_samples;
-	SCENE_FIND_END()
+	}
 }
 
 void cycles_integrator_set_transmission_samples(unsigned int client_id, unsigned int scene_id, int transmission_samples)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		sce->integrator->transmission_samples = transmission_samples;
-	SCENE_FIND_END()
+	}
 }
 
 void cycles_integrator_set_ao_samples(unsigned int client_id, unsigned int scene_id, int ao_samples)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		sce->integrator->ao_samples = ao_samples;
-	SCENE_FIND_END()
+	}
 }
 
 void cycles_integrator_set_mesh_light_samples(unsigned int client_id, unsigned int scene_id, int mesh_light_samples)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		sce->integrator->mesh_light_samples = mesh_light_samples;
-	SCENE_FIND_END()
+	}
 }
 
 void cycles_integrator_set_subsurface_samples(unsigned int client_id, unsigned int scene_id, int subsurface_samples)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		sce->integrator->subsurface_samples = subsurface_samples;
-	SCENE_FIND_END()
+	}
 }
 
 void cycles_integrator_set_volume_samples(unsigned int client_id, unsigned int scene_id, int volume_samples)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		sce->integrator->volume_samples = volume_samples;
-	SCENE_FIND_END()
+	}
 }
 
 void cycles_integrator_set_max_diffuse_bounce(unsigned int client_id, unsigned int scene_id, int max_diffuse_bounce)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		sce->integrator->max_diffuse_bounce = max_diffuse_bounce;
-	SCENE_FIND_END()
+	}
 }
 
 void cycles_integrator_set_max_glossy_bounce(unsigned int client_id, unsigned int scene_id, int max_glossy_bounce)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		sce->integrator->max_glossy_bounce = max_glossy_bounce;
-	SCENE_FIND_END()
+	}
 }
 
 void cycles_integrator_set_max_transmission_bounce(unsigned int client_id, unsigned int scene_id, int max_transmission_bounce)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		sce->integrator->max_transmission_bounce = max_transmission_bounce;
-	SCENE_FIND_END()
+	}
 }
 
 void cycles_integrator_set_max_volume_bounce(unsigned int client_id, unsigned int scene_id, int max_volume_bounce)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		sce->integrator->max_volume_bounce = max_volume_bounce;
-	SCENE_FIND_END()
+	}
 }
 
 void cycles_integrator_set_transparent_max_bounce(unsigned int client_id, unsigned int scene_id, int transparent_max_bounce)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		sce->integrator->transparent_max_bounce = transparent_max_bounce;
-	SCENE_FIND_END()
+	}
 }
 
 void cycles_integrator_set_transparent_min_bounce(unsigned int client_id, unsigned int scene_id, int transparent_min_bounce)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		sce->integrator->transparent_min_bounce = transparent_min_bounce;
-	SCENE_FIND_END()
+	}
 }
 
 void cycles_integrator_set_aa_samples(unsigned int client_id, unsigned int scene_id, int aa_samples)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		sce->integrator->aa_samples = aa_samples;
-	SCENE_FIND_END()
+	}
 }
 
 void cycles_integrator_set_filter_glossy(unsigned int client_id, unsigned int scene_id, float filter_glossy)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		sce->integrator->filter_glossy = filter_glossy;
-	SCENE_FIND_END()
+	}
 }
 
 void cycles_integrator_set_method(unsigned int client_id, unsigned int scene_id, int method)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		sce->integrator->method = (ccl::Integrator::Method)method;
-	SCENE_FIND_END()
+	}
 }
 
 void cycles_integrator_set_sample_all_lights_direct(unsigned int client_id, unsigned int scene_id, bool sample_all_lights_direct)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		sce->integrator->sample_all_lights_direct = sample_all_lights_direct;
-	SCENE_FIND_END()
+	}
 }
 
 void cycles_integrator_set_sample_all_lights_indirect(unsigned int client_id, unsigned int scene_id, bool sample_all_lights_indirect)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		sce->integrator->sample_all_lights_indirect = sample_all_lights_indirect;
-	SCENE_FIND_END()
+	}
 }
 
 void cycles_integrator_set_volume_step_size(unsigned int client_id, unsigned int scene_id, float volume_step_size)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		sce->integrator->volume_step_size = volume_step_size;
-	SCENE_FIND_END()
+	}
 }
 
 void cycles_integrator_set_volume_max_steps(unsigned int client_id, unsigned int scene_id, int volume_max_steps)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		sce->integrator->volume_max_steps = volume_max_steps;
-	SCENE_FIND_END()
+	}
 }
 
 /* \todo update Cycles code to allow for caustics form separation
 void cycles_integrator_set_caustics_relective(unsigned int client_id, unsigned int scene_id, int caustics_relective)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		sce->integrator->caustics_relective = caustics_relective;
-	SCENE_FIND_END()
+	}
 }
 
 void cycles_integrator_set_caustics_refractive(unsigned int client_id, unsigned int scene_id, int caustics_refractive)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		sce->integrator->caustics_refractive = caustics_refractive;
-	SCENE_FIND_END()
+	}
 }
 */
 
 void cycles_integrator_set_seed(unsigned int client_id, unsigned int scene_id, int seed)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		sce->integrator->seed = seed;
-	SCENE_FIND_END()
+	}
 }
 
 void cycles_integrator_set_sampling_pattern(unsigned int client_id, unsigned int scene_id, sampling_pattern pattern)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		sce->integrator->sampling_pattern = (ccl::SamplingPattern)pattern;
-	SCENE_FIND_END()
+	}
 }
 
 void cycles_integrator_set_sample_clamp_direct(unsigned int client_id, unsigned int scene_id, float sample_clamp_direct)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		sce->integrator->sample_clamp_direct = sample_clamp_direct;
-	SCENE_FIND_END()
+	}
 }
 
 void cycles_integrator_set_sample_clamp_indirect(unsigned int client_id, unsigned int scene_id, float sample_clamp_indirect)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		sce->integrator->sample_clamp_indirect = sample_clamp_indirect;
-	SCENE_FIND_END()
+	}
 }
 
 void cycles_integrator_set_light_sampling_threshold(unsigned int client_id, unsigned int scene_id, float light_sampling_threshold)
 {
-	SCENE_FIND(scene_id)
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if(scene_find(scene_id, &csce, &sce)) {
 		sce->integrator->light_sampling_threshold = light_sampling_threshold;
-	SCENE_FIND_END()
+	}
 }

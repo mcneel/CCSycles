@@ -22,7 +22,7 @@ limitations under the License.
 #define SCENE_PARAM_CAST(scene_params_id, typecast, varname) \
 	PARAM_CAST(scene_params, scene_params_id, typecast, varname)
 
-std::vector<ccl::SceneParams> scene_params;
+std::vector<ccl::SceneParams*> scene_params;
 
 /* Create scene parameters, to be used when creating a new scene. */
 unsigned int cycles_scene_params_create(unsigned int client_id, 
@@ -30,17 +30,17 @@ unsigned int cycles_scene_params_create(unsigned int client_id,
 	unsigned int use_bvh_spatial_split, 
 	int bvh_layout, unsigned int persistent_data)
 {
-	ccl::SceneParams params;
+	ccl::SceneParams* params = new ccl::SceneParams();
 
-	params.shadingsystem = (ccl::ShadingSystem)shadingsystem;
-	params.bvh_type = (ccl::SceneParams::BVHType)bvh_type;
-	params.use_bvh_spatial_split = use_bvh_spatial_split == 1;
-	params.bvh_layout = (ccl::BVHLayout)bvh_layout;
-	params.persistent_data = persistent_data == 1;
+	params->shadingsystem = (ccl::ShadingSystem)shadingsystem;
+	params->bvh_type = (ccl::SceneParams::BVHType)bvh_type;
+	params->use_bvh_spatial_split = use_bvh_spatial_split == 1;
+	params->bvh_layout = (ccl::BVHLayout)bvh_layout;
+	params->persistent_data = persistent_data == 1;
 
 	scene_params.push_back(params);
 
-	logger.logit(client_id, "Created scene parameters ", scene_params.size() - 1, "\n\tshading system: ", params.shadingsystem, "\n\tbvh_type: ", params.bvh_type, "\n\tuse_bvh_spatial_split: ", params.use_bvh_spatial_split, "\n\tuse_qbvh: ", params.bvh_layout, "\n\tpersistent data: ", params.persistent_data);
+	logger.logit(client_id, "Created scene parameters ", scene_params.size() - 1, "\n\tshading system: ", params->shadingsystem, "\n\tbvh_type: ", params->bvh_type, "\n\tuse_bvh_spatial_split: ", params->use_bvh_spatial_split, "\n\tuse_qbvh: ", params->bvh_layout, "\n\tpersistent data: ", params->persistent_data);
 
 	return (unsigned int)(scene_params.size() - 1);
 }
