@@ -296,21 +296,25 @@ ccl::vector<ccl::Pass>& get_passes() {
 	ccl::Pass::add(ccl::PASS_COMBINED, _passes);
 	ccl::Pass::add(ccl::PASS_DEPTH, _passes);
 	ccl::Pass::add(ccl::PASS_NORMAL, _passes);
-	/*ccl::Pass::add(ccl::PASS_UV, passes);
-	ccl::Pass::add(ccl::PASS_DIFFUSE_COLOR, passes);
-	ccl::Pass::add(ccl::PASS_DIFFUSE_DIRECT, passes);
-	ccl::Pass::add(ccl::PASS_DIFFUSE_INDIRECT, passes);
-	ccl::Pass::add(ccl::PASS_GLOSSY_COLOR, passes);
-	ccl::Pass::add(ccl::PASS_GLOSSY_DIRECT, passes);
-	ccl::Pass::add(ccl::PASS_GLOSSY_INDIRECT, passes);
-	ccl::Pass::add(ccl::PASS_EMISSION, passes);
-	ccl::Pass::add(ccl::PASS_TRANSMISSION_COLOR, passes);
-	ccl::Pass::add(ccl::PASS_TRANSMISSION_DIRECT, passes);
-	ccl::Pass::add(ccl::PASS_TRANSMISSION_INDIRECT, passes);
-	ccl::Pass::add(ccl::PASS_SUBSURFACE_COLOR, passes);
-	ccl::Pass::add(ccl::PASS_SUBSURFACE_DIRECT, passes);
-	ccl::Pass::add(ccl::PASS_SUBSURFACE_INDIRECT, passes);
-	ccl::Pass::add(ccl::PASS_SHADOW, passes);*/
+	/*ccl::Pass::add(ccl::PASS_DIFFUSE_INDIRECT, _passes);
+	ccl::Pass::add(ccl::PASS_UV, _passes);
+	ccl::Pass::add(ccl::PASS_AO, _passes);
+	ccl::Pass::add(ccl::PASS_OBJECT_ID, _passes);
+	ccl::Pass::add(ccl::PASS_MATERIAL_ID, _passes);
+	ccl::Pass::add(ccl::PASS_DIFFUSE_COLOR, _passes);
+	ccl::Pass::add(ccl::PASS_DIFFUSE_DIRECT, _passes);
+	ccl::Pass::add(ccl::PASS_DIFFUSE_INDIRECT, _passes);
+	ccl::Pass::add(ccl::PASS_GLOSSY_COLOR, _passes);
+	ccl::Pass::add(ccl::PASS_GLOSSY_DIRECT, _passes);
+	ccl::Pass::add(ccl::PASS_GLOSSY_INDIRECT, _passes);
+	ccl::Pass::add(ccl::PASS_EMISSION, _passes);
+	ccl::Pass::add(ccl::PASS_TRANSMISSION_COLOR, _passes);
+	ccl::Pass::add(ccl::PASS_TRANSMISSION_DIRECT, _passes);
+	ccl::Pass::add(ccl::PASS_TRANSMISSION_INDIRECT, _passes);
+	ccl::Pass::add(ccl::PASS_SUBSURFACE_COLOR, _passes);
+	ccl::Pass::add(ccl::PASS_SUBSURFACE_DIRECT, _passes);
+	ccl::Pass::add(ccl::PASS_SUBSURFACE_INDIRECT, _passes);
+	ccl::Pass::add(ccl::PASS_SHADOW, _passes);*/
 	return _passes;
 }
 
@@ -328,6 +332,8 @@ void cycles_session_reset(unsigned int client_id, unsigned int session_id, unsig
 		ccl::vector<ccl::Pass>& passes = get_passes();
 
 		session->scene->film->tag_passes_update(session->scene, passes);
+		session->scene->film->display_pass = ccl::PassType::PASS_COMBINED;
+		session->scene->film->tag_update(session->scene);
 
 		bufParams.passes = passes;
 
