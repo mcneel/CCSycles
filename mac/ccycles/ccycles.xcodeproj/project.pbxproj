@@ -8,9 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A100C8101FB5D63D00BC046C /* libcycles_proper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A100C8111FB5D63D00BC046C /* libcycles_proper.a */; };
-		A100CA5B1FB5F8B300BC046C /* libOpenImageIO.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A100CA5C1FB5F8B300BC046C /* libOpenImageIO.dylib */; };
 		A100CA751FB601F700BC046C /* libcyclesglew.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A100CA761FB601F700BC046C /* libcyclesglew.a */; };
-		A11D68271FB596FC00409EB3 /* libHalf.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A11D68281FB596FC00409EB3 /* libHalf.a */; };
 		A11D68291FB5970000409EB3 /* libclew.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A11D682A1FB5970000409EB3 /* libclew.a */; };
 		A11D682B1FB5970500409EB3 /* libcuew.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A11D682C1FB5970500409EB3 /* libcuew.a */; };
 		A11D682E1FB5972100409EB3 /* libboost_system-mt-x64.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A11D682D1FB5972100409EB3 /* libboost_system-mt-x64.dylib */; };
@@ -37,6 +35,15 @@
 		A11D689C1FB59ACF00409EB3 /* internal_types.h in Headers */ = {isa = PBXBuildFile; fileRef = A11D68871FB59ACD00409EB3 /* internal_types.h */; };
 		D81624C122A51149009F428E /* mikktspace.h in Headers */ = {isa = PBXBuildFile; fileRef = D81624BF22A51149009F428E /* mikktspace.h */; };
 		D81624C222A51149009F428E /* mikktspace.c in Sources */ = {isa = PBXBuildFile; fileRef = D81624C022A51149009F428E /* mikktspace.c */; };
+		D8A96EAD23BF5F7E0078763E /* libIexMath-2_4.24.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A96EA623BF5F7D0078763E /* libIexMath-2_4.24.0.0.dylib */; };
+		D8A96EAF23BF5F7E0078763E /* libIex-2_4.24.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A96EA723BF5F7E0078763E /* libIex-2_4.24.0.0.dylib */; };
+		D8A96EB123BF5F7E0078763E /* libIlmThread-2_4.24.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A96EA823BF5F7E0078763E /* libIlmThread-2_4.24.0.0.dylib */; };
+		D8A96EB323BF5F7E0078763E /* libIlmImfUtil-2_4.24.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A96EA923BF5F7E0078763E /* libIlmImfUtil-2_4.24.0.0.dylib */; };
+		D8A96EB523BF5F7F0078763E /* libIlmImf-2_4.24.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A96EAA23BF5F7E0078763E /* libIlmImf-2_4.24.0.0.dylib */; };
+		D8A96EB723BF5F7F0078763E /* libImath-2_4.24.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A96EAB23BF5F7E0078763E /* libImath-2_4.24.0.0.dylib */; };
+		D8A96EB923BF5F7F0078763E /* libHalf-2_4.24.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A96EAC23BF5F7E0078763E /* libHalf-2_4.24.0.0.dylib */; };
+		D8A96EBE23BF5FDB0078763E /* libOpenImageIO.2.0.12.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A96EBC23BF5FDA0078763E /* libOpenImageIO.2.0.12.dylib */; };
+		D8A96EC023BF5FDB0078763E /* libOpenImageIO_Util.2.0.12.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A96EBD23BF5FDA0078763E /* libOpenImageIO_Util.2.0.12.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,13 +101,6 @@
 			containerPortal = D86DF18320A81F7600444230 /* OpenImageIO.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = A11D67AF1FB5054D00409EB3;
-			remoteInfo = OpenImageIO;
-		};
-		D86DF18920A81F8100444230 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D86DF18320A81F7600444230 /* OpenImageIO.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = A11D67AE1FB5054D00409EB3;
 			remoteInfo = OpenImageIO;
 		};
 		D86DF18B20A81F8500444230 /* PBXContainerItemProxy */ = {
@@ -163,6 +163,15 @@
 		D86DF17720A81F4F00444230 /* cuew.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = cuew.xcodeproj; path = ../../cuew/cuew/cuew.xcodeproj; sourceTree = "<group>"; };
 		D86DF17D20A81F5500444230 /* clew.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = clew.xcodeproj; path = ../../clew/clew.xcodeproj; sourceTree = "<group>"; };
 		D86DF18320A81F7600444230 /* OpenImageIO.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OpenImageIO.xcodeproj; path = ../../OpenImageIO/OpenImageIO/OpenImageIO.xcodeproj; sourceTree = "<group>"; };
+		D8A96EA623BF5F7D0078763E /* libIexMath-2_4.24.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libIexMath-2_4.24.0.0.dylib"; path = "../../../../../../../big_libs/OpenEXR-2.4.0/bin/libIexMath-2_4.24.0.0.dylib"; sourceTree = "<group>"; };
+		D8A96EA723BF5F7E0078763E /* libIex-2_4.24.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libIex-2_4.24.0.0.dylib"; path = "../../../../../../../big_libs/OpenEXR-2.4.0/bin/libIex-2_4.24.0.0.dylib"; sourceTree = "<group>"; };
+		D8A96EA823BF5F7E0078763E /* libIlmThread-2_4.24.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libIlmThread-2_4.24.0.0.dylib"; path = "../../../../../../../big_libs/OpenEXR-2.4.0/bin/libIlmThread-2_4.24.0.0.dylib"; sourceTree = "<group>"; };
+		D8A96EA923BF5F7E0078763E /* libIlmImfUtil-2_4.24.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libIlmImfUtil-2_4.24.0.0.dylib"; path = "../../../../../../../big_libs/OpenEXR-2.4.0/bin/libIlmImfUtil-2_4.24.0.0.dylib"; sourceTree = "<group>"; };
+		D8A96EAA23BF5F7E0078763E /* libIlmImf-2_4.24.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libIlmImf-2_4.24.0.0.dylib"; path = "../../../../../../../big_libs/OpenEXR-2.4.0/bin/libIlmImf-2_4.24.0.0.dylib"; sourceTree = "<group>"; };
+		D8A96EAB23BF5F7E0078763E /* libImath-2_4.24.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libImath-2_4.24.0.0.dylib"; path = "../../../../../../../big_libs/OpenEXR-2.4.0/bin/libImath-2_4.24.0.0.dylib"; sourceTree = "<group>"; };
+		D8A96EAC23BF5F7E0078763E /* libHalf-2_4.24.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libHalf-2_4.24.0.0.dylib"; path = "../../../../../../../big_libs/OpenEXR-2.4.0/bin/libHalf-2_4.24.0.0.dylib"; sourceTree = "<group>"; };
+		D8A96EBC23BF5FDA0078763E /* libOpenImageIO.2.0.12.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libOpenImageIO.2.0.12.dylib; path = "../../../../../../../big_libs/OpenImageIO-2.0.12/bin/libOpenImageIO.2.0.12.dylib"; sourceTree = "<group>"; };
+		D8A96EBD23BF5FDA0078763E /* libOpenImageIO_Util.2.0.12.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libOpenImageIO_Util.2.0.12.dylib; path = "../../../../../../../big_libs/OpenImageIO-2.0.12/bin/libOpenImageIO_Util.2.0.12.dylib"; sourceTree = "<group>"; };
 		D8F3C9B12331877A00AB35CA /* LibDistribution.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = LibDistribution.xcconfig; path = ../../../../../../Mac/XCConfig/LibDistribution.xcconfig; sourceTree = "<group>"; };
 		D8F3C9B22331877B00AB35CA /* LibRelease.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = LibRelease.xcconfig; path = ../../../../../../Mac/XCConfig/LibRelease.xcconfig; sourceTree = "<group>"; };
 		D8F3C9B32331877B00AB35CA /* LibDebug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = LibDebug.xcconfig; path = ../../../../../../Mac/XCConfig/LibDebug.xcconfig; sourceTree = "<group>"; };
@@ -173,14 +182,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8A96EAF23BF5F7E0078763E /* libIex-2_4.24.0.0.dylib in Frameworks */,
+				D8A96EAD23BF5F7E0078763E /* libIexMath-2_4.24.0.0.dylib in Frameworks */,
+				D8A96EB123BF5F7E0078763E /* libIlmThread-2_4.24.0.0.dylib in Frameworks */,
 				A100CA751FB601F700BC046C /* libcyclesglew.a in Frameworks */,
-				A100CA5B1FB5F8B300BC046C /* libOpenImageIO.dylib in Frameworks */,
+				D8A96EB523BF5F7F0078763E /* libIlmImf-2_4.24.0.0.dylib in Frameworks */,
+				D8A96EB323BF5F7E0078763E /* libIlmImfUtil-2_4.24.0.0.dylib in Frameworks */,
+				D8A96EBE23BF5FDB0078763E /* libOpenImageIO.2.0.12.dylib in Frameworks */,
+				D8A96EB723BF5F7F0078763E /* libImath-2_4.24.0.0.dylib in Frameworks */,
 				A100C8101FB5D63D00BC046C /* libcycles_proper.a in Frameworks */,
 				A11D68301FB5973200409EB3 /* libboost_thread-mt-x64.dylib in Frameworks */,
 				A11D682E1FB5972100409EB3 /* libboost_system-mt-x64.dylib in Frameworks */,
 				A11D682B1FB5970500409EB3 /* libcuew.a in Frameworks */,
+				D8A96EC023BF5FDB0078763E /* libOpenImageIO_Util.2.0.12.dylib in Frameworks */,
+				D8A96EB923BF5F7F0078763E /* libHalf-2_4.24.0.0.dylib in Frameworks */,
 				A11D68291FB5970000409EB3 /* libclew.a in Frameworks */,
-				A11D68271FB596FC00409EB3 /* libHalf.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -234,20 +250,29 @@
 		A11D68221FB596E400409EB3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D86DF18320A81F7600444230 /* OpenImageIO.xcodeproj */,
 				D86DF17D20A81F5500444230 /* clew.xcodeproj */,
 				D86DF17720A81F4F00444230 /* cuew.xcodeproj */,
-				D86DF16F20A81F3900444230 /* cyclesglew.xcodeproj */,
 				D86DF16720A81F1200444230 /* cycles_proper.xcodeproj */,
-				D86DF15920A81CF800444230 /* MacDotNet.xcodeproj */,
-				A100CA761FB601F700BC046C /* libcyclesglew.a */,
-				A100CA5C1FB5F8B300BC046C /* libOpenImageIO.dylib */,
-				A100C8111FB5D63D00BC046C /* libcycles_proper.a */,
-				A11D682F1FB5973100409EB3 /* libboost_thread-mt-x64.dylib */,
+				D86DF16F20A81F3900444230 /* cyclesglew.xcodeproj */,
 				A11D682D1FB5972100409EB3 /* libboost_system-mt-x64.dylib */,
-				A11D682C1FB5970500409EB3 /* libcuew.a */,
+				A11D682F1FB5973100409EB3 /* libboost_thread-mt-x64.dylib */,
 				A11D682A1FB5970000409EB3 /* libclew.a */,
+				A11D682C1FB5970500409EB3 /* libcuew.a */,
+				A100C8111FB5D63D00BC046C /* libcycles_proper.a */,
+				A100CA761FB601F700BC046C /* libcyclesglew.a */,
+				D8A96EAC23BF5F7E0078763E /* libHalf-2_4.24.0.0.dylib */,
 				A11D68281FB596FC00409EB3 /* libHalf.a */,
+				D8A96EA723BF5F7E0078763E /* libIex-2_4.24.0.0.dylib */,
+				D8A96EA623BF5F7D0078763E /* libIexMath-2_4.24.0.0.dylib */,
+				D8A96EAA23BF5F7E0078763E /* libIlmImf-2_4.24.0.0.dylib */,
+				D8A96EA923BF5F7E0078763E /* libIlmImfUtil-2_4.24.0.0.dylib */,
+				D8A96EA823BF5F7E0078763E /* libIlmThread-2_4.24.0.0.dylib */,
+				D8A96EAB23BF5F7E0078763E /* libImath-2_4.24.0.0.dylib */,
+				D8A96EBD23BF5FDA0078763E /* libOpenImageIO_Util.2.0.12.dylib */,
+				D8A96EBC23BF5FDA0078763E /* libOpenImageIO.2.0.12.dylib */,
+				A100CA5C1FB5F8B300BC046C /* libOpenImageIO.dylib */,
+				D86DF15920A81CF800444230 /* MacDotNet.xcodeproj */,
+				D86DF18320A81F7600444230 /* OpenImageIO.xcodeproj */,
 				A11D68241FB596E400409EB3 /* libcycles_proper.a */,
 			);
 			name = Frameworks;
@@ -342,7 +367,6 @@
 			dependencies = (
 				D86DF18E20A81F8A00444230 /* PBXTargetDependency */,
 				D86DF18C20A81F8500444230 /* PBXTargetDependency */,
-				D86DF18A20A81F8100444230 /* PBXTargetDependency */,
 				D86DF17620A81F3E00444230 /* PBXTargetDependency */,
 				D86DF16E20A81F1C00444230 /* PBXTargetDependency */,
 				D86DF16420A81EE700444230 /* PBXTargetDependency */,
@@ -363,6 +387,7 @@
 				TargetAttributes = {
 					A11D681A1FB596D800409EB3 = {
 						CreatedOnToolsVersion = 9.1;
+						DevelopmentTeam = D6XDM4N99E;
 						ProvisioningStyle = Manual;
 					};
 				};
@@ -491,11 +516,6 @@
 			name = cyclesglew;
 			targetProxy = D86DF17520A81F3E00444230 /* PBXContainerItemProxy */;
 		};
-		D86DF18A20A81F8100444230 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = OpenImageIO;
-			targetProxy = D86DF18920A81F8100444230 /* PBXContainerItemProxy */;
-		};
 		D86DF18C20A81F8500444230 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = clew;
@@ -535,7 +555,6 @@
 				DYLIB_CURRENT_VERSION = 1;
 				EXECUTABLE_PREFIX = lib;
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					NO_OIIO_LOADING,
 					CCL_CAPI_DLL,
 					GLEW_STATIC,
 					BOOST_ALL_NO_LIB,
@@ -551,12 +570,17 @@
 					../../cycles/src/render,
 					../../cycles/src/device,
 					../../cycles/src/util,
-					../../OpenImageIO/include,
 					../../glew/include,
 					../../cycles/third_party/atomic,
+					"../../../../../../../big_libs/OpenImageIO-2.0.12/include",
+					"../../../../../../../big_libs/OpenEXR-2.4.0/include",
 				);
 				INSTALL_PATH = "@rpath";
-				LIBRARY_SEARCH_PATHS = ../../../../../../../big_libs/boost/stagerelease/lib;
+				LIBRARY_SEARCH_PATHS = (
+					../../../../../../../big_libs/boost/stagerelease/lib,
+					"../../../../../../../big_libs/OpenEXR-2.4.0/bin",
+					"../../../../../../../big_libs/OpenImageIO-2.0.12/bin",
+				);
 				OTHER_LDFLAGS = (
 					"-framework",
 					OpenGL,
@@ -573,7 +597,6 @@
 				DYLIB_CURRENT_VERSION = 1;
 				EXECUTABLE_PREFIX = lib;
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					NO_OIIO_LOADING,
 					CCL_CAPI_DLL,
 					GLEW_STATIC,
 					BOOST_ALL_NO_LIB,
@@ -588,12 +611,17 @@
 					../../cycles/src/render,
 					../../cycles/src/device,
 					../../cycles/src/util,
-					../../OpenImageIO/include,
 					../../glew/include,
 					../../cycles/third_party/atomic,
+					"../../../../../../../big_libs/OpenImageIO-2.0.12/include",
+					"../../../../../../../big_libs/OpenEXR-2.4.0/include",
 				);
 				INSTALL_PATH = "@rpath";
-				LIBRARY_SEARCH_PATHS = ../../../../../../../big_libs/boost/stagerelease/lib;
+				LIBRARY_SEARCH_PATHS = (
+					../../../../../../../big_libs/boost/stagerelease/lib,
+					"../../../../../../../big_libs/OpenEXR-2.4.0/bin",
+					"../../../../../../../big_libs/OpenImageIO-2.0.12/bin",
+				);
 				OTHER_LDFLAGS = (
 					"-framework",
 					OpenGL,
@@ -617,7 +645,6 @@
 				DYLIB_CURRENT_VERSION = 1;
 				EXECUTABLE_PREFIX = lib;
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					NO_OIIO_LOADING,
 					CCL_CAPI_DLL,
 					GLEW_STATIC,
 					BOOST_ALL_NO_LIB,
@@ -632,12 +659,17 @@
 					../../cycles/src/render,
 					../../cycles/src/device,
 					../../cycles/src/util,
-					../../OpenImageIO/include,
 					../../glew/include,
 					../../cycles/third_party/atomic,
+					"../../../../../../../big_libs/OpenImageIO-2.0.12/include",
+					"../../../../../../../big_libs/OpenEXR-2.4.0/include",
 				);
 				INSTALL_PATH = "@rpath";
-				LIBRARY_SEARCH_PATHS = ../../../../../../../big_libs/boost/stagerelease/lib;
+				LIBRARY_SEARCH_PATHS = (
+					../../../../../../../big_libs/boost/stagerelease/lib,
+					"../../../../../../../big_libs/OpenEXR-2.4.0/bin",
+					"../../../../../../../big_libs/OpenImageIO-2.0.12/bin",
+				);
 				OTHER_LDFLAGS = (
 					"-framework",
 					OpenGL,
