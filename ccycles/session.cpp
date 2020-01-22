@@ -15,6 +15,7 @@ limitations under the License.
 **/
 
 #include "internal_types.h"
+#include "util_thread.h"
 #include "util_opengl.h"
 
 /* Hold all created sessions. */
@@ -31,9 +32,12 @@ std::vector<RENDER_TILE_CB> update_cbs;
 std::vector<RENDER_TILE_CB> write_cbs;
 std::vector<DISPLAY_UPDATE_CB> display_update_cbs;
 
+static ccl::thread_mutex session_mutex;
+
 /* Find pointers for CCSession and ccl::Session. Return false if either fails. */
 bool session_find(unsigned int sid, CCSession** ccsess, ccl::Session** session)
 {
+	ccl::thread_scoped_lock lock(session_mutex);
 	if (0 <= (sid) && (sid) < sessions.size()) {
 		*ccsess = sessions[sid];
 		if(*ccsess!=nullptr) *session = (*ccsess)->session;
@@ -215,6 +219,7 @@ bool CCSession::size_has_changed() {
 
 unsigned int cycles_session_create(unsigned int client_id, unsigned int session_params_id)
 {
+	ccl::thread_scoped_lock lock(session_mutex);
 	ccl::SessionParams* params = nullptr;
 	if (session_params_id < session_params.size()) {
 		params = session_params[session_params_id];
