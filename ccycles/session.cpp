@@ -15,6 +15,7 @@ limitations under the License.
 **/
 
 #include "internal_types.h"
+#include "util_thread.h"
 #include "util_opengl.h"
 
 /* Hold all created sessions. */
@@ -31,9 +32,12 @@ std::vector<RENDER_TILE_CB> update_cbs;
 std::vector<RENDER_TILE_CB> write_cbs;
 std::vector<DISPLAY_UPDATE_CB> display_update_cbs;
 
+static ccl::thread_mutex session_mutex;
+
 /* Find pointers for CCSession and ccl::Session. Return false if either fails. */
 bool session_find(unsigned int sid, CCSession** ccsess, ccl::Session** session)
 {
+	ccl::thread_scoped_lock lock(session_mutex);
 	if (0 <= (sid) && (sid) < sessions.size()) {
 		*ccsess = sessions[sid];
 		if(*ccsess!=nullptr) *session = (*ccsess)->session;
@@ -215,6 +219,7 @@ bool CCSession::size_has_changed() {
 
 unsigned int cycles_session_create(unsigned int client_id, unsigned int session_params_id)
 {
+	ccl::thread_scoped_lock lock(session_mutex);
 	ccl::SessionParams* params = nullptr;
 	if (session_params_id < session_params.size()) {
 		params = session_params[session_params_id];
@@ -796,34 +801,57 @@ void cycles_progress_get_progress(unsigned int client_id, unsigned int session_i
 	}
 }
 
-const char* cycles_progress_get_status(unsigned int client_id, unsigned int session_id)
+class StringHolder
 {
-	/* static here, since otherwise std::string goes out of scope on return. */
-	static std::string status;
-	status = "";
-	CCSession* ccsess = nullptr;
-	ccl::Session* session = nullptr;
-	if (session_find(session_id, &ccsess, &session)) {
-		std::string substatus{ "" };
-		session->progress.get_status(status, substatus);
-		return status.c_str();
-	}
+public:
+	std::string thestring;
+};
 
-	return nullptr;
+void* cycles_string_holder_new()
+{
+	return new StringHolder();
 }
 
-const char* cycles_progress_get_substatus(unsigned int client_id, unsigned int session_id)
+void cycles_string_holder_delete(void* strholder)
 {
-	/* static here, since otherwise std::string goes out of scope on return. */
-	static std::string substatus;
-	substatus = "";
+	StringHolder* holder = (StringHolder*)strholder;
+	delete holder;
+	holder = nullptr;
+}
+
+const char* cycles_string_holder_get(void* strholder)
+{
+	StringHolder* holder = (StringHolder*)strholder;
+	if(holder!=nullptr) {
+		return holder->thestring.c_str();
+	}
+	return "";
+}
+
+bool cycles_progress_get_status(unsigned int client_id, unsigned int session_id, void* strholder)
+{
 	CCSession* ccsess = nullptr;
 	ccl::Session* session = nullptr;
 	if (session_find(session_id, &ccsess, &session)) {
-		std::string status{ "" };
-		session->progress.get_status(status, substatus);
-		return substatus.c_str();
+		StringHolder* holder = (StringHolder*)strholder;
+		std::string substatus{ "" };
+		session->progress.get_status(holder->thestring, substatus);
+		return true;
 	}
 
-	return nullptr;
+	return false;
+}
+
+bool cycles_progress_get_substatus(unsigned int client_id, unsigned int session_id, void* strholder)
+{
+	CCSession* ccsess = nullptr;
+	ccl::Session* session = nullptr;
+	if (session_find(session_id, &ccsess, &session)) {
+		StringHolder* holder = (StringHolder*)strholder;
+		std::string status{ "" };
+		session->progress.get_status(status, holder->thestring);
+		return true;
+	}
+
+	return false;
 }

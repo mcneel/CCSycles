@@ -577,8 +577,11 @@ CCL_CAPI int __cdecl cycles_progress_get_sample(unsigned int client_id, unsigned
 CCL_CAPI void __cdecl cycles_progress_get_time(unsigned int client_id, unsigned int session_id, double* total_time, double* sample_time);
 CCL_CAPI void __cdecl cycles_tilemanager_get_sample_info(unsigned int client_id, unsigned int session_id, unsigned int* samples, unsigned int* total_samples);
 CCL_CAPI void __cdecl cycles_progress_get_progress(unsigned int client_id, unsigned int session_id, float* progress);
-CCL_CAPI const char* __cdecl cycles_progress_get_status(unsigned int client_id, unsigned int session_id);
-CCL_CAPI const char* __cdecl cycles_progress_get_substatus(unsigned int client_id, unsigned int session_id);
+CCL_CAPI bool __cdecl cycles_progress_get_status(unsigned int client_id, unsigned int session_id, void* strholder);
+CCL_CAPI bool __cdecl cycles_progress_get_substatus(unsigned int client_id, unsigned int session_id, void* strholder);
+CCL_CAPI void* __cdecl cycles_string_holder_new();
+CCL_CAPI const char* __cdecl cycles_string_holder_get(void* strholder);
+CCL_CAPI void __cdecl cycles_string_holder_delete(void* strholder);
 
 CCL_CAPI unsigned int __cdecl cycles_session_params_create(unsigned int client_id, unsigned int device);
 

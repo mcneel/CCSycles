@@ -359,20 +359,89 @@ namespace ccl
 			cycles_tilemanager_get_sample_info(clientId, sessionId, out samples, out numSamples);
 		}
 
+		internal class CSStringHolder : IDisposable
+		{
+			IntPtr stringHolderPtr;
+			public CSStringHolder()
+			{
+				stringHolderPtr = cycles_string_holder_new();
+			}
+
+			public string Value {
+				get {
+					if(stringHolderPtr!=IntPtr.Zero) {
+						IntPtr strPtr = cycles_string_holder_get(stringHolderPtr);
+						string s = Marshal.PtrToStringAnsi(strPtr);
+						return s;
+					}
+					return "";
+				}
+			}
+
+			public IntPtr Ptr { get { return stringHolderPtr; } }
+
+			#region IDisposable Support
+			private bool disposedValue = false; // To detect redundant calls
+
+			protected virtual void Dispose(bool disposing)
+			{
+				if (!disposedValue) {
+					if (disposing) {
+					}
+
+					cycles_string_holder_delete(stringHolderPtr);
+					stringHolderPtr = IntPtr.Zero;
+
+					disposedValue = true;
+				}
+			}
+
+			// This code added to correctly implement the disposable pattern.
+			public void Dispose()
+			{
+				Dispose(true);
+			}
+			#endregion
+
+
+	}
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
-		private static extern IntPtr cycles_progress_get_status(uint clientId, uint sessionId);
+		private static extern IntPtr cycles_string_holder_new();
+		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+		private static extern void cycles_string_holder_delete(IntPtr strHolder);
+		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+		private static extern IntPtr cycles_string_holder_get(IntPtr strHolder);
+
+		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+		private static extern bool cycles_progress_get_status(uint clientId, uint sessionId, IntPtr strHolder);
 		public static string progress_get_status(uint clientId, uint sessionId)
 		{
-			return Marshal.PtrToStringAnsi(cycles_progress_get_status(clientId, sessionId));
+			using (CSStringHolder stringHolder = new CSStringHolder()) {
+				bool success = cycles_progress_get_status(clientId, sessionId, stringHolder.Ptr);
+				if(success) {
+					string status = stringHolder.Value;
+				  return status;
+				}
+			}
+
+			return "";
 		}
 
 		
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention=CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
-		private static extern IntPtr cycles_progress_get_substatus(uint clientId, uint sessionId);
+		private static extern bool cycles_progress_get_substatus(uint clientId, uint sessionId, IntPtr strHolder);
 		public static string progress_get_substatus(uint clientId, uint sessionId)
 		{
-			return Marshal.PtrToStringAnsi(cycles_progress_get_substatus(clientId, sessionId));
-		}
+			using (CSStringHolder stringHolder = new CSStringHolder()) {
+				bool success = cycles_progress_get_substatus(clientId, sessionId, stringHolder.Ptr);
+				if (success) {
+					string status = stringHolder.Value;
+					return status;
+				}
+			}
+
+	  return "";
+	}
 
 #endregion
 	}
