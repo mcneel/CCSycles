@@ -176,9 +176,7 @@
 		A100CA331FB5E9D600BC046C /* util_vector.h in Headers */ = {isa = PBXBuildFile; fileRef = A100C9CC1FB5E9CC00BC046C /* util_vector.h */; };
 		A100CA341FB5E9D600BC046C /* util_math_int3.h in Headers */ = {isa = PBXBuildFile; fileRef = A100C9CD1FB5E9CC00BC046C /* util_math_int3.h */; };
 		A100CA351FB5E9D600BC046C /* util_sseb.h in Headers */ = {isa = PBXBuildFile; fileRef = A100C9CE1FB5E9CC00BC046C /* util_sseb.h */; };
-		A100CA361FB5E9D600BC046C /* util_view.h in Headers */ = {isa = PBXBuildFile; fileRef = A100C9CF1FB5E9D000BC046C /* util_view.h */; };
 		A100CA371FB5E9D600BC046C /* util_types_int3_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = A100C9D01FB5E9D100BC046C /* util_types_int3_impl.h */; };
-		A100CA381FB5E9D600BC046C /* util_view.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A100C9D11FB5E9D100BC046C /* util_view.cpp */; };
 		A100CA391FB5E9D600BC046C /* util_thread.h in Headers */ = {isa = PBXBuildFile; fileRef = A100C9D21FB5E9D100BC046C /* util_thread.h */; };
 		A100CA3A1FB5E9D600BC046C /* util_types_float3_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = A100C9D31FB5E9D100BC046C /* util_types_float3_impl.h */; };
 		A100CA3B1FB5E9D600BC046C /* util_time.h in Headers */ = {isa = PBXBuildFile; fileRef = A100C9D41FB5E9D200BC046C /* util_time.h */; };
@@ -485,9 +483,7 @@
 		A100C9CC1FB5E9CC00BC046C /* util_vector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = util_vector.h; path = ../../cycles/src/util/util_vector.h; sourceTree = "<group>"; };
 		A100C9CD1FB5E9CC00BC046C /* util_math_int3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = util_math_int3.h; path = ../../cycles/src/util/util_math_int3.h; sourceTree = "<group>"; };
 		A100C9CE1FB5E9CC00BC046C /* util_sseb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = util_sseb.h; path = ../../cycles/src/util/util_sseb.h; sourceTree = "<group>"; };
-		A100C9CF1FB5E9D000BC046C /* util_view.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = util_view.h; path = ../../cycles/src/util/util_view.h; sourceTree = "<group>"; };
 		A100C9D01FB5E9D100BC046C /* util_types_int3_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = util_types_int3_impl.h; path = ../../cycles/src/util/util_types_int3_impl.h; sourceTree = "<group>"; };
-		A100C9D11FB5E9D100BC046C /* util_view.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = util_view.cpp; path = ../../cycles/src/util/util_view.cpp; sourceTree = "<group>"; };
 		A100C9D21FB5E9D100BC046C /* util_thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = util_thread.h; path = ../../cycles/src/util/util_thread.h; sourceTree = "<group>"; };
 		A100C9D31FB5E9D100BC046C /* util_types_float3_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = util_types_float3_impl.h; path = ../../cycles/src/util/util_types_float3_impl.h; sourceTree = "<group>"; };
 		A100C9D41FB5E9D200BC046C /* util_time.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = util_time.h; path = ../../cycles/src/util/util_time.h; sourceTree = "<group>"; };
@@ -987,8 +983,6 @@
 				D8A96E7E23BF42A80078763E /* util_unique_ptr.h */,
 				A100C9CC1FB5E9CC00BC046C /* util_vector.h */,
 				A100C9A71FB5E9C800BC046C /* util_version.h */,
-				A100C9D11FB5E9D100BC046C /* util_view.cpp */,
-				A100C9CF1FB5E9D000BC046C /* util_view.h */,
 				A100C9961FB5E9C600BC046C /* util_windows.cpp */,
 				A100C98F1FB5E9C500BC046C /* util_windows.h */,
 				A100C9B01FB5E9C900BC046C /* util_xml.h */,
@@ -1134,7 +1128,6 @@
 				A100C9881FB5E99300BC046C /* subd_dice.h in Headers */,
 				A100C98A1FB5E99300BC046C /* subd_patch.h in Headers */,
 				A100CA291FB5E9D600BC046C /* util_color.h in Headers */,
-				A100CA361FB5E9D600BC046C /* util_view.h in Headers */,
 				D8A96E9423BF42E00078763E /* denoising.h in Headers */,
 				A100C8691FB5E75700BC046C /* bvh_split.h in Headers */,
 				A100CA2F1FB5E9D600BC046C /* util_types_uchar3_impl.h in Headers */,
@@ -1473,7 +1466,6 @@
 				A100CA001FB5E9D500BC046C /* util_guarded_allocator.cpp in Sources */,
 				A100C86F1FB5E75700BC046C /* bvh4.cpp in Sources */,
 				A100CA211FB5E9D600BC046C /* util_sky_model.cpp in Sources */,
-				A100CA381FB5E9D600BC046C /* util_view.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
