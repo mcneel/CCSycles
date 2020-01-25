@@ -196,6 +196,9 @@ EXPORTS
   cycles_progress_get_status
   cycles_progress_get_substatus
   cycles_progress_get_progress
+  cycles_string_holder_new
+  cycles_string_holder_get
+  cycles_string_holder_delete
 
   cycles_session_params_create
   cycles_session_params_set_device
