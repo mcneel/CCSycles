@@ -724,30 +724,53 @@ void cycles_progress_get_progress(unsigned int client_id, unsigned int session_i
 	SESSION_FIND_END()
 }
 
-const char* cycles_progress_get_status(unsigned int client_id, unsigned int session_id)
+class StringHolder
 {
-	/* static here, since otherwise std::string goes out of scope on return. */
-	static std::string status;
-	status = "";
-	SESSION_FIND(session_id)
-		std::string substatus{ "" };
-		session->progress.get_status(status, substatus);
-		return status.c_str();
-	SESSION_FIND_END()
+public:
+	std::string thestring;
+};
 
-	return nullptr;
+void* cycles_string_holder_new()
+{
+	return new StringHolder();
 }
 
-const char* cycles_progress_get_substatus(unsigned int client_id, unsigned int session_id)
+void cycles_string_holder_delete(void* strholder)
 {
-	/* static here, since otherwise std::string goes out of scope on return. */
-	static std::string substatus;
-	substatus = "";
+	StringHolder* holder = (StringHolder*)strholder;
+	delete holder;
+	holder = nullptr;
+}
+
+const char* cycles_string_holder_get(void* strholder)
+{
+	StringHolder* holder = (StringHolder*)strholder;
+	if(holder!=nullptr) {
+		return holder->thestring.c_str();
+	}
+	return "";
+}
+
+bool cycles_progress_get_status(unsigned int client_id, unsigned int session_id, void* strholder)
+{
 	SESSION_FIND(session_id)
-		std::string status{ "" };
-		session->progress.get_status(status, substatus);
-		return substatus.c_str();
+		StringHolder* holder = (StringHolder*)strholder;
+		std::string substatus{ "" };
+		session->progress.get_status(holder->thestring, substatus);
+		return true;
 	SESSION_FIND_END()
 
-	return nullptr;
+	return false;
+}
+
+bool cycles_progress_get_substatus(unsigned int client_id, unsigned int session_id, void* strholder)
+{
+	SESSION_FIND(session_id)
+		StringHolder* holder = (StringHolder*)strholder;
+		std::string status{ "" };
+		session->progress.get_status(status, holder->thestring);
+		return true;
+	SESSION_FIND_END()
+
+	return false;
 }
