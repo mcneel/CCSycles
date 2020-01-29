@@ -17,14 +17,16 @@
     <PlatformVersion Condition="'$(VisualStudioVersion)'=='15.0'">v141</PlatformVersion>
     <PlatformVersion Condition="'$(VisualStudioVersion)'=='16.0'">v142</PlatformVersion>
     <BoostConfig Condition="$(Configuration.Contains('Debug'))">gd-</BoostConfig>
-    <BoostConfig Condition="$(Configuration.Contains('Release'))"></BoostConfig>
+    <BoostConfig Condition="$(Configuration.Contains('Release'))">
+    </BoostConfig>
     <OpenEXRVersion Condition="$(Configuration.Contains('Debug'))">2_4_d</OpenEXRVersion>
     <OpenEXRVersion Condition="$(Configuration.Contains('Release'))">2_4</OpenEXRVersion>
     <!--<OpenEXRVersion>2_4</OpenEXRVersion>-->
     <OpenImageIOVersion Condition="$(Configuration.Contains('Debug'))">2_0_12_d</OpenImageIOVersion>
     <OpenImageIOVersion Condition="$(Configuration.Contains('Release'))">2_0_12</OpenImageIOVersion>
     <EmbreeVersion Condition="$(Configuration.Contains('Debug'))">_d</EmbreeVersion>
-    <EmbreeVersion Condition="$(Configuration.Contains('Release'))"></EmbreeVersion>
+    <EmbreeVersion Condition="$(Configuration.Contains('Release'))">
+    </EmbreeVersion>
     <BoostToolset>$(BoostConfig)x64-$(PlatformVersion)</BoostToolset>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -127,6 +129,7 @@
     <Compile Include="ShaderNodes\AnisotropicBsdfNode.cs" />
     <Compile Include="ShaderNodes\AbsorptionVolumeNode.cs" />
     <Compile Include="ShaderNodes\CameraDataNode.cs" />
+    <Compile Include="ShaderNodes\DisplacementNode.cs" />
     <Compile Include="ShaderNodes\TangentNode.cs" />
     <Compile Include="ShaderNodes\ObjectInfoNode.cs" />
     <Compile Include="ShaderNodes\WireframeNode.cs" />
@@ -233,6 +236,8 @@
     <UtilFiles Include="$(ProjecDir)..\cycles\src\util\**\*.h" Exclude="$(ProjecDir)..\cycles\src\util\**\CMakeLists.*">
       <Link>Dependencies\util\%(RecursiveDir)%(Filename)%(Extension)</Link>
     </UtilFiles>
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="License\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

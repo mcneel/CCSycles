@@ -90,6 +90,8 @@ void _set_colorspace(OpenImageIO_v2_0::ustring& colorspace, int value)
 unsigned int cycles_create_shader(unsigned int client_id)
 {
 	CCShader* sh = new CCShader();
+	sh->shader->displacement_method = ccl::DisplacementMethod::DISPLACE_TRUE;
+	sh->shader->has_displacement = true;
 	sh->shader->graph = sh->graph;
 	shaders.push_back(sh);
 
@@ -372,6 +374,10 @@ unsigned int cycles_add_shader_node(unsigned int client_id, unsigned int shader_
 		node = new ccl::TangentNode();
 		dynamic_cast<ccl::TangentNode*>(node)->attribute = OpenImageIO_v2_0::ustring("uvmap");
 		dynamic_cast<ccl::TangentNode*>(node)->direction_type = ccl::NodeTangentDirectionType::NODE_TANGENT_UVMAP;
+		break;
+	case shadernode_type::DISPLACEMENT:
+		node = new ccl::DisplacementNode();
+		dynamic_cast<ccl::DisplacementNode*>(node)->space = ccl::NodeNormalMapSpace::NODE_NORMAL_MAP_OBJECT;
 		break;
 	}
 
