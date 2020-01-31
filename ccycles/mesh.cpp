@@ -83,7 +83,7 @@ void cycles_mesh_set_shader(unsigned int client_id, unsigned int scene_id, unsig
 
 		sh->tag_update(sce);
 		sh->tag_used(sce);
-
+		sce->light_manager->tag_update(sce);
 	}
 }
 
@@ -104,6 +104,7 @@ void cycles_mesh_tag_rebuild(unsigned int client_id, unsigned int scene_id, unsi
 	if(scene_find(scene_id, &csce, &sce)) {
 		ccl::Mesh* me = sce->meshes[mesh_id];
 		me->tag_update(sce, true);
+		sce->light_manager->tag_update(sce);
 	}
 }
 

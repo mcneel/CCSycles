@@ -29,6 +29,7 @@ unsigned int cycles_scene_add_object(unsigned int client_id, unsigned int scene_
 		logger.logit(client_id, "Added object ", sce->objects.size() - 1, " to scene ", scene_id);
 
 		ob->tag_update(sce);
+		sce->light_manager->tag_update(sce);
 
 		return (unsigned int)(sce->objects.size() - 1);
 	}
@@ -45,6 +46,7 @@ void cycles_scene_object_set_mesh(unsigned int client_id, unsigned int scene_id,
 		ccl::Mesh* me = sce->meshes[mesh_id];
 		ob->mesh = me;
 		ob->tag_update(sce);
+		sce->light_manager->tag_update(sce);
 	}
 }
 
@@ -55,6 +57,7 @@ void cycles_object_tag_update(unsigned int client_id, unsigned int scene_id, uns
 	if(scene_find(scene_id, &csce, &sce)) {
 		ccl::Object* ob = sce->objects[object_id];
 		ob->tag_update(sce);
+		sce->light_manager->tag_update(sce);
 	}
 }
 
@@ -85,6 +88,7 @@ void cycles_scene_object_set_visibility(unsigned int client, unsigned int scene_
 		ccl::Object* ob = sce->objects[object_id];
 		ob->visibility = visibility;
 		ob->tag_update(sce);
+		sce->light_manager->tag_update(sce);
 	}
 }
 
@@ -99,6 +103,7 @@ void cycles_scene_object_set_shader(unsigned int client, unsigned int scene_id, 
 		sh->tag_update(sce);
 		sh->tag_used(sce);
 		ob->tag_update(sce);
+		sce->light_manager->tag_update(sce);
 	}
 }
 
@@ -110,6 +115,7 @@ void cycles_scene_object_set_is_shadowcatcher(unsigned int client, unsigned int 
 		ccl::Object* ob = sce->objects[object_id];
 		ob->is_shadow_catcher = is_shadowcatcher;
 		ob->tag_update(sce);
+		sce->light_manager->tag_update(sce);
 	}
 }
 
@@ -121,6 +127,7 @@ void cycles_scene_object_set_mesh_light_no_cast_shadow(unsigned int client, unsi
 		ccl::Object* ob = sce->objects[object_id];
 		ob->mesh_light_no_cast_shadow = mesh_light_no_cast_shadow;
 		ob->tag_update(sce);
+		sce->light_manager->tag_update(sce);
 	}
 }
 
@@ -132,6 +139,7 @@ void cycles_scene_object_set_is_block_instance(unsigned int client, unsigned int
 		ccl::Object* ob = sce->objects[object_id];
 		ob->is_block_instance = is_block_instance;
 		ob->tag_update(sce);
+		sce->light_manager->tag_update(sce);
 	}
 }
 

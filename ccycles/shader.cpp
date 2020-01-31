@@ -123,8 +123,10 @@ void cycles_scene_tag_shader(unsigned int client_id, unsigned int scene_id, unsi
 	if (scene_find(scene_id, &csce, &sce)) {
 		CCShader* sh = shaders[shader_id];
 		sh->shader->tag_update(sce);
-		if (use)
+		sh->shader->graph->simplify(sce);
+		if (use) {
 			sh->shader->tag_used(sce);
+		}
 	}
 }
 
