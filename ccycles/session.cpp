@@ -83,7 +83,7 @@ void copy_pixels_to_ccsession(CCSession* se, ccl::RenderTile &tile) {
 	int tiley = params.full_y - se->session->tile_manager.params.full_y;
 
 	/* Copy the tile buffer to pixels. */
-	if (!buffers->get_pass_rect(ccl::PassType::PASS_COMBINED, 1.0f, tile.sample, stride, &pixels[0], "")) {
+	if (!buffers->get_pass_rect("combined", 1.0f, tile.sample, stride, &pixels[0])) {
 		return;
 	}
 
@@ -139,7 +139,7 @@ void CCSession::write_render_tile(ccl::RenderTile &tile)
 			int components = p.components;
 			ccl::PassType pt = p.type;
 			int pixlen = params.width*params.height*components;
-			if (buffers->get_pass_rect(pt, p.exposure ? exposure : 1.0f, sample, components, &px[0], "")) {
+			if (buffers->get_pass_rect(p.name, p.exposure ? exposure : 1.0f, sample, components, &px[0])) {
 				write_cbs[this->id](id, tilex, tiley, params.width, params.height, sample, components, (int)p.type, &px[0], pixlen);
 			}
 		}
@@ -298,9 +298,9 @@ void cycles_session_destroy(unsigned int client_id, unsigned int session_id)
 
 static ccl::vector<ccl::Pass> _passes;
 ccl::vector<ccl::Pass>& get_passes() {
-	ccl::Pass::add(ccl::PASS_COMBINED, _passes);
-	ccl::Pass::add(ccl::PASS_DEPTH, _passes);
-	ccl::Pass::add(ccl::PASS_NORMAL, _passes);
+	ccl::Pass::add(ccl::PASS_COMBINED, _passes, "combined");
+	ccl::Pass::add(ccl::PASS_DEPTH, _passes, "depth");
+	ccl::Pass::add(ccl::PASS_NORMAL, _passes, "normal");
 	/*ccl::Pass::add(ccl::PASS_DIFFUSE_INDIRECT, _passes);
 	ccl::Pass::add(ccl::PASS_UV, _passes);
 	ccl::Pass::add(ccl::PASS_AO, _passes);

@@ -85,14 +85,14 @@ void CCScene::builtin_image_info(const std::string& builtin_name, void* builtin_
 	imdata.is_float = img->is_float;
 }
 
-bool CCScene::builtin_image_pixels(const std::string& builtin_name, void* builtin_data, unsigned char* pixels, const size_t pixels_size, const bool associate_alpha, const bool free_cache)
+bool CCScene::builtin_image_pixels(const std::string& builtin_name, void* builtin_data, int tile, unsigned char* pixels, const size_t pixels_size, const bool associate_alpha, const bool free_cache)
 {
 	CCImage* img = static_cast<CCImage*>(builtin_data);
 	memcpy(pixels, img->builtin_data, (size_t)(img->width*img->height*img->channels)*sizeof(unsigned char));
 	return false;
 }
 
-bool CCScene::builtin_image_float_pixels(const std::string& builtin_name, void* builtin_data, float* pixels, const size_t pixels_size, const bool associate_alpha, const bool free_cache)
+bool CCScene::builtin_image_float_pixels(const std::string& builtin_name, void* builtin_data, int tile, float* pixels, const size_t pixels_size, const bool associate_alpha, const bool free_cache)
 {
 	CCImage* img = static_cast<CCImage*>(builtin_data);
 	memcpy(pixels, img->builtin_data, (size_t)(img->width*img->height*img->channels)*sizeof(float));
@@ -156,8 +156,8 @@ unsigned int cycles_scene_create(unsigned int client_id, unsigned int scene_para
 			scenes[cscid]->scene = new ccl::Scene(*params, session->device);
 			scenes[cscid]->params_id = scene_params_id;
 			scenes[cscid]->scene->image_manager->builtin_image_info_cb = function_bind(&CCScene::builtin_image_info, scenes[cscid], std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
-			scenes[cscid]->scene->image_manager->builtin_image_pixels_cb = function_bind(&CCScene::builtin_image_pixels, scenes[cscid], std::placeholders::_1, std::placeholders::_2, std::placeholders::_3, std::placeholders::_4, std::placeholders::_5, std::placeholders::_6);
-			scenes[cscid]->scene->image_manager->builtin_image_float_pixels_cb = function_bind(&CCScene::builtin_image_float_pixels, scenes[cscid], std::placeholders::_1, std::placeholders::_2, std::placeholders::_3, std::placeholders::_4, std::placeholders::_5, std::placeholders::_6);
+			scenes[cscid]->scene->image_manager->builtin_image_pixels_cb = function_bind(&CCScene::builtin_image_pixels, scenes[cscid], std::placeholders::_1, std::placeholders::_2, std::placeholders::_3, std::placeholders::_4, std::placeholders::_5, std::placeholders::_6, std::placeholders::_7);
+			scenes[cscid]->scene->image_manager->builtin_image_float_pixels_cb = function_bind(&CCScene::builtin_image_float_pixels, scenes[cscid], std::placeholders::_1, std::placeholders::_2, std::placeholders::_3, std::placeholders::_4, std::placeholders::_5, std::placeholders::_6, std::placeholders::_7);
 
 			logger.logit(client_id, "Created scene ", cscid, " with scene_params ", scene_params_id, " and device ", session->device->info.id);
 			return cscid;
