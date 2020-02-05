@@ -67,6 +67,7 @@ EXPORTS
   cycles_mesh_attr_tangentspace
 
   cycles_scene_object_set_matrix
+  cycles_scene_object_set_ocs_frame
   cycles_scene_object_set_mesh
   cycles_scene_object_get_mesh
   cycles_scene_object_set_visibility

@@ -19,6 +19,19 @@ namespace ccl
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		private static extern void cycles_scene_object_set_ocs_frame(uint clientId, uint sceneId, uint objectId,
+			float a, float b, float c, float d,
+			float e, float f, float g, float h,
+			float i, float j, float k, float l);
+		public static void object_set_ocs_frame(uint clientId, uint sceneId, uint objectId, Transform t)
+		{
+			cycles_scene_object_set_ocs_frame(clientId, sceneId, objectId,
+				t.x.x, t.x.y, t.x.z, t.x.w,
+				t.y.x, t.y.y, t.y.z, t.y.w,
+				t.z.x, t.z.y, t.z.z, t.z.w);
+		}
+
+		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		private static extern void cycles_scene_object_set_mesh(uint clientId, uint sceneId, uint objectId, uint meshId);
 		public static void object_set_mesh(uint clientId, uint sceneId, uint objectId, uint meshId)
 		{

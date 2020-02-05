@@ -314,6 +314,15 @@ CCL_CAPI void __cdecl cycles_scene_object_set_matrix(unsigned int client_id, uns
 	float i, float j, float k, float l
 	);
 /**
+ * Set OCS frame for object
+ * \ingroup ccycles_object
+ */
+CCL_CAPI void __cdecl cycles_scene_object_set_ocs_frame(unsigned int client_id, unsigned int scene_id, unsigned int object_id,
+	float a, float b, float c, float d,
+	float e, float f, float g, float h,
+	float i, float j, float k, float l
+	);
+/**
  * Set object mesh
  * \ingroup ccycles_object
  */
