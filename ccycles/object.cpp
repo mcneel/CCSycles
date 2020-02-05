@@ -165,7 +165,7 @@ void cycles_scene_object_set_ignore_cutout(unsigned int client, unsigned int sce
 	}*/
 }
 
-void cycles_scene_object_set_matrix(unsigned int client_id, unsigned int scene_id, unsigned int object_id,
+void _cycles_scene_object_set_transform(unsigned int client_id, unsigned int scene_id, unsigned int object_id, unsigned int transform_type,
 	float a, float b, float c, float d,
 	float e, float f, float g, float h,
 	float i, float j, float k, float l
@@ -176,10 +176,43 @@ void cycles_scene_object_set_matrix(unsigned int client_id, unsigned int scene_i
 	if(scene_find(scene_id, &csce, &sce)) {
 		ccl::Object* ob = sce->objects[object_id];
 		ccl::Transform mat = ccl::make_transform(a, b, c, d, e, f, g, h, i, j, k, l);
-		ob->tfm = mat;
+		switch (transform_type) {
+		case 0:
+			ob->tfm = mat;
+			break;
+		case 1:
+			ob->ocs_frame = mat;
+			ob->use_ocs_frame = mat != ccl::transform_identity();
+			break;
+		}
 		ob->tag_update(sce);
 	}
 }
+
+void cycles_scene_object_set_matrix(unsigned int client_id, unsigned int scene_id, unsigned int object_id,
+	float a, float b, float c, float d,
+	float e, float f, float g, float h,
+	float i, float j, float k, float l
+	)
+{
+	_cycles_scene_object_set_transform(client_id, scene_id, object_id, 0,
+		a, b, c, d,
+		e, f, g, h,
+		i, j, k, l);
+}
+
+void cycles_scene_object_set_ocs_frame(unsigned int client_id, unsigned int scene_id, unsigned int object_id,
+	float a, float b, float c, float d,
+	float e, float f, float g, float h,
+	float i, float j, float k, float l
+	)
+{
+	_cycles_scene_object_set_transform(client_id, scene_id, object_id, 1,
+		a, b, c, d,
+		e, f, g, h,
+		i, j, k, l);
+}
+
 
 void cycles_object_set_pass_id(unsigned int client_id, unsigned int scene_id, unsigned int object_id, int pass_id)
 {

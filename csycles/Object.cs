@@ -119,6 +119,17 @@ namespace ccl
 		}
 
 		/// <summary>
+		/// Set the object OCS frame
+		/// </summary>
+		public Transform OcsFrame
+		{
+			set
+			{
+				CSycles.object_set_ocs_frame(Client.Id, Client.Scene.Id, Id, value);
+			}
+		}
+
+		/// <summary>
 		/// Set the visibility of this object to specific rays.
 		/// </summary>
 		public PathRay Visibility
