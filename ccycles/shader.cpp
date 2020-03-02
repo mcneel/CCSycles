@@ -825,9 +825,16 @@ void cycles_shadernode_set_enum(unsigned int client_id, unsigned int shader_id, 
 		}
 		case shadernode_type::PRINCIPLED_BSDF:
 		{
-			ccl::PrincipledBsdfNode* node = dynamic_cast<ccl::PrincipledBsdfNode*>(shnode);
-			node->distribution = (ccl::ClosureType)value;
+			if (ename == "distribution") {
+				ccl::PrincipledBsdfNode* node = dynamic_cast<ccl::PrincipledBsdfNode*>(shnode);
+				node->distribution = (ccl::ClosureType)value;
+			}
+			else if (ename == "sss") {
+				ccl::PrincipledBsdfNode* node = dynamic_cast<ccl::PrincipledBsdfNode*>(shnode);
+				node->subsurface_method = (ccl::ClosureType)value;
+			}
 			break;
+				
 		}
 		case shadernode_type::NORMALMAP:
 		{

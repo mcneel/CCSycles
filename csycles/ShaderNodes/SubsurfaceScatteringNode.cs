@@ -67,9 +67,48 @@ namespace ccl.ShaderNodes
 		public enum FalloffTypes
 		{
 			Cubic = 40,
-			Guassian = 41,
+			Gaussian = 41,
+			Principled = 42,
 			Burley = 43,
-			RandomWalk = 44
+			RandomWalk = 44,
+			PrincipledRandomWalk = 45
+		}
+
+
+		static public int IntFromSssMethod(string m)
+		{
+			if (m == "Cubic") return 40;
+			if (m == "Gaussian") return 41;
+			if (m == "Principled") return 42;
+			if (m == "Burley") return 43;
+			if (m == "RandomWalk") return 44;
+			if (m == "PrincipledRandomWalk") return 45;
+
+			return 43;
+		}
+
+		static public string SssMethodFromInt(int m)
+		{
+			if (m == 40) return "Cubic";
+			if (m == 41) return "Gaussian";
+			if (m == 42) return "Principled";
+			if (m == 43) return "Burley";
+			if (m == 44) return "RandomWalk";
+			if (m == 45) return "PrincipledRandomWalk";
+
+			return "Burley";
+		}
+
+		static public FalloffTypes SssEnumFromInt(int m)
+		{
+			var falloff = FalloffTypes.Burley;
+			var falloffstr = SssMethodFromInt(m);
+			if (!string.IsNullOrEmpty(falloffstr)) {
+				if (Enum.TryParse(falloffstr, out FalloffTypes ft)) {
+					falloff = ft;
+				}
+			}
+			return falloff;
 		}
 
 		public SubsurfaceScatteringInputs ins => (SubsurfaceScatteringInputs)inputs;

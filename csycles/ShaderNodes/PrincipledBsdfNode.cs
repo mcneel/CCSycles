@@ -104,7 +104,7 @@ namespace ccl.ShaderNodes
 			AddSocket(BSDF);
 		}
 	}
-	
+
 	/// <summary>
 	/// A Principled BSDF closure.
 	/// This closure takes two inputs, <c>Color</c> and <c>Roughness</c>. The result
@@ -161,10 +161,12 @@ namespace ccl.ShaderNodes
 		}
 
 		public Distributions Distribution { get; set; }
+		public SubsurfaceScatteringNode.FalloffTypes Sss {get; set; }
 
 		internal override void SetEnums(uint clientId, uint shaderId)
 		{
 			CSycles.shadernode_set_enum(clientId, shaderId, Id, Type, "distribution", (int)Distribution);
+			CSycles.shadernode_set_enum(clientId, shaderId, Id, Type, "sss", (int)Sss);
 		}
 
 		internal override void ParseXml(XmlReader xmlNode)
@@ -196,6 +198,12 @@ namespace ccl.ShaderNodes
 			{
 				Distributions d;
 				if (Enum.TryParse(str, true, out d)) Distribution = d;
+			}
+			str = "";
+			Utilities.Instance.read_string(ref str, xmlNode.GetAttribute("sss"));
+			if (!string.IsNullOrEmpty(str)) {
+				SubsurfaceScatteringNode.FalloffTypes sss;
+				if (Enum.TryParse(str, true, out sss)) Sss = sss;
 			}
 		}
 
