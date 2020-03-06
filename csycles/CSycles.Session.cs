@@ -7,10 +7,10 @@ namespace ccl
 	{
 #region session
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_session_reset(uint clientId, uint sessionId, uint width, uint height, uint samples);
-		public static void session_reset(uint clientId, uint sessionId, uint width, uint height, uint samples)
+		private static extern void cycles_session_reset(uint clientId, uint sessionId, uint width, uint height, uint samples, uint full_x, uint full_y, uint full_width, uint full_height );
+		public static void session_reset(uint clientId, uint sessionId, uint width, uint height, uint samples, uint full_x, uint full_y, uint full_width, uint full_height )
 		{
-			cycles_session_reset(clientId, sessionId, width, height, samples);
+			cycles_session_reset(clientId, sessionId, width, height, samples, full_x, full_y, full_width, full_height );
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
@@ -167,24 +167,24 @@ namespace ccl
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_session_draw(uint clientId, uint sessionId, int width, int height);
-		public static void session_draw(uint clientId, uint sessionId, int width, int height)
+		private static extern void cycles_session_draw(uint clientId, uint sessionId);
+		public static void session_draw(uint clientId, uint sessionId)
 		{
-			cycles_session_draw(clientId, sessionId, width, height);
+			cycles_session_draw(clientId, sessionId);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_session_draw_nogl(uint clientId, uint sessionId, int width, int height, bool isgpu);
-		public static void session_draw_nogl(uint clientId, uint sessionId, int width, int height, bool isgpu)
+		private static extern void cycles_session_draw_nogl(uint clientId, uint sessionId, bool isgpu);
+		public static void session_draw_nogl(uint clientId, uint sessionId, bool isgpu)
 		{
-			cycles_session_draw_nogl(clientId, sessionId, width, height, isgpu);
+			cycles_session_draw_nogl(clientId, sessionId, isgpu);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_session_rhinodraw(uint clientId, uint sessionId, int width, int height, float alpha);
-		public static void session_rhinodraw(uint clientId, uint sessionId, int width, int height, float alpha)
+		private static extern void cycles_session_rhinodraw(uint clientId, uint sessionId, float alpha);
+		public static void session_rhinodraw(uint clientId, uint sessionId, float alpha)
 		{
-			cycles_session_rhinodraw(clientId, sessionId, width, height, alpha);
+			cycles_session_rhinodraw(clientId, sessionId, alpha);
 		}
 #endregion
 

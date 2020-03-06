@@ -324,7 +324,7 @@ ccl::vector<ccl::Pass>& get_passes() {
 }
 
 
-void cycles_session_reset(unsigned int client_id, unsigned int session_id, unsigned int width, unsigned int height, unsigned int samples)
+void cycles_session_reset(unsigned int client_id, unsigned int session_id, unsigned int width, unsigned int height, unsigned int samples, unsigned int full_x, unsigned int full_y, unsigned int full_width, unsigned int full_height )
 {
 	CCSession* ccsess = nullptr;
 	ccl::Session* session = nullptr;
@@ -332,7 +332,12 @@ void cycles_session_reset(unsigned int client_id, unsigned int session_id, unsig
 		logger.logit(client_id, "Reset session ", session_id, ". width ", width, " height ", height, " samples ", samples);
 		ccl::thread_scoped_lock pixels_lock(ccsess->pixels_mutex);
 		ccsess->reset(width, height, 4);
-		ccl::BufferParams bufParams;
+		ccsess->buffer_params.full_x = full_x;
+		ccsess->buffer_params.full_y = full_y;
+		ccsess->buffer_params.full_width = full_width;
+		ccsess->buffer_params.full_height = full_height;
+		ccsess->buffer_params.width = width;
+		ccsess->buffer_params.height = height;
 
 		ccl::vector<ccl::Pass>& passes = get_passes();
 
@@ -340,12 +345,9 @@ void cycles_session_reset(unsigned int client_id, unsigned int session_id, unsig
 		session->scene->film->display_pass = ccl::PassType::PASS_COMBINED;
 		session->scene->film->tag_update(session->scene);
 
-		bufParams.passes = passes;
+		ccsess->buffer_params.passes = passes;
 
-		bufParams.width = bufParams.full_width = width;
-		bufParams.height = bufParams.full_height = height;
-		session->reset(bufParams, (int)samples);
-
+		session->reset(ccsess->buffer_params, (int)samples);
 	}
 }
 
@@ -672,7 +674,7 @@ bool initialize_shader_program(GLuint& program)
 	return true;
 }
 
-void cycles_session_rhinodraw(unsigned int client_id, unsigned int session_id, int width, int height, float alpha)
+void cycles_session_rhinodraw(unsigned int client_id, unsigned int session_id, float alpha)
 {
 	ccl::DeviceDrawParams draw_params = ccl::DeviceDrawParams();
 	draw_params.bind_display_space_shader_cb = nullptr;
@@ -681,11 +683,6 @@ void cycles_session_rhinodraw(unsigned int client_id, unsigned int session_id, i
 	CCSession* ccsess = nullptr;
 	ccl::Session* session = nullptr;
 	if (session_find(session_id, &ccsess, &session)) {
-		ccl::BufferParams session_buf_params;
-		ccl::vector<ccl::Pass>& passes = get_passes();
-		session_buf_params.width = session_buf_params.full_width = width;
-		session_buf_params.height = session_buf_params.full_height = height;
-		session_buf_params.passes = passes;
 
 		if (ccsess->program == 0) {
 			if (!initialize_shader_program(ccsess->program)) return;
@@ -702,7 +699,7 @@ void cycles_session_rhinodraw(unsigned int client_id, unsigned int session_id, i
 		}
 
 		// let Cycles draw
-		session->draw(session_buf_params, draw_params);
+		session->draw(ccsess->buffer_params, draw_params);
 		if (depthEnabled)
 		{
 			glEnable(GL_DEPTH_TEST);
@@ -713,7 +710,7 @@ void cycles_session_rhinodraw(unsigned int client_id, unsigned int session_id, i
 	}
 }
 
-void cycles_session_draw(unsigned int client_id, unsigned int session_id, int width, int height)
+void cycles_session_draw(unsigned int client_id, unsigned int session_id)
 {
 	ccl::DeviceDrawParams draw_params = ccl::DeviceDrawParams();
 	draw_params.bind_display_space_shader_cb = nullptr;
@@ -722,15 +719,11 @@ void cycles_session_draw(unsigned int client_id, unsigned int session_id, int wi
 	CCSession* ccsess = nullptr;
 	ccl::Session* session = nullptr;
 	if (session_find(session_id, &ccsess, &session)) {
-		ccl::BufferParams session_buf_params;
-		session_buf_params.width = session_buf_params.full_width = width;
-		session_buf_params.height = session_buf_params.full_height = height;
-
-		session->draw(session_buf_params, draw_params);
+		session->draw(ccsess->buffer_params, draw_params);
 	}
 }
 
-void cycles_session_draw_nogl(unsigned int client_id, unsigned int session_id, int width, int height, bool isgpu)
+void cycles_session_draw_nogl(unsigned int client_id, unsigned int session_id, bool isgpu)
 {
 #if 0
 	CCSession* ccsess = nullptr;

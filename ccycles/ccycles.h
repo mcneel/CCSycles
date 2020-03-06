@@ -539,7 +539,7 @@ CCL_CAPI unsigned int __cdecl cycles_session_create(unsigned int client_id, unsi
 CCL_CAPI void __cdecl cycles_session_set_scene(unsigned int client_id, unsigned int session_id, unsigned int scene_id);
 
 /** Reset session. */
-CCL_CAPI void __cdecl cycles_session_reset(unsigned int client_id, unsigned int session_id, unsigned int width, unsigned int height, unsigned int samples);
+CCL_CAPI void __cdecl cycles_session_reset(unsigned int client_id, unsigned int session_id, unsigned int width, unsigned int height, unsigned int samples, unsigned int full_x, unsigned int full_y, unsigned int full_width, unsigned int full_height );
 
 /** Set the status update callback for session. */
 CCL_CAPI void __cdecl cycles_session_set_update_callback(unsigned int client_id, unsigned int session_id, void(*update)(unsigned int sid));
@@ -569,10 +569,10 @@ CCL_CAPI void __cdecl cycles_session_destroy(unsigned int client_id, unsigned in
 CCL_CAPI void __cdecl cycles_session_copy_buffer(unsigned int client_id, unsigned int session_id, float* pixel_buffer);
 /** Get pixel data buffer information of session. */
 CCL_CAPI void __cdecl cycles_session_get_buffer_info(unsigned int client_id, unsigned int session_id, unsigned int* buffer_size, unsigned int* buffer_stride);
-CCL_CAPI void __cdecl cycles_session_draw(unsigned int client_id, unsigned int session_id, int width, int height);
-CCL_CAPI void __cdecl cycles_session_draw_nogl(unsigned int client_id, unsigned int session_id, int width, int height, bool isgpu);
+CCL_CAPI void __cdecl cycles_session_draw(unsigned int client_id, unsigned int session_id);
+CCL_CAPI void __cdecl cycles_session_draw_nogl(unsigned int client_id, unsigned int session_id, bool isgpu);
 /** A (temporary) function to ensure we can draw into a Rhino viewport. */
-CCL_CAPI void __cdecl cycles_session_rhinodraw(unsigned int client_id, unsigned int session_id, int width, int height, float alpha);
+CCL_CAPI void __cdecl cycles_session_rhinodraw(unsigned int client_id, unsigned int session_id, float alpha);
 /** Get pixel data buffer pointer. */
 CCL_CAPI float* __cdecl cycles_session_get_buffer(unsigned int client_id, unsigned int session_id);
 CCL_CAPI void __cdecl cycles_session_prepare_run(unsigned int client_id, unsigned int session_id);

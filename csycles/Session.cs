@@ -229,22 +229,22 @@ namespace ccl
 		/// 
 		/// NOTE: this is currently not working
 		/// </summary>
-		public void Draw(int width, int height)
+		public void Draw()
 		{
 			if (Destroyed) return;
-			CSycles.session_draw(Client.Id, Id, width, height);
+			CSycles.session_draw(Client.Id, Id);
 		}
 
-		public void RhinoDraw(int width, int height, float alpha)
+		public void RhinoDraw(float alpha)
 		{
 			if (Destroyed) return;
-			CSycles.session_rhinodraw(Client.Id, Id, width, height, alpha);
+			CSycles.session_rhinodraw(Client.Id, Id, alpha);
 		}
 
-		public void DrawNogl(int width, int height)
+		public void DrawNogl()
 		{
 			if (Destroyed) return;
-			CSycles.session_draw_nogl(Client.Id, Id, width, height, Scene.Device.IsGpu);
+			CSycles.session_draw_nogl(Client.Id, Id, Scene.Device.IsGpu);
 		}
 
 		/// <summary>
@@ -286,16 +286,16 @@ namespace ccl
 		/// <param name="width">Width of the resolution to reset with</param>
 		/// <param name="height">Height of the resolutin to reset with</param>
 		/// <param name="samples">The amount of samples to reset with</param>
-		public void Reset(uint width, uint height, uint samples)
+		public void Reset(uint width, uint height, uint samples, uint full_x, uint full_y, uint full_width, uint full_height )
 		{
 			if (Destroyed) return;
 			CSycles.progress_reset(Client.Id, Id);
-			CSycles.session_reset(Client.Id, Id, width, height, samples);
+			CSycles.session_reset(Client.Id, Id, width, height, samples, full_x, full_y, full_width, full_height);
 		}
 
-		public void Reset(int width, int height, int samples)
+		public void Reset(int width, int height, int samples, int full_x, int full_y, int full_width, int full_height )
 		{
-			Reset((uint)width, (uint)height, (uint)samples);
+			Reset((uint)width, (uint)height, (uint)samples, (uint)full_x, (uint)full_y, (uint)full_width, (uint)full_height);
 		}
 
 		/// <summary>

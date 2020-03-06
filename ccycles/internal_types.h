@@ -185,6 +185,8 @@ public:
 	int width{ 0 };
 	int height{ 0 };
 
+	ccl::BufferParams buffer_params;
+
 	/* Create a new CCSession, initialise all necessary memory. */
 	static CCSession* create(int width, int height, unsigned int buffer_stride);
 
