@@ -1,4 +1,7 @@
-﻿/**
+﻿
+
+using System;
+/**
 Copyright 2014 Robert McNeel and Associates
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,7 +16,6 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 **/
-
 namespace ccl
 {
 	/// <summary>
@@ -239,6 +241,16 @@ namespace ccl
 		{
 			if (Destroyed) return;
 			CSycles.session_rhinodraw(Client.Id, Id, alpha);
+		}
+
+		public IntPtr GetPixelBuffer()
+		{
+			if (Destroyed) return IntPtr.Zero;
+
+			IntPtr pixel_buffer = IntPtr.Zero;
+			CSycles.session_get_float_buffer(Client.Id, Id, ref pixel_buffer);
+
+			return pixel_buffer;
 		}
 
 		public void DrawNogl()
