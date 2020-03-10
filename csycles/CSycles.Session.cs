@@ -186,9 +186,23 @@ namespace ccl
 		{
 			cycles_session_rhinodraw(clientId, sessionId, alpha);
 		}
-#endregion
 
-#region session parameters
+		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		private static extern void cycles_session_buffer_draw_set(uint clientId, uint sessionId);
+		public static void session_buffer_draw_set(uint clientId, uint sessionId)
+		{
+			cycles_session_buffer_draw_set(clientId, sessionId);
+		}
+
+		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		private static extern void cycles_session_get_float_buffer(uint clientId, uint sessionId, int passType, ref IntPtr pixels);
+		public static void session_get_float_buffer(uint clientId, uint sessionId, PassType passType, ref IntPtr pixels)
+		{
+			cycles_session_get_float_buffer(clientId, sessionId, (int)passType, ref pixels);
+		}
+		#endregion
+
+		#region session parameters
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		private static extern uint cycles_session_params_create(uint clientId, uint deviceId);
 		public static uint session_params_create(uint clientId, uint deviceId)

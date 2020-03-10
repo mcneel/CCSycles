@@ -14,6 +14,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 **/
 
+using System;
+
 namespace ccl
 {
 	/// <summary>
@@ -239,6 +241,22 @@ namespace ccl
 		{
 			if (Destroyed) return;
 			CSycles.session_rhinodraw(Client.Id, Id, alpha);
+		}
+
+		public void BufferDrawSet()
+		{
+			if (Destroyed) return;
+			CSycles.session_buffer_draw_set(Client.Id, Id);
+		}
+
+		public IntPtr GetPixelBuffer(PassType pt)
+		{
+			if (Destroyed) return IntPtr.Zero;
+
+			IntPtr pixel_buffer = IntPtr.Zero;
+			CSycles.session_get_float_buffer(Client.Id, Id, pt, ref pixel_buffer);
+
+			return pixel_buffer;
 		}
 
 		public void DrawNogl()

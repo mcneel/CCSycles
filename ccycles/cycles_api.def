@@ -186,6 +186,8 @@ EXPORTS
   cycles_session_draw
   cycles_session_draw_nogl
   cycles_session_rhinodraw
+  cycles_session_buffer_draw_set
+  cycles_session_get_float_buffer
   cycles_session_prepare_run
   cycles_session_sample
   cycles_session_end_run

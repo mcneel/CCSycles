@@ -710,6 +710,30 @@ void cycles_session_rhinodraw(unsigned int client_id, unsigned int session_id, f
 	}
 }
 
+
+void cycles_session_buffer_draw_set(unsigned int client_id, unsigned int session_id)
+{
+	CCSession* ccsess = nullptr;
+	ccl::Session* session = nullptr;
+	if (session_find(session_id, &ccsess, &session)) {
+		session->display->draw_set(ccsess->buffer_params.width, ccsess->buffer_params.height);
+	}
+}
+
+
+void cycles_session_get_float_buffer(unsigned int client_id, unsigned int session_id, int passtype, float** pixels)
+{
+	ccl::DeviceDrawParams draw_params = ccl::DeviceDrawParams();
+	draw_params.bind_display_space_shader_cb = nullptr;
+	draw_params.unbind_display_space_shader_cb = nullptr;
+
+	CCSession* ccsess = nullptr;
+	ccl::Session* session = nullptr;
+	if (session_find(session_id, &ccsess, &session)) {
+		*pixels = (float*)session->display->prepare_pixels(session->device, draw_params);
+	}
+}
+
 void cycles_session_draw(unsigned int client_id, unsigned int session_id)
 {
 	ccl::DeviceDrawParams draw_params = ccl::DeviceDrawParams();
