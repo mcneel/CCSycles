@@ -243,6 +243,12 @@ namespace ccl
 			CSycles.session_rhinodraw(Client.Id, Id, alpha);
 		}
 
+		public void BufferDrawSet()
+		{
+			if (Destroyed) return;
+			CSycles.session_buffer_draw_set(Client.Id, Id);
+		}
+
 		public IntPtr GetPixelBuffer()
 		{
 			if (Destroyed) return IntPtr.Zero;

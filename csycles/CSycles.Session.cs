@@ -188,6 +188,13 @@ namespace ccl
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		private static extern void cycles_session_buffer_draw_set(uint clientId, uint sessionId);
+		public static void session_buffer_draw_set(uint clientId, uint sessionId)
+		{
+			cycles_session_buffer_draw_set(clientId, sessionId);
+		}
+
+		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		private static extern void cycles_session_get_float_buffer(uint clientId, uint sessionId, ref IntPtr pixels);
 		public static void session_get_float_buffer(uint clientId, uint sessionId, ref IntPtr pixels)
 		{
