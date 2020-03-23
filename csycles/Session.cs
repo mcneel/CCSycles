@@ -249,14 +249,16 @@ namespace ccl
 			CSycles.session_buffer_draw_set(Client.Id, Id);
 		}
 
-		public IntPtr GetPixelBuffer(PassType pt)
+		public void GetPixelBuffer(PassType pt, ref IntPtr pixel_buffer, ref IntPtr normal_buffer, ref IntPtr depth_buffer)
 		{
-			if (Destroyed) return IntPtr.Zero;
-
-			IntPtr pixel_buffer = IntPtr.Zero;
-			CSycles.session_get_float_buffer(Client.Id, Id, pt, ref pixel_buffer);
-
-			return pixel_buffer;
+			if (Destroyed)
+			{
+				pixel_buffer = normal_buffer = depth_buffer = IntPtr.Zero;
+			}
+			else
+			{
+				CSycles.session_get_float_buffer(Client.Id, Id, pt, ref pixel_buffer, ref normal_buffer, ref depth_buffer);
+			}
 		}
 
 		public void DrawNogl()

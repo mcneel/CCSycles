@@ -717,11 +717,13 @@ void cycles_session_buffer_draw_set(unsigned int client_id, unsigned int session
 	ccl::Session* session = nullptr;
 	if (session_find(session_id, &ccsess, &session)) {
 		session->display->draw_set(ccsess->buffer_params.width, ccsess->buffer_params.height);
+		session->normal->draw_set(ccsess->buffer_params.width, ccsess->buffer_params.height);
+		session->depth->draw_set(ccsess->buffer_params.width, ccsess->buffer_params.height);
 	}
 }
 
 
-void cycles_session_get_float_buffer(unsigned int client_id, unsigned int session_id, int passtype, float** pixels)
+void cycles_session_get_float_buffer(unsigned int client_id, unsigned int session_id, int passtype, float** pixels, float** normals, float** depth)
 {
 	ccl::DeviceDrawParams draw_params = ccl::DeviceDrawParams();
 	draw_params.bind_display_space_shader_cb = nullptr;
@@ -731,6 +733,8 @@ void cycles_session_get_float_buffer(unsigned int client_id, unsigned int sessio
 	ccl::Session* session = nullptr;
 	if (session_find(session_id, &ccsess, &session)) {
 		*pixels = (float*)session->display->prepare_pixels(session->device, draw_params);
+		*normals = (float*)session->normal->prepare_pixels(session->device, draw_params);
+		*depth = (float*)session->depth->prepare_pixels(session->device, draw_params);
 	}
 }
 

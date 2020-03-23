@@ -195,10 +195,10 @@ namespace ccl
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_session_get_float_buffer(uint clientId, uint sessionId, int passType, ref IntPtr pixels);
-		public static void session_get_float_buffer(uint clientId, uint sessionId, PassType passType, ref IntPtr pixels)
+		private static extern void cycles_session_get_float_buffer(uint clientId, uint sessionId, int passType, ref IntPtr pixels, ref IntPtr normals, ref IntPtr depth);
+		public static void session_get_float_buffer(uint clientId, uint sessionId, PassType passType, ref IntPtr pixels, ref IntPtr normals, ref IntPtr depth)
 		{
-			cycles_session_get_float_buffer(clientId, sessionId, (int)passType, ref pixels);
+			cycles_session_get_float_buffer(clientId, sessionId, (int)passType, ref pixels , ref normals, ref depth);
 		}
 		#endregion
 

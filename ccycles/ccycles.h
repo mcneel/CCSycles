@@ -574,7 +574,7 @@ CCL_CAPI void __cdecl cycles_session_draw_nogl(unsigned int client_id, unsigned 
 /** A (temporary) function to ensure we can draw into a Rhino viewport. */
 CCL_CAPI void __cdecl cycles_session_rhinodraw(unsigned int client_id, unsigned int session_id, float alpha);
 CCL_CAPI void __cdecl cycles_session_buffer_draw_set(unsigned int client_id, unsigned int session_id);
-CCL_CAPI void __cdecl cycles_session_get_float_buffer(unsigned int client_id, unsigned int session_id, int passtype, float** pixels);
+CCL_CAPI void __cdecl cycles_session_get_float_buffer(unsigned int client_id, unsigned int session_id, int passtype, float** pixels, float** normals, float** depth);
 /** Get pixel data buffer pointer. */
 CCL_CAPI float* __cdecl cycles_session_get_buffer(unsigned int client_id, unsigned int session_id);
 CCL_CAPI void __cdecl cycles_session_prepare_run(unsigned int client_id, unsigned int session_id);
