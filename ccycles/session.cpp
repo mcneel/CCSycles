@@ -281,7 +281,6 @@ void cycles_session_set_scene(unsigned int client_id, unsigned int session_id, u
 
 void cycles_session_destroy(unsigned int client_id, unsigned int session_id)
 {
-#if 0
 	CCSession* ccsess = nullptr;
 	ccl::Session* session = nullptr;
 	if (session_find(session_id, &ccsess, &session)) {
@@ -293,7 +292,6 @@ void cycles_session_destroy(unsigned int client_id, unsigned int session_id)
 
 		sessions[session_id] = nullptr;
 	}
-#endif
 }
 
 static ccl::vector<ccl::Pass> _passes;
