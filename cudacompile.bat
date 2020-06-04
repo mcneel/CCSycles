@@ -8,8 +8,8 @@ SET _oldarch=0
 ECHO HAVE %sm%
 IF (%sm%) EQU (sm_20) SET _oldarch=1
 IF (%sm%) EQU (sm_21) SET _oldarch=1
-IF (%sm%) EQU (sm_30) SET _oldarch=1
-IF (%sm%) EQU (sm_35) SET _oldarch=1
+REM IF (%sm%) EQU (sm_30) SET _oldarch=1
+REM IF (%sm%) EQU (sm_35) SET _oldarch=1
 
 IF %_oldarch% EQU 1 (
 	ECHO Compiling for a pre CUDA10 architecture
