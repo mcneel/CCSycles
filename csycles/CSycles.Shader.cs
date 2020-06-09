@@ -177,32 +177,34 @@ namespace ccl
 
 		[DllImport(Constants.ccycles, SetLastError = false, CharSet = CharSet.Ansi,
 			CallingConvention = CallingConvention.Cdecl)]
-		private unsafe static extern void cycles_shadernode_set_member_float_img(uint clientId, uint sceneId, uint shaderId, uint shadernodeId, uint shnType, string name, string  imgName, float* img, uint width, uint height, uint depth, uint channels);
+		private static extern void cycles_shadernode_set_member_float_img(uint clientId, uint sceneId, uint shaderId, uint shadernodeId, uint shnType, string name, string  imgName, IntPtr img, uint width, uint height, uint depth, uint channels);
 		public static void shadernode_set_member_float_img(uint clientId, uint sceneId, uint shaderId, uint shadernodeId, ShaderNodeType shnType,
-			[MarshalAs(UnmanagedType.LPStr)] string name, [MarshalAs(UnmanagedType.LPStr)] string imgName, ref float[] img, uint width, uint height, uint depth, uint channels)
+			[MarshalAs(UnmanagedType.LPStr)] string name, [MarshalAs(UnmanagedType.LPStr)] string imgName, IntPtr img, uint width, uint height, uint depth, uint channels)
 		{
-			unsafe
-			{
-				fixed (float* pimg = img)
-				{
-					cycles_shadernode_set_member_float_img(clientId, sceneId, shaderId, shadernodeId, (uint)shnType, name, imgName, pimg, width, height, depth, channels);
-				}
-			}
+			cycles_shadernode_set_member_float_img(clientId, sceneId, shaderId, shadernodeId, (uint)shnType, name, imgName, img, width, height, depth, channels);
+		}
+
+		[DllImport(Constants.ccycles, SetLastError = false, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+		private static extern void cycles_apply_gamma_to_byte_buffer(IntPtr rgba_buffer, int size_in_bytes, float gamma);
+		public static void apply_gamma_to_byte_buffer(IntPtr rgba_buffer, int size_in_bytes, float gamma)
+		{
+			cycles_apply_gamma_to_byte_buffer(rgba_buffer, size_in_bytes, gamma);
+		}
+
+		[DllImport(Constants.ccycles, SetLastError = false, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+		private static extern void cycles_apply_gamma_to_float_buffer(IntPtr rgba_buffer, int size_in_bytes, float gamma);
+		public static void apply_gamma_to_float_buffer(IntPtr rgba_buffer, int size_in_bytes, float gamma)
+		{
+			cycles_apply_gamma_to_float_buffer(rgba_buffer, size_in_bytes, gamma);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CharSet = CharSet.Ansi,
 			CallingConvention = CallingConvention.Cdecl)]
-		private unsafe static extern void cycles_shadernode_set_member_byte_img(uint clientId, uint sceneId, uint shaderId, uint shadernodeId, uint shnType, string name, string  imgName, byte* img, uint width, uint height, uint depth, uint channels);
+		private static extern void cycles_shadernode_set_member_byte_img(uint clientId, uint sceneId, uint shaderId, uint shadernodeId, uint shnType, string name, string  imgName, IntPtr img, uint width, uint height, uint depth, uint channels);
 		public static void shadernode_set_member_byte_img(uint clientId, uint sceneId, uint shaderId, uint shadernodeId, ShaderNodeType shnType,
-			[MarshalAs(UnmanagedType.LPStr)] string name, [MarshalAs(UnmanagedType.LPStr)] string imgName, ref byte[] img, uint width, uint height, uint depth, uint channels)
+			[MarshalAs(UnmanagedType.LPStr)] string name, [MarshalAs(UnmanagedType.LPStr)] string imgName, IntPtr img, uint width, uint height, uint depth, uint channels)
 		{
-			unsafe
-			{
-				fixed (byte* pimg = img)
-				{
-					cycles_shadernode_set_member_byte_img(clientId, sceneId, shaderId, shadernodeId, (uint)shnType, name, imgName, pimg, width, height, depth, channels);
-				}
-			}
+			cycles_shadernode_set_member_byte_img(clientId, sceneId, shaderId, shadernodeId, (uint)shnType, name, imgName, img, width, height, depth, channels);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CharSet = CharSet.Ansi,

@@ -809,6 +809,9 @@ CCL_CAPI void __cdecl cycles_tfm_inverse(const ccl::Transform& t, ccl::Transform
 CCL_CAPI void __cdecl cycles_tfm_lookat(const ccl::float3& position, const ccl::float3& look, const ccl::float3& up, ccl::Transform& res);
 CCL_CAPI void __cdecl cycles_tfm_rotate_around_axis(float angle, const ccl::float3& axis, ccl::Transform& res);
 
+CCL_CAPI void __cdecl cycles_apply_gamma_to_byte_buffer(unsigned char* rgba_buffer, size_t size_in_bytes, float gamma);
+CCL_CAPI void __cdecl cycles_apply_gamma_to_float_buffer(float* rgba_buffer, size_t size_in_bytes, float gamma);
+
 #ifdef __cplusplus
 }
 #endif

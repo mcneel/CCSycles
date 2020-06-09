@@ -259,3 +259,6 @@ EXPORTS
   cycles_tfm_inverse
   cycles_tfm_lookat
   cycles_tfm_rotate_around_axis
+
+  cycles_apply_gamma_to_byte_buffer
+  cycles_apply_gamma_to_float_buffer

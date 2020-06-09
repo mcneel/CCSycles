@@ -44,17 +44,6 @@ void _cleanup_shaders()
 
 void _cleanup_images()
 {
-	/*for (CCImage* img : images) {
-		if (img == nullptr) continue;
-
-		if (img->is_float)
-			delete (float*)img->builtin_data;
-		else
-			delete (unsigned char*)img->builtin_data;
-		img->builtin_data = nullptr;
-
-		delete img;
-	}*/
 	images.clear();
 }
 
@@ -873,9 +862,7 @@ CCImage* get_ccimage(std::string imgname, T* img, unsigned int width, unsigned i
 	CCImage* existing_image = find_existing_ccimage(imgname, width, height, depth, channels, is_float);
 	CCImage* nimg = existing_image ? existing_image : new CCImage();
 	if (!existing_image) {
-		T* imgdata = new T[width * height * channels * depth];
-		memcpy(imgdata, img, sizeof(T) * width * height * channels * depth);
-		nimg->builtin_data = imgdata;
+		nimg->builtin_data = img;
 		nimg->filename = imgname;
 		nimg->width = (int)width;
 		nimg->height = (int)height;
@@ -885,7 +872,7 @@ CCImage* get_ccimage(std::string imgname, T* img, unsigned int width, unsigned i
 		images.push_back(nimg);
 	}
 	else {
-		memcpy(existing_image->builtin_data, img, sizeof(T) * width * height * channels * depth);
+		existing_image->builtin_data = img;
 	}
 
 
@@ -1335,5 +1322,48 @@ void cycles_shader_connect_nodes(unsigned int client_id, unsigned int shader_id,
 	logger.logit(client_id, "Shader ", shader_id, " :: ", from_id, ":", from, " -> ", to_id, ":", to);
 
 	sh->graph->connect((*shfrom)->output(from), (*shto)->input(to));
+}
+
+
+
+
+
+void cycles_apply_gamma_to_byte_buffer(unsigned char* rgba_buffer, size_t size_in_bytes, float gamma)
+{
+	ccl::uchar4* colbuf = (ccl::uchar4*)rgba_buffer;
+
+	const int pixel_count = size_in_bytes / sizeof(ccl::uchar4);
+
+#pragma omp parallel for
+	for (int i = 0; i < pixel_count; i++)
+	{
+		const auto red   = powf(colbuf[i].x / 255.f, gamma);
+		const auto green = powf(colbuf[i].y / 255.f, gamma);
+		const auto blue  = powf(colbuf[i].z / 255.f, gamma);
+
+		colbuf[i].x = (unsigned char)(red * 255.f);
+		colbuf[i].y = (unsigned char)(green * 255.f);
+		colbuf[i].z = (unsigned char)(blue * 255.f);
+	}
+}
+
+
+void cycles_apply_gamma_to_float_buffer(float* rgba_buffer, size_t size_in_bytes, float gamma)
+{
+	ccl::float4* colbuf = (ccl::float4*)rgba_buffer;
+
+	const int pixel_count = size_in_bytes / sizeof(ccl::float4);
+
+#pragma omp parallel for
+	for (int i = 0; i < pixel_count; i++)
+	{
+		const auto red   = powf(colbuf[i].x, gamma);
+		const auto green = powf(colbuf[i].y, gamma);
+		const auto blue  = powf(colbuf[i].z, gamma);
+
+		colbuf[i].x = red;
+		colbuf[i].y = green;
+		colbuf[i].z = blue;
+	}
 }
 

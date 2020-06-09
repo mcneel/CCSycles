@@ -117,15 +117,13 @@ namespace ccl.ShaderNodes
 			base.SetDirectMembers(clientId, sceneId, shaderId);
 
 			CSycles.shadernode_set_member_bool(clientId, shaderId, Id, Type, "is_linear", IsLinear);
-			if (FloatImage != null)
+			if (FloatImagePtr != IntPtr.Zero)
 			{
-				var flimg = FloatImage;
-				CSycles.shadernode_set_member_float_img(clientId, sceneId, shaderId, Id, Type, "builtin-data", Filename ?? String.Format("{0}-{0}-{0}", clientId, shaderId, Id), ref flimg, Width, Height, 1, 4);
+				CSycles.shadernode_set_member_float_img(clientId, sceneId, shaderId, Id, Type, "builtin-data", Filename ?? String.Format("{0}-{0}-{0}", clientId, shaderId, Id), FloatImagePtr, Width, Height, 1, 4);
 			}
-			else if (ByteImage != null)
+			else if (ByteImagePtr != IntPtr.Zero)
 			{
-				var bimg = ByteImage;
-				CSycles.shadernode_set_member_byte_img(clientId, sceneId, shaderId, Id, Type, "builtin-data", Filename ?? String.Format("{0}-{0}-{0}", clientId, shaderId, Id), ref bimg, Width, Height, 1, 4);
+				CSycles.shadernode_set_member_byte_img(clientId, sceneId, shaderId, Id, Type, "builtin-data", Filename ?? String.Format("{0}-{0}-{0}", clientId, shaderId, Id), ByteImagePtr, Width, Height, 1, 4);
 			}
 		}
 

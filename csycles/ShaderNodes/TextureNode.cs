@@ -130,10 +130,12 @@ namespace ccl.ShaderNodes
 		/// Get or set the float data for image. Use for HDR images
 		/// </summary>
 		public float[] FloatImage { set; get; }
+		public IntPtr FloatImagePtr { set; get; } = IntPtr.Zero;
 		/// <summary>
 		/// Get or set the byte data for image
 		/// </summary>
 		public byte[] ByteImage { set; get; }
+		public IntPtr ByteImagePtr { set; get; } = IntPtr.Zero;
 		/// <summary>
 		/// Get or set image resolution width
 		/// </summary>
