@@ -226,79 +226,18 @@ namespace ccl
 			Destroyed = true;
 		}
 
-		/// <summary>
-		/// Call the display drawing function.
-		/// 
-		/// NOTE: this is currently not working
-		/// </summary>
-		public void Draw()
-		{
-			if (Destroyed) return;
-			CSycles.session_draw(Client.Id, Id);
-		}
-
-		public void RhinoDraw(float alpha)
-		{
-			if (Destroyed) return;
-			CSycles.session_rhinodraw(Client.Id, Id, alpha);
-		}
-
-		public void BufferDrawSet()
-		{
-			if (Destroyed) return;
-			CSycles.session_buffer_draw_set(Client.Id, Id);
-		}
-
-		public void GetPixelBuffer(PassType pt, ref IntPtr pixel_buffer, ref IntPtr normal_buffer, ref IntPtr depth_buffer)
+		public void GetPixelBuffer(PassType pt, ref IntPtr pixel_buffer, ref IntPtr normal_buffer, ref IntPtr depth_buffer, ref IntPtr albedo_buffer)
 		{
 			if (Destroyed)
 			{
-				pixel_buffer = normal_buffer = depth_buffer = IntPtr.Zero;
+				pixel_buffer = normal_buffer = depth_buffer = albedo_buffer = IntPtr.Zero;
 			}
 			else
 			{
-				CSycles.session_get_float_buffer(Client.Id, Id, pt, ref pixel_buffer, ref normal_buffer, ref depth_buffer);
+				CSycles.session_get_float_buffer(Client.Id, Id, pt, ref pixel_buffer, ref normal_buffer, ref depth_buffer, ref albedo_buffer);
 			}
 		}
 
-		public void DrawNogl()
-		{
-			if (Destroyed) return;
-			CSycles.session_draw_nogl(Client.Id, Id, Scene.Device.IsGpu);
-		}
-
-		/// <summary>
-		/// Copy the ccycles API level session buffer through CSycles into this Session.
-		/// 
-		/// TODO: implement a way to do partial updates
-		/// </summary>
-		/// <returns></returns>
-		public float[] CopyBuffer()
-		{
-			if (Destroyed) return null;
-			uint bufStride = 0;
-			uint bufSize = 0;
-
-			BufferInfo(out bufSize, out bufStride);
-
-			return CSycles.session_copy_buffer(Client.Id, Id, bufSize);
-		}
-
-		/// <summary>
-		/// Retrieve the buffer information for this Session
-		/// </summary>
-		/// <param name="bufferSize">Contains the buffer size in floats</param>
-		/// <param name="bufferStride">Contains the stride to use in the buffer</param>
-		public void BufferInfo(out uint bufferSize, out uint bufferStride) 
-		{
-			if (Destroyed)
-			{
-				bufferSize = 0;
-				bufferStride = 0;
-				return;
-			}
-			CSycles.session_get_buffer_info(Client.Id, Id, out bufferSize, out bufferStride);
-		}
 
 		/// <summary>
 		/// Reset a Session
@@ -343,6 +282,26 @@ namespace ccl
 		{
 			if (Destroyed) return;
 			CSycles.session_set_samples(Client.Id, Id, samples);
+		}
+
+		/// <summary>
+		/// Add given pass to output layers
+		/// </summary>
+		/// <param name="pass"></param>
+		public void AddPass(PassType pass)
+		{
+			if (Destroyed) return;
+			CSycles.session_add_pass(Client.Id, Id, pass);
+		}
+
+		/// <summary>
+		/// Clear all passes for session. Note, will always add Combined pass back
+		/// </summary>
+		public void ClearPasses()
+		{
+			if (Destroyed) return;
+			CSycles.session_clear_passes(Client.Id, Id);
+			CSycles.session_add_pass(Client.Id, Id, PassType.Combined);
 		}
 	}
 }

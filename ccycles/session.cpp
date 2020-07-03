@@ -31,6 +31,7 @@ std::vector<TEST_CANCEL_CB> cancel_cbs;
 std::vector<RENDER_TILE_CB> update_cbs;
 std::vector<RENDER_TILE_CB> write_cbs;
 std::vector<DISPLAY_UPDATE_CB> display_update_cbs;
+std::vector<ccl::vector<ccl::Pass>*> passes_vec;
 
 static ccl::thread_mutex session_mutex;
 
@@ -60,50 +61,6 @@ void CCSession::test_cancel(void) {
 	}
 }
 
-/* floats per pixel (rgba). */
-const int stride{ 4 };
-
-/* copy the pixel buffer from RenderTile to the final pixel buffer in CCSession. */
-void copy_pixels_to_ccsession(CCSession* se, ccl::RenderTile &tile) {
-
-	ccl::RenderBuffers* buffers = tile.buffers;
-	/* always do copy_from_device(). This is necessary when rendering is done
-	 * on i.e. GPU or network node.
-	 */
-	buffers->copy_from_device();
-	ccl::BufferParams& params = buffers->params;
-
-	/* have a local float buffer to copy tile buffer to. */
-	std::vector<float> pixels(params.width*params.height * stride, 0.5f);
-
-	int scewidth = params.full_width;
-	int sceheight = params.full_height;
-
-	int tilex = params.full_x - se->session->tile_manager.params.full_x;
-	int tiley = params.full_y - se->session->tile_manager.params.full_y;
-
-	/* Copy the tile buffer to pixels. */
-	if (!buffers->get_pass_rect("combined", 1.0f, tile.sample, stride, &pixels[0])) {
-		return;
-	}
-
-	/* Copy pixels to final image buffer. */
-	for (int y = 0; y < params.height; y++) {
-		for (int x = 0; x < params.width; x++) {
-			/* from tile pixels coord. */
-			int tileidx = y * params.width * stride + x * stride;
-			/* to full image pixels coord. */
-			int fullimgidx = (sceheight - (tiley + y) - 1) * scewidth * stride + (tilex + x) * stride;
-
-			/* copy the tile pixels from pixels into session final pixel buffer. */
-			se->pixels[fullimgidx + 0] = pixels[tileidx + 0];
-			se->pixels[fullimgidx + 1] = pixels[tileidx + 1];
-			se->pixels[fullimgidx + 2] = pixels[tileidx + 2];
-			se->pixels[fullimgidx + 3] = pixels[tileidx + 3];
-		}
-	}
-}
-
 /* Wrapper callback for render tile update. Copies tile result into session full image buffer. */
 void CCSession::update_render_tile(ccl::RenderTile &tile, bool highlight)
 {
@@ -119,7 +76,6 @@ void CCSession::write_render_tile(ccl::RenderTile &tile)
 {
 	ccl::thread_scoped_lock pixels_lock(pixels_mutex);
 	if (size_has_changed()) return;
-	//copy_pixels_to_ccsession(session, tile);
 
 	ccl::RenderBuffers* buffers = tile.buffers;
 	ccl::BufferParams& params = buffers->params;
@@ -249,6 +205,7 @@ unsigned int cycles_session_create(unsigned int client_id, unsigned int session_
 		update_cbs.push_back(nullptr);
 		write_cbs.push_back(nullptr);
 		display_update_cbs.push_back(nullptr);
+		passes_vec.push_back(new ccl::vector<ccl::Pass>());
 	}
 	else {
 		sessions[csesid] = session;
@@ -256,6 +213,7 @@ unsigned int cycles_session_create(unsigned int client_id, unsigned int session_
 		update_cbs[csesid] = nullptr;
 		write_cbs[csesid] = nullptr;
 		display_update_cbs[csesid] = nullptr;
+		passes_vec[csesid]->clear();
 	}
 
 
@@ -294,31 +252,47 @@ void cycles_session_destroy(unsigned int client_id, unsigned int session_id)
 	}
 }
 
-static ccl::vector<ccl::Pass> _passes;
-ccl::vector<ccl::Pass>& get_passes() {
-	ccl::Pass::add(ccl::PASS_COMBINED, _passes, "combined");
-	ccl::Pass::add(ccl::PASS_DEPTH, _passes, "depth");
-	ccl::Pass::add(ccl::PASS_NORMAL, _passes, "normal");
-	/*ccl::Pass::add(ccl::PASS_DIFFUSE_INDIRECT, _passes);
-	ccl::Pass::add(ccl::PASS_UV, _passes);
-	ccl::Pass::add(ccl::PASS_AO, _passes);
-	ccl::Pass::add(ccl::PASS_OBJECT_ID, _passes);
-	ccl::Pass::add(ccl::PASS_MATERIAL_ID, _passes);
-	ccl::Pass::add(ccl::PASS_DIFFUSE_COLOR, _passes);
-	ccl::Pass::add(ccl::PASS_DIFFUSE_DIRECT, _passes);
-	ccl::Pass::add(ccl::PASS_DIFFUSE_INDIRECT, _passes);
-	ccl::Pass::add(ccl::PASS_GLOSSY_COLOR, _passes);
-	ccl::Pass::add(ccl::PASS_GLOSSY_DIRECT, _passes);
-	ccl::Pass::add(ccl::PASS_GLOSSY_INDIRECT, _passes);
-	ccl::Pass::add(ccl::PASS_EMISSION, _passes);
-	ccl::Pass::add(ccl::PASS_TRANSMISSION_COLOR, _passes);
-	ccl::Pass::add(ccl::PASS_TRANSMISSION_DIRECT, _passes);
-	ccl::Pass::add(ccl::PASS_TRANSMISSION_INDIRECT, _passes);
-	ccl::Pass::add(ccl::PASS_SUBSURFACE_COLOR, _passes);
-	ccl::Pass::add(ccl::PASS_SUBSURFACE_DIRECT, _passes);
-	ccl::Pass::add(ccl::PASS_SUBSURFACE_INDIRECT, _passes);
-	ccl::Pass::add(ccl::PASS_SHADOW, _passes);*/
-	return _passes;
+ccl::vector<ccl::Pass>& get_passes(unsigned int session_id) {
+	ccl::vector<ccl::Pass>* passes = passes_vec[session_id];
+
+	return *passes;
+}
+
+void cycles_session_clear_passes(unsigned int client_id, unsigned int session_id)
+{
+	ccl::vector<ccl::Pass>& passes = get_passes(session_id);
+	passes.clear();
+}
+
+void cycles_session_add_pass(unsigned int client_id, unsigned int session_id, int pass_id)
+{
+	ccl::PassType passtype = (ccl::PassType)pass_id;
+	ccl::vector<ccl::Pass>& passes = get_passes(session_id);
+	switch (passtype) {
+		case ccl::PASS_COMBINED:
+			ccl::Pass::add(passtype, passes, "Combined");
+			break;
+		case ccl::PASS_DEPTH:
+			ccl::Pass::add(passtype, passes, "Depth");
+			break;
+		case ccl::PASS_NORMAL:
+			ccl::Pass::add(passtype, passes, "Normal");
+			break;
+		case ccl::PASS_DIFFUSE_COLOR:
+			ccl::Pass::add(passtype, passes, "DiffCol");
+			break;
+		case ccl::PASS_OBJECT_ID:
+			ccl::Pass::add(passtype, passes, "IndexOB");
+			break;
+		case ccl::PASS_MATERIAL_ID:
+			ccl::Pass::add(passtype, passes, "IndexMA");
+			break;
+		case ccl::PASS_UV:
+			ccl::Pass::add(passtype, passes, "UV");
+			break;
+		default:
+			break;
+	}
 }
 
 
@@ -337,7 +311,7 @@ void cycles_session_reset(unsigned int client_id, unsigned int session_id, unsig
 		ccsess->buffer_params.width = width;
 		ccsess->buffer_params.height = height;
 
-		ccl::vector<ccl::Pass>& passes = get_passes();
+		ccl::vector<ccl::Pass>& passes = get_passes(session_id);
 
 		session->scene->film->tag_passes_update(session->scene, passes);
 		session->scene->film->display_pass = ccl::PassType::PASS_COMBINED;
@@ -563,116 +537,7 @@ void cycles_session_copy_buffer(unsigned int client_id, unsigned int session_id,
 	}
 }
 
-bool initialize_shader_program(GLuint& program)
-{
-#include "vshader.h"
-#include "fshader.h"
-
-	if (glewInit() != GLEW_OK) {
-		return false;
-	}
-
-	GLuint vs = glCreateShader(GL_VERTEX_SHADER);
-	glShaderSource(vs, 1, &vs_src, nullptr);
-	glCompileShader(vs);
-
-#ifdef _DEBUG
-	{
-		GLint log_length;
-		glGetShaderiv(vs, GL_INFO_LOG_LENGTH, &log_length);
-
-		if (log_length > 0)
-		{
-			std::string log;
-			log.reserve(log_length);
-
-			glGetShaderInfoLog(vs, log_length, nullptr, (GLchar*)log.c_str());
-			OutputDebugStringA(log.c_str());
-			assert(false);
-		}
-	}
-#endif
-
-	GLint success = GL_FALSE;
-	glGetShaderiv(vs, GL_COMPILE_STATUS, &success);
-
-	if (success == GL_FALSE)
-	{
-		glDeleteShader(vs);
-		assert(false);
-		return false;
-	}
-
-	GLuint fs = glCreateShader(GL_FRAGMENT_SHADER);
-	glShaderSource(fs, 1, &fs_src, nullptr);
-	glCompileShader(fs);
-
-#ifdef _DEBUG
-	{
-		GLint log_length;
-		glGetShaderiv(fs, GL_INFO_LOG_LENGTH, &log_length);
-
-		if (log_length > 0)
-		{
-			std::string log;
-			log.reserve(log_length);
-
-			glGetShaderInfoLog(fs, log_length, nullptr, (GLchar*)log.c_str());
-			OutputDebugStringA(log.c_str());
-			assert(false);
-		}
-	}
-#endif
-
-	success = GL_FALSE;
-	glGetShaderiv(fs, GL_COMPILE_STATUS, &success);
-
-	if (success == GL_FALSE)
-	{
-		glDeleteShader(vs);
-		glDeleteShader(fs);
-		assert(false);
-		return false;
-	}
-
-	program = glCreateProgram();
-	glAttachShader(program, vs);
-	glAttachShader(program, fs);
-	glLinkProgram(program);
-
-#ifdef _DEBUG
-	{
-		GLint log_length;
-		glGetProgramiv(program, GL_INFO_LOG_LENGTH, &log_length);
-
-		if (log_length > 0)
-		{
-			std::string log;
-			log.reserve(log_length);
-
-			glGetProgramInfoLog(program, log_length, nullptr, (GLchar*)log.c_str());
-			OutputDebugStringA(log.c_str());
-			assert(false);
-		}
-	}
-#endif
-
-	glDeleteShader(vs);
-	glDeleteShader(fs);
-
-	success = GL_FALSE;
-	glGetProgramiv(program, GL_LINK_STATUS, &success);
-
-	if (success == GL_FALSE)
-	{
-		assert(false);
-		return false;
-	}
-
-	return true;
-}
-
-void cycles_session_rhinodraw(unsigned int client_id, unsigned int session_id, float alpha)
+void cycles_session_get_float_buffer(unsigned int client_id, unsigned int session_id, int passtype, float** pixels, float** normals, float** depth, float** albedo)
 {
 	ccl::DeviceDrawParams draw_params = ccl::DeviceDrawParams();
 	draw_params.bind_display_space_shader_cb = nullptr;
@@ -681,92 +546,19 @@ void cycles_session_rhinodraw(unsigned int client_id, unsigned int session_id, f
 	CCSession* ccsess = nullptr;
 	ccl::Session* session = nullptr;
 	if (session_find(session_id, &ccsess, &session)) {
-
-		if (ccsess->program == 0) {
-			if (!initialize_shader_program(ccsess->program)) return;
+		if (ccl::Pass::contains(ccsess->buffer_params.passes, ccl::PassType::PASS_COMBINED)) {
+			*pixels = (float*)session->display->prepare_pixels(session->device, draw_params);
 		}
-
-		draw_params.program = ccsess->program;
-		draw_params.alpha = alpha;
-
-		glUseProgram(ccsess->program);
-
-		bool depthEnabled = glIsEnabled(GL_DEPTH_TEST);
-		if (depthEnabled) {
-			glDisable(GL_DEPTH_TEST);
+		if (ccl::Pass::contains(ccsess->buffer_params.passes, ccl::PassType::PASS_NORMAL)) {
+			*normals = (float*)session->normal->prepare_pixels(session->device, draw_params);
 		}
-
-		// let Cycles draw
-		session->draw(ccsess->buffer_params, draw_params);
-		if (depthEnabled)
-		{
-			glEnable(GL_DEPTH_TEST);
+		if (ccl::Pass::contains(ccsess->buffer_params.passes, ccl::PassType::PASS_DEPTH)) {
+			*depth = (float*)session->depth->prepare_pixels(session->device, draw_params);
 		}
-
-		glUseProgram(0);
-
+		if (ccl::Pass::contains(ccsess->buffer_params.passes, ccl::PassType::PASS_DIFFUSE_COLOR)) {
+			*albedo = (float*)session->albedo->prepare_pixels(session->device, draw_params);
+		}
 	}
-}
-
-
-void cycles_session_buffer_draw_set(unsigned int client_id, unsigned int session_id)
-{
-	CCSession* ccsess = nullptr;
-	ccl::Session* session = nullptr;
-	if (session_find(session_id, &ccsess, &session)) {
-		session->display->draw_set(ccsess->buffer_params.width, ccsess->buffer_params.height);
-		session->normal->draw_set(ccsess->buffer_params.width, ccsess->buffer_params.height);
-		session->depth->draw_set(ccsess->buffer_params.width, ccsess->buffer_params.height);
-	}
-}
-
-
-void cycles_session_get_float_buffer(unsigned int client_id, unsigned int session_id, int passtype, float** pixels, float** normals, float** depth)
-{
-	ccl::DeviceDrawParams draw_params = ccl::DeviceDrawParams();
-	draw_params.bind_display_space_shader_cb = nullptr;
-	draw_params.unbind_display_space_shader_cb = nullptr;
-
-	CCSession* ccsess = nullptr;
-	ccl::Session* session = nullptr;
-	if (session_find(session_id, &ccsess, &session)) {
-		*pixels = (float*)session->display->prepare_pixels(session->device, draw_params);
-		*normals = (float*)session->normal->prepare_pixels(session->device, draw_params);
-		*depth = (float*)session->depth->prepare_pixels(session->device, draw_params);
-	}
-}
-
-void cycles_session_draw(unsigned int client_id, unsigned int session_id)
-{
-	ccl::DeviceDrawParams draw_params = ccl::DeviceDrawParams();
-	draw_params.bind_display_space_shader_cb = nullptr;
-	draw_params.unbind_display_space_shader_cb = nullptr;
-
-	CCSession* ccsess = nullptr;
-	ccl::Session* session = nullptr;
-	if (session_find(session_id, &ccsess, &session)) {
-		session->draw(ccsess->buffer_params, draw_params);
-	}
-}
-
-void cycles_session_draw_nogl(unsigned int client_id, unsigned int session_id, bool isgpu)
-{
-#if 0
-	CCSession* ccsess = nullptr;
-	ccl::Session* session = nullptr;
-	if (session_find(session_id, &ccsess, &session)) {
-		// lock moved to initial callback invocation
-		//ccl::thread_scoped_lock pixels_lock(ccsess->pixels_mutex);
-		if (!ccsess->pixels || ccsess->size_has_changed()) return;
-		ccl::BufferParams session_buf_params;
-		ccl::DeviceDrawParams draw_params;
-		session_buf_params.width = session_buf_params.full_width = width;
-		session_buf_params.height = session_buf_params.full_height = height;
-		if (isgpu)
-			session->draw(session_buf_params, draw_params);
-		session->display->get_pixels(session->device, ccsess->pixels);
-	}
-#endif
 }
 
 void cycles_progress_reset(unsigned int client_id, unsigned int session_id)

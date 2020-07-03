@@ -14,6 +14,20 @@ namespace ccl
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		private static extern void cycles_session_add_pass(uint client_id, uint session_id, int pass_id);
+		public static void session_add_pass(uint client_id, uint session_id, PassType pass_id)
+		{
+			cycles_session_add_pass(client_id, session_id, (int)pass_id);
+		}
+
+		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		private static extern void cycles_session_clear_passes(uint client_id, uint session_id);
+		public static void session_clear_passes(uint client_id, uint session_id)
+		{
+			cycles_session_clear_passes(client_id, session_id);
+		}
+
+		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		private static extern uint cycles_session_create(uint clientId, uint sessionParamsId);
 		public static uint session_create(uint clientId, uint sessionParamsId)
 		{
@@ -32,33 +46,6 @@ namespace ccl
 		public static uint session_destroy(uint clientId, uint sceneId)
 		{
 			return cycles_session_destroy(clientId, sceneId);
-		}
-
-		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_session_copy_buffer(uint clientId, uint sessionId, [In, Out] IntPtr buffer);
-		public static float[] session_copy_buffer(uint clientId, uint sessionId, uint bufferSize)
-		{
-			var alloc_mem = Marshal.AllocHGlobal((int)bufferSize * sizeof(float));
-			var to_return = new float[bufferSize];
-			cycles_session_copy_buffer(clientId, sessionId, alloc_mem);
-			Marshal.Copy(alloc_mem, to_return, 0, (int)bufferSize);
-
-			Marshal.FreeHGlobal(alloc_mem);
-			return to_return;
-		}
-
-		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern IntPtr cycles_session_get_buffer(uint clientId, uint sessionId);
-		public static IntPtr session_get_buffer(uint clientId, uint sessionId)
-		{
-			return cycles_session_get_buffer(clientId, sessionId);
-		}
-
-		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_session_get_buffer_info(uint clientId, uint sessionId, [Out] out uint bufferSize, [Out] out uint bufferStride);
-		public static void session_get_buffer_info(uint clientId, uint sessionId, out uint bufferSize, out uint bufferStride)
-		{
-			cycles_session_get_buffer_info(clientId, sessionId, out bufferSize, out bufferStride);
 		}
 
 		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
@@ -160,6 +147,7 @@ namespace ccl
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Globalization", "CA2101:Specify marshaling for P/Invoke string arguments", Justification = "Using simple c string")]
 		private static extern void cycles_session_cancel(uint clientId, uint sessionId, [MarshalAs(UnmanagedType.LPStr)] string cancelMessage);
 		public static void session_cancel(uint clientId, uint sessionId, string cancelMessage)
 		{
@@ -167,38 +155,10 @@ namespace ccl
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_session_draw(uint clientId, uint sessionId);
-		public static void session_draw(uint clientId, uint sessionId)
+		private static extern void cycles_session_get_float_buffer(uint clientId, uint sessionId, int passType, ref IntPtr pixels, ref IntPtr normals, ref IntPtr depth, ref IntPtr albedo);
+		public static void session_get_float_buffer(uint clientId, uint sessionId, PassType passType, ref IntPtr pixels, ref IntPtr normals, ref IntPtr depth, ref IntPtr albedo)
 		{
-			cycles_session_draw(clientId, sessionId);
-		}
-
-		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_session_draw_nogl(uint clientId, uint sessionId, bool isgpu);
-		public static void session_draw_nogl(uint clientId, uint sessionId, bool isgpu)
-		{
-			cycles_session_draw_nogl(clientId, sessionId, isgpu);
-		}
-
-		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_session_rhinodraw(uint clientId, uint sessionId, float alpha);
-		public static void session_rhinodraw(uint clientId, uint sessionId, float alpha)
-		{
-			cycles_session_rhinodraw(clientId, sessionId, alpha);
-		}
-
-		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_session_buffer_draw_set(uint clientId, uint sessionId);
-		public static void session_buffer_draw_set(uint clientId, uint sessionId)
-		{
-			cycles_session_buffer_draw_set(clientId, sessionId);
-		}
-
-		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_session_get_float_buffer(uint clientId, uint sessionId, int passType, ref IntPtr pixels, ref IntPtr normals, ref IntPtr depth);
-		public static void session_get_float_buffer(uint clientId, uint sessionId, PassType passType, ref IntPtr pixels, ref IntPtr normals, ref IntPtr depth)
-		{
-			cycles_session_get_float_buffer(clientId, sessionId, (int)passType, ref pixels , ref normals, ref depth);
+			cycles_session_get_float_buffer(clientId, sessionId, (int)passType, ref pixels , ref normals, ref depth, ref albedo);
 		}
 		#endregion
 
@@ -232,6 +192,7 @@ namespace ccl
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Globalization", "CA2101:Specify marshaling for P/Invoke string arguments", Justification = "Using simple c string")]
 		private static extern void cycles_session_params_set_output_path(uint clientId, uint sessionParamsId, [MarshalAs(UnmanagedType.LPStr)] string outputPath);
 		public static void session_params_set_output_path(uint clientId, uint sessionParamsId, string outputPath)
 		{

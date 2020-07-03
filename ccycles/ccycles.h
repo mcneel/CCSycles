@@ -82,7 +82,7 @@ extern "C" {
 
 /**
  * Logger function signature. Used to register a logging
- * function with CCycles using 
+ * function with CCycles using
  * \ingroup ccycles
  */
 typedef void(__cdecl *LOGGER_FUNC_CB)(const char* msg);
@@ -102,7 +102,7 @@ typedef void(__cdecl *STATUS_UPDATE_CB)(unsigned int session_id);
 typedef void(__cdecl *TEST_CANCEL_CB)(unsigned int session_id);
 
 /**
- * Render tile update or write function signature. Used to register a render tile 
+ * Render tile update or write function signature. Used to register a render tile
  * update callback function with CCycles using cycles_session_set_write_tile_callback or
  * cycles_session_set_update_tile_callback
  * \ingroup ccycles ccycles_session
@@ -541,6 +541,9 @@ CCL_CAPI void __cdecl cycles_session_set_scene(unsigned int client_id, unsigned 
 /** Reset session. */
 CCL_CAPI void __cdecl cycles_session_reset(unsigned int client_id, unsigned int session_id, unsigned int width, unsigned int height, unsigned int samples, unsigned int full_x, unsigned int full_y, unsigned int full_width, unsigned int full_height );
 
+CCL_CAPI void __cdecl cycles_session_add_pass(unsigned int client_id, unsigned int session_id, int pass_id);
+CCL_CAPI void __cdecl cycles_session_clear_passes(unsigned int client_id, unsigned int session_id);
+
 /** Set the status update callback for session. */
 CCL_CAPI void __cdecl cycles_session_set_update_callback(unsigned int client_id, unsigned int session_id, void(*update)(unsigned int sid));
 /** Set the test cancel callback for session. */
@@ -565,18 +568,8 @@ CCL_CAPI bool __cdecl cycles_session_is_paused(unsigned int client_id, unsigned 
 CCL_CAPI void __cdecl cycles_session_set_samples(unsigned int client_id, unsigned int session_id, int samples);
 /** Clear resources for session. */
 CCL_CAPI void __cdecl cycles_session_destroy(unsigned int client_id, unsigned int session_id);
-/** Copy pixel data of session. */
-CCL_CAPI void __cdecl cycles_session_copy_buffer(unsigned int client_id, unsigned int session_id, float* pixel_buffer);
-/** Get pixel data buffer information of session. */
-CCL_CAPI void __cdecl cycles_session_get_buffer_info(unsigned int client_id, unsigned int session_id, unsigned int* buffer_size, unsigned int* buffer_stride);
-CCL_CAPI void __cdecl cycles_session_draw(unsigned int client_id, unsigned int session_id);
-CCL_CAPI void __cdecl cycles_session_draw_nogl(unsigned int client_id, unsigned int session_id, bool isgpu);
-/** A (temporary) function to ensure we can draw into a Rhino viewport. */
-CCL_CAPI void __cdecl cycles_session_rhinodraw(unsigned int client_id, unsigned int session_id, float alpha);
-CCL_CAPI void __cdecl cycles_session_buffer_draw_set(unsigned int client_id, unsigned int session_id);
-CCL_CAPI void __cdecl cycles_session_get_float_buffer(unsigned int client_id, unsigned int session_id, int passtype, float** pixels, float** normals, float** depth);
+CCL_CAPI void __cdecl cycles_session_get_float_buffer(unsigned int client_id, unsigned int session_id, int passtype, float** pixels, float** normals, float** depth, float** albedo);
 /** Get pixel data buffer pointer. */
-CCL_CAPI float* __cdecl cycles_session_get_buffer(unsigned int client_id, unsigned int session_id);
 CCL_CAPI void __cdecl cycles_session_prepare_run(unsigned int client_id, unsigned int session_id);
 CCL_CAPI int __cdecl cycles_session_sample(unsigned int client_id, unsigned int session_id);
 CCL_CAPI void __cdecl cycles_session_end_run(unsigned int client_id, unsigned int session_id);
@@ -725,7 +718,7 @@ CCL_CAPI void __cdecl cycles_scene_tag_shader(unsigned int client_id, unsigned i
 CCL_CAPI unsigned int __cdecl cycles_scene_add_shader(unsigned int client_id, unsigned int scene_id, unsigned int shader_id);
 /** Set shader_id as default surface shader for scene_id.
  * Note that shader_id is the ID for the shader specific to this scene.
- * 
+ *
  * The correct ID can be found with cycles_scene_shader_id. The ID is also
  * returned from cycles_scene_add_shader.
  */
