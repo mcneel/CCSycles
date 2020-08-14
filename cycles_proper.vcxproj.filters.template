@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="util">
+      <UniqueIdentifier>{a3c9e2ce-3b7e-43a4-bd53-fceb830a2eb8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="numaapi">
+      <UniqueIdentifier>{7cdf731e-a01b-4f40-9412-a597ff1485fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="graph">
+      <UniqueIdentifier>{F943DDEB-390F-4F83-A075-7AC89149A35E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="device">
+      <UniqueIdentifier>{ee660968-f550-4ac9-a607-0fd603e741b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="device_opencl">
+      <UniqueIdentifier>{7A337C27-8330-4352-A751-2E9164E26B38}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="render">
+      <UniqueIdentifier>{d1f838d0-de6f-45ec-8cf9-997a274df0f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="bvh">
+      <UniqueIdentifier>{12bc6c85-ce3d-426f-bdf0-4972af4a9c6e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="subd">
+      <UniqueIdentifier>{c052acf9-1852-4578-8f5e-c8da6d4c8303}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="kernel_headers">
+      <UniqueIdentifier>{b61e4075-a0f7-41bd-a86b-7bff792ab1ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="kernel_filter_headers">
+      <UniqueIdentifier>{1bb90ff0-699c-4eed-9954-39b237b75a79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="kernel_geom_headers">
+      <UniqueIdentifier>{F4243D13-A063-419A-A7BB-A621E7A5AD11}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="kernel_split_headers">
+      <UniqueIdentifier>{B898C955-7640-4795-AA2E-B6397E0957BC}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="kernel_closures">
+      <UniqueIdentifier>{2a9c50ad-9197-49af-99ea-26a85b840634}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="kernel_cuda_headers">
+      <UniqueIdentifier>{D27A63A4-7486-4BB7-9E36-C3B044333435}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SVM Headers">
+      <UniqueIdentifier>{6ed2008e-00d9-46ee-8355-edcbd3bdffb5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="kernel_cpu">
+      <UniqueIdentifier>{D0CDB504-7BB6-48A1-B5CD-5C6B877F34EB}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="kernel_shaders">
+      <UniqueIdentifier>{737B3A1C-3DD3-46A8-AD68-E9C61A1E6C56}</UniqueIdentifier>
+    </Filter>
+<!--
+    <Filter Include="kernel_cpu_sse2">
+      <UniqueIdentifier>{FB3A6E0F-00C6-487C-AB43-44D7FF4D99CC}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="kernel_cpu_sse3">
+      <UniqueIdentifier>{C1806F9C-F48F-4E94-84E2-90F4B442E990}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="kernel_cpu_sse41">
+      <UniqueIdentifier>{203CBDF5-E52E-4A27-AEB3-D26D4A552A44}</UniqueIdentifier>
+    </Filter>
+-->
+    <Filter Include="OpenCL source">
+      <UniqueIdentifier>{8995B300-C6CF-4C17-A6F5-B4D519AB7DA5}</UniqueIdentifier>
+      <Extensions>cl</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+[CPPFILTER]
+  </ItemGroup>
+  <ItemGroup>
+[HFILTER]
+  </ItemGroup>
+  <ItemGroup>
+[CLFILTER]
+  </ItemGroup>
+</Project>

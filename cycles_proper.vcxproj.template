@@ -1,0 +1,227 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Stand-alone Debug|x64">
+      <Configuration>Stand-alone Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Stand-alone Release|x64">
+      <Configuration>Stand-alone Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{17AAA942-8C82-4160-8D23-78EA580377DD}</ProjectGuid>
+    <RootNamespace>cycles_proper</RootNamespace>
+    <TargetName>$(ProjectName)</TargetName>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset Condition="'$(VisualStudioVersion)'=='14.0'">v140</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)'=='15.0'">v141</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)'=='16.0'">v142</PlatformToolset>
+    <BoostConfig Condition="$(Configuration.Contains('Debug'))">gd-</BoostConfig>
+    <BoostConfig Condition="$(Configuration.Contains('Release'))">
+    </BoostConfig>
+    <BoostToolset>$(BoostConfig)x64-$(PlatformToolset)</BoostToolset>
+    <OIIOConfig Condition="$(Configuration.Contains('Debug'))">_d</OIIOConfig>
+    <OIIOConfig Condition="$(Configuration.Contains('Release'))">
+    </OIIOConfig>
+    <UseDebugLibraries Condition="$(Configuration.Contains('Debug'))">true</UseDebugLibraries>
+    <UseDebugLibraries Condition="$(Configuration.Contains('Release'))">false</UseDebugLibraries>
+    <OutDir>$(Platform)\$(Configuration)\</OutDir>
+    <LinkIncremental>false</LinkIncremental>
+    <Defs Condition="$(Configuration.Contains('Debug'))">USE_TBB=0;BOOST_NO_RTTI;BOOST_NO_TYPEID;NOTWITH_EMBREE;OS_WIN;WITH_CUDA_DYNLOAD;GLEW_STATIC;BOOST_ALL_NO_LIB;_WINSOCK_DEPRECATED_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;DEBUG;_DEBUG;CCL_NAMESPACE_BEGIN=namespace ccl {;CCL_NAMESPACE_END=};WITH_OPENCL;WITH_CUDA;WITH_MULTI;CYCLES_STD_UNORDERED_MAP;WITH_CYCLES_OPTIMIZED_KERNEL_SSE2;WITH_CYCLES_OPTIMIZED_KERNEL_SSE3;WITH_CYCLES_OPTIMIZED_KERNEL_SSE41;WITH_CYCLES_OPTIMIZED_KERNEL_AVX;WITH_CYCLES_OPTIMIZED_KERNEL_AVX2;HAVE_PTW32_CONFIG_H;HAVE_CONFIG_H</Defs>
+    <Defs Condition="$(Configuration.Contains('Release'))">USE_TBB=0;BOOST_NO_RTTI;BOOST_NO_TYPEID;NOTWITH_EMBREE;OS_WIN;WITH_CUDA_DYNLOAD;GLEW_STATIC;BOOST_ALL_NO_LIB;_WINSOCK_DEPRECATED_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;NDEBUG;CCL_NAMESPACE_BEGIN=namespace ccl {;CCL_NAMESPACE_END=};WITH_OPENCL;WITH_CUDA;WITH_MULTI;CYCLES_STD_UNORDERED_MAP;WITH_CYCLES_OPTIMIZED_KERNEL_SSE2;WITH_CYCLES_OPTIMIZED_KERNEL_SSE3;WITH_CYCLES_OPTIMIZED_KERNEL_SSE41;WITH_CYCLES_OPTIMIZED_KERNEL_AVX;WITH_CYCLES_OPTIMIZED_KERNEL_AVX2;HAVE_PTW32_CONFIG_H;HAVE_CONFIG_H</Defs>
+    <AddIncDirs Condition="$(Configuration.Contains('Stand-alone'))">$(ProjectDir)..\..\..\..\..\big_libs\boost;$(ProjectDir)pthreads;$(ProjectDir)..\..\..\..\..\big_libs\OpenImageIO-2.0.12\include;$(ProjectDir)..\..\..\..\..\big_libs\OpenEXR-2.4.0\include;$(ProjectDir)..\..\..\..\..\big_libs\embree-3.6.1.x64.vc14.windows\include;$(ProjectDir)glew\include;$(ProjectDir)cycles\third_party\atomic;$(ProjectDir)cycles\third_party\cuew\include;$(ProjectDir)cycles\third_party\clew\include;$(ProjectDir)cycles\third_party\numaapi\include;$(ProjectDir)cycles\src\render;$(ProjectDir)cycles\src;$(ProjectDir)cycles\src\kernel\svm;$(ProjectDir)cycles\src\kernel\osl;$(ProjectDir)cycles\src\util;$(ProjectDir)cycles\src\device;$(ProjectDir)cycles\src\bvh;$(ProjectDir)cycles\src\subd;$(ProjectDir)cycles\src\graph;$(ProjectDir)</AddIncDirs>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Stand-alone Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Stand-alone Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+  </PropertyGroup>
+  <PropertyGroup>
+    <BoostToolset>x64-$(PlatformToolset)</BoostToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="kernel_options.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Stand-alone Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="kernel_options.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="kernel_options.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Stand-alone Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="kernel_options.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <TargetExt>.lib</TargetExt>
+    <OutDir>$(Platform)\$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Stand-alone Release|x64'">
+    <TargetExt>.lib</TargetExt>
+    <OutDir>$(Platform)\$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(Platform)\$(Configuration)\</OutDir>
+    <TargetName>$(ProjectName)</TargetName>
+    <EnableManagedIncrementalBuild>false</EnableManagedIncrementalBuild>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Stand-alone Debug|x64'">
+    <OutDir>$(Platform)\$(Configuration)\</OutDir>
+    <TargetName>$(ProjectName)</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\..\..\big_libs\boost;$(ProjectDir)pthreads;$(ProjectDir)..\..\..\..\..\big_libs\OpenImageIO-2.0.12\include;$(ProjectDir)..\..\..\..\..\big_libs\OpenEXR-2.4.0\include;$(ProjectDir)..\..\..\..\..\big_libs\embree-3.6.1.x64.vc14.windows\include;$(ProjectDir)glew\include;$(ProjectDir)cycles\third_party\atomic;$(ProjectDir)cycles\third_party\cuew\include;$(ProjectDir)cycles\third_party\clew\include;$(ProjectDir)cycles\third_party\numaapi\include;$(ProjectDir)cycles\src\render;$(ProjectDir)cycles\src;$(ProjectDir)cycles\src\kernel\svm;$(ProjectDir)cycles\src\kernel\osl;$(ProjectDir)cycles\src\util;$(ProjectDir)cycles\src\device;$(ProjectDir)cycles\src\bvh;$(ProjectDir)cycles\src\subd;$(ProjectDir)cycles\src\graph;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>$(Defs);%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DisableSpecificWarnings>4018;4065;4127;4181;4200;4244;4267;4305;4800</DisableSpecificWarnings>
+      <TreatSpecificWarningsAsErrors>4013;4431</TreatSpecificWarningsAsErrors>
+      <AdditionalOptions>/w34062 /J /MDd %(AdditionalOptions)</AdditionalOptions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <BufferSecurityCheck>true</BufferSecurityCheck>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <LanguageStandard>Default</LanguageStandard>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <OpenMPSupport>true</OpenMPSupport>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <Lib>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <AdditionalLibraryDirectories>$(ProjectDir)boostbuild\stage$(Configuration)\lib</AdditionalLibraryDirectories>
+      <AdditionalOptions>/ignore:4221 %(AdditionalOptions)</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Stand-alone Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(AddIncDirs);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>$(Defs);%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DisableSpecificWarnings>4018;4065;4127;4181;4200;4244;4267;4305;4800</DisableSpecificWarnings>
+      <TreatSpecificWarningsAsErrors>4013;4431</TreatSpecificWarningsAsErrors>
+      <AdditionalOptions>/w34062 /J /MDd %(AdditionalOptions)</AdditionalOptions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <Lib>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <AdditionalLibraryDirectories>$(ProjectDir)boostbuild\stage$(Configuration)\lib</AdditionalLibraryDirectories>
+      <AdditionalOptions>/ignore:4221 %(AdditionalOptions)</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Full</Optimization>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\..\..\big_libs\boost;$(ProjectDir)pthreads;$(ProjectDir)..\..\..\..\..\big_libs\OpenImageIO-2.0.12\include;$(ProjectDir)..\..\..\..\..\big_libs\OpenEXR-2.4.0\include;$(ProjectDir)..\..\..\..\..\big_libs\embree-3.6.1.x64.vc14.windows\include;$(ProjectDir)glew\include;$(ProjectDir)cycles\third_party\atomic;$(ProjectDir)cycles\third_party\cuew\include;$(ProjectDir)cycles\third_party\clew\include;$(ProjectDir)cycles\third_party\numaapi\include;$(ProjectDir)cycles\src\render;$(ProjectDir)cycles\src\kernel\kernels\cpu;$(ProjectDir)cycles\src;$(ProjectDir)cycles\src\kernel\svm;$(ProjectDir)cycles\src\kernel\osl;$(ProjectDir)cycles\src\util;$(ProjectDir)cycles\src\device;$(ProjectDir)cycles\src\bvh;$(ProjectDir)cycles\src\subd;$(ProjectDir)cycles\src\graph;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <PreprocessorDefinitions>$(Defs);%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DisableSpecificWarnings>4018;4065;4127;4181;4200;4244;4267;4305;4800</DisableSpecificWarnings>
+      <TreatSpecificWarningsAsErrors>4013;4431</TreatSpecificWarningsAsErrors>
+      <AdditionalOptions>/w34062 /J /MD %(AdditionalOptions)</AdditionalOptions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <LanguageStandard>
+      </LanguageStandard>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <OpenMPSupport>true</OpenMPSupport>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <Lib>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <AdditionalLibraryDirectories>$(ProjectDir)boostbuild\stage$(Configuration)\lib</AdditionalLibraryDirectories>
+      <AdditionalOptions>/ignore:4221 %(AdditionalOptions)</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Stand-alone Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Full</Optimization>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>$(AddIncDirs);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <PreprocessorDefinitions>$(Defs);%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DisableSpecificWarnings>4018;4065;4127;4181;4200;4244;4267;4305;4800</DisableSpecificWarnings>
+      <TreatSpecificWarningsAsErrors>4013;4431</TreatSpecificWarningsAsErrors>
+      <AdditionalOptions>/w34062 /J /MD %(AdditionalOptions)</AdditionalOptions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <Lib>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <AdditionalLibraryDirectories>$(ProjectDir)boostbuild\stage$(Configuration)\lib</AdditionalLibraryDirectories>
+      <AdditionalOptions>/ignore:4221 %(AdditionalOptions)</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+[CPPFILES]
+  </ItemGroup>
+  <ItemGroup>
+[HFILES]
+  </ItemGroup>
+  <ItemGroup>
+[CLFILES]
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
