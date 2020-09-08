@@ -117,6 +117,11 @@ namespace ccl
 		public bool IsMultiOpenCl => Type == DeviceType.Multi && Subdevices.Where((Device d) => d.Type == DeviceType.OpenCL).Any();
 
 		/// <summary>
+		/// True if this is a Multi Optix device
+		/// </summary>
+		public bool IsMultiOptix => Type == DeviceType.Multi && Subdevices.Where((Device d) => d.Type == DeviceType.Optix).Any();
+
+		/// <summary>
 		/// String representation of this device
 		/// </summary>
 		/// <returns>String representation of this device</returns>
