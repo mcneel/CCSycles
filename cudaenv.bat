@@ -9,6 +9,11 @@ SET nvcc10=C:\CUDA10\bin\nvcc.exe
 SET nvcc11=C:\CUDA11\bin\nvcc.exe
 SET typechoice=%1
 
+SET _optix=0
+IF "%typechoice%"=="optix" (
+	SET _optix=1
+)
+
 SET _apptype=0
 IF "%typechoice%"=="standalone" (
 	SET _apptype=1
@@ -43,5 +48,8 @@ SET cudaversion91=9
 SET cudaversion10=10
 SET cudaversion11=11
 SET shadermodelnum=%1
-SET definitions="-DCCL_NAMESPACE_BEGIN= -DCCL_NAMESPACE_END= -DNVCC -D__NO_CAMERA_MOTION__ -D__NO_OBJECT_MOTION__ -D__NO_HAIR__ -D__NO_BAKING__ -D__NO_VOLUME__ -D__NO_BRANCHED_PATH__ -D__NO_PATCH_EVAL__ -D__NO_DENOISING__"
+REM SET definitions="-DCCL_NAMESPACE_BEGIN= -DCCL_NAMESPACE_END= -DNVCC -D__NO_CAMERA_MOTION__ -D__NO_OBJECT_MOTION__ -D__NO_HAIR__ -D__NO_BAKING__ -D__NO_VOLUME__ -D__NO_BRANCHED_PATH__ -D__NO_PATCH_EVAL__ -D__NO_DENOISING__"
+SET definitions=-DCCL_NAMESPACE_BEGIN= -DCCL_NAMESPACE_END= -DNVCC -D__NO_CAMERA_MOTION__ -D__NO_OBJECT_MOTION__ -D__NO_DENOISING__
+SET optixdefinitions=--ptx --use_fast_math
+SET optixinclude=OptiX\include
 

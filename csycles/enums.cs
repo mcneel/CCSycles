@@ -36,9 +36,9 @@ namespace ccl
 		CPU,
 		OpenCL,
 		CUDA,
-		Optix,
 		Network,
-		Multi
+		Multi,
+		Optix,
 	}
 
 	/// <summary>

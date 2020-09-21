@@ -51,6 +51,8 @@ namespace ccl
 					return Name.Split('_')[1];
 				if (IsOpenCl)
 					return Name.Split('_')[2];
+				if (IsOptix)
+					return $"{Name.Split('_')[1]} (Optix)";
 				if (IsMulti)
 				{
 					var n = string.Join(",", (from sd in Subdevices select sd.NiceName).ToList());
