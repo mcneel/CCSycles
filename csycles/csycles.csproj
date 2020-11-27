@@ -16,16 +16,14 @@
     <PlatformVersion Condition="'$(VisualStudioVersion)'=='15.0'">v141</PlatformVersion>
     <PlatformVersion Condition="'$(VisualStudioVersion)'=='16.0'">v142</PlatformVersion>
     <BoostConfig Condition="$(Configuration.Contains('Debug'))">gd-</BoostConfig>
-    <BoostConfig Condition="$(Configuration.Contains('Release'))">
-    </BoostConfig>
+    <BoostConfig Condition="$(Configuration.Contains('Release'))"></BoostConfig>
     <OpenEXRVersion Condition="$(Configuration.Contains('Debug'))">2_4_d</OpenEXRVersion>
     <OpenEXRVersion Condition="$(Configuration.Contains('Release'))">2_4</OpenEXRVersion>
     <!--<OpenEXRVersion>2_4</OpenEXRVersion>-->
     <OpenImageIOVersion Condition="$(Configuration.Contains('Debug'))">2_0_12_d</OpenImageIOVersion>
     <OpenImageIOVersion Condition="$(Configuration.Contains('Release'))">2_0_12</OpenImageIOVersion>
     <EmbreeVersion Condition="$(Configuration.Contains('Debug'))">_d</EmbreeVersion>
-    <EmbreeVersion Condition="$(Configuration.Contains('Release'))">
-    </EmbreeVersion>
+    <EmbreeVersion Condition="$(Configuration.Contains('Release'))"></EmbreeVersion>
     <BoostToolset>$(BoostConfig)x64-$(PlatformVersion)</BoostToolset>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -245,11 +243,11 @@
   <PropertyGroup Condition="'$(Configuration)' == 'Stand-alone Release' Or '$(Configuration)' == 'Stand-alone Debug'">
     <PostBuildEvent Condition="'$(OS)' == 'Windows_NT'">
 XCopy /Y "$(TargetDir)$(ProjectName).*" "$(SolutionDir)$(OutDir)"
-copy /Y "$(ProjectDir)..\ccycles\x64\$(ConfigurationName)\ccycles.dll" "$(SolutionDir)$(OutDir)"
-copy /Y "$(ProjectDir)..\ccycles\x64\$(ConfigurationName)\ccycles.pdb" "$(SolutionDir)$(OutDir)"
-copy /Y "$(ProjectDir)..\OpenImageIO\x64\$(ConfigurationName)\OpenImageIOv13.dll" "$(SolutionDir)$(OutDir)"
-copy /Y "$(ProjectDir)..\pthreads\x64\$(ConfigurationName)\pthreads.dll" "$(SolutionDir)$(OutDir)"
-copy /Y "$(ProjectDir)..\boostbuild\stagerelease\lib\boost_*" "$(SolutionDir)$(OutDir)"
+XCopy /Y "$(ProjectDir)..\ccycles\x64\$(ConfigurationName)\ccycles.dll" "$(SolutionDir)$(OutDir)"
+XCopy /Y "$(ProjectDir)..\ccycles\x64\$(ConfigurationName)\ccycles.pdb" "$(SolutionDir)$(OutDir)"
+XCopy /Y "$(ProjectDir)..\OpenImageIO\x64\$(ConfigurationName)\OpenImageIOv13.dll" "$(SolutionDir)$(OutDir)"
+XCopy /Y "$(ProjectDir)..\pthreads\x64\$(ConfigurationName)\pthreads.dll" "$(SolutionDir)$(OutDir)"
+XCopy /Y "$(ProjectDir)..\boostbuild\stagerelease\lib\boost_*" "$(SolutionDir)$(OutDir)"
 
 XCopy "$(SolutionDir)lib" "$(SolutionDir)$(OutDir)lib" /Y /I /Q
 
