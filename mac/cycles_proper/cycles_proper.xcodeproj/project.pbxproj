@@ -1474,6 +1474,7 @@
 /* Begin XCBuildConfiguration section */
 		A11D68061FB5936400409EB3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D8F3C9B9233219BC00AB35CA /* LibDebug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -1484,6 +1485,7 @@
 		};
 		A11D68071FB5936400409EB3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D8F3C9BA233219BC00AB35CA /* LibRelease.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -1571,6 +1573,7 @@
 		};
 		DFBF84172203940E00BF1536 /* Distribution */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D8F3C9B8233219BC00AB35CA /* LibDistribution.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
