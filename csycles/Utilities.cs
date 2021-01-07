@@ -36,6 +36,7 @@ namespace cclext
 namespace ccl
 {
 
+	public delegate void ConsoleWriteDelegate(string message);
 
 	public class Utilities
 	{
@@ -48,6 +49,19 @@ namespace ccl
 		}
 
 		public static Utilities Instance => g_utilities ?? (g_utilities = new Utilities());
+
+		private static ConsoleWriteDelegate m_consoleWriter = null;
+
+		public static void RegisterConsoleWriter(ConsoleWriteDelegate consoleWriter)
+		{
+			m_consoleWriter = consoleWriter;
+		}
+
+		public static void ConsoleWrite(string message) {
+			if(m_consoleWriter!=null) {
+				m_consoleWriter(message);
+			}
+		}
 
 		public float[] parse_floats(string floats)
 		{

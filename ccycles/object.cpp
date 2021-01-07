@@ -181,7 +181,7 @@ void _cycles_scene_object_set_transform(unsigned int client_id, unsigned int sce
 			ob->tfm = mat;
 			break;
 		case 1:
-			ob->ocs_frame = mat;
+			ob->ocs_frame = transform_inverse(mat);
 			ob->use_ocs_frame = mat != ccl::transform_identity();
 			break;
 		}

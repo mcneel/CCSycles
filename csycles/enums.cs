@@ -25,7 +25,7 @@ namespace ccl
 	}
 	/// <summary>
 	/// Device types that Cycles can support.
-	/// 
+	///
 	/// Note that currently focus is on CPU and CUDA
 	/// and CUDA MULTI support, but others can be
 	/// added when needed and possible
@@ -43,7 +43,7 @@ namespace ccl
 
 	/// <summary>
 	/// Shading systems available in Cycles.
-	/// 
+	///
 	/// Note that currently only SVM is supported
 	/// in C[CS]?ycles
 	/// </summary>
@@ -158,7 +158,7 @@ namespace ccl
 	}
 
 	public enum BvhLayout {
-	
+
   Bvh2 = (1 << 0),
   Bvh4 = (1 << 1),
   Bvh8 = (1 << 2),
@@ -217,6 +217,14 @@ namespace ccl
 		Cubic = 2,
 		Smart = 3,
 	}
+
+	public enum DecalDirection
+	{
+		Both = 0,
+		Forward = 1,
+		Backward = 2,
+	}
+
 
 	[Flags]
 	public enum PathRay : uint
