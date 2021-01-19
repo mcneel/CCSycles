@@ -33,6 +33,15 @@ unsigned int cycles_number_cuda_devices() {
 	return i;
 }
 
+unsigned int cycles_number_opencl_devices() {
+	int i{ 0 };
+	for (auto di : devices) {
+		if (di.type == ccl::DeviceType::DEVICE_OPENCL) i++;
+	}
+
+	return i;
+}
+
 unsigned int cycles_number_multi_subdevices(int i) {
 	if (MULTIDEVICEIDX(i) >= 0 && MULTIDEVICEIDX(i) < multi_devices.size())
 		return multi_devices[MULTIDEVICEIDX(i)].multi_devices.size();
@@ -149,3 +158,52 @@ int cycles_create_multidevice(int count, int* idx) {
 
 	return foundidx;
 }
+
+std::vector<unsigned int> opencl_device_ready;
+
+void cycles_device_prepare_opencl()
+{
+	int i{ 0 };
+	int num_devices = cycles_number_devices();
+	opencl_device_ready.resize(num_devices);
+	std::fill(opencl_device_ready.begin(), opencl_device_ready.end(), 0);
+
+	for (auto di : devices) {
+		if (di.type == ccl::DeviceType::DEVICE_OPENCL) {
+			unsigned int id = cycles_new_client();
+			unsigned int spid = cycles_session_params_create(id, i);
+			cycles_session_params_set_background(id, spid, 0);
+			cycles_session_params_set_samples(id, spid, 1);
+			cycles_session_params_set_display_buffer_linear(id, spid, 1);
+			cycles_session_params_set_experimental(id, spid, 0);
+			cycles_session_params_set_pixel_size(id, spid, 1);
+			cycles_session_params_set_progressive(id, spid, 1);
+			cycles_session_params_set_progressive_refine(id, spid, 1);
+			cycles_session_params_set_threads(id, spid, 1);
+			cycles_session_params_set_pixel_size(id, spid, 1);
+			cycles_session_params_set_skip_linear_to_srgb_conversion(id, spid, 1);
+			cycles_session_params_set_shadingsystem(id, spid, 1);
+			cycles_session_params_set_tile_size(id, spid, 32, 32);
+			cycles_session_params_set_tile_order(id, spid, 0);
+
+			unsigned int scpid = cycles_scene_params_create(id, 1, 1, false, 4, false);
+			ccl::SessionParams params;
+			params.background = true;
+			params.device = di;
+			unsigned int sid = cycles_session_create(id, spid);
+			unsigned int scid = cycles_scene_create(id, scpid, sid);
+			cycles_session_set_scene(id, sid, scid);
+			cycles_session_start(id, sid);
+			cycles_session_wait(id, sid);
+			cycles_session_destroy(id, sid);
+			opencl_device_ready[i] = 1;
+		}
+		i++;
+	}
+}
+
+unsigned int cycles_device_opencl_ready(unsigned int device_id) {
+	if (device_id < 0 || device_id >= opencl_device_ready.size()) return 0;
+	return opencl_device_ready[device_id];
+}
+

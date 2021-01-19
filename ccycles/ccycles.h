@@ -271,6 +271,9 @@ CCL_CAPI int __cdecl cycles_create_multidevice(int count, int* idx);
  */
 CCL_CAPI unsigned int __cdecl cycles_device_type(int i);
 
+CCL_CAPI void __cdecl cycles_device_prepare_opencl();
+CCL_CAPI unsigned int __cdecl cycles_device_opencl_ready(unsigned int device_id);
+
 /* Create scene parameters, to be used when creating a new scene. */
 CCL_CAPI unsigned int __cdecl cycles_scene_params_create(unsigned int client_id, unsigned int shadingsystem, unsigned int bvh_type, unsigned int use_bvh_spatial_split, int bvh_layout, unsigned int persistent_data);
 
