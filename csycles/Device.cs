@@ -293,7 +293,7 @@ namespace ccl
 		}
 
 		/// <summary>
-		/// Returns the first openCL device if it exists,
+		/// Returns the first openCL device if it exists and is ready,
 		/// the default rendering device (CPU) if not.
 		/// </summary>
 		static public Device FirstOpenCL
@@ -303,12 +303,13 @@ namespace ccl
 				var d = (from device in Devices
 								 where device.IsOpenCl || device.IsMultiOpenCl
 								 select device).FirstOrDefault();
+				if (!(d?.IsReady() ?? false)) d = null;
 				return d ?? Default;
 			}
 		}
 
 		/// <summary>
-		/// Returns the first Multi OpenCL device if it exists,
+		/// Returns the first Multi OpenCL device if it exists and is ready,
 		/// the default rendering device (CPU) if not.
 		/// </summary>
 		static public Device FirstMultiOpenCL
@@ -318,12 +319,13 @@ namespace ccl
 				var d = (from device in Devices
 								 where device.IsMultiOpenCl
 								 select device).FirstOrDefault();
+				if (!(d?.IsReady() ?? false)) d = null;
 				return d ?? Default;
 			}
 		}
 
 		/// <summary>
-		/// Get the first GPU if one exists,
+		/// Get the first GPU if one exists and is ready,
 		/// the default rendering device (CPU) if not.
 		/// </summary>
 		static public Device FirstGpu
@@ -333,6 +335,7 @@ namespace ccl
 				var d = (from device in Devices
 								 where device.IsGpu
 								 select device).FirstOrDefault();
+				if (!(d?.IsReady() ?? false)) d = null;
 				return d ?? Default;
 
 			}
@@ -363,7 +366,7 @@ namespace ccl
 		/// <returns></returns>
 		static public Device GetDevice(int idx)
 		{
-			return new Device
+			Device d = new Device
 			{
 				Id = (uint)idx,
 				Description = CSycles.device_decription(idx),
@@ -373,6 +376,8 @@ namespace ccl
 				AdvancedShading = CSycles.device_advanced_shading(idx),
 				DisplayDevice = CSycles.device_display_device(idx),
 			};
+
+			return d;
 		}
 
 
@@ -489,6 +494,20 @@ namespace ccl
 			}
 
 			return CreateMultiDevice(DeviceListFromIntList(l));
+		}
+
+		/// <summary>
+		/// Ask if device is ready. For CUDA and CPU this will always
+		/// be true, but for OpenCL the drivers may still be compiling
+		/// the kernels.
+		/// </summary>
+		/// <returns>True if the device is ready for use.</returns>
+		public bool IsReady() {
+			if (!IsMultiOpenCl && !IsOpenCl) return true;
+			if(IsMultiOpenCl) {
+				return Subdevices.Aggregate(true, (acc, nxt) => acc & nxt.IsReady());
+			}
+			return CSycles.device_opencl_ready(Id);
 		}
 	}
 }
