@@ -114,6 +114,7 @@ void cycles_debug_set_opencl_device_type(int type)
 
 void cycles_shutdown()
 {
+	_set_abort_behavior(0, _WRITE_ABORT_MSG);
 	if (!initialised) {
 		return;
 	}
