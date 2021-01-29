@@ -52,7 +52,7 @@ namespace ccl.ShaderNodes
 			AddSocket(BSDF);
 		}
 	}
-	
+
 	/// <summary>
 	/// A Toon BSDF closure.
 
@@ -89,9 +89,9 @@ namespace ccl.ShaderNodes
 		}
 		public Components Component { get; set; }
 
-		internal override void SetEnums(uint clientId, uint shaderId)
+		internal override void SetEnums(uint clientId, uint sceneId, uint shaderId)
 		{
-			CSycles.shadernode_set_enum(clientId, shaderId, Id, Type, "component", (int)Component);
+			CSycles.shadernode_set_enum(clientId, sceneId, shaderId, Id, Type, "component", (int)Component);
 		}
 
 		internal override void ParseXml(XmlReader xmlNode)

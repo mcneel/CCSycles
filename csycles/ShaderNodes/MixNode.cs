@@ -110,14 +110,14 @@ namespace ccl.ShaderNodes
 		public BlendTypes BlendType { get; set; }
 		public bool UseClamp { get; set; }
 
-		internal override void SetEnums(uint clientId, uint shaderId)
+		internal override void SetEnums(uint clientId, uint sceneId, uint shaderId)
 		{
-			CSycles.shadernode_set_enum(clientId, shaderId, Id, Type, "type", (int)BlendType);
+			CSycles.shadernode_set_enum(clientId, sceneId, shaderId, Id, Type, "type", (int)BlendType);
 		}
 
 		internal override void SetDirectMembers(uint clientId, uint sceneId, uint shaderId)
 		{
-			CSycles.shadernode_set_member_bool(clientId, shaderId, Id, Type, "use_clamp", UseClamp);
+			CSycles.shadernode_set_member_bool(clientId, sceneId, shaderId, Id, Type, "use_clamp", UseClamp);
 		}
 
 		private void SetBlendType(string op)

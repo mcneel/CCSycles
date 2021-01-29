@@ -218,6 +218,20 @@ protected:
 	{  }
 };
 
+class CCShader {
+public:
+	/* Hold the Cycles shader. */
+	ccl::Shader* shader = new ccl::Shader();
+	/* Hold the shader node graph. */
+	ccl::ShaderGraph* graph = new ccl::ShaderGraph();
+	/* Map shader ID in scene to scene ID. */
+	std::map<unsigned int, unsigned int> scene_mapping;
+
+	~CCShader() {
+		scene_mapping.clear();
+	}
+};
+
 class CCScene final {
 public:
 	/* Hold the Cycles scene. */
@@ -226,6 +240,8 @@ public:
 	unsigned int params_id = -1;
 
 	std::vector<CCImage*> images;
+
+	std::vector<CCShader*> shaders;
 
 	/* Note: depth>1 if volumetric texture (i.e smoke volume data) */
 
@@ -238,18 +254,21 @@ public:
 			/* don't delete builtin_data, it isn't owned by this */
 			image->builtin_data = nullptr;
 			delete image;
-			image = nullptr;
 		}
-	}
-};
+		images.clear();
+		for (CCShader* sh : shaders) {
+			if (sh != nullptr) {
+				// just setting to nullptr, as scene disposal frees this memory.
+				sh->graph = nullptr;
+				sh->shader = nullptr;
 
-struct CCShader {
-	/* Hold the Cycles shader. */
-	ccl::Shader* shader = new ccl::Shader();
-	/* Hold the shader node graph. */
-	ccl::ShaderGraph* graph = new ccl::ShaderGraph();
-	/* Map shader ID in scene to scene ID. */
-	std::map<unsigned int, unsigned int> scene_mapping;
+				sh->scene_mapping.clear();
+
+				delete sh;
+			}
+		}
+		shaders.clear();
+	}
 };
 
 /* data */
@@ -273,9 +292,7 @@ extern void set_ccscene_null(unsigned int scene_id);
 
 extern void _cleanup_scenes();
 extern void _cleanup_sessions();
-extern void _cleanup_shaders();
-extern void _cleanup_images();
-extern void _init_shaders();
+extern void _init_shaders(unsigned int client_id, unsigned int scene_id);
 
 /********************************/
 /* Some useful defines          */
@@ -316,8 +333,12 @@ extern void _init_shaders();
 #define SHADER_VAR2(a,b) a ## b
 #define SHADER_VAR(a, b) SHADER_VAR2(a,b)
 /* Set a var of shader to val of type. */
-#define SHADER_SET(shid, type, var, val) \
-	CCShader* sh = shaders[shid]; \
-    sh->shader-> var = (type)(val); \
-	logger.logit(client_id, "Set " #var " of shader ", shid, " to ", val, " casting to " #type);
+#define SHADER_SET(scene_id, shid, type, var, val) \
+	CCScene* csce = nullptr; \
+	ccl::Scene* sce = nullptr; \
+	if (scene_find(scene_id, &csce, &sce)) { \
+		CCShader* sh = csce->shaders[shid]; \
+		sh->shader-> var = (type)(val); \
+		logger.logit(client_id, "Set " #var " of shader ", shid, " to ", val, " casting to " #type); \
+	}
 

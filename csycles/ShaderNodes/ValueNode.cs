@@ -55,7 +55,7 @@ namespace ccl.ShaderNodes
 
 		internal override void SetDirectMembers(uint clientId, uint sceneId, uint shaderId)
 		{
-			CSycles.shadernode_set_member_float(clientId, shaderId, Id, Type, "value", Value);
+			CSycles.shadernode_set_member_float(clientId, sceneId, shaderId, Id, Type, "value", Value);
 		}
 		internal override void ParseXml(System.Xml.XmlReader xmlNode)
 		{

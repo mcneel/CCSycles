@@ -115,7 +115,7 @@ namespace ccl.ShaderNodes
 			/// <summary>
 			/// Vector = normalize(Vector1)
 			/// Value = len(Vector1)
-			/// 
+			///
 			/// Note, Vector2 unused
 			/// </summary>
 			Normalize
@@ -137,7 +137,7 @@ namespace ccl.ShaderNodes
 		public VectorMathNode() :
 			this("a vector math node")
 		{
-			
+
 		}
 
 		public VectorMathNode(string name) :
@@ -162,9 +162,9 @@ namespace ccl.ShaderNodes
 			Operation = (Operations)Enum.Parse(typeof(Operations), op, true);
 		}
 
-		internal override void SetEnums(uint clientId, uint shaderId)
+		internal override void SetEnums(uint clientId, uint sceneId, uint shaderId)
 		{
-			CSycles.shadernode_set_enum(clientId, shaderId, Id, Type, "operation", (int)Operation);
+			CSycles.shadernode_set_enum(clientId, sceneId, shaderId, Id, Type, "operation", (int)Operation);
 		}
 
 		internal override void ParseXml(XmlReader xmlNode)

@@ -103,15 +103,15 @@ namespace ccl.ShaderNodes
 
 		internal override void SetDirectMembers(uint clientId, uint sceneId, uint shaderId)
 		{
-			CSycles.shadernode_set_member_bool(clientId, shaderId, Id, ShaderNodeType.TextureCoordinate, "use_transform", UseTransform);
+			CSycles.shadernode_set_member_bool(clientId, sceneId, shaderId, Id, ShaderNodeType.TextureCoordinate, "use_transform", UseTransform);
 
 			if (UseTransform)
 			{
 				var obt = ObjectTransform;
 
-				CSycles.shadernode_set_member_vec4_at_index(clientId, shaderId, Id, ShaderNodeType.TextureCoordinate, "object_transform_x", obt.x.x, obt.x.y, obt.x.z, obt.x.w, 0);
-				CSycles.shadernode_set_member_vec4_at_index(clientId, shaderId, Id, ShaderNodeType.TextureCoordinate, "object_transform_y", obt.y.x, obt.y.y, obt.y.z, obt.y.w, 1);
-				CSycles.shadernode_set_member_vec4_at_index(clientId, shaderId, Id, ShaderNodeType.TextureCoordinate, "object_transform_z", obt.z.x, obt.z.y, obt.z.z, obt.z.w, 2);
+				CSycles.shadernode_set_member_vec4_at_index(clientId, sceneId, shaderId, Id, ShaderNodeType.TextureCoordinate, "object_transform_x", obt.x.x, obt.x.y, obt.x.z, obt.x.w, 0);
+				CSycles.shadernode_set_member_vec4_at_index(clientId, sceneId, shaderId, Id, ShaderNodeType.TextureCoordinate, "object_transform_y", obt.y.x, obt.y.y, obt.y.z, obt.y.w, 1);
+				CSycles.shadernode_set_member_vec4_at_index(clientId, sceneId, shaderId, Id, ShaderNodeType.TextureCoordinate, "object_transform_z", obt.z.x, obt.z.y, obt.z.z, obt.z.w, 2);
 			}
 		}
 

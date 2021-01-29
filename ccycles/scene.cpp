@@ -167,6 +167,8 @@ unsigned int cycles_scene_create(unsigned int client_id, unsigned int scene_para
 				cscid = (unsigned int)(scenes.size() - 1);
 			}
 
+			_init_shaders(client_id, cscid);
+
 			scenes[cscid]->scene = new ccl::Scene(*params, session->device);
 			scenes[cscid]->params_id = scene_params_id;
 			scenes[cscid]->scene->image_manager->builtin_image_info_cb = function_bind(&CCScene::builtin_image_info, scenes[cscid], std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);

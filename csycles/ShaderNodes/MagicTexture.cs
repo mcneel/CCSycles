@@ -73,7 +73,7 @@ namespace ccl.ShaderNodes
 
 		internal override void SetDirectMembers(uint clientId, uint sceneId, uint shaderId)
 		{
-			CSycles.shadernode_set_member_int(clientId, shaderId, Id, Type, "depth", Depth);
+			CSycles.shadernode_set_member_int(clientId, sceneId, shaderId, Id, Type, "depth", Depth);
 		}
 
 		internal override void ParseXml(XmlReader xmlNode)

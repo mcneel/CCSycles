@@ -319,7 +319,7 @@ namespace ccl.ShaderNodes
 
 	/// <summary>
 	/// ColorRampNode.
-	/// 
+	///
 	/// Interpolate input factor (0.0f-1.0f) to a color on the ColorBand of the node.
 	/// </summary>
 	[ShaderNode("color_ramp")]
@@ -371,12 +371,12 @@ namespace ccl.ShaderNodes
 		{
 			var val = Interpolate;
 			var color = new float4();
-			CSycles.shadernode_set_member_bool(clientId, shaderId, Id, Type, "interpolate", val);
+			CSycles.shadernode_set_member_bool(clientId, sceneId, shaderId, Id, Type, "interpolate", val);
 
 			for (var i = 0; i < RampTableSize; i++)
 			{
 				ColorBand.evaluate((float) i/(float) (RampTableSize - 1), color);
-				CSycles.shadernode_set_member_vec4_at_index(clientId, shaderId, Id, Type, "ramp", color.x, color.y, color.z, color.w, i);
+				CSycles.shadernode_set_member_vec4_at_index(clientId, sceneId, shaderId, Id, Type, "ramp", color.x, color.y, color.z, color.w, i);
 			}
 		}
 

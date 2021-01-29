@@ -67,7 +67,6 @@ void cycles_initialise()
 		devices.clear();
 		multi_devices.clear();
 		devices = ccl::Device::available_devices();
-		_init_shaders();
 		initialised = true;
 	}
 }
@@ -127,8 +126,6 @@ void cycles_shutdown()
 
 	_cleanup_scenes();
 	_cleanup_sessions();
-	_cleanup_shaders();
-	_cleanup_images();
 }
 
 void cycles_log_to_stdout(int tostdout)

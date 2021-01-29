@@ -56,10 +56,10 @@ namespace ccl.ShaderNodes
 			AddSocket(BSDF);
 		}
 	}
-	
+
 	/// <summary>
 	/// A Anisotropic BSDF closure.
-	/// 
+	///
 	/// There is one output <c>Closure</c>
 	/// </summary>
 	[ShaderNode("anisotropic_bsdf")]
@@ -106,9 +106,9 @@ namespace ccl.ShaderNodes
 		}
 
 		AnisotropicDistribution Distribution { get; set; }
-		internal override void SetEnums(uint clientId, uint shaderId)
+		internal override void SetEnums(uint clientId, uint sceneId, uint shaderId)
 		{
-			CSycles.shadernode_set_enum(clientId, shaderId, Id, Type, "distribution", (int)Distribution);
+			CSycles.shadernode_set_enum(clientId, sceneId, shaderId, Id, Type, "distribution", (int)Distribution);
 		}
 
 		internal override void ParseXml(XmlReader xmlNode)

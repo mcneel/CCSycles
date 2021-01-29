@@ -26,7 +26,7 @@ using ccl.ShaderNodes.Sockets;
 /**
  * \ingroup cclshadernodes
  *  This pacakage contains the high-level <c>ccl.ShaderNode</c>s to be used in a <c>ccl.Shader</c>.
- *  
+ *
  *  The classes give a clear and concise way of setting up <c>ccl.ShaderNode</c>s with a minimum of
  *  fuss.
  */
@@ -67,7 +67,7 @@ namespace ccl.ShaderNodes
 	/// An Add attribute.
 	/// This attribute takes two inputs, <c>Closure1</c> and <c>Closure2</c>. These
 	/// will be simply added together.
-	/// 
+	///
 	/// There is one output <c>Closure</c>
 	/// </summary>
 	[ShaderNode("attribute")]
@@ -110,7 +110,7 @@ namespace ccl.ShaderNodes
 		{
 
 			var val = Attribute;
-			CSycles.shadernode_set_member_string(clientId, shaderId, Id, Type, "attribute", val);
+			CSycles.shadernode_set_member_string(clientId, sceneId, shaderId, Id, Type, "attribute", val);
 		}
 
 		internal override void ParseXml(XmlReader xmlNode)
