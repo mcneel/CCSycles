@@ -42,10 +42,10 @@ namespace ccl
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern uint cycles_session_destroy(uint clientId, uint sceneId);
-		public static uint session_destroy(uint clientId, uint sceneId)
+		private static extern uint cycles_session_destroy(uint clientId, uint sessionId, uint sceneId);
+		public static uint session_destroy(uint clientId, uint sessionId, uint sceneId)
 		{
-			return cycles_session_destroy(clientId, sceneId);
+			return cycles_session_destroy(clientId, sessionId, sceneId);
 		}
 
 		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
@@ -402,7 +402,7 @@ namespace ccl
 			return "";
 		}
 
-		
+
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention=CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
 		private static extern bool cycles_progress_get_substatus(uint clientId, uint sessionId, IntPtr strHolder);
 		public static string progress_get_substatus(uint clientId, uint sessionId)

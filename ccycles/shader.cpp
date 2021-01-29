@@ -18,8 +18,6 @@ limitations under the License.
 
 std::vector<CCShader*> shaders;
 
-std::vector<CCImage*> images;
-
 void _init_shaders()
 {
 	cycles_create_shader(0); // default surface
@@ -36,7 +34,8 @@ void _cleanup_shaders()
 			sh->graph = nullptr;
 			sh->shader = nullptr;
 			sh->scene_mapping.clear();
-			//delete sh;
+			delete sh;
+			sh = nullptr;
 		}
 	}
 	shaders.clear();
@@ -44,7 +43,6 @@ void _cleanup_shaders()
 
 void _cleanup_images()
 {
-	images.clear();
 }
 
 ccl::ShaderNode* _shader_node_find(unsigned int shader_id, unsigned int shnode_id)
@@ -822,7 +820,7 @@ void cycles_shadernode_set_enum(unsigned int client_id, unsigned int shader_id, 
 				node->subsurface_method = (ccl::ClosureType)value;
 			}
 			break;
-				
+
 		}
 		case shadernode_type::NORMALMAP:
 		{
@@ -836,17 +834,19 @@ void cycles_shadernode_set_enum(unsigned int client_id, unsigned int shader_id, 
 	}
 }
 
-CCImage* find_existing_ccimage(std::string imgname, unsigned int width, unsigned int height, unsigned int depth, unsigned int channels, bool is_float)
+CCImage* find_existing_ccimage(std::string imgname, unsigned int width, unsigned int height, unsigned int depth, unsigned int channels, bool is_float, CCScene* csce)
 {
-	CCImage* existing_image = nullptr;
-	for (CCImage* im : images) {
-		if (im->filename == imgname
-			&& im->width == (int)width
-			&& im->height == (int)height
-			&& im->depth == (int)depth
-			&& im->channels == (int)channels
-			&& im->is_float == is_float
-			) {
+	CCImage *existing_image = nullptr;
+	for (CCImage *im : csce->images)
+	{
+		if (im
+				&& im->filename == imgname
+				&& im->width == (int)width
+				&& im->height == (int)height
+				&& im->depth == (int)depth
+				&& im->channels == (int)channels
+				&& im->is_float == is_float)
+		{
 			existing_image = im;
 			break;
 		}
@@ -855,25 +855,39 @@ CCImage* find_existing_ccimage(std::string imgname, unsigned int width, unsigned
 }
 
 template <class T>
-CCImage* get_ccimage(std::string imgname, T* img, unsigned int width, unsigned int height, unsigned int depth, unsigned int channels, bool is_float)
+CCImage* get_ccimage(std::string imgname, T* img, unsigned int width, unsigned int height, unsigned int depth, unsigned int channels, bool is_float, unsigned int scene_id)
 {
-	CCImage* existing_image = find_existing_ccimage(imgname, width, height, depth, channels, is_float);
-	CCImage* nimg = existing_image ? existing_image : new CCImage();
-	if (!existing_image) {
-		nimg->builtin_data = img;
-		nimg->filename = imgname;
-		nimg->width = (int)width;
-		nimg->height = (int)height;
-		nimg->depth = (int)depth;
-		nimg->channels = (int)channels;
-		nimg->is_float = is_float;
-		images.push_back(nimg);
-	}
-	else {
-		existing_image->builtin_data = img;
-	}
+	CCImage* nimg = nullptr;
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if (scene_find(scene_id, &csce, &sce)) {
+		CCImage* existing_image = find_existing_ccimage(imgname, width, height, depth, channels, is_float, csce);
+		nimg = existing_image ? existing_image : new CCImage();
+		if (!existing_image) {
+			nimg->builtin_data = img;
+			nimg->filename = imgname;
+			nimg->width = (int)width;
+			nimg->height = (int)height;
+			nimg->depth = (int)depth;
+			nimg->channels = (int)channels;
+			nimg->is_float = is_float;
+			bool found_empty_slot = false;
+			for(CCImage* slotimg : csce->images) {
+				if(slotimg==nullptr) {
+					slotimg = nimg;
+					found_empty_slot = true;
+					break;
+				}
+			}
+			if(!found_empty_slot) {
+				csce->images.push_back(nimg);
+			}
+		}
+		else {
+			existing_image->builtin_data = img;
+		}
 
-
+	}
 	return nimg;
 }
 
@@ -891,7 +905,7 @@ void cycles_shadernode_set_member_float_img(unsigned int client_id, unsigned int
 			switch (shn_type) {
 			case shadernode_type::IMAGE_TEXTURE:
 			{
-				CCImage* nimg = get_ccimage<float>(imname, img, width, height, depth, channels, true);
+				CCImage* nimg = get_ccimage<float>(imname, img, width, height, depth, channels, true, scene_id);
 				ccl::ImageTextureNode* imtex = dynamic_cast<ccl::ImageTextureNode*>(shnode);
 				imtex->builtin_data = nimg;
 				imtex->filename = nimg->filename;
@@ -900,7 +914,7 @@ void cycles_shadernode_set_member_float_img(unsigned int client_id, unsigned int
 			break;
 			case shadernode_type::ENVIRONMENT_TEXTURE:
 			{
-				CCImage* nimg = get_ccimage<float>(imname, img, width, height, depth, channels, true);
+				CCImage* nimg = get_ccimage<float>(imname, img, width, height, depth, channels, true, scene_id);
 				ccl::EnvironmentTextureNode* envtex = dynamic_cast<ccl::EnvironmentTextureNode*>(shnode);
 				envtex->builtin_data = nimg;
 				envtex->filename = nimg->filename;
@@ -928,7 +942,7 @@ void cycles_shadernode_set_member_byte_img(unsigned int client_id, unsigned int 
 			switch (shn_type) {
 			case shadernode_type::IMAGE_TEXTURE:
 			{
-				CCImage* nimg = get_ccimage<unsigned char>(imname, img, width, height, depth, channels, false);
+				CCImage* nimg = get_ccimage<unsigned char>(imname, img, width, height, depth, channels, false, scene_id);
 				ccl::ImageTextureNode* imtex = dynamic_cast<ccl::ImageTextureNode*>(shnode);
 				imtex->builtin_data = nimg;
 				imtex->filename = nimg->filename;
@@ -937,7 +951,7 @@ void cycles_shadernode_set_member_byte_img(unsigned int client_id, unsigned int 
 			break;
 			case shadernode_type::ENVIRONMENT_TEXTURE:
 			{
-				CCImage* nimg = get_ccimage<unsigned char>(imname, img, width, height, depth, channels, false);
+				CCImage* nimg = get_ccimage<unsigned char>(imname, img, width, height, depth, channels, false, scene_id);
 				ccl::EnvironmentTextureNode* envtex = dynamic_cast<ccl::EnvironmentTextureNode*>(shnode);
 				envtex->builtin_data = nimg;
 				envtex->filename = nimg->filename;

@@ -124,31 +124,11 @@ namespace ccl
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_device_prepare_opencl();
-		/// <summary>
-		/// Start compiling all OpenCL kernels
-		/// </summary>
-		public static void device_prepare_opencl() {
-			cycles_device_prepare_opencl();
-		}
-		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern uint cycles_device_opencl_ready(uint device_id);
-
-		/// <summary>
-		/// Query if kernels for the given device ID have been completed yet.
-		/// </summary>
-		/// <param name="device_id"></param>
-		/// <returns>true if kernels are ready to use.</returns>
-		public static bool device_opencl_ready(uint device_id) {
-			return cycles_device_opencl_ready(device_id) > 0;
-		}
-
-		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		[return: MarshalAs(UnmanagedType.U1)]
 		private static extern bool cycles_device_advanced_shading(int i);
 		/// <summary>
 		/// Query if device supports advanced shading.
-		/// 
+		///
 		/// \todo explain what advanced shading entails.
 		/// </summary>
 		/// <param name="i">Device ID to query</param>

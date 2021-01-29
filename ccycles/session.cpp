@@ -117,7 +117,6 @@ void CCSession::display_update(int sample)
  */
 void _cleanup_sessions()
 {
-#if 0
 	for (CCSession* se : sessions) {
 		if (se == nullptr) continue;
 
@@ -138,7 +137,6 @@ void _cleanup_sessions()
 	update_cbs.clear();
 	write_cbs.clear();
 	update_cbs.clear();
-#endif
 }
 
 CCSession* CCSession::create(int width, int height, unsigned int buffer_stride) {
@@ -237,15 +235,23 @@ void cycles_session_set_scene(unsigned int client_id, unsigned int session_id, u
 	}
 }
 
-void cycles_session_destroy(unsigned int client_id, unsigned int session_id)
+void cycles_session_destroy(unsigned int client_id, unsigned int session_id, unsigned int scene_id)
 {
 	CCSession* ccsess = nullptr;
 	ccl::Session* session = nullptr;
 	if (session_find(session_id, &ccsess, &session)) {
+		CCScene* csce = nullptr;
+		ccl::Scene* sce = nullptr;
+		if (scene_find(scene_id, &csce, &sce))
+		{
+			if(session->scene == sce) {
+				csce->scene = nullptr;
+				delete csce;
+				csce = nullptr;
+				set_ccscene_null(scene_id);
+			}
+		}
 
-		scene_clear_pointer(session->scene);
-
-		delete ccsess->session;
 		delete ccsess;
 
 		sessions[session_id] = nullptr;

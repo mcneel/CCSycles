@@ -128,7 +128,7 @@ void cycles_shutdown()
 	_cleanup_scenes();
 	_cleanup_sessions();
 	_cleanup_shaders();
-
+	_cleanup_images();
 }
 
 void cycles_log_to_stdout(int tostdout)
@@ -234,7 +234,7 @@ void cycles_tfm_lookat(const ccl::float3& position, const ccl::float3& look, con
 
 	ccl::float3 dir = ccl::normalize(look - position);
 
-	
+
 	ccl::float3 right = ccl::cross(ccl::normalize(up), dir); //, ccl::normalize(up));
 	ccl::float3 new_up = ccl::cross(dir, right); //right, dir);
 

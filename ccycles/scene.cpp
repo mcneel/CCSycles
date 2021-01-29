@@ -29,6 +29,11 @@ bool scene_find(unsigned int scid, CCScene** csce, ccl::Scene** sce)
 	return false;
 }
 
+void set_ccscene_null(unsigned int scene_id)
+{
+	scenes[scene_id] = nullptr;
+}
+
 void scene_clear_pointer(ccl::Scene* sce)
 {
 		for (CCScene* csc : scenes) {
@@ -109,10 +114,12 @@ void _cleanup_scenes()
 	auto scit = scenes.begin();
 
 	for (CCScene* sce : scenes) {
-		if (sce->scene) {
-			delete sce->scene;
+		if (sce) {
+			if (sce->scene) {
+				delete sce->scene;
+			}
+			delete sce;
 		}
-		delete sce;
 	}
 
 	scenes.clear();
@@ -140,7 +147,14 @@ unsigned int cycles_scene_create(unsigned int client_id, unsigned int scene_para
 				// look for first CCScene that has no ccl::Scene set.
 				// if we find one, use it. Otherwise we'll just create a new one.
 				for (CCScene* sce : scenes) {
-					if (sce->scene == nullptr) {
+					if (sce == nullptr) {
+						// we found a cleaned out case, create new CCScene and use it
+						CCScene* scene = new CCScene();
+						scenes[hid] = scene;
+						cscid = hid;
+						break;
+					}
+					else if (sce->scene == nullptr) {
 						cscid = hid;
 						break;
 					}

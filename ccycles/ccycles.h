@@ -271,9 +271,6 @@ CCL_CAPI int __cdecl cycles_create_multidevice(int count, int* idx);
  */
 CCL_CAPI unsigned int __cdecl cycles_device_type(int i);
 
-CCL_CAPI void __cdecl cycles_device_prepare_opencl();
-CCL_CAPI unsigned int __cdecl cycles_device_opencl_ready(unsigned int device_id);
-
 /* Create scene parameters, to be used when creating a new scene. */
 CCL_CAPI unsigned int __cdecl cycles_scene_params_create(unsigned int client_id, unsigned int shadingsystem, unsigned int bvh_type, unsigned int use_bvh_spatial_split, int bvh_layout, unsigned int persistent_data);
 
@@ -570,7 +567,7 @@ CCL_CAPI bool __cdecl cycles_session_is_paused(unsigned int client_id, unsigned 
 /** Set session samples to render. */
 CCL_CAPI void __cdecl cycles_session_set_samples(unsigned int client_id, unsigned int session_id, int samples);
 /** Clear resources for session. */
-CCL_CAPI void __cdecl cycles_session_destroy(unsigned int client_id, unsigned int session_id);
+CCL_CAPI void __cdecl cycles_session_destroy(unsigned int client_id, unsigned int session_id, unsigned int scene_id);
 CCL_CAPI void __cdecl cycles_session_get_float_buffer(unsigned int client_id, unsigned int session_id, int passtype, float** pixels, float** normals, float** depth, float** albedo);
 /** Get pixel data buffer pointer. */
 CCL_CAPI void __cdecl cycles_session_prepare_run(unsigned int client_id, unsigned int session_id);

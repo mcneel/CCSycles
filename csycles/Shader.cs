@@ -27,7 +27,7 @@ namespace ccl
 	/// <summary>
 	/// Representation of a Cycles shader
 	/// </summary>
-	public class Shader
+	public class Shader : IDisposable
 	{
 		public enum ShaderType
 		{
@@ -278,10 +278,12 @@ namespace ccl
 		}
 
 		private string m_name;
-		/// <summary>
-		/// Set the name of the Shader
-		/// </summary>
-		public string Name
+	private bool disposedValue;
+
+	/// <summary>
+	/// Set the name of the Shader
+	/// </summary>
+	public string Name
 		{
 			set
 			{
@@ -329,7 +331,7 @@ namespace ccl
 
 		/// <summary>
 		/// Create node graph in the given shader from the passed XML.
-		/// 
+		///
 		/// Note that you should call FinalizeGraph on shader if you are not further
 		/// changing the graph.
 		/// </summary>
@@ -353,5 +355,23 @@ namespace ccl
 			}
 		}
 
+	protected virtual void Dispose(bool disposing)
+	{
+	  if (!disposedValue)
+	  {
+		if (disposing)
+		{
+		  m_nodes.Clear();
+		}
+		disposedValue = true;
+	  }
 	}
+
+	public void Dispose()
+	{
+	  // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
+	  Dispose(disposing: true);
+	  GC.SuppressFinalize(this);
+	}
+  }
 }
