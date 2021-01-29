@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ccsycles_diag</RootNamespace>
     <AssemblyName>ccsycles_diag</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -96,7 +96,7 @@ XCopy "$(ProjectDir)..\cycles\src\util\util_math_fast.h" "$(TargetDir)\kernel" /
 XCopy "$(ProjectDir)..\cycles\src\util\util_transform.h" "$(TargetDir)\kernel" /Y /I /Q
 XCopy "$(ProjectDir)..\cycles\src\util\util_types.h" "$(TargetDir)\kernel" /Y /I /Q</PostBuildEvent>
   </PropertyGroup>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>
