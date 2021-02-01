@@ -870,12 +870,14 @@ CCImage* get_ccimage(std::string imgname, T* img, unsigned int width, unsigned i
 			nimg->channels = (int)channels;
 			nimg->is_float = is_float;
 			bool found_empty_slot = false;
+			int imgid{0};
 			for(CCImage* slotimg : csce->images) {
 				if(slotimg==nullptr) {
-					slotimg = nimg;
+					csce->images[imgid] = nimg;
 					found_empty_slot = true;
 					break;
 				}
+				imgid++;
 			}
 			if(!found_empty_slot) {
 				csce->images.push_back(nimg);

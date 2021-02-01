@@ -185,14 +185,12 @@ unsigned int cycles_session_create(unsigned int client_id, unsigned int session_
 	CCSession* session = CCSession::create(10, 10, 4);
 	session->session = new ccl::Session(*params);
 
-	auto csessit = sessions.begin();
-	auto csessend = sessions.end();
-	while (csessit != csessend) {
-		if ((*csessit) == nullptr) {
+	for(CCSession* csess : sessions) {
+		if(csess==nullptr) {
 			csesid = hid;
+			break;
 		}
-		++hid;
-		++csessit;
+		hid++;
 	}
 
 	if (csesid == -1) {

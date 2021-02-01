@@ -154,10 +154,6 @@ unsigned int cycles_scene_create(unsigned int client_id, unsigned int scene_para
 						cscid = hid;
 						break;
 					}
-					else if (sce->scene == nullptr) {
-						cscid = hid;
-						break;
-					}
 					++hid;
 				}
 			}
