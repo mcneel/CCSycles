@@ -57,7 +57,7 @@ namespace ccl.ShaderNodes
 			AddSocket(BSSRDF);
 		}
 	}
-	
+
 	/// <summary>
 	/// A scatter volume node.
 	/// </summary>
@@ -134,9 +134,9 @@ namespace ccl.ShaderNodes
 
 		public FalloffTypes Falloff { get; set; }
 
-		internal override void SetEnums(uint clientId, uint shaderId)
+		internal override void SetEnums(uint clientId, uint sceneId, uint shaderId)
 		{
-			CSycles.shadernode_set_enum(clientId, shaderId, Id, Type, "falloff", (int)Falloff);
+			CSycles.shadernode_set_enum(clientId, sceneId, shaderId, Id, Type, "falloff", (int)Falloff);
 		}
 
 		internal override void ParseXml(XmlReader xmlNode)

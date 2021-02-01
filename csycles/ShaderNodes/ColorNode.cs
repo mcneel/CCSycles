@@ -43,7 +43,7 @@ namespace ccl.ShaderNodes
 	{
 		internal ColorInputs(ShaderNode parentNode)
 		{
-			
+
 		}
 	}
 
@@ -90,7 +90,7 @@ namespace ccl.ShaderNodes
 		internal override void SetDirectMembers(uint clientId, uint sceneId, uint shaderId)
 		{
 			var val = Value;
-			CSycles.shadernode_set_member_vec(clientId, shaderId, Id, Type, "value", val.x, val.y, val.z);
+			CSycles.shadernode_set_member_vec(clientId, sceneId, shaderId, Id, Type, "value", val.x, val.y, val.z);
 		}
 
 		internal override void ParseXml(System.Xml.XmlReader xmlNode)

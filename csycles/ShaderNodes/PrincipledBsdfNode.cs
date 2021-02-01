@@ -109,7 +109,7 @@ namespace ccl.ShaderNodes
 	/// A Principled BSDF closure.
 	/// This closure takes two inputs, <c>Color</c> and <c>Roughness</c>. The result
 	/// will be a regular diffuse shading.
-	/// 
+	///
 	/// There is one output <c>Closure</c>
 	/// </summary>
 	[ShaderNode("principled_bsdf")]
@@ -163,10 +163,10 @@ namespace ccl.ShaderNodes
 		public Distributions Distribution { get; set; }
 		public SubsurfaceScatteringNode.FalloffTypes Sss {get; set; }
 
-		internal override void SetEnums(uint clientId, uint shaderId)
+		internal override void SetEnums(uint clientId, uint sceneId, uint shaderId)
 		{
-			CSycles.shadernode_set_enum(clientId, shaderId, Id, Type, "distribution", (int)Distribution);
-			CSycles.shadernode_set_enum(clientId, shaderId, Id, Type, "sss", (int)Sss);
+			CSycles.shadernode_set_enum(clientId, sceneId, shaderId, Id, Type, "distribution", (int)Distribution);
+			CSycles.shadernode_set_enum(clientId, sceneId, shaderId, Id, Type, "sss", (int)Sss);
 		}
 
 		internal override void ParseXml(XmlReader xmlNode)

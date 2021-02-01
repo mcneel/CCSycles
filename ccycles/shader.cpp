@@ -16,49 +16,30 @@ limitations under the License.
 
 #include "internal_types.h"
 
-std::vector<CCShader*> shaders;
-
-std::vector<CCImage*> images;
-
-void _init_shaders()
+void _init_shaders(unsigned int client_id, unsigned int scene_id)
 {
-	cycles_create_shader(0); // default surface
-	cycles_create_shader(0); // default light
-	cycles_create_shader(0); // default background
-	cycles_create_shader(0); // default empty
+	cycles_create_shader(client_id, scene_id); // default surface
+	cycles_create_shader(client_id, scene_id); // default light
+	cycles_create_shader(client_id, scene_id); // default background
+	cycles_create_shader(client_id, scene_id); // default empty
 }
 
-void _cleanup_shaders()
+ccl::ShaderNode* _shader_node_find(unsigned int scene_id, unsigned int shader_id, unsigned int shnode_id)
 {
-	for (CCShader* sh : shaders) {
-		// just setting to nullptr, as scene disposal frees this memory.
-		if (sh != nullptr) {
-			sh->graph = nullptr;
-			sh->shader = nullptr;
-			sh->scene_mapping.clear();
-			//delete sh;
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if (scene_find(scene_id, &csce, &sce)) {
+		CCShader* sh = csce->shaders[shader_id];
+		auto psh = sh->graph->nodes.begin();
+		auto end = sh->graph->nodes.end();
+		while (psh != end)
+		{
+			ccl::ShaderNode* shn = (*psh);
+			if (shn->id == shnode_id) {
+				return shn;
+			}
+			++psh;
 		}
-	}
-	shaders.clear();
-}
-
-void _cleanup_images()
-{
-	images.clear();
-}
-
-ccl::ShaderNode* _shader_node_find(unsigned int shader_id, unsigned int shnode_id)
-{
-	CCShader* sh = shaders[shader_id];
-	auto psh = sh->graph->nodes.begin();
-	auto end = sh->graph->nodes.end();
-	while (psh != end)
-	{
-		ccl::ShaderNode* shn = (*psh);
-		if (shn->id == shnode_id) {
-			return shn;
-		}
-		++psh;
 	}
 	return nullptr;
 }
@@ -76,15 +57,20 @@ void _set_colorspace(OpenImageIO_v2_0::ustring& colorspace, int value)
 /* Create a new shader.
  TODO: name for shader
 */
-unsigned int cycles_create_shader(unsigned int client_id)
+unsigned int cycles_create_shader(unsigned int client_id, unsigned int scene_id)
 {
-	CCShader* sh = new CCShader();
-	sh->shader->displacement_method = ccl::DisplacementMethod::DISPLACE_TRUE;
-	sh->shader->has_displacement = true;
-	sh->shader->graph = sh->graph;
-	shaders.push_back(sh);
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if (scene_find(scene_id, &csce, &sce)) {
+		CCShader* sh = new CCShader();
+		sh->shader->displacement_method = ccl::DisplacementMethod::DISPLACE_TRUE;
+		sh->shader->has_displacement = true;
+		sh->shader->graph = sh->graph;
+		csce->shaders.push_back(sh);
+		return (unsigned int)(csce->shaders.size() - 1);
+	}
 
-	return (unsigned int)(shaders.size() - 1);
+	return (unsigned int)(-1);
 }
 
 /* Add shader to specified scene. */
@@ -93,7 +79,7 @@ unsigned int cycles_scene_add_shader(unsigned int client_id, unsigned int scene_
 	CCScene* csce = nullptr;
 	ccl::Scene* sce = nullptr;
 	if (scene_find(scene_id, &csce, &sce)) {
-		CCShader* sh = shaders[shader_id];
+		CCShader* sh = csce->shaders[shader_id];
 		sce->shaders.push_back(sh->shader);
 		sh->shader->tag_update(sce);
 		sh->shader->tag_used(sce);
@@ -110,7 +96,7 @@ void cycles_scene_tag_shader(unsigned int client_id, unsigned int scene_id, unsi
 	CCScene* csce = nullptr;
 	ccl::Scene* sce = nullptr;
 	if (scene_find(scene_id, &csce, &sce)) {
-		CCShader* sh = shaders[shader_id];
+		CCShader* sh = csce->shaders[shader_id];
 		sh->shader->tag_update(sce);
 		if (use) {
 			sh->shader->tag_used(sce);
@@ -121,263 +107,273 @@ void cycles_scene_tag_shader(unsigned int client_id, unsigned int scene_id, unsi
 /* Get Cycles shader ID in specific scene. */
 unsigned int cycles_scene_shader_id(unsigned int client_id, unsigned int scene_id, unsigned int shader_id)
 {
-	CCShader* sh = shaders[shader_id];
-	if (sh->scene_mapping.find(scene_id) != sh->scene_mapping.end()) {
-		return sh->scene_mapping[scene_id];
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if (scene_find(scene_id, &csce, &sce)) {
+		CCShader* sh = csce->shaders[shader_id];
+		if (sh->scene_mapping.find(scene_id) != sh->scene_mapping.end()) {
+			return sh->scene_mapping[scene_id];
+		}
 	}
 
 	return (unsigned int)(-1);
 }
 
-void cycles_shader_new_graph(unsigned int client_id, unsigned int shader_id)
+void cycles_shader_new_graph(unsigned int client_id, unsigned int scene_id, unsigned int shader_id)
 {
-	CCShader* sh = shaders[shader_id];
-	sh->graph = new ccl::ShaderGraph();
-	sh->shader->set_graph(sh->graph);
-}
-
-
-void cycles_shader_set_name(unsigned int client_id, unsigned int shader_id, const char* _name)
-{
-	SHADER_SET(shader_id, std::string, name, _name);
-}
-
-void cycles_shader_set_use_mis(unsigned int client_id, unsigned int shader_id, unsigned int use_mis)
-{
-	SHADER_SET(shader_id, bool, use_mis, use_mis == 1)
-}
-
-void cycles_shader_set_use_transparent_shadow(unsigned int client_id, unsigned int shader_id, unsigned int use_transparent_shadow)
-{
-	SHADER_SET(shader_id, bool, use_transparent_shadow, use_transparent_shadow == 1)
-}
-
-void cycles_shader_set_heterogeneous_volume(unsigned int client_id, unsigned int shader_id, unsigned int heterogeneous_volume)
-{
-	SHADER_SET(shader_id, bool, heterogeneous_volume, heterogeneous_volume == 1)
-}
-
-unsigned int cycles_add_shader_node(unsigned int client_id, unsigned int shader_id, shadernode_type shn_type)
-{
-	ccl::ShaderNode* node = nullptr;
-	switch (shn_type) {
-	case shadernode_type::OUTPUT:
-		node = new ccl::OutputNode();
-		break;
-	case shadernode_type::BACKGROUND:
-		node = new ccl::BackgroundNode();
-		break;
-	case shadernode_type::DIFFUSE:
-		node = new ccl::DiffuseBsdfNode();
-		break;
-	case shadernode_type::ANISOTROPIC:
-		node = new ccl::AnisotropicBsdfNode();
-		break;
-	case shadernode_type::TRANSLUCENT:
-		node = new ccl::TranslucentBsdfNode();
-		break;
-	case shadernode_type::TRANSPARENT:
-		node = new ccl::TransparentBsdfNode();
-		break;
-	case shadernode_type::VELVET:
-		node = new ccl::VelvetBsdfNode();
-		break;
-	case shadernode_type::TOON:
-		node = new ccl::ToonBsdfNode();
-		break;
-	case shadernode_type::GLOSSY:
-		node = new ccl::GlossyBsdfNode();
-		break;
-	case shadernode_type::GLASS:
-		node = new ccl::GlassBsdfNode();
-		break;
-	case shadernode_type::REFRACTION:
-		node = new ccl::RefractionBsdfNode();
-		break;
-	case shadernode_type::HAIR:
-		node = new ccl::HairBsdfNode();
-		break;
-	case shadernode_type::EMISSION:
-		node = new ccl::EmissionNode();
-		break;
-	case shadernode_type::AMBIENT_OCCLUSION:
-		node = new ccl::AmbientOcclusionNode();
-		break;
-	case shadernode_type::ABSORPTION_VOLUME:
-		node = new ccl::AbsorptionVolumeNode();
-		break;
-	case shadernode_type::SCATTER_VOLUME:
-		node = new ccl::ScatterVolumeNode();
-		break;
-	case shadernode_type::SUBSURFACE_SCATTERING:
-		node = new ccl::SubsurfaceScatteringNode();
-		break;
-	case shadernode_type::VALUE:
-		node = new ccl::ValueNode();
-		break;
-	case shadernode_type::COLOR:
-		node = new ccl::ColorNode();
-		break;
-	case shadernode_type::MIX_CLOSURE:
-		node = new ccl::MixClosureNode();
-		break;
-	case shadernode_type::ADD_CLOSURE:
-		node = new ccl::AddClosureNode();
-		break;
-	case shadernode_type::INVERT:
-		node = new ccl::InvertNode();
-		break;
-	case shadernode_type::MIX:
-		node = new ccl::MixNode();
-		break;
-	case shadernode_type::GAMMA:
-		node = new ccl::GammaNode();
-		break;
-	case shadernode_type::WAVELENGTH:
-		node = new ccl::WavelengthNode();
-		break;
-	case shadernode_type::BLACKBODY:
-		node = new ccl::BlackbodyNode();
-		break;
-	case shadernode_type::CAMERA:
-		node = new ccl::CameraNode();
-		break;
-	case shadernode_type::FRESNEL:
-		node = new ccl::FresnelNode();
-		break;
-	case shadernode_type::MATH:
-		node = new ccl::MathNode();
-		break;
-	case shadernode_type::IMAGE_TEXTURE:
-		node = new ccl::ImageTextureNode();
-		break;
-	case shadernode_type::ENVIRONMENT_TEXTURE:
-		node = new ccl::EnvironmentTextureNode();
-		break;
-	case shadernode_type::BRICK_TEXTURE:
-		node = new ccl::BrickTextureNode();
-		break;
-	case shadernode_type::SKY_TEXTURE:
-		node = new ccl::SkyTextureNode();
-		break;
-	case shadernode_type::CHECKER_TEXTURE:
-		node = new ccl::CheckerTextureNode();
-		break;
-	case shadernode_type::NOISE_TEXTURE:
-		node = new ccl::NoiseTextureNode();
-		break;
-	case shadernode_type::WAVE_TEXTURE:
-		node = new ccl::WaveTextureNode();
-		break;
-	case shadernode_type::MAGIC_TEXTURE:
-		node = new ccl::MagicTextureNode();
-		break;
-	case shadernode_type::MUSGRAVE_TEXTURE:
-		node = new ccl::MusgraveTextureNode();
-		break;
-	case shadernode_type::TEXTURE_COORDINATE:
-		node = new ccl::TextureCoordinateNode();
-		break;
-	case shadernode_type::BUMP:
-		node = new ccl::BumpNode();
-		break;
-	case shadernode_type::RGBTOBW:
-		node = new ccl::RGBToBWNode();
-		break;
-	case shadernode_type::RGBTOLUMINANCE:
-		node = new ccl::RGBToLuminanceNode();
-		break;
-	case shadernode_type::LIGHTPATH:
-		node = new ccl::LightPathNode();
-		break;
-	case shadernode_type::LIGHTFALLOFF:
-		node = new ccl::LightFalloffNode();
-		break;
-	case shadernode_type::VORONOI_TEXTURE:
-		node = new ccl::VoronoiTextureNode();
-		break;
-	case shadernode_type::LAYERWEIGHT:
-		node = new ccl::LayerWeightNode();
-		break;
-	case shadernode_type::GEOMETRYINFO:
-		node = new ccl::GeometryNode();
-		break;
-	case shadernode_type::COMBINE_XYZ:
-		node = new ccl::CombineXYZNode();
-		break;
-	case shadernode_type::SEPARATE_XYZ:
-		node = new ccl::SeparateXYZNode();
-		break;
-	case shadernode_type::HSV_SEPARATE:
-		node = new ccl::SeparateHSVNode();
-		break;
-	case shadernode_type::HSV_COMBINE:
-		node = new ccl::CombineHSVNode();
-		break;
-	case shadernode_type::RGB_SEPARATE:
-		node = new ccl::SeparateRGBNode();
-		break;
-	case shadernode_type::RGB_COMBINE:
-		node = new ccl::CombineRGBNode();
-		break;
-	case shadernode_type::MAPPING:
-		node = new ccl::MappingNode();
-		break;
-	case shadernode_type::HOLDOUT:
-		node = new ccl::HoldoutNode();
-		break;
-	case shadernode_type::HUE_SAT:
-		node = new ccl::HSVNode();
-		break;
-	case shadernode_type::GRADIENT_TEXTURE:
-		node = new ccl::GradientTextureNode();
-		break;
-	case shadernode_type::COLOR_RAMP:
-		node = new ccl::RGBRampNode();
-		break;
-	case shadernode_type::VECT_MATH:
-		node = new ccl::VectorMathNode();
-		break;
-	case shadernode_type::MATRIX_MATH:
-		node = new ccl::MatrixMathNode();
-		break;
-	case shadernode_type::PRINCIPLED_BSDF:
-		node = new ccl::PrincipledBsdfNode();
-		break;
-	case shadernode_type::ATTRIBUTE:
-		node = new ccl::AttributeNode();
-		break;
-	case shadernode_type::NORMALMAP:
-		node = new ccl::NormalMapNode();
-		dynamic_cast<ccl::NormalMapNode*>(node)->attribute = OpenImageIO_v2_0::ustring("uvmap");
-		break;
-	case shadernode_type::WIREFRAME:
-		node = new ccl::WireframeNode();
-		break;
-	case shadernode_type::BRIGHT_CONTRAST:
-		node = new ccl::BrightContrastNode();
-		break;
-	case shadernode_type::OBJECTINFO:
-		node = new ccl::ObjectInfoNode();
-		break;
-	case shadernode_type::TANGENT:
-		node = new ccl::TangentNode();
-		dynamic_cast<ccl::TangentNode*>(node)->attribute = OpenImageIO_v2_0::ustring("uvmap");
-		dynamic_cast<ccl::TangentNode*>(node)->direction_type = ccl::NodeTangentDirectionType::NODE_TANGENT_UVMAP;
-		break;
-	case shadernode_type::DISPLACEMENT:
-		node = new ccl::DisplacementNode();
-		dynamic_cast<ccl::DisplacementNode*>(node)->space = ccl::NodeNormalMapSpace::NODE_NORMAL_MAP_OBJECT;
-		break;
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if (scene_find(scene_id, &csce, &sce)) {
+		CCShader* sh = csce->shaders[shader_id];
+		sh->graph = new ccl::ShaderGraph();
+		sh->shader->set_graph(sh->graph);
 	}
+}
 
-	if (node) {
-		shaders[shader_id]->graph->add(node);
-		return (unsigned int)(node->id);
+
+void cycles_shader_set_name(unsigned int client_id, unsigned int scene_id, unsigned int shader_id, const char* _name)
+{
+	SHADER_SET(scene_id, shader_id, std::string, name, _name);
+}
+
+void cycles_shader_set_use_mis(unsigned int client_id, unsigned int scene_id, unsigned int shader_id, unsigned int use_mis)
+{
+	SHADER_SET(scene_id, shader_id, bool, use_mis, use_mis == 1)
+}
+
+void cycles_shader_set_use_transparent_shadow(unsigned int client_id, unsigned int scene_id, unsigned int shader_id, unsigned int use_transparent_shadow)
+{
+	SHADER_SET(scene_id, shader_id, bool, use_transparent_shadow, use_transparent_shadow == 1)
+}
+
+void cycles_shader_set_heterogeneous_volume(unsigned int client_id, unsigned int scene_id, unsigned int shader_id, unsigned int heterogeneous_volume)
+{
+	SHADER_SET(scene_id, shader_id, bool, heterogeneous_volume, heterogeneous_volume == 1)
+}
+
+unsigned int cycles_add_shader_node(unsigned int client_id, unsigned int scene_id, unsigned int shader_id, shadernode_type shn_type)
+{
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if (scene_find(scene_id, &csce, &sce)) {
+		ccl::ShaderNode* node = nullptr;
+		switch (shn_type) {
+		case shadernode_type::OUTPUT:
+			node = new ccl::OutputNode();
+			break;
+		case shadernode_type::BACKGROUND:
+			node = new ccl::BackgroundNode();
+			break;
+		case shadernode_type::DIFFUSE:
+			node = new ccl::DiffuseBsdfNode();
+			break;
+		case shadernode_type::ANISOTROPIC:
+			node = new ccl::AnisotropicBsdfNode();
+			break;
+		case shadernode_type::TRANSLUCENT:
+			node = new ccl::TranslucentBsdfNode();
+			break;
+		case shadernode_type::TRANSPARENT:
+			node = new ccl::TransparentBsdfNode();
+			break;
+		case shadernode_type::VELVET:
+			node = new ccl::VelvetBsdfNode();
+			break;
+		case shadernode_type::TOON:
+			node = new ccl::ToonBsdfNode();
+			break;
+		case shadernode_type::GLOSSY:
+			node = new ccl::GlossyBsdfNode();
+			break;
+		case shadernode_type::GLASS:
+			node = new ccl::GlassBsdfNode();
+			break;
+		case shadernode_type::REFRACTION:
+			node = new ccl::RefractionBsdfNode();
+			break;
+		case shadernode_type::HAIR:
+			node = new ccl::HairBsdfNode();
+			break;
+		case shadernode_type::EMISSION:
+			node = new ccl::EmissionNode();
+			break;
+		case shadernode_type::AMBIENT_OCCLUSION:
+			node = new ccl::AmbientOcclusionNode();
+			break;
+		case shadernode_type::ABSORPTION_VOLUME:
+			node = new ccl::AbsorptionVolumeNode();
+			break;
+		case shadernode_type::SCATTER_VOLUME:
+			node = new ccl::ScatterVolumeNode();
+			break;
+		case shadernode_type::SUBSURFACE_SCATTERING:
+			node = new ccl::SubsurfaceScatteringNode();
+			break;
+		case shadernode_type::VALUE:
+			node = new ccl::ValueNode();
+			break;
+		case shadernode_type::COLOR:
+			node = new ccl::ColorNode();
+			break;
+		case shadernode_type::MIX_CLOSURE:
+			node = new ccl::MixClosureNode();
+			break;
+		case shadernode_type::ADD_CLOSURE:
+			node = new ccl::AddClosureNode();
+			break;
+		case shadernode_type::INVERT:
+			node = new ccl::InvertNode();
+			break;
+		case shadernode_type::MIX:
+			node = new ccl::MixNode();
+			break;
+		case shadernode_type::GAMMA:
+			node = new ccl::GammaNode();
+			break;
+		case shadernode_type::WAVELENGTH:
+			node = new ccl::WavelengthNode();
+			break;
+		case shadernode_type::BLACKBODY:
+			node = new ccl::BlackbodyNode();
+			break;
+		case shadernode_type::CAMERA:
+			node = new ccl::CameraNode();
+			break;
+		case shadernode_type::FRESNEL:
+			node = new ccl::FresnelNode();
+			break;
+		case shadernode_type::MATH:
+			node = new ccl::MathNode();
+			break;
+		case shadernode_type::IMAGE_TEXTURE:
+			node = new ccl::ImageTextureNode();
+			break;
+		case shadernode_type::ENVIRONMENT_TEXTURE:
+			node = new ccl::EnvironmentTextureNode();
+			break;
+		case shadernode_type::BRICK_TEXTURE:
+			node = new ccl::BrickTextureNode();
+			break;
+		case shadernode_type::SKY_TEXTURE:
+			node = new ccl::SkyTextureNode();
+			break;
+		case shadernode_type::CHECKER_TEXTURE:
+			node = new ccl::CheckerTextureNode();
+			break;
+		case shadernode_type::NOISE_TEXTURE:
+			node = new ccl::NoiseTextureNode();
+			break;
+		case shadernode_type::WAVE_TEXTURE:
+			node = new ccl::WaveTextureNode();
+			break;
+		case shadernode_type::MAGIC_TEXTURE:
+			node = new ccl::MagicTextureNode();
+			break;
+		case shadernode_type::MUSGRAVE_TEXTURE:
+			node = new ccl::MusgraveTextureNode();
+			break;
+		case shadernode_type::TEXTURE_COORDINATE:
+			node = new ccl::TextureCoordinateNode();
+			break;
+		case shadernode_type::BUMP:
+			node = new ccl::BumpNode();
+			break;
+		case shadernode_type::RGBTOBW:
+			node = new ccl::RGBToBWNode();
+			break;
+		case shadernode_type::RGBTOLUMINANCE:
+			node = new ccl::RGBToLuminanceNode();
+			break;
+		case shadernode_type::LIGHTPATH:
+			node = new ccl::LightPathNode();
+			break;
+		case shadernode_type::LIGHTFALLOFF:
+			node = new ccl::LightFalloffNode();
+			break;
+		case shadernode_type::VORONOI_TEXTURE:
+			node = new ccl::VoronoiTextureNode();
+			break;
+		case shadernode_type::LAYERWEIGHT:
+			node = new ccl::LayerWeightNode();
+			break;
+		case shadernode_type::GEOMETRYINFO:
+			node = new ccl::GeometryNode();
+			break;
+		case shadernode_type::COMBINE_XYZ:
+			node = new ccl::CombineXYZNode();
+			break;
+		case shadernode_type::SEPARATE_XYZ:
+			node = new ccl::SeparateXYZNode();
+			break;
+		case shadernode_type::HSV_SEPARATE:
+			node = new ccl::SeparateHSVNode();
+			break;
+		case shadernode_type::HSV_COMBINE:
+			node = new ccl::CombineHSVNode();
+			break;
+		case shadernode_type::RGB_SEPARATE:
+			node = new ccl::SeparateRGBNode();
+			break;
+		case shadernode_type::RGB_COMBINE:
+			node = new ccl::CombineRGBNode();
+			break;
+		case shadernode_type::MAPPING:
+			node = new ccl::MappingNode();
+			break;
+		case shadernode_type::HOLDOUT:
+			node = new ccl::HoldoutNode();
+			break;
+		case shadernode_type::HUE_SAT:
+			node = new ccl::HSVNode();
+			break;
+		case shadernode_type::GRADIENT_TEXTURE:
+			node = new ccl::GradientTextureNode();
+			break;
+		case shadernode_type::COLOR_RAMP:
+			node = new ccl::RGBRampNode();
+			break;
+		case shadernode_type::VECT_MATH:
+			node = new ccl::VectorMathNode();
+			break;
+		case shadernode_type::MATRIX_MATH:
+			node = new ccl::MatrixMathNode();
+			break;
+		case shadernode_type::PRINCIPLED_BSDF:
+			node = new ccl::PrincipledBsdfNode();
+			break;
+		case shadernode_type::ATTRIBUTE:
+			node = new ccl::AttributeNode();
+			break;
+		case shadernode_type::NORMALMAP:
+			node = new ccl::NormalMapNode();
+			dynamic_cast<ccl::NormalMapNode*>(node)->attribute = OpenImageIO_v2_0::ustring("uvmap");
+			break;
+		case shadernode_type::WIREFRAME:
+			node = new ccl::WireframeNode();
+			break;
+		case shadernode_type::BRIGHT_CONTRAST:
+			node = new ccl::BrightContrastNode();
+			break;
+		case shadernode_type::OBJECTINFO:
+			node = new ccl::ObjectInfoNode();
+			break;
+		case shadernode_type::TANGENT:
+			node = new ccl::TangentNode();
+			dynamic_cast<ccl::TangentNode*>(node)->attribute = OpenImageIO_v2_0::ustring("uvmap");
+			dynamic_cast<ccl::TangentNode*>(node)->direction_type = ccl::NodeTangentDirectionType::NODE_TANGENT_UVMAP;
+			break;
+		case shadernode_type::DISPLACEMENT:
+			node = new ccl::DisplacementNode();
+			dynamic_cast<ccl::DisplacementNode*>(node)->space = ccl::NodeNormalMapSpace::NODE_NORMAL_MAP_OBJECT;
+			break;
+		}
+
+		if (node) {
+			csce->shaders[shader_id]->graph->add(node);
+			return (unsigned int)(node->id);
+		}
 	}
-	else {
-		return (unsigned int)-1;
-	}
+	return (unsigned int)-1;
 }
 
 enum class attr_type {
@@ -395,10 +391,10 @@ struct attrunion {
 	};
 };
 
-void shadernode_set_attribute(unsigned int client_id, unsigned int shader_id, unsigned int shnode_id, const char* attribute_name, attrunion v)
+void shadernode_set_attribute(unsigned int client_id, unsigned int scene_id, unsigned int shader_id, unsigned int shnode_id, const char* attribute_name, attrunion v)
 {
 	auto attr = std::string(attribute_name);
-	ccl::ShaderNode* shnode = _shader_node_find(shader_id, shnode_id);
+	ccl::ShaderNode* shnode = _shader_node_find(scene_id, shader_id, shnode_id);
 	if (shnode) {
 		for (ccl::ShaderInput* inp : shnode->inputs) {
 			auto inpname = inp->name().string();
@@ -468,9 +464,9 @@ void _set_mapping_node(ccl::MappingNode* node, int transform_type, float x, floa
 	}
 }
 
-void cycles_shadernode_texmapping_set_transformation(unsigned int client_id, unsigned int shader_id, unsigned int shnode_id, shadernode_type shn_type, int transform_type, float x, float y, float z)
+void cycles_shadernode_texmapping_set_transformation(unsigned int client_id, unsigned int scene_id, unsigned int shader_id, unsigned int shnode_id, shadernode_type shn_type, int transform_type, float x, float y, float z)
 {
-	ccl::ShaderNode* shnode = _shader_node_find(shader_id, shnode_id);
+	ccl::ShaderNode* shnode = _shader_node_find(scene_id, shader_id, shnode_id);
 	if (shnode) {
 		std::string tp{ "UNKNOWN" };
 		switch (transform_type) {
@@ -559,9 +555,9 @@ void _set_texmapping_mapping(ccl::TextureMapping& tex_mapping, ccl::TextureMappi
 	tex_mapping.z_mapping = z;
 }
 
-void cycles_shadernode_texmapping_set_mapping(unsigned int client_id, unsigned int shader_id, unsigned int shnode_id, shadernode_type shn_type, ccl::TextureMapping::Mapping x, ccl::TextureMapping::Mapping y, ccl::TextureMapping::Mapping z)
+void cycles_shadernode_texmapping_set_mapping(unsigned int client_id, unsigned int scene_id, unsigned int shader_id, unsigned int shnode_id, shadernode_type shn_type, ccl::TextureMapping::Mapping x, ccl::TextureMapping::Mapping y, ccl::TextureMapping::Mapping z)
 {
-	ccl::ShaderNode* shnode = _shader_node_find(shader_id, shnode_id);
+	ccl::ShaderNode* shnode = _shader_node_find(scene_id, shader_id, shnode_id);
 	if (shnode) {
 		logger.logit(client_id, "Setting texture map mapping to ", x, ",", y, ",", z, " for shadernode type ", shn_type);
 		switch (shn_type) {
@@ -633,10 +629,10 @@ void cycles_shadernode_texmapping_set_mapping(unsigned int client_id, unsigned i
 	}
 }
 
-void cycles_shadernode_texmapping_set_projection(unsigned int client_id, unsigned int shader_id, unsigned int shnode_id, shadernode_type shn_type, ccl::TextureMapping::Projection tm_projection)
+void cycles_shadernode_texmapping_set_projection(unsigned int client_id, unsigned int scene_id, unsigned int shader_id, unsigned int shnode_id, shadernode_type shn_type, ccl::TextureMapping::Projection tm_projection)
 {
 	/*
-	ccl::ShaderNode* shnode = _shader_node_find(shader_id, shnode_id);
+	ccl::ShaderNode* shnode = _shader_node_find(scene_id, shader_id, shnode_id);
 	if (shnode) {
 		logger.logit(client_id, "Setting texture map projection type to ", tm_projection, " for shadernode type ", shn_type);
 		switch (shn_type) {
@@ -653,9 +649,9 @@ void cycles_shadernode_texmapping_set_projection(unsigned int client_id, unsigne
 	*/
 }
 
-void cycles_shadernode_texmapping_set_type(unsigned int client_id, unsigned int shader_id, unsigned int shnode_id, shadernode_type shn_type, ccl::NodeMappingType tm_type)
+void cycles_shadernode_texmapping_set_type(unsigned int client_id, unsigned int scene_id, unsigned int shader_id, unsigned int shnode_id, shadernode_type shn_type, ccl::NodeMappingType tm_type)
 {
-	ccl::ShaderNode* shnode = _shader_node_find(shader_id, shnode_id);
+	ccl::ShaderNode* shnode = _shader_node_find(scene_id, shader_id, shnode_id);
 	if (shnode) {
 		logger.logit(client_id, "Setting texture map type to ", tm_type, " for shadernode type ", shn_type);
 		switch (shn_type) {
@@ -673,11 +669,11 @@ void cycles_shadernode_texmapping_set_type(unsigned int client_id, unsigned int 
 
 /* TODO: add all enum possibilities.
  */
-void cycles_shadernode_set_enum(unsigned int client_id, unsigned int shader_id, unsigned int shnode_id, shadernode_type shn_type, const char* enum_name, int value)
+void cycles_shadernode_set_enum(unsigned int client_id, unsigned int scene_id, unsigned int shader_id, unsigned int shnode_id, shadernode_type shn_type, const char* enum_name, int value)
 {
 	auto ename = std::string{ enum_name };
 
-	ccl::ShaderNode* shnode = _shader_node_find(shader_id, shnode_id);
+	ccl::ShaderNode* shnode = _shader_node_find(scene_id, shader_id, shnode_id);
 	if (shnode) {
 		switch (shn_type) {
 		case shadernode_type::MATH:
@@ -822,7 +818,7 @@ void cycles_shadernode_set_enum(unsigned int client_id, unsigned int shader_id, 
 				node->subsurface_method = (ccl::ClosureType)value;
 			}
 			break;
-				
+
 		}
 		case shadernode_type::NORMALMAP:
 		{
@@ -836,17 +832,19 @@ void cycles_shadernode_set_enum(unsigned int client_id, unsigned int shader_id, 
 	}
 }
 
-CCImage* find_existing_ccimage(std::string imgname, unsigned int width, unsigned int height, unsigned int depth, unsigned int channels, bool is_float)
+CCImage* find_existing_ccimage(std::string imgname, unsigned int width, unsigned int height, unsigned int depth, unsigned int channels, bool is_float, CCScene* csce)
 {
-	CCImage* existing_image = nullptr;
-	for (CCImage* im : images) {
-		if (im->filename == imgname
-			&& im->width == (int)width
-			&& im->height == (int)height
-			&& im->depth == (int)depth
-			&& im->channels == (int)channels
-			&& im->is_float == is_float
-			) {
+	CCImage *existing_image = nullptr;
+	for (CCImage *im : csce->images)
+	{
+		if (im
+				&& im->filename == imgname
+				&& im->width == (int)width
+				&& im->height == (int)height
+				&& im->depth == (int)depth
+				&& im->channels == (int)channels
+				&& im->is_float == is_float)
+		{
 			existing_image = im;
 			break;
 		}
@@ -855,25 +853,39 @@ CCImage* find_existing_ccimage(std::string imgname, unsigned int width, unsigned
 }
 
 template <class T>
-CCImage* get_ccimage(std::string imgname, T* img, unsigned int width, unsigned int height, unsigned int depth, unsigned int channels, bool is_float)
+CCImage* get_ccimage(std::string imgname, T* img, unsigned int width, unsigned int height, unsigned int depth, unsigned int channels, bool is_float, unsigned int scene_id)
 {
-	CCImage* existing_image = find_existing_ccimage(imgname, width, height, depth, channels, is_float);
-	CCImage* nimg = existing_image ? existing_image : new CCImage();
-	if (!existing_image) {
-		nimg->builtin_data = img;
-		nimg->filename = imgname;
-		nimg->width = (int)width;
-		nimg->height = (int)height;
-		nimg->depth = (int)depth;
-		nimg->channels = (int)channels;
-		nimg->is_float = is_float;
-		images.push_back(nimg);
-	}
-	else {
-		existing_image->builtin_data = img;
-	}
+	CCImage* nimg = nullptr;
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if (scene_find(scene_id, &csce, &sce)) {
+		CCImage* existing_image = find_existing_ccimage(imgname, width, height, depth, channels, is_float, csce);
+		nimg = existing_image ? existing_image : new CCImage();
+		if (!existing_image) {
+			nimg->builtin_data = img;
+			nimg->filename = imgname;
+			nimg->width = (int)width;
+			nimg->height = (int)height;
+			nimg->depth = (int)depth;
+			nimg->channels = (int)channels;
+			nimg->is_float = is_float;
+			bool found_empty_slot = false;
+			for(CCImage* slotimg : csce->images) {
+				if(slotimg==nullptr) {
+					slotimg = nimg;
+					found_empty_slot = true;
+					break;
+				}
+			}
+			if(!found_empty_slot) {
+				csce->images.push_back(nimg);
+			}
+		}
+		else {
+			existing_image->builtin_data = img;
+		}
 
-
+	}
 	return nimg;
 }
 
@@ -886,12 +898,12 @@ void cycles_shadernode_set_member_float_img(unsigned int client_id, unsigned int
 		auto mname = std::string{ member_name };
 		auto imname = std::string{ img_name };
 
-		ccl::ShaderNode* shnode = _shader_node_find(shader_id, shnode_id);
+		ccl::ShaderNode* shnode = _shader_node_find(scene_id, shader_id, shnode_id);
 		if (shnode) {
 			switch (shn_type) {
 			case shadernode_type::IMAGE_TEXTURE:
 			{
-				CCImage* nimg = get_ccimage<float>(imname, img, width, height, depth, channels, true);
+				CCImage* nimg = get_ccimage<float>(imname, img, width, height, depth, channels, true, scene_id);
 				ccl::ImageTextureNode* imtex = dynamic_cast<ccl::ImageTextureNode*>(shnode);
 				imtex->builtin_data = nimg;
 				imtex->filename = nimg->filename;
@@ -900,7 +912,7 @@ void cycles_shadernode_set_member_float_img(unsigned int client_id, unsigned int
 			break;
 			case shadernode_type::ENVIRONMENT_TEXTURE:
 			{
-				CCImage* nimg = get_ccimage<float>(imname, img, width, height, depth, channels, true);
+				CCImage* nimg = get_ccimage<float>(imname, img, width, height, depth, channels, true, scene_id);
 				ccl::EnvironmentTextureNode* envtex = dynamic_cast<ccl::EnvironmentTextureNode*>(shnode);
 				envtex->builtin_data = nimg;
 				envtex->filename = nimg->filename;
@@ -923,12 +935,12 @@ void cycles_shadernode_set_member_byte_img(unsigned int client_id, unsigned int 
 
 		auto mname = std::string{ member_name };
 		auto imname = std::string{ img_name };
-		ccl::ShaderNode* shnode = _shader_node_find(shader_id, shnode_id);
+		ccl::ShaderNode* shnode = _shader_node_find(scene_id, shader_id, shnode_id);
 		if (shnode) {
 			switch (shn_type) {
 			case shadernode_type::IMAGE_TEXTURE:
 			{
-				CCImage* nimg = get_ccimage<unsigned char>(imname, img, width, height, depth, channels, false);
+				CCImage* nimg = get_ccimage<unsigned char>(imname, img, width, height, depth, channels, false, scene_id);
 				ccl::ImageTextureNode* imtex = dynamic_cast<ccl::ImageTextureNode*>(shnode);
 				imtex->builtin_data = nimg;
 				imtex->filename = nimg->filename;
@@ -937,7 +949,7 @@ void cycles_shadernode_set_member_byte_img(unsigned int client_id, unsigned int 
 			break;
 			case shadernode_type::ENVIRONMENT_TEXTURE:
 			{
-				CCImage* nimg = get_ccimage<unsigned char>(imname, img, width, height, depth, channels, false);
+				CCImage* nimg = get_ccimage<unsigned char>(imname, img, width, height, depth, channels, false, scene_id);
 				ccl::EnvironmentTextureNode* envtex = dynamic_cast<ccl::EnvironmentTextureNode*>(shnode);
 				envtex->builtin_data = nimg;
 				envtex->filename = nimg->filename;
@@ -952,10 +964,10 @@ void cycles_shadernode_set_member_byte_img(unsigned int client_id, unsigned int 
 	}
 }
 
-void cycles_shadernode_set_member_bool(unsigned int client_id, unsigned int shader_id, unsigned int shnode_id, shadernode_type shn_type, const char* member_name, bool value)
+void cycles_shadernode_set_member_bool(unsigned int client_id, unsigned int scene_id, unsigned int shader_id, unsigned int shnode_id, shadernode_type shn_type, const char* member_name, bool value)
 {
 	auto mname = std::string{ member_name };
-	ccl::ShaderNode* shnode = _shader_node_find(shader_id, shnode_id);
+	ccl::ShaderNode* shnode = _shader_node_find(scene_id, shader_id, shnode_id);
 	if (shnode) {
 		switch (shn_type) {
 		case shadernode_type::MATH:
@@ -1038,10 +1050,10 @@ void cycles_shadernode_set_member_bool(unsigned int client_id, unsigned int shad
 	}
 }
 
-void cycles_shadernode_set_member_int(unsigned int client_id, unsigned int shader_id, unsigned int shnode_id, shadernode_type shn_type, const char* member_name, int value)
+void cycles_shadernode_set_member_int(unsigned int client_id, unsigned int scene_id, unsigned int shader_id, unsigned int shnode_id, shadernode_type shn_type, const char* member_name, int value)
 {
 	auto mname = std::string{ member_name };
-	ccl::ShaderNode* shnode = _shader_node_find(shader_id, shnode_id);
+	ccl::ShaderNode* shnode = _shader_node_find(scene_id, shader_id, shnode_id);
 	if (shnode) {
 		switch (shn_type) {
 		case shadernode_type::BRICK_TEXTURE:
@@ -1079,11 +1091,11 @@ void cycles_shadernode_set_member_int(unsigned int client_id, unsigned int shade
 }
 
 
-void cycles_shadernode_set_member_float(unsigned int client_id, unsigned int shader_id, unsigned int shnode_id, shadernode_type shn_type, const char* member_name, float value)
+void cycles_shadernode_set_member_float(unsigned int client_id, unsigned int scene_id, unsigned int shader_id, unsigned int shnode_id, shadernode_type shn_type, const char* member_name, float value)
 {
 	auto mname = std::string{ member_name };
 
-	ccl::ShaderNode* shnode = _shader_node_find(shader_id, shnode_id);
+	ccl::ShaderNode* shnode = _shader_node_find(scene_id, shader_id, shnode_id);
 	if (shnode) {
 		switch (shn_type) {
 		case shadernode_type::VALUE:
@@ -1124,11 +1136,11 @@ void cycles_shadernode_set_member_float(unsigned int client_id, unsigned int sha
 	}
 }
 
-void cycles_shadernode_set_member_vec4_at_index(unsigned int client_id, unsigned int shader_id, unsigned int shnode_id, shadernode_type shn_type, const char* member_name, float x, float y, float z, float w, int index)
+void cycles_shadernode_set_member_vec4_at_index(unsigned int client_id, unsigned int scene_id, unsigned int shader_id, unsigned int shnode_id, shadernode_type shn_type, const char* member_name, float x, float y, float z, float w, int index)
 {
 	auto mname = std::string{ member_name };
 
-	ccl::ShaderNode* shnode = _shader_node_find(shader_id, shnode_id);
+	ccl::ShaderNode* shnode = _shader_node_find(scene_id, shader_id, shnode_id);
 	if (shnode) {
 		switch (shn_type) {
 		case shadernode_type::COLOR_RAMP:
@@ -1194,11 +1206,11 @@ void cycles_shadernode_set_member_vec4_at_index(unsigned int client_id, unsigned
 	}
 }
 
-void cycles_shadernode_set_member_vec(unsigned int client_id, unsigned int shader_id, unsigned int shnode_id, shadernode_type shn_type, const char* member_name, float x, float y, float z)
+void cycles_shadernode_set_member_vec(unsigned int client_id, unsigned int scene_id, unsigned int shader_id, unsigned int shnode_id, shadernode_type shn_type, const char* member_name, float x, float y, float z)
 {
 	auto mname = std::string{ member_name };
 
-	ccl::ShaderNode* shnode = _shader_node_find(shader_id, shnode_id);
+	ccl::ShaderNode* shnode = _shader_node_find(scene_id, shader_id, shnode_id);
 	if (shnode) {
 		switch (shn_type) {
 		case shadernode_type::COLOR:
@@ -1238,12 +1250,12 @@ void cycles_shadernode_set_member_vec(unsigned int client_id, unsigned int shade
 	}
 }
 
-void cycles_shadernode_set_member_string(unsigned int client_id, unsigned int shader_id, unsigned int shnode_id, shadernode_type shn_type, const char* member_name, const char* value)
+void cycles_shadernode_set_member_string(unsigned int client_id, unsigned int scene_id, unsigned int shader_id, unsigned int shnode_id, shadernode_type shn_type, const char* member_name, const char* value)
 {
 	auto mname = std::string{ member_name };
 	auto mval = std::string{ value };
 
-	ccl::ShaderNode* shnode = _shader_node_find(shader_id, shnode_id);
+	ccl::ShaderNode* shnode = _shader_node_find(scene_id, shader_id, shnode_id);
 	if (shnode)
 	{
 		switch (shn_type)
@@ -1263,63 +1275,67 @@ void cycles_shadernode_set_member_string(unsigned int client_id, unsigned int sh
 /*
 Set an integer attribute with given name to value. shader_id is the global shader ID.
 */
-void cycles_shadernode_set_attribute_int(unsigned int client_id, unsigned int shader_id, unsigned int shnode_id, const char* attribute_name, int value)
+void cycles_shadernode_set_attribute_int(unsigned int client_id, unsigned int scene_id, unsigned int shader_id, unsigned int shnode_id, const char* attribute_name, int value)
 {
 	attrunion v{ attr_type::INT };
 	v.i = value;
-	shadernode_set_attribute(client_id, shader_id, shnode_id, attribute_name, v);
+	shadernode_set_attribute(client_id, scene_id, shader_id, shnode_id, attribute_name, v);
 }
 
 /*
 Set a float attribute with given name to value. shader_id is the global shader ID.
 */
-void cycles_shadernode_set_attribute_float(unsigned int client_id, unsigned int shader_id, unsigned int shnode_id, const char* attribute_name, float value)
+void cycles_shadernode_set_attribute_float(unsigned int client_id, unsigned int scene_id, unsigned int shader_id, unsigned int shnode_id, const char* attribute_name, float value)
 {
 	attrunion v{ attr_type::FLOAT };
 	v.f = value;
-	shadernode_set_attribute(client_id, shader_id, shnode_id, attribute_name, v);
+	shadernode_set_attribute(client_id, scene_id, shader_id, shnode_id, attribute_name, v);
 }
 
 /*
 Set a vector of floats attribute with given name to x, y and z. shader_id is the global shader ID.
 */
-void cycles_shadernode_set_attribute_vec(unsigned int client_id, unsigned int shader_id, unsigned int shnode_id, const char* attribute_name, float x, float y, float z)
+void cycles_shadernode_set_attribute_vec(unsigned int client_id, unsigned int scene_id, unsigned int shader_id, unsigned int shnode_id, const char* attribute_name, float x, float y, float z)
 {
 	attrunion v{ attr_type::FLOAT4 };
 	v.f4.x = x;
 	v.f4.y = y;
 	v.f4.z = z;
-	shadernode_set_attribute(client_id, shader_id, shnode_id, attribute_name, v);
+	shadernode_set_attribute(client_id, scene_id, shader_id, shnode_id, attribute_name, v);
 }
 
-void cycles_shader_connect_nodes(unsigned int client_id, unsigned int shader_id, unsigned int from_id, const char* from, unsigned int to_id, const char* to)
+void cycles_shader_connect_nodes(unsigned int client_id, unsigned int scene_id, unsigned int shader_id, unsigned int from_id, const char* from, unsigned int to_id, const char* to)
 {
-	CCShader* sh = shaders[shader_id];
-	auto shfrom = sh->graph->nodes.begin();
-	auto shfrom_end = sh->graph->nodes.end();
-	auto shto = sh->graph->nodes.begin();
-	auto shto_end = sh->graph->nodes.end();
+	CCScene* csce = nullptr;
+	ccl::Scene* sce = nullptr;
+	if (scene_find(scene_id, &csce, &sce)) {
+		CCShader* sh = csce->shaders[shader_id];
+		auto shfrom = sh->graph->nodes.begin();
+		auto shfrom_end = sh->graph->nodes.end();
+		auto shto = sh->graph->nodes.begin();
+		auto shto_end = sh->graph->nodes.end();
 
-	while (shfrom != shfrom_end) {
-		if ((*shfrom)->id == from_id) {
-			break;
+		while (shfrom != shfrom_end) {
+			if ((*shfrom)->id == from_id) {
+				break;
+			}
+			++shfrom;
 		}
-		++shfrom;
-	}
 
-	while (shto != shto_end) {
-		if ((*shto)->id == to_id) {
-			break;
+		while (shto != shto_end) {
+			if ((*shto)->id == to_id) {
+				break;
+			}
+			++shto;
 		}
-		++shto;
-	}
 
-	if (shfrom == shfrom_end || shto == shto_end) {
-		return; // TODO: figure out what to do on errors like this
-	}
-	logger.logit(client_id, "Shader ", shader_id, " :: ", from_id, ":", from, " -> ", to_id, ":", to);
+		if (shfrom == shfrom_end || shto == shto_end) {
+			return; // TODO: figure out what to do on errors like this
+		}
+		logger.logit(client_id, "Shader ", shader_id, " :: ", from_id, ":", from, " -> ", to_id, ":", to);
 
-	sh->graph->connect((*shfrom)->output(from), (*shto)->input(to));
+		sh->graph->connect((*shfrom)->output(from), (*shto)->input(to));
+	}
 }
 
 

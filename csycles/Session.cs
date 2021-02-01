@@ -20,12 +20,12 @@ namespace ccl
 {
 	/// <summary>
 	/// The Cycles session representation.
-	/// 
+	///
 	/// The Session is used to manage the render process at the highest level. Here one can set
 	/// the different callbacks to retrieve render results and updates and statistics during a render.
-	/// 
+	///
 	/// A session is created using SessionParameters and a Scene.
-	/// 
+	///
 	/// Through Session the render process is started and ended.
 	/// </summary>
 	public class Session
@@ -222,7 +222,7 @@ namespace ccl
 		public void Destroy()
 		{
 			if (Destroyed) return;
-			CSycles.session_destroy(Client.Id, Id);
+			CSycles.session_destroy(Client.Id, Id, Scene.Id);
 			Destroyed = true;
 		}
 

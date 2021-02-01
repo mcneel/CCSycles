@@ -40,7 +40,7 @@ namespace ccl
 
 		/// <summary>
 		/// Give a nice name for UI usage. PCI bus and other redundancy is removed.
-		/// 
+		///
 		/// For a multidevice the type of multi device and its subdevices is given.
 		/// </summary>
 		public string NiceName
@@ -176,7 +176,7 @@ namespace ccl
 		{
 			var dev = obj as Device;
 			if (dev == null) return false;
-			
+
 			return dev.Id == Id && dev.SubdeviceCount == SubdeviceCount && dev.Subdevices.SequenceEqual(Subdevices);
 		}
 
@@ -303,7 +303,6 @@ namespace ccl
 				var d = (from device in Devices
 								 where device.IsOpenCl || device.IsMultiOpenCl
 								 select device).FirstOrDefault();
-				if (!(d?.IsReady() ?? false)) d = null;
 				return d ?? Default;
 			}
 		}
@@ -319,7 +318,6 @@ namespace ccl
 				var d = (from device in Devices
 								 where device.IsMultiOpenCl
 								 select device).FirstOrDefault();
-				if (!(d?.IsReady() ?? false)) d = null;
 				return d ?? Default;
 			}
 		}
@@ -335,7 +333,6 @@ namespace ccl
 				var d = (from device in Devices
 								 where device.IsGpu
 								 select device).FirstOrDefault();
-				if (!(d?.IsReady() ?? false)) d = null;
 				return d ?? Default;
 
 			}
@@ -359,7 +356,7 @@ namespace ccl
 
 
 		/// <summary>
-		/// Get the device with specified index. For a multi-device the 
+		/// Get the device with specified index. For a multi-device the
 		/// ID starts at 100000
 		/// </summary>
 		/// <param name="idx"></param>
@@ -400,7 +397,7 @@ namespace ccl
 
 		/// <summary>
 		/// Parse given string into a list of integers.
-		/// 
+		///
 		/// The integers should correspond to indices of devices in the
 		/// global list of regular render devices.
 		/// </summary>
@@ -434,7 +431,7 @@ namespace ccl
 
 		/// <summary>
 		/// Generate string from device ID or IDs (in case of multidevice).
-		/// 
+		///
 		/// The resulting string can be used as input to DeviceFromString().
 		/// </summary>
 		public string DeviceString {
@@ -466,7 +463,7 @@ namespace ccl
 
 		/// <summary>
 		/// Convert a list of id integers to a Device list.
-		/// 
+		///
 		/// The ids are indices into the global list of regular devices,
 		/// i.e. used with GetDevice(int idx);
 		/// </summary>
@@ -494,20 +491,6 @@ namespace ccl
 			}
 
 			return CreateMultiDevice(DeviceListFromIntList(l));
-		}
-
-		/// <summary>
-		/// Ask if device is ready. For CUDA and CPU this will always
-		/// be true, but for OpenCL the drivers may still be compiling
-		/// the kernels.
-		/// </summary>
-		/// <returns>True if the device is ready for use.</returns>
-		public bool IsReady() {
-			if (!IsMultiOpenCl && !IsOpenCl) return true;
-			if(IsMultiOpenCl) {
-				return Subdevices.Aggregate(true, (acc, nxt) => acc & nxt.IsReady());
-			}
-			return CSycles.device_opencl_ready(Id);
 		}
 	}
 }

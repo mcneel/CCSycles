@@ -69,7 +69,7 @@ namespace ccl.ShaderNodes
 	{
 		/// <summary>
 		/// Gradient types for GradientTextureNode
-		/// 
+		///
 		/// @todo implement all, currently only Linear supported
 		/// </summary>
 		public enum GradientType
@@ -131,9 +131,9 @@ namespace ccl.ShaderNodes
 		/// </summary>
 		public GradientType Gradient { get; set; }
 
-		internal override void SetEnums(uint clientId, uint shaderId)
+		internal override void SetEnums(uint clientId, uint sceneId, uint shaderId)
 		{
-			CSycles.shadernode_set_enum(clientId, shaderId, Id, Type, "gradient", (int)Gradient);
+			CSycles.shadernode_set_enum(clientId, sceneId, shaderId, Id, Type, "gradient", (int)Gradient);
 		}
 
 		internal override void ParseXml(XmlReader xmlNode)

@@ -38,7 +38,7 @@ namespace ccl.ShaderNodes
 		/// </summary>
 		public ColorSocket Mortar { get; set; }
 		/// <summary>
-		/// BrickTexture texture coordinate to sample at. 
+		/// BrickTexture texture coordinate to sample at.
 		/// </summary>
 		public Float4Socket Vector { get; set; }
 
@@ -185,10 +185,10 @@ namespace ccl.ShaderNodes
 
 		internal override void SetDirectMembers(uint clientId, uint sceneId, uint shaderId)
 		{
-			CSycles.shadernode_set_member_float(clientId, shaderId, Id, Type, "offset", Offset);
-			CSycles.shadernode_set_member_int(clientId, shaderId, Id, Type, "offset_frequency", OffsetFrequency);
-			CSycles.shadernode_set_member_float(clientId, shaderId, Id, Type, "squash", Squash);
-			CSycles.shadernode_set_member_int(clientId, shaderId, Id, Type, "squash_frequency", SquashFrequency);
+			CSycles.shadernode_set_member_float(clientId, sceneId, shaderId, Id, Type, "offset", Offset);
+			CSycles.shadernode_set_member_int(clientId, sceneId, shaderId, Id, Type, "offset_frequency", OffsetFrequency);
+			CSycles.shadernode_set_member_float(clientId, sceneId, shaderId, Id, Type, "squash", Squash);
+			CSycles.shadernode_set_member_int(clientId, sceneId, shaderId, Id, Type, "squash_frequency", SquashFrequency);
 		}
 
 		internal override void ParseXml(XmlReader xmlNode)

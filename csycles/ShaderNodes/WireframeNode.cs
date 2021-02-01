@@ -63,7 +63,7 @@ namespace ccl.ShaderNodes
 
 		internal override void SetDirectMembers(uint clientId, uint sceneId, uint shaderId)
 		{
-			CSycles.shadernode_set_member_bool(clientId, shaderId, Id, Type, "usepixelsize", UsePixelSize);
+			CSycles.shadernode_set_member_bool(clientId, sceneId, shaderId, Id, Type, "usepixelsize", UsePixelSize);
 			base.SetDirectMembers(clientId, sceneId, shaderId);
 		}
 

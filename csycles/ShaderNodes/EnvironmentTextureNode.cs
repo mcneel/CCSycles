@@ -29,7 +29,7 @@ namespace ccl.ShaderNodes
 	public class EnvironmentTextureInputs : Inputs
 	{
 		/// <summary>
-		/// EnvironmentTextureNode vector input 
+		/// EnvironmentTextureNode vector input
 		/// </summary>
 		public VectorSocket Vector { get; set; }
 
@@ -105,18 +105,18 @@ namespace ccl.ShaderNodes
 			Projection = (EnvironmentProjection)Enum.Parse(typeof(EnvironmentProjection), projection, true);
 		}
 
-		internal override void SetEnums(uint clientId, uint shaderId)
+		internal override void SetEnums(uint clientId, uint sceneId, uint shaderId)
 		{
-			CSycles.shadernode_set_enum(clientId, shaderId, Id, Type, "projection", (int)Projection);
-			CSycles.shadernode_set_enum(clientId, shaderId, Id, Type, "color_space", (int)ColorSpace);
-			CSycles.shadernode_set_enum(clientId, shaderId, Id, Type, "interpolation", (int)Interpolation);
+			CSycles.shadernode_set_enum(clientId, sceneId, shaderId, Id, Type, "projection", (int)Projection);
+			CSycles.shadernode_set_enum(clientId, sceneId, shaderId, Id, Type, "color_space", (int)ColorSpace);
+			CSycles.shadernode_set_enum(clientId, sceneId, shaderId, Id, Type, "interpolation", (int)Interpolation);
 		}
 
 		internal override void SetDirectMembers(uint clientId, uint sceneId, uint shaderId)
 		{
 			base.SetDirectMembers(clientId, sceneId, shaderId);
 
-			CSycles.shadernode_set_member_bool(clientId, shaderId, Id, Type, "is_linear", IsLinear);
+			CSycles.shadernode_set_member_bool(clientId, sceneId, shaderId, Id, Type, "is_linear", IsLinear);
 			if (FloatImagePtr != IntPtr.Zero)
 			{
 				CSycles.shadernode_set_member_float_img(clientId, sceneId, shaderId, Id, Type, "builtin-data", Filename ?? String.Format("{0}-{0}-{0}", clientId, shaderId, Id), FloatImagePtr, Width, Height, 1, 4);

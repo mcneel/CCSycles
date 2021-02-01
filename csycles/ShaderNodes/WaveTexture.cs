@@ -103,10 +103,10 @@ namespace ccl.ShaderNodes
 
 		public WaveProfiles WaveProfile { get; set; }
 
-		internal override void SetEnums(uint clientId, uint shaderId)
+		internal override void SetEnums(uint clientId, uint sceneId, uint shaderId)
 		{
-			CSycles.shadernode_set_enum(clientId, shaderId, Id, Type, "wave", (int)WaveType);
-			CSycles.shadernode_set_enum(clientId, shaderId, Id, Type, "profile", (int)WaveProfile);
+			CSycles.shadernode_set_enum(clientId, sceneId, shaderId, Id, Type, "wave", (int)WaveType);
+			CSycles.shadernode_set_enum(clientId, sceneId, shaderId, Id, Type, "profile", (int)WaveProfile);
 		}
 
 		internal override void ParseXml(XmlReader xmlNode)

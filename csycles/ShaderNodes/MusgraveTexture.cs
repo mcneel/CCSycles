@@ -113,9 +113,9 @@ namespace ccl.ShaderNodes
 			return str;
 		}
 
-		internal override void SetEnums(uint clientId, uint shaderId)
+		internal override void SetEnums(uint clientId, uint sceneId, uint shaderId)
 		{
-			CSycles.shadernode_set_enum(clientId, shaderId, Id, Type, "musgrave", (int)MusgraveType);
+			CSycles.shadernode_set_enum(clientId, sceneId, shaderId, Id, Type, "musgrave", (int)MusgraveType);
 		}
 
 		internal override void ParseXml(XmlReader xmlNode)

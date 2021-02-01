@@ -61,7 +61,7 @@ limitations under the License.
 	} \
 	else { \
 		(puthere) = devices[id]; \
-	} 
+	}
 
 //extern LOGGER_FUNC_CB logger_func;
 extern std::vector<LOGGER_FUNC_CB> loggers;
@@ -199,11 +199,13 @@ public:
 	bool size_has_changed();
 	ccl::thread_mutex pixels_mutex;
 
-	/*~CCSession() {
+	~CCSession() {
 		ccl::thread_scoped_lock pixels_lock(pixels_mutex);
 		delete[] pixels;
 		pixels = nullptr;
-	}*/
+		delete session;
+		session = nullptr;
+	}
 
 private:
 	bool _size_has_changed;
@@ -211,9 +213,23 @@ private:
 protected:
 	/* Protected constructor, use CCSession::create to create a new CCSession. */
 	CCSession(float* pixels_, unsigned int buffer_size_, unsigned int buffer_stride_)
-		: 
+		:
 			pixels{pixels_}, buffer_size{buffer_size_}, buffer_stride{buffer_stride_}
 	{  }
+};
+
+class CCShader {
+public:
+	/* Hold the Cycles shader. */
+	ccl::Shader* shader = new ccl::Shader();
+	/* Hold the shader node graph. */
+	ccl::ShaderGraph* graph = new ccl::ShaderGraph();
+	/* Map shader ID in scene to scene ID. */
+	std::map<unsigned int, unsigned int> scene_mapping;
+
+	~CCShader() {
+		scene_mapping.clear();
+	}
 };
 
 class CCScene final {
@@ -223,20 +239,36 @@ public:
 
 	unsigned int params_id = -1;
 
+	std::vector<CCImage*> images;
+
+	std::vector<CCShader*> shaders;
+
 	/* Note: depth>1 if volumetric texture (i.e smoke volume data) */
 
 	void builtin_image_info(const std::string& builtin_name, void* builtin_data, ccl::ImageMetaData& meta); // bool& is_float, int& width, int& height, int& depth, int& channels);
 	bool builtin_image_pixels(const std::string& builtin_name, void* builtin_data, int tile, unsigned char* pixels, const size_t pixels_size, const bool associate_alpha, const bool free_cache);
 	bool builtin_image_float_pixels(const std::string& builtin_name, void* builtin_data, int tile, float* pixels, const size_t pixels_size, const bool associate_alpha, const bool free_cache);
-};
 
-struct CCShader {
-	/* Hold the Cycles shader. */
-	ccl::Shader* shader = new ccl::Shader();
-	/* Hold the shader node graph. */
-	ccl::ShaderGraph* graph = new ccl::ShaderGraph();
-	/* Map shader ID in scene to scene ID. */
-	std::map<unsigned int, unsigned int> scene_mapping;
+	~CCScene() {
+		for(CCImage* image : images) {
+			/* don't delete builtin_data, it isn't owned by this */
+			image->builtin_data = nullptr;
+			delete image;
+		}
+		images.clear();
+		for (CCShader* sh : shaders) {
+			if (sh != nullptr) {
+				// just setting to nullptr, as scene disposal frees this memory.
+				sh->graph = nullptr;
+				sh->shader = nullptr;
+
+				sh->scene_mapping.clear();
+
+				delete sh;
+			}
+		}
+		shaders.clear();
+	}
 };
 
 /* data */
@@ -256,11 +288,11 @@ extern unsigned int get_idx_for_shader_in_scene(ccl::Scene* sce, ccl::Shader* sh
 extern bool scene_find(unsigned int scid, CCScene** csce, ccl::Scene** sce);
 extern bool session_find(unsigned int sid, CCSession** ccsess, ccl::Session** session);
 extern void scene_clear_pointer(ccl::Scene* sce);
+extern void set_ccscene_null(unsigned int scene_id);
 
 extern void _cleanup_scenes();
 extern void _cleanup_sessions();
-extern void _cleanup_shaders();
-extern void _init_shaders();
+extern void _init_shaders(unsigned int client_id, unsigned int scene_id);
 
 /********************************/
 /* Some useful defines          */
@@ -301,8 +333,12 @@ extern void _init_shaders();
 #define SHADER_VAR2(a,b) a ## b
 #define SHADER_VAR(a, b) SHADER_VAR2(a,b)
 /* Set a var of shader to val of type. */
-#define SHADER_SET(shid, type, var, val) \
-	CCShader* sh = shaders[shid]; \
-    sh->shader-> var = (type)(val); \
-	logger.logit(client_id, "Set " #var " of shader ", shid, " to ", val, " casting to " #type);
+#define SHADER_SET(scene_id, shid, type, var, val) \
+	CCScene* csce = nullptr; \
+	ccl::Scene* sce = nullptr; \
+	if (scene_find(scene_id, &csce, &sce)) { \
+		CCShader* sh = csce->shaders[shid]; \
+		sh->shader-> var = (type)(val); \
+		logger.logit(client_id, "Set " #var " of shader ", shid, " to ", val, " casting to " #type); \
+	}
 

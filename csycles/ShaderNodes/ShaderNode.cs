@@ -120,8 +120,9 @@ namespace ccl.ShaderNodes
 		/// it has enumerations that need to be committed to Cycles
 		/// </summary>
 		/// <param name="clientId"></param>
+		/// <param name="sceneId"></param>
 		/// <param name="shaderId"></param>
-		virtual internal void SetEnums(uint clientId, uint shaderId)
+		virtual internal void SetEnums(uint clientId, uint sceneId, uint shaderId)
 		{
 			// do nothing
 		}
@@ -138,7 +139,7 @@ namespace ccl.ShaderNodes
 			// do nothing
 		}
 
-		internal void SetSockets(uint clientId, uint shaderId)
+		internal void SetSockets(uint clientId, uint sceneId, uint shaderId)
 		{
 			/* set node attributes */
 			if (inputs != null)
@@ -147,15 +148,15 @@ namespace ccl.ShaderNodes
 				{
 					if (socket is FloatSocket float_socket)
 					{
-						CSycles.shadernode_set_attribute_float(clientId, shaderId, Id, float_socket.Name, float_socket.Value);
+						CSycles.shadernode_set_attribute_float(clientId, sceneId, shaderId, Id, float_socket.Name, float_socket.Value);
 					}
 					if (socket is IntSocket int_socket)
 					{
-						CSycles.shadernode_set_attribute_int(clientId, shaderId, Id, int_socket.Name, int_socket.Value);
+						CSycles.shadernode_set_attribute_int(clientId, sceneId, shaderId, Id, int_socket.Name, int_socket.Value);
 					}
 					if (socket is Float4Socket float4_socket)
 					{
-						CSycles.shadernode_set_attribute_vec(clientId, shaderId, Id, float4_socket.Name, float4_socket.Value);
+						CSycles.shadernode_set_attribute_vec(clientId, sceneId, shaderId, Id, float4_socket.Name, float4_socket.Value);
 					}
 				}
 			}
