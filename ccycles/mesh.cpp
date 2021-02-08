@@ -49,7 +49,7 @@ unsigned int cycles_scene_add_mesh_object(unsigned int client_id, unsigned int s
 	if(scene_find(scene_id, &csce, &sce)) {
 		ccl::Mesh* mesh = new ccl::Mesh();
 		ccl::Shader* sh = find_shader_in_scene(sce, shader_id);
-		
+
 		ccl::Object* ob = sce->objects[object_id];
 		ob->mesh = mesh;
 
@@ -154,6 +154,7 @@ void cycles_mesh_set_verts(unsigned int client_id, unsigned int scene_id, unsign
 		ccl::Mesh* me = sce->meshes[mesh_id];
 
 		ccl::float3 f3;
+		ccl::float3* generated = me->attributes.add(ccl::ATTR_STD_GENERATED)->data_float3();
 
 		for (int i = 0, j = 0; i < (int)vcount*3; i+=3, j++) {
 			f3.x = verts[i];
@@ -161,6 +162,7 @@ void cycles_mesh_set_verts(unsigned int client_id, unsigned int scene_id, unsign
 			f3.z = verts[i+2];
 			//logger.logit(client_id, "v: ", f3.x, ",", f3.y, ",", f3.z);
 			me->verts[j] = f3;
+			generated[j] = f3;
 		}
 		me->geometry_flags = ccl::Mesh::GeometryFlags::GEOMETRY_TRIANGLES;
 	}
@@ -175,7 +177,8 @@ void cycles_mesh_set_tris(unsigned int client_id, unsigned int scene_id, unsigne
 
 		me->reserve_mesh(fcount * 3, fcount);
 
-		for (int i = 0, j = 0; i < (int)fcount*3; i += 3, j++) {
+		for (int i = 0, j = 0; i < (int)fcount*3; i += 3, j++)
+		{
 			//logger.logit(client_id, "f: ", faces[i], ",", faces[i + 1], ",", faces[i + 2]);
 			me->triangles[i] = faces[i];
 			me->triangles[i + 1] = faces[i + 1];
@@ -470,7 +473,7 @@ public:
 protected:
 	const ccl::array<ccl::float3>& verts_;
 };
-	
+
 void attr_create_pointiness(ccl::Mesh *mesh)
 {
 	const int num_verts = mesh->verts.size();
