@@ -744,24 +744,26 @@ void cycles_shadernode_set_enum(unsigned int client_id, unsigned int scene_id, u
 		break;
 		case shadernode_type::VORONOI_TEXTURE:
 		{
-			/*if (ename == "coloring") {
-				ccl::VoronoiTextureNode* node = dynamic_cast<ccl::VoronoiTextureNode*>(shnode);
-				node->coloring = (ccl::NodeVoronoiColoring)value;
-			}*/
+			ccl::VoronoiTextureNode* node = dynamic_cast<ccl::VoronoiTextureNode*>(shnode);
 			if (ename == "metric") {
-				ccl::VoronoiTextureNode* node = dynamic_cast<ccl::VoronoiTextureNode*>(shnode);
 				node->metric = (ccl::NodeVoronoiDistanceMetric)value;
 			}
-			if (ename == "feature") {
-				ccl::VoronoiTextureNode* node = dynamic_cast<ccl::VoronoiTextureNode*>(shnode);
+			else if (ename == "feature") {
 				node->feature = (ccl::NodeVoronoiFeature)value;
+			}
+			else if (ename == "dimension") {
+				node->dimensions = value;
 			}
 		}
 		break;
 		case shadernode_type::MUSGRAVE_TEXTURE:
 		{
 			ccl::MusgraveTextureNode* node = dynamic_cast<ccl::MusgraveTextureNode*>(shnode);
-			node->type = (ccl::NodeMusgraveType)value;
+			if(ename=="musgrave") {
+				node->type = (ccl::NodeMusgraveType)value;
+			} else if(ename=="dimension") {
+				node->dimensions = value;
+			}
 		}
 		break;
 		case shadernode_type::SKY_TEXTURE:

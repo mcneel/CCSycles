@@ -25,28 +25,49 @@ namespace ccl.ShaderNodes
 	public class VoronoiInputs : Inputs
 	{
 		public VectorSocket Vector { get; set; }
+		public FloatSocket W { get; set; }
 		public FloatSocket Scale { get; set; }
+		public FloatSocket Smoothness { get; set; }
+		public FloatSocket Exponent { get; set; }
+		public FloatSocket Randomness { get; set; }
 
 		public VoronoiInputs(ShaderNode parentNode)
 		{
 			Vector = new VectorSocket(parentNode, "Vector");
 			AddSocket(Vector);
+			W = new FloatSocket(parentNode, "W");
+			AddSocket(W);
 			Scale = new FloatSocket(parentNode, "Scale");
 			AddSocket(Scale);
+			Smoothness = new FloatSocket(parentNode, "Smoothness");
+			AddSocket(Smoothness);
+			Exponent = new FloatSocket(parentNode, "Exponent");
+			AddSocket(Exponent);
+			Randomness = new FloatSocket(parentNode, "Randomness");
+			AddSocket(Randomness);
 		}
 	}
 
 	public class VoronoiOutputs : Outputs
 	{
+		public FloatSocket Distance { get; set; }
 		public ColorSocket Color { get; set; }
-		public FloatSocket Fac { get; set; }
+		public VectorSocket Position { get; set; }
+		public FloatSocket W { get; set; }
+		public FloatSocket Radius { get; set; }
 
 		public VoronoiOutputs(ShaderNode parentNode)
 		{
+			Distance = new FloatSocket(parentNode, "Distance");
+			AddSocket(Distance);
 			Color = new ColorSocket(parentNode, "Color");
 			AddSocket(Color);
-			Fac = new FloatSocket(parentNode, "Fac");
-			AddSocket(Fac);
+			Position = new VectorSocket(parentNode, "Position");
+			AddSocket(Position);
+			W = new FloatSocket(parentNode, "W");
+			AddSocket(W);
+			Radius = new FloatSocket(parentNode, "Radius");
+			AddSocket(Radius);
 		}
 	}
 
@@ -54,15 +75,17 @@ namespace ccl.ShaderNodes
 	public class VoronoiTexture : TextureNode
 	{
 
-		public enum ColoringTypes
+		public enum Dimensions
 		{
-			Intensity,
-			Cells,
+			D1 = 1,
+			D2,
+			D3,
+			D4,
 		}
 
 		public enum Metrics
 		{
-			Distance,
+			Euclidian,
 			Manhattan,
 			Chebychev,
 			Minkowski,
@@ -72,9 +95,9 @@ namespace ccl.ShaderNodes
 		{
 			F1,
 			F2,
-			F3,
-			F4,
-			F2F1,
+			SMOOTH_F1,
+			DISTANCE_TO_EDGE,
+			N_SPHERE_RADIUS,
 		}
 		public VoronoiInputs ins => (VoronoiInputs)inputs;
 		public VoronoiOutputs outs => (VoronoiOutputs)outputs;
@@ -86,7 +109,11 @@ namespace ccl.ShaderNodes
 			inputs = new VoronoiInputs(this);
 			outputs = new VoronoiOutputs(this);
 
-			ins.Scale.Value = 1.0f;
+			ins.W.Value = 0.0f;
+			ins.Scale.Value = 5.0f;
+			ins.Smoothness.Value = 5.0f;
+			ins.Exponent.Value = 0.5f;
+			ins.Randomness.Value = 0.5f;
 		}
 
 		/// <summary>
@@ -94,13 +121,13 @@ namespace ccl.ShaderNodes
 		/// - Cells
 		/// - Intensity
 		/// </summary>
-		public ColoringTypes Coloring { get; set; } = ColoringTypes.Cells;
-		public Metrics Metric { get; set; } = Metrics.Distance;
+		public Dimensions Dimension { get; set; } = Dimensions.D3;
+		public Metrics Metric { get; set; } = Metrics.Euclidian;
 		public Features Feature { get; set; } = Features.F1;
 
 		internal override void SetEnums(uint clientId, uint sceneId, uint shaderId)
 		{
-			CSycles.shadernode_set_enum(clientId, sceneId, shaderId, Id, Type, "coloring", (int)Coloring);
+			CSycles.shadernode_set_enum(clientId, sceneId, shaderId, Id, Type, "dimension", (int)Dimension);
 			CSycles.shadernode_set_enum(clientId, sceneId, shaderId, Id, Type, "metric", (int)Metric);
 			CSycles.shadernode_set_enum(clientId, sceneId, shaderId, Id, Type, "feature", (int)Feature);
 		}
@@ -109,11 +136,11 @@ namespace ccl.ShaderNodes
 		{
 			Utilities.Instance.get_float4(ins.Vector, xmlNode.GetAttribute("vector"));
 			Utilities.Instance.get_float(ins.Scale, xmlNode.GetAttribute("scale"));
-			var coloring = xmlNode.GetAttribute("coloring");
-			if (!string.IsNullOrEmpty(coloring))
+			var dimension = xmlNode.GetAttribute("dimension");
+			if (!string.IsNullOrEmpty(dimension))
 			{
-				if (Enum.TryParse(coloring, out ColoringTypes ct))
-					Coloring = ct;
+				if (Enum.TryParse(dimension, out Dimensions ct))
+					Dimension = ct;
 			}
 			var metric = xmlNode.GetAttribute("metric");
 			if (!string.IsNullOrEmpty(metric))
@@ -130,7 +157,7 @@ namespace ccl.ShaderNodes
 		}
 		public override string CreateXmlAttributes()
 		{
-			var code = new StringBuilder($" coloring=\"{Coloring}\" ", 1024);
+			var code = new StringBuilder($" dimension=\"{Dimension}\" ", 1024);
 			code.Append($" metric=\"{Metric}\" ");
 			code.Append($" feature=\"{Feature}\" ");
 
@@ -138,7 +165,7 @@ namespace ccl.ShaderNodes
 		}
 		public override string CreateCodeAttributes()
 		{
-			var code = new StringBuilder($"{VariableName}.Coloring = {Coloring};", 1024);
+			var code = new StringBuilder($"{VariableName}.Dimension = {Dimension};", 1024);
 			code.Append( $"{VariableName}.Metric = {Metric};");
 			code.Append($"{VariableName}.Feature = {Feature};");
 
