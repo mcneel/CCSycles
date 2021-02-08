@@ -267,18 +267,19 @@ void cycles_mesh_set_vertex_colors(unsigned int client_id, unsigned int scene_id
 		ccl::Mesh* me = sce->meshes[mesh_id];
 
 		ccl::Attribute *attr = me->attributes.add(ustring("vertexcolor"),
-                                             TypeDesc::TypeColor,
+                                             ccl::TypeRGBA,
                                              ccl::ATTR_ELEMENT_CORNER_BYTE);
 
 		ccl::uchar4 *cdata = attr->data_uchar4();
 
-		ccl::float3 f3;
+		ccl::float4 f4;
 
 		for (int i = 0, j = 0; i < (int)vcolorcount * 3; i += 3, j++) {
-			f3.x = vcolors[i];
-			f3.y = vcolors[i + 1];
-			f3.z = vcolors[i + 2];
-			cdata[j] = ccl::color_float_to_byte(f3);
+			f4.x = vcolors[i];
+			f4.y = vcolors[i + 1];
+			f4.z = vcolors[i + 2];
+			f4.w = 1.0f;
+			cdata[j] = ccl::color_float4_to_uchar4(f4); //ccl::color_float_to_byte(f3);
 		}
 		me->geometry_flags = ccl::Mesh::GeometryFlags::GEOMETRY_TRIANGLES;
 	}
