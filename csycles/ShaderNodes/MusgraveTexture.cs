@@ -43,10 +43,6 @@ namespace ccl.ShaderNodes
 			AddSocket(Dimension);
 			Lacunarity = new FloatSocket(parentNode, "Lacunarity");
 			AddSocket(Lacunarity);
-			Offset = new FloatSocket(parentNode, "Offset");
-			AddSocket(Offset);
-			Gain = new FloatSocket(parentNode, "Gain");
-			AddSocket(Gain);
 		}
 	}
 
@@ -67,6 +63,14 @@ namespace ccl.ShaderNodes
 	[ShaderNode("musgrave_texture")]
 	public class MusgraveTexture : TextureNode
 	{
+		public enum Dimensions
+		{
+			D1 = 1,
+			D2,
+			D3,
+			D4,
+
+		}
 		public enum MusgraveTypes
 		{
 			Multifractal,
@@ -87,23 +91,29 @@ namespace ccl.ShaderNodes
 			outputs = new MusgraveOutputs(this);
 
 			MusgraveType = MusgraveTypes.fBM;
+			Dimension = Dimensions.D3;
 
 			ins.Scale.Value = 1.0f;
 			ins.Detail.Value = 2.0f;
 			ins.Dimension.Value = 2.0f;
-			ins.Lacunarity.Value = 1.0f;
-			ins.Offset.Value = 0.0f;
-			ins.Gain.Value = 1.0f;
+			ins.Lacunarity.Value = 2.0f;
 		}
 
 		/// <summary>
 		/// musgrave->type
 		/// </summary>
 		public MusgraveTypes MusgraveType { get; set; }
+
+		public Dimensions Dimension { get; set; }
 		public void SetType(string dist)
 		{
 			dist = dist.Replace(" ", "_");
 			MusgraveType= (MusgraveTypes)System.Enum.Parse(typeof(MusgraveTypes), dist, true);
+		}
+
+		public void SetDimension(string dim)
+		{
+			Dimension = (Dimensions)System.Enum.Parse(typeof(Dimensions), dim, true);
 		}
 
 		private string MusgraveToString(MusgraveTypes dist)
@@ -116,6 +126,7 @@ namespace ccl.ShaderNodes
 		internal override void SetEnums(uint clientId, uint sceneId, uint shaderId)
 		{
 			CSycles.shadernode_set_enum(clientId, sceneId, shaderId, Id, Type, "musgrave", (int)MusgraveType);
+			CSycles.shadernode_set_enum(clientId, sceneId, shaderId, Id, Type, "dimension", (int)Dimension);
 		}
 
 		internal override void ParseXml(XmlReader xmlNode)
@@ -125,24 +136,29 @@ namespace ccl.ShaderNodes
 			Utilities.Instance.get_float(ins.Dimension, xmlNode.GetAttribute("dimension"));
 			Utilities.Instance.get_float(ins.Detail, xmlNode.GetAttribute("detail"));
 			Utilities.Instance.get_float(ins.Lacunarity, xmlNode.GetAttribute("lacunarity"));
-			Utilities.Instance.get_float(ins.Offset, xmlNode.GetAttribute("offset"));
-			Utilities.Instance.get_float(ins.Gain, xmlNode.GetAttribute("gain"));
 
 			var musgravetype = xmlNode.GetAttribute("musgrave_type");
 			if (!string.IsNullOrEmpty(musgravetype))
 			{
 				SetType(musgravetype);
 			}
+			var dim = xmlNode.GetAttribute("dimension");
+			if (!string.IsNullOrEmpty(dim))
+			{
+				SetDimension(dim);
+			}
 		}
 		public override string CreateXmlAttributes()
 		{
 			var code = new StringBuilder($" musgrave_type=\"{MusgraveType}\" ", 1024);
+	  code.Append($" dimension=\"{Dimension}\" ");
 
-			return code.ToString();
+	  return code.ToString();
 		}
 		public override string CreateCodeAttributes()
 		{
 			var code = new StringBuilder($"{VariableName}.MusgraveType = {MusgraveType};", 1024);
+			code.Append($"{VariableName}.Dimension= {Dimension};");
 
 			return code.ToString();
 		}

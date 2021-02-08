@@ -39,12 +39,12 @@ namespace ccl.ShaderNodes
 
 	public class CombineHsvOutputs : Outputs
 	{
-		public ColorSocket Image { get; set; }
+		public ColorSocket Color { get; set; }
 
 		public CombineHsvOutputs(ShaderNode parentNode)
 		{
-			Image = new ColorSocket(parentNode, "Image");
-			AddSocket(Image);
+			Color = new ColorSocket(parentNode, "Color");
+			AddSocket(Color);
 		}
 	}
 
