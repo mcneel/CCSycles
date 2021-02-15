@@ -10,9 +10,19 @@
 			 "${workspaceFolder}/../../../../../big_libs/OpenEXR-2.4.0/include",
 			 "${workspaceFolder}/**"
 			],
-	"C_Cpp.default.defines" : ["CCL_NAMESPACE_BEGIN=namespace ccl {", "CCL_NAMESPACE_END=}"],
+	"C_Cpp.default.defines" : [
+			"CCL_NAMESPACE_BEGIN=namespace ccl {",
+			"CCL_NAMESPACE_END=}",
+			"WITH_OPENCL"],
 	"files.associations": {
 		"*.u3m": "json",
-		"vector": "cpp"
+		"vector": "cpp",
+		"fstream": "cpp",
+		"istream": "cpp",
+		"streambuf": "cpp",
+		"condition_variable": "cpp",
+		"cstdlib": "cpp",
+		"future": "cpp",
+		"mutex": "cpp"
 	}
 }
