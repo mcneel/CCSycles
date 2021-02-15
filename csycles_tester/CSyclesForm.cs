@@ -45,7 +45,7 @@ namespace csycles_tester
 		const uint samples = 50;
 		Random r = new Random();
 		private static CSycles.RenderTileCallback g_write_render_tile_callback;
-		public void WriteRenderTileCallback(uint sessionId, uint x, uint y, uint w, uint h, uint depth, int startSample, int numSamples, int sample, int resolution)
+		public void WriteRenderTileCallback(uint sessionId, uint x, uint y, uint w, uint h, uint sample, uint depth, PassType passType, float[] pixels, int len)
 		{
 			Console.WriteLine("C# Write Render Tile for session {0} at ({1},{2}) [{3}]", sessionId, x, y, depth);
 		}
@@ -55,13 +55,8 @@ namespace csycles_tester
 			var dev = Device.FirstGpu;
 			Console.WriteLine("Using device {0} {1}", dev.Name, dev.Description);
 
-			var scene_params = new SceneParameters(Client, ShadingSystem.SVM, BvhType.Static, false, false, false);
-			var scene = new Scene(Client, scene_params, dev);
-
 			var xml = new CSyclesXmlReader(Client, scenename);
 			xml.Parse(false);
-			var width = (uint)scene.Camera.Size.Width;
-			var height = (uint)scene.Camera.Size.Height;
 
 			var session_params = new SessionParameters(Client, dev)
 			{
@@ -76,8 +71,14 @@ namespace csycles_tester
 				Progressive = false,
 				TileOrder = TileOrder.HilbertSpiral
 			};
-			var Session = new Session(Client, session_params, scene);
-			Session.Reset(width, height, samples);
+			var Session = new Session(Client, session_params);
+
+			var scene_params = new SceneParameters(Client, ShadingSystem.SVM, BvhType.Static, false, BvhLayout.Default, false);
+			var scene = new Scene(Client, scene_params, Session);
+			var width = (uint)scene.Camera.Size.Width;
+			var height = (uint)scene.Camera.Size.Height;
+
+			Session.Reset(width, height, samples, 0, 0, width, height);
 
 			g_write_render_tile_callback = WriteRenderTileCallback;
 			Session.WriteTileCallback = g_write_render_tile_callback;
@@ -94,6 +95,7 @@ namespace csycles_tester
 			Session.Start();
 			Session.Wait();
 
+			/*
 			uint bufsize;
 			uint bufstride;
 			CSycles.session_get_buffer_info(Client.Id, Session.Id, out bufsize, out bufstride);
@@ -111,6 +113,7 @@ namespace csycles_tester
 			bmp.Save("test.png", Eto.Drawing.ImageFormat.Png);
 
 			Result = bmp;
+			*/
 
 			Session.Destroy();
 
