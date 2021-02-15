@@ -22,14 +22,13 @@ namespace csycles_unittests
 		[TestCase(1.0f, 0.0f, 1.0f, 0.0f)]
 		unsafe public void TestTransformInverse(float a, float b, float c, float d)
 		{
-			_Transform _f4 = new _Transform(a, b, c, d, a, b, c, d, a, b, c, d, a, b, c, d);
+			_Transform _f4 = new _Transform(a, b, c, d, a, b, c, d, a, b, c, d);
 
 			byte* addr = (byte*)&_f4;
 			Console.WriteLine("Size:      {0}", sizeof(_Transform));
 			Console.WriteLine("x Offset: {0}", (byte*)&_f4.x.x - addr);
 			Console.WriteLine("y Offset: {0}", (byte*)&_f4.y.x - addr);
 			Console.WriteLine("z Offset: {0}", (byte*)&_f4.z.x - addr);
-			Console.WriteLine("w Offset: {0}", (byte*)&_f4.w.x - addr);
 
 			Console.WriteLine("x.x:      {0}", _f4.x.x);
 			Console.WriteLine("x.y:      {0}", _f4.x.y);

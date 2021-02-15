@@ -23,3 +23,6 @@ packages/
 *.diff
 
 xcuserdata/
+
+.fake
+.ionide
