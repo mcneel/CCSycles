@@ -797,6 +797,14 @@ void cycles_shadernode_set_enum(unsigned int client_id, unsigned int scene_id, u
 			}
 			break;
 		}
+		case shadernode_type::TEXTURE_COORDINATE:
+		{
+			ccl::TextureCoordinateNode* node = dynamic_cast<ccl::TextureCoordinateNode*>(shnode);
+			if (ename == "decal_projection") {
+				node->decal_projection = (ccl::NodeImageDecalProjection)value;
+			}
+			break;
+		}
 		case shadernode_type::GRADIENT_TEXTURE:
 		{
 			ccl::GradientTextureNode* node = dynamic_cast<ccl::GradientTextureNode*>(shnode);
@@ -1116,6 +1124,29 @@ void cycles_shadernode_set_member_float(unsigned int client_id, unsigned int sce
 			}
 		}
 		break;
+		case shadernode_type::TEXTURE_COORDINATE:
+		{
+			ccl::TextureCoordinateNode* texconode = dynamic_cast<ccl::TextureCoordinateNode*>(shnode);
+			if (mname == "decal_height") {
+				texconode->height = value;
+			}
+			else if (mname == "decal_radius") {
+				texconode->radius = value;
+			}
+			else if (mname == "decal_hor_start") {
+				texconode->horizontal_sweep_start = value;
+			}
+			else if (mname == "decal_hor_end") {
+				texconode->horizontal_sweep_end = value;
+			}
+			else if (mname == "decal_ver_start") {
+				texconode->vertical_sweep_start = value;
+			}
+			else if (mname == "decal_ver_end") {
+				texconode->vertical_sweep_end = value;
+			}
+		}
+		break;
 		case shadernode_type::BRICK_TEXTURE:
 		{
 			ccl::BrickTextureNode* bricknode = dynamic_cast<ccl::BrickTextureNode*>(shnode);
@@ -1161,23 +1192,85 @@ void cycles_shadernode_set_member_vec4_at_index(unsigned int client_id, unsigned
 		case shadernode_type::TEXTURE_COORDINATE:
 		{
 			ccl::TextureCoordinateNode* texco = dynamic_cast<ccl::TextureCoordinateNode*>(shnode);
-			if (index == 0) {
-				texco->ob_tfm.x.x = x;
-				texco->ob_tfm.x.y = y;
-				texco->ob_tfm.x.z = z;
-				texco->ob_tfm.x.w = w;
+			if(mname == "object_transform") {
+				if (index == 0) {
+					texco->ob_tfm.x.x = x;
+					texco->ob_tfm.x.y = y;
+					texco->ob_tfm.x.z = z;
+					texco->ob_tfm.x.w = w;
+				}
+				else if (index == 1) {
+					texco->ob_tfm.y.x = x;
+					texco->ob_tfm.y.y = y;
+					texco->ob_tfm.y.z = z;
+					texco->ob_tfm.y.w = w;
+				}
+				else if (index == 2) {
+					texco->ob_tfm.z.x = x;
+					texco->ob_tfm.z.y = y;
+					texco->ob_tfm.z.z = z;
+					texco->ob_tfm.z.w = w;
+				}
 			}
-			if (index == 1) {
-				texco->ob_tfm.y.x = x;
-				texco->ob_tfm.y.y = y;
-				texco->ob_tfm.y.z = z;
-				texco->ob_tfm.y.w = w;
+			else if(mname == "pxyz") {
+				if (index == 0) {
+					texco->pxyz.x.x = x;
+					texco->pxyz.x.y = y;
+					texco->pxyz.x.z = z;
+					texco->pxyz.x.w = w;
+				}
+				else if (index == 1) {
+					texco->pxyz.y.x = x;
+					texco->pxyz.y.y = y;
+					texco->pxyz.y.z = z;
+					texco->pxyz.y.w = w;
+				}
+				else if (index == 2) {
+					texco->pxyz.z.x = x;
+					texco->pxyz.z.y = y;
+					texco->pxyz.z.z = z;
+					texco->pxyz.z.w = w;
+				}
 			}
-			if (index == 2) {
-				texco->ob_tfm.z.x = x;
-				texco->ob_tfm.z.y = y;
-				texco->ob_tfm.z.z = z;
-				texco->ob_tfm.z.w = w;
+			else if(mname == "nxyz") {
+				if (index == 0) {
+					texco->nxyz.x.x = x;
+					texco->nxyz.x.y = y;
+					texco->nxyz.x.z = z;
+					texco->nxyz.x.w = w;
+				}
+				else if (index == 1) {
+					texco->nxyz.y.x = x;
+					texco->nxyz.y.y = y;
+					texco->nxyz.y.z = z;
+					texco->nxyz.y.w = w;
+				}
+				else if (index == 2) {
+					texco->nxyz.z.x = x;
+					texco->nxyz.z.y = y;
+					texco->nxyz.z.z = z;
+					texco->nxyz.z.w = w;
+				}
+			}
+			else if(mname == "uvw") {
+				if (index == 0) {
+					texco->uvw.x.x = x;
+					texco->uvw.x.y = y;
+					texco->uvw.x.z = z;
+					texco->uvw.x.w = w;
+				}
+				else if (index == 1) {
+					texco->uvw.y.x = x;
+					texco->uvw.y.y = y;
+					texco->uvw.y.z = z;
+					texco->uvw.y.w = w;
+				}
+				else if (index == 2) {
+					texco->uvw.z.x = x;
+					texco->uvw.z.y = y;
+					texco->uvw.z.z = z;
+					texco->uvw.z.w = w;
+				}
 			}
 		}
 		break;
@@ -1246,6 +1339,26 @@ void cycles_shadernode_set_member_vec(unsigned int client_id, unsigned int scene
 				mapping->tex_mapping.max.y = y;
 				mapping->tex_mapping.max.z = z;
 			}*/
+		}
+		break;
+		case shadernode_type::TEXTURE_COORDINATE:
+		{
+			ccl::TextureCoordinateNode* texco = dynamic_cast<ccl::TextureCoordinateNode*>(shnode);
+			if (mname == "origin") {
+				texco->decal_origin.x = x;
+				texco->decal_origin.y = y;
+				texco->decal_origin.z = z;
+			}
+			else if (mname == "across") {
+				texco->decal_across.x = x;
+				texco->decal_across.y = y;
+				texco->decal_across.z = z;
+			}
+			else if (mname == "up") {
+				texco->decal_up.x = x;
+				texco->decal_up.y = y;
+				texco->decal_up.z = z;
+			}
 		}
 		break;
 		default:

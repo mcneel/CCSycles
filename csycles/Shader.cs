@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Xml;
+using ccl;
 using ccl.ShaderNodes;
 using ccl.ShaderNodes.Sockets;
 
@@ -231,7 +232,7 @@ namespace ccl
 		{
 			if (Verbose)
 			{
-				System.Diagnostics.Debug.WriteLine($"Finalizing {Name}");
+				Utilities.ConsoleWrite($"Finalizing {Name}");
 			}
 			foreach (var node in m_nodes)
 			{
@@ -251,7 +252,7 @@ namespace ccl
 					if (from == null) continue;
 					if (Verbose)
 					{
-						System.Diagnostics.Debug.WriteLine("Shader {0}: Connecting {1} to {2}", Name, from.Path, socket.Path);
+						Utilities.ConsoleWrite($"Shader {Name}: Connecting {from.Path} to {socket.Path}\n");
 					}
 					Connect(from.Parent, from.Name, node, socket.Name);
 				}

@@ -33,10 +33,25 @@ namespace ccl.ShaderNodes
 		/// </summary>
 		public VectorSocket Vector { get; set; }
 
+		/// <summary>
+		/// DecalForward as calculated by the TextureCoordinateNode. Needs to be
+		/// connected to work.
+		/// </summary>
+		public FloatSocket DecalForward { get; set; }
+		/// <summary>
+		/// DecalInside as calculated by the TextureCoordinateNode. Needs to be
+		/// connected to work.
+		/// </summary>
+		public FloatSocket DecalUsage { get; set; }
+
 		internal ImageTextureInputs(ShaderNode parentNode)
 		{
 			Vector = new VectorSocket(parentNode, "Vector");
 			AddSocket(Vector);
+			DecalForward = new FloatSocket(parentNode, "DecalForward");
+			AddSocket(DecalForward);
+			DecalUsage = new FloatSocket(parentNode, "DecalUsage");
+			AddSocket(DecalUsage);
 		}
 	}
 
@@ -87,6 +102,11 @@ namespace ccl.ShaderNodes
 			inputs = new ImageTextureInputs(this);
 			outputs = new ImageTextureOutputs(this);
 
+			// By default we don't do decal sampling, instead
+			// this value gets set by TextureCoordinateNode output DecalUsage
+			// when connected up
+			ins.DecalUsage.Value = 0.0f;
+
 			UseAlpha = true;
 			AlternateTiles = false;
 			ProjectionBlend = 0.0f;
@@ -118,6 +138,7 @@ namespace ccl.ShaderNodes
 		/// Set to true to alternate UV grid tiling. (Rhino specific)
 		/// </summary>
 		public bool AlternateTiles { get; set; }
+
 
 		internal override void SetEnums(uint clientId, uint sceneId, uint shaderId)
 		{
