@@ -155,7 +155,7 @@ namespace ccl
 			if (Utilities.Instance.get_int(ref intvar, node.GetAttribute("volume_max_steps"))) state.Scene.Integrator.VolumeMaxSteps = intvar;
 
 			/* \todo wrap caustics form separation
-			 * 
+			 *
 			if (Utilities.Instance.get_bool(ref boolvar, node.GetAttribute("caustics_reflective"))) state.Scene.Integrator.DoCausticsReflective = boolvar;
 			if (Utilities.Instance.get_bool(ref boolvar, node.GetAttribute("caustics_refractive"))) state.Scene.Integrator.DoCausticsRefractive = boolvar;
 			 */
@@ -175,9 +175,9 @@ namespace ccl
 
 		/// <summary>
 		/// Read a transform from XML.
-		/// 
+		///
 		/// If all are available then they are read and applied to transform according formula:
-		/// 
+		///
 		/// transform = ((matrix * translate) * rotate) * scale
 		/// </summary>
 		/// <param name="node"></param>
@@ -352,7 +352,7 @@ namespace ccl
 
 			if (has_uv)
 			{
-				me.SetUvs(ref uvs);
+				me.SetUvs(ref uvs, "uvmap1");
 			}
 		}
 		private void ReadObject(ref XmlReadState state, System.Xml.XmlReader node)
@@ -467,7 +467,7 @@ namespace ccl
 
 		private void ReadScene(ref XmlReadState state, System.Xml.XmlReader node)
 		{
-			
+
 			while (node.Read())
 			{
 				if (!node.IsStartElement()) continue;

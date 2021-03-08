@@ -67,6 +67,7 @@ unsigned int cycles_scene_add_mesh_object(unsigned int client_id, unsigned int s
 
 void cycles_mesh_set_shader(unsigned int client_id, unsigned int scene_id, unsigned int mesh_id, unsigned int shader_id)
 {
+	/*
 	CCScene* csce = nullptr;
 	ccl::Scene* sce = nullptr;
 	if(scene_find(scene_id, &csce, &sce)) {
@@ -85,6 +86,7 @@ void cycles_mesh_set_shader(unsigned int client_id, unsigned int scene_id, unsig
 		sh->tag_used(sce);
 		sce->light_manager->tag_update(sce);
 	}
+	*/
 }
 
 void cycles_mesh_clear(unsigned int client_id, unsigned int scene_id, unsigned int mesh_id)
@@ -216,14 +218,16 @@ void cycles_mesh_add_triangle(unsigned int client_id, unsigned int scene_id, uns
 	}
 }
 
-void cycles_mesh_set_uvs(unsigned int client_id, unsigned int scene_id, unsigned int mesh_id, float *uvs, unsigned int uvcount)
+void cycles_mesh_set_uvs(unsigned int client_id, unsigned int scene_id, unsigned int mesh_id, float *uvs, unsigned int uvcount, const char* uvmap_name)
 {
 	CCScene* csce = nullptr;
 	ccl::Scene* sce = nullptr;
 	if(scene_find(scene_id, &csce, &sce)) {
 		ccl::Mesh* me = sce->meshes[mesh_id];
 
-		ccl::Attribute* attr = me->attributes.add(ccl::ATTR_STD_UV, ccl::ustring("uvmap"));
+		ccl::ustring uvmap = uvmap_name ? ccl::ustring(uvmap_name) : ccl::ustring("uvmap1");
+
+		ccl::Attribute* attr = me->attributes.add(ccl::ATTR_STD_UV, uvmap);
 		ccl::float2* fdata = attr->data_float2();
 
 		ccl::float2 f2;
@@ -421,7 +425,7 @@ static void mikk_compute_tangents(ccl::Mesh *mesh)
 	attr_sign = attributes.add(ccl::ATTR_STD_UV_TANGENT_SIGN, name_sign);
 	tangent_sign = attr_sign->data_float();
 	/* Setup userdata. */
-	MikkUserData userdata("uvmap", mesh, tangent, tangent_sign);
+	MikkUserData userdata("uvmap1", mesh, tangent, tangent_sign);
 	/* Setup interface. */
 	SMikkTSpaceInterface sm_interface;
 	memset(&sm_interface, 0, sizeof(sm_interface));
