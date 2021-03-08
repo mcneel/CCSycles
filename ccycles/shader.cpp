@@ -346,7 +346,7 @@ unsigned int cycles_add_shader_node(unsigned int client_id, unsigned int scene_i
 			break;
 		case shadernode_type::NORMALMAP:
 			node = new ccl::NormalMapNode();
-			dynamic_cast<ccl::NormalMapNode*>(node)->attribute = OpenImageIO_v2_0::ustring("uvmap");
+			dynamic_cast<ccl::NormalMapNode*>(node)->attribute = OpenImageIO_v2_0::ustring("uvmap1");
 			break;
 		case shadernode_type::WIREFRAME:
 			node = new ccl::WireframeNode();
@@ -359,7 +359,7 @@ unsigned int cycles_add_shader_node(unsigned int client_id, unsigned int scene_i
 			break;
 		case shadernode_type::TANGENT:
 			node = new ccl::TangentNode();
-			dynamic_cast<ccl::TangentNode*>(node)->attribute = OpenImageIO_v2_0::ustring("uvmap");
+			dynamic_cast<ccl::TangentNode*>(node)->attribute = OpenImageIO_v2_0::ustring("uvmap1");
 			dynamic_cast<ccl::TangentNode*>(node)->direction_type = ccl::NodeTangentDirectionType::NODE_TANGENT_UVMAP;
 			break;
 		case shadernode_type::DISPLACEMENT:
@@ -1381,6 +1381,12 @@ void cycles_shadernode_set_member_string(unsigned int client_id, unsigned int sc
 		{
 			ccl::AttributeNode* attrn = dynamic_cast<ccl::AttributeNode*>(shnode);
 			attrn->attribute = mval;
+		}
+		break;
+		case shadernode_type::TEXTURE_COORDINATE:
+		{
+			ccl::TextureCoordinateNode* texco = dynamic_cast<ccl::TextureCoordinateNode*>(shnode);
+			texco->uvmap = mval;
 		}
 		break;
 		default:

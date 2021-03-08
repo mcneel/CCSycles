@@ -197,6 +197,8 @@ namespace ccl.ShaderNodes
 		/// </summary>
 		public ccl.Transform DecalUvw { get; set; }
 
+	public string UvMap { get; set; } = "uvmap1";
+
 	internal override void SetDirectMembers(uint clientId, uint sceneId, uint shaderId)
 		{
 			CSycles.shadernode_set_member_bool(clientId, sceneId, shaderId, Id, ShaderNodeType.TextureCoordinate, "use_transform", UseTransform);
@@ -236,6 +238,8 @@ namespace ccl.ShaderNodes
 			CSycles.shadernode_set_member_vec4_at_index(clientId, sceneId, shaderId, Id, ShaderNodeType.TextureCoordinate, "uvw", uvw.x.x, uvw.x.y, uvw.x.z, uvw.x.w, 0);
 			CSycles.shadernode_set_member_vec4_at_index(clientId, sceneId, shaderId, Id, ShaderNodeType.TextureCoordinate, "uvw", uvw.y.x, uvw.y.y, uvw.y.z, uvw.y.w, 1);
 			CSycles.shadernode_set_member_vec4_at_index(clientId, sceneId, shaderId, Id, ShaderNodeType.TextureCoordinate, "uvw", uvw.z.x, uvw.z.y, uvw.z.z, uvw.z.w, 2);
+
+			CSycles.shadernode_set_member_string(clientId, sceneId, shaderId, Id, ShaderNodeType.TextureCoordinate, "uvmap", UvMap);
 		}
 
 		internal override void SetEnums(uint clientId, uint sceneId, uint shaderId)

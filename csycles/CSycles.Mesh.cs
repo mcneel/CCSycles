@@ -19,14 +19,14 @@ namespace ccl
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private unsafe static extern void cycles_mesh_set_uvs(uint clientId, uint sceneId, uint meshId, float* uvs, uint uvcount);
-		public static void mesh_set_uvs(uint clientId, uint sceneId, uint meshId, ref float[] uvs, uint uvcount)
+		private unsafe static extern void cycles_mesh_set_uvs(uint clientId, uint sceneId, uint meshId, float* uvs, uint uvcount, [MarshalAs(UnmanagedType.LPStr)] string uvmap_name);
+		public static void mesh_set_uvs(uint clientId, uint sceneId, uint meshId, ref float[] uvs, uint uvcount, string uvmap_name)
 		{
 			unsafe
 			{
 				fixed (float* puvs = uvs)
 				{
-					cycles_mesh_set_uvs(clientId, sceneId, meshId, puvs, uvcount);
+					cycles_mesh_set_uvs(clientId, sceneId, meshId, puvs, uvcount, uvmap_name);
 				}
 			}
 		}
