@@ -67,7 +67,6 @@ unsigned int cycles_scene_add_mesh_object(unsigned int client_id, unsigned int s
 
 void cycles_mesh_set_shader(unsigned int client_id, unsigned int scene_id, unsigned int mesh_id, unsigned int shader_id)
 {
-	/*
 	CCScene* csce = nullptr;
 	ccl::Scene* sce = nullptr;
 	if(scene_find(scene_id, &csce, &sce)) {
@@ -86,7 +85,6 @@ void cycles_mesh_set_shader(unsigned int client_id, unsigned int scene_id, unsig
 		sh->tag_used(sce);
 		sce->light_manager->tag_update(sce);
 	}
-	*/
 }
 
 void cycles_mesh_clear(unsigned int client_id, unsigned int scene_id, unsigned int mesh_id)
