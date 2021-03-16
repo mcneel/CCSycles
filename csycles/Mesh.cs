@@ -93,9 +93,10 @@ namespace ccl
 		/// <summary>
 		/// Compute tangent space data
 		/// </summary>
-		public void AttrTangentSpace()
+		/// <param name="uvmap_name"></param>
+		public void AttrTangentSpace(string uvmap_name)
 		{
-			CSycles.mesh_attr_tangentspace(Client.Id, Client.Scene.Id, Id);
+			CSycles.mesh_attr_tangentspace(Client.Id, Client.Scene.Id, Id, uvmap_name);
 		}
 
 		/// <summary>

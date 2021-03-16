@@ -635,7 +635,7 @@ CCL_CAPI void __cdecl cycles_mesh_reserve(unsigned int client_id, unsigned int s
 CCL_CAPI void __cdecl cycles_mesh_resize(unsigned int client_id, unsigned int scene_id, unsigned int mesh_id, unsigned vcount, unsigned fcount);
 CCL_CAPI void __cdecl cycles_mesh_tag_rebuild(unsigned int client_id, unsigned int scene_id, unsigned int mesh_id);
 CCL_CAPI void __cdecl cycles_mesh_set_shader(unsigned int client_id, unsigned int scene_id, unsigned int mesh_id, unsigned int shader_id);
-CCL_CAPI void __cdecl cycles_mesh_attr_tangentspace(unsigned int client_id, unsigned int scene_id, unsigned int mesh_id);
+CCL_CAPI void __cdecl cycles_mesh_attr_tangentspace(unsigned int client_id, unsigned int scene_id, unsigned int mesh_id, const char* uvmap_name);
 
 /* Shader API */
 
