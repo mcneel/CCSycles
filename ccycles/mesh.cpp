@@ -292,7 +292,7 @@ void cycles_mesh_set_vertex_colors(unsigned int client_id, unsigned int scene_id
 #include "mikktspace.h"
 struct MikkUserData {
 	MikkUserData(
-			 const char *layer_name,
+			 ustring layer_name,
 			 const ccl::Mesh *mesh,
 			 ccl::float3 *tangent,
 			 float *tangent_sign)
@@ -306,7 +306,7 @@ struct MikkUserData {
 		ccl::Attribute *attr_vN = attributes.find(ccl::ATTR_STD_VERTEX_NORMAL);
 		vertex_normal = attr_vN->data_float3();
 
-		ccl::Attribute *attr_uv = attributes.find(ustring(layer_name));
+		ccl::Attribute *attr_uv = attributes.find(layer_name);
 		if(attr_uv != NULL) {
 			texface = attr_uv->data_float2();
 		}
@@ -408,24 +408,25 @@ static void mikk_set_tangent_space(const SMikkTSpaceContext *context,
 	}
 }
 
-static void mikk_compute_tangents(ccl::Mesh *mesh)
+static void mikk_compute_tangents(ccl::Mesh *mesh, ustring uvmap_name)
 {
 	/* Create tangent attributes. */
 	ccl::AttributeSet& attributes = mesh->attributes;
 	ccl::Attribute *attr;
-	ustring name = ustring("uvmap.tangent");
+	ustring name = ustring(std::string(uvmap_name.c_str()) + std::string(".tangent"));
+	auto uvattr = attributes.find(ccl::ATTR_STD_UV);
 	attr = attributes.add(ccl::ATTR_STD_UV_TANGENT, name);
 
 	ccl::float3 *tangent = attr->data_float3();
 	/* Create bitangent sign attribute. */
 	float *tangent_sign = NULL;
 	ccl::Attribute *attr_sign;
-	ustring name_sign = ustring("uvmap.tangent_sign");
+	ustring name_sign = ustring(std::string(uvmap_name.c_str()) + std::string(".tangent_sign"));
 
 	attr_sign = attributes.add(ccl::ATTR_STD_UV_TANGENT_SIGN, name_sign);
 	tangent_sign = attr_sign->data_float();
 	/* Setup userdata. */
-	MikkUserData userdata("uvmap1", mesh, tangent, tangent_sign);
+	MikkUserData userdata(uvmap_name, mesh, tangent, tangent_sign);
 	/* Setup interface. */
 	SMikkTSpaceInterface sm_interface;
 	memset(&sm_interface, 0, sizeof(sm_interface));
@@ -444,13 +445,13 @@ static void mikk_compute_tangents(ccl::Mesh *mesh)
 	genTangSpaceDefault(&context);
 }
 
-void cycles_mesh_attr_tangentspace(unsigned int client_id, unsigned int scene_id, unsigned int mesh_id)
+void cycles_mesh_attr_tangentspace(unsigned int client_id, unsigned int scene_id, unsigned int mesh_id, const char* uvmap_name)
 {
 	CCScene* csce = nullptr;
 	ccl::Scene* sce = nullptr;
 	if(scene_find(scene_id, &csce, &sce)) {
 		ccl::Mesh* me = sce->meshes[mesh_id];
-		mikk_compute_tangents(me);
+		mikk_compute_tangents(me, ccl::ustring(uvmap_name));
 	}
 }
 

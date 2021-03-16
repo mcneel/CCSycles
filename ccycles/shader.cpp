@@ -1389,6 +1389,12 @@ void cycles_shadernode_set_member_string(unsigned int client_id, unsigned int sc
 			texco->uvmap = mval;
 		}
 		break;
+		case shadernode_type::NORMALMAP:
+		{
+			ccl::NormalMapNode* normalmap = dynamic_cast<ccl::NormalMapNode*>(shnode);
+			normalmap->attribute = mval;
+		}
+		break;
 		default:
 			break;
 		}

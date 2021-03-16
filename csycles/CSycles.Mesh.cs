@@ -136,11 +136,11 @@ namespace ccl
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_mesh_attr_tangentspace(uint clientId, uint sceneId, uint meshId);
+		private static extern void cycles_mesh_attr_tangentspace(uint clientId, uint sceneId, uint meshId, [MarshalAs(UnmanagedType.LPStr)] string uvmap_name);
 
-		public static void mesh_attr_tangentspace(uint clientId, uint sceneId, uint meshId)
+		public static void mesh_attr_tangentspace(uint clientId, uint sceneId, uint meshId, string uvmap_name)
 		{
-			cycles_mesh_attr_tangentspace(clientId, sceneId, meshId);
+			cycles_mesh_attr_tangentspace(clientId, sceneId, meshId, uvmap_name);
 		}
 
 #endregion
