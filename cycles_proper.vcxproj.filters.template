@@ -67,6 +67,10 @@
       <UniqueIdentifier>{8995B300-C6CF-4C17-A6F5-B4D519AB7DA5}</UniqueIdentifier>
       <Extensions>cl</Extensions>
     </Filter>
+    <Filter Include="CUDA source">
+      <UniqueIdentifier>{64CFE311-0BF7-4217-91CC-C7BE9C1E24C5}</UniqueIdentifier>
+      <Extensions>cu</Extensions>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
 [CPPFILTER]
@@ -76,5 +80,8 @@
   </ItemGroup>
   <ItemGroup>
 [CLFILTER]
+  </ItemGroup>
+  <ItemGroup>
+[CUFILTER]
   </ItemGroup>
 </Project>

@@ -708,6 +708,12 @@
     <ClInclude Include="cycles\src\kernel\kernels\opencl\kernel_state_buffer_size.cl" />
     <ClInclude Include="cycles\src\kernel\kernels\opencl\kernel_subsurface_scatter.cl" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="cycles\src\kernel\kernels\cuda\filter.cu" />
+    <ClInclude Include="cycles\src\kernel\kernels\cuda\kernel.cu" />
+    <ClInclude Include="cycles\src\kernel\kernels\cuda\kernel_split.cu" />
+    <ClInclude Include="cycles\src\kernel\kernels\optix\kernel_optix.cu" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

@@ -221,6 +221,9 @@
   <ItemGroup>
 [CLFILES]
   </ItemGroup>
+  <ItemGroup>
+[CUFILES]
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
