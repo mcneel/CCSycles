@@ -1,0 +1,29 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "..\\..\\RhinoCycles"
+		},
+		{
+			"path": "..\\..\\RhinoRenderCycles"
+		},
+		{
+			"path": "..\\..\\..\\..\\..\\tools\\CyclesProjectUpdater"
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"*.u3m": "json",
+			"vector": "cpp",
+			"fstream": "cpp",
+			"istream": "cpp",
+			"streambuf": "cpp",
+			"condition_variable": "cpp",
+			"cstdlib": "cpp",
+			"future": "cpp",
+			"mutex": "cpp"
+		}
+	}
+}
