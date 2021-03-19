@@ -175,13 +175,6 @@ public:
 	 */
 	void display_update(int sample);
 
-	/* Hold the pixel buffer with the final result for the attached session.
-	 * Gets updated by update_render_tile and write_render_tile.
-	 */
-	float* pixels = nullptr;
-	unsigned int buffer_size{ 0 };
-	unsigned int buffer_stride{ 0 }; // number of float values for one pixel
-
 	int width{ 0 };
 	int height{ 0 };
 
@@ -190,19 +183,10 @@ public:
 	/* Create a new CCSession, initialise all necessary memory. */
 	static CCSession* create(int width, int height, unsigned int buffer_stride);
 
-	/* When a session is reset we need to recreate the pixel buffer based on new
-	 * info.
-	 */
-	void reset(int width, int height, unsigned int buffer_stride_);
-
 	/* Returns true if size was changed. Will reset the has_changed flag. */
 	bool size_has_changed();
-	ccl::thread_mutex pixels_mutex;
 
 	~CCSession() {
-		ccl::thread_scoped_lock pixels_lock(pixels_mutex);
-		delete[] pixels;
-		pixels = nullptr;
 		delete session;
 		session = nullptr;
 	}
@@ -212,9 +196,7 @@ private:
 
 protected:
 	/* Protected constructor, use CCSession::create to create a new CCSession. */
-	CCSession(float* pixels_, unsigned int buffer_size_, unsigned int buffer_stride_)
-		:
-			pixels{pixels_}, buffer_size{buffer_size_}, buffer_stride{buffer_stride_}
+	CCSession()
 	{  }
 };
 

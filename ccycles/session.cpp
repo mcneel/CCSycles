@@ -64,48 +64,16 @@ void CCSession::test_cancel(void) {
 /* Wrapper callback for render tile update. Copies tile result into session full image buffer. */
 void CCSession::update_render_tile(ccl::RenderTile &tile, bool highlight)
 {
-	/*
-	if (update_cbs[this->id] != nullptr) {
-		write_or_update_cb(this, tile, update_cbs[this->id]);
-	}
-	*/
 }
 
 /* Wrapper callback for render tile write. Copies tile result into session full image buffer. */
 void CCSession::write_render_tile(ccl::RenderTile &tile)
 {
-	ccl::thread_scoped_lock pixels_lock(pixels_mutex);
-	if (size_has_changed()) return;
-
-	ccl::RenderBuffers* buffers = tile.buffers;
-	ccl::BufferParams& params = buffers->params;
-	ccl::vector<ccl::Pass>& passes = params.passes;
-
-	auto tilex = params.full_x - session->tile_manager.params.full_x;
-	auto tiley = params.full_y - session->tile_manager.params.full_y;
-
-	ccl::vector<float> px(params.width*params.height * 4);
-	float exposure = session->scene->film->exposure;
-	int sample = tile.sample;
-
-	if (write_cbs[this->id] != nullptr) {
-		buffers->copy_from_device();
-		for(int i = 0, c = passes.size(); i < c; i++) {
-			ccl::Pass p = passes[i];
-			int components = p.components;
-			ccl::PassType pt = p.type;
-			int pixlen = params.width*params.height*components;
-			if (buffers->get_pass_rect(p.name, p.exposure ? exposure : 1.0f, sample, components, &px[0])) {
-				write_cbs[this->id](id, tilex, tiley, params.width, params.height, sample, components, (int)p.type, &px[0], pixlen);
-			}
-		}
-	}
 }
 
 /* Wrapper callback for display update stuff. When this is called one pass has been conducted. */
 void CCSession::display_update(int sample)
 {
-	//ccl::thread_scoped_lock pixels_lock(pixels_mutex);
 	if (size_has_changed()) return;
 	if (display_update_cbs[this->id] != nullptr) {
 		display_update_cbs[this->id](this->id, sample);
@@ -121,8 +89,6 @@ void _cleanup_sessions()
 		if (se == nullptr) continue;
 
 		{
-			delete[] se->pixels;
-			se->pixels = nullptr;
 			delete se->session;
 			se->session = nullptr;
 		}
@@ -140,29 +106,12 @@ void _cleanup_sessions()
 }
 
 CCSession* CCSession::create(int width, int height, unsigned int buffer_stride) {
-	int img_size{ width * height };
-	float* pixels_ = new float[img_size*buffer_stride]{0};
-	memset(pixels_, 0, sizeof(float)*img_size*buffer_stride);
-	CCSession* se = new CCSession(pixels_, img_size*buffer_stride, buffer_stride);
+	CCSession* se = new CCSession();
 	se->width = width;
 	se->height = height;
 	se->_size_has_changed = false;
 
 	return se;
-}
-void CCSession::reset(int width_, int height_, unsigned int buffer_stride_) {
-	int img_size = width_ * height_;
-	if (img_size*buffer_stride_ != buffer_size || buffer_stride_ != buffer_stride) {
-		delete[] pixels;
-
-		pixels = new float[img_size*buffer_stride_] {0};
-		memset(pixels, 0, sizeof(float)*img_size*buffer_stride);
-		buffer_size = img_size*buffer_stride_;
-		buffer_stride = buffer_stride_;
-		width = width_;
-		height = height_;
-		_size_has_changed = true;
-	}
 }
 
 bool CCSession::size_has_changed() {
@@ -306,8 +255,6 @@ void cycles_session_reset(unsigned int client_id, unsigned int session_id, unsig
 	ccl::Session* session = nullptr;
 	if (session_find(session_id, &ccsess, &session)) {
 		logger.logit(client_id, "Reset session ", session_id, ". width ", width, " height ", height, " samples ", samples);
-		ccl::thread_scoped_lock pixels_lock(ccsess->pixels_mutex);
-		ccsess->reset(width, height, 4);
 		ccsess->buffer_params.full_x = full_x;
 		ccsess->buffer_params.full_y = full_y;
 		ccsess->buffer_params.full_width = full_width;
@@ -379,6 +326,7 @@ void cycles_session_set_update_tile_callback(unsigned int client_id, unsigned in
 
 void cycles_session_set_write_tile_callback(unsigned int client_id, unsigned int session_id, RENDER_TILE_CB write_tile_cb)
 {
+#if 0
 	CCSession* ccsess = nullptr;
 	ccl::Session* session = nullptr;
 	if (session_find(session_id, &ccsess, &session)) {
@@ -391,6 +339,7 @@ void cycles_session_set_write_tile_callback(unsigned int client_id, unsigned int
 		}
 		logger.logit(client_id, "Set render tile write callback for session ", session_id);
 	}
+#endif
 }
 
 void cycles_session_set_display_update_callback(unsigned int client_id, unsigned int session_id, DISPLAY_UPDATE_CB display_update_cb)
@@ -506,39 +455,17 @@ void cycles_session_set_samples(unsigned int client_id, unsigned int session_id,
 
 void cycles_session_get_buffer_info(unsigned int client_id, unsigned int session_id, unsigned int* buffer_size, unsigned int* buffer_stride)
 {
-	CCSession* ccsess = nullptr;
-	ccl::Session* session = nullptr;
-	if (session_find(session_id, &ccsess, &session)) {
-		(void)session;
-		*buffer_size = ccsess->buffer_size;
-		*buffer_stride = ccsess->buffer_stride;
-		logger.logit(client_id, "Session ", session_id, " get_buffer_info. size ", *buffer_size, " stride ", *buffer_stride);
-	}
+	*buffer_size = 0;
+	*buffer_stride = 0;
 }
 
 float* cycles_session_get_buffer(unsigned int client_id, unsigned int session_id)
 {
-	CCSession* ccsess = nullptr;
-	ccl::Session* session = nullptr;
-	if (session_find(session_id, &ccsess, &session)) {
-		(void)session;
-		return ccsess->pixels;
-	};
-
 	return nullptr;
 }
 
 void cycles_session_copy_buffer(unsigned int client_id, unsigned int session_id, float* pixel_buffer)
 {
-	CCSession* ccsess = nullptr;
-	ccl::Session* session = nullptr;
-	if (session_find(session_id, &ccsess, &session)) {
-		(void)session;
-		ccl::thread_scoped_lock pixels_lock(ccsess->pixels_mutex);
-		if (ccsess->size_has_changed()) return;
-		memcpy(pixel_buffer, ccsess->pixels, ccsess->buffer_size*sizeof(float));
-		logger.logit(client_id, "Session ", session_id, " copy complete pixel buffer");
-	}
 }
 
 void cycles_session_get_float_buffer(unsigned int client_id, unsigned int session_id, int passtype, float** pixels, float** normals, float** depth, float** albedo)
