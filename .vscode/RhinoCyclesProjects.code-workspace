@@ -11,6 +11,9 @@
 		},
 		{
 			"path": "..\\..\\..\\..\\..\\tools\\CyclesProjectUpdater"
+		},
+		{
+			"path": "..\\..\\..\\..\\..\\..\\installer\\msi\\Features\\Plug-ins"
 		}
 	],
 	"settings": {
