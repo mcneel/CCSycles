@@ -1,19 +1,45 @@
 {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "name": "(Windows) Launch",
-            "type": "cppvsdbg",
-            "request": "launch",
-            "program": "${workspaceFolder}/../../../../bin/Debug/Rhino.exe",
-            "args": ["/nosplash"],
-            "stopAtEntry": false,
-            "cwd": "${workspaceFolder}",
-            "environment": [],
-            "console": "externalTerminal"
-        }
-    ]
+	// Use IntelliSense to learn about possible attributes.
+	// Hover to view descriptions of existing attributes.
+	// For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "Debug (Native)",
+			"type": "cppvsdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/../../../../bin/Debug/Rhino.exe",
+			"args": [
+				"/nosplash"
+			],
+			"stopAtEntry": false,
+			"cwd": "${workspaceFolder}",
+			"environment": [],
+			"console": "externalTerminal"
+		},
+		{
+			"name": "Attach (Native)",
+			"type": "cppvsdbg",
+			"request": "attach",
+			"processId": "${command:pickProcess}"
+		},
+		{
+			"name": "Attach (.NET CLR)",
+			"type": "clr",
+			"request": "attach",
+			"processId": "${command:pickProcess}"
+		},
+		{
+			"name": "Debug (.NET CLR)",
+			"type": "clr",
+			"request": "launch",
+			"program": "${workspaceFolder}/../../../../bin/Debug/Rhino.exe",
+			"args": [
+				"/nosplash"
+			],
+			"stopAtEntry": false,
+			"cwd": "${workspaceFolder}",
+			"console": "externalTerminal"
+		}
+	]
 }

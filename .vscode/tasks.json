@@ -35,6 +35,38 @@
 			}
 		},
 		{
+			"label": "Clean Rhino",
+			"type": "shell",
+			"options": {
+				"env": {
+					"SKIPDOTNET": "0"
+				}
+			},
+			"windows": {
+				"command": "C:/Program Files (x86)/Microsoft Visual Studio/2019/Professional/MSBuild/Current/Bin/MSBuild.exe",
+				"args": [
+					"/restore",
+					"/v:Minimal",
+					"/p:GenerateFullPaths=true",
+					"/p:Configuration=${input:configuration-win}",
+					"/p:Platform=x64",
+					"/t:Clean",
+					"/consoleLoggerParameters:NoSummary",
+					"/m",
+					// "/bl:${workspaceFolder}/src4/bin/log/Rhino.binlog",
+					"${workspaceFolder}/../../../../BuildSolutions/Rhino.sln"
+				],
+				"problemMatcher": "$msCompile"
+			},
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"presentation": {
+				"clear": true
+			}
+		},
+		{
 			"label": "Build RhinoPlugins",
 			"type": "shell",
 			"options": {
@@ -66,6 +98,38 @@
 			}
 		},
 		{
+			"label": "Clean RhinoPlugins",
+			"type": "shell",
+			"options": {
+				"env": {
+					"SKIPDOTNET": "0"
+				}
+			},
+			"windows": {
+				"command": "C:/Program Files (x86)/Microsoft Visual Studio/2019/Professional/MSBuild/Current/Bin/MSBuild.exe",
+				"args": [
+					"/restore",
+					"/v:Minimal",
+					"/p:GenerateFullPaths=true",
+					"/p:Configuration=${input:configuration-win}",
+					"/p:Platform=x64",
+					"/consoleLoggerParameters:NoSummary",
+					"/t:Clean",
+					"/m",
+					// "/bl:${workspaceFolder}/src4/bin/log/RhinoPlugins.binlog",
+					"${workspaceFolder}/../../../../BuildSolutions/RhinoPlugins.sln"
+				],
+				"problemMatcher": "$msCompile"
+			},
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"presentation": {
+				"clear": true
+			}
+		},
+		{
 			"label": "Build RhinoPluginsWithBigLibs",
 			"type": "shell",
 			"options": {
@@ -82,6 +146,38 @@
 					"/p:Configuration=${input:configuration-win}",
 					"/p:Platform=x64",
 					"/consoleLoggerParameters:NoSummary",
+					"/m:7",
+					// "/bl:${workspaceFolder}/src4/bin/log/RhinoPluginsWithBigLibs.binlog",
+					"${workspaceFolder}/../../../../BuildSolutions/RhinoPluginsWithBigLibs.sln"
+				],
+				"problemMatcher": "$msCompile"
+			},
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"presentation": {
+				"clear": true
+			}
+		},
+		{
+			"label": "Clean RhinoPluginsWithBigLibs",
+			"type": "shell",
+			"options": {
+				"env": {
+					"SKIPDOTNET": "0"
+				}
+			},
+			"windows": {
+				"command": "C:/Program Files (x86)/Microsoft Visual Studio/2019/Professional/MSBuild/Current/Bin/MSBuild.exe",
+				"args": [
+					"/restore",
+					"/v:Minimal",
+					"/p:GenerateFullPaths=true",
+					"/p:Configuration=${input:configuration-win}",
+					"/p:Platform=x64",
+					"/consoleLoggerParameters:NoSummary",
+					"/t:Clean",
 					"/m:7",
 					// "/bl:${workspaceFolder}/src4/bin/log/RhinoPluginsWithBigLibs.binlog",
 					"${workspaceFolder}/../../../../BuildSolutions/RhinoPluginsWithBigLibs.sln"
