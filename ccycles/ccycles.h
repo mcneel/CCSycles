@@ -568,7 +568,7 @@ CCL_CAPI bool __cdecl cycles_session_is_paused(unsigned int client_id, unsigned 
 CCL_CAPI void __cdecl cycles_session_set_samples(unsigned int client_id, unsigned int session_id, int samples);
 /** Clear resources for session. */
 CCL_CAPI void __cdecl cycles_session_destroy(unsigned int client_id, unsigned int session_id, unsigned int scene_id);
-CCL_CAPI void __cdecl cycles_session_get_float_buffer(unsigned int client_id, unsigned int session_id, int passtype, float** pixels, float** normals, float** depth, float** albedo);
+CCL_CAPI void __cdecl cycles_session_get_float_buffer(unsigned int client_id, unsigned int session_id, int passtype, float** pixels);
 /** Get pixel data buffer pointer. */
 CCL_CAPI void __cdecl cycles_session_prepare_run(unsigned int client_id, unsigned int session_id);
 CCL_CAPI int __cdecl cycles_session_sample(unsigned int client_id, unsigned int session_id);

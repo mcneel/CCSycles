@@ -468,7 +468,7 @@ void cycles_session_copy_buffer(unsigned int client_id, unsigned int session_id,
 {
 }
 
-void cycles_session_get_float_buffer(unsigned int client_id, unsigned int session_id, int passtype, float** pixels, float** normals, float** depth, float** albedo)
+void cycles_session_get_float_buffer(unsigned int client_id, unsigned int session_id, int passtype, float** pixels)
 {
 	ccl::DeviceDrawParams draw_params = ccl::DeviceDrawParams();
 	draw_params.bind_display_space_shader_cb = nullptr;
@@ -477,17 +477,8 @@ void cycles_session_get_float_buffer(unsigned int client_id, unsigned int sessio
 	CCSession* ccsess = nullptr;
 	ccl::Session* session = nullptr;
 	if (session_find(session_id, &ccsess, &session)) {
-		if (ccl::Pass::contains(ccsess->buffer_params.passes, ccl::PassType::PASS_COMBINED)) {
-			*pixels = (float*)session->display->prepare_pixels(session->device, draw_params);
-		}
-		if (ccl::Pass::contains(ccsess->buffer_params.passes, ccl::PassType::PASS_NORMAL)) {
-			*normals = (float*)session->normal->prepare_pixels(session->device, draw_params);
-		}
-		if (ccl::Pass::contains(ccsess->buffer_params.passes, ccl::PassType::PASS_DEPTH)) {
-			*depth = (float*)session->depth->prepare_pixels(session->device, draw_params);
-		}
-		if (ccl::Pass::contains(ccsess->buffer_params.passes, ccl::PassType::PASS_DIFFUSE_COLOR)) {
-			*albedo = (float*)session->albedo->prepare_pixels(session->device, draw_params);
+		if (ccl::Pass::contains(ccsess->buffer_params.passes, (ccl::PassType)passtype) && session->display_buffers[(ccl::PassType)passtype]) {
+			*pixels = (float*)session->display_buffers[(ccl::PassType)passtype]->prepare_pixels(session->device, draw_params);
 		}
 	}
 }

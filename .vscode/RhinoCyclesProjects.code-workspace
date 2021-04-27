@@ -26,7 +26,8 @@
 			"condition_variable": "cpp",
 			"cstdlib": "cpp",
 			"future": "cpp",
-			"mutex": "cpp"
+			"mutex": "cpp",
+			"memory": "cpp"
 		}
 	}
 }
