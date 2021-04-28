@@ -15,6 +15,7 @@ limitations under the License.
 **/
 
 using System;
+using System.Collections.Generic;
 
 namespace ccl
 {
@@ -226,15 +227,15 @@ namespace ccl
 			Destroyed = true;
 		}
 
-		public void GetPixelBuffer(PassType pt, ref IntPtr pixel_buffer, ref IntPtr normal_buffer, ref IntPtr depth_buffer, ref IntPtr albedo_buffer)
+		public void GetPixelBuffer(PassType pt, ref IntPtr pixel_buffer)
 		{
 			if (Destroyed)
 			{
-				pixel_buffer = normal_buffer = depth_buffer = albedo_buffer = IntPtr.Zero;
+				pixel_buffer = IntPtr.Zero;
 			}
 			else
 			{
-				CSycles.session_get_float_buffer(Client.Id, Id, pt, ref pixel_buffer, ref normal_buffer, ref depth_buffer, ref albedo_buffer);
+				CSycles.session_get_float_buffer(Client.Id, Id, pt, ref pixel_buffer);
 			}
 		}
 
@@ -284,6 +285,15 @@ namespace ccl
 			CSycles.session_set_samples(Client.Id, Id, samples);
 		}
 
+
+		public IEnumerable<PassType> Passes {
+			get {
+				foreach(var pass in _passes) {
+						yield return pass;
+				}
+			}
+		}
+		private List<PassType> _passes = new List<PassType>();
 		/// <summary>
 		/// Add given pass to output layers
 		/// </summary>
@@ -292,7 +302,10 @@ namespace ccl
 		{
 			if (Destroyed) return;
 			CSycles.session_add_pass(Client.Id, Id, pass);
-		}
+			if (!_passes.Contains(pass)) {
+				_passes.Add(pass);
+			}
+	}
 
 		/// <summary>
 		/// Clear all passes for session. Note, will always add Combined pass back
@@ -300,8 +313,10 @@ namespace ccl
 		public void ClearPasses()
 		{
 			if (Destroyed) return;
+			_passes.Clear();
 			CSycles.session_clear_passes(Client.Id, Id);
 			CSycles.session_add_pass(Client.Id, Id, PassType.Combined);
+			_passes.Add(PassType.Combined);
 		}
 	}
 }
