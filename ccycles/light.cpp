@@ -22,6 +22,7 @@ unsigned int cycles_create_light(unsigned int client_id, unsigned int scene_id, 
 	ccl::Scene* sce = nullptr;
 	if(scene_find(scene_id, &csce, &sce)) {
 		ccl::Light* l = new ccl::Light();
+		l->angle = 0.009180f; // use default value as in Blender UI (0.526deg)
 		ccl::Shader* lightshader = find_shader_in_scene(sce, light_shader_id);
 		l->shader = lightshader;
 		sce->lights.push_back(l);
