@@ -98,6 +98,13 @@ namespace ccl
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		private static extern void cycles_light_set_angle(uint clientId, uint sceneId, uint lightId, float angle);
+		public static void light_set_angle(uint clientId, uint sceneId, uint lightId, float angle)
+		{
+			cycles_light_set_angle(clientId, sceneId, lightId, angle);
+		}
+
+		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		private static extern void cycles_light_set_size(uint clientId, uint sceneId, uint lightId, float size);
 		public static void light_set_size(uint clientId, uint sceneId, uint lightId, float size)
 		{
