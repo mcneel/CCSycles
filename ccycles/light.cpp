@@ -82,11 +82,19 @@ void cycles_light_set_map_resolution(unsigned int client_id, unsigned int scene_
 	LIGHT_FIND_END()
 }
 
+void cycles_light_set_angle(unsigned int client_id, unsigned int scene_id, unsigned int light_id, float angle)
+{
+	LIGHT_FIND(scene_id, light_id)
+		l->angle = angle;
+		logger.logit(client_id, "Setting light ", light_id, " of scene ", scene_id, " angle to ", angle);
+	LIGHT_FIND_END()
+}
+
 void cycles_light_set_spot_angle(unsigned int client_id, unsigned int scene_id, unsigned int light_id, float spot_angle)
 {
 	LIGHT_FIND(scene_id, light_id)
 		l->spot_angle = spot_angle;
-		logger.logit(client_id, "Setting light ", light_id, " of scene ", scene_id, " spot_angel to ", spot_angle);
+		logger.logit(client_id, "Setting light ", light_id, " of scene ", scene_id, " spot_angle to ", spot_angle);
 	LIGHT_FIND_END()
 }
 

@@ -36,7 +36,7 @@ namespace ccl
 		public Shader Shader { get; set; }
 		/// <summary>
 		/// Create a new light.
-		/// 
+		///
 		/// This constructor creates a Cycles light right away. The Id
 		/// is from Cycles
 		/// </summary>
@@ -133,6 +133,17 @@ namespace ccl
 			set
 			{
 				CSycles.light_set_size(Client.Id, Scene.Id, Id, value);
+			}
+		}
+
+		/// <summary>
+		/// Set the angular diameter (used for sun/distant light).
+		/// </summary>
+		public float Angle
+		{
+			set
+			{
+				CSycles.light_set_angle(Client.Id, Scene.Id, Id, value);
 			}
 		}
 

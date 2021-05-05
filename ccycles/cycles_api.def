@@ -224,6 +224,7 @@ EXPORTS
 
   cycles_create_light
   cycles_light_set_type
+  cycles_light_set_angle
   cycles_light_set_spot_angle
   cycles_light_set_spot_smooth
   cycles_light_set_samples
