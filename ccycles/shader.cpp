@@ -1469,24 +1469,43 @@ void cycles_shader_connect_nodes(unsigned int client_id, unsigned int scene_id, 
 
 
 
+class GammaLUT
+{
+public:
+	GammaLUT(float gamma)
+	{
+		for (unsigned int i = 0; i < 256; i++)
+		{
+			lut[i] = (unsigned char)(255.f * powf(i / 255.f, gamma));
+		}
+	}
 
+	unsigned char Lookup(unsigned char in)
+	{	
+		ASSERT(in < 256);
+		return lut[in];
+	}
+private:
+	unsigned char lut[256];
+};
 
 void cycles_apply_gamma_to_byte_buffer(unsigned char* rgba_buffer, size_t size_in_bytes, float gamma)
 {
+	if (gamma > 0.999f && gamma < 1.001f)
+		return;
+
 	ccl::uchar4* colbuf = (ccl::uchar4*)rgba_buffer;
 
 	const int pixel_count = size_in_bytes / sizeof(ccl::uchar4);
 
+	GammaLUT lut(gamma);
+
 #pragma omp parallel for
 	for (int i = 0; i < pixel_count; i++)
 	{
-		const auto red   = powf(colbuf[i].x / 255.f, gamma);
-		const auto green = powf(colbuf[i].y / 255.f, gamma);
-		const auto blue  = powf(colbuf[i].z / 255.f, gamma);
-
-		colbuf[i].x = (unsigned char)(red * 255.f);
-		colbuf[i].y = (unsigned char)(green * 255.f);
-		colbuf[i].z = (unsigned char)(blue * 255.f);
+		colbuf[i].x = lut.Lookup(colbuf[i].x);
+		colbuf[i].y = lut.Lookup(colbuf[i].y);
+		colbuf[i].z = lut.Lookup(colbuf[i].z);
 	}
 }
 
