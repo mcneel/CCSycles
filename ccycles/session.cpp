@@ -262,6 +262,8 @@ void cycles_session_reset(unsigned int client_id, unsigned int session_id, unsig
 		ccsess->buffer_params.width = width;
 		ccsess->buffer_params.height = height;
 
+		ccsess->params.samples = samples;
+
 		ccl::vector<ccl::Pass>& passes = get_passes(session_id);
 
 		session->scene->film->tag_passes_update(session->scene, passes);
@@ -387,7 +389,7 @@ void cycles_session_prepare_run(unsigned int client_id, unsigned int session_id)
 	ccl::Session* session = nullptr;
 	if (session_find(session_id, &ccsess, &session)) {
 		logger.logit(client_id, "Preparing run for session ", session_id);
-		session->prepare_run();
+		session->prepare_run(ccsess->buffer_params, ccsess->params.samples);
 	}
 }
 
