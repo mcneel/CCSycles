@@ -81,7 +81,7 @@ namespace ccl
 					default:
 						throw new IndexOutOfRangeException("Only indices [0..2] are acceptable");
 				}
-				
+
 			}
 		}
 
@@ -180,7 +180,7 @@ namespace ccl
 		/// </summary>
 		static public Transform RhinoToCyclesCam { get; } = new Transform(
 			1.0f, 0.0f, 0.0f, 0.0f,
-			0.0f, 1.0f, 0.0f, 0.0f,
+			0.0f, -1.0f, 0.0f, 0.0f,
 			0.0f, 0.0f, -1.0f, 0.0f
 		);
 
@@ -312,7 +312,7 @@ namespace ccl
 					default:
 						throw new IndexOutOfRangeException("Only indices [0..2] are acceptable");
 				}
-				
+
 			}
 		}
 
