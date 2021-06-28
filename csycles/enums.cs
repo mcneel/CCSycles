@@ -42,12 +42,25 @@ namespace ccl
 	}
 
 	/// <summary>
-	/// Shading systems available in Cycles.
-	///
-	/// Note that currently only SVM is supported
-	/// in C[CS]?ycles
+	///  Device type mask used for Cycles initialisation
 	/// </summary>
-	public enum ShadingSystem : uint
+  public enum DeviceTypeMask : uint
+  {
+		CPU = (1 << (int)DeviceType.CPU),
+		OpenCL = (1 << (int)DeviceType.OpenCL),
+		CUDA = (1 << (int)DeviceType.CUDA),
+		Optix = (1 << (int)DeviceType.Optix),
+		Network = (1 << (int)DeviceType.Network),
+		All = 0xFFFFFFFF
+  }
+
+  /// <summary>
+  /// Shading systems available in Cycles.
+  ///
+  /// Note that currently only SVM is supported
+  /// in C[CS]?ycles
+  /// </summary>
+  public enum ShadingSystem : uint
 	{
 		OSL,
 		SVM
