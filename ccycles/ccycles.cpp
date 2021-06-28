@@ -61,12 +61,12 @@ void cycles_putenv(const char* var, const char* val)
 #endif
 }
 
-void cycles_initialise()
+void cycles_initialise(unsigned int mask)
 {
 	if (!initialised) {
 		devices.clear();
 		multi_devices.clear();
-		devices = ccl::Device::available_devices();
+		devices = ccl::Device::available_devices(mask);
 		initialised = true;
 	}
 }

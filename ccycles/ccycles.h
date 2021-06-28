@@ -121,7 +121,7 @@ typedef void(__cdecl *DISPLAY_UPDATE_CB)(unsigned int session_id, unsigned int s
  * Initialise Cycles by querying available devices.
  * \ingroup ccycles
  */
-CCL_CAPI void __cdecl cycles_initialise();
+CCL_CAPI void __cdecl cycles_initialise(unsigned int mask = ccl::DEVICE_MASK_ALL);
 
 /**
  * Initialise paths for Cycles to look in (pre-compiled kernels, cached kernels, kernel code)

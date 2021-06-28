@@ -120,21 +120,21 @@ namespace ccl
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_initialise();
+		private static extern void cycles_initialise(uint mask);
 		/// <summary>
 		/// Initialise the Cycles render engine.
-		/// 
+		///
 		/// This will ensure ccycles.dll is loaded. The initialisation will also prepare
 		/// the devices list for use with Cycles.
-		/// 
+		///
 		/// Note: call <c>set_kernel_path</c> before initialising CSycles, otherwise default
 		/// kernel path "lib" will be used.
 		/// </summary>
 		/// <returns></returns>
-		public static void initialise()
+		public static void initialise(DeviceTypeMask mask)
 		{
 			LoadCCycles();
-			cycles_initialise();
+			cycles_initialise((uint)mask);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CharSet = CharSet.Ansi,
@@ -142,7 +142,7 @@ namespace ccl
 		private static extern void cycles_path_init(string path, string userPath);
 		/// <summary>
 		/// Set the paths for Cycles to look for pre-compiled or cached kernels, or kernel code
-		/// 
+		///
 		/// Note: to have any effect needs to be called before <c>initialise</c>.
 		/// </summary>
 		/// <param name="path"></param>
@@ -181,7 +181,7 @@ namespace ccl
 		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		/** <summary>
 		 * Signature for a logger callback.
-		 * 
+		 *
 		 * CCycles will call logger callbacks only if built in Debug mode.
 		 * </summary>
 		 */
