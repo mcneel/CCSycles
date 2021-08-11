@@ -106,7 +106,7 @@
       <CompileAs>CompileAsCpp</CompileAs>
       <DisableSpecificWarnings>4018;4065;4127;4181;4200;4244;4267;4305;4800</DisableSpecificWarnings>
       <TreatSpecificWarningsAsErrors>4013;4431</TreatSpecificWarningsAsErrors>
-      <AdditionalOptions>/w34062 /J /MDd %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/EHa /w34062 /J /MDd %(AdditionalOptions)</AdditionalOptions>
       <MultiProcessorCompilation>false</MultiProcessorCompilation>
       <BufferSecurityCheck>true</BufferSecurityCheck>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -136,7 +136,7 @@
       <CompileAs>CompileAsCpp</CompileAs>
       <DisableSpecificWarnings>4018;4065;4127;4181;4200;4244;4267;4305;4800</DisableSpecificWarnings>
       <TreatSpecificWarningsAsErrors>4013;4431</TreatSpecificWarningsAsErrors>
-      <AdditionalOptions>/w34062 /J /MDd %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/EHa /w34062 /J /MDd %(AdditionalOptions)</AdditionalOptions>
       <MultiProcessorCompilation>false</MultiProcessorCompilation>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -164,7 +164,7 @@
       <CompileAs>CompileAsCpp</CompileAs>
       <DisableSpecificWarnings>4018;4065;4127;4181;4200;4244;4267;4305;4800</DisableSpecificWarnings>
       <TreatSpecificWarningsAsErrors>4013;4431</TreatSpecificWarningsAsErrors>
-      <AdditionalOptions>/w34062 /J /MD %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/EHa /w34062 /J /MD %(AdditionalOptions)</AdditionalOptions>
       <MultiProcessorCompilation>false</MultiProcessorCompilation>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <LanguageStandard>
@@ -197,7 +197,7 @@
       <CompileAs>CompileAsCpp</CompileAs>
       <DisableSpecificWarnings>4018;4065;4127;4181;4200;4244;4267;4305;4800</DisableSpecificWarnings>
       <TreatSpecificWarningsAsErrors>4013;4431</TreatSpecificWarningsAsErrors>
-      <AdditionalOptions>/w34062 /J /MD %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/EHa /w34062 /J /MD %(AdditionalOptions)</AdditionalOptions>
       <MultiProcessorCompilation>false</MultiProcessorCompilation>
       <BufferSecurityCheck>false</BufferSecurityCheck>
     </ClCompile>
