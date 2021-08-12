@@ -14,6 +14,11 @@ See the License for the specific language governing permissions and
 limitations under the License.
 **/
 
+#ifdef _WIN32
+#include <eh.h>
+#include <exception>
+#endif
+
 #include "internal_types.h"
 #include "util_thread.h"
 #include "util_opengl.h"
@@ -403,8 +408,45 @@ void cycles_session_end_run(unsigned int client_id, unsigned int session_id)
 	}
 }
 
+class CyclesRenderCrashException : std::exception
+{
+public:
+  CyclesRenderCrashException() : m_nVDE(-1) {}
+  CyclesRenderCrashException(unsigned int n) : m_nVDE(n) {}
+
+  unsigned int VDENumber() const { return m_nVDE; }
+
+private:
+  unsigned int m_nVDE;
+};
+
+#ifdef _WIN32
+
+static
+void render_crash_translator(unsigned int eCode, EXCEPTION_POINTERS*)
+{
+  throw CyclesRenderCrashException(eCode);
+}
+
+class RenderCrashTranslatorHelper
+{
+private:
+    const _se_translator_function old_SE_translator;
+public:
+    RenderCrashTranslatorHelper( _se_translator_function new_SE_translator ) noexcept
+        : old_SE_translator{ _set_se_translator( new_SE_translator ) } {}
+    ~RenderCrashTranslatorHelper() noexcept { _set_se_translator( old_SE_translator ); }
+};
+#endif
+
+
 int cycles_session_sample(unsigned int client_id, unsigned int session_id)
 {
+#ifdef _WIN32
+  RenderCrashTranslatorHelper render_crash_helper(render_crash_translator);
+#endif
+
+  try {
 	int rc = -1;
 	CCSession* ccsess = nullptr;
 	ccl::Session* session = nullptr;
@@ -413,6 +455,10 @@ int cycles_session_sample(unsigned int client_id, unsigned int session_id)
 		rc = session->sample();
 	}
 	return rc;
+  }
+  catch (CyclesRenderCrashException) {
+    return -13;
+  }
 }
 
 void cycles_session_wait(unsigned int client_id, unsigned int session_id)
