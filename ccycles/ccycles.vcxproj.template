@@ -77,7 +77,7 @@
       </SDLCheck>
       <AdditionalIncludeDirectories>$(AddIncDirs)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>$(Defs);%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalOptions>/w34062 /J /MDd %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/EHa /w34062 /J /MDd %(AdditionalOptions)</AdditionalOptions>
       <MinimalRebuild>false</MinimalRebuild>
       <BufferSecurityCheck>true</BufferSecurityCheck>
       <FloatingPointModel>Fast</FloatingPointModel>
@@ -113,7 +113,7 @@ copy /Y "$(ProjectDir)x64\$(ConfigurationName)\ccycles.pdb" "$(SolutionDir)..\bi
       </SDLCheck>
       <AdditionalIncludeDirectories>$(AddIncDirs)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>$(Defs);%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalOptions>/w34062 /J /MDd %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/EHa /w34062 /J /MDd %(AdditionalOptions)</AdditionalOptions>
       <MinimalRebuild>false</MinimalRebuild>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <FloatingPointModel>Fast</FloatingPointModel>
@@ -152,7 +152,7 @@ copy /Y "$(ProjectDir)x64\$(ConfigurationName)\ccycles.pdb" "$(SolutionDir)bin\$
       </SDLCheck>
       <AdditionalIncludeDirectories>$(AddIncDirs)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>$(Defs);%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalOptions>/w34062 /J /MD %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/EHa /w34062 /J /MD %(AdditionalOptions)</AdditionalOptions>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <FloatingPointModel>Fast</FloatingPointModel>
       <DebugInformationFormat>None</DebugInformationFormat>
@@ -189,7 +189,7 @@ copy /Y "$(ProjectDir)x64\$(ConfigurationName)\ccycles.pdb" "$(SolutionDir)..\bi
       </SDLCheck>
       <AdditionalIncludeDirectories>$(AddIncDirs)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>$(Defs);%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalOptions>/w34062 /J /MD %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/EHa /w34062 /J /MD %(AdditionalOptions)</AdditionalOptions>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <FloatingPointModel>Fast</FloatingPointModel>
       <DebugInformationFormat>None</DebugInformationFormat>
