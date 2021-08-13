@@ -246,16 +246,17 @@ namespace ccl
 		/// <param name="width">Width of the resolution to reset with</param>
 		/// <param name="height">Height of the resolutin to reset with</param>
 		/// <param name="samples">The amount of samples to reset with</param>
-		public void Reset(uint width, uint height, uint samples, uint full_x, uint full_y, uint full_width, uint full_height )
+		/// <returns>0 on success. -1 when the session is already destroyed. -13 when a crash happened.</returns>
+		public int Reset(uint width, uint height, uint samples, uint full_x, uint full_y, uint full_width, uint full_height )
 		{
-			if (Destroyed) return;
+			if (Destroyed) return -1;
 			CSycles.progress_reset(Client.Id, Id);
-			CSycles.session_reset(Client.Id, Id, width, height, samples, full_x, full_y, full_width, full_height);
+			return CSycles.session_reset(Client.Id, Id, width, height, samples, full_x, full_y, full_width, full_height);
 		}
 
-		public void Reset(int width, int height, int samples, int full_x, int full_y, int full_width, int full_height )
+		public int Reset(int width, int height, int samples, int full_x, int full_y, int full_width, int full_height )
 		{
-			Reset((uint)width, (uint)height, (uint)samples, (uint)full_x, (uint)full_y, (uint)full_width, (uint)full_height);
+			return Reset((uint)width, (uint)height, (uint)samples, (uint)full_x, (uint)full_y, (uint)full_width, (uint)full_height);
 		}
 
 		/// <summary>
