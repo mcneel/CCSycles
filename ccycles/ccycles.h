@@ -539,7 +539,7 @@ CCL_CAPI unsigned int __cdecl cycles_session_create(unsigned int client_id, unsi
 CCL_CAPI void __cdecl cycles_session_set_scene(unsigned int client_id, unsigned int session_id, unsigned int scene_id);
 
 /** Reset session. */
-CCL_CAPI void __cdecl cycles_session_reset(unsigned int client_id, unsigned int session_id, unsigned int width, unsigned int height, unsigned int samples, unsigned int full_x, unsigned int full_y, unsigned int full_width, unsigned int full_height );
+CCL_CAPI int __cdecl cycles_session_reset(unsigned int client_id, unsigned int session_id, unsigned int width, unsigned int height, unsigned int samples, unsigned int full_x, unsigned int full_y, unsigned int full_width, unsigned int full_height );
 
 CCL_CAPI void __cdecl cycles_session_add_pass(unsigned int client_id, unsigned int session_id, int pass_id);
 CCL_CAPI void __cdecl cycles_session_clear_passes(unsigned int client_id, unsigned int session_id);
