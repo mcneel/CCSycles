@@ -40,6 +40,38 @@ std::vector<ccl::vector<ccl::Pass>*> passes_vec;
 
 static ccl::thread_mutex session_mutex;
 
+class CyclesRenderCrashException : std::exception
+{
+public:
+  CyclesRenderCrashException() : m_nVDE(-1) {}
+  CyclesRenderCrashException(unsigned int n) : m_nVDE(n) {}
+
+  unsigned int VDENumber() const { return m_nVDE; }
+
+private:
+  unsigned int m_nVDE;
+};
+
+#ifdef _WIN32
+
+static
+void render_crash_translator(unsigned int eCode, EXCEPTION_POINTERS*)
+{
+  throw CyclesRenderCrashException(eCode);
+}
+
+class RenderCrashTranslatorHelper
+{
+private:
+    const _se_translator_function old_SE_translator;
+public:
+    RenderCrashTranslatorHelper( _se_translator_function new_SE_translator ) noexcept
+        : old_SE_translator{ _set_se_translator( new_SE_translator ) } {}
+    ~RenderCrashTranslatorHelper() noexcept { _set_se_translator( old_SE_translator ); }
+};
+#endif
+
+
 /* Find pointers for CCSession and ccl::Session. Return false if either fails. */
 bool session_find(unsigned int sid, CCSession** ccsess, ccl::Session** session)
 {
@@ -254,11 +286,17 @@ void cycles_session_add_pass(unsigned int client_id, unsigned int session_id, in
 }
 
 
-void cycles_session_reset(unsigned int client_id, unsigned int session_id, unsigned int width, unsigned int height, unsigned int samples, unsigned int full_x, unsigned int full_y, unsigned int full_width, unsigned int full_height )
+int cycles_session_reset(unsigned int client_id, unsigned int session_id, unsigned int width, unsigned int height, unsigned int samples, unsigned int full_x, unsigned int full_y, unsigned int full_width, unsigned int full_height )
 {
-	CCSession* ccsess = nullptr;
-	ccl::Session* session = nullptr;
-	if (session_find(session_id, &ccsess, &session)) {
+#ifdef _WIN32
+	RenderCrashTranslatorHelper render_crash_helper(render_crash_translator);
+#endif
+	int rc = 0;
+	CCSession *ccsess = nullptr;
+	ccl::Session *session = nullptr;
+	if (session_find(session_id, &ccsess, &session))
+	{
+		try {
 		logger.logit(client_id, "Reset session ", session_id, ". width ", width, " height ", height, " samples ", samples);
 		ccsess->buffer_params.full_x = full_x;
 		ccsess->buffer_params.full_y = full_y;
@@ -269,7 +307,7 @@ void cycles_session_reset(unsigned int client_id, unsigned int session_id, unsig
 
 		ccsess->params.samples = samples;
 
-		ccl::vector<ccl::Pass>& passes = get_passes(session_id);
+		ccl::vector<ccl::Pass> &passes = get_passes(session_id);
 
 		session->scene->film->tag_passes_update(session->scene, passes);
 		session->scene->film->display_pass = ccl::PassType::PASS_COMBINED;
@@ -278,7 +316,12 @@ void cycles_session_reset(unsigned int client_id, unsigned int session_id, unsig
 		ccsess->buffer_params.passes = passes;
 
 		session->reset(ccsess->buffer_params, (int)samples);
+		} catch(CyclesRenderCrashException)
+		{
+			rc = -13;
+		}
 	}
+	return rc;
 }
 
 void cycles_session_set_update_callback(unsigned int client_id, unsigned int session_id, void(*update)(unsigned int sid))
@@ -407,37 +450,6 @@ void cycles_session_end_run(unsigned int client_id, unsigned int session_id)
 		session->end_run();
 	}
 }
-
-class CyclesRenderCrashException : std::exception
-{
-public:
-  CyclesRenderCrashException() : m_nVDE(-1) {}
-  CyclesRenderCrashException(unsigned int n) : m_nVDE(n) {}
-
-  unsigned int VDENumber() const { return m_nVDE; }
-
-private:
-  unsigned int m_nVDE;
-};
-
-#ifdef _WIN32
-
-static
-void render_crash_translator(unsigned int eCode, EXCEPTION_POINTERS*)
-{
-  throw CyclesRenderCrashException(eCode);
-}
-
-class RenderCrashTranslatorHelper
-{
-private:
-    const _se_translator_function old_SE_translator;
-public:
-    RenderCrashTranslatorHelper( _se_translator_function new_SE_translator ) noexcept
-        : old_SE_translator{ _set_se_translator( new_SE_translator ) } {}
-    ~RenderCrashTranslatorHelper() noexcept { _set_se_translator( old_SE_translator ); }
-};
-#endif
 
 
 int cycles_session_sample(unsigned int client_id, unsigned int session_id)
