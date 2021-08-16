@@ -17,6 +17,8 @@ limitations under the License.
 #ifdef _WIN32
 #include <eh.h>
 #include <exception>
+#else
+#include <signal.h>
 #endif
 
 #include "internal_types.h"
@@ -43,13 +45,13 @@ static ccl::thread_mutex session_mutex;
 class CyclesRenderCrashException : std::exception
 {
 public:
-  CyclesRenderCrashException() : m_nVDE(-1) {}
-  CyclesRenderCrashException(unsigned int n) : m_nVDE(n) {}
+	CyclesRenderCrashException() : m_nVDE(-1) {}
+	CyclesRenderCrashException(unsigned int n) : m_nVDE(n) {}
 
-  unsigned int VDENumber() const { return m_nVDE; }
+	unsigned int VDENumber() const { return m_nVDE; }
 
 private:
-  unsigned int m_nVDE;
+	unsigned int m_nVDE;
 };
 
 #ifdef _WIN32
@@ -57,19 +59,45 @@ private:
 static
 void render_crash_translator(unsigned int eCode, EXCEPTION_POINTERS*)
 {
-  throw CyclesRenderCrashException(eCode);
+	throw CyclesRenderCrashException(eCode);
 }
+#else
+typedef void(__cdecl *_se_translator_function)(int, struct __siginfo *, void*);
+
+static void render_crash_translator(int sig, siginfo_t *siginfo, void *context)
+{
+	throw CyclesRenderCrashException(siginfo->si_code);
+}
+#endif
 
 class RenderCrashTranslatorHelper
 {
 private:
-    const _se_translator_function old_SE_translator;
+	const _se_translator_function old_SE_translator;
 public:
-    RenderCrashTranslatorHelper( _se_translator_function new_SE_translator ) noexcept
-        : old_SE_translator{ _set_se_translator( new_SE_translator ) } {}
-    ~RenderCrashTranslatorHelper() noexcept { _set_se_translator( old_SE_translator ); }
+	RenderCrashTranslatorHelper( _se_translator_function new_SE_translator ) noexcept
+	#ifdef _WIN32
+		: old_SE_translator{ _set_se_translator( new_SE_translator ) } {}
+	#else
+		: old_SE_translator{ nullptr } {
+			struct sigaction sa;
+			sa.sa_flags = SA_SIGINFO;
+			sigemptyset(&sa.sa_mask);
+			sa.sa_sigaction = new_SE_translator;
+			sigaction(SIGSEGV, &sa, nullptr);
+		}
+	#endif
+	#ifdef _WIN32
+	~RenderCrashTranslatorHelper() noexcept { _set_se_translator( old_SE_translator ); }
+	#else
+	~RenderCrashTranslatorHelper() noexcept {
+        struct sigaction sa;
+        sa.sa_flags = SA_SIGINFO;
+        sa.sa_handler = SIG_DFL;
+        sigaction(SIGSEGV, &sa, nullptr);
+    }
+	#endif
 };
-#endif
 
 
 /* Find pointers for CCSession and ccl::Session. Return false if either fails. */
@@ -288,9 +316,8 @@ void cycles_session_add_pass(unsigned int client_id, unsigned int session_id, in
 
 int cycles_session_reset(unsigned int client_id, unsigned int session_id, unsigned int width, unsigned int height, unsigned int samples, unsigned int full_x, unsigned int full_y, unsigned int full_width, unsigned int full_height )
 {
-#ifdef _WIN32
 	RenderCrashTranslatorHelper render_crash_helper(render_crash_translator);
-#endif
+
 	int rc = 0;
 	CCSession *ccsess = nullptr;
 	ccl::Session *session = nullptr;
@@ -454,23 +481,21 @@ void cycles_session_end_run(unsigned int client_id, unsigned int session_id)
 
 int cycles_session_sample(unsigned int client_id, unsigned int session_id)
 {
-#ifdef _WIN32
-  RenderCrashTranslatorHelper render_crash_helper(render_crash_translator);
-#endif
+	RenderCrashTranslatorHelper render_crash_helper(render_crash_translator);
 
-  try {
-	int rc = -1;
-	CCSession* ccsess = nullptr;
-	ccl::Session* session = nullptr;
-	if (session_find(session_id, &ccsess, &session)) {
-		logger.logit(client_id, "Starting session ", session_id);
-		rc = session->sample();
+	try {
+		int rc = -1;
+		CCSession* ccsess = nullptr;
+		ccl::Session* session = nullptr;
+		if (session_find(session_id, &ccsess, &session)) {
+			logger.logit(client_id, "Starting session ", session_id);
+			rc = session->sample();
+		}
+		return rc;
+	} catch(CyclesRenderCrashException)
+	{
+		return -13;
 	}
-	return rc;
-  }
-  catch (CyclesRenderCrashException) {
-    return -13;
-  }
 }
 
 void cycles_session_wait(unsigned int client_id, unsigned int session_id)
