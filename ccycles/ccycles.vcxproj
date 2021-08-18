@@ -88,6 +88,7 @@
       <TreatWarningAsError>true</TreatWarningAsError>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <OpenMPSupport>true</OpenMPSupport>
+      <ExceptionHandling>Async</ExceptionHandling>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -123,6 +124,7 @@ copy /Y "$(ProjectDir)x64\$(ConfigurationName)\ccycles.pdb" "$(SolutionDir)..\bi
       <DisableSpecificWarnings>4018;4146;4065;4127;4181;4200;4244;4267;4305;4800</DisableSpecificWarnings>
       <TreatWarningAsError>true</TreatWarningAsError>
       <OpenMPSupport>true</OpenMPSupport>
+      <ExceptionHandling>Async</ExceptionHandling>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -161,6 +163,7 @@ copy /Y "$(ProjectDir)x64\$(ConfigurationName)\ccycles.pdb" "$(SolutionDir)bin\$
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <DisableSpecificWarnings>4018;4146;4065;4127;4181;4200;4244;4267;4305;4800</DisableSpecificWarnings>
       <OpenMPSupport>true</OpenMPSupport>
+      <ExceptionHandling>Async</ExceptionHandling>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -198,6 +201,7 @@ copy /Y "$(ProjectDir)x64\$(ConfigurationName)\ccycles.pdb" "$(SolutionDir)..\bi
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <DisableSpecificWarnings>4018;4146;4065;4127;4181;4200;4244;4267;4305;4800</DisableSpecificWarnings>
       <OpenMPSupport>true</OpenMPSupport>
+      <ExceptionHandling>Async</ExceptionHandling>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
