@@ -75,30 +75,33 @@ class RenderCrashTranslatorHelper
 private:
 	const _se_translator_function old_SE_translator;
 public:
-	RenderCrashTranslatorHelper( _se_translator_function new_SE_translator ) noexcept
-	#ifdef _WIN32
-		: old_SE_translator{ _set_se_translator( new_SE_translator ) } {}
-	#else
+	RenderCrashTranslatorHelper(_se_translator_function new_SE_translator) noexcept
+#ifdef _WIN32
+		: old_SE_translator{ _set_se_translator(new_SE_translator) } {}
+#else
 		: old_SE_translator{ nullptr } {
-			struct sigaction sa;
-			sa.sa_flags = SA_SIGINFO;
-			sigemptyset(&sa.sa_mask);
-			sa.sa_sigaction = new_SE_translator;
-			sigaction(SIGSEGV, &sa, nullptr);
-		}
-	#endif
-	#ifdef _WIN32
-	~RenderCrashTranslatorHelper() noexcept { _set_se_translator( old_SE_translator ); }
-	#else
+#ifdef ENABLE_MAC_CRASHHANDLING
+		struct sigaction sa;
+		sa.sa_flags = SA_SIGINFO;
+		sigemptyset(&sa.sa_mask);
+		sa.sa_sigaction = new_SE_translator;
+		sigaction(SIGSEGV, &sa, nullptr);
+#endif
+	}
+#endif
+#ifdef _WIN32
+	~RenderCrashTranslatorHelper() noexcept { _set_se_translator(old_SE_translator); }
+#else
 	~RenderCrashTranslatorHelper() noexcept {
-        struct sigaction sa;
-        sa.sa_flags = SA_SIGINFO;
-        sa.sa_handler = SIG_DFL;
-        sigaction(SIGSEGV, &sa, nullptr);
-    }
-	#endif
+#ifdef ENABLE_MAC_CRASHHANDLING
+		struct sigaction sa;
+		sa.sa_flags = SA_SIGINFO;
+		sa.sa_handler = SIG_DFL;
+		sigaction(SIGSEGV, &sa, nullptr);
+#endif
+	}
+#endif
 };
-
 
 /* Find pointers for CCSession and ccl::Session. Return false if either fails. */
 bool session_find(unsigned int sid, CCSession** ccsess, ccl::Session** session)
@@ -319,31 +322,36 @@ int cycles_session_reset(unsigned int client_id, unsigned int session_id, unsign
 	RenderCrashTranslatorHelper render_crash_helper(render_crash_translator);
 
 	int rc = 0;
-	CCSession *ccsess = nullptr;
-	ccl::Session *session = nullptr;
-	if (session_find(session_id, &ccsess, &session))
-	{
+	CCSession* ccsess = nullptr;
+	ccl::Session* session = nullptr;
+	if (session_find(session_id, &ccsess, &session)) {
 		try {
-		logger.logit(client_id, "Reset session ", session_id, ". width ", width, " height ", height, " samples ", samples);
-		ccsess->buffer_params.full_x = full_x;
-		ccsess->buffer_params.full_y = full_y;
-		ccsess->buffer_params.full_width = full_width;
-		ccsess->buffer_params.full_height = full_height;
-		ccsess->buffer_params.width = width;
-		ccsess->buffer_params.height = height;
+			logger.logit(client_id, "Reset session ", session_id, ". width ", width, " height ", height, " samples ", samples);
+			ccsess->buffer_params.full_x = full_x;
+			ccsess->buffer_params.full_y = full_y;
+			ccsess->buffer_params.full_width = full_width;
+			ccsess->buffer_params.full_height = full_height;
+			ccsess->buffer_params.width = width;
+			ccsess->buffer_params.height = height;
 
-		ccsess->params.samples = samples;
+			ccsess->params.samples = samples;
 
-		ccl::vector<ccl::Pass> &passes = get_passes(session_id);
+			ccl::vector<ccl::Pass>& passes = get_passes(session_id);
 
-		session->scene->film->tag_passes_update(session->scene, passes);
-		session->scene->film->display_pass = ccl::PassType::PASS_COMBINED;
-		session->scene->film->tag_update(session->scene);
+			session->scene->film->tag_passes_update(session->scene, passes);
+			session->scene->film->display_pass = ccl::PassType::PASS_COMBINED;
+			session->scene->film->tag_update(session->scene);
 
-		ccsess->buffer_params.passes = passes;
+			ccsess->buffer_params.passes = passes;
 
-		session->reset(ccsess->buffer_params, (int)samples);
-		} catch(CyclesRenderCrashException)
+
+			session->reset(ccsess->buffer_params, (int)samples);
+		}
+		catch (CyclesRenderCrashException)
+		{
+			rc = -13;
+		}
+		catch (...)
 		{
 			rc = -13;
 		}
@@ -492,7 +500,12 @@ int cycles_session_sample(unsigned int client_id, unsigned int session_id)
 			rc = session->sample();
 		}
 		return rc;
-	} catch(CyclesRenderCrashException)
+	}
+	catch (CyclesRenderCrashException)
+	{
+		return -13;
+	}
+	catch (...)
 	{
 		return -13;
 	}
