@@ -13,7 +13,7 @@
   <PropertyGroup Label="Globals">
     <PlatformVersion Condition="'$(VisualStudioVersion)'=='14.0'">v140</PlatformVersion>
     <PlatformVersion Condition="'$(VisualStudioVersion)'=='15.0'">v141</PlatformVersion>
-    <PlatformVersion Condition="'$(VisualStudioVersion)'=='16.0'">v142</PlatformVersion>
+    <PlatformVersion Condition="'$(VisualStudioVersion)'>='16.0'">v142</PlatformVersion>
     <BoostConfig Condition="$(Configuration.Contains('Debug'))">gd-</BoostConfig>
     <BoostConfig Condition="$(Configuration.Contains('Release'))"/>
     <OpenEXRVersion Condition="$(Configuration.Contains('Debug'))">2_4_d</OpenEXRVersion>
