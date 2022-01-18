@@ -31,7 +31,7 @@
     <BoostConfig Condition="$(Configuration.Contains('Debug'))">gd-</BoostConfig>
     <BoostConfig Condition="$(Configuration.Contains('Release'))">
     </BoostConfig>
-    <BoostToolset>$(BoostConfig)x64-$(PlatformToolset)</BoostToolset>
+    <BoostToolset>$(BoostConfig)x64-RH-$(PlatformToolset)</BoostToolset>
     <OIIOConfig Condition="$(Configuration.Contains('Debug'))">_d</OIIOConfig>
     <OIIOConfig Condition="$(Configuration.Contains('Release'))">
     </OIIOConfig>
@@ -39,13 +39,13 @@
     <UseDebugLibraries Condition="$(Configuration.Contains('Release'))">false</UseDebugLibraries>
     <OutDir>$(Platform)\$(Configuration)\</OutDir>
     <LinkIncremental>false</LinkIncremental>
-    <AddLibDirs Condition="!$(Configuration.Contains('Stand-alone'))">$(ProjectDir)..\..\..\..\..\..\big_libs\boost\stage$(Configuration)\lib;$(ProjectDir)..\..\..\..\..\..\big_libs\OpenImageIO-2.0.12\lib;$(ProjectDir)..\..\..\..\..\..\big_libs\embree-3.6.1.x64.vc14.windows\lib;$(ProjectDir)..\pthreads\$(Platform)\$(Configuration);$(ProjectDir)..\glew\$(Platform)\$(Configuration);$(ProjectDir)..\clew\x64\$(Configuration);$(ProjectDir)..\cuew\x64\$(Configuration);$(ProjectDir)..\$(Platform)\$(Configuration);$(ProjectDir)\..\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories)</AddLibDirs>
+    <AddLibDirs Condition="!$(Configuration.Contains('Stand-alone'))">$(ProjectDir)..\..\..\..\..\..\big_libs\boost\stage$(Configuration)\lib;$(ProjectDir)..\..\..\..\..\..\big_libs\OpenImageIO-2.2.19\lib;$(ProjectDir)..\..\..\..\..\..\big_libs\embree-3.13.2\lib;$(ProjectDir)..\pthreads\$(Platform)\$(Configuration);$(ProjectDir)..\glew\$(Platform)\$(Configuration);$(ProjectDir)..\clew\x64\$(Configuration);$(ProjectDir)..\cuew\x64\$(Configuration);$(ProjectDir)..\$(Platform)\$(Configuration);$(ProjectDir)\..\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories)</AddLibDirs>
     <AddLibDirs Condition="$(Configuration.Contains('Stand-alone'))">$(ProjectDir)..\boostbuild\stagerelease\lib;$(ProjectDir)..\OpenImageIO\$(Platform)\$(Configuration);$(ProjectDir)..\pthreads\$(Platform)\$(Configuration);$(ProjectDir)..\glew\$(Platform)\$(Configuration);$(ProjectDir)..\clew\x64\$(Configuration);$(ProjectDir)..\cuew\x64\$(Configuration);$(ProjectDir)..\$(Platform)\$(Configuration);$(ProjectDir)\..\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories)</AddLibDirs>
-    <AddIncDirs Condition="!$(Configuration.Contains('Stand-alone'))">$(ProjectDir)..\..\..\..\..\..\big_libs\boost;$(ProjectDir)..\..\..\..\..\..\big_libs\OpenImageIO-2.0.12\include;$(ProjectDir)..\..\..\..\..\..\big_libs\OpenEXR-2.4.0\include;$(ProjectDir)..\..\..\..\..\..\big_libs\embree-3.6.1.x64.vc14.windows\include;$(ProjectDir)..\pthreads;$(ProjectDir)..\glew\include;$(ProjectDir)..\cycles\third_party\atomic;$(ProjectDir)..\cycles\src\bvh;$(ProjectDir)..\cycles\src\device;$(ProjectDir)..\cycles\src\kernel;$(ProjectDir)..\cycles\src\render;$(ProjectDir)..\cycles\src\subd;$(ProjectDir)..\cycles\src\util;$(ProjectDir)..\cycles\src\kernel\svm;$(ProjectDir)..\cycles\src</AddIncDirs>
-    <AddIncDirs Condition="$(Configuration.Contains('Stand-alone'))">$(ProjectDir)..\..\..\..\..\..\big_libs\boost;$(ProjectDir)..\..\..\..\..\..\big_libs\OpenImageIO-2.0.12\include;$(ProjectDir)..\..\..\..\..\..\big_libs\OpenEXR-2.4.0\include;$(ProjectDir)..\..\..\..\..\..\big_libs\embree-3.6.1.x64.vc14.windows\include;$(ProjectDir)..\pthreads;$(ProjectDir)..\glew\include;$(ProjectDir)..\cycles\third_party\atomic;$(ProjectDir)..\cycles\src\bvh;$(ProjectDir)..\cycles\src\device;$(ProjectDir)..\cycles\src\kernel;$(ProjectDir)..\cycles\src\render;$(ProjectDir)..\cycles\src\subd;$(ProjectDir)..\cycles\src\util;$(ProjectDir)..\cycles\src\kernel\svm;$(ProjectDir)..\cycles\src</AddIncDirs>
+    <AddIncDirs Condition="!$(Configuration.Contains('Stand-alone'))">$(ProjectDir)..\..\..\..\..\..\big_libs\boost;$(ProjectDir)..\..\..\..\..\..\big_libs\OpenImageIO-2.2.19\include;$(ProjectDir)..\..\..\..\..\..\big_libs\OpenEXR-2.5.5\include;$(ProjectDir)..\..\..\..\..\..\big_libs\embree-3.13.2\include;$(ProjectDir)..\pthreads;$(ProjectDir)..\glew\include;$(ProjectDir)..\cycles\third_party\atomic;$(ProjectDir)..\cycles\src\bvh;$(ProjectDir)..\cycles\src\device;$(ProjectDir)..\cycles\src\kernel;$(ProjectDir)..\cycles\src\render;$(ProjectDir)..\cycles\src\subd;$(ProjectDir)..\cycles\src\util;$(ProjectDir)..\cycles\src\kernel\svm;$(ProjectDir)..\cycles\src</AddIncDirs>
+    <AddIncDirs Condition="$(Configuration.Contains('Stand-alone'))">$(ProjectDir)..\..\..\..\..\..\big_libs\boost;$(ProjectDir)..\..\..\..\..\..\big_libs\OpenImageIO-2.2.19\include;$(ProjectDir)..\..\..\..\..\..\big_libs\OpenEXR-2.5.5\include;$(ProjectDir)..\..\..\..\..\..\big_libs\embree-3.13.2\include;$(ProjectDir)..\pthreads;$(ProjectDir)..\glew\include;$(ProjectDir)..\cycles\third_party\atomic;$(ProjectDir)..\cycles\src\bvh;$(ProjectDir)..\cycles\src\device;$(ProjectDir)..\cycles\src\kernel;$(ProjectDir)..\cycles\src\render;$(ProjectDir)..\cycles\src\subd;$(ProjectDir)..\cycles\src\util;$(ProjectDir)..\cycles\src\kernel\svm;$(ProjectDir)..\cycles\src</AddIncDirs>
     <Defs Condition="$(Configuration.Contains('Debug'))">DEBUG;WITH_EMBREE;OS_WIN;CCL_CAPI_DLL;GLEW_STATIC;BOOST_ALL_NO_LIB;_CRT_SECURE_NO_WARNINGS;CYCLES_STD_UNORDERED_MAP;CCL_NAMESPACE_BEGIN=namespace ccl {;CCL_NAMESPACE_END=};HAVE_PTW32_CONFIG_H</Defs>
     <Defs Condition="$(Configuration.Contains('Release'))">USE_TBB=0;BOOST_NO_RTTI;BOOST_NO_TYPEID;WITH_EMBREE;OS_WIN;CCL_CAPI_DLL;GLEW_STATIC;BOOST_ALL_NO_LIB;_CRT_SECURE_NO_WARNINGS;CYCLES_STD_UNORDERED_MAP;CCL_NAMESPACE_BEGIN=namespace ccl {;CCL_NAMESPACE_END=};HAVE_PTW32_CONFIG_H</Defs>
-    <AddDeps>libboost_serialization-mt-$(BoostToolset).lib;libboost_filesystem-mt-$(BoostToolset).lib;libboost_chrono-mt-$(BoostToolset).lib;libboost_date_time-mt-$(BoostToolset).lib;libboost_locale-mt-$(BoostToolset).lib;libboost_regex-mt-$(BoostToolset).lib;libboost_system-mt-$(BoostToolset).lib;libboost_thread-mt-$(BoostToolset).lib;cuew.lib;clew.lib;glew.lib;pthreads.lib;embree3$(OIIOConfig).lib;OpenImageIO_2_0_12$(OIIOConfig).lib;OpenImageIO_Util_2_0_12$(OIIOConfig).lib;opengl32.lib;cycles_proper.lib</AddDeps>
+    <AddDeps>boost_serialization-mt-$(BoostToolset).lib;boost_filesystem-mt-$(BoostToolset).lib;boost_chrono-mt-$(BoostToolset).lib;boost_date_time-mt-$(BoostToolset).lib;boost_locale-mt-$(BoostToolset).lib;boost_regex-mt-$(BoostToolset).lib;boost_system-mt-$(BoostToolset).lib;boost_thread-mt-$(BoostToolset).lib;cuew.lib;clew.lib;glew.lib;pthreads.lib;embree3_RH.lib;OpenImageIORH.lib;OpenImageIO_UtilRH.lib;opengl32.lib;cycles_proper.lib</AddDeps>
   </PropertyGroup>
   <Target Name="Logging">
     <Message Importance="High" Text="Configuration: $(Configuration)" />
@@ -89,7 +89,6 @@
       <TreatWarningAsError>true</TreatWarningAsError>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <OpenMPSupport>true</OpenMPSupport>
-      <ExceptionHandling>Async</ExceptionHandling>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -125,7 +124,6 @@ copy /Y "$(ProjectDir)x64\$(ConfigurationName)\ccycles.pdb" "$(SolutionDir)..\bi
       <DisableSpecificWarnings>4018;4146;4065;4127;4181;4200;4244;4267;4305;4800</DisableSpecificWarnings>
       <TreatWarningAsError>true</TreatWarningAsError>
       <OpenMPSupport>true</OpenMPSupport>
-      <ExceptionHandling>Async</ExceptionHandling>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -164,7 +162,6 @@ copy /Y "$(ProjectDir)x64\$(ConfigurationName)\ccycles.pdb" "$(SolutionDir)bin\$
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <DisableSpecificWarnings>4018;4146;4065;4127;4181;4200;4244;4267;4305;4800</DisableSpecificWarnings>
       <OpenMPSupport>true</OpenMPSupport>
-      <ExceptionHandling>Async</ExceptionHandling>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -202,7 +199,6 @@ copy /Y "$(ProjectDir)x64\$(ConfigurationName)\ccycles.pdb" "$(SolutionDir)..\bi
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <DisableSpecificWarnings>4018;4146;4065;4127;4181;4200;4244;4267;4305;4800</DisableSpecificWarnings>
       <OpenMPSupport>true</OpenMPSupport>
-      <ExceptionHandling>Async</ExceptionHandling>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
