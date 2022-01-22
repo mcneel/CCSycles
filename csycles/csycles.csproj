@@ -15,7 +15,7 @@
     <PlatformVersion Condition="'$(VisualStudioVersion)'=='15.0'">v141</PlatformVersion>
     <PlatformVersion Condition="'$(VisualStudioVersion)'>='16.0'">v142</PlatformVersion>
     <PlatformVersion Condition="'$(VisualStudioVersion)'>='17.0'">v142</PlatformVersion>
-    <BoostConfig Condition="$(Configuration.Contains('Debug'))">gd-</BoostConfig>
+    <BoostConfig Condition="$(Configuration.Contains('Debug'))"></BoostConfig>
     <BoostConfig Condition="$(Configuration.Contains('Release'))"/>
     <OpenEXRVersion Condition="$(Configuration.Contains('Debug'))">RH-2_5</OpenEXRVersion>
     <OpenEXRVersion Condition="$(Configuration.Contains('Release'))">RH-2_5</OpenEXRVersion>
@@ -226,7 +226,7 @@
     <KernelFiles Include="$(ProjecDir)..\cycles\src\kernel\**\*" Exclude="$(ProjecDir)..\cycles\src\kernel\**\CMakeLists.*">
       <Link>Dependencies\KernelFiles\%(RecursiveDir)%(Filename)%(Extension)</Link>
     </KernelFiles>
-    <BoostFiles Include="$(SolutionDir)..\..\big_libs\boost\stage$(ConfigurationName)\lib\boost_*$(BoostToolset).dll">
+    <BoostFiles Include="$(SolutionDir)..\..\big_libs\boost\stagerelease\lib\boost_*$(BoostToolset).dll">
       <Link>Dependencies\BoostFiles\%(RecursiveDir)%(Filename)%(Extension)</Link>
     </BoostFiles>
     <UtilFiles Include="$(ProjecDir)..\cycles\src\util\**\*.h" Exclude="$(ProjecDir)..\cycles\src\util\**\CMakeLists.*">

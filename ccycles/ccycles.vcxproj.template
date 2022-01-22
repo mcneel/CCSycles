@@ -78,7 +78,7 @@
       </SDLCheck>
       <AdditionalIncludeDirectories>$(AddIncDirs)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>$(Defs);%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalOptions>/EHa /w34062 /J /MDd %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/w34062 /J /MDd %(AdditionalOptions)</AdditionalOptions>
       <MinimalRebuild>false</MinimalRebuild>
       <BufferSecurityCheck>true</BufferSecurityCheck>
       <FloatingPointModel>Fast</FloatingPointModel>
@@ -89,6 +89,7 @@
       <TreatWarningAsError>true</TreatWarningAsError>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <OpenMPSupport>true</OpenMPSupport>
+	  <ExceptionHandling>Async</ExceptionHandling>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -114,7 +115,7 @@ copy /Y "$(ProjectDir)x64\$(ConfigurationName)\ccycles.pdb" "$(SolutionDir)..\bi
       </SDLCheck>
       <AdditionalIncludeDirectories>$(AddIncDirs)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>$(Defs);%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalOptions>/EHa /w34062 /J /MDd %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/w34062 /J /MDd %(AdditionalOptions)</AdditionalOptions>
       <MinimalRebuild>false</MinimalRebuild>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <FloatingPointModel>Fast</FloatingPointModel>
@@ -124,6 +125,7 @@ copy /Y "$(ProjectDir)x64\$(ConfigurationName)\ccycles.pdb" "$(SolutionDir)..\bi
       <DisableSpecificWarnings>4018;4146;4065;4127;4181;4200;4244;4267;4305;4800</DisableSpecificWarnings>
       <TreatWarningAsError>true</TreatWarningAsError>
       <OpenMPSupport>true</OpenMPSupport>
+	  <ExceptionHandling>Async</ExceptionHandling>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -153,7 +155,7 @@ copy /Y "$(ProjectDir)x64\$(ConfigurationName)\ccycles.pdb" "$(SolutionDir)bin\$
       </SDLCheck>
       <AdditionalIncludeDirectories>$(AddIncDirs)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>$(Defs);%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalOptions>/EHa /w34062 /J /MD %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/w34062 /J /MD %(AdditionalOptions)</AdditionalOptions>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <FloatingPointModel>Fast</FloatingPointModel>
       <DebugInformationFormat>None</DebugInformationFormat>
@@ -162,6 +164,7 @@ copy /Y "$(ProjectDir)x64\$(ConfigurationName)\ccycles.pdb" "$(SolutionDir)bin\$
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <DisableSpecificWarnings>4018;4146;4065;4127;4181;4200;4244;4267;4305;4800</DisableSpecificWarnings>
       <OpenMPSupport>true</OpenMPSupport>
+	  <ExceptionHandling>Async</ExceptionHandling>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -190,7 +193,7 @@ copy /Y "$(ProjectDir)x64\$(ConfigurationName)\ccycles.pdb" "$(SolutionDir)..\bi
       </SDLCheck>
       <AdditionalIncludeDirectories>$(AddIncDirs)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>$(Defs);%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalOptions>/EHa /w34062 /J /MD %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/w34062 /J /MD %(AdditionalOptions)</AdditionalOptions>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <FloatingPointModel>Fast</FloatingPointModel>
       <DebugInformationFormat>None</DebugInformationFormat>
@@ -199,6 +202,7 @@ copy /Y "$(ProjectDir)x64\$(ConfigurationName)\ccycles.pdb" "$(SolutionDir)..\bi
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <DisableSpecificWarnings>4018;4146;4065;4127;4181;4200;4244;4267;4305;4800</DisableSpecificWarnings>
       <OpenMPSupport>true</OpenMPSupport>
+	  <ExceptionHandling>Async</ExceptionHandling>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
