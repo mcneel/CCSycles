@@ -15,11 +15,11 @@
     <PlatformVersion Condition="'$(VisualStudioVersion)'=='15.0'">v141</PlatformVersion>
     <PlatformVersion Condition="'$(VisualStudioVersion)'>='16.0'">v142</PlatformVersion>
     <PlatformVersion Condition="'$(VisualStudioVersion)'>='17.0'">v142</PlatformVersion>
-    <BoostConfig Condition="$(Configuration.Contains('Debug'))"></BoostConfig>
+    <BoostConfig Condition="$(Configuration.Contains('Debug'))">gd-</BoostConfig>
     <BoostConfig Condition="$(Configuration.Contains('Release'))"/>
-    <OpenEXRVersion Condition="$(Configuration.Contains('Debug'))">RH-2_5</OpenEXRVersion>
+    <OpenEXRVersion Condition="$(Configuration.Contains('Debug'))">RH-2_5_d</OpenEXRVersion>
     <OpenEXRVersion Condition="$(Configuration.Contains('Release'))">RH-2_5</OpenEXRVersion>
-    <OpenImageIOVersion Condition="$(Configuration.Contains('Debug'))">RH</OpenImageIOVersion>
+    <OpenImageIOVersion Condition="$(Configuration.Contains('Debug'))">RH_d</OpenImageIOVersion>
     <OpenImageIOVersion Condition="$(Configuration.Contains('Release'))">RH</OpenImageIOVersion>
     <EmbreeVersion Condition="$(Configuration.Contains('Debug'))">_RH</EmbreeVersion>
     <EmbreeVersion Condition="$(Configuration.Contains('Release'))">_RH</EmbreeVersion>
@@ -217,7 +217,7 @@
     <OpenEXRFiles Include="$(SolutionDir)..\..\big_libs\OpenEXR-2.5.5\lib\*$(OpenEXRVersion).dll">
       <Link>Dependencies\OpenEXRFiles\%(Filename)%(Extension)</Link>
     </OpenEXRFiles>
-    <OpenImageIOFiles Include="$(SolutionDir)..\..\big_libs\OpenImageIO-2.2.19\lib\*.dll">
+    <OpenImageIOFiles Include="$(SolutionDir)..\..\big_libs\OpenImageIO-2.2.19\lib\*$(OpenImageIOVersion).dll">
       <Link>Dependencies\OpenImageIOFiles\%(Filename)%(Extension)</Link>
     </OpenImageIOFiles>
     <CUDAFiles Include="$(SolutionDir)..\..\big_libs\RhinoCycles\lib\**\*">
