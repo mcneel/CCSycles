@@ -225,6 +225,20 @@ copy /Y "$(ProjectDir)x64\$(ConfigurationName)\ccycles.pdb" "$(SolutionDir)bin\$
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ProjectReference Include="..\cycles_proper.vcxproj" PrivateAssets="all">
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+    <ProjectReference Include="..\cuew\cuew.vcxproj" PrivateAssets="all">
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+    <ProjectReference Include="..\glew\glew.vcxproj" PrivateAssets="all">
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+    <ProjectReference Include="..\pthreads\pthreads.vcxproj" PrivateAssets="all">
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
     <ClInclude Include="ccycles.h" />
     <ClInclude Include="fshader.h" />
     <ClInclude Include="internal_types.h" />

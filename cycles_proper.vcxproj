@@ -215,6 +215,20 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ProjectReference Include="clew\clew.vcxproj" PrivateAssets="all">
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+    <ProjectReference Include="cuew\cuew.vcxproj" PrivateAssets="all">
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+    <ProjectReference Include="glew\glew.vcxproj" PrivateAssets="all">
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+    <ProjectReference Include="pthreads\pthreads.vcxproj" PrivateAssets="all">
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
     <ClCompile Include="cycles\src\bvh\bvh.cpp" />
     <ClCompile Include="cycles\src\bvh\bvh2.cpp" />
     <ClCompile Include="cycles\src\bvh\bvh4.cpp" />

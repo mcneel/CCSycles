@@ -79,6 +79,11 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ccycles\ccycles.vcxproj" PrivateAssets="all">
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
     <Reference Include="System"/>
     <Reference Include="System.Core"/>
     <Reference Include="System.Drawing"/>
