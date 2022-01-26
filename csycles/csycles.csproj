@@ -79,7 +79,7 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ccycles\ccycles.vcxproj" PrivateAssets="all">
+    <ProjectReference Condition=" '$(OS)' == 'Windows_NT' " Include="..\ccycles\ccycles.vcxproj" PrivateAssets="all">
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
     </ProjectReference>
   </ItemGroup>
