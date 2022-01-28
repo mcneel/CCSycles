@@ -33,25 +33,42 @@
 		A11D689C1FB59ACF00409EB3 /* internal_types.h in Headers */ = {isa = PBXBuildFile; fileRef = A11D68871FB59ACD00409EB3 /* internal_types.h */; };
 		D81624C122A51149009F428E /* mikktspace.h in Headers */ = {isa = PBXBuildFile; fileRef = D81624BF22A51149009F428E /* mikktspace.h */; };
 		D81624C222A51149009F428E /* mikktspace.c in Sources */ = {isa = PBXBuildFile; fileRef = D81624C022A51149009F428E /* mikktspace.c */; };
-		D81834DA279A8C250080732A /* libboost_atomic-RH-clang.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D81834D3279A8BFE0080732A /* libboost_atomic-RH-clang.dylib */; };
-		D81834DC279A8C250080732A /* libboost_chrono-RH-clang.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D81834D0279A8BFE0080732A /* libboost_chrono-RH-clang.dylib */; };
-		D81834DE279A8C250080732A /* libboost_date_time-RH-clang.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D81834D2279A8BFE0080732A /* libboost_date_time-RH-clang.dylib */; };
-		D81834E0279A8C250080732A /* libboost_filesystem-RH-clang.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D81834D1279A8BFE0080732A /* libboost_filesystem-RH-clang.dylib */; };
-		D81834E2279A8C250080732A /* libboost_locale-RH-clang.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D81834D5279A8BFE0080732A /* libboost_locale-RH-clang.dylib */; };
-		D81834E4279A8C250080732A /* libboost_regex-RH-clang.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D81834D4279A8BFE0080732A /* libboost_regex-RH-clang.dylib */; };
-		D81834E6279A8C250080732A /* libboost_serialization-RH-clang.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D81834D6279A8BFE0080732A /* libboost_serialization-RH-clang.dylib */; };
-		D81834E8279A8C250080732A /* libboost_system-RH-clang.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D81834D7279A8BFE0080732A /* libboost_system-RH-clang.dylib */; };
-		D81834EA279A8C250080732A /* libboost_thread-RH-clang.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D81834D8279A8BFE0080732A /* libboost_thread-RH-clang.dylib */; };
-		D81834EC279A8C250080732A /* libboost_wserialization-RH-clang.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D81834D9279A8BFE0080732A /* libboost_wserialization-RH-clang.dylib */; };
-		D81F413F2796A3DB0004E22C /* libOpenImageIORH.2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D81F413D2796A3DB0004E22C /* libOpenImageIORH.2.2.dylib */; };
-		D81F41412796A3DB0004E22C /* libOpenImageIO_UtilRH.2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D81F413E2796A3DB0004E22C /* libOpenImageIO_UtilRH.2.2.dylib */; };
-		D81F414A2796A40A0004E22C /* libIlmImfUtil-RH-2_5.25.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D81F41432796A40A0004E22C /* libIlmImfUtil-RH-2_5.25.dylib */; };
-		D81F414C2796A40A0004E22C /* libIexMath-RH-2_5.25.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D81F41442796A40A0004E22C /* libIexMath-RH-2_5.25.dylib */; };
-		D81F414E2796A40A0004E22C /* libImath-RH-2_5.25.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D81F41452796A40A0004E22C /* libImath-RH-2_5.25.dylib */; };
-		D81F41502796A40A0004E22C /* libIlmThread-RH-2_5.25.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D81F41462796A40A0004E22C /* libIlmThread-RH-2_5.25.dylib */; };
-		D81F41522796A40A0004E22C /* libHalf-RH-2_5.25.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D81F41472796A40A0004E22C /* libHalf-RH-2_5.25.dylib */; };
-		D81F41542796A40A0004E22C /* libIlmImf-RH-2_5.25.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D81F41482796A40A0004E22C /* libIlmImf-RH-2_5.25.dylib */; };
-		D81F41562796A40A0004E22C /* libIex-RH-2_5.25.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D81F41492796A40A0004E22C /* libIex-RH-2_5.25.dylib */; };
+		D84801C927A3D44D004CDA17 /* libOpenImageIO_UtilRH.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D84801C327A3D44C004CDA17 /* libOpenImageIO_UtilRH.dylib */; };
+		D84801CA27A3D44D004CDA17 /* libOpenImageIORH.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D84801C427A3D44C004CDA17 /* libOpenImageIORH.dylib */; };
+		D84801CB27A3D44D004CDA17 /* libOpenImageIO_UtilRH.2.2.19.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D84801C527A3D44D004CDA17 /* libOpenImageIO_UtilRH.2.2.19.dylib */; };
+		D84801CC27A3D44D004CDA17 /* libOpenImageIO_UtilRH.2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D84801C627A3D44D004CDA17 /* libOpenImageIO_UtilRH.2.2.dylib */; };
+		D84801CD27A3D44D004CDA17 /* libOpenImageIORH.2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D84801C727A3D44D004CDA17 /* libOpenImageIORH.2.2.dylib */; };
+		D84801CE27A3D44D004CDA17 /* libOpenImageIORH.2.2.19.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D84801C827A3D44D004CDA17 /* libOpenImageIORH.2.2.19.dylib */; };
+		D84801EB27A3D473004CDA17 /* libHalf-RH-2_5.25.0.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D84801CF27A3D473004CDA17 /* libHalf-RH-2_5.25.0.4.dylib */; };
+		D84801EC27A3D473004CDA17 /* libIex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D84801D027A3D473004CDA17 /* libIex.dylib */; };
+		D84801ED27A3D473004CDA17 /* libHalf.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D84801D127A3D473004CDA17 /* libHalf.dylib */; };
+		D84801EE27A3D473004CDA17 /* libIlmImfUtil.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D84801D227A3D473004CDA17 /* libIlmImfUtil.dylib */; };
+		D84801EF27A3D473004CDA17 /* libImath.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D84801D327A3D473004CDA17 /* libImath.dylib */; };
+		D84801F027A3D473004CDA17 /* libImath-RH-2_5.25.0.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D84801D427A3D473004CDA17 /* libImath-RH-2_5.25.0.4.dylib */; };
+		D84801F127A3D473004CDA17 /* libIexMath-RH-2_5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D84801D527A3D473004CDA17 /* libIexMath-RH-2_5.dylib */; };
+		D84801F227A3D473004CDA17 /* libIex-RH-2_5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D84801D627A3D473004CDA17 /* libIex-RH-2_5.dylib */; };
+		D84801F327A3D473004CDA17 /* libIlmThread-RH-2_5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D84801D727A3D473004CDA17 /* libIlmThread-RH-2_5.dylib */; };
+		D84801F427A3D473004CDA17 /* libIexMath-RH-2_5.25.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D84801D827A3D473004CDA17 /* libIexMath-RH-2_5.25.dylib */; };
+		D84801F527A3D473004CDA17 /* libIlmThread-RH-2_5.25.0.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D84801D927A3D473004CDA17 /* libIlmThread-RH-2_5.25.0.4.dylib */; };
+		D84801F627A3D473004CDA17 /* libIex-RH-2_5.25.0.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D84801DA27A3D473004CDA17 /* libIex-RH-2_5.25.0.4.dylib */; };
+		D84801F727A3D473004CDA17 /* libIlmImf-RH-2_5.25.0.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D84801DB27A3D473004CDA17 /* libIlmImf-RH-2_5.25.0.4.dylib */; };
+		D84801F827A3D473004CDA17 /* libIlmImfUtil-RH-2_5.25.0.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D84801DC27A3D473004CDA17 /* libIlmImfUtil-RH-2_5.25.0.4.dylib */; };
+		D84801F927A3D473004CDA17 /* libIexMath.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D84801DD27A3D473004CDA17 /* libIexMath.dylib */; };
+		D84801FA27A3D473004CDA17 /* libIlmImf-RH-2_5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D84801DE27A3D473004CDA17 /* libIlmImf-RH-2_5.dylib */; };
+		D84801FB27A3D473004CDA17 /* libIlmImf.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D84801DF27A3D473004CDA17 /* libIlmImf.dylib */; };
+		D84801FC27A3D473004CDA17 /* libImath-RH-2_5.25.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D84801E027A3D473004CDA17 /* libImath-RH-2_5.25.dylib */; };
+		D84801FD27A3D473004CDA17 /* libIlmThread.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D84801E127A3D473004CDA17 /* libIlmThread.dylib */; };
+		D84801FE27A3D473004CDA17 /* libIlmThread-RH-2_5.25.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D84801E227A3D473004CDA17 /* libIlmThread-RH-2_5.25.dylib */; };
+		D84801FF27A3D473004CDA17 /* libHalf-RH-2_5.25.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D84801E327A3D473004CDA17 /* libHalf-RH-2_5.25.dylib */; };
+		D848020027A3D473004CDA17 /* libIlmImfUtil-RH-2_5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D84801E427A3D473004CDA17 /* libIlmImfUtil-RH-2_5.dylib */; };
+		D848020127A3D473004CDA17 /* libIlmImfUtil-RH-2_5.25.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D84801E527A3D473004CDA17 /* libIlmImfUtil-RH-2_5.25.dylib */; };
+		D848020227A3D473004CDA17 /* libIex-RH-2_5.25.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D84801E627A3D473004CDA17 /* libIex-RH-2_5.25.dylib */; };
+		D848020327A3D473004CDA17 /* libIlmImf-RH-2_5.25.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D84801E727A3D473004CDA17 /* libIlmImf-RH-2_5.25.dylib */; };
+		D848020427A3D473004CDA17 /* libHalf-RH-2_5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D84801E827A3D473004CDA17 /* libHalf-RH-2_5.dylib */; };
+		D848020527A3D473004CDA17 /* libIexMath-RH-2_5.25.0.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D84801E927A3D473004CDA17 /* libIexMath-RH-2_5.25.0.4.dylib */; };
+		D848020627A3D473004CDA17 /* libImath-RH-2_5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D84801EA27A3D473004CDA17 /* libImath-RH-2_5.dylib */; };
+		D848020927A3D497004CDA17 /* libboost_filesystem-RH-clang.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D848020727A3D496004CDA17 /* libboost_filesystem-RH-clang.dylib */; };
+		D848020A27A3D497004CDA17 /* libboost_thread-RH-clang.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D848020827A3D496004CDA17 /* libboost_thread-RH-clang.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,13 +121,6 @@
 			remoteGlobalIDString = A11D672B1FB49CD900409EB3;
 			remoteInfo = clew;
 		};
-		D86DF18720A81F7700444230 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D86DF18320A81F7600444230 /* OpenImageIO.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = A11D67AF1FB5054D00409EB3;
-			remoteInfo = OpenImageIO;
-		};
 		D86DF18B20A81F8500444230 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D86DF17D20A81F5500444230 /* clew.xcodeproj */;
@@ -161,31 +171,47 @@
 		A11D68881FB59ACE00409EB3 /* ccycles_version.rc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ccycles_version.rc; path = ../../ccycles/ccycles_version.rc; sourceTree = "<group>"; };
 		D81624BF22A51149009F428E /* mikktspace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mikktspace.h; path = ../../ccycles/mikktspace.h; sourceTree = "<group>"; };
 		D81624C022A51149009F428E /* mikktspace.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = mikktspace.c; path = ../../ccycles/mikktspace.c; sourceTree = "<group>"; };
-		D81834D0279A8BFE0080732A /* libboost_chrono-RH-clang.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_chrono-RH-clang.dylib"; path = "../../../../../../../big_libs/boost/stagerelease/lib/libboost_chrono-RH-clang.dylib"; sourceTree = "<group>"; };
-		D81834D1279A8BFE0080732A /* libboost_filesystem-RH-clang.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_filesystem-RH-clang.dylib"; path = "../../../../../../../big_libs/boost/stagerelease/lib/libboost_filesystem-RH-clang.dylib"; sourceTree = "<group>"; };
-		D81834D2279A8BFE0080732A /* libboost_date_time-RH-clang.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_date_time-RH-clang.dylib"; path = "../../../../../../../big_libs/boost/stagerelease/lib/libboost_date_time-RH-clang.dylib"; sourceTree = "<group>"; };
-		D81834D3279A8BFE0080732A /* libboost_atomic-RH-clang.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_atomic-RH-clang.dylib"; path = "../../../../../../../big_libs/boost/stagerelease/lib/libboost_atomic-RH-clang.dylib"; sourceTree = "<group>"; };
-		D81834D4279A8BFE0080732A /* libboost_regex-RH-clang.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_regex-RH-clang.dylib"; path = "../../../../../../../big_libs/boost/stagerelease/lib/libboost_regex-RH-clang.dylib"; sourceTree = "<group>"; };
-		D81834D5279A8BFE0080732A /* libboost_locale-RH-clang.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_locale-RH-clang.dylib"; path = "../../../../../../../big_libs/boost/stagerelease/lib/libboost_locale-RH-clang.dylib"; sourceTree = "<group>"; };
-		D81834D6279A8BFE0080732A /* libboost_serialization-RH-clang.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_serialization-RH-clang.dylib"; path = "../../../../../../../big_libs/boost/stagerelease/lib/libboost_serialization-RH-clang.dylib"; sourceTree = "<group>"; };
-		D81834D7279A8BFE0080732A /* libboost_system-RH-clang.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_system-RH-clang.dylib"; path = "../../../../../../../big_libs/boost/stagerelease/lib/libboost_system-RH-clang.dylib"; sourceTree = "<group>"; };
-		D81834D8279A8BFE0080732A /* libboost_thread-RH-clang.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_thread-RH-clang.dylib"; path = "../../../../../../../big_libs/boost/stagerelease/lib/libboost_thread-RH-clang.dylib"; sourceTree = "<group>"; };
-		D81834D9279A8BFE0080732A /* libboost_wserialization-RH-clang.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_wserialization-RH-clang.dylib"; path = "../../../../../../../big_libs/boost/stagerelease/lib/libboost_wserialization-RH-clang.dylib"; sourceTree = "<group>"; };
-		D81F413D2796A3DB0004E22C /* libOpenImageIORH.2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libOpenImageIORH.2.2.dylib; path = "../../../../../../../big_libs/OpenImageIO-2.2.19/lib/libOpenImageIORH.2.2.dylib"; sourceTree = "<group>"; };
-		D81F413E2796A3DB0004E22C /* libOpenImageIO_UtilRH.2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libOpenImageIO_UtilRH.2.2.dylib; path = "../../../../../../../big_libs/OpenImageIO-2.2.19/lib/libOpenImageIO_UtilRH.2.2.dylib"; sourceTree = "<group>"; };
-		D81F41432796A40A0004E22C /* libIlmImfUtil-RH-2_5.25.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libIlmImfUtil-RH-2_5.25.dylib"; path = "../../../../../../../big_libs/OpenEXR-2.5.5/lib/libIlmImfUtil-RH-2_5.25.dylib"; sourceTree = "<group>"; };
-		D81F41442796A40A0004E22C /* libIexMath-RH-2_5.25.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libIexMath-RH-2_5.25.dylib"; path = "../../../../../../../big_libs/OpenEXR-2.5.5/lib/libIexMath-RH-2_5.25.dylib"; sourceTree = "<group>"; };
-		D81F41452796A40A0004E22C /* libImath-RH-2_5.25.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libImath-RH-2_5.25.dylib"; path = "../../../../../../../big_libs/OpenEXR-2.5.5/lib/libImath-RH-2_5.25.dylib"; sourceTree = "<group>"; };
-		D81F41462796A40A0004E22C /* libIlmThread-RH-2_5.25.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libIlmThread-RH-2_5.25.dylib"; path = "../../../../../../../big_libs/OpenEXR-2.5.5/lib/libIlmThread-RH-2_5.25.dylib"; sourceTree = "<group>"; };
-		D81F41472796A40A0004E22C /* libHalf-RH-2_5.25.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libHalf-RH-2_5.25.dylib"; path = "../../../../../../../big_libs/OpenEXR-2.5.5/lib/libHalf-RH-2_5.25.dylib"; sourceTree = "<group>"; };
-		D81F41482796A40A0004E22C /* libIlmImf-RH-2_5.25.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libIlmImf-RH-2_5.25.dylib"; path = "../../../../../../../big_libs/OpenEXR-2.5.5/lib/libIlmImf-RH-2_5.25.dylib"; sourceTree = "<group>"; };
-		D81F41492796A40A0004E22C /* libIex-RH-2_5.25.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libIex-RH-2_5.25.dylib"; path = "../../../../../../../big_libs/OpenEXR-2.5.5/lib/libIex-RH-2_5.25.dylib"; sourceTree = "<group>"; };
+		D84801C327A3D44C004CDA17 /* libOpenImageIO_UtilRH.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libOpenImageIO_UtilRH.dylib; path = "../../../../../../../big_libs/OpenImageIO-2.2.19/lib/libOpenImageIO_UtilRH.dylib"; sourceTree = "<group>"; };
+		D84801C427A3D44C004CDA17 /* libOpenImageIORH.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libOpenImageIORH.dylib; path = "../../../../../../../big_libs/OpenImageIO-2.2.19/lib/libOpenImageIORH.dylib"; sourceTree = "<group>"; };
+		D84801C527A3D44D004CDA17 /* libOpenImageIO_UtilRH.2.2.19.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libOpenImageIO_UtilRH.2.2.19.dylib; path = "../../../../../../../big_libs/OpenImageIO-2.2.19/lib/libOpenImageIO_UtilRH.2.2.19.dylib"; sourceTree = "<group>"; };
+		D84801C627A3D44D004CDA17 /* libOpenImageIO_UtilRH.2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libOpenImageIO_UtilRH.2.2.dylib; path = "../../../../../../../big_libs/OpenImageIO-2.2.19/lib/libOpenImageIO_UtilRH.2.2.dylib"; sourceTree = "<group>"; };
+		D84801C727A3D44D004CDA17 /* libOpenImageIORH.2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libOpenImageIORH.2.2.dylib; path = "../../../../../../../big_libs/OpenImageIO-2.2.19/lib/libOpenImageIORH.2.2.dylib"; sourceTree = "<group>"; };
+		D84801C827A3D44D004CDA17 /* libOpenImageIORH.2.2.19.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libOpenImageIORH.2.2.19.dylib; path = "../../../../../../../big_libs/OpenImageIO-2.2.19/lib/libOpenImageIORH.2.2.19.dylib"; sourceTree = "<group>"; };
+		D84801CF27A3D473004CDA17 /* libHalf-RH-2_5.25.0.4.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libHalf-RH-2_5.25.0.4.dylib"; path = "../../../../../../../big_libs/OpenEXR-2.5.5/lib/libHalf-RH-2_5.25.0.4.dylib"; sourceTree = "<group>"; };
+		D84801D027A3D473004CDA17 /* libIex.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libIex.dylib; path = "../../../../../../../big_libs/OpenEXR-2.5.5/lib/libIex.dylib"; sourceTree = "<group>"; };
+		D84801D127A3D473004CDA17 /* libHalf.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libHalf.dylib; path = "../../../../../../../big_libs/OpenEXR-2.5.5/lib/libHalf.dylib"; sourceTree = "<group>"; };
+		D84801D227A3D473004CDA17 /* libIlmImfUtil.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libIlmImfUtil.dylib; path = "../../../../../../../big_libs/OpenEXR-2.5.5/lib/libIlmImfUtil.dylib"; sourceTree = "<group>"; };
+		D84801D327A3D473004CDA17 /* libImath.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libImath.dylib; path = "../../../../../../../big_libs/OpenEXR-2.5.5/lib/libImath.dylib"; sourceTree = "<group>"; };
+		D84801D427A3D473004CDA17 /* libImath-RH-2_5.25.0.4.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libImath-RH-2_5.25.0.4.dylib"; path = "../../../../../../../big_libs/OpenEXR-2.5.5/lib/libImath-RH-2_5.25.0.4.dylib"; sourceTree = "<group>"; };
+		D84801D527A3D473004CDA17 /* libIexMath-RH-2_5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libIexMath-RH-2_5.dylib"; path = "../../../../../../../big_libs/OpenEXR-2.5.5/lib/libIexMath-RH-2_5.dylib"; sourceTree = "<group>"; };
+		D84801D627A3D473004CDA17 /* libIex-RH-2_5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libIex-RH-2_5.dylib"; path = "../../../../../../../big_libs/OpenEXR-2.5.5/lib/libIex-RH-2_5.dylib"; sourceTree = "<group>"; };
+		D84801D727A3D473004CDA17 /* libIlmThread-RH-2_5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libIlmThread-RH-2_5.dylib"; path = "../../../../../../../big_libs/OpenEXR-2.5.5/lib/libIlmThread-RH-2_5.dylib"; sourceTree = "<group>"; };
+		D84801D827A3D473004CDA17 /* libIexMath-RH-2_5.25.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libIexMath-RH-2_5.25.dylib"; path = "../../../../../../../big_libs/OpenEXR-2.5.5/lib/libIexMath-RH-2_5.25.dylib"; sourceTree = "<group>"; };
+		D84801D927A3D473004CDA17 /* libIlmThread-RH-2_5.25.0.4.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libIlmThread-RH-2_5.25.0.4.dylib"; path = "../../../../../../../big_libs/OpenEXR-2.5.5/lib/libIlmThread-RH-2_5.25.0.4.dylib"; sourceTree = "<group>"; };
+		D84801DA27A3D473004CDA17 /* libIex-RH-2_5.25.0.4.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libIex-RH-2_5.25.0.4.dylib"; path = "../../../../../../../big_libs/OpenEXR-2.5.5/lib/libIex-RH-2_5.25.0.4.dylib"; sourceTree = "<group>"; };
+		D84801DB27A3D473004CDA17 /* libIlmImf-RH-2_5.25.0.4.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libIlmImf-RH-2_5.25.0.4.dylib"; path = "../../../../../../../big_libs/OpenEXR-2.5.5/lib/libIlmImf-RH-2_5.25.0.4.dylib"; sourceTree = "<group>"; };
+		D84801DC27A3D473004CDA17 /* libIlmImfUtil-RH-2_5.25.0.4.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libIlmImfUtil-RH-2_5.25.0.4.dylib"; path = "../../../../../../../big_libs/OpenEXR-2.5.5/lib/libIlmImfUtil-RH-2_5.25.0.4.dylib"; sourceTree = "<group>"; };
+		D84801DD27A3D473004CDA17 /* libIexMath.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libIexMath.dylib; path = "../../../../../../../big_libs/OpenEXR-2.5.5/lib/libIexMath.dylib"; sourceTree = "<group>"; };
+		D84801DE27A3D473004CDA17 /* libIlmImf-RH-2_5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libIlmImf-RH-2_5.dylib"; path = "../../../../../../../big_libs/OpenEXR-2.5.5/lib/libIlmImf-RH-2_5.dylib"; sourceTree = "<group>"; };
+		D84801DF27A3D473004CDA17 /* libIlmImf.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libIlmImf.dylib; path = "../../../../../../../big_libs/OpenEXR-2.5.5/lib/libIlmImf.dylib"; sourceTree = "<group>"; };
+		D84801E027A3D473004CDA17 /* libImath-RH-2_5.25.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libImath-RH-2_5.25.dylib"; path = "../../../../../../../big_libs/OpenEXR-2.5.5/lib/libImath-RH-2_5.25.dylib"; sourceTree = "<group>"; };
+		D84801E127A3D473004CDA17 /* libIlmThread.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libIlmThread.dylib; path = "../../../../../../../big_libs/OpenEXR-2.5.5/lib/libIlmThread.dylib"; sourceTree = "<group>"; };
+		D84801E227A3D473004CDA17 /* libIlmThread-RH-2_5.25.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libIlmThread-RH-2_5.25.dylib"; path = "../../../../../../../big_libs/OpenEXR-2.5.5/lib/libIlmThread-RH-2_5.25.dylib"; sourceTree = "<group>"; };
+		D84801E327A3D473004CDA17 /* libHalf-RH-2_5.25.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libHalf-RH-2_5.25.dylib"; path = "../../../../../../../big_libs/OpenEXR-2.5.5/lib/libHalf-RH-2_5.25.dylib"; sourceTree = "<group>"; };
+		D84801E427A3D473004CDA17 /* libIlmImfUtil-RH-2_5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libIlmImfUtil-RH-2_5.dylib"; path = "../../../../../../../big_libs/OpenEXR-2.5.5/lib/libIlmImfUtil-RH-2_5.dylib"; sourceTree = "<group>"; };
+		D84801E527A3D473004CDA17 /* libIlmImfUtil-RH-2_5.25.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libIlmImfUtil-RH-2_5.25.dylib"; path = "../../../../../../../big_libs/OpenEXR-2.5.5/lib/libIlmImfUtil-RH-2_5.25.dylib"; sourceTree = "<group>"; };
+		D84801E627A3D473004CDA17 /* libIex-RH-2_5.25.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libIex-RH-2_5.25.dylib"; path = "../../../../../../../big_libs/OpenEXR-2.5.5/lib/libIex-RH-2_5.25.dylib"; sourceTree = "<group>"; };
+		D84801E727A3D473004CDA17 /* libIlmImf-RH-2_5.25.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libIlmImf-RH-2_5.25.dylib"; path = "../../../../../../../big_libs/OpenEXR-2.5.5/lib/libIlmImf-RH-2_5.25.dylib"; sourceTree = "<group>"; };
+		D84801E827A3D473004CDA17 /* libHalf-RH-2_5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libHalf-RH-2_5.dylib"; path = "../../../../../../../big_libs/OpenEXR-2.5.5/lib/libHalf-RH-2_5.dylib"; sourceTree = "<group>"; };
+		D84801E927A3D473004CDA17 /* libIexMath-RH-2_5.25.0.4.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libIexMath-RH-2_5.25.0.4.dylib"; path = "../../../../../../../big_libs/OpenEXR-2.5.5/lib/libIexMath-RH-2_5.25.0.4.dylib"; sourceTree = "<group>"; };
+		D84801EA27A3D473004CDA17 /* libImath-RH-2_5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libImath-RH-2_5.dylib"; path = "../../../../../../../big_libs/OpenEXR-2.5.5/lib/libImath-RH-2_5.dylib"; sourceTree = "<group>"; };
+		D848020727A3D496004CDA17 /* libboost_filesystem-RH-clang.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_filesystem-RH-clang.dylib"; path = "../../../../../../../big_libs/boost/stagerelease/lib/libboost_filesystem-RH-clang.dylib"; sourceTree = "<group>"; };
+		D848020827A3D496004CDA17 /* libboost_thread-RH-clang.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_thread-RH-clang.dylib"; path = "../../../../../../../big_libs/boost/stagerelease/lib/libboost_thread-RH-clang.dylib"; sourceTree = "<group>"; };
 		D86DF15920A81CF800444230 /* MacDotNet.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MacDotNet.xcodeproj; path = ../../../../../../BuildSolutions/MacDotNet.xcodeproj; sourceTree = "<group>"; };
 		D86DF16720A81F1200444230 /* cycles_proper.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = cycles_proper.xcodeproj; path = ../cycles_proper/cycles_proper.xcodeproj; sourceTree = "<group>"; };
 		D86DF16F20A81F3900444230 /* cyclesglew.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = cyclesglew.xcodeproj; path = ../cyclesglew/cyclesglew.xcodeproj; sourceTree = "<group>"; };
 		D86DF17720A81F4F00444230 /* cuew.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = cuew.xcodeproj; path = ../../cuew/cuew/cuew.xcodeproj; sourceTree = "<group>"; };
 		D86DF17D20A81F5500444230 /* clew.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = clew.xcodeproj; path = ../../clew/clew.xcodeproj; sourceTree = "<group>"; };
-		D86DF18320A81F7600444230 /* OpenImageIO.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OpenImageIO.xcodeproj; path = ../../OpenImageIO/OpenImageIO/OpenImageIO.xcodeproj; sourceTree = "<group>"; };
 		D8F3C9B12331877A00AB35CA /* LibDistribution.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = LibDistribution.xcconfig; path = ../../../../../../Mac/XCConfig/LibDistribution.xcconfig; sourceTree = "<group>"; };
 		D8F3C9B22331877B00AB35CA /* LibRelease.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = LibRelease.xcconfig; path = ../../../../../../Mac/XCConfig/LibRelease.xcconfig; sourceTree = "<group>"; };
 		D8F3C9B32331877B00AB35CA /* LibDebug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = LibDebug.xcconfig; path = ../../../../../../Mac/XCConfig/LibDebug.xcconfig; sourceTree = "<group>"; };
@@ -196,29 +222,46 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D81834EA279A8C250080732A /* libboost_thread-RH-clang.dylib in Frameworks */,
-				D81834E4279A8C250080732A /* libboost_regex-RH-clang.dylib in Frameworks */,
-				D81F413F2796A3DB0004E22C /* libOpenImageIORH.2.2.dylib in Frameworks */,
+				D84801F427A3D473004CDA17 /* libIexMath-RH-2_5.25.dylib in Frameworks */,
+				D84801CC27A3D44D004CDA17 /* libOpenImageIO_UtilRH.2.2.dylib in Frameworks */,
+				D84801F527A3D473004CDA17 /* libIlmThread-RH-2_5.25.0.4.dylib in Frameworks */,
+				D84801F127A3D473004CDA17 /* libIexMath-RH-2_5.dylib in Frameworks */,
+				D84801F827A3D473004CDA17 /* libIlmImfUtil-RH-2_5.25.0.4.dylib in Frameworks */,
+				D84801FE27A3D473004CDA17 /* libIlmThread-RH-2_5.25.dylib in Frameworks */,
+				D84801CD27A3D44D004CDA17 /* libOpenImageIORH.2.2.dylib in Frameworks */,
+				D84801CE27A3D44D004CDA17 /* libOpenImageIORH.2.2.19.dylib in Frameworks */,
+				D848020427A3D473004CDA17 /* libHalf-RH-2_5.dylib in Frameworks */,
+				D848020627A3D473004CDA17 /* libImath-RH-2_5.dylib in Frameworks */,
+				D84801F627A3D473004CDA17 /* libIex-RH-2_5.25.0.4.dylib in Frameworks */,
+				D84801ED27A3D473004CDA17 /* libHalf.dylib in Frameworks */,
+				D84801CB27A3D44D004CDA17 /* libOpenImageIO_UtilRH.2.2.19.dylib in Frameworks */,
+				D84801F227A3D473004CDA17 /* libIex-RH-2_5.dylib in Frameworks */,
+				D848020A27A3D497004CDA17 /* libboost_thread-RH-clang.dylib in Frameworks */,
+				D848020927A3D497004CDA17 /* libboost_filesystem-RH-clang.dylib in Frameworks */,
+				D84801FD27A3D473004CDA17 /* libIlmThread.dylib in Frameworks */,
 				A100CA751FB601F700BC046C /* libcyclesglew.a in Frameworks */,
-				D81F414A2796A40A0004E22C /* libIlmImfUtil-RH-2_5.25.dylib in Frameworks */,
-				D81834DC279A8C250080732A /* libboost_chrono-RH-clang.dylib in Frameworks */,
-				D81F41502796A40A0004E22C /* libIlmThread-RH-2_5.25.dylib in Frameworks */,
-				D81F414C2796A40A0004E22C /* libIexMath-RH-2_5.25.dylib in Frameworks */,
-				D81834E2279A8C250080732A /* libboost_locale-RH-clang.dylib in Frameworks */,
 				A100C8101FB5D63D00BC046C /* libcycles_proper.a in Frameworks */,
-				D81F41562796A40A0004E22C /* libIex-RH-2_5.25.dylib in Frameworks */,
-				D81834DA279A8C250080732A /* libboost_atomic-RH-clang.dylib in Frameworks */,
-				D81F414E2796A40A0004E22C /* libImath-RH-2_5.25.dylib in Frameworks */,
+				D84801EB27A3D473004CDA17 /* libHalf-RH-2_5.25.0.4.dylib in Frameworks */,
+				D84801FA27A3D473004CDA17 /* libIlmImf-RH-2_5.dylib in Frameworks */,
 				A11D682B1FB5970500409EB3 /* libcuew.a in Frameworks */,
-				D81F41412796A3DB0004E22C /* libOpenImageIO_UtilRH.2.2.dylib in Frameworks */,
 				A11D68291FB5970000409EB3 /* libclew.a in Frameworks */,
-				D81F41522796A40A0004E22C /* libHalf-RH-2_5.25.dylib in Frameworks */,
-				D81834E0279A8C250080732A /* libboost_filesystem-RH-clang.dylib in Frameworks */,
-				D81834EC279A8C250080732A /* libboost_wserialization-RH-clang.dylib in Frameworks */,
-				D81F41542796A40A0004E22C /* libIlmImf-RH-2_5.25.dylib in Frameworks */,
-				D81834E8279A8C250080732A /* libboost_system-RH-clang.dylib in Frameworks */,
-				D81834DE279A8C250080732A /* libboost_date_time-RH-clang.dylib in Frameworks */,
-				D81834E6279A8C250080732A /* libboost_serialization-RH-clang.dylib in Frameworks */,
+				D84801CA27A3D44D004CDA17 /* libOpenImageIORH.dylib in Frameworks */,
+				D84801EE27A3D473004CDA17 /* libIlmImfUtil.dylib in Frameworks */,
+				D84801F327A3D473004CDA17 /* libIlmThread-RH-2_5.dylib in Frameworks */,
+				D848020027A3D473004CDA17 /* libIlmImfUtil-RH-2_5.dylib in Frameworks */,
+				D848020227A3D473004CDA17 /* libIex-RH-2_5.25.dylib in Frameworks */,
+				D84801F027A3D473004CDA17 /* libImath-RH-2_5.25.0.4.dylib in Frameworks */,
+				D848020127A3D473004CDA17 /* libIlmImfUtil-RH-2_5.25.dylib in Frameworks */,
+				D84801F927A3D473004CDA17 /* libIexMath.dylib in Frameworks */,
+				D84801EC27A3D473004CDA17 /* libIex.dylib in Frameworks */,
+				D84801EF27A3D473004CDA17 /* libImath.dylib in Frameworks */,
+				D84801FC27A3D473004CDA17 /* libImath-RH-2_5.25.dylib in Frameworks */,
+				D848020327A3D473004CDA17 /* libIlmImf-RH-2_5.25.dylib in Frameworks */,
+				D84801FB27A3D473004CDA17 /* libIlmImf.dylib in Frameworks */,
+				D84801FF27A3D473004CDA17 /* libHalf-RH-2_5.25.dylib in Frameworks */,
+				D84801F727A3D473004CDA17 /* libIlmImf-RH-2_5.25.0.4.dylib in Frameworks */,
+				D848020527A3D473004CDA17 /* libIexMath-RH-2_5.25.0.4.dylib in Frameworks */,
+				D84801C927A3D44D004CDA17 /* libOpenImageIO_UtilRH.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,25 +315,9 @@
 		A11D68221FB596E400409EB3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D81834D3279A8BFE0080732A /* libboost_atomic-RH-clang.dylib */,
-				D81834D0279A8BFE0080732A /* libboost_chrono-RH-clang.dylib */,
-				D81834D2279A8BFE0080732A /* libboost_date_time-RH-clang.dylib */,
-				D81834D1279A8BFE0080732A /* libboost_filesystem-RH-clang.dylib */,
-				D81834D5279A8BFE0080732A /* libboost_locale-RH-clang.dylib */,
-				D81834D4279A8BFE0080732A /* libboost_regex-RH-clang.dylib */,
-				D81834D6279A8BFE0080732A /* libboost_serialization-RH-clang.dylib */,
-				D81834D7279A8BFE0080732A /* libboost_system-RH-clang.dylib */,
-				D81834D8279A8BFE0080732A /* libboost_thread-RH-clang.dylib */,
-				D81834D9279A8BFE0080732A /* libboost_wserialization-RH-clang.dylib */,
-				D81F41472796A40A0004E22C /* libHalf-RH-2_5.25.dylib */,
-				D81F41492796A40A0004E22C /* libIex-RH-2_5.25.dylib */,
-				D81F41442796A40A0004E22C /* libIexMath-RH-2_5.25.dylib */,
-				D81F41482796A40A0004E22C /* libIlmImf-RH-2_5.25.dylib */,
-				D81F41432796A40A0004E22C /* libIlmImfUtil-RH-2_5.25.dylib */,
-				D81F41462796A40A0004E22C /* libIlmThread-RH-2_5.25.dylib */,
-				D81F41452796A40A0004E22C /* libImath-RH-2_5.25.dylib */,
-				D81F413E2796A3DB0004E22C /* libOpenImageIO_UtilRH.2.2.dylib */,
-				D81F413D2796A3DB0004E22C /* libOpenImageIORH.2.2.dylib */,
+				D84801C227A3D40A004CDA17 /* Boost */,
+				D84801C127A3D403004CDA17 /* OpenImageIO */,
+				D84801C027A3D3FB004CDA17 /* OpenEXR */,
 				D86DF17D20A81F5500444230 /* clew.xcodeproj */,
 				D86DF17720A81F4F00444230 /* cuew.xcodeproj */,
 				D86DF16720A81F1200444230 /* cycles_proper.xcodeproj */,
@@ -300,10 +327,66 @@
 				A100C8111FB5D63D00BC046C /* libcycles_proper.a */,
 				A100CA761FB601F700BC046C /* libcyclesglew.a */,
 				D86DF15920A81CF800444230 /* MacDotNet.xcodeproj */,
-				D86DF18320A81F7600444230 /* OpenImageIO.xcodeproj */,
 				A11D68241FB596E400409EB3 /* libcycles_proper.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D84801C027A3D3FB004CDA17 /* OpenEXR */ = {
+			isa = PBXGroup;
+			children = (
+				D84801CF27A3D473004CDA17 /* libHalf-RH-2_5.25.0.4.dylib */,
+				D84801E327A3D473004CDA17 /* libHalf-RH-2_5.25.dylib */,
+				D84801E827A3D473004CDA17 /* libHalf-RH-2_5.dylib */,
+				D84801D127A3D473004CDA17 /* libHalf.dylib */,
+				D84801DA27A3D473004CDA17 /* libIex-RH-2_5.25.0.4.dylib */,
+				D84801E627A3D473004CDA17 /* libIex-RH-2_5.25.dylib */,
+				D84801D627A3D473004CDA17 /* libIex-RH-2_5.dylib */,
+				D84801D027A3D473004CDA17 /* libIex.dylib */,
+				D84801E927A3D473004CDA17 /* libIexMath-RH-2_5.25.0.4.dylib */,
+				D84801D827A3D473004CDA17 /* libIexMath-RH-2_5.25.dylib */,
+				D84801D527A3D473004CDA17 /* libIexMath-RH-2_5.dylib */,
+				D84801DD27A3D473004CDA17 /* libIexMath.dylib */,
+				D84801DB27A3D473004CDA17 /* libIlmImf-RH-2_5.25.0.4.dylib */,
+				D84801E727A3D473004CDA17 /* libIlmImf-RH-2_5.25.dylib */,
+				D84801DE27A3D473004CDA17 /* libIlmImf-RH-2_5.dylib */,
+				D84801DF27A3D473004CDA17 /* libIlmImf.dylib */,
+				D84801DC27A3D473004CDA17 /* libIlmImfUtil-RH-2_5.25.0.4.dylib */,
+				D84801E527A3D473004CDA17 /* libIlmImfUtil-RH-2_5.25.dylib */,
+				D84801E427A3D473004CDA17 /* libIlmImfUtil-RH-2_5.dylib */,
+				D84801D227A3D473004CDA17 /* libIlmImfUtil.dylib */,
+				D84801D927A3D473004CDA17 /* libIlmThread-RH-2_5.25.0.4.dylib */,
+				D84801E227A3D473004CDA17 /* libIlmThread-RH-2_5.25.dylib */,
+				D84801D727A3D473004CDA17 /* libIlmThread-RH-2_5.dylib */,
+				D84801E127A3D473004CDA17 /* libIlmThread.dylib */,
+				D84801D427A3D473004CDA17 /* libImath-RH-2_5.25.0.4.dylib */,
+				D84801E027A3D473004CDA17 /* libImath-RH-2_5.25.dylib */,
+				D84801EA27A3D473004CDA17 /* libImath-RH-2_5.dylib */,
+				D84801D327A3D473004CDA17 /* libImath.dylib */,
+			);
+			name = OpenEXR;
+			sourceTree = "<group>";
+		};
+		D84801C127A3D403004CDA17 /* OpenImageIO */ = {
+			isa = PBXGroup;
+			children = (
+				D84801C527A3D44D004CDA17 /* libOpenImageIO_UtilRH.2.2.19.dylib */,
+				D84801C627A3D44D004CDA17 /* libOpenImageIO_UtilRH.2.2.dylib */,
+				D84801C327A3D44C004CDA17 /* libOpenImageIO_UtilRH.dylib */,
+				D84801C827A3D44D004CDA17 /* libOpenImageIORH.2.2.19.dylib */,
+				D84801C727A3D44D004CDA17 /* libOpenImageIORH.2.2.dylib */,
+				D84801C427A3D44C004CDA17 /* libOpenImageIORH.dylib */,
+			);
+			name = OpenImageIO;
+			sourceTree = "<group>";
+		};
+		D84801C227A3D40A004CDA17 /* Boost */ = {
+			isa = PBXGroup;
+			children = (
+				D848020727A3D496004CDA17 /* libboost_filesystem-RH-clang.dylib */,
+				D848020827A3D496004CDA17 /* libboost_thread-RH-clang.dylib */,
+			);
+			name = Boost;
 			sourceTree = "<group>";
 		};
 		D86DF15A20A81CF800444230 /* Products */ = {
@@ -341,14 +424,6 @@
 			isa = PBXGroup;
 			children = (
 				D86DF18220A81F5500444230 /* libclew.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		D86DF18420A81F7600444230 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				D86DF18820A81F7700444230 /* libOpenImageIO.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -452,10 +527,6 @@
 					ProductGroup = D86DF15A20A81CF800444230 /* Products */;
 					ProjectRef = D86DF15920A81CF800444230 /* MacDotNet.xcodeproj */;
 				},
-				{
-					ProductGroup = D86DF18420A81F7600444230 /* Products */;
-					ProjectRef = D86DF18320A81F7600444230 /* OpenImageIO.xcodeproj */;
-				},
 			);
 			projectRoot = "";
 			targets = (
@@ -491,13 +562,6 @@
 			fileType = archive.ar;
 			path = libclew.a;
 			remoteRef = D86DF18120A81F5500444230 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		D86DF18820A81F7700444230 /* libOpenImageIO.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.dylib";
-			path = libOpenImageIO.dylib;
-			remoteRef = D86DF18720A81F7700444230 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
