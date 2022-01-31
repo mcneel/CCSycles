@@ -1494,9 +1494,9 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				EXECUTABLE_PREFIX = lib;
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					NOT_WITH_CYCLES_OPTIMIZED_KERNEL_SSE41,
-					NOT_WITH_CYCLES_OPTIMIZED_KERNEL_SSE3,
-					NOT_WITH_CYCLES_OPTIMIZED_KERNEL_SSE2,
+					WITH_CYCLES_OPTIMIZED_KERNEL_SSE41,
+					WITH_CYCLES_OPTIMIZED_KERNEL_SSE3,
+					WITH_CYCLES_OPTIMIZED_KERNEL_SSE2,
 					CYCLES_STD_UNORDERED_MAP,
 					WITH_OPENCL,
 					"CCL_NAMESPACE_END=}",
@@ -1518,8 +1518,8 @@
 					../../cycles/third_party/clew/include,
 					../../cycles/third_party/numaapi/include,
 					../../cycles/third_party/cuew/include,
-					"../../../../../../../big_libs/OpenEXR-2.5.5/include",
-					"../../../../../../../big_libs/OpenImageIO-2.2.19/include",
+					"../../../../../../../big_libs/OpenEXR-2.4.0/include",
+					"../../../../../../../big_libs/OpenImageIO-2.0.12/include",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -1531,9 +1531,9 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				EXECUTABLE_PREFIX = lib;
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					NOT_WITH_CYCLES_OPTIMIZED_KERNEL_SSE41,
-					NOT_WITH_CYCLES_OPTIMIZED_KERNEL_SSE3,
-					NOT_WITH_CYCLES_OPTIMIZED_KERNEL_SSE2,
+					WITH_CYCLES_OPTIMIZED_KERNEL_SSE41,
+					WITH_CYCLES_OPTIMIZED_KERNEL_SSE3,
+					WITH_CYCLES_OPTIMIZED_KERNEL_SSE2,
 					CYCLES_STD_UNORDERED_MAP,
 					WITH_OPENCL,
 					"CCL_NAMESPACE_END=}",
@@ -1554,8 +1554,8 @@
 					../../cycles/third_party/clew/include,
 					../../cycles/third_party/numaapi/include,
 					../../cycles/third_party/cuew/include,
-					"../../../../../../../big_libs/OpenEXR-2.5.5/include",
-					"../../../../../../../big_libs/OpenImageIO-2.2.19/include",
+					"../../../../../../../big_libs/OpenEXR-2.4.0/include",
+					"../../../../../../../big_libs/OpenImageIO-2.0.12/include",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -1575,9 +1575,9 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				EXECUTABLE_PREFIX = lib;
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					NOT_WITH_CYCLES_OPTIMIZED_KERNEL_SSE41,
-					NOT_WITH_CYCLES_OPTIMIZED_KERNEL_SSE3,
-					NOT_WITH_CYCLES_OPTIMIZED_KERNEL_SSE2,
+					WITH_CYCLES_OPTIMIZED_KERNEL_SSE41,
+					WITH_CYCLES_OPTIMIZED_KERNEL_SSE3,
+					WITH_CYCLES_OPTIMIZED_KERNEL_SSE2,
 					CYCLES_STD_UNORDERED_MAP,
 					WITH_OPENCL,
 					"CCL_NAMESPACE_END=}",
@@ -1598,8 +1598,8 @@
 					../../cycles/third_party/clew/include,
 					../../cycles/third_party/numaapi/include,
 					../../cycles/third_party/cuew/include,
-					"../../../../../../../big_libs/OpenEXR-2.5.5/include",
-					"../../../../../../../big_libs/OpenImageIO-2.2.19/include",
+					"../../../../../../../big_libs/OpenEXR-2.4.0/include",
+					"../../../../../../../big_libs/OpenImageIO-2.0.12/include",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

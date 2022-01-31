@@ -6,9 +6,8 @@
 			 "${workspaceFolder}/glew/include",
 			 "${workspaceFolder}/cycles/src/**",
 			 "${workspaceFolder}/cycles/third_party/**",
-			 "${workspaceFolder}/../../../../../big_libs/OpenImageIO-2.2.19/include",
-			 "${workspaceFolder}/../../../../../big_libs/boost",
-			 "${workspaceFolder}/../../../../../big_libs/OpenEXR-2.5.5/include",
+			 "${workspaceFolder}/../../../../../big_libs/OpenImageIO-2.0.12/include",
+			 "${workspaceFolder}/../../../../../big_libs/OpenEXR-2.4.0/include",
 			 "${workspaceFolder}/**"
 			],
 	"C_Cpp.default.defines" : [

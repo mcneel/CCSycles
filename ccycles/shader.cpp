@@ -44,7 +44,7 @@ ccl::ShaderNode* _shader_node_find(unsigned int scene_id, unsigned int shader_id
 	return nullptr;
 }
 
-void _set_colorspace(OpenImageIO_v2_2::ustring& colorspace, int value)
+void _set_colorspace(OpenImageIO_v2_0::ustring& colorspace, int value)
 {
 	if (value == 0) {
 		colorspace = ccl::u_colorspace_raw;
@@ -346,7 +346,7 @@ unsigned int cycles_add_shader_node(unsigned int client_id, unsigned int scene_i
 			break;
 		case shadernode_type::NORMALMAP:
 			node = new ccl::NormalMapNode();
-			dynamic_cast<ccl::NormalMapNode*>(node)->attribute = OpenImageIO_v2_2::ustring("uvmap1");
+			dynamic_cast<ccl::NormalMapNode*>(node)->attribute = OpenImageIO_v2_0::ustring("uvmap1");
 			break;
 		case shadernode_type::WIREFRAME:
 			node = new ccl::WireframeNode();
@@ -359,7 +359,7 @@ unsigned int cycles_add_shader_node(unsigned int client_id, unsigned int scene_i
 			break;
 		case shadernode_type::TANGENT:
 			node = new ccl::TangentNode();
-			dynamic_cast<ccl::TangentNode*>(node)->attribute = OpenImageIO_v2_2::ustring("uvmap1");
+			dynamic_cast<ccl::TangentNode*>(node)->attribute = OpenImageIO_v2_0::ustring("uvmap1");
 			dynamic_cast<ccl::TangentNode*>(node)->direction_type = ccl::NodeTangentDirectionType::NODE_TANGENT_UVMAP;
 			break;
 		case shadernode_type::DISPLACEMENT:
