@@ -30,7 +30,7 @@
     <BoostConfig Condition="$(Configuration.Contains('Debug'))">gd-</BoostConfig>
     <BoostConfig Condition="$(Configuration.Contains('Release'))">
     </BoostConfig>
-    <BoostToolset>$(BoostConfig)x64-$(PlatformToolset)</BoostToolset>
+    <BoostToolset>$(BoostConfig)x64-RH-$(PlatformToolset)</BoostToolset>
     <OIIOConfig Condition="$(Configuration.Contains('Debug'))">_d</OIIOConfig>
     <OIIOConfig Condition="$(Configuration.Contains('Release'))">
     </OIIOConfig>
@@ -40,7 +40,7 @@
     <LinkIncremental>false</LinkIncremental>
     <Defs Condition="$(Configuration.Contains('Debug'))">USE_TBB=0;BOOST_NO_RTTI;BOOST_NO_TYPEID;NOTWITH_EMBREE;OS_WIN;WITH_CUDA_DYNLOAD;GLEW_STATIC;BOOST_ALL_NO_LIB;_WINSOCK_DEPRECATED_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;DEBUG;_DEBUG;CCL_NAMESPACE_BEGIN=namespace ccl {;CCL_NAMESPACE_END=};WITH_OPENCL;WITH_CUDA;WITH_MULTI;CYCLES_STD_UNORDERED_MAP;WITH_CYCLES_OPTIMIZED_KERNEL_SSE2;WITH_CYCLES_OPTIMIZED_KERNEL_SSE3;WITH_CYCLES_OPTIMIZED_KERNEL_SSE41;WITH_CYCLES_OPTIMIZED_KERNEL_AVX;WITH_CYCLES_OPTIMIZED_KERNEL_AVX2;HAVE_PTW32_CONFIG_H;HAVE_CONFIG_H;WITH_OPTIX</Defs>
     <Defs Condition="$(Configuration.Contains('Release'))">USE_TBB=0;BOOST_NO_RTTI;BOOST_NO_TYPEID;NOTWITH_EMBREE;OS_WIN;WITH_CUDA_DYNLOAD;GLEW_STATIC;BOOST_ALL_NO_LIB;_WINSOCK_DEPRECATED_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;NDEBUG;CCL_NAMESPACE_BEGIN=namespace ccl {;CCL_NAMESPACE_END=};WITH_OPENCL;WITH_CUDA;WITH_MULTI;CYCLES_STD_UNORDERED_MAP;WITH_CYCLES_OPTIMIZED_KERNEL_SSE2;WITH_CYCLES_OPTIMIZED_KERNEL_SSE3;WITH_CYCLES_OPTIMIZED_KERNEL_SSE41;WITH_CYCLES_OPTIMIZED_KERNEL_AVX;WITH_CYCLES_OPTIMIZED_KERNEL_AVX2;HAVE_PTW32_CONFIG_H;HAVE_CONFIG_H;WITH_OPTIX</Defs>
-    <AddIncDirs Condition="$(Configuration.Contains('Stand-alone'))">$(ProjectDir)..\..\..\..\..\big_libs\boost;$(ProjectDir)pthreads;$(ProjectDir)..\..\..\..\..\big_libs\OpenImageIO-2.0.12\include;$(ProjectDir)..\..\..\..\..\big_libs\OpenEXR-2.4.0\include;$(ProjectDir)..\..\..\..\..\big_libs\embree-3.6.1.x64.vc14.windows\include;$(ProjectDir)glew\include;$(ProjectDir)cycles\third_party\atomic;$(ProjectDir)cycles\third_party\cuew\include;$(ProjectDir)cycles\third_party\clew\include;$(ProjectDir)cycles\third_party\numaapi\include;$(ProjectDir)cycles\src\render;$(ProjectDir)cycles\src;$(ProjectDir)cycles\src\kernel\svm;$(ProjectDir)cycles\src\kernel\osl;$(ProjectDir)cycles\src\util;$(ProjectDir)cycles\src\device;$(ProjectDir)cycles\src\bvh;$(ProjectDir)cycles\src\subd;$(ProjectDir)cycles\src\graph;$(ProjectDir);</AddIncDirs>
+    <AddIncDirs Condition="$(Configuration.Contains('Stand-alone'))">$(ProjectDir)..\..\..\..\..\big_libs\boost;$(ProjectDir)pthreads;$(ProjectDir)..\..\..\..\..\big_libs\OpenImageIO-2.2.19\include;$(ProjectDir)..\..\..\..\..\big_libs\OpenEXR-2.5.5\include;$(ProjectDir)..\..\..\..\..\big_libs\embree-3.13.2\include;$(ProjectDir)glew\include;$(ProjectDir)cycles\third_party\atomic;$(ProjectDir)cycles\third_party\cuew\include;$(ProjectDir)cycles\third_party\clew\include;$(ProjectDir)cycles\third_party\numaapi\include;$(ProjectDir)cycles\src\render;$(ProjectDir)cycles\src;$(ProjectDir)cycles\src\kernel\svm;$(ProjectDir)cycles\src\kernel\osl;$(ProjectDir)cycles\src\util;$(ProjectDir)cycles\src\device;$(ProjectDir)cycles\src\bvh;$(ProjectDir)cycles\src\subd;$(ProjectDir)cycles\src\graph;$(ProjectDir);</AddIncDirs>
     <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -55,9 +55,6 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Stand-alone Release|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
-  </PropertyGroup>
-  <PropertyGroup>
-    <BoostToolset>x64-$(PlatformToolset)</BoostToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -100,14 +97,14 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\..\..\big_libs\boost;$(ProjectDir)pthreads;$(ProjectDir)..\..\..\..\..\big_libs\OpenImageIO-2.0.12\include;$(ProjectDir)..\..\..\..\..\big_libs\OpenEXR-2.4.0\include;$(ProjectDir)..\..\..\..\..\big_libs\embree-3.6.1.x64.vc14.windows\include;$(ProjectDir)glew\include;$(ProjectDir)cycles\third_party\atomic;$(ProjectDir)cycles\third_party\cuew\include;$(ProjectDir)cycles\third_party\clew\include;$(ProjectDir)cycles\third_party\numaapi\include;$(ProjectDir)cycles\src\render;$(ProjectDir)cycles\src;$(ProjectDir)cycles\src\kernel\svm;$(ProjectDir)cycles\src\kernel\osl;$(ProjectDir)cycles\src\util;$(ProjectDir)cycles\src\device;$(ProjectDir)cycles\src\bvh;$(ProjectDir)cycles\src\subd;$(ProjectDir)cycles\src\graph;$(ProjectDir);$(ProjectDir)..\OptiX\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\..\..\big_libs\boost;$(ProjectDir)pthreads;$(ProjectDir)..\..\..\..\..\big_libs\OpenImageIO-2.2.19\include;$(ProjectDir)..\..\..\..\..\big_libs\OpenEXR-2.5.5\include;$(ProjectDir)..\..\..\..\..\big_libs\embree-3.13.2\include;$(ProjectDir)glew\include;$(ProjectDir)cycles\third_party\atomic;$(ProjectDir)cycles\third_party\cuew\include;$(ProjectDir)cycles\third_party\clew\include;$(ProjectDir)cycles\third_party\numaapi\include;$(ProjectDir)cycles\src\render;$(ProjectDir)cycles\src;$(ProjectDir)cycles\src\kernel\svm;$(ProjectDir)cycles\src\kernel\osl;$(ProjectDir)cycles\src\util;$(ProjectDir)cycles\src\device;$(ProjectDir)cycles\src\bvh;$(ProjectDir)cycles\src\subd;$(ProjectDir)cycles\src\graph;$(ProjectDir);$(ProjectDir)..\OptiX\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>$(Defs);%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <FloatingPointModel>Fast</FloatingPointModel>
       <CompileAs>CompileAsCpp</CompileAs>
       <DisableSpecificWarnings>4018;4065;4127;4181;4200;4244;4267;4305;4800;4251</DisableSpecificWarnings>
       <TreatSpecificWarningsAsErrors>4013;4431</TreatSpecificWarningsAsErrors>
-      <AdditionalOptions>/EHa /w34062 /J /MDd %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/w34062 /J /MDd %(AdditionalOptions)</AdditionalOptions>
       <MultiProcessorCompilation>false</MultiProcessorCompilation>
       <BufferSecurityCheck>true</BufferSecurityCheck>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -116,7 +113,7 @@
       <LanguageStandard>Default</LanguageStandard>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <OpenMPSupport>true</OpenMPSupport>
-      <ExceptionHandling>Async</ExceptionHandling>
+	  <ExceptionHandling>Async</ExceptionHandling>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -138,11 +135,11 @@
       <CompileAs>CompileAsCpp</CompileAs>
       <DisableSpecificWarnings>4018;4065;4127;4181;4200;4244;4267;4305;4800;4251</DisableSpecificWarnings>
       <TreatSpecificWarningsAsErrors>4013;4431</TreatSpecificWarningsAsErrors>
-      <AdditionalOptions>/EHa /w34062 /J /MDd %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/w34062 /J /MDd %(AdditionalOptions)</AdditionalOptions>
       <MultiProcessorCompilation>false</MultiProcessorCompilation>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <FunctionLevelLinking>true</FunctionLevelLinking>
-      <ExceptionHandling>Async</ExceptionHandling>
+	  <ExceptionHandling>Async</ExceptionHandling>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -159,7 +156,7 @@
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>false</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\..\..\big_libs\boost;$(ProjectDir)pthreads;$(ProjectDir)..\..\..\..\..\big_libs\OpenImageIO-2.0.12\include;$(ProjectDir)..\..\..\..\..\big_libs\OpenEXR-2.4.0\include;$(ProjectDir)..\..\..\..\..\big_libs\embree-3.6.1.x64.vc14.windows\include;$(ProjectDir)glew\include;$(ProjectDir)cycles\third_party\atomic;$(ProjectDir)cycles\third_party\cuew\include;$(ProjectDir)cycles\third_party\clew\include;$(ProjectDir)cycles\third_party\numaapi\include;$(ProjectDir)cycles\src\render;$(ProjectDir)cycles\src\kernel\kernels\cpu;$(ProjectDir)cycles\src;$(ProjectDir)cycles\src\kernel\svm;$(ProjectDir)cycles\src\kernel\osl;$(ProjectDir)cycles\src\util;$(ProjectDir)cycles\src\device;$(ProjectDir)cycles\src\bvh;$(ProjectDir)cycles\src\subd;$(ProjectDir)cycles\src\graph;$(ProjectDir);$(ProjectDir)..\OptiX\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\..\..\big_libs\boost;$(ProjectDir)pthreads;$(ProjectDir)..\..\..\..\..\big_libs\OpenImageIO-2.2.19\include;$(ProjectDir)..\..\..\..\..\big_libs\OpenEXR-2.5.5\include;$(ProjectDir)..\..\..\..\..\big_libs\embree-3.13.2\include;$(ProjectDir)glew\include;$(ProjectDir)cycles\third_party\atomic;$(ProjectDir)cycles\third_party\cuew\include;$(ProjectDir)cycles\third_party\clew\include;$(ProjectDir)cycles\third_party\numaapi\include;$(ProjectDir)cycles\src\render;$(ProjectDir)cycles\src\kernel\kernels\cpu;$(ProjectDir)cycles\src;$(ProjectDir)cycles\src\kernel\svm;$(ProjectDir)cycles\src\kernel\osl;$(ProjectDir)cycles\src\util;$(ProjectDir)cycles\src\device;$(ProjectDir)cycles\src\bvh;$(ProjectDir)cycles\src\subd;$(ProjectDir)cycles\src\graph;$(ProjectDir);$(ProjectDir)..\OptiX\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <WholeProgramOptimization>false</WholeProgramOptimization>
       <PreprocessorDefinitions>$(Defs);%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -167,14 +164,14 @@
       <CompileAs>CompileAsCpp</CompileAs>
       <DisableSpecificWarnings>4018;4065;4127;4181;4200;4244;4267;4305;4800;4251</DisableSpecificWarnings>
       <TreatSpecificWarningsAsErrors>4013;4431</TreatSpecificWarningsAsErrors>
-      <AdditionalOptions>/EHa /w34062 /J /MD %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/w34062 /J /MD %(AdditionalOptions)</AdditionalOptions>
       <MultiProcessorCompilation>false</MultiProcessorCompilation>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <LanguageStandard>
       </LanguageStandard>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <OpenMPSupport>true</OpenMPSupport>
-      <ExceptionHandling>Async</ExceptionHandling>
+	  <ExceptionHandling>Async</ExceptionHandling>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -201,10 +198,10 @@
       <CompileAs>CompileAsCpp</CompileAs>
       <DisableSpecificWarnings>4018;4065;4127;4181;4200;4244;4267;4305;4800;4251</DisableSpecificWarnings>
       <TreatSpecificWarningsAsErrors>4013;4431</TreatSpecificWarningsAsErrors>
-      <AdditionalOptions>/EHa /w34062 /J /MD %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/w34062 /J /MD %(AdditionalOptions)</AdditionalOptions>
       <MultiProcessorCompilation>false</MultiProcessorCompilation>
       <BufferSecurityCheck>false</BufferSecurityCheck>
-      <ExceptionHandling>Async</ExceptionHandling>
+	  <ExceptionHandling>Async</ExceptionHandling>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
