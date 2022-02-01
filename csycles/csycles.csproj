@@ -14,16 +14,16 @@
     <PlatformVersion Condition="'$(VisualStudioVersion)'=='14.0'">v140</PlatformVersion>
     <PlatformVersion Condition="'$(VisualStudioVersion)'=='15.0'">v141</PlatformVersion>
     <PlatformVersion Condition="'$(VisualStudioVersion)'>='16.0'">v142</PlatformVersion>
+    <PlatformVersion Condition="'$(VisualStudioVersion)'>='17.0'">v142</PlatformVersion>
     <BoostConfig Condition="$(Configuration.Contains('Debug'))">gd-</BoostConfig>
     <BoostConfig Condition="$(Configuration.Contains('Release'))"/>
-    <OpenEXRVersion Condition="$(Configuration.Contains('Debug'))">2_4_d</OpenEXRVersion>
-    <OpenEXRVersion Condition="$(Configuration.Contains('Release'))">2_4</OpenEXRVersion>
-    <!--<OpenEXRVersion>2_4</OpenEXRVersion>-->
-    <OpenImageIOVersion Condition="$(Configuration.Contains('Debug'))">2_0_12_d</OpenImageIOVersion>
-    <OpenImageIOVersion Condition="$(Configuration.Contains('Release'))">2_0_12</OpenImageIOVersion>
-    <EmbreeVersion Condition="$(Configuration.Contains('Debug'))">_d</EmbreeVersion>
-    <EmbreeVersion Condition="$(Configuration.Contains('Release'))"/>
-    <BoostToolset>$(BoostConfig)x64-$(PlatformVersion)</BoostToolset>
+    <OpenEXRVersion Condition="$(Configuration.Contains('Debug'))">RH-2_5_d</OpenEXRVersion>
+    <OpenEXRVersion Condition="$(Configuration.Contains('Release'))">RH-2_5</OpenEXRVersion>
+    <OpenImageIOVersion Condition="$(Configuration.Contains('Debug'))">RH_d</OpenImageIOVersion>
+    <OpenImageIOVersion Condition="$(Configuration.Contains('Release'))">RH</OpenImageIOVersion>
+    <EmbreeVersion Condition="$(Configuration.Contains('Debug'))">_RH</EmbreeVersion>
+    <EmbreeVersion Condition="$(Configuration.Contains('Release'))">_RH</EmbreeVersion>
+    <BoostToolset>$(BoostConfig)x64-RH-$(PlatformVersion)</BoostToolset>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -216,22 +216,25 @@
   </ItemGroup>
   <ItemGroup>
     <CCSyclesFiles Include="$(TargetDir)$(ProjectName).*"/>
-    <EmbreeFiles Include="$(SolutionDir)..\..\big_libs\embree-3.6.1.x64.vc14.windows\lib\embree3$(EmbreeVersion).dll">
+    <EmbreeFiles Include="$(SolutionDir)..\..\big_libs\embree-3.13.2\lib\embree3$(EmbreeVersion).dll">
       <Link>Dependencies\EmbreeFiles\%(Filename)%(Extension)</Link>
     </EmbreeFiles>
-    <OpenEXRFiles Include="$(SolutionDir)..\..\big_libs\OpenEXR-2.4.0\bin\*$(OpenEXRVersion).dll">
+    <OpenEXRFiles Include="$(SolutionDir)..\..\big_libs\OpenEXR-2.5.5\lib\*$(OpenEXRVersion).dll">
       <Link>Dependencies\OpenEXRFiles\%(Filename)%(Extension)</Link>
     </OpenEXRFiles>
-    <OpenImageIOFiles Include="$(SolutionDir)..\..\big_libs\OpenImageIO-2.0.12\bin\*$(OpenImageIOVersion).dll">
+    <OpenImageIOFiles Include="$(SolutionDir)..\..\big_libs\OpenImageIO-2.2.19\lib\*$(OpenImageIOVersion).dll">
       <Link>Dependencies\OpenImageIOFiles\%(Filename)%(Extension)</Link>
     </OpenImageIOFiles>
+    <OpenImageIOJpegFiles Include="$(SolutionDir)..\..\big_libs\OpenImageIO-2.2.19\lib\jpeg*.dll">
+      <Link>Dependencies\OpenImageIOFiles\%(Filename)%(Extension)</Link>
+    </OpenImageIOJpegFiles>
     <CUDAFiles Include="$(SolutionDir)..\..\big_libs\RhinoCycles\lib\**\*">
       <Link>Dependencies\CUDAFiles\%(RecursiveDir)%(Filename)%(Extension)</Link>
     </CUDAFiles>
     <KernelFiles Include="$(ProjecDir)..\cycles\src\kernel\**\*" Exclude="$(ProjecDir)..\cycles\src\kernel\**\CMakeLists.*">
       <Link>Dependencies\KernelFiles\%(RecursiveDir)%(Filename)%(Extension)</Link>
     </KernelFiles>
-    <BoostFiles Include="$(SolutionDir)..\..\big_libs\boost\stage$(ConfigurationName)\lib\boost_*$(BoostToolset).dll">
+    <BoostFiles Include="$(SolutionDir)..\..\big_libs\boost\stagerelease\lib\boost_*$(BoostToolset).dll">
       <Link>Dependencies\BoostFiles\%(RecursiveDir)%(Filename)%(Extension)</Link>
     </BoostFiles>
     <UtilFiles Include="$(ProjecDir)..\cycles\src\util\**\*.h" Exclude="$(ProjecDir)..\cycles\src\util\**\CMakeLists.*">
@@ -289,6 +292,7 @@ XCopy "$(ProjectDir)..\cycles\src\util\util_static_assert.h" "$(SolutionDir)$(Ou
   <Target Name="CopyFiles" AfterTargets="AfterBuild">
     <Copy SourceFiles="@(CCSyclesFiles)" DestinationFolder="$(ProjectDir)..\..\..\..\..\$(OutDir)Plug-ins\"/>
     <Copy SourceFiles="@(OpenImageIOFiles)" DestinationFolder="$(SolutionDir)..\$(OutDir)" Condition="'$(OS)' == 'Windows_NT'"/>
+    <Copy SourceFiles="@(OpenImageIOJpegFiles)" DestinationFolder="$(SolutionDir)..\$(OutDir)" Condition="'$(OS)' == 'Windows_NT'"/>
     <Copy SourceFiles="@(EmbreeFiles)" DestinationFolder="$(SolutionDir)..\$(OutDir)" Condition="'$(OS)' == 'Windows_NT'"/>
     <Copy SourceFiles="@(OpenEXRFiles)" DestinationFolder="$(SolutionDir)..\$(OutDir)" Condition="'$(OS)' == 'Windows_NT'"/>
     <Copy SourceFiles="$(ProjectDir)..\pthreads\x64\$(ConfigurationName)\pthreads.dll" DestinationFolder="$(SolutionDir)..\$(OutDir)" Condition="'$(OS)' == 'Windows_NT'"/>
