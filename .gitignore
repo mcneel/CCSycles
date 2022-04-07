@@ -20,6 +20,8 @@ CMakeCache.txt
 CMakeFiles/
 project_files/macos/build/
 windows/build
+Cycles.build/
+CMakeScripts/
 
 *sdf
 *suo
