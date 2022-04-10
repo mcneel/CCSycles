@@ -1495,6 +1495,8 @@ void cycles_apply_gamma_to_byte_buffer(unsigned char* rgba_buffer, size_t size_i
 		return;
 
 	ccl::uchar4* colbuf = (ccl::uchar4*)rgba_buffer;
+	if (nullptr == colbuf)
+		return;
 
 	const int pixel_count = size_in_bytes / sizeof(ccl::uchar4);
 
