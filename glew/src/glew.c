@@ -94,7 +94,7 @@ void* dlGetProcAddress (const GLubyte* name)
 
 #include <dlfcn.h>
 
-void* NSGLGetProcAddress (const GLubyte *name)
+static void* NSGLGetProcAddress (const GLubyte *name)
 {
   static void* image = NULL;
   void* addr;
