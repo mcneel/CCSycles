@@ -244,9 +244,6 @@
   <ItemGroup>
     <Folder Include="License\"/>
   </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.0" PrivateAssets="all"/>
-  </ItemGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Stand-alone Release' Or '$(Configuration)' == 'Stand-alone Debug'">
     <PostBuildEvent Condition="'$(OS)' == 'Windows_NT'">
 XCopy /Y "$(TargetDir)$(ProjectName).*" "$(SolutionDir)$(OutDir)"
