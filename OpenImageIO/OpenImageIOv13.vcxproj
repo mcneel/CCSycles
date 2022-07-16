@@ -40,7 +40,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{5BD48EC5-78D3-445E-B9CB-55A22E590EDE}</ProjectGuid>
     <RootNamespace>cycles_bvh</RootNamespace>
-	<VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <Import Project="..\..\..\..\..\boostbuild\override.platform.props" Condition="exists('..\..\..\..\..\boostbuild\override.platform.props')" />
@@ -155,7 +155,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(ProjectDir)include\OpenImageIO;$(ProjectDir)..\..\..\..\..\..\big_libs\boost;$(ProjectDir)..\..\OpenEXR\Half</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)include\OpenImageIO;$(ProjectDir)..\..\..\..\..\..\big_libs\boost;$(ProjectDir)..\OpenEXR\Half</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>OpenImageIO_EXPORTS;BOOST_ALL_NO_LIB;BOOST_LIB_BUILDID=$(PlatformToolset)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <FloatingPointModel>Fast</FloatingPointModel>
@@ -168,7 +168,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(ProjectDir)..\..\..\..\..\..\big_libs\boost\stage$(Configuration)\lib;$(ProjectDir)..\..\OpenEXR\Half\$(Platform)\$(Configuration)\</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)..\..\..\..\..\..\big_libs\boost\stage$(Configuration)\lib;$(ProjectDir)..\OpenEXR\Half\$(Platform)\$(Configuration)\</AdditionalLibraryDirectories>
       <AdditionalDependencies>Half_d.lib;libboost_thread-mt-gd-$(BoostToolset).lib;libboost_system-mt-gd-$(BoostToolset).lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Lib>
@@ -212,7 +212,7 @@
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>false</FunctionLevelLinking>
       <IntrinsicFunctions>false</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(ProjectDir)include\OpenImageIO;$(ProjectDir)..\..\..\..\..\..\big_libs\boost;$(ProjectDir)..\..\OpenEXR\Half</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)include\OpenImageIO;$(ProjectDir)..\..\..\..\..\..\big_libs\boost;$(ProjectDir)..\OpenEXR\Half</AdditionalIncludeDirectories>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <WholeProgramOptimization>false</WholeProgramOptimization>
       <PreprocessorDefinitions>OpenImageIO_EXPORTS;BOOST_ALL_NO_LIB;BOOST_LIB_BUILDID=$(PlatformToolset)</PreprocessorDefinitions>
@@ -227,7 +227,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(ProjectDir)..\..\..\..\..\..\big_libs\boost\stage$(Configuration)\lib;$(ProjectDir)..\..\OpenEXR\Half\$(Platform)\$(Configuration)\</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)..\..\..\..\..\..\big_libs\boost\stage$(Configuration)\lib;$(ProjectDir)..\OpenEXR\Half\$(Platform)\$(Configuration)\</AdditionalLibraryDirectories>
       <AdditionalDependencies>Half.lib;libboost_thread-mt-$(BoostToolset).lib;libboost_system-mt-$(BoostToolset).lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ShowProgress />
     </Link>
