@@ -1474,15 +1474,15 @@ class GammaLUT
 public:
 	GammaLUT(float gamma)
 	{
-		for (unsigned int i = 0; i < 256; i++)
+		for (unsigned int i = 0; i <= 255; i++)
 		{
 			lut[i] = (unsigned char)(255.f * powf(i / 255.f, gamma));
 		}
 	}
 
 	unsigned char Lookup(unsigned char in)
-	{	
-		ASSERT(in < 256);
+	{
+		ASSERT(in <= 255);
 		return lut[in];
 	}
 private:
