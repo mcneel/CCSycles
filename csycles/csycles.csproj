@@ -226,7 +226,7 @@
     <OpenImageIOFiles Include="$(SolutionDir)..\..\big_libs\OpenImageIO-2.2.19\lib\*$(OpenImageIOVersion).dll">
       <Link>Dependencies\OpenImageIOFiles\%(Filename)%(Extension)</Link>
     </OpenImageIOFiles>
-    <OpenImageIOJpegFiles Include="$(SolutionDir)..\..\big_libs\OpenImageIO-2.2.19\lib\jpeg*.dll">
+    <OpenImageIOJpegFiles Include="$(SolutionDir)..\..\big_libs\OpenImageIO-2.2.19\lib\$(Configuration)\jpeg*.*">
       <Link>Dependencies\OpenImageIOFiles\%(Filename)%(Extension)</Link>
     </OpenImageIOJpegFiles>
     <CUDAFiles Include="$(SolutionDir)..\..\big_libs\RhinoCycles\lib\**\*">
