@@ -20,7 +20,7 @@ IF %_optix% EQU 1 (
 	CALL cudacompile.bat %main%
 ) ELSE (
 	IF [%shadermodelnum%]==[]  (
-		FOR %%s IN (sm_30, sm_35, sm_50, sm_52, sm_60, sm_61, sm_70, sm_75, sm_80, sm_86) DO (
+		FOR %%s IN (compute_30, compute_35, compute_50, compute_52, compute_60, compute_61, compute_70, compute_75, compute_80, compute_86) DO (
 			ECHO Compiling for %%s
 			CALL cudacompile.bat %main% %%s
 		)
