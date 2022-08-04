@@ -311,6 +311,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		37EECDCA288773E700AA4E58 /* LibThirdPartyDebug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = LibThirdPartyDebug.xcconfig; path = ../../../../../../Mac/XCConfig/LibThirdPartyDebug.xcconfig; sourceTree = "<group>"; };
+		37EECDCB288773E700AA4E58 /* LibThirdPartyRelease.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = LibThirdPartyRelease.xcconfig; path = ../../../../../../Mac/XCConfig/LibThirdPartyRelease.xcconfig; sourceTree = "<group>"; };
+		37EECDCC288773E700AA4E58 /* LibThirdPartyDistribution.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = LibThirdPartyDistribution.xcconfig; path = ../../../../../../Mac/XCConfig/LibThirdPartyDistribution.xcconfig; sourceTree = "<group>"; };
 		A100C84F1FB5E75500BC046C /* bvh2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bvh2.cpp; path = ../../cycles/src/bvh/bvh2.cpp; sourceTree = "<group>"; };
 		A100C8501FB5E75500BC046C /* bvh_build.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bvh_build.cpp; path = ../../cycles/src/bvh/bvh_build.cpp; sourceTree = "<group>"; };
 		A100C8511FB5E75500BC046C /* bvh_binning.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bvh_binning.cpp; path = ../../cycles/src/bvh/bvh_binning.cpp; sourceTree = "<group>"; };
@@ -597,9 +600,6 @@
 		D8AB775D21BFC1B40054D367 /* bvh8.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bvh8.cpp; path = ../../cycles/src/bvh/bvh8.cpp; sourceTree = "<group>"; };
 		D8AB775E21BFC1B40054D367 /* bvh8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bvh8.h; path = ../../cycles/src/bvh/bvh8.h; sourceTree = "<group>"; };
 		D8CA42561FE1572B007AF679 /* device_memory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = device_memory.cpp; path = ../../cycles/src/device/device_memory.cpp; sourceTree = "<group>"; };
-		D8F3C9B8233219BC00AB35CA /* LibDistribution.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = LibDistribution.xcconfig; path = ../../../../../../Mac/XCConfig/LibDistribution.xcconfig; sourceTree = "<group>"; };
-		D8F3C9B9233219BC00AB35CA /* LibDebug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = LibDebug.xcconfig; path = ../../../../../../Mac/XCConfig/LibDebug.xcconfig; sourceTree = "<group>"; };
-		D8F3C9BA233219BC00AB35CA /* LibRelease.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = LibRelease.xcconfig; path = ../../../../../../Mac/XCConfig/LibRelease.xcconfig; sourceTree = "<group>"; };
 		D8F5C8F92020D56400D87FDB /* kernel_compat_opencl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = kernel_compat_opencl.h; path = ../../cycles/src/kernel/kernel_compat_opencl.h; sourceTree = "<group>"; };
 		D8F5C8FB2020D56400D87FDB /* kernel_path_subsurface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = kernel_path_subsurface.h; path = ../../cycles/src/kernel/kernel_path_subsurface.h; sourceTree = "<group>"; };
 		D8F5C8FD2020D56400D87FDB /* kernel_globals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = kernel_globals.h; path = ../../cycles/src/kernel/kernel_globals.h; sourceTree = "<group>"; };
@@ -1060,9 +1060,9 @@
 		D8F3C9B4233218E400AB35CA /* Support */ = {
 			isa = PBXGroup;
 			children = (
-				D8F3C9B9233219BC00AB35CA /* LibDebug.xcconfig */,
-				D8F3C9B8233219BC00AB35CA /* LibDistribution.xcconfig */,
-				D8F3C9BA233219BC00AB35CA /* LibRelease.xcconfig */,
+				37EECDCA288773E700AA4E58 /* LibThirdPartyDebug.xcconfig */,
+				37EECDCC288773E700AA4E58 /* LibThirdPartyDistribution.xcconfig */,
+				37EECDCB288773E700AA4E58 /* LibThirdPartyRelease.xcconfig */,
 			);
 			name = Support;
 			sourceTree = "<group>";
@@ -1474,7 +1474,7 @@
 /* Begin XCBuildConfiguration section */
 		A11D68061FB5936400409EB3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D8F3C9B9233219BC00AB35CA /* LibDebug.xcconfig */;
+			baseConfigurationReference = 37EECDCA288773E700AA4E58 /* LibThirdPartyDebug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 			};
@@ -1482,7 +1482,7 @@
 		};
 		A11D68071FB5936400409EB3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D8F3C9BA233219BC00AB35CA /* LibRelease.xcconfig */;
+			baseConfigurationReference = 37EECDCB288773E700AA4E58 /* LibThirdPartyRelease.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 			};
@@ -1563,7 +1563,7 @@
 		};
 		DFBF84172203940E00BF1536 /* Distribution */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D8F3C9B8233219BC00AB35CA /* LibDistribution.xcconfig */;
+			baseConfigurationReference = 37EECDCC288773E700AA4E58 /* LibThirdPartyDistribution.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 			};
