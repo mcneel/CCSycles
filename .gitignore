@@ -1,7 +1,27 @@
+.DS_Store
 x64/
 
 lib/
 lib/*.cubin
+
+*.o
+*.a
+*.lib
+*.bin
+*.log
+*.hmap
+*.d
+*.dia
+*.dat
+*.LinkFileList
+
+*.cmake
+CMakeCache.txt
+CMakeFiles/
+project_files/macos/build/
+windows/build
+Cycles.build/
+CMakeScripts/
 
 *sdf
 *suo
