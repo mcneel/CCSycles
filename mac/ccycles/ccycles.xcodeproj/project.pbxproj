@@ -33,6 +33,8 @@
 		A11D689C1FB59ACF00409EB3 /* internal_types.h in Headers */ = {isa = PBXBuildFile; fileRef = A11D68871FB59ACD00409EB3 /* internal_types.h */; };
 		D81624C122A51149009F428E /* mikktspace.h in Headers */ = {isa = PBXBuildFile; fileRef = D81624BF22A51149009F428E /* mikktspace.h */; };
 		D81624C222A51149009F428E /* mikktspace.c in Sources */ = {isa = PBXBuildFile; fileRef = D81624C022A51149009F428E /* mikktspace.c */; };
+		D833385D28B7869500C01A58 /* libOpenImageIO_UtilRH.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D88D2B5228B7401B00503187 /* libOpenImageIO_UtilRH.dylib */; };
+		D833385F28B7869500C01A58 /* libOpenImageIORH.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D88D2B5328B7401B00503187 /* libOpenImageIORH.dylib */; };
 		D848020927A3D497004CDA17 /* libboost_filesystem-RH-clang.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D848020727A3D496004CDA17 /* libboost_filesystem-RH-clang.dylib */; };
 		D848020A27A3D497004CDA17 /* libboost_thread-RH-clang.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D848020827A3D496004CDA17 /* libboost_thread-RH-clang.dylib */; };
 		D8A9D04A27AA6618000D5DC4 /* libImath-RH.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A9D04327AA6618000D5DC4 /* libImath-RH.dylib */; };
@@ -42,8 +44,6 @@
 		D8A9D04E27AA6618000D5DC4 /* libIlmImf-RH.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A9D04727AA6618000D5DC4 /* libIlmImf-RH.dylib */; };
 		D8A9D04F27AA6618000D5DC4 /* libIex-RH.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A9D04827AA6618000D5DC4 /* libIex-RH.dylib */; };
 		D8A9D05027AA6618000D5DC4 /* libIlmImfUtil-RH.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A9D04927AA6618000D5DC4 /* libIlmImfUtil-RH.dylib */; };
-		D8A9D05327AA662C000D5DC4 /* libOpenImageIO_UtilRH.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A9D05127AA662C000D5DC4 /* libOpenImageIO_UtilRH.dylib */; };
-		D8A9D05427AA662C000D5DC4 /* libOpenImageIORH.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A9D05227AA662C000D5DC4 /* libOpenImageIORH.dylib */; };
 		D8A9D05627AA6653000D5DC4 /* libboost_atomic-RH-clang.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A9D05527AA6653000D5DC4 /* libboost_atomic-RH-clang.dylib */; };
 /* End PBXBuildFile section */
 
@@ -154,6 +154,8 @@
 		D86DF16F20A81F3900444230 /* cyclesglew.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = cyclesglew.xcodeproj; path = ../cyclesglew/cyclesglew.xcodeproj; sourceTree = "<group>"; };
 		D86DF17720A81F4F00444230 /* cuew.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = cuew.xcodeproj; path = ../../cuew/cuew/cuew.xcodeproj; sourceTree = "<group>"; };
 		D86DF17D20A81F5500444230 /* clew.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = clew.xcodeproj; path = ../../clew/clew.xcodeproj; sourceTree = "<group>"; };
+		D88D2B5228B7401B00503187 /* libOpenImageIO_UtilRH.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libOpenImageIO_UtilRH.dylib; path = "../../../../../../../big_libs/OpenImageIO-2.2.19/lib/libOpenImageIO_UtilRH.dylib"; sourceTree = "<group>"; };
+		D88D2B5328B7401B00503187 /* libOpenImageIORH.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libOpenImageIORH.dylib; path = "../../../../../../../big_libs/OpenImageIO-2.2.19/lib/libOpenImageIORH.dylib"; sourceTree = "<group>"; };
 		D8A9D04327AA6618000D5DC4 /* libImath-RH.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libImath-RH.dylib"; path = "../../../../../../../big_libs/OpenEXR-2.5.5/lib/libImath-RH.dylib"; sourceTree = "<group>"; };
 		D8A9D04427AA6618000D5DC4 /* libHalf-RH.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libHalf-RH.dylib"; path = "../../../../../../../big_libs/OpenEXR-2.5.5/lib/libHalf-RH.dylib"; sourceTree = "<group>"; };
 		D8A9D04527AA6618000D5DC4 /* libIlmThread-RH.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libIlmThread-RH.dylib"; path = "../../../../../../../big_libs/OpenEXR-2.5.5/lib/libIlmThread-RH.dylib"; sourceTree = "<group>"; };
@@ -178,17 +180,17 @@
 				D8A9D05027AA6618000D5DC4 /* libIlmImfUtil-RH.dylib in Frameworks */,
 				D8A9D04B27AA6618000D5DC4 /* libHalf-RH.dylib in Frameworks */,
 				D8A9D05627AA6653000D5DC4 /* libboost_atomic-RH-clang.dylib in Frameworks */,
-				D8A9D05427AA662C000D5DC4 /* libOpenImageIORH.dylib in Frameworks */,
+				D833385D28B7869500C01A58 /* libOpenImageIO_UtilRH.dylib in Frameworks */,
 				D848020A27A3D497004CDA17 /* libboost_thread-RH-clang.dylib in Frameworks */,
 				D848020927A3D497004CDA17 /* libboost_filesystem-RH-clang.dylib in Frameworks */,
 				D8A9D04E27AA6618000D5DC4 /* libIlmImf-RH.dylib in Frameworks */,
 				D8A9D04F27AA6618000D5DC4 /* libIex-RH.dylib in Frameworks */,
 				A100CA751FB601F700BC046C /* libcyclesglew.a in Frameworks */,
 				D8A9D04C27AA6618000D5DC4 /* libIlmThread-RH.dylib in Frameworks */,
+				D833385F28B7869500C01A58 /* libOpenImageIORH.dylib in Frameworks */,
 				A100C8101FB5D63D00BC046C /* libcycles_proper.a in Frameworks */,
 				A11D682B1FB5970500409EB3 /* libcuew.a in Frameworks */,
 				A11D68291FB5970000409EB3 /* libclew.a in Frameworks */,
-				D8A9D05327AA662C000D5DC4 /* libOpenImageIO_UtilRH.dylib in Frameworks */,
 				D8A9D04D27AA6618000D5DC4 /* libIexMath-RH.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -243,6 +245,8 @@
 		A11D68221FB596E400409EB3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D88D2B5228B7401B00503187 /* libOpenImageIO_UtilRH.dylib */,
+				D88D2B5328B7401B00503187 /* libOpenImageIORH.dylib */,
 				D84801C227A3D40A004CDA17 /* Boost */,
 				D84801C127A3D403004CDA17 /* OpenImageIO */,
 				D84801C027A3D3FB004CDA17 /* OpenEXR */,
