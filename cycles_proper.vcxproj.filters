@@ -274,6 +274,9 @@
     <ClCompile Include="cycles\src\render\nodes.cpp">
       <Filter>render</Filter>
     </ClCompile>
+    <ClCompile Include="cycles\src\render\rhino_nodes.cpp">
+      <Filter>render</Filter>
+    </ClCompile>
     <ClCompile Include="cycles\src\render\object.cpp">
       <Filter>render</Filter>
     </ClCompile>
@@ -1120,6 +1123,9 @@
       <Filter>render</Filter>
     </ClInclude>
     <ClInclude Include="cycles\src\render\nodes.h">
+      <Filter>render</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\render\rhino_nodes.h">
       <Filter>render</Filter>
     </ClInclude>
     <ClInclude Include="cycles\src\render\object.h">

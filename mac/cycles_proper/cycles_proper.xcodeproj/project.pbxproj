@@ -234,6 +234,9 @@
 		D847C328202D8D3A00D124A3 /* kernel_split.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D847C311202D8D3A00D124A3 /* kernel_split.cpp */; };
 		D847C329202D8D3A00D124A3 /* kernel_split_sse2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D847C312202D8D3A00D124A3 /* kernel_split_sse2.cpp */; };
 		D847C32A202D8D3A00D124A3 /* kernel_cpu_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = D847C313202D8D3A00D124A3 /* kernel_cpu_impl.h */; };
+		D84B911828D1CF8B00649473 /* rhino_nodes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D84B911628D1CF8B00649473 /* rhino_nodes.cpp */; };
+		D84B911928D1CF8B00649473 /* rhino_nodes.h in Headers */ = {isa = PBXBuildFile; fileRef = D84B911728D1CF8B00649473 /* rhino_nodes.h */; };
+		D84B911B28D1CFE900649473 /* svm_rhino_azimuth_altitude_transform.h in Headers */ = {isa = PBXBuildFile; fileRef = D84B911A28D1CFE900649473 /* svm_rhino_azimuth_altitude_transform.h */; };
 		D8A96E8423BF42A80078763E /* util_unique_ptr.h in Headers */ = {isa = PBXBuildFile; fileRef = D8A96E7E23BF42A80078763E /* util_unique_ptr.h */; };
 		D8A96E8523BF42A80078763E /* util_deque.h in Headers */ = {isa = PBXBuildFile; fileRef = D8A96E7F23BF42A80078763E /* util_deque.h */; };
 		D8A96E8623BF42A80078763E /* util_murmurhash.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D8A96E8023BF42A80078763E /* util_murmurhash.cpp */; };
@@ -542,6 +545,9 @@
 		D847C311202D8D3A00D124A3 /* kernel_split.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = kernel_split.cpp; path = ../../cycles/src/kernel/kernels/cpu/kernel_split.cpp; sourceTree = "<group>"; };
 		D847C312202D8D3A00D124A3 /* kernel_split_sse2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = kernel_split_sse2.cpp; path = ../../cycles/src/kernel/kernels/cpu/kernel_split_sse2.cpp; sourceTree = "<group>"; };
 		D847C313202D8D3A00D124A3 /* kernel_cpu_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = kernel_cpu_impl.h; path = ../../cycles/src/kernel/kernels/cpu/kernel_cpu_impl.h; sourceTree = "<group>"; };
+		D84B911628D1CF8B00649473 /* rhino_nodes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = rhino_nodes.cpp; path = ../../cycles/src/render/rhino_nodes.cpp; sourceTree = "<group>"; };
+		D84B911728D1CF8B00649473 /* rhino_nodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = rhino_nodes.h; path = ../../cycles/src/render/rhino_nodes.h; sourceTree = "<group>"; };
+		D84B911A28D1CFE900649473 /* svm_rhino_azimuth_altitude_transform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = svm_rhino_azimuth_altitude_transform.h; path = ../../cycles/src/kernel/svm/svm_rhino_azimuth_altitude_transform.h; sourceTree = "<group>"; };
 		D8A96E7E23BF42A80078763E /* util_unique_ptr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = util_unique_ptr.h; path = ../../cycles/src/util/util_unique_ptr.h; sourceTree = "<group>"; };
 		D8A96E7F23BF42A80078763E /* util_deque.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = util_deque.h; path = ../../cycles/src/util/util_deque.h; sourceTree = "<group>"; };
 		D8A96E8023BF42A80078763E /* util_murmurhash.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = util_murmurhash.cpp; path = ../../cycles/src/util/util_murmurhash.cpp; sourceTree = "<group>"; };
@@ -774,6 +780,7 @@
 				D8F5C9162020D56900D87FDB /* kernel_volume.h */,
 				D8F5C90E2020D56700D87FDB /* kernel_work_stealing.h */,
 				D8F5C9172020D56900D87FDB /* kernel.h */,
+				D84B911A28D1CFE900649473 /* svm_rhino_azimuth_altitude_transform.h */,
 				D8AB775821BFC1410054D367 /* kernels */,
 				D8AB775721BFC1410054D367 /* osl */,
 				D8AB775121BFC0CD0054D367 /* shaders */,
@@ -786,6 +793,8 @@
 		A100C9151FB5E92B00BC046C /* render */ = {
 			isa = PBXGroup;
 			children = (
+				D84B911628D1CF8B00649473 /* rhino_nodes.cpp */,
+				D84B911728D1CF8B00649473 /* rhino_nodes.h */,
 				A100C9191FB5E95D00BC046C /* attribute.cpp */,
 				A100C92B1FB5E95F00BC046C /* attribute.h */,
 				A100C9371FB5E96100BC046C /* background.cpp */,
@@ -1156,6 +1165,7 @@
 				A100C8B31FB5E7E500BC046C /* node_type.h in Headers */,
 				D8AB774021BFC0320054D367 /* util_ies.h in Headers */,
 				D8AB774521BFC0320054D367 /* util_types_float8.h in Headers */,
+				D84B911B28D1CFE900649473 /* svm_rhino_azimuth_altitude_transform.h in Headers */,
 				A100CA451FB5E9D600BC046C /* util_half.h in Headers */,
 				A100CA171FB5E9D500BC046C /* util_xml.h in Headers */,
 				A100C88A1FB5E78800BC046C /* device_intern.h in Headers */,
@@ -1253,6 +1263,7 @@
 				D8F5C9402020D56B00D87FDB /* kernel_path_branched.h in Headers */,
 				A100CA1F1FB5E9D600BC046C /* util_hash.h in Headers */,
 				A100C9651FB5E96300BC046C /* scene.h in Headers */,
+				D84B911928D1CF8B00649473 /* rhino_nodes.h in Headers */,
 				D8A96EA423BF436D0078763E /* bvh_optix.h in Headers */,
 				A100C94F1FB5E96300BC046C /* session.h in Headers */,
 				D8F5C9302020D56B00D87FDB /* kernel_path_surface.h in Headers */,
@@ -1334,7 +1345,8 @@
 				TargetAttributes = {
 					A11D68031FB5936400409EB3 = {
 						CreatedOnToolsVersion = 9.1;
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = D6XDM4N99E;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -1441,6 +1453,7 @@
 				A100C8901FB5E78800BC046C /* device_split_kernel.cpp in Sources */,
 				A100C8741FB5E75700BC046C /* bvh_split.cpp in Sources */,
 				A100C8681FB5E75700BC046C /* bvh_node.cpp in Sources */,
+				D84B911828D1CF8B00649473 /* rhino_nodes.cpp in Sources */,
 				D847C329202D8D3A00D124A3 /* kernel_split_sse2.cpp in Sources */,
 				D847C320202D8D3A00D124A3 /* kernel_split_avx2.cpp in Sources */,
 				D847C318202D8D3A00D124A3 /* filter_avx2.cpp in Sources */,

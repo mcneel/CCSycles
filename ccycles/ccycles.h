@@ -711,6 +711,7 @@ enum class shadernode_type : unsigned int {
 	OBJECTINFO,
 	TANGENT,
 	DISPLACEMENT,
+	RHINO_AZIMUTH_ALTITUDE_TRANSFORM,
 };
 
 CCL_CAPI unsigned int __cdecl cycles_create_shader(unsigned int client_id, unsigned int scene_id);

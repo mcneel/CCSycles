@@ -366,6 +366,9 @@ unsigned int cycles_add_shader_node(unsigned int client_id, unsigned int scene_i
 			node = new ccl::DisplacementNode();
 			dynamic_cast<ccl::DisplacementNode*>(node)->space = ccl::NodeNormalMapSpace::NODE_NORMAL_MAP_OBJECT;
 			break;
+		case shadernode_type::RHINO_AZIMUTH_ALTITUDE_TRANSFORM:
+			node = new ccl::AzimuthAltitudeTransformNode();
+			break;
 		}
 
 		if (node) {
@@ -1165,6 +1168,16 @@ void cycles_shadernode_set_member_float(unsigned int client_id, unsigned int sce
 				skynode->ground_albedo = value;
 		}
 		break;
+		case shadernode_type::RHINO_AZIMUTH_ALTITUDE_TRANSFORM:
+		{
+			ccl::AzimuthAltitudeTransformNode* azimuth_altitude_node = dynamic_cast<ccl::AzimuthAltitudeTransformNode*>(shnode);
+			if (mname == "azimuth")
+				azimuth_altitude_node->azimuth = value;
+			else if (mname == "altitude")
+				azimuth_altitude_node->altitude = value;
+			else if (mname == "threshold")
+				azimuth_altitude_node->threshold = value;
+		}
 		default:
 			break;
 		}

@@ -37,6 +37,7 @@ limitations under the License.
 #include "light.h"
 #include "mesh.h"
 #include "nodes.h"
+#include "rhino_nodes.h"
 #include "object.h"
 #include "scene.h"
 #include "session.h"
