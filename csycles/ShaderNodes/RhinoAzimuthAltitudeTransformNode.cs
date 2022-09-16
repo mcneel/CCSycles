@@ -53,7 +53,7 @@ namespace ccl.ShaderNodes
 		public float Altitude { get; set; } = 0.0f;
 		public float Threshold { get; set; } = 0.001f;
 
-	public RhinoAzimuthAltitudeTransformNode() : this("a azimuth altitude transform node") { }
+		public RhinoAzimuthAltitudeTransformNode() : this("a azimuth altitude transform node") { }
 		public RhinoAzimuthAltitudeTransformNode(string name)
 			: base(ShaderNodeType.RhinoAzimuthAltitudeTransform, name)
 		{
