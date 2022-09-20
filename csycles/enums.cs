@@ -161,7 +161,8 @@ namespace ccl
 		Wireframe,
 		ObjectInfo,
 		Tangent,
-		Displacement
+		Displacement,
+		RhinoAzimuthAltitudeTransform,
 	}
 
 	public enum BvhType : uint

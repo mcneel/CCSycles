@@ -296,6 +296,7 @@
     <ClCompile Include="cycles\src\render\mesh_subdivision.cpp" />
     <ClCompile Include="cycles\src\render\mesh_volume.cpp" />
     <ClCompile Include="cycles\src\render\nodes.cpp" />
+    <ClCompile Include="cycles\src\render\rhino_nodes.cpp" />
     <ClCompile Include="cycles\src\render\object.cpp" />
     <ClCompile Include="cycles\src\render\osl.cpp" />
     <ClCompile Include="cycles\src\render\particles.cpp" />
@@ -562,6 +563,7 @@
     <ClInclude Include="cycles\src\kernel\svm\svm_wavelength.h" />
     <ClInclude Include="cycles\src\kernel\svm\svm_white_noise.h" />
     <ClInclude Include="cycles\src\kernel\svm\svm_wireframe.h" />
+    <ClInclude Include="cycles\src\kernel\svm\svm_rhino_azimuth_altitude_transform.h" />
     <ClInclude Include="cycles\src\render\attribute.h" />
     <ClInclude Include="cycles\src\render\background.h" />
     <ClInclude Include="cycles\src\render\bake.h" />
@@ -580,6 +582,7 @@
     <ClInclude Include="cycles\src\render\merge.h" />
     <ClInclude Include="cycles\src\render\mesh.h" />
     <ClInclude Include="cycles\src\render\nodes.h" />
+    <ClInclude Include="cycles\src\render\rhino_nodes.h" />
     <ClInclude Include="cycles\src\render\object.h" />
     <ClInclude Include="cycles\src\render\osl.h" />
     <ClInclude Include="cycles\src\render\particles.h" />
