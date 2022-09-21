@@ -8,15 +8,15 @@
     <RootNamespace>ccl</RootNamespace>
     <AssemblyName>csycles</AssemblyName>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile/>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Label="Globals">
     <PlatformVersion Condition="'$(VisualStudioVersion)'=='14.0'">v140</PlatformVersion>
     <PlatformVersion Condition="'$(VisualStudioVersion)'=='15.0'">v141</PlatformVersion>
-    <PlatformVersion Condition="'$(VisualStudioVersion)'>='16.0'">v142</PlatformVersion>
-    <PlatformVersion Condition="'$(VisualStudioVersion)'>='17.0'">v142</PlatformVersion>
+    <PlatformVersion Condition="'$(VisualStudioVersion)'&gt;='16.0'">v142</PlatformVersion>
+    <PlatformVersion Condition="'$(VisualStudioVersion)'&gt;='17.0'">v142</PlatformVersion>
     <BoostConfig Condition="$(Configuration.Contains('Debug'))">gd-</BoostConfig>
-    <BoostConfig Condition="$(Configuration.Contains('Release'))"/>
+    <BoostConfig Condition="$(Configuration.Contains('Release'))" />
     <OpenEXRVersion Condition="$(Configuration.Contains('Debug'))">RH-2_5_d</OpenEXRVersion>
     <OpenEXRVersion Condition="$(Configuration.Contains('Release'))">RH-2_5</OpenEXRVersion>
     <OpenImageIOVersion Condition="$(Configuration.Contains('Debug'))">RH_d</OpenImageIOVersion>
@@ -84,131 +84,132 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="System"/>
-    <Reference Include="System.Core"/>
-    <Reference Include="System.Drawing"/>
-    <Reference Include="System.Xml.Linq"/>
-    <Reference Include="System.Data.DataSetExtensions"/>
-    <Reference Include="Microsoft.CSharp"/>
-    <Reference Include="System.Data"/>
-    <Reference Include="System.Xml"/>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Condition="!$(Configuration.Contains('Stand-alone'))" Include="..\..\..\..\..\version.cs">
       <Link>Properties\version.cs</Link>
     </Compile>
-    <Compile Condition="$(Configuration.Contains('Stand-alone'))" Include=".\Properties\version.cs"/>
-    <Compile Include="Attributes\ShaderNodeAttribute.cs"/>
-    <Compile Include="Background.cs"/>
-    <Compile Include="Colors.cs"/>
-    <Compile Include="Film.cs"/>
-    <Compile Include="Camera.cs"/>
-    <Compile Include="Client.cs"/>
-    <Compile Include="CSycles.Film.cs"/>
-    <Compile Include="CSycles.Camera.cs"/>
-    <Compile Include="CSycles.cs"/>
-    <Compile Include="CSycles.Device.cs"/>
-    <Compile Include="CSycles.Integrator.cs"/>
-    <Compile Include="CSycles.Light.cs"/>
-    <Compile Include="CSycles.Mesh.cs"/>
-    <Compile Include="CSycles.Object.cs"/>
-    <Compile Include="CSycles.Scene.cs"/>
-    <Compile Include="CSycles.Session.cs"/>
-    <Compile Include="CSycles.Shader.cs"/>
-    <Compile Include="Device.cs"/>
-    <Compile Include="enums.cs"/>
-    <Compile Include="float4.cs"/>
-    <Compile Include="Mesh.cs"/>
-    <Compile Include="Object.cs"/>
-    <Compile Include="CodeShader.cs"/>
-    <Compile Include="Inputs.cs"/>
-    <Compile Include="Integrator.cs"/>
-    <Compile Include="Light.cs"/>
-    <Compile Include="Outputs.cs"/>
-    <Compile Include="Properties\AssemblyInfo.cs"/>
-    <Compile Include="Scene.cs"/>
-    <Compile Include="SceneParameters.cs"/>
-    <Compile Include="Session.cs"/>
-    <Compile Include="Shader.cs"/>
-    <Compile Include="ShaderNodes\AttributeNode.cs"/>
-    <Compile Include="ShaderNodes\ColorRamp.cs"/>
-    <Compile Include="ShaderNodes\CombineHsvNode.cs"/>
-    <Compile Include="ShaderNodes\CombineRgbNode.cs"/>
-    <Compile Include="ShaderNodes\CombineXyzNode.cs"/>
-    <Compile Include="ShaderNodes\BrightnessContrastNode.cs"/>
-    <Compile Include="ShaderNodes\AnisotropicBsdfNode.cs"/>
-    <Compile Include="ShaderNodes\AbsorptionVolumeNode.cs"/>
-    <Compile Include="ShaderNodes\CameraDataNode.cs"/>
-    <Compile Include="ShaderNodes\DisplacementNode.cs"/>
-    <Compile Include="ShaderNodes\TangentNode.cs"/>
-    <Compile Include="ShaderNodes\ObjectInfoNode.cs"/>
-    <Compile Include="ShaderNodes\WireframeNode.cs"/>
-    <Compile Include="ShaderNodes\NormalMapNode.cs"/>
-    <Compile Include="ShaderNodes\InvertNode.cs"/>
-    <Compile Include="ShaderNodes\PrincipledBsdfNode.cs"/>
-    <Compile Include="ShaderNodes\GeometryInfoNode.cs"/>
-    <Compile Include="ShaderNodes\SubsurfaceScatteringNode.cs"/>
-    <Compile Include="ShaderNodes\ScatterVolumeNode.cs"/>
-    <Compile Include="ShaderNodes\HueSaturationNode.cs"/>
-    <Compile Include="ShaderNodes\HoldoutNode.cs"/>
-    <Compile Include="ShaderNodes\GradientTextureNode.cs"/>
-    <Compile Include="ShaderNodes\MatrixMathNode.cs"/>
-    <Compile Include="ShaderNodes\ToonBsdfNode.cs"/>
-    <Compile Include="ShaderNodes\VectorMathNode.cs"/>
-    <Compile Include="ShaderNodes\RgbToLuminance.cs"/>
-    <Compile Include="ShaderNodes\TranslucentBsdfNode.cs"/>
-    <Compile Include="ShaderNodes\VelvetBsdfNode.cs"/>
-    <Compile Include="ShaderNodes\MappingNode.cs"/>
-    <Compile Include="ShaderNodes\SeparateRgbNode.cs"/>
-    <Compile Include="ShaderNodes\SeparateHsvNode.cs"/>
-    <Compile Include="ShaderNodes\SeparateXyzNode.cs"/>
-    <Compile Include="ShaderNodes\TransparentBsdfNode.cs"/>
-    <Compile Include="ShaderNodes\LayerWeightNode.cs"/>
-    <Compile Include="ShaderNodes\GammaNode.cs"/>
-    <Compile Include="ShaderNodes\LightFalloffNode.cs"/>
-    <Compile Include="ShaderNodes\RgbToBwNode.cs"/>
-    <Compile Include="ShaderNodes\CheckerTexture.cs"/>
-    <Compile Include="ShaderNodes\GlassBsdfNode.cs"/>
-    <Compile Include="ShaderNodes\EnvironmentTextureNode.cs"/>
-    <Compile Include="ShaderNodes\BumpNode.cs"/>
-    <Compile Include="ShaderNodes\NoiseTexture.cs"/>
-    <Compile Include="ShaderNodes\OutputNode.cs"/>
-    <Compile Include="ShaderNodes\ShaderNode.cs"/>
-    <Compile Include="ShaderNodes\VoronoiTexture.cs"/>
-    <Compile Include="ShaderNodes\SkyTexture.cs"/>
-    <Compile Include="ShaderNodes\AddClosureNode.cs"/>
-    <Compile Include="ShaderNodes\BackgroundNode.cs"/>
-    <Compile Include="ShaderNodes\BrickTexture.cs"/>
-    <Compile Include="ShaderNodes\ColorNode.cs"/>
-    <Compile Include="ShaderNodes\DiffuseBsdfNode.cs"/>
-    <Compile Include="ShaderNodes\EmissionNode.cs"/>
-    <Compile Include="ShaderNodes\FresnelNode.cs"/>
-    <Compile Include="ShaderNodes\GlossyBsdfNode.cs"/>
-    <Compile Include="ShaderNodes\ImageTextureNode.cs"/>
-    <Compile Include="ShaderNodes\MathNode.cs"/>
-    <Compile Include="ShaderNodes\MixClosureNode.cs"/>
-    <Compile Include="ShaderNodes\MixNode.cs"/>
-    <Compile Include="ShaderNodes\RefractionBsdfNode.cs"/>
-    <Compile Include="ShaderNodes\LightPathNode.cs"/>
-    <Compile Include="ShaderNodes\TextureCoordinateNode.cs"/>
-    <Compile Include="ShaderNodes\TextureNode.cs"/>
-    <Compile Include="ShaderNodes\ValueNode.cs"/>
-    <Compile Include="ShaderNodes\MagicTexture.cs"/>
-    <Compile Include="ShaderNodes\MusgraveTexture.cs"/>
-    <Compile Include="ShaderNodes\WaveTexture.cs"/>
-    <Compile Include="ShaderNodes\RhinoAzimuthAltitudeTransformNode.cs"/>
-    <Compile Include="ShaderNodes\Sockets\SocketBase.cs"/>
-    <Compile Include="ShaderNodes\Sockets\ClosureSocket.cs"/>
-    <Compile Include="ShaderNodes\Sockets\IntSocket.cs"/>
-    <Compile Include="ShaderNodes\Sockets\StringSocket.cs"/>
-    <Compile Include="ShaderNodes\Sockets\Float4Socket.cs"/>
-    <Compile Include="ShaderNodes\Sockets\FloatSocket.cs"/>
-    <Compile Include="SocketCollection.cs"/>
-    <Compile Include="Transform.cs"/>
-    <Compile Include="SessionParameters.cs"/>
-    <Compile Include="Utilities.cs"/>
-    <Compile Include="CSyclesXmlReader.cs"/>
-    <Compile Include="XmlReadState.cs"/>
+    <Compile Condition="$(Configuration.Contains('Stand-alone'))" Include=".\Properties\version.cs" />
+    <Compile Include="Attributes\ShaderNodeAttribute.cs" />
+    <Compile Include="Background.cs" />
+    <Compile Include="Colors.cs" />
+    <Compile Include="Film.cs" />
+    <Compile Include="Camera.cs" />
+    <Compile Include="Client.cs" />
+    <Compile Include="CSycles.Film.cs" />
+    <Compile Include="CSycles.Camera.cs" />
+    <Compile Include="CSycles.cs" />
+    <Compile Include="CSycles.Device.cs" />
+    <Compile Include="CSycles.Integrator.cs" />
+    <Compile Include="CSycles.Light.cs" />
+    <Compile Include="CSycles.Mesh.cs" />
+    <Compile Include="CSycles.Object.cs" />
+    <Compile Include="CSycles.Scene.cs" />
+    <Compile Include="CSycles.Session.cs" />
+    <Compile Include="CSycles.Shader.cs" />
+    <Compile Include="Device.cs" />
+    <Compile Include="enums.cs" />
+    <Compile Include="float4.cs" />
+    <Compile Include="Mesh.cs" />
+    <Compile Include="Object.cs" />
+    <Compile Include="CodeShader.cs" />
+    <Compile Include="Inputs.cs" />
+    <Compile Include="Integrator.cs" />
+    <Compile Include="Light.cs" />
+    <Compile Include="Outputs.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scene.cs" />
+    <Compile Include="SceneParameters.cs" />
+    <Compile Include="Session.cs" />
+    <Compile Include="Shader.cs" />
+    <Compile Include="ShaderNodes\AttributeNode.cs" />
+    <Compile Include="ShaderNodes\ColorRamp.cs" />
+    <Compile Include="ShaderNodes\CombineHsvNode.cs" />
+    <Compile Include="ShaderNodes\CombineRgbNode.cs" />
+    <Compile Include="ShaderNodes\CombineXyzNode.cs" />
+    <Compile Include="ShaderNodes\BrightnessContrastNode.cs" />
+    <Compile Include="ShaderNodes\AnisotropicBsdfNode.cs" />
+    <Compile Include="ShaderNodes\AbsorptionVolumeNode.cs" />
+    <Compile Include="ShaderNodes\CameraDataNode.cs" />
+    <Compile Include="ShaderNodes\DisplacementNode.cs" />
+    <Compile Include="ShaderNodes\RhinoCheckerTexture2dNode.cs" />
+    <Compile Include="ShaderNodes\TangentNode.cs" />
+    <Compile Include="ShaderNodes\ObjectInfoNode.cs" />
+    <Compile Include="ShaderNodes\WireframeNode.cs" />
+    <Compile Include="ShaderNodes\NormalMapNode.cs" />
+    <Compile Include="ShaderNodes\InvertNode.cs" />
+    <Compile Include="ShaderNodes\PrincipledBsdfNode.cs" />
+    <Compile Include="ShaderNodes\GeometryInfoNode.cs" />
+    <Compile Include="ShaderNodes\SubsurfaceScatteringNode.cs" />
+    <Compile Include="ShaderNodes\ScatterVolumeNode.cs" />
+    <Compile Include="ShaderNodes\HueSaturationNode.cs" />
+    <Compile Include="ShaderNodes\HoldoutNode.cs" />
+    <Compile Include="ShaderNodes\GradientTextureNode.cs" />
+    <Compile Include="ShaderNodes\MatrixMathNode.cs" />
+    <Compile Include="ShaderNodes\ToonBsdfNode.cs" />
+    <Compile Include="ShaderNodes\VectorMathNode.cs" />
+    <Compile Include="ShaderNodes\RgbToLuminance.cs" />
+    <Compile Include="ShaderNodes\TranslucentBsdfNode.cs" />
+    <Compile Include="ShaderNodes\VelvetBsdfNode.cs" />
+    <Compile Include="ShaderNodes\MappingNode.cs" />
+    <Compile Include="ShaderNodes\SeparateRgbNode.cs" />
+    <Compile Include="ShaderNodes\SeparateHsvNode.cs" />
+    <Compile Include="ShaderNodes\SeparateXyzNode.cs" />
+    <Compile Include="ShaderNodes\TransparentBsdfNode.cs" />
+    <Compile Include="ShaderNodes\LayerWeightNode.cs" />
+    <Compile Include="ShaderNodes\GammaNode.cs" />
+    <Compile Include="ShaderNodes\LightFalloffNode.cs" />
+    <Compile Include="ShaderNodes\RgbToBwNode.cs" />
+    <Compile Include="ShaderNodes\CheckerTexture.cs" />
+    <Compile Include="ShaderNodes\GlassBsdfNode.cs" />
+    <Compile Include="ShaderNodes\EnvironmentTextureNode.cs" />
+    <Compile Include="ShaderNodes\BumpNode.cs" />
+    <Compile Include="ShaderNodes\NoiseTexture.cs" />
+    <Compile Include="ShaderNodes\OutputNode.cs" />
+    <Compile Include="ShaderNodes\ShaderNode.cs" />
+    <Compile Include="ShaderNodes\VoronoiTexture.cs" />
+    <Compile Include="ShaderNodes\SkyTexture.cs" />
+    <Compile Include="ShaderNodes\AddClosureNode.cs" />
+    <Compile Include="ShaderNodes\BackgroundNode.cs" />
+    <Compile Include="ShaderNodes\BrickTexture.cs" />
+    <Compile Include="ShaderNodes\ColorNode.cs" />
+    <Compile Include="ShaderNodes\DiffuseBsdfNode.cs" />
+    <Compile Include="ShaderNodes\EmissionNode.cs" />
+    <Compile Include="ShaderNodes\FresnelNode.cs" />
+    <Compile Include="ShaderNodes\GlossyBsdfNode.cs" />
+    <Compile Include="ShaderNodes\ImageTextureNode.cs" />
+    <Compile Include="ShaderNodes\MathNode.cs" />
+    <Compile Include="ShaderNodes\MixClosureNode.cs" />
+    <Compile Include="ShaderNodes\MixNode.cs" />
+    <Compile Include="ShaderNodes\RefractionBsdfNode.cs" />
+    <Compile Include="ShaderNodes\LightPathNode.cs" />
+    <Compile Include="ShaderNodes\TextureCoordinateNode.cs" />
+    <Compile Include="ShaderNodes\TextureNode.cs" />
+    <Compile Include="ShaderNodes\ValueNode.cs" />
+    <Compile Include="ShaderNodes\MagicTexture.cs" />
+    <Compile Include="ShaderNodes\MusgraveTexture.cs" />
+    <Compile Include="ShaderNodes\WaveTexture.cs" />
+    <Compile Include="ShaderNodes\RhinoAzimuthAltitudeTransformNode.cs" />
+    <Compile Include="ShaderNodes\Sockets\SocketBase.cs" />
+    <Compile Include="ShaderNodes\Sockets\ClosureSocket.cs" />
+    <Compile Include="ShaderNodes\Sockets\IntSocket.cs" />
+    <Compile Include="ShaderNodes\Sockets\StringSocket.cs" />
+    <Compile Include="ShaderNodes\Sockets\Float4Socket.cs" />
+    <Compile Include="ShaderNodes\Sockets\FloatSocket.cs" />
+    <Compile Include="SocketCollection.cs" />
+    <Compile Include="Transform.cs" />
+    <Compile Include="SessionParameters.cs" />
+    <Compile Include="Utilities.cs" />
+    <Compile Include="CSyclesXmlReader.cs" />
+    <Compile Include="XmlReadState.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="license.txt">
@@ -216,7 +217,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <CCSyclesFiles Include="$(TargetDir)$(ProjectName).*"/>
+    <CCSyclesFiles Include="$(TargetDir)$(ProjectName).*" />
     <EmbreeFiles Include="$(SolutionDir)..\..\big_libs\embree-3.13.2\lib\embree3$(EmbreeVersion).dll">
       <Link>Dependencies\EmbreeFiles\%(Filename)%(Extension)</Link>
     </EmbreeFiles>
@@ -243,7 +244,7 @@
     </UtilFiles>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="License\"/>
+    <Folder Include="License\" />
   </ItemGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Stand-alone Release' Or '$(Configuration)' == 'Stand-alone Debug'">
     <PostBuildEvent Condition="'$(OS)' == 'Windows_NT'">
@@ -285,18 +286,18 @@ XCopy "$(ProjectDir)..\cycles\src\util\util_static_assert.h" "$(SolutionDir)$(Ou
     </PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PreBuildEvent/>
+    <PreBuildEvent />
   </PropertyGroup>
   <Target Name="CopyFiles" AfterTargets="AfterBuild">
-    <Copy SourceFiles="@(CCSyclesFiles)" DestinationFolder="$(ProjectDir)..\..\..\..\..\$(OutDir)Plug-ins\"/>
-    <Copy SourceFiles="@(OpenImageIOFiles)" DestinationFolder="$(SolutionDir)..\$(OutDir)" Condition="'$(OS)' == 'Windows_NT'"/>
-    <Copy SourceFiles="@(OpenImageIOJpegFiles)" DestinationFolder="$(SolutionDir)..\$(OutDir)" Condition="'$(OS)' == 'Windows_NT'"/>
-    <Copy SourceFiles="@(EmbreeFiles)" DestinationFolder="$(SolutionDir)..\$(OutDir)" Condition="'$(OS)' == 'Windows_NT'"/>
-    <Copy SourceFiles="@(OpenEXRFiles)" DestinationFolder="$(SolutionDir)..\$(OutDir)" Condition="'$(OS)' == 'Windows_NT'"/>
-    <Copy SourceFiles="$(ProjectDir)..\pthreads\x64\$(ConfigurationName)\pthreads.dll" DestinationFolder="$(SolutionDir)..\$(OutDir)" Condition="'$(OS)' == 'Windows_NT'"/>
-    <Copy SourceFiles="@(BoostFiles)" DestinationFolder="$(SolutionDir)..\$(OutDir)" Condition="'$(OS)' == 'Windows_NT'"/>
-    <Copy SourceFiles="@(CUDAFiles)" DestinationFolder="$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\lib\%(RecursiveDir)"/>
-    <Copy SourceFiles="@(KernelFiles)" DestinationFolder="$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\source\kernel\%(RecursiveDir)"/>
-    <Copy SourceFiles="@(UtilFiles)" DestinationFolder="$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\source\util\%(RecursiveDir)"/>
+    <Copy SourceFiles="@(CCSyclesFiles)" DestinationFolder="$(ProjectDir)..\..\..\..\..\$(OutDir)Plug-ins\" />
+    <Copy SourceFiles="@(OpenImageIOFiles)" DestinationFolder="$(SolutionDir)..\$(OutDir)" Condition="'$(OS)' == 'Windows_NT'" />
+    <Copy SourceFiles="@(OpenImageIOJpegFiles)" DestinationFolder="$(SolutionDir)..\$(OutDir)" Condition="'$(OS)' == 'Windows_NT'" />
+    <Copy SourceFiles="@(EmbreeFiles)" DestinationFolder="$(SolutionDir)..\$(OutDir)" Condition="'$(OS)' == 'Windows_NT'" />
+    <Copy SourceFiles="@(OpenEXRFiles)" DestinationFolder="$(SolutionDir)..\$(OutDir)" Condition="'$(OS)' == 'Windows_NT'" />
+    <Copy SourceFiles="$(ProjectDir)..\pthreads\x64\$(ConfigurationName)\pthreads.dll" DestinationFolder="$(SolutionDir)..\$(OutDir)" Condition="'$(OS)' == 'Windows_NT'" />
+    <Copy SourceFiles="@(BoostFiles)" DestinationFolder="$(SolutionDir)..\$(OutDir)" Condition="'$(OS)' == 'Windows_NT'" />
+    <Copy SourceFiles="@(CUDAFiles)" DestinationFolder="$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\lib\%(RecursiveDir)" />
+    <Copy SourceFiles="@(KernelFiles)" DestinationFolder="$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\source\kernel\%(RecursiveDir)" />
+    <Copy SourceFiles="@(UtilFiles)" DestinationFolder="$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\source\util\%(RecursiveDir)" />
   </Target>
 </Project>

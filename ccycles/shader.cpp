@@ -369,7 +369,12 @@ unsigned int cycles_add_shader_node(unsigned int client_id, unsigned int scene_i
 		case shadernode_type::RHINO_AZIMUTH_ALTITUDE_TRANSFORM:
 			node = new ccl::AzimuthAltitudeTransformNode();
 			break;
+		case shadernode_type::RHINO_CHECKER_TEXTURE_2D:
+			node = new ccl::Rhino_CheckerTexture2dNode();
+			break;
 		}
+
+		assert(node);
 
 		if (node) {
 			csce->shaders[shader_id]->graph->add(node);
@@ -1177,6 +1182,16 @@ void cycles_shadernode_set_member_float(unsigned int client_id, unsigned int sce
 				azimuth_altitude_node->altitude = value;
 			else if (mname == "threshold")
 				azimuth_altitude_node->threshold = value;
+		}
+		case shadernode_type::RHINO_CHECKER_TEXTURE_2D:
+		{
+			ccl::Rhino_CheckerTexture2dNode* checker_texture_2d_node = dynamic_cast<ccl::Rhino_CheckerTexture2dNode*>(shnode);
+			//if (mname == "azimuth")
+			//	checker_texture_2d_node->azimuth = value;
+			//else if (mname == "altitude")
+			//	checker_texture_2d_node->altitude = value;
+			//else if (mname == "threshold")
+			//	checker_texture_2d_node->threshold = value;
 		}
 		default:
 			break;

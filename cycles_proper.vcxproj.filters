@@ -52,7 +52,7 @@
     <Filter Include="kernel_shaders">
       <UniqueIdentifier>{737B3A1C-3DD3-46A8-AD68-E9C61A1E6C56}</UniqueIdentifier>
     </Filter>
-<!--
+    <!--
     <Filter Include="kernel_cpu_sse2">
       <UniqueIdentifier>{FB3A6E0F-00C6-487C-AB43-44D7FF4D99CC}</UniqueIdentifier>
     </Filter>
@@ -1473,6 +1473,8 @@
     <ClInclude Include="cycles\third_party\numaapi\source\build_config.h">
       <Filter>numaapi</Filter>
     </ClInclude>
+    <ClInclude Include="cycles\src\kernel\svm\svm_rhino_azimuth_altitude_transform.h" />
+    <ClInclude Include="cycles\src\kernel\svm\svm_rhino_checker_texture.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cycles\src\kernel\kernels\opencl\filter.cl">

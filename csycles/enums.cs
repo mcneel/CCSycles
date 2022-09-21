@@ -163,6 +163,7 @@ namespace ccl
 		Tangent,
 		Displacement,
 		RhinoAzimuthAltitudeTransform,
+		RhinoCheckerTexture2d
 	}
 
 	public enum BvhType : uint
