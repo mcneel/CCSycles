@@ -170,6 +170,12 @@ unsigned int cycles_scene_create(unsigned int client_id, unsigned int scene_para
 			scenes[cscid]->scene->image_manager->builtin_image_info_cb = function_bind(&CCScene::builtin_image_info, scenes[cscid], std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
 			scenes[cscid]->scene->image_manager->builtin_image_pixels_cb = function_bind(&CCScene::builtin_image_pixels, scenes[cscid], std::placeholders::_1, std::placeholders::_2, std::placeholders::_3, std::placeholders::_4, std::placeholders::_5, std::placeholders::_6, std::placeholders::_7);
 			scenes[cscid]->scene->image_manager->builtin_image_float_pixels_cb = function_bind(&CCScene::builtin_image_float_pixels, scenes[cscid], std::placeholders::_1, std::placeholders::_2, std::placeholders::_3, std::placeholders::_4, std::placeholders::_5, std::placeholders::_6, std::placeholders::_7);
+			
+			// TODO: Is this the right spot?
+			scenes[cscid]->scene->shader_manager->set_rhino_perlin_noise_table(ccycles_rhino_perlin_noise_table);
+			scenes[cscid]->scene->shader_manager->set_rhino_impulse_noise_table(ccycles_rhino_impulse_noise_table);
+			scenes[cscid]->scene->shader_manager->set_rhino_vc_noise_table(ccycles_rhino_vc_noise_table);
+			scenes[cscid]->scene->shader_manager->set_rhino_aaltonen_noise_table(ccycles_rhino_aaltonen_noise_table);
 
 			logger.logit(client_id, "Created scene ", cscid, " with scene_params ", scene_params_id, " and device ", session->device->info.id);
 			return cscid;

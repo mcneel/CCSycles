@@ -113,7 +113,7 @@
       <LanguageStandard>Default</LanguageStandard>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <OpenMPSupport>true</OpenMPSupport>
-	  <ExceptionHandling>Async</ExceptionHandling>
+      <ExceptionHandling>Async</ExceptionHandling>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -139,7 +139,7 @@
       <MultiProcessorCompilation>false</MultiProcessorCompilation>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <FunctionLevelLinking>true</FunctionLevelLinking>
-	  <ExceptionHandling>Async</ExceptionHandling>
+      <ExceptionHandling>Async</ExceptionHandling>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -171,7 +171,7 @@
       </LanguageStandard>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <OpenMPSupport>true</OpenMPSupport>
-	  <ExceptionHandling>Async</ExceptionHandling>
+      <ExceptionHandling>Async</ExceptionHandling>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -201,7 +201,7 @@
       <AdditionalOptions>/w34062 /J /MD %(AdditionalOptions)</AdditionalOptions>
       <MultiProcessorCompilation>false</MultiProcessorCompilation>
       <BufferSecurityCheck>false</BufferSecurityCheck>
-	  <ExceptionHandling>Async</ExceptionHandling>
+      <ExceptionHandling>Async</ExceptionHandling>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -549,6 +549,8 @@
     <ClInclude Include="cycles\src\kernel\svm\svm_normal.h" />
     <ClInclude Include="cycles\src\kernel\svm\svm_ramp.h" />
     <ClInclude Include="cycles\src\kernel\svm\svm_ramp_util.h" />
+    <ClInclude Include="cycles\src\kernel\svm\svm_rhino_procedurals.h" />
+    <ClInclude Include="cycles\src\kernel\svm\svm_rhino_types.h" />
     <ClInclude Include="cycles\src\kernel\svm\svm_sepcomb_hsv.h" />
     <ClInclude Include="cycles\src\kernel\svm\svm_sepcomb_vector.h" />
     <ClInclude Include="cycles\src\kernel\svm\svm_sky.h" />

@@ -712,6 +712,25 @@ enum class shadernode_type : unsigned int {
 	TANGENT,
 	DISPLACEMENT,
 	RHINO_AZIMUTH_ALTITUDE_TRANSFORM,
+	RHINO_CHECKER_TEXTURE,
+	RHINO_NOISE_TEXTURE,
+	RHINO_WAVES_TEXTURE,
+	RHINO_WAVES_WIDTH_TEXTURE,
+	RHINO_PERTURBING_PART1_TEXTURE,
+	RHINO_PERTURBING_PART2_TEXTURE,
+	RHINO_GRADIENT_TEXTURE,
+	RHINO_BLEND_TEXTURE,
+	RHINO_EXPOSURE_TEXTURE,
+	RHINO_FBM_TEXTURE,
+	RHINO_GRID_TEXTURE,
+	RHINO_PROJECTION_CHANGER_TEXTURE,
+	RHINO_MASK_TEXTURE,
+	RHINO_PERLIN_MARBLE_TEXTURE,
+	RHINO_PHYSICAL_SKY_TEXTURE,
+	RHINO_TEXTURE_ADJUSTMENT_TEXTURE,
+	RHINO_TILE_TEXTURE,
+	RHINO_NORMAL_PART1_TEXTURE,
+	RHINO_NORMAL_PART2_TEXTURE,
 };
 
 CCL_CAPI unsigned int __cdecl cycles_create_shader(unsigned int client_id, unsigned int scene_id);
@@ -806,6 +825,11 @@ CCL_CAPI void __cdecl cycles_tfm_rotate_around_axis(float angle, const ccl::floa
 
 CCL_CAPI void __cdecl cycles_apply_gamma_to_byte_buffer(unsigned char* rgba_buffer, size_t size_in_bytes, float gamma);
 CCL_CAPI void __cdecl cycles_apply_gamma_to_float_buffer(float* rgba_buffer, size_t size_in_bytes, float gamma);
+
+CCL_CAPI void __cdecl cycles_set_rhino_perlin_noise_table(int* data, unsigned int count);
+CCL_CAPI void __cdecl cycles_set_rhino_impulse_noise_table(float* data, unsigned int count);
+CCL_CAPI void __cdecl cycles_set_rhino_vc_noise_table(float* data, unsigned int count);
+CCL_CAPI void __cdecl cycles_set_rhino_aaltonen_noise_table(const int* data, unsigned int count);
 
 #ifdef __cplusplus
 }
