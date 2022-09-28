@@ -713,6 +713,7 @@ enum class shadernode_type : unsigned int {
 	DISPLACEMENT,
 	RHINO_AZIMUTH_ALTITUDE_TRANSFORM,
 	RHINO_CHECKER_TEXTURE_2D,
+	RHINO_NOISE_TEXTURE,
 };
 
 CCL_CAPI unsigned int __cdecl cycles_create_shader(unsigned int client_id, unsigned int scene_id);
@@ -807,6 +808,8 @@ CCL_CAPI void __cdecl cycles_tfm_rotate_around_axis(float angle, const ccl::floa
 
 CCL_CAPI void __cdecl cycles_apply_gamma_to_byte_buffer(unsigned char* rgba_buffer, size_t size_in_bytes, float gamma);
 CCL_CAPI void __cdecl cycles_apply_gamma_to_float_buffer(float* rgba_buffer, size_t size_in_bytes, float gamma);
+
+CCL_CAPI void __cdecl cycles_set_rhino_perlin_noise_table(int* data, unsigned int count);
 
 #ifdef __cplusplus
 }

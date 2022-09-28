@@ -1473,8 +1473,15 @@
     <ClInclude Include="cycles\third_party\numaapi\source\build_config.h">
       <Filter>numaapi</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\svm\svm_rhino_azimuth_altitude_transform.h" />
-    <ClInclude Include="cycles\src\kernel\svm\svm_rhino_checker_texture.h" />
+    <ClInclude Include="cycles\src\kernel\svm\svm_rhino_types.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\kernel\svm\svm_rhino_procedurals.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles\src\kernel\svm\svm_rhino_azimuth_altitude_transform.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cycles\src\kernel\kernels\opencl\filter.cl">

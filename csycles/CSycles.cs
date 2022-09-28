@@ -308,6 +308,14 @@ namespace ccl
 			LoadCCycles();
 			cycles_debug_set_opencl_device_type(type);
 		}
+
+		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		private static extern void cycles_set_rhino_perlin_noise_table(IntPtr data, uint count);
+		public static void set_rhino_perlin_noise_table(IntPtr data, uint count)
+		{
+			LoadCCycles();
+			cycles_set_rhino_perlin_noise_table(data, count);
+		}
 #endregion
 
 	}

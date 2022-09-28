@@ -370,7 +370,10 @@ unsigned int cycles_add_shader_node(unsigned int client_id, unsigned int scene_i
 			node = new ccl::AzimuthAltitudeTransformNode();
 			break;
 		case shadernode_type::RHINO_CHECKER_TEXTURE_2D:
-			node = new ccl::Rhino_CheckerTexture2dNode();
+			node = new ccl::RhinoCheckerTexture2dNode();
+			break;
+		case shadernode_type::RHINO_NOISE_TEXTURE:
+			node = new ccl::RhinoNoiseTextureNode();
 			break;
 		}
 
@@ -1064,6 +1067,17 @@ void cycles_shadernode_set_member_bool(unsigned int client_id, unsigned int scen
 			}
 		}
 		break;
+		case shadernode_type::RHINO_NOISE_TEXTURE:
+		{
+			ccl::RhinoNoiseTextureNode* noise_texture_node = dynamic_cast<ccl::RhinoNoiseTextureNode*>(shnode);
+			if (mname == "ScaleToClamp")
+				noise_texture_node->scale_to_clamp = value;
+			if (mname == "Inverse")
+				noise_texture_node->inverse = value;
+			if (mname == "OctaveCount")
+				noise_texture_node->octave_count = value;
+		}
+		break;
 		default:
 			break;
 		}
@@ -1102,6 +1116,17 @@ void cycles_shadernode_set_member_int(unsigned int client_id, unsigned int scene
 			if (mname == "depth") {
 				envnode->depth = value;
 			}
+		}
+		break;
+		case shadernode_type::RHINO_NOISE_TEXTURE:
+		{
+			ccl::RhinoNoiseTextureNode* noise_texture_node = dynamic_cast<ccl::RhinoNoiseTextureNode*>(shnode);
+			if (mname == "NoiseType")
+				noise_texture_node->noise_type = (ccl::RhinoProceduralNoiseType)value;
+			if (mname == "SpecSynthType")
+				noise_texture_node->spec_synth_type = (ccl::RhinoProceduralSpecSynthType)value;
+			if (mname == "OctaveCount")
+				noise_texture_node->octave_count = value;
 		}
 		break;
 		default:
@@ -1183,16 +1208,28 @@ void cycles_shadernode_set_member_float(unsigned int client_id, unsigned int sce
 			else if (mname == "threshold")
 				azimuth_altitude_node->threshold = value;
 		}
+		break;
 		case shadernode_type::RHINO_CHECKER_TEXTURE_2D:
 		{
-			ccl::Rhino_CheckerTexture2dNode* checker_texture_2d_node = dynamic_cast<ccl::Rhino_CheckerTexture2dNode*>(shnode);
-			//if (mname == "azimuth")
-			//	checker_texture_2d_node->azimuth = value;
-			//else if (mname == "altitude")
-			//	checker_texture_2d_node->altitude = value;
-			//else if (mname == "threshold")
-			//	checker_texture_2d_node->threshold = value;
+			ccl::RhinoCheckerTexture2dNode* checker_texture_2d_node = dynamic_cast<ccl::RhinoCheckerTexture2dNode*>(shnode);
+			int a = 0;
 		}
+		break;
+		case shadernode_type::RHINO_NOISE_TEXTURE:
+		{
+			ccl::RhinoNoiseTextureNode* noise_texture_node = dynamic_cast<ccl::RhinoNoiseTextureNode*>(shnode);
+			if (mname == "FrequencyMultiplier")
+				noise_texture_node->frequency_multiplier = value;
+			else if (mname == "AmplitudeMultiplier")
+				noise_texture_node->amplitude_multiplier = value;
+			else if (mname == "ClampMin")
+				noise_texture_node->clamp_min = value;
+			else if (mname == "ClampMax")
+				noise_texture_node->clamp_max = value;
+			else if (mname == "Gain")
+				noise_texture_node->gain = value;
+		}
+		break;
 		default:
 			break;
 		}
@@ -1322,6 +1359,52 @@ void cycles_shadernode_set_member_vec4_at_index(unsigned int client_id, unsigned
 				matmath->tfm.z.y = y;
 				matmath->tfm.z.z = z;
 				matmath->tfm.z.w = w;
+			}
+		}
+		break;
+		case shadernode_type::RHINO_CHECKER_TEXTURE_2D:
+		{
+			ccl::RhinoCheckerTexture2dNode* node = dynamic_cast<ccl::RhinoCheckerTexture2dNode*>(shnode);
+			if (index == 0) {
+				node->uvw_transform.x.x = x;
+				node->uvw_transform.x.y = y;
+				node->uvw_transform.x.z = z;
+				node->uvw_transform.x.w = w;
+			}
+			if (index == 1) {
+				node->uvw_transform.y.x = x;
+				node->uvw_transform.y.y = y;
+				node->uvw_transform.y.z = z;
+				node->uvw_transform.y.w = w;
+			}
+			if (index == 2) {
+				node->uvw_transform.z.x = x;
+				node->uvw_transform.z.y = y;
+				node->uvw_transform.z.z = z;
+				node->uvw_transform.z.w = w;
+			}
+		}
+		break;
+		case shadernode_type::RHINO_NOISE_TEXTURE:
+		{
+			ccl::RhinoNoiseTextureNode* node = dynamic_cast<ccl::RhinoNoiseTextureNode*>(shnode);
+			if (index == 0) {
+				node->uvw_transform.x.x = x;
+				node->uvw_transform.x.y = y;
+				node->uvw_transform.x.z = z;
+				node->uvw_transform.x.w = w;
+			}
+			if (index == 1) {
+				node->uvw_transform.y.x = x;
+				node->uvw_transform.y.y = y;
+				node->uvw_transform.y.z = z;
+				node->uvw_transform.y.w = w;
+			}
+			if (index == 2) {
+				node->uvw_transform.z.x = x;
+				node->uvw_transform.z.y = y;
+				node->uvw_transform.z.z = z;
+				node->uvw_transform.z.w = w;
 			}
 		}
 		break;
