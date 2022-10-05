@@ -30,6 +30,9 @@ std::vector<ccl::DeviceInfo> devices;
 std::vector<ccl::DeviceInfo> multi_devices;
 
 ccl::vector<float> ccycles_rhino_perlin_noise_table;
+ccl::vector<float> ccycles_rhino_impulse_noise_table;
+ccl::vector<float> ccycles_rhino_vc_noise_table;
+ccl::vector<float> ccycles_rhino_aaltonen_noise_table;
 
 /* Hold the logger function that potentially gets registered by a client. */
 LOGGER_FUNC_CB logger_func = nullptr;
@@ -262,5 +265,35 @@ void cycles_set_rhino_perlin_noise_table(int* data, unsigned int count)
 	for (int i = 0; i < count; i++)
 	{
 		ccycles_rhino_perlin_noise_table[i] = (float)data[i];
+	}
+}
+
+void cycles_set_rhino_impulse_noise_table(float* data, unsigned int count)
+{
+	ccycles_rhino_impulse_noise_table.resize(count);
+
+	for (int i = 0; i < count; i++)
+	{
+		ccycles_rhino_impulse_noise_table[i] = (float)data[i];
+	}
+}
+
+void cycles_set_rhino_vc_noise_table(float* data, unsigned int count)
+{
+	ccycles_rhino_vc_noise_table.resize(count);
+
+	for (int i = 0; i < count; i++)
+	{
+		ccycles_rhino_vc_noise_table[i] = (float)data[i];
+	}
+}
+
+void cycles_set_rhino_aaltonen_noise_table(const int* data, unsigned int count)
+{
+	ccycles_rhino_aaltonen_noise_table.resize(count);
+
+	for (int i = 0; i < count; i++)
+	{
+		ccycles_rhino_aaltonen_noise_table[i] = (float)data[i];
 	}
 }

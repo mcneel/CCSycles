@@ -262,6 +262,9 @@ extern std::vector<ccl::SessionParams*> session_params;
 
 /* rhino procedural data */
 extern ccl::vector<float> ccycles_rhino_perlin_noise_table;
+extern ccl::vector<float> ccycles_rhino_impulse_noise_table;
+extern ccl::vector<float> ccycles_rhino_vc_noise_table;
+extern ccl::vector<float> ccycles_rhino_aaltonen_noise_table;
 
 
 /********************************/

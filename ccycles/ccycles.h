@@ -810,6 +810,9 @@ CCL_CAPI void __cdecl cycles_apply_gamma_to_byte_buffer(unsigned char* rgba_buff
 CCL_CAPI void __cdecl cycles_apply_gamma_to_float_buffer(float* rgba_buffer, size_t size_in_bytes, float gamma);
 
 CCL_CAPI void __cdecl cycles_set_rhino_perlin_noise_table(int* data, unsigned int count);
+CCL_CAPI void __cdecl cycles_set_rhino_impulse_noise_table(float* data, unsigned int count);
+CCL_CAPI void __cdecl cycles_set_rhino_vc_noise_table(float* data, unsigned int count);
+CCL_CAPI void __cdecl cycles_set_rhino_aaltonen_noise_table(const int* data, unsigned int count);
 
 #ifdef __cplusplus
 }

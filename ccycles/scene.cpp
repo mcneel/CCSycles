@@ -173,6 +173,9 @@ unsigned int cycles_scene_create(unsigned int client_id, unsigned int scene_para
 			
 			// TODO: Is this the right spot?
 			scenes[cscid]->scene->shader_manager->set_rhino_perlin_noise_table(ccycles_rhino_perlin_noise_table);
+			scenes[cscid]->scene->shader_manager->set_rhino_impulse_noise_table(ccycles_rhino_impulse_noise_table);
+			scenes[cscid]->scene->shader_manager->set_rhino_vc_noise_table(ccycles_rhino_vc_noise_table);
+			scenes[cscid]->scene->shader_manager->set_rhino_aaltonen_noise_table(ccycles_rhino_aaltonen_noise_table);
 
 			logger.logit(client_id, "Created scene ", cscid, " with scene_params ", scene_params_id, " and device ", session->device->info.id);
 			return cscid;
