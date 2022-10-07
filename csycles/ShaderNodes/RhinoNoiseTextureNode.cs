@@ -39,11 +39,11 @@ namespace ccl.ShaderNodes
 
 	public class NoiseTextureOutputs : Outputs
 	{
-		public VectorSocket Color { get; set; }
+		public ColorSocket Color { get; set; }
 
 		public NoiseTextureOutputs(ShaderNode parentNode)
 		{
-			Color = new VectorSocket(parentNode, "Color");
+			Color = new ColorSocket(parentNode, "Color");
 			AddSocket(Color);
 		}
 	}

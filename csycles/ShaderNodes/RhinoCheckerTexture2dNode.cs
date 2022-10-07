@@ -39,11 +39,11 @@ namespace ccl.ShaderNodes
 
 	public class CheckerTexture2dOutputs : Outputs
 	{
-		public VectorSocket Color { get; set; }
+		public ColorSocket Color { get; set; }
 
 		public CheckerTexture2dOutputs(ShaderNode parentNode)
 		{
-			Color = new VectorSocket(parentNode, "Color");
+			Color = new ColorSocket(parentNode, "Color");
 			AddSocket(Color);
 		}
 	}
