@@ -375,6 +375,9 @@ unsigned int cycles_add_shader_node(unsigned int client_id, unsigned int scene_i
 		case shadernode_type::RHINO_NOISE_TEXTURE:
 			node = new ccl::RhinoNoiseTextureNode();
 			break;
+		case shadernode_type::RHINO_WAVES_TEXTURE:
+			node = new ccl::RhinoWavesTextureNode();
+			break;
 		}
 
 		assert(node);
@@ -1069,13 +1072,20 @@ void cycles_shadernode_set_member_bool(unsigned int client_id, unsigned int scen
 		break;
 		case shadernode_type::RHINO_NOISE_TEXTURE:
 		{
-			ccl::RhinoNoiseTextureNode* noise_texture_node = dynamic_cast<ccl::RhinoNoiseTextureNode*>(shnode);
+			ccl::RhinoNoiseTextureNode* node = dynamic_cast<ccl::RhinoNoiseTextureNode*>(shnode);
 			if (mname == "ScaleToClamp")
-				noise_texture_node->scale_to_clamp = value;
+				node->scale_to_clamp = value;
 			if (mname == "Inverse")
-				noise_texture_node->inverse = value;
+				node->inverse = value;
 			if (mname == "OctaveCount")
-				noise_texture_node->octave_count = value;
+				node->octave_count = value;
+		}
+		break;
+		case shadernode_type::RHINO_WAVES_TEXTURE:
+		{
+			ccl::RhinoWavesTextureNode* node = dynamic_cast<ccl::RhinoWavesTextureNode*>(shnode);
+			if (mname == "WaveWidthTextureOn")
+				node->wave_width_texture_on = value;
 		}
 		break;
 		default:
@@ -1120,13 +1130,20 @@ void cycles_shadernode_set_member_int(unsigned int client_id, unsigned int scene
 		break;
 		case shadernode_type::RHINO_NOISE_TEXTURE:
 		{
-			ccl::RhinoNoiseTextureNode* noise_texture_node = dynamic_cast<ccl::RhinoNoiseTextureNode*>(shnode);
+			ccl::RhinoNoiseTextureNode* node = dynamic_cast<ccl::RhinoNoiseTextureNode*>(shnode);
 			if (mname == "NoiseType")
-				noise_texture_node->noise_type = (ccl::RhinoProceduralNoiseType)value;
+				node->noise_type = (ccl::RhinoProceduralNoiseType)value;
 			if (mname == "SpecSynthType")
-				noise_texture_node->spec_synth_type = (ccl::RhinoProceduralSpecSynthType)value;
+				node->spec_synth_type = (ccl::RhinoProceduralSpecSynthType)value;
 			if (mname == "OctaveCount")
-				noise_texture_node->octave_count = value;
+				node->octave_count = value;
+		}
+		break;
+		case shadernode_type::RHINO_WAVES_TEXTURE:
+		{
+			ccl::RhinoWavesTextureNode* node = dynamic_cast<ccl::RhinoWavesTextureNode*>(shnode);
+			if (mname == "WaveType")
+				node->wave_type = (ccl::RhinoProceduralWavesType)value;
 		}
 		break;
 		default:
@@ -1217,17 +1234,28 @@ void cycles_shadernode_set_member_float(unsigned int client_id, unsigned int sce
 		break;
 		case shadernode_type::RHINO_NOISE_TEXTURE:
 		{
-			ccl::RhinoNoiseTextureNode* noise_texture_node = dynamic_cast<ccl::RhinoNoiseTextureNode*>(shnode);
+			ccl::RhinoNoiseTextureNode* node = dynamic_cast<ccl::RhinoNoiseTextureNode*>(shnode);
 			if (mname == "FrequencyMultiplier")
-				noise_texture_node->frequency_multiplier = value;
+				node->frequency_multiplier = value;
 			else if (mname == "AmplitudeMultiplier")
-				noise_texture_node->amplitude_multiplier = value;
+				node->amplitude_multiplier = value;
 			else if (mname == "ClampMin")
-				noise_texture_node->clamp_min = value;
+				node->clamp_min = value;
 			else if (mname == "ClampMax")
-				noise_texture_node->clamp_max = value;
+				node->clamp_max = value;
 			else if (mname == "Gain")
-				noise_texture_node->gain = value;
+				node->gain = value;
+		}
+		break;
+		case shadernode_type::RHINO_WAVES_TEXTURE:
+		{
+			ccl::RhinoWavesTextureNode* node = dynamic_cast<ccl::RhinoWavesTextureNode*>(shnode);
+			if (mname == "WaveWidth")
+				node->wave_width = value;
+			else if (mname == "Contrast1")
+				node->contrast1 = value;
+			else if (mname == "Contrast2")
+				node->contrast2 = value;
 		}
 		break;
 		default:
@@ -1388,6 +1416,29 @@ void cycles_shadernode_set_member_vec4_at_index(unsigned int client_id, unsigned
 		case shadernode_type::RHINO_NOISE_TEXTURE:
 		{
 			ccl::RhinoNoiseTextureNode* node = dynamic_cast<ccl::RhinoNoiseTextureNode*>(shnode);
+			if (index == 0) {
+				node->uvw_transform.x.x = x;
+				node->uvw_transform.x.y = y;
+				node->uvw_transform.x.z = z;
+				node->uvw_transform.x.w = w;
+			}
+			if (index == 1) {
+				node->uvw_transform.y.x = x;
+				node->uvw_transform.y.y = y;
+				node->uvw_transform.y.z = z;
+				node->uvw_transform.y.w = w;
+			}
+			if (index == 2) {
+				node->uvw_transform.z.x = x;
+				node->uvw_transform.z.y = y;
+				node->uvw_transform.z.z = z;
+				node->uvw_transform.z.w = w;
+			}
+		}
+		break;
+		case shadernode_type::RHINO_WAVES_TEXTURE:
+		{
+			ccl::RhinoWavesTextureNode* node = dynamic_cast<ccl::RhinoWavesTextureNode*>(shnode);
 			if (index == 0) {
 				node->uvw_transform.x.x = x;
 				node->uvw_transform.x.y = y;

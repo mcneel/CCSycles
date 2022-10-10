@@ -165,6 +165,7 @@ namespace ccl
 		RhinoAzimuthAltitudeTransform,
 		RhinoCheckerTexture2d,
 		RhinoNoiseTexture,
+		RhinoWavesTexture,
 	}
 
 	public enum BvhType : uint

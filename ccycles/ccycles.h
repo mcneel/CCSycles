@@ -714,6 +714,7 @@ enum class shadernode_type : unsigned int {
 	RHINO_AZIMUTH_ALTITUDE_TRANSFORM,
 	RHINO_CHECKER_TEXTURE_2D,
 	RHINO_NOISE_TEXTURE,
+	RHINO_WAVES_TEXTURE,
 };
 
 CCL_CAPI unsigned int __cdecl cycles_create_shader(unsigned int client_id, unsigned int scene_id);
