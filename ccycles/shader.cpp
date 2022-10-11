@@ -378,6 +378,15 @@ unsigned int cycles_add_shader_node(unsigned int client_id, unsigned int scene_i
 		case shadernode_type::RHINO_WAVES_TEXTURE:
 			node = new ccl::RhinoWavesTextureNode();
 			break;
+		case shadernode_type::RHINO_WAVES_WIDTH_TEXTURE:
+			node = new ccl::RhinoWavesWidthTextureNode();
+			break;
+		case shadernode_type::RHINO_PERTURBING_PART1_TEXTURE:
+			node = new ccl::RhinoPerturbingPart1TextureNode();
+			break;
+		case shadernode_type::RHINO_PERTURBING_PART2_TEXTURE:
+			node = new ccl::RhinoPerturbingPart2TextureNode();
+			break;
 		}
 
 		assert(node);
@@ -1146,6 +1155,13 @@ void cycles_shadernode_set_member_int(unsigned int client_id, unsigned int scene
 				node->wave_type = (ccl::RhinoProceduralWavesType)value;
 		}
 		break;
+		case shadernode_type::RHINO_WAVES_WIDTH_TEXTURE:
+		{
+			ccl::RhinoWavesWidthTextureNode* node = dynamic_cast<ccl::RhinoWavesWidthTextureNode*>(shnode);
+			if (mname == "WaveType")
+				node->wave_type = (ccl::RhinoProceduralWavesType)value;
+		}
+		break;
 		default:
 			break;
 		}
@@ -1258,9 +1274,38 @@ void cycles_shadernode_set_member_float(unsigned int client_id, unsigned int sce
 				node->contrast2 = value;
 		}
 		break;
+		case shadernode_type::RHINO_PERTURBING_PART2_TEXTURE:
+		{
+			ccl::RhinoPerturbingPart2TextureNode* node = dynamic_cast<ccl::RhinoPerturbingPart2TextureNode*>(shnode);
+			if (mname == "Amount")
+				node->amount = value;
+		}
+		break;
 		default:
 			break;
 		}
+	}
+}
+
+static void set_transform(ccl::Transform& tfm, float x, float y, float z, float w, int index)
+{
+	if (index == 0) {
+		tfm.x.x = x;
+		tfm.x.y = y;
+		tfm.x.z = z;
+		tfm.x.w = w;
+	}
+	else if (index == 1) {
+		tfm.y.x = x;
+		tfm.y.y = y;
+		tfm.y.z = z;
+		tfm.y.w = w;
+	}
+	else if (index == 2) {
+		tfm.z.x = x;
+		tfm.z.y = y;
+		tfm.z.z = z;
+		tfm.z.w = w;
 	}
 }
 
@@ -1286,177 +1331,53 @@ void cycles_shadernode_set_member_vec4_at_index(unsigned int client_id, unsigned
 		{
 			ccl::TextureCoordinateNode* texco = dynamic_cast<ccl::TextureCoordinateNode*>(shnode);
 			if(mname == "object_transform") {
-				if (index == 0) {
-					texco->ob_tfm.x.x = x;
-					texco->ob_tfm.x.y = y;
-					texco->ob_tfm.x.z = z;
-					texco->ob_tfm.x.w = w;
-				}
-				else if (index == 1) {
-					texco->ob_tfm.y.x = x;
-					texco->ob_tfm.y.y = y;
-					texco->ob_tfm.y.z = z;
-					texco->ob_tfm.y.w = w;
-				}
-				else if (index == 2) {
-					texco->ob_tfm.z.x = x;
-					texco->ob_tfm.z.y = y;
-					texco->ob_tfm.z.z = z;
-					texco->ob_tfm.z.w = w;
-				}
+				set_transform(texco->ob_tfm, x, y, z, w, index);
 			}
 			else if(mname == "pxyz") {
-				if (index == 0) {
-					texco->pxyz.x.x = x;
-					texco->pxyz.x.y = y;
-					texco->pxyz.x.z = z;
-					texco->pxyz.x.w = w;
-				}
-				else if (index == 1) {
-					texco->pxyz.y.x = x;
-					texco->pxyz.y.y = y;
-					texco->pxyz.y.z = z;
-					texco->pxyz.y.w = w;
-				}
-				else if (index == 2) {
-					texco->pxyz.z.x = x;
-					texco->pxyz.z.y = y;
-					texco->pxyz.z.z = z;
-					texco->pxyz.z.w = w;
-				}
+				set_transform(texco->pxyz, x, y, z, w, index);
 			}
 			else if(mname == "nxyz") {
-				if (index == 0) {
-					texco->nxyz.x.x = x;
-					texco->nxyz.x.y = y;
-					texco->nxyz.x.z = z;
-					texco->nxyz.x.w = w;
-				}
-				else if (index == 1) {
-					texco->nxyz.y.x = x;
-					texco->nxyz.y.y = y;
-					texco->nxyz.y.z = z;
-					texco->nxyz.y.w = w;
-				}
-				else if (index == 2) {
-					texco->nxyz.z.x = x;
-					texco->nxyz.z.y = y;
-					texco->nxyz.z.z = z;
-					texco->nxyz.z.w = w;
-				}
+				set_transform(texco->nxyz, x, y, z, w, index);
 			}
 			else if(mname == "uvw") {
-				if (index == 0) {
-					texco->uvw.x.x = x;
-					texco->uvw.x.y = y;
-					texco->uvw.x.z = z;
-					texco->uvw.x.w = w;
-				}
-				else if (index == 1) {
-					texco->uvw.y.x = x;
-					texco->uvw.y.y = y;
-					texco->uvw.y.z = z;
-					texco->uvw.y.w = w;
-				}
-				else if (index == 2) {
-					texco->uvw.z.x = x;
-					texco->uvw.z.y = y;
-					texco->uvw.z.z = z;
-					texco->uvw.z.w = w;
-				}
+				set_transform(texco->uvw, x, y, z, w, index);
 			}
 		}
 		break;
 		case shadernode_type::MATRIX_MATH:
 		{
 			ccl::MatrixMathNode* matmath = dynamic_cast<ccl::MatrixMathNode*>(shnode);
-			if (index == 0) {
-				matmath->tfm.x.x = x;
-				matmath->tfm.x.y = y;
-				matmath->tfm.x.z = z;
-				matmath->tfm.x.w = w;
-			}
-			if (index == 1) {
-				matmath->tfm.y.x = x;
-				matmath->tfm.y.y = y;
-				matmath->tfm.y.z = z;
-				matmath->tfm.y.w = w;
-			}
-			if (index == 2) {
-				matmath->tfm.z.x = x;
-				matmath->tfm.z.y = y;
-				matmath->tfm.z.z = z;
-				matmath->tfm.z.w = w;
-			}
+			set_transform(matmath->tfm, x, y, z, w, index);
 		}
 		break;
 		case shadernode_type::RHINO_CHECKER_TEXTURE_2D:
 		{
 			ccl::RhinoCheckerTexture2dNode* node = dynamic_cast<ccl::RhinoCheckerTexture2dNode*>(shnode);
-			if (index == 0) {
-				node->uvw_transform.x.x = x;
-				node->uvw_transform.x.y = y;
-				node->uvw_transform.x.z = z;
-				node->uvw_transform.x.w = w;
-			}
-			if (index == 1) {
-				node->uvw_transform.y.x = x;
-				node->uvw_transform.y.y = y;
-				node->uvw_transform.y.z = z;
-				node->uvw_transform.y.w = w;
-			}
-			if (index == 2) {
-				node->uvw_transform.z.x = x;
-				node->uvw_transform.z.y = y;
-				node->uvw_transform.z.z = z;
-				node->uvw_transform.z.w = w;
-			}
+			set_transform(node->uvw_transform, x, y, z, w, index);
 		}
 		break;
 		case shadernode_type::RHINO_NOISE_TEXTURE:
 		{
 			ccl::RhinoNoiseTextureNode* node = dynamic_cast<ccl::RhinoNoiseTextureNode*>(shnode);
-			if (index == 0) {
-				node->uvw_transform.x.x = x;
-				node->uvw_transform.x.y = y;
-				node->uvw_transform.x.z = z;
-				node->uvw_transform.x.w = w;
-			}
-			if (index == 1) {
-				node->uvw_transform.y.x = x;
-				node->uvw_transform.y.y = y;
-				node->uvw_transform.y.z = z;
-				node->uvw_transform.y.w = w;
-			}
-			if (index == 2) {
-				node->uvw_transform.z.x = x;
-				node->uvw_transform.z.y = y;
-				node->uvw_transform.z.z = z;
-				node->uvw_transform.z.w = w;
-			}
+			set_transform(node->uvw_transform, x, y, z, w, index);
 		}
 		break;
 		case shadernode_type::RHINO_WAVES_TEXTURE:
 		{
 			ccl::RhinoWavesTextureNode* node = dynamic_cast<ccl::RhinoWavesTextureNode*>(shnode);
-			if (index == 0) {
-				node->uvw_transform.x.x = x;
-				node->uvw_transform.x.y = y;
-				node->uvw_transform.x.z = z;
-				node->uvw_transform.x.w = w;
-			}
-			if (index == 1) {
-				node->uvw_transform.y.x = x;
-				node->uvw_transform.y.y = y;
-				node->uvw_transform.y.z = z;
-				node->uvw_transform.y.w = w;
-			}
-			if (index == 2) {
-				node->uvw_transform.z.x = x;
-				node->uvw_transform.z.y = y;
-				node->uvw_transform.z.z = z;
-				node->uvw_transform.z.w = w;
-			}
+			set_transform(node->uvw_transform, x, y, z, w, index);
+		}
+		break;
+		case shadernode_type::RHINO_WAVES_WIDTH_TEXTURE:
+		{
+			ccl::RhinoWavesWidthTextureNode* node = dynamic_cast<ccl::RhinoWavesWidthTextureNode*>(shnode);
+			set_transform(node->uvw_transform, x, y, z, w, index);
+		}
+		break;
+		case shadernode_type::RHINO_PERTURBING_PART1_TEXTURE:
+		{
+			ccl::RhinoPerturbingPart1TextureNode* node = dynamic_cast<ccl::RhinoPerturbingPart1TextureNode*>(shnode);
+			set_transform(node->uvw_transform, x, y, z, w, index);
 		}
 		break;
 		default:

@@ -166,6 +166,9 @@ namespace ccl
 		RhinoCheckerTexture2d,
 		RhinoNoiseTexture,
 		RhinoWavesTexture,
+		RhinoWavesWidthTexture,
+		RhinoPerturbingPart1Texture,
+		RhinoPerturbingPart2Texture,
 	}
 
 	public enum BvhType : uint
