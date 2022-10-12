@@ -142,6 +142,7 @@
     <Compile Include="ShaderNodes\DisplacementNode.cs" />
     <Compile Include="ShaderNodes\RhinoCheckerTexture2dNode.cs" />
     <Compile Include="ShaderNodes\RhinoNoiseTextureNode.cs" />
+    <Compile Include="ShaderNodes\RhinoPerturbingTextureNode.cs" />
     <Compile Include="ShaderNodes\RhinoWavesTextureNode.cs" />
     <Compile Include="ShaderNodes\Sockets\TransformSocket.cs" />
     <Compile Include="ShaderNodes\TangentNode.cs" />
