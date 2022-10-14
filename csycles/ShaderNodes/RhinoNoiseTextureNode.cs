@@ -82,7 +82,7 @@ namespace ccl.ShaderNodes
 		public float ClampMax { get; set; } = 1.0f;
 		public bool ScaleToClamp { get; set; } = false;
 		public bool Inverse { get; set; } = false;
-		public float Gain { get; set; } = 1.0f;
+		public float Gain { get; set; } = 0.5f;
 
 		public NoiseTextureProceduralNode() : this("a noise texture") { }
 		public NoiseTextureProceduralNode(string name)
