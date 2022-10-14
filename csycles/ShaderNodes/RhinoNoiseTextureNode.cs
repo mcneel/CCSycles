@@ -75,10 +75,10 @@ namespace ccl.ShaderNodes
 		public Transform UvwTransform { get; set; } = Transform.Identity();
 		public NoiseTypes NoiseType { get; set; } = NoiseTypes.PERLIN;
 		public SpecSynthTypes SpecSynthType { get; set; } = SpecSynthTypes.FRACTAL_SUM;
-		public int OctaveCount { get; set; } = 0;
-		public float FrequencyMultiplier { get; set; } = 1.0f;
-		public float AmplitudeMultiplier { get; set; } = 1.0f;
-		public float ClampMin { get; set; } = 0.0f;
+		public int OctaveCount { get; set; } = 3;
+		public float FrequencyMultiplier { get; set; } = 2.0f;
+		public float AmplitudeMultiplier { get; set; } = 0.5f;
+		public float ClampMin { get; set; } = -1.0f;
 		public float ClampMax { get; set; } = 1.0f;
 		public bool ScaleToClamp { get; set; } = false;
 		public bool Inverse { get; set; } = false;
