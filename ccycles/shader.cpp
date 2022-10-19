@@ -818,6 +818,9 @@ void cycles_shadernode_set_enum(unsigned int client_id, unsigned int scene_id, u
 			else if (ename == "projection") {
 				node->projection = (ccl::NodeImageProjection)value;
 			}
+			else if (ename == "interpolation") {
+				node->interpolation = (ccl::InterpolationType)value;
+			}
 			break;
 		}
 		case shadernode_type::TEXTURE_COORDINATE:
