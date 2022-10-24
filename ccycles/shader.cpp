@@ -387,6 +387,9 @@ unsigned int cycles_add_shader_node(unsigned int client_id, unsigned int scene_i
 		case shadernode_type::RHINO_PERTURBING_PART2_TEXTURE:
 			node = new ccl::RhinoPerturbingPart2TextureNode();
 			break;
+		case shadernode_type::RHINO_GRADIENT_TEXTURE:
+			node = new ccl::RhinoGradientTextureNode();
+			break;
 		}
 
 		assert(node);
@@ -1100,6 +1103,15 @@ void cycles_shadernode_set_member_bool(unsigned int client_id, unsigned int scen
 				node->wave_width_texture_on = value;
 		}
 		break;
+		case shadernode_type::RHINO_GRADIENT_TEXTURE:
+		{
+			ccl::RhinoGradientTextureNode* node = dynamic_cast<ccl::RhinoGradientTextureNode*>(shnode);
+			if (mname == "FlipAlternate")
+				node->flip_alternate = value;
+			else if (mname == "UseCustomCurve")
+				node->use_custom_curve = value;
+		}
+		break;
 		default:
 			break;
 		}
@@ -1163,6 +1175,15 @@ void cycles_shadernode_set_member_int(unsigned int client_id, unsigned int scene
 			ccl::RhinoWavesWidthTextureNode* node = dynamic_cast<ccl::RhinoWavesWidthTextureNode*>(shnode);
 			if (mname == "WaveType")
 				node->wave_type = (ccl::RhinoProceduralWavesType)value;
+		}
+		break;
+		case shadernode_type::RHINO_GRADIENT_TEXTURE:
+		{
+			ccl::RhinoGradientTextureNode* node = dynamic_cast<ccl::RhinoGradientTextureNode*>(shnode);
+			if (mname == "GradientType")
+				node->gradient_type = (ccl::RhinoProceduralGradientType)value;
+			else
+				assert(false);
 		}
 		break;
 		default:
@@ -1380,6 +1401,12 @@ void cycles_shadernode_set_member_vec4_at_index(unsigned int client_id, unsigned
 		case shadernode_type::RHINO_PERTURBING_PART1_TEXTURE:
 		{
 			ccl::RhinoPerturbingPart1TextureNode* node = dynamic_cast<ccl::RhinoPerturbingPart1TextureNode*>(shnode);
+			set_transform(node->uvw_transform, x, y, z, w, index);
+		}
+		break;
+		case shadernode_type::RHINO_GRADIENT_TEXTURE:
+		{
+			ccl::RhinoGradientTextureNode* node = dynamic_cast<ccl::RhinoGradientTextureNode*>(shnode);
 			set_transform(node->uvw_transform, x, y, z, w, index);
 		}
 		break;
