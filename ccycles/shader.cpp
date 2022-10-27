@@ -390,6 +390,9 @@ unsigned int cycles_add_shader_node(unsigned int client_id, unsigned int scene_i
 		case shadernode_type::RHINO_GRADIENT_TEXTURE:
 			node = new ccl::RhinoGradientTextureNode();
 			break;
+		case shadernode_type::RHINO_BLEND_TEXTURE:
+			node = new ccl::RhinoBlendTextureNode();
+			break;
 		}
 
 		assert(node);
@@ -1112,6 +1115,13 @@ void cycles_shadernode_set_member_bool(unsigned int client_id, unsigned int scen
 				node->use_custom_curve = value;
 		}
 		break;
+		case shadernode_type::RHINO_BLEND_TEXTURE:
+		{
+			ccl::RhinoBlendTextureNode* node = dynamic_cast<ccl::RhinoBlendTextureNode*>(shnode);
+			if (mname == "UseBlendColor")
+				node->use_blend_color = value;
+		}
+		break;
 		default:
 			break;
 		}
@@ -1303,6 +1313,13 @@ void cycles_shadernode_set_member_float(unsigned int client_id, unsigned int sce
 			ccl::RhinoPerturbingPart2TextureNode* node = dynamic_cast<ccl::RhinoPerturbingPart2TextureNode*>(shnode);
 			if (mname == "Amount")
 				node->amount = value;
+		}
+		break;
+		case shadernode_type::RHINO_BLEND_TEXTURE:
+		{
+			ccl::RhinoBlendTextureNode* node = dynamic_cast<ccl::RhinoBlendTextureNode*>(shnode);
+			if (mname == "BlendFactor")
+				node->blend_factor = value;
 		}
 		break;
 		default:
