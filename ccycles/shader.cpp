@@ -393,6 +393,9 @@ unsigned int cycles_add_shader_node(unsigned int client_id, unsigned int scene_i
 		case shadernode_type::RHINO_BLEND_TEXTURE:
 			node = new ccl::RhinoBlendTextureNode();
 			break;
+		case shadernode_type::RHINO_EXPOSURE_TEXTURE:
+			node = new ccl::RhinoExposureTextureNode();
+			break;
 		}
 
 		assert(node);
@@ -1320,6 +1323,19 @@ void cycles_shadernode_set_member_float(unsigned int client_id, unsigned int sce
 			ccl::RhinoBlendTextureNode* node = dynamic_cast<ccl::RhinoBlendTextureNode*>(shnode);
 			if (mname == "BlendFactor")
 				node->blend_factor = value;
+		}
+		break;
+		case shadernode_type::RHINO_EXPOSURE_TEXTURE:
+		{
+			ccl::RhinoExposureTextureNode* node = dynamic_cast<ccl::RhinoExposureTextureNode*>(shnode);
+			if (mname == "Exposure")
+				node->exposure = value;
+			else if (mname == "Multiplier")
+				node->multiplier = value;
+			else if (mname == "WorldLuminance")
+				node->world_luminance = value;
+			else if (mname == "MaxLuminance")
+				node->max_luminance = value;
 		}
 		break;
 		default:

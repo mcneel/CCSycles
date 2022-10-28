@@ -171,6 +171,7 @@ namespace ccl
 		RhinoPerturbingPart2Texture,
 		RhinoGradientTexture,
 		RhinoBlendTexture,
+		RhinoExposureTexture,
 	}
 
 	public enum BvhType : uint
