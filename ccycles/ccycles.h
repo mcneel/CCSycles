@@ -721,6 +721,9 @@ enum class shadernode_type : unsigned int {
 	RHINO_GRADIENT_TEXTURE,
 	RHINO_BLEND_TEXTURE,
 	RHINO_EXPOSURE_TEXTURE,
+	RHINO_FBM_TEXTURE,
+	RHINO_GRID_TEXTURE,
+	RHINO_PROJECTION_CHANGER_TEXTURE,
 };
 
 CCL_CAPI unsigned int __cdecl cycles_create_shader(unsigned int client_id, unsigned int scene_id);

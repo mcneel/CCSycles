@@ -143,9 +143,12 @@
     <Compile Include="ShaderNodes\RhinoBlendTextureNode.cs" />
     <Compile Include="ShaderNodes\RhinoCheckerTexture2dNode.cs" />
     <Compile Include="ShaderNodes\RhinoExposureTextureNode.cs" />
+    <Compile Include="ShaderNodes\RhinoFbmTextureNode.cs" />
     <Compile Include="ShaderNodes\RhinoGradientTextureNode.cs" />
+    <Compile Include="ShaderNodes\RhinoGridTextureNode.cs" />
     <Compile Include="ShaderNodes\RhinoNoiseTextureNode.cs" />
     <Compile Include="ShaderNodes\RhinoPerturbingTextureNode.cs" />
+    <Compile Include="ShaderNodes\RhinoProjectionChangerTextureNode.cs" />
     <Compile Include="ShaderNodes\RhinoWavesTextureNode.cs" />
     <Compile Include="ShaderNodes\Sockets\TransformSocket.cs" />
     <Compile Include="ShaderNodes\TangentNode.cs" />

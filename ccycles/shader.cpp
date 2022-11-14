@@ -396,6 +396,15 @@ unsigned int cycles_add_shader_node(unsigned int client_id, unsigned int scene_i
 		case shadernode_type::RHINO_EXPOSURE_TEXTURE:
 			node = new ccl::RhinoExposureTextureNode();
 			break;
+		case shadernode_type::RHINO_FBM_TEXTURE:
+			node = new ccl::RhinoFbmTextureNode();
+			break;
+		case shadernode_type::RHINO_GRID_TEXTURE:
+			node = new ccl::RhinoGridTextureNode();
+			break;
+		case shadernode_type::RHINO_PROJECTION_CHANGER_TEXTURE:
+			node = new ccl::RhinoProjectionChangerTextureNode();
+			break;
 		}
 
 		assert(node);
@@ -1125,6 +1134,13 @@ void cycles_shadernode_set_member_bool(unsigned int client_id, unsigned int scen
 				node->use_blend_color = value;
 		}
 		break;
+		case shadernode_type::RHINO_FBM_TEXTURE:
+		{
+			ccl::RhinoFbmTextureNode* node = dynamic_cast<ccl::RhinoFbmTextureNode*>(shnode);
+			if (mname == "IsTurbulent")
+				node->is_turbulent = value;
+		}
+		break;
 		default:
 			break;
 		}
@@ -1197,6 +1213,29 @@ void cycles_shadernode_set_member_int(unsigned int client_id, unsigned int scene
 				node->gradient_type = (ccl::RhinoProceduralGradientType)value;
 			else
 				assert(false);
+		}
+		break;
+		case shadernode_type::RHINO_FBM_TEXTURE:
+		{
+			ccl::RhinoFbmTextureNode* node = dynamic_cast<ccl::RhinoFbmTextureNode*>(shnode);
+			if (mname == "MaxOctaves")
+				node->max_octaves = value;
+		}
+		break;
+		case shadernode_type::RHINO_GRID_TEXTURE:
+		{
+			ccl::RhinoGridTextureNode* node = dynamic_cast<ccl::RhinoGridTextureNode*>(shnode);
+			if (mname == "Cells")
+				node->cells = value;
+		}
+		break;
+		case shadernode_type::RHINO_PROJECTION_CHANGER_TEXTURE:
+		{
+			ccl::RhinoProjectionChangerTextureNode* node = dynamic_cast<ccl::RhinoProjectionChangerTextureNode*>(shnode);
+			if (mname == "InputProjectionType")
+				node->input_projection_type = (ccl::RhinoProceduralProjectionType)value;
+			else if (mname == "OutputProjectionType")
+				node->output_projection_type = (ccl::RhinoProceduralProjectionType)value;
 		}
 		break;
 		default:
@@ -1336,6 +1375,31 @@ void cycles_shadernode_set_member_float(unsigned int client_id, unsigned int sce
 				node->world_luminance = value;
 			else if (mname == "MaxLuminance")
 				node->max_luminance = value;
+		}
+		break;
+		case shadernode_type::RHINO_FBM_TEXTURE:
+		{
+			ccl::RhinoFbmTextureNode* node = dynamic_cast<ccl::RhinoFbmTextureNode*>(shnode);
+			if (mname == "Gain")
+				node->gain = value;
+			else if (mname == "Roughness")
+				node->roughness = value;
+		}
+		break;
+		case shadernode_type::RHINO_GRID_TEXTURE:
+		{
+			ccl::RhinoGridTextureNode* node = dynamic_cast<ccl::RhinoGridTextureNode*>(shnode);
+			if (mname == "FontThickness")
+				node->font_thickness = value;
+		}
+		break;
+		case shadernode_type::RHINO_PROJECTION_CHANGER_TEXTURE:
+		{
+			ccl::RhinoProjectionChangerTextureNode* node = dynamic_cast<ccl::RhinoProjectionChangerTextureNode*>(shnode);
+			if (mname == "Azimuth")
+				node->azimuth = value;
+			else if (mname == "Altitude")
+				node->altitude = value;
 		}
 		break;
 		default:
