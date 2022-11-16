@@ -405,6 +405,12 @@ unsigned int cycles_add_shader_node(unsigned int client_id, unsigned int scene_i
 		case shadernode_type::RHINO_PROJECTION_CHANGER_TEXTURE:
 			node = new ccl::RhinoProjectionChangerTextureNode();
 			break;
+		case shadernode_type::RHINO_MASK_TEXTURE:
+			node = new ccl::RhinoMaskTextureNode();
+			break;
+		case shadernode_type::RHINO_PERLIN_MARBLE_TEXTURE:
+			node = new ccl::RhinoPerlinMarbleTextureNode();
+			break;
 		}
 
 		assert(node);
@@ -1238,6 +1244,20 @@ void cycles_shadernode_set_member_int(unsigned int client_id, unsigned int scene
 				node->output_projection_type = (ccl::RhinoProceduralProjectionType)value;
 		}
 		break;
+		case shadernode_type::RHINO_MASK_TEXTURE:
+		{
+			ccl::RhinoMaskTextureNode* node = dynamic_cast<ccl::RhinoMaskTextureNode*>(shnode);
+			if (mname == "MaskType")
+				node->mask_type = (ccl::RhinoProceduralMaskType)value;
+		}
+		break;
+		case shadernode_type::RHINO_PERLIN_MARBLE_TEXTURE:
+		{
+			ccl::RhinoPerlinMarbleTextureNode* node = dynamic_cast<ccl::RhinoPerlinMarbleTextureNode*>(shnode);
+			if (mname == "Levels")
+				node->levels = value;
+		}
+		break;
 		default:
 			break;
 		}
@@ -1400,6 +1420,21 @@ void cycles_shadernode_set_member_float(unsigned int client_id, unsigned int sce
 				node->azimuth = value;
 			else if (mname == "Altitude")
 				node->altitude = value;
+		}
+		break;
+		case shadernode_type::RHINO_PERLIN_MARBLE_TEXTURE:
+		{
+			ccl::RhinoPerlinMarbleTextureNode* node = dynamic_cast<ccl::RhinoPerlinMarbleTextureNode*>(shnode);
+			if (mname == "Noise")
+				node->noise_amount = value;
+			else if (mname == "Blur")
+				node->blur = value;
+			else if (mname == "Size")
+				node->size = value;
+			else if (mname == "Color1Saturation")
+				node->color1_sat = value;
+			else if (mname == "Color2Saturation")
+				node->color2_sat = value;
 		}
 		break;
 		default:

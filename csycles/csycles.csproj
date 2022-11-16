@@ -146,7 +146,9 @@
     <Compile Include="ShaderNodes\RhinoFbmTextureNode.cs" />
     <Compile Include="ShaderNodes\RhinoGradientTextureNode.cs" />
     <Compile Include="ShaderNodes\RhinoGridTextureNode.cs" />
+    <Compile Include="ShaderNodes\RhinoMaskTextureNode.cs" />
     <Compile Include="ShaderNodes\RhinoNoiseTextureNode.cs" />
+    <Compile Include="ShaderNodes\RhinoPerlinMarbleTextureNode.cs" />
     <Compile Include="ShaderNodes\RhinoPerturbingTextureNode.cs" />
     <Compile Include="ShaderNodes\RhinoProjectionChangerTextureNode.cs" />
     <Compile Include="ShaderNodes\RhinoWavesTextureNode.cs" />
