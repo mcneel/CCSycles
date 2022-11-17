@@ -411,6 +411,9 @@ unsigned int cycles_add_shader_node(unsigned int client_id, unsigned int scene_i
 		case shadernode_type::RHINO_PERLIN_MARBLE_TEXTURE:
 			node = new ccl::RhinoPerlinMarbleTextureNode();
 			break;
+		case shadernode_type::RHINO_PHYSICAL_SKY_TEXTURE:
+			node = new ccl::RhinoPhysicalSkyTextureNode();
+			break;
 		}
 
 		assert(node);
@@ -1147,6 +1150,13 @@ void cycles_shadernode_set_member_bool(unsigned int client_id, unsigned int scen
 				node->is_turbulent = value;
 		}
 		break;
+		case shadernode_type::RHINO_PHYSICAL_SKY_TEXTURE:
+		{
+			ccl::RhinoPhysicalSkyTextureNode* node = dynamic_cast<ccl::RhinoPhysicalSkyTextureNode*>(shnode);
+			if (mname == "ShowSun")
+				node->show_sun = value;
+		}
+		break;
 		default:
 			break;
 		}
@@ -1437,6 +1447,23 @@ void cycles_shadernode_set_member_float(unsigned int client_id, unsigned int sce
 				node->color2_sat = value;
 		}
 		break;
+		case shadernode_type::RHINO_PHYSICAL_SKY_TEXTURE:
+		{
+			ccl::RhinoPhysicalSkyTextureNode* node = dynamic_cast<ccl::RhinoPhysicalSkyTextureNode*>(shnode);
+			if (mname == "AtmosphericDensity")
+				node->atmospheric_density = value;
+			else if (mname == "RayleighScattering")
+				node->rayleigh_scattering = value;
+			else if (mname == "MieScattering")
+				node->mie_scattering = value;
+			else if (mname == "SunBrightness")
+				node->sun_brightness = value;
+			else if (mname == "SunSize")
+				node->sun_size = value;
+			else if (mname == "Exposure")
+				node->exposure = value;
+		}
+		break;
 		default:
 			break;
 		}
@@ -1603,6 +1630,29 @@ void cycles_shadernode_set_member_vec(unsigned int client_id, unsigned int scene
 				texco->decal_up.x = x;
 				texco->decal_up.y = y;
 				texco->decal_up.z = z;
+			}
+		}
+		break;
+		case shadernode_type::RHINO_PHYSICAL_SKY_TEXTURE:
+		{
+			ccl::RhinoPhysicalSkyTextureNode* node = dynamic_cast<ccl::RhinoPhysicalSkyTextureNode*>(shnode);
+			if (mname == "SunDirection")
+			{
+				node->sun_dir.x = x;
+				node->sun_dir.y = y;
+				node->sun_dir.z = z;
+			}
+			else if (mname == "SunColor")
+			{
+				node->sun_color.x = x;
+				node->sun_color.y = y;
+				node->sun_color.z = z;
+			}
+			else if (mname == "InverseWavelengths")
+			{
+				node->inv_wavelengths.x = x;
+				node->inv_wavelengths.y = y;
+				node->inv_wavelengths.z = z;
 			}
 		}
 		break;
