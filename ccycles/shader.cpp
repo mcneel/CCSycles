@@ -414,6 +414,9 @@ unsigned int cycles_add_shader_node(unsigned int client_id, unsigned int scene_i
 		case shadernode_type::RHINO_PHYSICAL_SKY_TEXTURE:
 			node = new ccl::RhinoPhysicalSkyTextureNode();
 			break;
+		case shadernode_type::RHINO_TEXTURE_ADJUSTMENT_TEXTURE:
+			node = new ccl::RhinoTextureAdjustmentTextureNode();
+			break;
 		}
 
 		assert(node);
@@ -1157,6 +1160,21 @@ void cycles_shadernode_set_member_bool(unsigned int client_id, unsigned int scen
 				node->show_sun = value;
 		}
 		break;
+		case shadernode_type::RHINO_TEXTURE_ADJUSTMENT_TEXTURE:
+		{
+			ccl::RhinoTextureAdjustmentTextureNode* node = dynamic_cast<ccl::RhinoTextureAdjustmentTextureNode*>(shnode);
+			if (mname == "Grayscale")
+				node->grayscale = value;
+			else if (mname == "Invert")
+				node->invert = value;
+			else if (mname == "Clamp")
+				node->clamp = value;
+			else if (mname == "ScaleToClamp")
+				node->scale_to_clamp = value;
+			else if (mname == "IsHdr")
+				node->is_hdr = value;
+		}
+		break;
 		default:
 			break;
 		}
@@ -1462,6 +1480,25 @@ void cycles_shadernode_set_member_float(unsigned int client_id, unsigned int sce
 				node->sun_size = value;
 			else if (mname == "Exposure")
 				node->exposure = value;
+		}
+		break;
+		case shadernode_type::RHINO_TEXTURE_ADJUSTMENT_TEXTURE:
+		{
+			ccl::RhinoTextureAdjustmentTextureNode* node = dynamic_cast<ccl::RhinoTextureAdjustmentTextureNode*>(shnode);
+			if (mname == "Multiplier")
+				node->multiplier = value;
+			else if (mname == "ClampMin")
+				node->clamp_min = value;
+			else if (mname == "ClampMax")
+				node->clamp_max = value;
+			else if (mname == "Gain")
+				node->gain = value;
+			else if (mname == "Gamma")
+				node->gamma = value;
+			else if (mname == "Saturation")
+				node->saturation = value;
+			else if (mname == "HueShift")
+				node->hue_shift = value;
 		}
 		break;
 		default:

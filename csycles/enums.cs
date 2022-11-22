@@ -178,6 +178,7 @@ namespace ccl
 		RhinoMaskTexture,
 		RhinoPerlinMarbleTexture,
 		RhinoPhysicalSkyTexture,
+		RhinoTextureAdjustmentTexture,
 	}
 
 	public enum BvhType : uint
