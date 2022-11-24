@@ -62,7 +62,6 @@ namespace ccl.ShaderNodes
 		public WavesTextureInputs ins => (WavesTextureInputs)inputs;
 		public WavesTextureOutputs outs => (WavesTextureOutputs)outputs;
 
-		public Transform UvwTransform { get; set; } = Transform.Identity();
 		public WaveTypes WaveType { get; set; } = WaveTypes.LINEAR;
 		public float WaveWidth { get; set; } = 0.5f;
 		public bool WaveWidthTextureOn { get; set; } = false;
@@ -82,9 +81,6 @@ namespace ccl.ShaderNodes
 
 		internal override void SetDirectMembers(uint clientId, uint sceneId, uint shaderId)
 		{
-			CSycles.shadernode_set_member_vec4_at_index(clientId, sceneId, shaderId, Id, Type, "UvwTransform", UvwTransform[0].x, UvwTransform[0].y, UvwTransform[0].z, UvwTransform[0].w, 0);
-			CSycles.shadernode_set_member_vec4_at_index(clientId, sceneId, shaderId, Id, Type, "UvwTransform", UvwTransform[1].x, UvwTransform[1].y, UvwTransform[1].z, UvwTransform[1].w, 1);
-			CSycles.shadernode_set_member_vec4_at_index(clientId, sceneId, shaderId, Id, Type, "UvwTransform", UvwTransform[2].x, UvwTransform[2].y, UvwTransform[2].z, UvwTransform[2].w, 2);
 			CSycles.shadernode_set_member_int(clientId, sceneId, shaderId, Id, Type, "WaveType", (int)WaveType);
 			CSycles.shadernode_set_member_float(clientId, sceneId, shaderId, Id, Type, "WaveWidth", WaveWidth);
 			CSycles.shadernode_set_member_bool(clientId, sceneId, shaderId, Id, Type, "WaveWidthTextureOn", WaveWidthTextureOn);
@@ -121,7 +117,6 @@ namespace ccl.ShaderNodes
 		public WavesWidthTextureInputs ins => (WavesWidthTextureInputs)inputs;
 		public WavesWidthTextureOutputs outs => (WavesWidthTextureOutputs)outputs;
 
-		public Transform UvwTransform { get; set; } = Transform.Identity();
 		public WavesTextureProceduralNode.WaveTypes WaveType { get; set; } = WavesTextureProceduralNode.WaveTypes.LINEAR;
 
 		public WavesWidthTextureProceduralNode() : this("a waves width texture") { }
@@ -134,9 +129,6 @@ namespace ccl.ShaderNodes
 
 		internal override void SetDirectMembers(uint clientId, uint sceneId, uint shaderId)
 		{
-			CSycles.shadernode_set_member_vec4_at_index(clientId, sceneId, shaderId, Id, Type, "UvwTransform", UvwTransform[0].x, UvwTransform[0].y, UvwTransform[0].z, UvwTransform[0].w, 0);
-			CSycles.shadernode_set_member_vec4_at_index(clientId, sceneId, shaderId, Id, Type, "UvwTransform", UvwTransform[1].x, UvwTransform[1].y, UvwTransform[1].z, UvwTransform[1].w, 1);
-			CSycles.shadernode_set_member_vec4_at_index(clientId, sceneId, shaderId, Id, Type, "UvwTransform", UvwTransform[2].x, UvwTransform[2].y, UvwTransform[2].z, UvwTransform[2].w, 2);
 			CSycles.shadernode_set_member_int(clientId, sceneId, shaderId, Id, Type, "WaveType", (int)WaveType);
 		}
 	}

@@ -72,7 +72,6 @@ namespace ccl.ShaderNodes
 		public NoiseTextureInputs ins => (NoiseTextureInputs)inputs;
 		public NoiseTextureOutputs outs => (NoiseTextureOutputs)outputs;
 
-		public Transform UvwTransform { get; set; } = Transform.Identity();
 		public NoiseTypes NoiseType { get; set; } = NoiseTypes.PERLIN;
 		public SpecSynthTypes SpecSynthType { get; set; } = SpecSynthTypes.FRACTAL_SUM;
 		public int OctaveCount { get; set; } = 3;
@@ -96,9 +95,6 @@ namespace ccl.ShaderNodes
 
 		internal override void SetDirectMembers(uint clientId, uint sceneId, uint shaderId)
 		{
-			CSycles.shadernode_set_member_vec4_at_index(clientId, sceneId, shaderId, Id, Type, "UvwTransform", UvwTransform[0].x, UvwTransform[0].y, UvwTransform[0].z, UvwTransform[0].w, 0);
-			CSycles.shadernode_set_member_vec4_at_index(clientId, sceneId, shaderId, Id, Type, "UvwTransform", UvwTransform[1].x, UvwTransform[1].y, UvwTransform[1].z, UvwTransform[1].w, 1);
-			CSycles.shadernode_set_member_vec4_at_index(clientId, sceneId, shaderId, Id, Type, "UvwTransform", UvwTransform[2].x, UvwTransform[2].y, UvwTransform[2].z, UvwTransform[2].w, 2);
 			CSycles.shadernode_set_member_int(clientId, sceneId, shaderId, Id, Type, "NoiseType", (int)NoiseType);
 			CSycles.shadernode_set_member_int(clientId, sceneId, shaderId, Id, Type, "SpecSynthType", (int)SpecSynthType);
 			CSycles.shadernode_set_member_int(clientId, sceneId, shaderId, Id, Type, "OctaveCount", OctaveCount);

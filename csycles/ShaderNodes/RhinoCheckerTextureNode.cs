@@ -20,13 +20,13 @@ using ccl.Attributes;
 
 namespace ccl.ShaderNodes
 {
-	public class CheckerTexture2dInputs : Inputs
+	public class CheckerTextureInputs : Inputs
 	{
 		public VectorSocket UVW { get; set; }
 		public ColorSocket Color1 { get; set; }
 		public ColorSocket Color2 { get; set; }
 
-		public CheckerTexture2dInputs(ShaderNode parentNode)
+		public CheckerTextureInputs(ShaderNode parentNode)
 		{
 			UVW = new VectorSocket(parentNode, "UVW");
 			AddSocket(UVW);
@@ -37,40 +37,35 @@ namespace ccl.ShaderNodes
 		}
 	}
 
-	public class CheckerTexture2dOutputs : Outputs
+	public class CheckerTextureOutputs : Outputs
 	{
 		public ColorSocket Color { get; set; }
 
-		public CheckerTexture2dOutputs(ShaderNode parentNode)
+		public CheckerTextureOutputs(ShaderNode parentNode)
 		{
 			Color = new ColorSocket(parentNode, "Color");
 			AddSocket(Color);
 		}
 	}
 
-	[ShaderNode("rhino_checker_texture_2d")]
-	public class CheckerTexture2dProceduralNode : ShaderNode
+	[ShaderNode("rhino_checker_texture")]
+	public class CheckerTextureProceduralNode : ShaderNode
 	{
-		public CheckerTexture2dInputs ins => (CheckerTexture2dInputs)inputs;
-		public CheckerTexture2dOutputs outs => (CheckerTexture2dOutputs)outputs;
+		public CheckerTextureInputs ins => (CheckerTextureInputs)inputs;
+		public CheckerTextureOutputs outs => (CheckerTextureOutputs)outputs;
 
-		public Transform UvwTransform { get; set; } = Transform.Identity();
-
-		public CheckerTexture2dProceduralNode() : this("a checker texture 2d") { }
-		public CheckerTexture2dProceduralNode(string name)
-			: base(ShaderNodeType.RhinoCheckerTexture2d, name)
+		public CheckerTextureProceduralNode() : this("a checker texture") { }
+		public CheckerTextureProceduralNode(string name)
+			: base(ShaderNodeType.RhinoCheckerTexture, name)
 		{
-			inputs = new CheckerTexture2dInputs(this);
-			outputs = new CheckerTexture2dOutputs(this);
+			inputs = new CheckerTextureInputs(this);
+			outputs = new CheckerTextureOutputs(this);
 			ins.Color1.Value = new float4(0.0f, 0.0f, 0.0f);
 			ins.Color2.Value = new float4(1.0f, 1.0f, 1.0f);
 		}
 
 		internal override void SetDirectMembers(uint clientId, uint sceneId, uint shaderId)
 		{
-			CSycles.shadernode_set_member_vec4_at_index(clientId, sceneId, shaderId, Id, Type, "UvwTransform", UvwTransform[0].x, UvwTransform[0].y, UvwTransform[0].z, UvwTransform[0].w, 0);
-			CSycles.shadernode_set_member_vec4_at_index(clientId, sceneId, shaderId, Id, Type, "UvwTransform", UvwTransform[1].x, UvwTransform[1].y, UvwTransform[1].z, UvwTransform[1].w, 1);
-			CSycles.shadernode_set_member_vec4_at_index(clientId, sceneId, shaderId, Id, Type, "UvwTransform", UvwTransform[2].x, UvwTransform[2].y, UvwTransform[2].z, UvwTransform[2].w, 2);
 		}
 	}
 }

@@ -369,8 +369,8 @@ unsigned int cycles_add_shader_node(unsigned int client_id, unsigned int scene_i
 		case shadernode_type::RHINO_AZIMUTH_ALTITUDE_TRANSFORM:
 			node = new ccl::AzimuthAltitudeTransformNode();
 			break;
-		case shadernode_type::RHINO_CHECKER_TEXTURE_2D:
-			node = new ccl::RhinoCheckerTexture2dNode();
+		case shadernode_type::RHINO_CHECKER_TEXTURE:
+			node = new ccl::RhinoCheckerTextureNode();
 			break;
 		case shadernode_type::RHINO_NOISE_TEXTURE:
 			node = new ccl::RhinoNoiseTextureNode();
@@ -416,6 +416,9 @@ unsigned int cycles_add_shader_node(unsigned int client_id, unsigned int scene_i
 			break;
 		case shadernode_type::RHINO_TEXTURE_ADJUSTMENT_TEXTURE:
 			node = new ccl::RhinoTextureAdjustmentTextureNode();
+			break;
+		case shadernode_type::RHINO_TILE_TEXTURE:
+			node = new ccl::RhinoTileTextureNode();
 			break;
 		}
 
@@ -1286,6 +1289,13 @@ void cycles_shadernode_set_member_int(unsigned int client_id, unsigned int scene
 				node->levels = value;
 		}
 		break;
+		case shadernode_type::RHINO_TILE_TEXTURE:
+		{
+			ccl::RhinoTileTextureNode* node = dynamic_cast<ccl::RhinoTileTextureNode*>(shnode);
+			if (mname == "Type")
+				node->tile_type = (ccl::RhinoProceduralTileType)value;
+		}
+		break;
 		default:
 			break;
 		}
@@ -1364,12 +1374,6 @@ void cycles_shadernode_set_member_float(unsigned int client_id, unsigned int sce
 				azimuth_altitude_node->altitude = value;
 			else if (mname == "threshold")
 				azimuth_altitude_node->threshold = value;
-		}
-		break;
-		case shadernode_type::RHINO_CHECKER_TEXTURE_2D:
-		{
-			ccl::RhinoCheckerTexture2dNode* checker_texture_2d_node = dynamic_cast<ccl::RhinoCheckerTexture2dNode*>(shnode);
-			int a = 0;
 		}
 		break;
 		case shadernode_type::RHINO_NOISE_TEXTURE:
@@ -1570,42 +1574,6 @@ void cycles_shadernode_set_member_vec4_at_index(unsigned int client_id, unsigned
 			set_transform(matmath->tfm, x, y, z, w, index);
 		}
 		break;
-		case shadernode_type::RHINO_CHECKER_TEXTURE_2D:
-		{
-			ccl::RhinoCheckerTexture2dNode* node = dynamic_cast<ccl::RhinoCheckerTexture2dNode*>(shnode);
-			set_transform(node->uvw_transform, x, y, z, w, index);
-		}
-		break;
-		case shadernode_type::RHINO_NOISE_TEXTURE:
-		{
-			ccl::RhinoNoiseTextureNode* node = dynamic_cast<ccl::RhinoNoiseTextureNode*>(shnode);
-			set_transform(node->uvw_transform, x, y, z, w, index);
-		}
-		break;
-		case shadernode_type::RHINO_WAVES_TEXTURE:
-		{
-			ccl::RhinoWavesTextureNode* node = dynamic_cast<ccl::RhinoWavesTextureNode*>(shnode);
-			set_transform(node->uvw_transform, x, y, z, w, index);
-		}
-		break;
-		case shadernode_type::RHINO_WAVES_WIDTH_TEXTURE:
-		{
-			ccl::RhinoWavesWidthTextureNode* node = dynamic_cast<ccl::RhinoWavesWidthTextureNode*>(shnode);
-			set_transform(node->uvw_transform, x, y, z, w, index);
-		}
-		break;
-		case shadernode_type::RHINO_PERTURBING_PART1_TEXTURE:
-		{
-			ccl::RhinoPerturbingPart1TextureNode* node = dynamic_cast<ccl::RhinoPerturbingPart1TextureNode*>(shnode);
-			set_transform(node->uvw_transform, x, y, z, w, index);
-		}
-		break;
-		case shadernode_type::RHINO_GRADIENT_TEXTURE:
-		{
-			ccl::RhinoGradientTextureNode* node = dynamic_cast<ccl::RhinoGradientTextureNode*>(shnode);
-			set_transform(node->uvw_transform, x, y, z, w, index);
-		}
-		break;
 		default:
 			break;
 		}
@@ -1690,6 +1658,23 @@ void cycles_shadernode_set_member_vec(unsigned int client_id, unsigned int scene
 				node->inv_wavelengths.x = x;
 				node->inv_wavelengths.y = y;
 				node->inv_wavelengths.z = z;
+			}
+		}
+		break;
+		case shadernode_type::RHINO_TILE_TEXTURE:
+		{
+			ccl::RhinoTileTextureNode* node = dynamic_cast<ccl::RhinoTileTextureNode*>(shnode);
+			if (mname == "Phase")
+			{
+				node->phase.x = x;
+				node->phase.y = y;
+				node->phase.z = z;
+			}
+			else if (mname == "JoinWidth")
+			{
+				node->join_width.x = x;
+				node->join_width.y = y;
+				node->join_width.z = z;
 			}
 		}
 		break;
