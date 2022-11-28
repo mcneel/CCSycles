@@ -142,6 +142,7 @@
     <Compile Include="ShaderNodes\DisplacementNode.cs" />
     <Compile Include="ShaderNodes\RhinoBlendTextureNode.cs" />
     <Compile Include="ShaderNodes\RhinoCheckerTextureNode.cs" />
+    <Compile Include="ShaderNodes\RhinoDotsTextureNode.cs" />
     <Compile Include="ShaderNodes\RhinoExposureTextureNode.cs" />
     <Compile Include="ShaderNodes\RhinoFbmTextureNode.cs" />
     <Compile Include="ShaderNodes\RhinoGradientTextureNode.cs" />
