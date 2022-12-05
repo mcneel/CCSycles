@@ -20,31 +20,21 @@ using ccl.Attributes;
 
 namespace ccl.ShaderNodes
 {
-	public class CheckerTextureInputs : Inputs
+	public class CheckerTextureInputs : TwoColorInputs
 	{
 		public VectorSocket UVW { get; set; }
-		public ColorSocket Color1 { get; set; }
-		public ColorSocket Color2 { get; set; }
 
-		public CheckerTextureInputs(ShaderNode parentNode)
+		public CheckerTextureInputs(ShaderNode parentNode) : base(parentNode)
 		{
 			UVW = new VectorSocket(parentNode, "UVW");
 			AddSocket(UVW);
-			Color1 = new ColorSocket(parentNode, "Color1");
-			AddSocket(Color1);
-			Color2 = new ColorSocket(parentNode, "Color2");
-			AddSocket(Color2);
 		}
 	}
 
-	public class CheckerTextureOutputs : Outputs
+	public class CheckerTextureOutputs : TwoColorOutputs
 	{
-		public ColorSocket Color { get; set; }
-
-		public CheckerTextureOutputs(ShaderNode parentNode)
+		public CheckerTextureOutputs(ShaderNode parentNode) : base(parentNode)
 		{
-			Color = new ColorSocket(parentNode, "Color");
-			AddSocket(Color);
 		}
 	}
 
@@ -60,8 +50,6 @@ namespace ccl.ShaderNodes
 		{
 			inputs = new CheckerTextureInputs(this);
 			outputs = new CheckerTextureOutputs(this);
-			ins.Color1.Value = new float4(0.0f, 0.0f, 0.0f);
-			ins.Color2.Value = new float4(1.0f, 1.0f, 1.0f);
 		}
 
 		internal override void SetDirectMembers(uint clientId, uint sceneId, uint shaderId)

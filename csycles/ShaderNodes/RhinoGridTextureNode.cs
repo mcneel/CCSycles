@@ -19,31 +19,22 @@ using ccl.Attributes;
 
 namespace ccl.ShaderNodes
 {
-	public class GridTextureInputs : Inputs
+	public class GridTextureInputs : TwoColorInputs
 	{
 		public VectorSocket UVW { get; set; }
-		public ColorSocket Color1 { get; set; }
-		public ColorSocket Color2 { get; set; }
 
-		public GridTextureInputs(ShaderNode parentNode)
+		public GridTextureInputs(ShaderNode parentNode) : base(parentNode)
 		{
 			UVW = new VectorSocket(parentNode, "UVW");
 			AddSocket(UVW);
-			Color1 = new ColorSocket(parentNode, "Color1");
-			AddSocket(Color1);
-			Color2 = new ColorSocket(parentNode, "Color2");
-			AddSocket(Color2);
 		}
 	}
 
-	public class GridTextureOutputs : Outputs
+	public class GridTextureOutputs : TwoColorOutputs
 	{
-		public ColorSocket Color { get; set; }
 
-		public GridTextureOutputs(ShaderNode parentNode)
+		public GridTextureOutputs(ShaderNode parentNode) : base(parentNode)
 		{
-			Color = new ColorSocket(parentNode, "Color");
-			AddSocket(Color);
 		}
 	}
 

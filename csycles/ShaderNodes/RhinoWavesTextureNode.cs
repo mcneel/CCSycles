@@ -19,34 +19,24 @@ using ccl.Attributes;
 
 namespace ccl.ShaderNodes
 {
-	public class WavesTextureInputs : Inputs
+	public class WavesTextureInputs : TwoColorInputs
 	{
 		public VectorSocket UVW { get; set; }
-		public ColorSocket Color1 { get; set; }
-		public ColorSocket Color2 { get; set; }
 		public ColorSocket Color3 { get; set; }
 
-		public WavesTextureInputs(ShaderNode parentNode)
+		public WavesTextureInputs(ShaderNode parentNode) : base(parentNode)
 		{
 			UVW = new VectorSocket(parentNode, "UVW");
 			AddSocket(UVW);
-			Color1 = new ColorSocket(parentNode, "Color1");
-			AddSocket(Color1);
-			Color2 = new ColorSocket(parentNode, "Color2");
-			AddSocket(Color2);
 			Color3 = new ColorSocket(parentNode, "Color3");
 			AddSocket(Color3);
 		}
 	}
 
-	public class WavesTextureOutputs : Outputs
+	public class WavesTextureOutputs : TwoColorOutputs
 	{
-		public ColorSocket Color { get; set; }
-
-		public WavesTextureOutputs(ShaderNode parentNode)
+		public WavesTextureOutputs(ShaderNode parentNode) : base(parentNode)
 		{
-			Color = new ColorSocket(parentNode, "Color");
-			AddSocket(Color);
 		}
 	}
 

@@ -19,31 +19,21 @@ using ccl.Attributes;
 
 namespace ccl.ShaderNodes
 {
-	public class FbmTextureInputs : Inputs
+	public class FbmTextureInputs : TwoColorInputs
 	{
 		public VectorSocket UVW { get; set; }
-		public ColorSocket Color1 { get; set; }
-		public ColorSocket Color2 { get; set; }
 
-		public FbmTextureInputs(ShaderNode parentNode)
+		public FbmTextureInputs(ShaderNode parentNode) : base(parentNode)
 		{
 			UVW = new VectorSocket(parentNode, "UVW");
 			AddSocket(UVW);
-			Color1 = new ColorSocket(parentNode, "Color1");
-			AddSocket(Color1);
-			Color2 = new ColorSocket(parentNode, "Color2");
-			AddSocket(Color2);
 		}
 	}
 
-	public class FbmTextureOutputs : Outputs
+	public class FbmTextureOutputs : TwoColorOutputs
 	{
-		public ColorSocket Color { get; set; }
-
-		public FbmTextureOutputs(ShaderNode parentNode)
+		public FbmTextureOutputs(ShaderNode parentNode) : base(parentNode)
 		{
-			Color = new ColorSocket(parentNode, "Color");
-			AddSocket(Color);
 		}
 	}
 

@@ -36,14 +36,10 @@ namespace ccl.ShaderNodes
 		}
 	}
 
-	public class PerlinMarlinTextureOutputs : Outputs
+	public class PerlinMarlinTextureOutputs : TwoColorOutputs
 	{
-		public ColorSocket Color { get; set; }
-
-		public PerlinMarlinTextureOutputs(ShaderNode parentNode)
+		public PerlinMarlinTextureOutputs(ShaderNode parentNode) : base(parentNode)
 		{
-			Color = new ColorSocket(parentNode, "Color");
-			AddSocket(Color);
 		}
 	}
 

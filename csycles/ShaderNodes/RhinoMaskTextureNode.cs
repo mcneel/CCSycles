@@ -33,14 +33,10 @@ namespace ccl.ShaderNodes
 		}
 	}
 
-	public class MaskTextureOutputs : Outputs
+	public class MaskTextureOutputs : TwoColorOutputs
 	{
-		public ColorSocket Color { get; set; }
-
-		public MaskTextureOutputs(ShaderNode parentNode)
+		public MaskTextureOutputs(ShaderNode parentNode) : base(parentNode)
 		{
-			Color = new ColorSocket(parentNode, "Color");
-			AddSocket(Color);
 		}
 	}
 

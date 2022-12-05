@@ -19,31 +19,21 @@ using ccl.Attributes;
 
 namespace ccl.ShaderNodes
 {
-	public class TileTextureInputs : Inputs
+	public class TileTextureInputs : TwoColorInputs
 	{
 		public VectorSocket UVW { get; set; }
-		public ColorSocket Color1 { get; set; }
-		public ColorSocket Color2 { get; set; }
 
-		public TileTextureInputs(ShaderNode parentNode)
+		public TileTextureInputs(ShaderNode parentNode) : base(parentNode)
 		{
 			UVW = new VectorSocket(parentNode, "UVW");
 			AddSocket(UVW);
-			Color1 = new ColorSocket(parentNode, "Color1");
-			AddSocket(Color1);
-			Color2 = new ColorSocket(parentNode, "Color2");
-			AddSocket(Color2);
 		}
 	}
 
-	public class TileTextureOutputs : Outputs
+	public class TileTextureOutputs : TwoColorOutputs
 	{
-		public ColorSocket Color { get; set; }
-
-		public TileTextureOutputs(ShaderNode parentNode)
+		public TileTextureOutputs(ShaderNode parentNode) : base(parentNode)
 		{
-			Color = new ColorSocket(parentNode, "Color");
-			AddSocket(Color);
 		}
 	}
 

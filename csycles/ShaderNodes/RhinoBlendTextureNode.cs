@@ -19,34 +19,24 @@ using ccl.Attributes;
 
 namespace ccl.ShaderNodes
 {
-	public class BlendTextureInputs : Inputs
+	public class BlendTextureInputs : TwoColorInputs
 	{
 		public VectorSocket UVW { get; set; }
-		public ColorSocket Color1 { get; set; }
-		public ColorSocket Color2 { get; set; }
 		public ColorSocket BlendColor { get; set; }
 
-		public BlendTextureInputs(ShaderNode parentNode)
+		public BlendTextureInputs(ShaderNode parentNode) : base(parentNode)
 		{
 			UVW = new VectorSocket(parentNode, "UVW");
 			AddSocket(UVW);
-			Color1 = new ColorSocket(parentNode, "Color1");
-			AddSocket(Color1);
-			Color2 = new ColorSocket(parentNode, "Color2");
-			AddSocket(Color2);
 			BlendColor = new ColorSocket(parentNode, "BlendColor");
 			AddSocket(BlendColor);
 		}
 	}
 
-	public class BlendTextureOutputs : Outputs
+	public class BlendTextureOutputs : TwoColorOutputs
 	{
-		public ColorSocket Color { get; set; }
-
-		public BlendTextureOutputs(ShaderNode parentNode)
+		public BlendTextureOutputs(ShaderNode parentNode) : base(parentNode)
 		{
-			Color = new ColorSocket(parentNode, "Color");
-			AddSocket(Color);
 		}
 	}
 

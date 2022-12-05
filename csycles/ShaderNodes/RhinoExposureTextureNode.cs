@@ -30,14 +30,11 @@ namespace ccl.ShaderNodes
 		}
 	}
 
-	public class ExposureTextureOutputs : Outputs
+	public class ExposureTextureOutputs : TwoColorOutputs
 	{
-		public ColorSocket Color { get; set; }
 
-		public ExposureTextureOutputs(ShaderNode parentNode)
+		public ExposureTextureOutputs(ShaderNode parentNode) : base(parentNode)
 		{
-			Color = new ColorSocket(parentNode, "Color");
-			AddSocket(Color);
 		}
 	}
 

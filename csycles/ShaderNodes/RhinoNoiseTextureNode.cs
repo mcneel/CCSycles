@@ -20,32 +20,21 @@ using ccl.Attributes;
 
 namespace ccl.ShaderNodes
 {
-	public class NoiseTextureInputs : Inputs
+	public class NoiseTextureInputs : TwoColorInputs
 	{
 		public VectorSocket UVW { get; set; }
-		public ColorSocket Color1 { get; set; }
-		public ColorSocket Color2 { get; set; }
 
-		public NoiseTextureInputs(ShaderNode parentNode)
+		public NoiseTextureInputs(ShaderNode parentNode) : base(parentNode)
 		{
 			UVW = new VectorSocket(parentNode, "UVW");
 			AddSocket(UVW);
-			Color1 = new ColorSocket(parentNode, "Color1");
-			AddSocket(Color1);
-			Color2 = new ColorSocket(parentNode, "Color2");
-			AddSocket(Color2);
 		}
 	}
 
-	public class NoiseTextureOutputs : Outputs
+	public class NoiseTextureOutputs : TwoColorOutputs
 	{
-		public ColorSocket Color { get; set; }
-
-		public NoiseTextureOutputs(ShaderNode parentNode)
-		{
-			Color = new ColorSocket(parentNode, "Color");
-			AddSocket(Color);
-		}
+		public NoiseTextureOutputs(ShaderNode parentNode) : base(parentNode)
+		{ }
 	}
 
 	[ShaderNode("rhino_noise_texture")]
@@ -89,8 +78,6 @@ namespace ccl.ShaderNodes
 		{
 			inputs = new NoiseTextureInputs(this);
 			outputs = new NoiseTextureOutputs(this);
-			ins.Color1.Value = new float4(0.0f, 0.0f, 0.0f);
-			ins.Color2.Value = new float4(1.0f, 1.0f, 1.0f);
 		}
 
 		internal override void SetDirectMembers(uint clientId, uint sceneId, uint shaderId)
