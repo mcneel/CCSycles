@@ -180,6 +180,8 @@ namespace ccl
 		RhinoPhysicalSkyTexture,
 		RhinoTextureAdjustmentTexture,
 		RhinoTileTexture,
+		RhinoNormalPart1Texture,
+		RhinoNormalPart2Texture,
 	}
 
 	public enum BvhType : uint

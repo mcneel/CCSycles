@@ -150,6 +150,7 @@
     <Compile Include="ShaderNodes\RhinoInputOutputBase.cs" />
     <Compile Include="ShaderNodes\RhinoMaskTextureNode.cs" />
     <Compile Include="ShaderNodes\RhinoNoiseTextureNode.cs" />
+    <Compile Include="ShaderNodes\RhinoNormalTextureNode.cs" />
     <Compile Include="ShaderNodes\RhinoPerlinMarbleTextureNode.cs" />
     <Compile Include="ShaderNodes\RhinoPerturbingTextureNode.cs" />
     <Compile Include="ShaderNodes\RhinoPhysicalSkyTextureNode.cs" />
