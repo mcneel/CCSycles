@@ -729,6 +729,8 @@ enum class shadernode_type : unsigned int {
 	RHINO_PHYSICAL_SKY_TEXTURE,
 	RHINO_TEXTURE_ADJUSTMENT_TEXTURE,
 	RHINO_TILE_TEXTURE,
+	RHINO_NORMAL_PART1_TEXTURE,
+	RHINO_NORMAL_PART2_TEXTURE,
 };
 
 CCL_CAPI unsigned int __cdecl cycles_create_shader(unsigned int client_id, unsigned int scene_id);

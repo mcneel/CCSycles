@@ -420,6 +420,12 @@ unsigned int cycles_add_shader_node(unsigned int client_id, unsigned int scene_i
 		case shadernode_type::RHINO_TILE_TEXTURE:
 			node = new ccl::RhinoTileTextureNode();
 			break;
+		case shadernode_type::RHINO_NORMAL_PART1_TEXTURE:
+			node = new ccl::RhinoNormalPart1TextureNode();
+			break;
+		case shadernode_type::RHINO_NORMAL_PART2_TEXTURE:
+			node = new ccl::RhinoNormalPart2TextureNode();
+			break;
 		}
 
 		assert(node);
