@@ -1,7 +1,9 @@
 .DS_Store
 x64/
 
+build/
 lib/
+blender_lib/
 lib/*.cubin
 
 *.o
