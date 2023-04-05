@@ -550,6 +550,7 @@
 		A11D68201FB596D800409EB3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -566,10 +567,13 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				HEADER_SEARCH_PATHS = (
 					../../cycles/src,
-					../../ccycles,
-					../../cycles/src/render,
+					../../cycles/src/graph,
 					../../cycles/src/device,
+					../../cycles/src/bvh,
+					../../cycles/src/session,
+					../../cycles/src/scene,
 					../../cycles/src/util,
+					../../ccycles,
 					../../glew/include,
 					../../cycles/third_party/atomic,
 					"../../../../../../../big_libs/OpenImageIO-2.2.19/include",
@@ -592,6 +596,7 @@
 		A11D68211FB596D800409EB3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -607,10 +612,13 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				HEADER_SEARCH_PATHS = (
 					../../cycles/src,
-					../../ccycles,
-					../../cycles/src/render,
+					../../cycles/src/graph,
 					../../cycles/src/device,
+					../../cycles/src/bvh,
+					../../cycles/src/session,
+					../../cycles/src/scene,
 					../../cycles/src/util,
+					../../ccycles,
 					../../glew/include,
 					../../cycles/third_party/atomic,
 					"../../../../../../../big_libs/OpenImageIO-2.2.19/include",
@@ -640,6 +648,7 @@
 		DF87B4AC2203BA3E002AA65E /* Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -655,10 +664,13 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				HEADER_SEARCH_PATHS = (
 					../../cycles/src,
-					../../ccycles,
-					../../cycles/src/render,
+					../../cycles/src/graph,
 					../../cycles/src/device,
+					../../cycles/src/bvh,
+					../../cycles/src/session,
+					../../cycles/src/scene,
 					../../cycles/src/util,
+					../../ccycles,
 					../../glew/include,
 					../../cycles/third_party/atomic,
 					"../../../../../../../big_libs/OpenImageIO-2.2.19/include",
