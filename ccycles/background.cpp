@@ -30,8 +30,8 @@ void cycles_scene_set_background_shader(unsigned int client_id, unsigned int sce
 		ccl::Shader* bg = find_shader_in_scene(sce, shader_id);
 		if (bg != nullptr) {
 			sce->default_background = bg;
-			sce->background->shader = bg;
-			sce->background->use_shader = true;
+			sce->background->set_shader(bg);
+			sce->background->set_use_shader(true);
 			sce->background->tag_update(sce);
 			logger.logit(client_id, "Scene ", scene_id, " set background shader ", shader_id);
 		}
@@ -47,7 +47,7 @@ unsigned int cycles_scene_get_background_shader(unsigned int client_id, unsigned
 		auto bi = sce->shaders.cbegin();
 		auto ei = sce->shaders.cend();
 		while (bi != ei) {
-			if (*bi == sce->background->shader) break;
+			if (*bi == sce->background->get_shader()) break;
 			idx++;
 			bi++;
 		}
@@ -61,7 +61,7 @@ void cycles_scene_set_background_transparent(unsigned int client_id, unsigned in
 	CCScene* csce = nullptr;
 	ccl::Scene* sce = nullptr;
 	if(scene_find(scene_id, &csce, &sce)) {
-		sce->background->transparent = transparent == 1;
+		sce->background->set_transparent(transparent == 1);
 		sce->background->tag_update(sce);
 		logger.logit(client_id, "Scene ", scene_id, " set background transparent", transparent);
 	}
@@ -69,6 +69,8 @@ void cycles_scene_set_background_transparent(unsigned int client_id, unsigned in
 
 void cycles_scene_set_background_ao_factor(unsigned int client_id, unsigned int scene_id, float ao_factor)
 {
+    // TODO: XXXX ao factor no longer in bg, find out if other way or fully deprecated
+    /*
 	CCScene* csce = nullptr;
 	ccl::Scene* sce = nullptr;
 	if(scene_find(scene_id, &csce, &sce)) {
@@ -76,10 +78,13 @@ void cycles_scene_set_background_ao_factor(unsigned int client_id, unsigned int 
 		sce->background->tag_update(sce);
 		logger.logit(client_id, "Scene ", scene_id, " set background ao factor ", ao_factor);
 	}
+    */
 }
 
 void cycles_scene_set_background_ao_distance(unsigned int client_id, unsigned int scene_id, float ao_distance)
 {
+    // TODO: XXXX ao distance no longer in bg, find out if other way or fully deprecated
+    /*
 	CCScene* csce = nullptr;
 	ccl::Scene* sce = nullptr;
 	if(scene_find(scene_id, &csce, &sce)) {
@@ -87,6 +92,7 @@ void cycles_scene_set_background_ao_distance(unsigned int client_id, unsigned in
 		sce->background->tag_update(sce);
 		logger.logit(client_id, "Scene ", scene_id, " set background ao distance ", ao_distance);
 	}
+    */
 }
 
 void cycles_scene_set_background_visibility(unsigned int client_id, unsigned int scene_id, unsigned int path_ray_flag)
@@ -94,7 +100,7 @@ void cycles_scene_set_background_visibility(unsigned int client_id, unsigned int
 	CCScene* csce = nullptr;
 	ccl::Scene* sce = nullptr;
 	if(scene_find(scene_id, &csce, &sce)) {
-		sce->background->visibility = (ccl::PathRayFlag)path_ray_flag;
+		sce->background->set_visibility((ccl::PathRayFlag)path_ray_flag);
 		sce->background->tag_update(sce);
 		logger.logit(client_id, "Scene ", scene_id, " set background path ray visibility ", path_ray_flag);
 	}

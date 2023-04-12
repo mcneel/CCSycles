@@ -16,8 +16,8 @@ limitations under the License.
 
 #include "internal_types.h"
 
-#include "util_debug.h"
-#include "util_path.h"
+#include "util/debug.h"
+#include "util/path.h"
 #include "ccycles.h"
 
 std::ostream& operator<<(std::ostream& out, shadernode_type const &snt) {
@@ -78,18 +78,21 @@ void cycles_initialise(unsigned int mask)
 
 void cycles_debug_set_cpu_kernel(unsigned int state)
 {
-	ccl::DebugFlags().cpu.split_kernel = state == 1;
+    // TODO: XXXX no more split cpu kernel
+	//ccl::DebugFlags().cpu.split_kernel = state == 1;
 }
 
 void cycles_debug_set_cpu_allow_qbvh(unsigned int state)
 {
-	ccl::BVHLayout bvh_layout = (state == 1) ? ccl::BVHLayout::BVH_LAYOUT_BVH4 : ccl::BVHLayout::BVH_LAYOUT_BVH2;
+    // TODO: XXXX no quad bvh
+	ccl::BVHLayout bvh_layout = ccl::BVHLayout::BVH_LAYOUT_BVH2;
 	ccl::DebugFlags().cpu.bvh_layout = bvh_layout;
 }
 
 void cycles_debug_set_cuda_kernel(unsigned int state)
 {
-	ccl::DebugFlags().cuda.split_kernel = state == 1;
+    // TODO: XXXX no more split kernels
+	//ccl::DebugFlags().cuda.split_kernel = state == 1;
 }
 
 void cycles_debug_set_opencl_kernel(int state)
@@ -113,7 +116,7 @@ void cycles_debug_set_opencl_single_program(int state)
 
 void cycles_debug_set_opencl_device_type(int type)
 {
-	ccl::DebugFlags().opencl.device_type = (ccl::DebugFlags::OpenCL::DeviceType)type;
+	//ccl::DebugFlags().opencl.device_type = (ccl::DebugFlags::OpenCL::DeviceType)type;
 }
 
 void cycles_shutdown()

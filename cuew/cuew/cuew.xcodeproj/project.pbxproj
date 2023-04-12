@@ -137,7 +137,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D8F3C9A72331812C00AB35CA /* CLibDebug.xcconfig */;
 			buildSettings = {
-				USER_HEADER_SEARCH_PATHS = "$(inherited) $(PROJECT_DIR) $(PROJECT_DIR)/** $(PROJECT_DIR)/../../cycles/third_party/cuew $(PROJECT_DIR)/../../cycles/third_party/cuew/**";
+				USER_HEADER_SEARCH_PATHS = "$(inherited) $(PROJECT_DIR) $(PROJECT_DIR)/** $(PROJECT_DIR)/../../cycles/third_party/cuew/include $(PROJECT_DIR)/../../cycles/third_party/cuew/**";
 			};
 			name = Debug;
 		};
@@ -145,7 +145,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D8F3C9A82331812C00AB35CA /* CLibRelease.xcconfig */;
 			buildSettings = {
-				USER_HEADER_SEARCH_PATHS = "$(inherited) $(PROJECT_DIR) $(PROJECT_DIR)/** $(PROJECT_DIR)/../../cycles/third_party/cuew $(PROJECT_DIR)/../../cycles/third_party/cuew/**";
+				USER_HEADER_SEARCH_PATHS = "$(inherited) $(PROJECT_DIR) $(PROJECT_DIR)/** $(PROJECT_DIR)/../../cycles/third_party/cuew/include $(PROJECT_DIR)/../../cycles/third_party/cuew/**";
 			};
 			name = Release;
 		};
@@ -169,7 +169,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D8F3C9A82331812C00AB35CA /* CLibRelease.xcconfig */;
 			buildSettings = {
-				USER_HEADER_SEARCH_PATHS = "$(inherited) $(PROJECT_DIR) $(PROJECT_DIR)/** $(PROJECT_DIR)/../../cycles/third_party/cuew $(PROJECT_DIR)/../../cycles/third_party/cuew/**";
+				USER_HEADER_SEARCH_PATHS = "$(inherited) $(PROJECT_DIR) $(PROJECT_DIR)/** $(PROJECT_DIR)/../../cycles/third_party/cuew/include $(PROJECT_DIR)/../../cycles/third_party/cuew/**";
 			};
 			name = Distribution;
 		};

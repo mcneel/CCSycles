@@ -52,7 +52,7 @@
     <Filter Include="kernel_shaders">
       <UniqueIdentifier>{737B3A1C-3DD3-46A8-AD68-E9C61A1E6C56}</UniqueIdentifier>
     </Filter>
-    <!--
+<!--
     <Filter Include="kernel_cpu_sse2">
       <UniqueIdentifier>{FB3A6E0F-00C6-487C-AB43-44D7FF4D99CC}</UniqueIdentifier>
     </Filter>
@@ -73,1507 +73,2657 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="cycles\src\bvh\bvh.cpp">
-      <Filter>bvh</Filter>
+    <ClCompile Include="cycles/install/source/kernel/device/hip/kernel.cpp">
+      <Filter>hip</Filter>
     </ClCompile>
-    <ClCompile Include="cycles\src\bvh\bvh2.cpp">
-      <Filter>bvh</Filter>
+    <ClCompile Include="cycles/install/usd/usd/resources/codegenTemplates/schemaClass.cpp">
+      <Filter>codegenTemplates</Filter>
     </ClCompile>
-    <ClCompile Include="cycles\src\bvh\bvh4.cpp">
-      <Filter>bvh</Filter>
+    <ClCompile Include="cycles/install/usd/usd/resources/codegenTemplates/wrapSchemaClass.cpp">
+      <Filter>codegenTemplates</Filter>
     </ClCompile>
-    <ClCompile Include="cycles\src\bvh\bvh8.cpp">
-      <Filter>bvh</Filter>
+    <ClCompile Include="cycles/install/usd/usd/resources/codegenTemplates/wrapTokens.cpp">
+      <Filter>codegenTemplates</Filter>
     </ClCompile>
-    <ClCompile Include="cycles\src\bvh\bvh_binning.cpp">
-      <Filter>bvh</Filter>
+    <ClCompile Include="cycles/install/usd/usd/resources/codegenTemplates/tokens.cpp">
+      <Filter>codegenTemplates</Filter>
     </ClCompile>
-    <ClCompile Include="cycles\src\bvh\bvh_build.cpp">
-      <Filter>bvh</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\bvh\bvh_embree.cpp">
-      <Filter>bvh</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\bvh\bvh_node.cpp">
-      <Filter>bvh</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\bvh\bvh_optix.cpp">
-      <Filter>bvh</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\bvh\bvh_sort.cpp">
-      <Filter>bvh</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\bvh\bvh_split.cpp">
-      <Filter>bvh</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\bvh\bvh_unaligned.cpp">
-      <Filter>bvh</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\device\device.cpp">
-      <Filter>device</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\device\device_cpu.cpp">
-      <Filter>device</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\device\device_cuda.cpp">
-      <Filter>device</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\device\device_denoising.cpp">
-      <Filter>device</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\device\device_memory.cpp">
-      <Filter>device</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\device\device_multi.cpp">
-      <Filter>device</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\device\device_network.cpp">
-      <Filter>device</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\device\device_opencl.cpp">
-      <Filter>device</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\device\device_optix.cpp">
-      <Filter>device</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\device\device_split_kernel.cpp">
-      <Filter>device</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\device\device_task.cpp">
-      <Filter>device</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\device\opencl\memory_manager.cpp">
-      <Filter>device_opencl</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\device\opencl\opencl_split.cpp">
-      <Filter>device_opencl</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\device\opencl\opencl_util.cpp">
-      <Filter>device_opencl</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\graph\node.cpp">
-      <Filter>graph</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\graph\node_type.cpp">
-      <Filter>graph</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\kernel\kernels\cpu\filter.cpp">
-      <Filter>kernel_cpu</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\kernel\kernels\cpu\filter_avx.cpp">
-      <Filter>kernel_cpu</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\kernel\kernels\cpu\filter_avx2.cpp">
-      <Filter>kernel_cpu</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\kernel\kernels\cpu\filter_sse2.cpp">
-      <Filter>kernel_cpu</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\kernel\kernels\cpu\filter_sse3.cpp">
-      <Filter>kernel_cpu</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\kernel\kernels\cpu\filter_sse41.cpp">
-      <Filter>kernel_cpu</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\kernel\kernels\cpu\kernel.cpp">
-      <Filter>kernel_cpu</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\kernel\kernels\cpu\kernel_avx.cpp">
-      <Filter>kernel_cpu</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\kernel\kernels\cpu\kernel_avx2.cpp">
-      <Filter>kernel_cpu</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\kernel\kernels\cpu\kernel_split.cpp">
-      <Filter>kernel_cpu</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\kernel\kernels\cpu\kernel_split_avx.cpp">
-      <Filter>kernel_cpu</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\kernel\kernels\cpu\kernel_split_avx2.cpp">
-      <Filter>kernel_cpu</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\kernel\kernels\cpu\kernel_split_sse2.cpp">
-      <Filter>kernel_cpu</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\kernel\kernels\cpu\kernel_split_sse3.cpp">
-      <Filter>kernel_cpu</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\kernel\kernels\cpu\kernel_split_sse41.cpp">
-      <Filter>kernel_cpu</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\kernel\kernels\cpu\kernel_sse2.cpp">
-      <Filter>kernel_cpu</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\kernel\kernels\cpu\kernel_sse3.cpp">
-      <Filter>kernel_cpu</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\kernel\kernels\cpu\kernel_sse41.cpp">
-      <Filter>kernel_cpu</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\render\attribute.cpp">
-      <Filter>render</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\render\background.cpp">
-      <Filter>render</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\render\bake.cpp">
-      <Filter>render</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\render\buffers.cpp">
-      <Filter>render</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\render\camera.cpp">
-      <Filter>render</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\render\colorspace.cpp">
-      <Filter>render</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\render\constant_fold.cpp">
-      <Filter>render</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\render\coverage.cpp">
-      <Filter>render</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\render\curves.cpp">
-      <Filter>render</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\render\denoising.cpp">
-      <Filter>render</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\render\film.cpp">
-      <Filter>render</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\render\graph.cpp">
-      <Filter>render</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\render\image.cpp">
-      <Filter>render</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\render\integrator.cpp">
-      <Filter>render</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\render\light.cpp">
-      <Filter>render</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\render\merge.cpp">
-      <Filter>render</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\render\mesh.cpp">
-      <Filter>render</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\render\mesh_displace.cpp">
-      <Filter>render</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\render\mesh_subdivision.cpp">
-      <Filter>render</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\render\mesh_volume.cpp">
-      <Filter>render</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\render\nodes.cpp">
-      <Filter>render</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\render\rhino_nodes.cpp">
-      <Filter>render</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\render\object.cpp">
-      <Filter>render</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\render\osl.cpp">
-      <Filter>render</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\render\particles.cpp">
-      <Filter>render</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\render\scene.cpp">
-      <Filter>render</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\render\session.cpp">
-      <Filter>render</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\render\shader.cpp">
-      <Filter>render</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\render\sobol.cpp">
-      <Filter>render</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\render\stats.cpp">
-      <Filter>render</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\render\svm.cpp">
-      <Filter>render</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\render\tables.cpp">
-      <Filter>render</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\render\tile.cpp">
-      <Filter>render</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\subd\subd_dice.cpp">
-      <Filter>subd</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\subd\subd_patch.cpp">
-      <Filter>subd</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\subd\subd_patch_table.cpp">
-      <Filter>subd</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\subd\subd_split.cpp">
-      <Filter>subd</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\util\util_aligned_malloc.cpp">
-      <Filter>util</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\util\util_debug.cpp">
-      <Filter>util</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\util\util_guarded_allocator.cpp">
-      <Filter>util</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\util\util_ies.cpp">
-      <Filter>util</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\util\util_logging.cpp">
-      <Filter>util</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\util\util_math_cdf.cpp">
-      <Filter>util</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\util\util_md5.cpp">
-      <Filter>util</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\util\util_murmurhash.cpp">
-      <Filter>util</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\util\util_path.cpp">
-      <Filter>util</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\util\util_profiling.cpp">
-      <Filter>util</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\util\util_simd.cpp">
-      <Filter>util</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\util\util_sky_model.cpp">
-      <Filter>util</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\util\util_string.cpp">
-      <Filter>util</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\util\util_system.cpp">
-      <Filter>util</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\util\util_task.cpp">
-      <Filter>util</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\util\util_thread.cpp">
-      <Filter>util</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\util\util_time.cpp">
-      <Filter>util</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\util\util_transform.cpp">
-      <Filter>util</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\src\util\util_windows.cpp">
-      <Filter>util</Filter>
-    </ClCompile>
-    <ClCompile Include="cycles\third_party\numaapi\source\numaapi.c">
+    <ClCompile Include="cycles/third_party/sky/source/sky_model.cpp">
       <Filter>numaapi</Filter>
     </ClCompile>
-    <ClCompile Include="cycles\third_party\numaapi\source\numaapi_win32.c">
+    <ClCompile Include="cycles/third_party/sky/source/sky_nishita.cpp">
       <Filter>numaapi</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/third_party/libc_compat/libc_compat.c">
+      <Filter>libc_compat</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/third_party/hipew/src/hipew.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/build/CMakeFiles/3.25.2/CompilerIdC/CMakeCCompilerId.c">
+      <Filter>CompilerIdC</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/build/CMakeFiles/3.25.2/CompilerIdCXX/CMakeCXXCompilerId.cpp">
+      <Filter>CompilerIdCXX</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/integrator/path_trace_display.cpp">
+      <Filter>integrator</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/integrator/shader_eval.cpp">
+      <Filter>integrator</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/integrator/pass_accessor_gpu.cpp">
+      <Filter>integrator</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/integrator/pass_accessor_cpu.cpp">
+      <Filter>integrator</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/integrator/path_trace.cpp">
+      <Filter>integrator</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/integrator/denoiser_gpu.cpp">
+      <Filter>integrator</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/integrator/work_balancer.cpp">
+      <Filter>integrator</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/integrator/denoiser_oidn.cpp">
+      <Filter>integrator</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/integrator/path_trace_work.cpp">
+      <Filter>integrator</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/integrator/path_trace_tile.cpp">
+      <Filter>integrator</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/integrator/adaptive_sampling.cpp">
+      <Filter>integrator</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/integrator/tile.cpp">
+      <Filter>integrator</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/integrator/denoiser_optix.cpp">
+      <Filter>integrator</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/integrator/pass_accessor.cpp">
+      <Filter>integrator</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/integrator/path_trace_work_cpu.cpp">
+      <Filter>integrator</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/integrator/render_scheduler.cpp">
+      <Filter>integrator</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/integrator/path_trace_work_gpu.cpp">
+      <Filter>integrator</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/integrator/denoiser.cpp">
+      <Filter>integrator</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/integrator/work_tile_scheduler.cpp">
+      <Filter>integrator</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/util/md5.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/util/windows.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/util/thread.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/util/log.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/util/aligned_malloc.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/util/ies.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/util/simd.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/util/transform_sse41.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/util/math_cdf.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/util/string.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/util/transform_avx2.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/util/guarded_allocator.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/util/transform.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/util/task.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/util/system.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/util/debug.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/util/path.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/util/profiling.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/util/murmurhash.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/util/time.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/graph/node_type.cpp">
+      <Filter>graph</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/graph/node.cpp">
+      <Filter>graph</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/bvh/bvh.cpp">
+      <Filter>bvh</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/bvh/embree.cpp">
+      <Filter>bvh</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/bvh/split.cpp">
+      <Filter>bvh</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/bvh/bvh2.cpp">
+      <Filter>bvh</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/bvh/node.cpp">
+      <Filter>bvh</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/bvh/binning.cpp">
+      <Filter>bvh</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/bvh/sort.cpp">
+      <Filter>bvh</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/bvh/optix.cpp">
+      <Filter>bvh</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/bvh/unaligned.cpp">
+      <Filter>bvh</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/bvh/build.cpp">
+      <Filter>bvh</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/bvh/multi.cpp">
+      <Filter>bvh</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/device/memory.cpp">
+      <Filter>device</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/device/graphics_interop.cpp">
+      <Filter>device</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/device/kernel.cpp">
+      <Filter>device</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/device/denoise.cpp">
+      <Filter>device</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/device/device.cpp">
+      <Filter>device</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/device/queue.cpp">
+      <Filter>device</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/device/dummy/device.cpp">
+      <Filter>dummy</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/device/cpu/device_impl.cpp">
+      <Filter>kernel_cpu</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/device/cpu/kernel.cpp">
+      <Filter>kernel_cpu</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/device/cpu/device.cpp">
+      <Filter>kernel_cpu</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/device/cpu/kernel_thread_globals.cpp">
+      <Filter>kernel_cpu</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/device/cuda/graphics_interop.cpp">
+      <Filter>kernel_cuda_headers</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/device/cuda/util.cpp">
+      <Filter>kernel_cuda_headers</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/device/cuda/device_impl.cpp">
+      <Filter>kernel_cuda_headers</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/device/cuda/kernel.cpp">
+      <Filter>kernel_cuda_headers</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/device/cuda/device.cpp">
+      <Filter>kernel_cuda_headers</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/device/cuda/queue.cpp">
+      <Filter>kernel_cuda_headers</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/device/multi/device.cpp">
+      <Filter>multi</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/device/optix/device_impl.cpp">
+      <Filter>optix</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/device/optix/device.cpp">
+      <Filter>optix</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/device/optix/queue.cpp">
+      <Filter>optix</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/device/hip/graphics_interop.cpp">
+      <Filter>hip</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/device/hip/util.cpp">
+      <Filter>hip</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/device/hip/device_impl.cpp">
+      <Filter>hip</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/device/hip/kernel.cpp">
+      <Filter>hip</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/device/hip/device.cpp">
+      <Filter>hip</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/device/hip/queue.cpp">
+      <Filter>hip</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/device/oneapi/device_impl.cpp">
+      <Filter>oneapi</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/device/oneapi/device.cpp">
+      <Filter>oneapi</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/device/oneapi/queue.cpp">
+      <Filter>oneapi</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/scene/pointcloud.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/scene/geometry.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/scene/mesh.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/scene/procedural.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/scene/image.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/scene/light_tree.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/scene/pass.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/scene/scene.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/scene/osl.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/scene/camera.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/scene/bake.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/scene/stats.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/scene/object.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/scene/light.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/scene/film.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/scene/tables.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/scene/alembic.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/scene/shader.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/scene/mesh_displace.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/scene/tabulated_sobol.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/scene/alembic_read.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/scene/image_sky.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/scene/shader_graph.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/scene/image_oiio.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/scene/background.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/scene/integrator.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/scene/attribute.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/scene/constant_fold.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/scene/hair.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/scene/mesh_subdivision.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/scene/particles.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/scene/colorspace.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/scene/image_vdb.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/scene/svm.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/scene/shader_nodes.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/scene/curves.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/scene/volume.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/subd/patch_table.cpp">
+      <Filter>subd</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/subd/split.cpp">
+      <Filter>subd</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/subd/dice.cpp">
+      <Filter>subd</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/subd/patch.cpp">
+      <Filter>subd</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/kernel/device/cpu/kernel.cpp">
+      <Filter>kernel_cpu</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/kernel/device/cpu/kernel_sse41.cpp">
+      <Filter>kernel_cpu</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/kernel/device/cpu/kernel_sse2.cpp">
+      <Filter>kernel_cpu</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/kernel/device/cpu/kernel_avx2.cpp">
+      <Filter>kernel_cpu</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/kernel/device/hip/kernel.cpp">
+      <Filter>hip</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/kernel/device/oneapi/kernel.cpp">
+      <Filter>oneapi</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/hydra/render_pass.cpp">
+      <Filter>hydra</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/hydra/pointcloud.cpp">
+      <Filter>hydra</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/hydra/mesh.cpp">
+      <Filter>hydra</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/hydra/render_delegate.cpp">
+      <Filter>hydra</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/hydra/camera.cpp">
+      <Filter>hydra</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/hydra/output_driver.cpp">
+      <Filter>hydra</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/hydra/render_buffer.cpp">
+      <Filter>hydra</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/hydra/light.cpp">
+      <Filter>hydra</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/hydra/plugin.cpp">
+      <Filter>hydra</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/hydra/instancer.cpp">
+      <Filter>hydra</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/hydra/session.cpp">
+      <Filter>hydra</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/hydra/file_reader.cpp">
+      <Filter>hydra</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/hydra/attribute.cpp">
+      <Filter>hydra</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/hydra/field.cpp">
+      <Filter>hydra</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/hydra/node_util.cpp">
+      <Filter>hydra</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/hydra/material.cpp">
+      <Filter>hydra</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/hydra/curves.cpp">
+      <Filter>hydra</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/hydra/display_driver.cpp">
+      <Filter>hydra</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/hydra/volume.cpp">
+      <Filter>hydra</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/session/merge.cpp">
+      <Filter>session</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/session/session.cpp">
+      <Filter>session</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/session/denoising.cpp">
+      <Filter>session</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/session/tile.cpp">
+      <Filter>session</Filter>
+    </ClCompile>
+    <ClCompile Include="cycles/src/session/buffers.cpp">
+      <Filter>session</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="cycles\src\bvh\bvh.h">
-      <Filter>bvh</Filter>
+    <ClInclude Include="cycles/install/source/util/types_int3_impl.h">
+      <Filter>util</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\bvh\bvh2.h">
-      <Filter>bvh</Filter>
+    <ClInclude Include="cycles/install/source/util/types_uint3_impl.h">
+      <Filter>util</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\bvh\bvh4.h">
-      <Filter>bvh</Filter>
+    <ClInclude Include="cycles/install/source/util/types_float4_impl.h">
+      <Filter>util</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\bvh\bvh8.h">
-      <Filter>bvh</Filter>
+    <ClInclude Include="cycles/install/source/util/half.h">
+      <Filter>util</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\bvh\bvh_binning.h">
-      <Filter>bvh</Filter>
+    <ClInclude Include="cycles/install/source/util/math_int3.h">
+      <Filter>util</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\bvh\bvh_build.h">
-      <Filter>bvh</Filter>
+    <ClInclude Include="cycles/install/source/util/types_float8_impl.h">
+      <Filter>util</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\bvh\bvh_embree.h">
-      <Filter>bvh</Filter>
+    <ClInclude Include="cycles/install/source/util/transform_inverse.h">
+      <Filter>util</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\bvh\bvh_node.h">
-      <Filter>bvh</Filter>
+    <ClInclude Include="cycles/install/source/util/types_ushort4.h">
+      <Filter>util</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\bvh\bvh_optix.h">
-      <Filter>bvh</Filter>
+    <ClInclude Include="cycles/install/source/util/types_float4.h">
+      <Filter>util</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\bvh\bvh_params.h">
-      <Filter>bvh</Filter>
+    <ClInclude Include="cycles/install/source/util/types_int4.h">
+      <Filter>util</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\bvh\bvh_sort.h">
-      <Filter>bvh</Filter>
+    <ClInclude Include="cycles/install/source/util/projection.h">
+      <Filter>util</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\bvh\bvh_split.h">
-      <Filter>bvh</Filter>
+    <ClInclude Include="cycles/install/source/util/math_float3.h">
+      <Filter>util</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\bvh\bvh_unaligned.h">
-      <Filter>bvh</Filter>
+    <ClInclude Include="cycles/install/source/util/math_fast.h">
+      <Filter>util</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\device\device.h">
-      <Filter>device</Filter>
+    <ClInclude Include="cycles/install/source/util/types.h">
+      <Filter>util</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\device\device_denoising.h">
-      <Filter>device</Filter>
+    <ClInclude Include="cycles/install/source/util/types_uint3.h">
+      <Filter>util</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\device\device_intern.h">
-      <Filter>device</Filter>
+    <ClInclude Include="cycles/install/source/util/types_float2_impl.h">
+      <Filter>util</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\device\device_memory.h">
-      <Filter>device</Filter>
+    <ClInclude Include="cycles/install/source/util/math_int4.h">
+      <Filter>util</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\device\device_network.h">
-      <Filter>device</Filter>
+    <ClInclude Include="cycles/install/source/util/types_spectrum.h">
+      <Filter>util</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\device\device_split_kernel.h">
-      <Filter>device</Filter>
+    <ClInclude Include="cycles/install/source/util/color.h">
+      <Filter>util</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\device\device_task.h">
-      <Filter>device</Filter>
+    <ClInclude Include="cycles/install/source/util/types_uchar2.h">
+      <Filter>util</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\device\opencl\memory_manager.h">
-      <Filter>device_opencl</Filter>
+    <ClInclude Include="cycles/install/source/util/types_uint4.h">
+      <Filter>util</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\device\opencl\opencl.h">
-      <Filter>device_opencl</Filter>
+    <ClInclude Include="cycles/install/source/util/types_float3.h">
+      <Filter>util</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\graph\node.h">
-      <Filter>graph</Filter>
+    <ClInclude Include="cycles/install/source/util/types_uchar3_impl.h">
+      <Filter>util</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\graph\node_enum.h">
-      <Filter>graph</Filter>
+    <ClInclude Include="cycles/install/source/util/math_float4.h">
+      <Filter>util</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\graph\node_type.h">
-      <Filter>graph</Filter>
+    <ClInclude Include="cycles/install/source/util/math_intersect.h">
+      <Filter>util</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernel.h">
+    <ClInclude Include="cycles/install/source/util/defines.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/util/types_int3.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/util/static_assert.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/util/rect.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/util/types_int2_impl.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/util/types_uint2_impl.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/util/types_uchar3.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/util/transform.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/util/types_float8.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/util/types_float2.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/util/types_int2.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/util/types_uchar4_impl.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/util/math.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/util/texture.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/util/types_uint4_impl.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/util/types_int4_impl.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/util/types_float3_impl.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/util/math_int2.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/util/math_matrix.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/util/types_uchar2_impl.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/util/math_float2.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/util/math_float8.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/util/hash.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/util/types_uchar4.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/util/types_uint2.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/util/atomic.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/nanovdb/CNanoVDB.h">
+      <Filter>nanovdb</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/nanovdb/NanoVDB.h">
+      <Filter>nanovdb</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/nanovdb/util/SampleFromVoxels.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/nanovdb/util/CSampleFromVoxels.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/types.h">
       <Filter>kernel_headers</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernel_accumulate.h">
+    <ClInclude Include="cycles/install/source/kernel/tables.h">
       <Filter>kernel_headers</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernel_bake.h">
+    <ClInclude Include="cycles/install/source/kernel/data_arrays.h">
       <Filter>kernel_headers</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernel_camera.h">
+    <ClInclude Include="cycles/install/source/kernel/data_template.h">
       <Filter>kernel_headers</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernel_color.h">
-      <Filter>kernel_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernel_compat_cpu.h">
-      <Filter>kernel_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernel_compat_cuda.h">
-      <Filter>kernel_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernel_compat_opencl.h">
-      <Filter>kernel_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernel_compat_optix.h">
-      <Filter>kernel_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernel_differential.h">
-      <Filter>kernel_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernel_emission.h">
-      <Filter>kernel_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernel_film.h">
-      <Filter>kernel_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernel_globals.h">
-      <Filter>kernel_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernel_id_passes.h">
-      <Filter>kernel_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernel_jitter.h">
-      <Filter>kernel_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernel_light.h">
-      <Filter>kernel_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernel_math.h">
-      <Filter>kernel_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernel_montecarlo.h">
-      <Filter>kernel_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernel_passes.h">
-      <Filter>kernel_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernel_path.h">
-      <Filter>kernel_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernel_path_branched.h">
-      <Filter>kernel_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernel_path_common.h">
-      <Filter>kernel_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernel_path_state.h">
-      <Filter>kernel_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernel_path_subsurface.h">
-      <Filter>kernel_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernel_path_surface.h">
-      <Filter>kernel_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernel_path_volume.h">
-      <Filter>kernel_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernel_profiling.h">
-      <Filter>kernel_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernel_projection.h">
-      <Filter>kernel_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernel_queues.h">
-      <Filter>kernel_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernel_random.h">
-      <Filter>kernel_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernel_shader.h">
-      <Filter>kernel_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernel_shadow.h">
-      <Filter>kernel_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernel_subsurface.h">
-      <Filter>kernel_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernel_textures.h">
-      <Filter>kernel_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernel_types.h">
-      <Filter>kernel_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernel_volume.h">
-      <Filter>kernel_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernel_work_stealing.h">
-      <Filter>kernel_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernel_write_passes.h">
-      <Filter>kernel_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\bvh\bvh.h">
-      <Filter>bvh</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\bvh\bvh_embree.h">
-      <Filter>bvh</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\bvh\bvh_local.h">
-      <Filter>bvh</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\bvh\bvh_nodes.h">
-      <Filter>bvh</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\bvh\bvh_shadow_all.h">
-      <Filter>bvh</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\bvh\bvh_traversal.h">
-      <Filter>bvh</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\bvh\bvh_types.h">
-      <Filter>bvh</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\bvh\bvh_volume.h">
-      <Filter>bvh</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\bvh\bvh_volume_all.h">
-      <Filter>bvh</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\bvh\obvh_local.h">
-      <Filter>bvh</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\bvh\obvh_nodes.h">
-      <Filter>bvh</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\bvh\obvh_shadow_all.h">
-      <Filter>bvh</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\bvh\obvh_traversal.h">
-      <Filter>bvh</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\bvh\obvh_volume.h">
-      <Filter>bvh</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\bvh\obvh_volume_all.h">
-      <Filter>bvh</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\bvh\qbvh_local.h">
-      <Filter>bvh</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\bvh\qbvh_nodes.h">
-      <Filter>bvh</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\bvh\qbvh_shadow_all.h">
-      <Filter>bvh</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\bvh\qbvh_traversal.h">
-      <Filter>bvh</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\bvh\qbvh_volume.h">
-      <Filter>bvh</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\bvh\qbvh_volume_all.h">
-      <Filter>bvh</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\closure\alloc.h">
+    <ClInclude Include="cycles/install/source/kernel/closure/bsdf_microfacet_multi_impl.h">
       <Filter>kernel_closures</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\closure\bsdf.h">
+    <ClInclude Include="cycles/install/source/kernel/closure/bsdf_principled_sheen.h">
       <Filter>kernel_closures</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\closure\bsdf_ashikhmin_shirley.h">
+    <ClInclude Include="cycles/install/source/kernel/closure/bsdf_toon.h">
       <Filter>kernel_closures</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\closure\bsdf_ashikhmin_velvet.h">
+    <ClInclude Include="cycles/install/source/kernel/closure/bsdf_microfacet_multi.h">
       <Filter>kernel_closures</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\closure\bsdf_diffuse.h">
+    <ClInclude Include="cycles/install/source/kernel/closure/bsdf_diffuse_ramp.h">
       <Filter>kernel_closures</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\closure\bsdf_diffuse_ramp.h">
+    <ClInclude Include="cycles/install/source/kernel/closure/bssrdf.h">
       <Filter>kernel_closures</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\closure\bsdf_hair.h">
+    <ClInclude Include="cycles/install/source/kernel/closure/bsdf_transparent.h">
       <Filter>kernel_closures</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\closure\bsdf_hair_principled.h">
+    <ClInclude Include="cycles/install/source/kernel/closure/emissive.h">
       <Filter>kernel_closures</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\closure\bsdf_microfacet.h">
+    <ClInclude Include="cycles/install/source/kernel/closure/bsdf_hair_principled.h">
       <Filter>kernel_closures</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\closure\bsdf_microfacet_multi.h">
+    <ClInclude Include="cycles/install/source/kernel/closure/bsdf_ashikhmin_velvet.h">
       <Filter>kernel_closures</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\closure\bsdf_microfacet_multi_impl.h">
+    <ClInclude Include="cycles/install/source/kernel/closure/bsdf_microfacet.h">
       <Filter>kernel_closures</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\closure\bsdf_oren_nayar.h">
+    <ClInclude Include="cycles/install/source/kernel/closure/bsdf_principled_diffuse.h">
       <Filter>kernel_closures</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\closure\bsdf_phong_ramp.h">
+    <ClInclude Include="cycles/install/source/kernel/closure/bsdf_util.h">
       <Filter>kernel_closures</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\closure\bsdf_principled_diffuse.h">
+    <ClInclude Include="cycles/install/source/kernel/closure/bsdf_hair.h">
       <Filter>kernel_closures</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\closure\bsdf_principled_sheen.h">
+    <ClInclude Include="cycles/install/source/kernel/closure/bsdf_ashikhmin_shirley.h">
       <Filter>kernel_closures</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\closure\bsdf_reflection.h">
+    <ClInclude Include="cycles/install/source/kernel/closure/bsdf_oren_nayar.h">
       <Filter>kernel_closures</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\closure\bsdf_refraction.h">
+    <ClInclude Include="cycles/install/source/kernel/closure/volume.h">
       <Filter>kernel_closures</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\closure\bsdf_toon.h">
+    <ClInclude Include="cycles/install/source/kernel/closure/bsdf_refraction.h">
       <Filter>kernel_closures</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\closure\bsdf_transparent.h">
+    <ClInclude Include="cycles/install/source/kernel/closure/bsdf_reflection.h">
       <Filter>kernel_closures</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\closure\bsdf_util.h">
+    <ClInclude Include="cycles/install/source/kernel/closure/bsdf_diffuse.h">
       <Filter>kernel_closures</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\closure\bssrdf.h">
+    <ClInclude Include="cycles/install/source/kernel/closure/bsdf_phong_ramp.h">
       <Filter>kernel_closures</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\closure\emissive.h">
+    <ClInclude Include="cycles/install/source/kernel/closure/alloc.h">
       <Filter>kernel_closures</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\closure\volume.h">
+    <ClInclude Include="cycles/install/source/kernel/closure/bsdf.h">
       <Filter>kernel_closures</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\filter\filter.h">
-      <Filter>kernel_filter_headers</Filter>
+    <ClInclude Include="cycles/install/source/kernel/integrator/state_template.h">
+      <Filter>integrator</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\filter\filter_defines.h">
-      <Filter>kernel_filter_headers</Filter>
+    <ClInclude Include="cycles/install/source/kernel/integrator/subsurface_disk.h">
+      <Filter>integrator</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\filter\filter_features.h">
-      <Filter>kernel_filter_headers</Filter>
+    <ClInclude Include="cycles/install/source/kernel/integrator/displacement_shader.h">
+      <Filter>integrator</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\filter\filter_features_sse.h">
-      <Filter>kernel_filter_headers</Filter>
+    <ClInclude Include="cycles/install/source/kernel/integrator/init_from_bake.h">
+      <Filter>integrator</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\filter\filter_kernel.h">
-      <Filter>kernel_filter_headers</Filter>
+    <ClInclude Include="cycles/install/source/kernel/integrator/intersect_shadow.h">
+      <Filter>integrator</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\filter\filter_nlm_cpu.h">
-      <Filter>kernel_filter_headers</Filter>
+    <ClInclude Include="cycles/install/source/kernel/integrator/surface_shader.h">
+      <Filter>integrator</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\filter\filter_nlm_gpu.h">
-      <Filter>kernel_filter_headers</Filter>
+    <ClInclude Include="cycles/install/source/kernel/integrator/intersect_subsurface.h">
+      <Filter>integrator</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\filter\filter_prefilter.h">
-      <Filter>kernel_filter_headers</Filter>
+    <ClInclude Include="cycles/install/source/kernel/integrator/guiding.h">
+      <Filter>integrator</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\filter\filter_reconstruction.h">
-      <Filter>kernel_filter_headers</Filter>
+    <ClInclude Include="cycles/install/source/kernel/integrator/init_from_camera.h">
+      <Filter>integrator</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\filter\filter_transform.h">
-      <Filter>kernel_filter_headers</Filter>
+    <ClInclude Include="cycles/install/source/kernel/integrator/shade_shadow.h">
+      <Filter>integrator</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\filter\filter_transform_gpu.h">
-      <Filter>kernel_filter_headers</Filter>
+    <ClInclude Include="cycles/install/source/kernel/integrator/megakernel.h">
+      <Filter>integrator</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\filter\filter_transform_sse.h">
-      <Filter>kernel_filter_headers</Filter>
+    <ClInclude Include="cycles/install/source/kernel/integrator/shade_volume.h">
+      <Filter>integrator</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\geom\geom.h">
+    <ClInclude Include="cycles/install/source/kernel/integrator/subsurface.h">
+      <Filter>integrator</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/integrator/shade_light.h">
+      <Filter>integrator</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/integrator/subsurface_random_walk.h">
+      <Filter>integrator</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/integrator/volume_stack.h">
+      <Filter>integrator</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/integrator/volume_shader.h">
+      <Filter>integrator</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/integrator/shade_surface.h">
+      <Filter>integrator</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/integrator/state_flow.h">
+      <Filter>integrator</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/integrator/state_util.h">
+      <Filter>integrator</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/integrator/mnee.h">
+      <Filter>integrator</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/integrator/path_state.h">
+      <Filter>integrator</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/integrator/intersect_volume_stack.h">
+      <Filter>integrator</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/integrator/shadow_state_template.h">
+      <Filter>integrator</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/integrator/state.h">
+      <Filter>integrator</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/integrator/intersect_closest.h">
+      <Filter>integrator</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/integrator/shade_background.h">
+      <Filter>integrator</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/integrator/shadow_catcher.h">
+      <Filter>integrator</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/film/adaptive_sampling.h">
+      <Filter>film</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/film/write.h">
+      <Filter>film</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/film/aov_passes.h">
+      <Filter>film</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/film/denoising_passes.h">
+      <Filter>film</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/film/data_passes.h">
+      <Filter>film</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/film/cryptomatte_passes.h">
+      <Filter>film</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/film/read.h">
+      <Filter>film</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/film/light_passes.h">
+      <Filter>film</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/util/differential.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/util/color.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/util/profiling.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/util/lookup_table.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/camera/projection.h">
+      <Filter>camera</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/camera/camera.h">
+      <Filter>camera</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/bvh/types.h">
+      <Filter>bvh</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/bvh/traversal.h">
+      <Filter>bvh</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/bvh/nodes.h">
+      <Filter>bvh</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/bvh/volume_all.h">
+      <Filter>bvh</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/bvh/bvh.h">
+      <Filter>bvh</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/bvh/util.h">
+      <Filter>bvh</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/bvh/shadow_all.h">
+      <Filter>bvh</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/bvh/volume.h">
+      <Filter>bvh</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/bvh/local.h">
+      <Filter>bvh</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/svm/aov.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/svm/invert.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/svm/noise.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/svm/ramp_util.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/svm/sepcomb_color.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/svm/mapping_util.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/svm/magic.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/svm/mix.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/svm/tex_coord.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/svm/fractal_noise.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/svm/clamp.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/svm/ao.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/svm/wavelength.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/svm/types.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/svm/vector_transform.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/svm/camera.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/svm/gradient.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/svm/mapping.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/svm/ies.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/svm/musgrave.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/svm/node_types_template.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/svm/bump.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/svm/fresnel.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/svm/voxel.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/svm/svm.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/svm/bevel.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/svm/value.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/svm/checker.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/svm/math_util.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/svm/noisetex.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/svm/vector_rotate.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/svm/normal.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/svm/sepcomb_hsv.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/svm/wireframe.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/svm/gamma.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/svm/brightness.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/svm/sepcomb_vector.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/svm/voronoi.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/svm/math.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/svm/light_path.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/svm/closure.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/svm/white_noise.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/svm/wave.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/svm/convert.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/svm/displace.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/svm/hsv.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/svm/attribute.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/svm/ramp.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/svm/brick.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/svm/color_util.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/svm/vertex_color.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/svm/image.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/svm/map_range.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/svm/geometry.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/svm/blackbody.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/svm/sky.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/geom/primitive.h">
       <Filter>kernel_geom_headers</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\geom\geom_attribute.h">
+    <ClInclude Include="cycles/install/source/kernel/geom/motion_triangle_intersect.h">
       <Filter>kernel_geom_headers</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\geom\geom_curve.h">
+    <ClInclude Include="cycles/install/source/kernel/geom/motion_triangle_shader.h">
       <Filter>kernel_geom_headers</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\geom\geom_curve_intersect.h">
+    <ClInclude Include="cycles/install/source/kernel/geom/point.h">
       <Filter>kernel_geom_headers</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\geom\geom_motion_curve.h">
+    <ClInclude Include="cycles/install/source/kernel/geom/shader_data.h">
       <Filter>kernel_geom_headers</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\geom\geom_motion_triangle.h">
+    <ClInclude Include="cycles/install/source/kernel/geom/subd_triangle.h">
       <Filter>kernel_geom_headers</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\geom\geom_motion_triangle_intersect.h">
+    <ClInclude Include="cycles/install/source/kernel/geom/motion_point.h">
       <Filter>kernel_geom_headers</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\geom\geom_motion_triangle_shader.h">
+    <ClInclude Include="cycles/install/source/kernel/geom/curve.h">
       <Filter>kernel_geom_headers</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\geom\geom_object.h">
+    <ClInclude Include="cycles/install/source/kernel/geom/triangle_intersect.h">
       <Filter>kernel_geom_headers</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\geom\geom_patch.h">
+    <ClInclude Include="cycles/install/source/kernel/geom/curve_intersect.h">
       <Filter>kernel_geom_headers</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\geom\geom_primitive.h">
+    <ClInclude Include="cycles/install/source/kernel/geom/motion_triangle.h">
       <Filter>kernel_geom_headers</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\geom\geom_subd_triangle.h">
+    <ClInclude Include="cycles/install/source/kernel/geom/point_intersect.h">
       <Filter>kernel_geom_headers</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\geom\geom_triangle.h">
+    <ClInclude Include="cycles/install/source/kernel/geom/patch.h">
       <Filter>kernel_geom_headers</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\geom\geom_triangle_intersect.h">
+    <ClInclude Include="cycles/install/source/kernel/geom/object.h">
       <Filter>kernel_geom_headers</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\geom\geom_volume.h">
+    <ClInclude Include="cycles/install/source/kernel/geom/triangle.h">
       <Filter>kernel_geom_headers</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernels\cpu\filter_cpu.h">
-      <Filter>kernel_cpu</Filter>
+    <ClInclude Include="cycles/install/source/kernel/geom/volume.h">
+      <Filter>kernel_geom_headers</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernels\cpu\filter_cpu_impl.h">
-      <Filter>kernel_cpu</Filter>
+    <ClInclude Include="cycles/install/source/kernel/geom/motion_curve.h">
+      <Filter>kernel_geom_headers</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernels\cpu\kernel_cpu.h">
-      <Filter>kernel_cpu</Filter>
+    <ClInclude Include="cycles/install/source/kernel/geom/attribute.h">
+      <Filter>kernel_geom_headers</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernels\cpu\kernel_cpu_image.h">
-      <Filter>kernel_cpu</Filter>
+    <ClInclude Include="cycles/install/source/kernel/geom/geom.h">
+      <Filter>kernel_geom_headers</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernels\cpu\kernel_cpu_impl.h">
-      <Filter>kernel_cpu</Filter>
+    <ClInclude Include="cycles/install/source/kernel/sample/lcg.h">
+      <Filter>sample</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernels\cuda\kernel_config.h">
+    <ClInclude Include="cycles/install/source/kernel/sample/mapping.h">
+      <Filter>sample</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/sample/pattern.h">
+      <Filter>sample</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/sample/sobol_burley.h">
+      <Filter>sample</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/sample/util.h">
+      <Filter>sample</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/sample/jitter.h">
+      <Filter>sample</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/sample/mis.h">
+      <Filter>sample</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/device/gpu/work_stealing.h">
+      <Filter>gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/device/gpu/parallel_prefix_sum.h">
+      <Filter>gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/device/gpu/kernel.h">
+      <Filter>gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/device/gpu/parallel_active_index.h">
+      <Filter>gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/device/gpu/parallel_sorted_index.h">
+      <Filter>gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/device/gpu/image.h">
+      <Filter>gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/device/metal/function_constants.h">
+      <Filter>metal</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/device/metal/globals.h">
+      <Filter>metal</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/device/metal/bvh.h">
+      <Filter>metal</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/device/metal/context_begin.h">
+      <Filter>metal</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/device/metal/compat.h">
+      <Filter>metal</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/device/metal/context_end.h">
+      <Filter>metal</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/install/source/kernel/device/cuda/config.h">
       <Filter>kernel_cuda_headers</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernels\cuda\kernel_cuda_image.h">
+    <ClInclude Include="cycles/install/source/kernel/device/cuda/globals.h">
       <Filter>kernel_cuda_headers</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernels\opencl\kernel_opencl_image.h">
-      <Filter>device_opencl</Filter>
+    <ClInclude Include="cycles/install/source/kernel/device/cuda/compat.h">
+      <Filter>kernel_cuda_headers</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernels\opencl\kernel_split_function.h">
-      <Filter>device_opencl</Filter>
+    <ClInclude Include="cycles/install/source/kernel/device/optix/globals.h">
+      <Filter>optix</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\shaders\node_color.h">
-      <Filter>kernel_shaders</Filter>
+    <ClInclude Include="cycles/install/source/kernel/device/optix/bvh.h">
+      <Filter>optix</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\shaders\node_fresnel.h">
-      <Filter>kernel_shaders</Filter>
+    <ClInclude Include="cycles/install/source/kernel/device/optix/compat.h">
+      <Filter>optix</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\shaders\node_hash.h">
-      <Filter>kernel_shaders</Filter>
+    <ClInclude Include="cycles/install/source/kernel/device/hip/config.h">
+      <Filter>hip</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\shaders\node_noise.h">
-      <Filter>kernel_shaders</Filter>
+    <ClInclude Include="cycles/install/source/kernel/device/hip/globals.h">
+      <Filter>hip</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\shaders\node_ramp_util.h">
-      <Filter>kernel_shaders</Filter>
+    <ClInclude Include="cycles/install/source/kernel/device/hip/compat.h">
+      <Filter>hip</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\shaders\oslutil.h">
-      <Filter>kernel_shaders</Filter>
+    <ClInclude Include="cycles/install/source/kernel/light/background.h">
+      <Filter>light</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\shaders\stdosl.h">
-      <Filter>kernel_shaders</Filter>
+    <ClInclude Include="cycles/install/source/kernel/light/light.h">
+      <Filter>light</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\shaders\vector2.h">
-      <Filter>kernel_shaders</Filter>
+    <ClInclude Include="cycles/install/source/kernel/light/common.h">
+      <Filter>light</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\shaders\vector4.h">
-      <Filter>kernel_shaders</Filter>
+    <ClInclude Include="cycles/install/source/kernel/light/sample.h">
+      <Filter>light</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\split\kernel_branched.h">
-      <Filter>kernel_split_headers</Filter>
+    <ClInclude Include="cycles/install/source/kernel/bake/bake.h">
+      <Filter>bake</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\split\kernel_buffer_update.h">
-      <Filter>kernel_split_headers</Filter>
+    <ClInclude Include="cycles/install/usd/usd/resources/codegenTemplates/tokens.h">
+      <Filter>codegenTemplates</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\split\kernel_data_init.h">
-      <Filter>kernel_split_headers</Filter>
+    <ClInclude Include="cycles/install/usd/usd/resources/codegenTemplates/api.h">
+      <Filter>codegenTemplates</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\split\kernel_direct_lighting.h">
-      <Filter>kernel_split_headers</Filter>
+    <ClInclude Include="cycles/install/usd/usd/resources/codegenTemplates/schemaClass.h">
+      <Filter>codegenTemplates</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\split\kernel_do_volume.h">
-      <Filter>kernel_split_headers</Filter>
+    <ClInclude Include="cycles/install/shader/color2.h">
+      <Filter>shader</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\split\kernel_enqueue_inactive.h">
-      <Filter>kernel_split_headers</Filter>
+    <ClInclude Include="cycles/install/shader/vector2.h">
+      <Filter>shader</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\split\kernel_holdout_emission_blurring_pathtermination_ao.h">
-      <Filter>kernel_split_headers</Filter>
+    <ClInclude Include="cycles/install/shader/oslutil.h">
+      <Filter>shader</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\split\kernel_indirect_background.h">
-      <Filter>kernel_split_headers</Filter>
+    <ClInclude Include="cycles/install/shader/node_fresnel.h">
+      <Filter>shader</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\split\kernel_indirect_subsurface.h">
-      <Filter>kernel_split_headers</Filter>
+    <ClInclude Include="cycles/install/shader/stdcycles.h">
+      <Filter>shader</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\split\kernel_lamp_emission.h">
-      <Filter>kernel_split_headers</Filter>
+    <ClInclude Include="cycles/install/shader/node_noise.h">
+      <Filter>shader</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\split\kernel_next_iteration_setup.h">
-      <Filter>kernel_split_headers</Filter>
+    <ClInclude Include="cycles/install/shader/node_ramp_util.h">
+      <Filter>shader</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\split\kernel_path_init.h">
-      <Filter>kernel_split_headers</Filter>
+    <ClInclude Include="cycles/install/shader/matrix33.h">
+      <Filter>shader</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\split\kernel_queue_enqueue.h">
-      <Filter>kernel_split_headers</Filter>
+    <ClInclude Include="cycles/install/shader/color4.h">
+      <Filter>shader</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\split\kernel_scene_intersect.h">
-      <Filter>kernel_split_headers</Filter>
+    <ClInclude Include="cycles/install/shader/vector4.h">
+      <Filter>shader</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\split\kernel_shader_eval.h">
-      <Filter>kernel_split_headers</Filter>
+    <ClInclude Include="cycles/install/shader/node_hash.h">
+      <Filter>shader</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\split\kernel_shader_setup.h">
-      <Filter>kernel_split_headers</Filter>
+    <ClInclude Include="cycles/install/shader/stdosl.h">
+      <Filter>shader</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\split\kernel_shader_sort.h">
-      <Filter>kernel_split_headers</Filter>
+    <ClInclude Include="cycles/install/shader/node_math.h">
+      <Filter>shader</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\split\kernel_shadow_blocked_ao.h">
-      <Filter>kernel_split_headers</Filter>
+    <ClInclude Include="cycles/install/shader/node_color_blend.h">
+      <Filter>shader</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\split\kernel_shadow_blocked_dl.h">
-      <Filter>kernel_split_headers</Filter>
+    <ClInclude Include="cycles/install/shader/node_color.h">
+      <Filter>shader</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\split\kernel_split_common.h">
-      <Filter>kernel_split_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\split\kernel_split_data.h">
-      <Filter>kernel_split_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\split\kernel_split_data_types.h">
-      <Filter>kernel_split_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\split\kernel_subsurface_scatter.h">
-      <Filter>kernel_split_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\svm\svm.h">
-      <Filter>SVM Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\svm\svm_ao.h">
-      <Filter>SVM Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\svm\svm_aov.h">
-      <Filter>SVM Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\svm\svm_attribute.h">
-      <Filter>SVM Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\svm\svm_bevel.h">
-      <Filter>SVM Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\svm\svm_blackbody.h">
-      <Filter>SVM Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\svm\svm_brick.h">
-      <Filter>SVM Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\svm\svm_brightness.h">
-      <Filter>SVM Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\svm\svm_bump.h">
-      <Filter>SVM Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\svm\svm_camera.h">
-      <Filter>SVM Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\svm\svm_checker.h">
-      <Filter>SVM Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\svm\svm_clamp.h">
-      <Filter>SVM Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\svm\svm_closure.h">
-      <Filter>SVM Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\svm\svm_color_util.h">
-      <Filter>SVM Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\svm\svm_convert.h">
-      <Filter>SVM Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\svm\svm_displace.h">
-      <Filter>SVM Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\svm\svm_fractal_noise.h">
-      <Filter>SVM Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\svm\svm_fresnel.h">
-      <Filter>SVM Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\svm\svm_gamma.h">
-      <Filter>SVM Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\svm\svm_geometry.h">
-      <Filter>SVM Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\svm\svm_gradient.h">
-      <Filter>SVM Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\svm\svm_hsv.h">
-      <Filter>SVM Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\svm\svm_ies.h">
-      <Filter>SVM Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\svm\svm_image.h">
-      <Filter>SVM Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\svm\svm_invert.h">
-      <Filter>SVM Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\svm\svm_light_path.h">
-      <Filter>SVM Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\svm\svm_magic.h">
-      <Filter>SVM Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\svm\svm_mapping.h">
-      <Filter>SVM Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\svm\svm_mapping_util.h">
-      <Filter>SVM Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\svm\svm_map_range.h">
-      <Filter>SVM Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\svm\svm_math.h">
-      <Filter>SVM Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\svm\svm_math_util.h">
-      <Filter>SVM Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\svm\svm_mix.h">
-      <Filter>SVM Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\svm\svm_musgrave.h">
-      <Filter>SVM Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\svm\svm_noise.h">
-      <Filter>SVM Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\svm\svm_noisetex.h">
-      <Filter>SVM Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\svm\svm_normal.h">
-      <Filter>SVM Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\svm\svm_ramp.h">
-      <Filter>SVM Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\svm\svm_ramp_util.h">
-      <Filter>SVM Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\svm\svm_sepcomb_hsv.h">
-      <Filter>SVM Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\svm\svm_sepcomb_vector.h">
-      <Filter>SVM Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\svm\svm_sky.h">
-      <Filter>SVM Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\svm\svm_tex_coord.h">
-      <Filter>SVM Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\svm\svm_types.h">
-      <Filter>SVM Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\svm\svm_value.h">
-      <Filter>SVM Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\svm\svm_vector_transform.h">
-      <Filter>SVM Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\svm\svm_vertex_color.h">
-      <Filter>SVM Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\svm\svm_voronoi.h">
-      <Filter>SVM Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\svm\svm_voxel.h">
-      <Filter>SVM Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\svm\svm_wave.h">
-      <Filter>SVM Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\svm\svm_wavelength.h">
-      <Filter>SVM Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\svm\svm_white_noise.h">
-      <Filter>SVM Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\svm\svm_wireframe.h">
-      <Filter>SVM Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\render\attribute.h">
-      <Filter>render</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\render\background.h">
-      <Filter>render</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\render\bake.h">
-      <Filter>render</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\render\buffers.h">
-      <Filter>render</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\render\camera.h">
-      <Filter>render</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\render\colorspace.h">
-      <Filter>render</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\render\constant_fold.h">
-      <Filter>render</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\render\coverage.h">
-      <Filter>render</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\render\curves.h">
-      <Filter>render</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\render\denoising.h">
-      <Filter>render</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\render\film.h">
-      <Filter>render</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\render\graph.h">
-      <Filter>render</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\render\image.h">
-      <Filter>render</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\render\integrator.h">
-      <Filter>render</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\render\light.h">
-      <Filter>render</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\render\merge.h">
-      <Filter>render</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\render\mesh.h">
-      <Filter>render</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\render\nodes.h">
-      <Filter>render</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\render\rhino_nodes.h">
-      <Filter>render</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\render\object.h">
-      <Filter>render</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\render\osl.h">
-      <Filter>render</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\render\particles.h">
-      <Filter>render</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\render\scene.h">
-      <Filter>render</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\render\session.h">
-      <Filter>render</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\render\shader.h">
-      <Filter>render</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\render\sobol.h">
-      <Filter>render</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\render\stats.h">
-      <Filter>render</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\render\svm.h">
-      <Filter>render</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\render\tables.h">
-      <Filter>render</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\render\tile.h">
-      <Filter>render</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\subd\subd_dice.h">
-      <Filter>subd</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\subd\subd_patch.h">
-      <Filter>subd</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\subd\subd_patch_table.h">
-      <Filter>subd</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\subd\subd_split.h">
-      <Filter>subd</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\subd\subd_subpatch.h">
-      <Filter>subd</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_algorithm.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_aligned_malloc.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_args.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_array.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_atomic.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_avxb.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_avxf.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_boundbox.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_color.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_debug.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_defines.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_deque.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_disjoint_set.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_foreach.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_function.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_guarded_allocator.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_half.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_hash.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_ies.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_image.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_image_impl.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_list.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_logging.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_map.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_math.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_math_cdf.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_math_fast.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_math_float2.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_math_float3.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_math_float4.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_math_int2.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_math_int3.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_math_int4.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_math_intersect.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_math_matrix.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_md5.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_murmurhash.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_opengl.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_optimization.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_param.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_path.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_profiling.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_progress.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_projection.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_queue.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_rect.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_set.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_simd.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_sky_model.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_sky_model_data.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_sseb.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_ssef.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_ssei.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_stack_allocator.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_static_assert.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_stats.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_string.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_system.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_task.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_texture.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_thread.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_time.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_transform.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_types.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_types_float2.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_types_float2_impl.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_types_float3.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_types_float3_impl.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_types_float4.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_types_float4_impl.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_types_float8.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_types_float8_impl.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_types_int2.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_types_int2_impl.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_types_int3.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_types_int3_impl.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_types_int4.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_types_int4_impl.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_types_uchar2.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_types_uchar2_impl.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_types_uchar3.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_types_uchar3_impl.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_types_uchar4.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_types_uchar4_impl.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_types_uint2.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_types_uint2_impl.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_types_uint3.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_types_uint3_impl.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_types_uint4.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_types_uint4_impl.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_types_ushort4.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_types_vector3.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_types_vector3_impl.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_unique_ptr.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_vector.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_version.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\util\util_windows.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\third_party\numaapi\include\numaapi.h">
+    <ClInclude Include="cycles/third_party/sky/include/sky_model.h">
       <Filter>numaapi</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\third_party\numaapi\source\build_config.h">
+    <ClInclude Include="cycles/third_party/sky/source/sky_model_data.h">
       <Filter>numaapi</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\svm\svm_rhino_types.h">
+    <ClInclude Include="cycles/third_party/sky/source/sky_float3.h">
+      <Filter>numaapi</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/third_party/hipew/include/hipew.h">
+      <Filter>numaapi</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/integrator/render_scheduler.h">
+      <Filter>integrator</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/integrator/work_balancer.h">
+      <Filter>integrator</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/integrator/adaptive_sampling.h">
+      <Filter>integrator</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/integrator/tile.h">
+      <Filter>integrator</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/integrator/guiding.h">
+      <Filter>integrator</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/integrator/path_trace_work_gpu.h">
+      <Filter>integrator</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/integrator/denoiser.h">
+      <Filter>integrator</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/integrator/pass_accessor.h">
+      <Filter>integrator</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/integrator/path_trace_display.h">
+      <Filter>integrator</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/integrator/path_trace_work_cpu.h">
+      <Filter>integrator</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/integrator/denoiser_optix.h">
+      <Filter>integrator</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/integrator/pass_accessor_gpu.h">
+      <Filter>integrator</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/integrator/denoiser_oidn.h">
+      <Filter>integrator</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/integrator/pass_accessor_cpu.h">
+      <Filter>integrator</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/integrator/denoiser_gpu.h">
+      <Filter>integrator</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/integrator/path_trace_tile.h">
+      <Filter>integrator</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/integrator/path_trace_work.h">
+      <Filter>integrator</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/integrator/work_tile_scheduler.h">
+      <Filter>integrator</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/integrator/path_trace.h">
+      <Filter>integrator</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/integrator/shader_eval.h">
+      <Filter>integrator</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/time.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/progress.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/semaphore.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/types_int3_impl.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/types_uint3_impl.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/types_float4_impl.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/openvdb.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/half.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/math_int3.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/types_float8_impl.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/tbb.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/transform_inverse.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/task.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/debug.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/version.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/types_ushort4.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/types_float4.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/types_int4.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/projection.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/math_float3.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/algorithm.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/guiding.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/map.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/math_fast.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/path.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/types.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/types_uint3.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/types_float2_impl.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/aligned_malloc.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/ies.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/md5.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/math_int4.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/types_spectrum.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/color.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/types_uchar2.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/stack_allocator.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/types_uint4.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/types_float3.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/types_uchar3_impl.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/math_float4.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/math_intersect.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/defines.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/windows.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/types_int3.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/static_assert.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/args.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/list.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/thread.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/image_impl.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/rect.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/param.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/types_int2_impl.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/log.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/types_uint2_impl.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/xml.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/types_uchar3.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/foreach.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/array.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/simd.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/unique_ptr.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/transform.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/deque.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/types_float8.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/types_float2.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/types_int2.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/types_uchar4_impl.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/types_int8.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/math.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/optimization.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/types_int8_impl.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/math_cdf.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/profiling.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/texture.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/types_uint4_impl.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/types_int4_impl.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/system.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/types_float3_impl.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/math_int2.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/disjoint_set.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/math_int8.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/boundbox.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/openimagedenoise.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/vector.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/guarded_allocator.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/math_matrix.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/types_uchar2_impl.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/math_float2.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/stats.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/math_float8.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/hash.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/function.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/image.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/queue.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/murmurhash.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/types_uchar4.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/types_uint2.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/set.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/string.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/util/atomic.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/graph/node_type.h">
+      <Filter>graph</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/graph/node_enum.h">
+      <Filter>graph</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/graph/node.h">
+      <Filter>graph</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/bvh/unaligned.h">
+      <Filter>bvh</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/bvh/params.h">
+      <Filter>bvh</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/bvh/build.h">
+      <Filter>bvh</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/bvh/node.h">
+      <Filter>bvh</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/bvh/embree.h">
+      <Filter>bvh</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/bvh/bvh2.h">
+      <Filter>bvh</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/bvh/bvh.h">
+      <Filter>bvh</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/bvh/binning.h">
+      <Filter>bvh</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/bvh/metal.h">
+      <Filter>bvh</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/bvh/sort.h">
+      <Filter>bvh</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/bvh/multi.h">
+      <Filter>bvh</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/bvh/split.h">
+      <Filter>bvh</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/bvh/optix.h">
+      <Filter>bvh</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/device/device.h">
+      <Filter>device</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/device/graphics_interop.h">
+      <Filter>device</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/device/denoise.h">
+      <Filter>device</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/device/kernel.h">
+      <Filter>device</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/device/memory.h">
+      <Filter>device</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/device/queue.h">
+      <Filter>device</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/device/dummy/device.h">
+      <Filter>dummy</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/device/metal/device.h">
+      <Filter>metal</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/device/metal/bvh.h">
+      <Filter>metal</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/device/metal/util.h">
+      <Filter>metal</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/device/metal/kernel.h">
+      <Filter>metal</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/device/metal/device_impl.h">
+      <Filter>metal</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/device/metal/queue.h">
+      <Filter>metal</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/device/cpu/device.h">
+      <Filter>kernel_cpu</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/device/cpu/kernel_function.h">
+      <Filter>kernel_cpu</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/device/cpu/kernel.h">
+      <Filter>kernel_cpu</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/device/cpu/kernel_thread_globals.h">
+      <Filter>kernel_cpu</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/device/cpu/device_impl.h">
+      <Filter>kernel_cpu</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/device/cuda/device.h">
+      <Filter>kernel_cuda_headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/device/cuda/graphics_interop.h">
+      <Filter>kernel_cuda_headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/device/cuda/util.h">
+      <Filter>kernel_cuda_headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/device/cuda/kernel.h">
+      <Filter>kernel_cuda_headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/device/cuda/device_impl.h">
+      <Filter>kernel_cuda_headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/device/cuda/queue.h">
+      <Filter>kernel_cuda_headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/device/multi/device.h">
+      <Filter>multi</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/device/optix/device.h">
+      <Filter>optix</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/device/optix/util.h">
+      <Filter>optix</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/device/optix/device_impl.h">
+      <Filter>optix</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/device/optix/queue.h">
+      <Filter>optix</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/device/hip/device.h">
+      <Filter>hip</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/device/hip/graphics_interop.h">
+      <Filter>hip</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/device/hip/util.h">
+      <Filter>hip</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/device/hip/kernel.h">
+      <Filter>hip</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/device/hip/device_impl.h">
+      <Filter>hip</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/device/hip/queue.h">
+      <Filter>hip</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/device/oneapi/device.h">
+      <Filter>oneapi</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/device/oneapi/device_impl.h">
+      <Filter>oneapi</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/device/oneapi/queue.h">
+      <Filter>oneapi</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/scene/background.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/scene/shader.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/scene/light.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/scene/constant_fold.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/scene/shader_graph.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/scene/camera.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/scene/osl.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/scene/pointcloud.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/scene/procedural.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/scene/alembic_read.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/scene/svm.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/scene/alembic.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/scene/mesh.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/scene/image_oiio.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/scene/tables.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/scene/hair.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/scene/light_tree.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/scene/image_sky.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/scene/pass.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/scene/image_vdb.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/scene/integrator.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/scene/object.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/scene/colorspace.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/scene/shader_nodes.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/scene/volume.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/scene/curves.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/scene/film.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/scene/tabulated_sobol.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/scene/attribute.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/scene/particles.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/scene/stats.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/scene/image.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/scene/bake.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/scene/geometry.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/scene/scene.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/subd/patch_table.h">
+      <Filter>subd</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/subd/patch.h">
+      <Filter>subd</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/subd/subpatch.h">
+      <Filter>subd</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/subd/split.h">
+      <Filter>subd</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/subd/dice.h">
+      <Filter>subd</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/types.h">
+      <Filter>kernel_headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/tables.h">
+      <Filter>kernel_headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/data_arrays.h">
+      <Filter>kernel_headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/data_template.h">
+      <Filter>kernel_headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/closure/bsdf_microfacet_multi_impl.h">
+      <Filter>kernel_closures</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/closure/bsdf_principled_sheen.h">
+      <Filter>kernel_closures</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/closure/bsdf_toon.h">
+      <Filter>kernel_closures</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/closure/bsdf_microfacet_multi.h">
+      <Filter>kernel_closures</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/closure/bsdf_diffuse_ramp.h">
+      <Filter>kernel_closures</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/closure/bssrdf.h">
+      <Filter>kernel_closures</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/closure/bsdf_transparent.h">
+      <Filter>kernel_closures</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/closure/emissive.h">
+      <Filter>kernel_closures</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/closure/bsdf_hair_principled.h">
+      <Filter>kernel_closures</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/closure/bsdf_ashikhmin_velvet.h">
+      <Filter>kernel_closures</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/closure/bsdf_microfacet.h">
+      <Filter>kernel_closures</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/closure/bsdf_principled_diffuse.h">
+      <Filter>kernel_closures</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/closure/bsdf_util.h">
+      <Filter>kernel_closures</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/closure/bsdf_hair.h">
+      <Filter>kernel_closures</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/closure/bsdf_ashikhmin_shirley.h">
+      <Filter>kernel_closures</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/closure/bsdf_oren_nayar.h">
+      <Filter>kernel_closures</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/closure/volume.h">
+      <Filter>kernel_closures</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/closure/bsdf_refraction.h">
+      <Filter>kernel_closures</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/closure/bsdf_reflection.h">
+      <Filter>kernel_closures</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/closure/bsdf_diffuse.h">
+      <Filter>kernel_closures</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/closure/bsdf_phong_ramp.h">
+      <Filter>kernel_closures</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/closure/alloc.h">
+      <Filter>kernel_closures</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/closure/bsdf.h">
+      <Filter>kernel_closures</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/integrator/state_template.h">
+      <Filter>integrator</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/integrator/subsurface_disk.h">
+      <Filter>integrator</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/integrator/displacement_shader.h">
+      <Filter>integrator</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/integrator/init_from_bake.h">
+      <Filter>integrator</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/integrator/intersect_shadow.h">
+      <Filter>integrator</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/integrator/surface_shader.h">
+      <Filter>integrator</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/integrator/intersect_subsurface.h">
+      <Filter>integrator</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/integrator/guiding.h">
+      <Filter>integrator</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/integrator/init_from_camera.h">
+      <Filter>integrator</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/integrator/shade_shadow.h">
+      <Filter>integrator</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/integrator/megakernel.h">
+      <Filter>integrator</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/integrator/shade_volume.h">
+      <Filter>integrator</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/integrator/subsurface.h">
+      <Filter>integrator</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/integrator/shade_light.h">
+      <Filter>integrator</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/integrator/subsurface_random_walk.h">
+      <Filter>integrator</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/integrator/volume_stack.h">
+      <Filter>integrator</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/integrator/volume_shader.h">
+      <Filter>integrator</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/integrator/shade_surface.h">
+      <Filter>integrator</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/integrator/state_flow.h">
+      <Filter>integrator</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/integrator/state_util.h">
+      <Filter>integrator</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/integrator/mnee.h">
+      <Filter>integrator</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/integrator/path_state.h">
+      <Filter>integrator</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/integrator/intersect_volume_stack.h">
+      <Filter>integrator</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/integrator/shadow_state_template.h">
+      <Filter>integrator</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/integrator/state.h">
+      <Filter>integrator</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/integrator/intersect_closest.h">
+      <Filter>integrator</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/integrator/shade_background.h">
+      <Filter>integrator</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/integrator/shadow_catcher.h">
+      <Filter>integrator</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/film/adaptive_sampling.h">
+      <Filter>film</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/film/write.h">
+      <Filter>film</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/film/aov_passes.h">
+      <Filter>film</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/film/denoising_passes.h">
+      <Filter>film</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/film/data_passes.h">
+      <Filter>film</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/film/cryptomatte_passes.h">
+      <Filter>film</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/film/read.h">
+      <Filter>film</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/film/light_passes.h">
+      <Filter>film</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/util/differential.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/util/color.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/util/profiling.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/util/lookup_table.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/camera/projection.h">
+      <Filter>camera</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/camera/camera.h">
+      <Filter>camera</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/bvh/types.h">
+      <Filter>bvh</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/bvh/traversal.h">
+      <Filter>bvh</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/bvh/nodes.h">
+      <Filter>bvh</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/bvh/volume_all.h">
+      <Filter>bvh</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/bvh/bvh.h">
+      <Filter>bvh</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/bvh/util.h">
+      <Filter>bvh</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/bvh/shadow_all.h">
+      <Filter>bvh</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/bvh/volume.h">
+      <Filter>bvh</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/bvh/local.h">
+      <Filter>bvh</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/svm/aov.h">
       <Filter>SVM Headers</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\svm\svm_rhino_procedurals.h">
+    <ClInclude Include="cycles/src/kernel/svm/invert.h">
       <Filter>SVM Headers</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\svm\svm_rhino_azimuth_altitude_transform.h">
+    <ClInclude Include="cycles/src/kernel/svm/noise.h">
       <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/svm/ramp_util.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/svm/sepcomb_color.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/svm/mapping_util.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/svm/magic.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/svm/mix.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/svm/tex_coord.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/svm/fractal_noise.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/svm/clamp.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/svm/ao.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/svm/wavelength.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/svm/types.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/svm/vector_transform.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/svm/camera.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/svm/gradient.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/svm/mapping.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/svm/ies.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/svm/musgrave.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/svm/node_types_template.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/svm/bump.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/svm/fresnel.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/svm/voxel.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/svm/svm.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/svm/bevel.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/svm/value.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/svm/checker.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/svm/math_util.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/svm/noisetex.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/svm/vector_rotate.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/svm/normal.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/svm/sepcomb_hsv.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/svm/wireframe.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/svm/gamma.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/svm/brightness.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/svm/sepcomb_vector.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/svm/voronoi.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/svm/math.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/svm/light_path.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/svm/closure.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/svm/white_noise.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/svm/wave.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/svm/convert.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/svm/displace.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/svm/hsv.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/svm/attribute.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/svm/ramp.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/svm/brick.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/svm/color_util.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/svm/vertex_color.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/svm/image.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/svm/map_range.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/svm/geometry.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/svm/blackbody.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/svm/sky.h">
+      <Filter>SVM Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/geom/primitive.h">
+      <Filter>kernel_geom_headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/geom/motion_triangle_intersect.h">
+      <Filter>kernel_geom_headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/geom/motion_triangle_shader.h">
+      <Filter>kernel_geom_headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/geom/point.h">
+      <Filter>kernel_geom_headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/geom/shader_data.h">
+      <Filter>kernel_geom_headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/geom/subd_triangle.h">
+      <Filter>kernel_geom_headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/geom/motion_point.h">
+      <Filter>kernel_geom_headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/geom/curve.h">
+      <Filter>kernel_geom_headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/geom/triangle_intersect.h">
+      <Filter>kernel_geom_headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/geom/curve_intersect.h">
+      <Filter>kernel_geom_headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/geom/motion_triangle.h">
+      <Filter>kernel_geom_headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/geom/point_intersect.h">
+      <Filter>kernel_geom_headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/geom/patch.h">
+      <Filter>kernel_geom_headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/geom/object.h">
+      <Filter>kernel_geom_headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/geom/triangle.h">
+      <Filter>kernel_geom_headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/geom/volume.h">
+      <Filter>kernel_geom_headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/geom/motion_curve.h">
+      <Filter>kernel_geom_headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/geom/attribute.h">
+      <Filter>kernel_geom_headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/geom/geom.h">
+      <Filter>kernel_geom_headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/sample/lcg.h">
+      <Filter>sample</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/sample/mapping.h">
+      <Filter>sample</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/sample/pattern.h">
+      <Filter>sample</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/sample/sobol_burley.h">
+      <Filter>sample</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/sample/util.h">
+      <Filter>sample</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/sample/tabulated_sobol.h">
+      <Filter>sample</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/sample/mis.h">
+      <Filter>sample</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/device/gpu/work_stealing.h">
+      <Filter>gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/device/gpu/parallel_prefix_sum.h">
+      <Filter>gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/device/gpu/kernel.h">
+      <Filter>gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/device/gpu/parallel_active_index.h">
+      <Filter>gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/device/gpu/parallel_sorted_index.h">
+      <Filter>gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/device/gpu/image.h">
+      <Filter>gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/device/metal/function_constants.h">
+      <Filter>metal</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/device/metal/globals.h">
+      <Filter>metal</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/device/metal/bvh.h">
+      <Filter>metal</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/device/metal/context_begin.h">
+      <Filter>metal</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/device/metal/compat.h">
+      <Filter>metal</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/device/metal/context_end.h">
+      <Filter>metal</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/device/cpu/kernel_arch.h">
+      <Filter>kernel_cpu</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/device/cpu/kernel_arch_impl.h">
+      <Filter>kernel_cpu</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/device/cpu/globals.h">
+      <Filter>kernel_cpu</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/device/cpu/bvh.h">
+      <Filter>kernel_cpu</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/device/cpu/kernel.h">
+      <Filter>kernel_cpu</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/device/cpu/compat.h">
+      <Filter>kernel_cpu</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/device/cpu/image.h">
+      <Filter>kernel_cpu</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/device/cuda/config.h">
+      <Filter>kernel_cuda_headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/device/cuda/globals.h">
+      <Filter>kernel_cuda_headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/device/cuda/compat.h">
+      <Filter>kernel_cuda_headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/device/optix/globals.h">
+      <Filter>optix</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/device/optix/bvh.h">
+      <Filter>optix</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/device/optix/compat.h">
+      <Filter>optix</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/device/hip/config.h">
+      <Filter>hip</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/device/hip/globals.h">
+      <Filter>hip</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/device/hip/compat.h">
+      <Filter>hip</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/device/oneapi/kernel_templates.h">
+      <Filter>oneapi</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/device/oneapi/globals.h">
+      <Filter>oneapi</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/device/oneapi/context_begin.h">
+      <Filter>oneapi</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/device/oneapi/kernel.h">
+      <Filter>oneapi</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/device/oneapi/compat.h">
+      <Filter>oneapi</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/device/oneapi/context_end.h">
+      <Filter>oneapi</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/device/oneapi/image.h">
+      <Filter>oneapi</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/light/background.h">
+      <Filter>light</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/light/spot.h">
+      <Filter>light</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/light/point.h">
+      <Filter>light</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/light/light.h">
+      <Filter>light</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/light/tree.h">
+      <Filter>light</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/light/area.h">
+      <Filter>light</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/light/common.h">
+      <Filter>light</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/light/distribution.h">
+      <Filter>light</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/light/triangle.h">
+      <Filter>light</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/light/distant.h">
+      <Filter>light</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/light/sample.h">
+      <Filter>light</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/bake/bake.h">
+      <Filter>bake</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/hydra/plugin.h">
+      <Filter>hydra</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/hydra/render_delegate.h">
+      <Filter>hydra</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/hydra/file_reader.h">
+      <Filter>hydra</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/hydra/config.h">
+      <Filter>hydra</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/hydra/light.h">
+      <Filter>hydra</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/hydra/camera.h">
+      <Filter>hydra</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/hydra/field.h">
+      <Filter>hydra</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/hydra/material.h">
+      <Filter>hydra</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/hydra/pointcloud.h">
+      <Filter>hydra</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/hydra/mesh.h">
+      <Filter>hydra</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/hydra/instancer.h">
+      <Filter>hydra</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/hydra/session.h">
+      <Filter>hydra</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/hydra/render_buffer.h">
+      <Filter>hydra</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/hydra/output_driver.h">
+      <Filter>hydra</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/hydra/display_driver.h">
+      <Filter>hydra</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/hydra/volume.h">
+      <Filter>hydra</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/hydra/curves.h">
+      <Filter>hydra</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/hydra/attribute.h">
+      <Filter>hydra</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/hydra/render_pass.h">
+      <Filter>hydra</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/hydra/node_util.h">
+      <Filter>hydra</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/hydra/geometry.h">
+      <Filter>hydra</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/session/tile.h">
+      <Filter>session</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/session/merge.h">
+      <Filter>session</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/session/session.h">
+      <Filter>session</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/session/denoising.h">
+      <Filter>session</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/session/output_driver.h">
+      <Filter>session</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/session/display_driver.h">
+      <Filter>session</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/session/buffers.h">
+      <Filter>session</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="cycles\src\kernel\kernels\opencl\filter.cl">
-      <Filter>OpenCL Source</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernels\opencl\kernel_background.cl">
-      <Filter>OpenCL Source</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernels\opencl\kernel_bake.cl">
-      <Filter>OpenCL Source</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernels\opencl\kernel_base.cl">
-      <Filter>OpenCL Source</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernels\opencl\kernel_buffer_update.cl">
-      <Filter>OpenCL Source</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernels\opencl\kernel_data_init.cl">
-      <Filter>OpenCL Source</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernels\opencl\kernel_direct_lighting.cl">
-      <Filter>OpenCL Source</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernels\opencl\kernel_displace.cl">
-      <Filter>OpenCL Source</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernels\opencl\kernel_do_volume.cl">
-      <Filter>OpenCL Source</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernels\opencl\kernel_enqueue_inactive.cl">
-      <Filter>OpenCL Source</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernels\opencl\kernel_holdout_emission_blurring_pathtermination_ao.cl">
-      <Filter>OpenCL Source</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernels\opencl\kernel_indirect_background.cl">
-      <Filter>OpenCL Source</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernels\opencl\kernel_indirect_subsurface.cl">
-      <Filter>OpenCL Source</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernels\opencl\kernel_lamp_emission.cl">
-      <Filter>OpenCL Source</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernels\opencl\kernel_next_iteration_setup.cl">
-      <Filter>OpenCL Source</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernels\opencl\kernel_path_init.cl">
-      <Filter>OpenCL Source</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernels\opencl\kernel_queue_enqueue.cl">
-      <Filter>OpenCL Source</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernels\opencl\kernel_scene_intersect.cl">
-      <Filter>OpenCL Source</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernels\opencl\kernel_shader_eval.cl">
-      <Filter>OpenCL Source</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernels\opencl\kernel_shader_setup.cl">
-      <Filter>OpenCL Source</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernels\opencl\kernel_shader_sort.cl">
-      <Filter>OpenCL Source</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernels\opencl\kernel_shadow_blocked_ao.cl">
-      <Filter>OpenCL Source</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernels\opencl\kernel_shadow_blocked_dl.cl">
-      <Filter>OpenCL Source</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernels\opencl\kernel_split_bundle.cl">
-      <Filter>OpenCL Source</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernels\opencl\kernel_state_buffer_size.cl">
-      <Filter>OpenCL Source</Filter>
-    </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernels\opencl\kernel_subsurface_scatter.cl">
-      <Filter>OpenCL Source</Filter>
-    </ClInclude>
+
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="cycles\src\kernel\kernels\cuda\filter.cu">
+    <ClInclude Include="cycles/install/source/kernel/device/cuda/kernel.cu">
       <Filter>CUDA Source</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernels\cuda\kernel.cu">
+    <ClInclude Include="cycles/install/source/kernel/device/optix/kernel.cu">
       <Filter>CUDA Source</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernels\cuda\kernel_split.cu">
+    <ClInclude Include="cycles/install/source/kernel/device/optix/kernel_shader_raytrace.cu">
       <Filter>CUDA Source</Filter>
     </ClInclude>
-    <ClInclude Include="cycles\src\kernel\kernels\optix\kernel_optix.cu">
+    <ClInclude Include="cycles/src/kernel/device/cuda/kernel.cu">
+      <Filter>CUDA Source</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/device/optix/kernel.cu">
+      <Filter>CUDA Source</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/device/optix/kernel_shader_raytrace.cu">
+      <Filter>CUDA Source</Filter>
+    </ClInclude>
+    <ClInclude Include="cycles/src/kernel/device/optix/kernel_osl.cu">
       <Filter>CUDA Source</Filter>
     </ClInclude>
   </ItemGroup>

@@ -22,8 +22,8 @@ limitations under the License.
 #endif
 
 #include "internal_types.h"
-#include "util_thread.h"
-#include "util_opengl.h"
+#include "util/thread.h"
+
 
 /* Hold all created sessions. */
 std::vector<CCSession*> sessions;
@@ -130,14 +130,18 @@ void CCSession::test_cancel(void) {
 }
 
 /* Wrapper callback for render tile update. Copies tile result into session full image buffer. */
-void CCSession::update_render_tile(ccl::RenderTile &tile, bool highlight)
+/*
+ void CCSession::update_render_tile(ccl::RenderTile &tile, bool highlight)
 {
 }
+*/
 
 /* Wrapper callback for render tile write. Copies tile result into session full image buffer. */
+/*
 void CCSession::write_render_tile(ccl::RenderTile &tile)
 {
 }
+*/
 
 /* Wrapper callback for display update stuff. When this is called one pass has been conducted. */
 void CCSession::display_update(int sample)
@@ -200,7 +204,8 @@ unsigned int cycles_session_create(unsigned int client_id, unsigned int session_
 	int hid{ 0 };
 
 	CCSession* session = CCSession::create(10, 10, 4);
-	session->session = new ccl::Session(*params);
+    // TODO: XXXX session creation
+	//session->session = new ccl::Session(*params);
 
 	for(CCSession* csess : sessions) {
 		if(csess==nullptr) {
@@ -289,6 +294,8 @@ void cycles_session_add_pass(unsigned int client_id, unsigned int session_id, in
 {
 	ccl::PassType passtype = (ccl::PassType)pass_id;
 	ccl::vector<ccl::Pass>& passes = get_passes(session_id);
+    // TODO: XXXX Passes rework
+    /*
 	switch (passtype) {
 		case ccl::PASS_COMBINED:
 			ccl::Pass::add(passtype, passes, "Combined");
@@ -314,6 +321,7 @@ void cycles_session_add_pass(unsigned int client_id, unsigned int session_id, in
 		default:
 			break;
 	}
+    */
 }
 
 
@@ -338,6 +346,8 @@ int cycles_session_reset(unsigned int client_id, unsigned int session_id, unsign
 
 			ccl::vector<ccl::Pass>& passes = get_passes(session_id);
 
+            // TODO: XXXX Passes rework
+            /*
 			session->scene->film->tag_passes_update(session->scene, passes);
 			session->scene->film->display_pass = ccl::PassType::PASS_COMBINED;
 			session->scene->film->tag_update(session->scene);
@@ -346,6 +356,7 @@ int cycles_session_reset(unsigned int client_id, unsigned int session_id, unsign
 
 
 			session->reset(ccsess->buffer_params, (int)samples);
+            */
 		}
 		catch (CyclesRenderCrashException)
 		{
@@ -400,10 +411,10 @@ void cycles_session_set_update_tile_callback(unsigned int client_id, unsigned in
 	if (session_find(session_id, &ccsess, &session)) {
 		update_cbs[session_id] = update_tile_cb;
 		if (update_tile_cb != nullptr) {
-			session->update_render_tile_cb = function_bind<void>(&CCSession::update_render_tile, ccsess, std::placeholders::_1, std::placeholders::_2);
+			//session->update_render_tile_cb = function_bind<void>(&CCSession::update_render_tile, ccsess, std::placeholders::_1, std::placeholders::_2);
 		}
 		else {
-			session->update_render_tile_cb = nullptr;
+			//session->update_render_tile_cb = nullptr;
 		}
 		logger.logit(client_id, "Set render tile update callback for session ", session_id);
 	}
@@ -468,27 +479,35 @@ void cycles_session_start(unsigned int client_id, unsigned int session_id)
 
 void cycles_session_prepare_run(unsigned int client_id, unsigned int session_id)
 {
+    // TODO: XXXX revisit session running
+    /*
 	CCSession* ccsess = nullptr;
 	ccl::Session* session = nullptr;
 	if (session_find(session_id, &ccsess, &session)) {
 		logger.logit(client_id, "Preparing run for session ", session_id);
 		session->prepare_run(ccsess->buffer_params, ccsess->params.samples);
 	}
+    */
 }
 
 void cycles_session_end_run(unsigned int client_id, unsigned int session_id)
 {
+    // TODO: XXXX revisit session running
+    /*
 	CCSession* ccsess = nullptr;
 	ccl::Session* session = nullptr;
 	if (session_find(session_id, &ccsess, &session)) {
 		logger.logit(client_id, "Ending run for session ", session_id);
 		session->end_run();
 	}
+    */
 }
 
 
 int cycles_session_sample(unsigned int client_id, unsigned int session_id)
 {
+    // TODO: XXXX revisit rendering. check output driver
+    /*
 	RenderCrashTranslatorHelper render_crash_helper(render_crash_translator);
 
 	try {
@@ -509,6 +528,7 @@ int cycles_session_sample(unsigned int client_id, unsigned int session_id)
 	{
 		return -13;
 	}
+    */
 }
 
 void cycles_session_wait(unsigned int client_id, unsigned int session_id)
@@ -568,6 +588,8 @@ void cycles_session_copy_buffer(unsigned int client_id, unsigned int session_id,
 
 void cycles_session_get_float_buffer(unsigned int client_id, unsigned int session_id, int passtype, float** pixels)
 {
+    // TODO: XXXX use output driver instead
+    /*
 	ccl::DeviceDrawParams draw_params = ccl::DeviceDrawParams();
 	draw_params.bind_display_space_shader_cb = nullptr;
 	draw_params.unbind_display_space_shader_cb = nullptr;
@@ -579,6 +601,7 @@ void cycles_session_get_float_buffer(unsigned int client_id, unsigned int sessio
 			*pixels = (float*)session->display_buffers[(ccl::PassType)passtype]->prepare_pixels(session->device, draw_params);
 		}
 	}
+    */
 }
 
 void cycles_progress_reset(unsigned int client_id, unsigned int session_id)
@@ -592,13 +615,15 @@ void cycles_progress_reset(unsigned int client_id, unsigned int session_id)
 
 int cycles_progress_get_sample(unsigned int client_id, unsigned int session_id)
 {
+    // TODO: revisit result acquisition
+    /*
 	CCSession* ccsess = nullptr;
 	ccl::Session* session = nullptr;
 	if (session_find(session_id, &ccsess, &session)) {
 		ccl::TileManager &tm = session->tile_manager;
 		return tm.state.sample;
 	}
-
+    */
 	return INT_MIN;
 }
 
@@ -613,12 +638,15 @@ void cycles_progress_get_time(unsigned int client_id, unsigned int session_id, d
 
 void cycles_tilemanager_get_sample_info(unsigned int client_id, unsigned int session_id, unsigned int* samples, unsigned int* total_samples)
 {
+    // TODO: XXXX revisit rendering and sampling
+    /*
 	CCSession* ccsess = nullptr;
 	ccl::Session* session = nullptr;
 	if (session_find(session_id, &ccsess, &session)) {
 		*samples = session->tile_manager.state.sample + 1;
 		*total_samples = session->tile_manager.num_samples;
 	}
+    */
 }
 
 /* Get cycles render progress. Note that progress will be clamped to 1.0f. */

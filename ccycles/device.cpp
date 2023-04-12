@@ -35,9 +35,8 @@ unsigned int cycles_number_cuda_devices() {
 
 unsigned int cycles_number_opencl_devices() {
 	int i{ 0 };
-	for (auto di : devices) {
-		if (di.type == ccl::DeviceType::DEVICE_OPENCL) i++;
-	}
+    
+    // TODO: XXXX deprecated, no OpenCL support anymore
 
 	return i;
 }

@@ -21,8 +21,8 @@ void cycles_film_set_exposure(unsigned int client_id, unsigned int scene_id, flo
 	CCScene* csce = nullptr;
 	ccl::Scene* sce = nullptr;
 	if(scene_find(scene_id, &csce, &sce)) {
-		sce->film->exposure = exposure;
-		sce->film->need_update = true;
+		sce->film->set_exposure(exposure);
+		sce->film->tag_modified();
 	}
 }
 
@@ -31,9 +31,9 @@ void cycles_film_set_filter(unsigned int client_id, unsigned int scene_id, unsig
 	CCScene* csce = nullptr;
 	ccl::Scene* sce = nullptr;
 	if(scene_find(scene_id, &csce, &sce)) {
-		sce->film->filter_type = (ccl::FilterType)filter_type;
-		if (sce->film->filter_type == ccl::FilterType::FILTER_BOX) sce->film->filter_width = 1.0f;
-		else sce->film->filter_width = filter_width;
+		sce->film->set_filter_type((ccl::FilterType)filter_type);
+		if (sce->film->get_filter_type() == ccl::FilterType::FILTER_BOX) sce->film->set_filter_width(1.0f);
+		else sce->film->set_filter_width(filter_width);
 	}
 }
 
@@ -51,7 +51,7 @@ void cycles_film_tag_update(unsigned int client_id, unsigned int scene_id)
 	CCScene* csce = nullptr;
 	ccl::Scene* sce = nullptr;
 	if(scene_find(scene_id, &csce, &sce)) {
-		sce->film->tag_update(sce);
+		sce->film->tag_modified();
 	}
 }
 

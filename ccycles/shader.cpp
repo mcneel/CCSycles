@@ -63,7 +63,7 @@ unsigned int cycles_create_shader(unsigned int client_id, unsigned int scene_id)
 	ccl::Scene* sce = nullptr;
 	if (scene_find(scene_id, &csce, &sce)) {
 		CCShader* sh = new CCShader();
-		sh->shader->displacement_method = ccl::DisplacementMethod::DISPLACE_TRUE;
+        sh->shader->set_displacement_method(ccl::DisplacementMethod::DISPLACE_TRUE);
 		sh->shader->has_displacement = true;
 		sh->shader->graph = sh->graph;
 		csce->shaders.push_back(sh);
@@ -138,17 +138,21 @@ void cycles_shader_set_name(unsigned int client_id, unsigned int scene_id, unsig
 
 void cycles_shader_set_use_mis(unsigned int client_id, unsigned int scene_id, unsigned int shader_id, unsigned int use_mis)
 {
-	SHADER_SET(scene_id, shader_id, bool, use_mis, use_mis == 1)
+    // TODO: XXXX see if something similar is still necessary or if
+    // can just fully remove
+	//SHADER_SET(scene_id, shader_id, bool, use_mis, use_mis == 1)
 }
 
 void cycles_shader_set_use_transparent_shadow(unsigned int client_id, unsigned int scene_id, unsigned int shader_id, unsigned int use_transparent_shadow)
 {
-	SHADER_SET(scene_id, shader_id, bool, use_transparent_shadow, use_transparent_shadow == 1)
+    // TODO: XXXX investigate if transparent shadows are managed differently now
+	//SHADER_SET(scene_id, shader_id, bool, use_transparent_shadow, use_transparent_shadow == 1)
 }
 
 void cycles_shader_set_heterogeneous_volume(unsigned int client_id, unsigned int scene_id, unsigned int shader_id, unsigned int heterogeneous_volume)
 {
-	SHADER_SET(scene_id, shader_id, bool, heterogeneous_volume, heterogeneous_volume == 1)
+    // TODO: XXXX figure out if we want volume rendering at all
+	// SHADER_SET(scene_id, shader_id, bool, heterogeneous_volume, heterogeneous_volume == 1)
 }
 
 unsigned int cycles_add_shader_node(unsigned int client_id, unsigned int scene_id, unsigned int shader_id, shadernode_type shn_type)
@@ -281,9 +285,12 @@ unsigned int cycles_add_shader_node(unsigned int client_id, unsigned int scene_i
 		case shadernode_type::RGBTOBW:
 			node = new ccl::RGBToBWNode();
 			break;
+        // TODO: XXXX Port over RgbToLuminance Node from old Cycles integration
+        /*
 		case shadernode_type::RGBTOLUMINANCE:
 			node = new ccl::RGBToLuminanceNode();
 			break;
+        */
 		case shadernode_type::LIGHTPATH:
 			node = new ccl::LightPathNode();
 			break;
@@ -336,7 +343,8 @@ unsigned int cycles_add_shader_node(unsigned int client_id, unsigned int scene_i
 			node = new ccl::VectorMathNode();
 			break;
 		case shadernode_type::MATRIX_MATH:
-			node = new ccl::MatrixMathNode();
+			// TODO: XXXX port Rhino matrix node from old Cycles integration
+            //node = new ccl::MatrixMathNode();
 			break;
 		case shadernode_type::PRINCIPLED_BSDF:
 			node = new ccl::PrincipledBsdfNode();
@@ -346,7 +354,7 @@ unsigned int cycles_add_shader_node(unsigned int client_id, unsigned int scene_i
 			break;
 		case shadernode_type::NORMALMAP:
 			node = new ccl::NormalMapNode();
-			dynamic_cast<ccl::NormalMapNode*>(node)->attribute = OpenImageIO_v2_2::ustring("uvmap1");
+			dynamic_cast<ccl::NormalMapNode*>(node)->set_attribute(OpenImageIO_v2_2::ustring("uvmap1"));
 			break;
 		case shadernode_type::WIREFRAME:
 			node = new ccl::WireframeNode();
@@ -359,13 +367,15 @@ unsigned int cycles_add_shader_node(unsigned int client_id, unsigned int scene_i
 			break;
 		case shadernode_type::TANGENT:
 			node = new ccl::TangentNode();
-			dynamic_cast<ccl::TangentNode*>(node)->attribute = OpenImageIO_v2_2::ustring("uvmap1");
-			dynamic_cast<ccl::TangentNode*>(node)->direction_type = ccl::NodeTangentDirectionType::NODE_TANGENT_UVMAP;
+			dynamic_cast<ccl::TangentNode*>(node)->set_attribute(OpenImageIO_v2_2::ustring("uvmap1"));
+			dynamic_cast<ccl::TangentNode*>(node)->set_direction_type(ccl::NodeTangentDirectionType::NODE_TANGENT_UVMAP);
 			break;
 		case shadernode_type::DISPLACEMENT:
 			node = new ccl::DisplacementNode();
-			dynamic_cast<ccl::DisplacementNode*>(node)->space = ccl::NodeNormalMapSpace::NODE_NORMAL_MAP_OBJECT;
+			dynamic_cast<ccl::DisplacementNode*>(node)->set_space(ccl::NodeNormalMapSpace::NODE_NORMAL_MAP_OBJECT);
 			break;
+        // TODO: XXXX port over Rhino procedural nodes
+        /*
 		case shadernode_type::RHINO_AZIMUTH_ALTITUDE_TRANSFORM:
 			node = new ccl::AzimuthAltitudeTransformNode();
 			break;
@@ -426,6 +436,7 @@ unsigned int cycles_add_shader_node(unsigned int client_id, unsigned int scene_i
 		case shadernode_type::RHINO_NORMAL_PART2_TEXTURE:
 			node = new ccl::RhinoNormalPart2TextureNode();
 			break;
+        */
 		}
 
 		assert(node);
@@ -509,19 +520,13 @@ void _set_mapping_node(ccl::MappingNode* node, int transform_type, float x, floa
 {
 	switch (transform_type) {
 	case 0:
-		node->location.x = x;
-		node->location.y = y;
-		node->location.z = z;
+        node->set_location(ccl::make_float3(x, y, z));
 		break;
 	case 1:
-		node->rotation.x = x;
-		node->rotation.y = y;
-		node->rotation.z = z;
+        node->set_rotation(ccl::make_float3(x, y, z));
 		break;
 	case 2:
-		node->scale.x = x;
-		node->scale.y = y;
-		node->scale.z = z;
+        node->set_scale(ccl::make_float3(x, y, z));
 		break;
 	}
 }
@@ -720,7 +725,7 @@ void cycles_shadernode_texmapping_set_type(unsigned int client_id, unsigned int 
 		case shadernode_type::MAPPING:
 		{
 			ccl::MappingNode* node = dynamic_cast<ccl::MappingNode*>(shnode);
-			node->type = tm_type;
+			node->set_mapping_type(tm_type);
 		}
 		break;
 		default:
@@ -741,66 +746,69 @@ void cycles_shadernode_set_enum(unsigned int client_id, unsigned int scene_id, u
 		case shadernode_type::MATH:
 		{
 			ccl::MathNode* node = dynamic_cast<ccl::MathNode*>(shnode);
-			node->type = (ccl::NodeMathType)value;
+			node->set_math_type((ccl::NodeMathType)value);
 		}
 		break;
 		case shadernode_type::VECT_MATH:
 		{
 			ccl::VectorMathNode* node = dynamic_cast<ccl::VectorMathNode*>(shnode);
-			node->type = (ccl::NodeVectorMathType)value;
+			node->set_math_type((ccl::NodeVectorMathType)value);
 		}
 		break;
+        // TODO: XXXX Port over matrix math node from old cycles integration
+        /*
 		case shadernode_type::MATRIX_MATH:
 		{
 			ccl::MatrixMathNode* node = dynamic_cast<ccl::MatrixMathNode*>(shnode);
 			node->type = (ccl::NodeMatrixMath)value;
 		}
 		break;
+        */
 		case shadernode_type::MIX:
 		{
 			ccl::MixNode* node = dynamic_cast<ccl::MixNode*>(shnode);
-			node->type = (ccl::NodeMix)value;
+			node->set_mix_type((ccl::NodeMix)value);
 		}
 		break;
 		case shadernode_type::REFRACTION:
 		{
 			ccl::RefractionBsdfNode* node = dynamic_cast<ccl::RefractionBsdfNode*>(shnode);
-			node->distribution = (ccl::ClosureType)value;
+			node->set_distribution((ccl::ClosureType)value);
 		}
 		break;
 		case shadernode_type::TOON:
 		{
 			ccl::ToonBsdfNode* node = dynamic_cast<ccl::ToonBsdfNode*>(shnode);
-			node->component = (ccl::ClosureType)value;
+			node->set_component((ccl::ClosureType)value);
 		}
 		break;
 		case shadernode_type::GLOSSY:
 		{
 			ccl::GlossyBsdfNode* node = dynamic_cast<ccl::GlossyBsdfNode*>(shnode);
-			node->distribution = (ccl::ClosureType)value;
+			node->set_distribution((ccl::ClosureType)value);
 		}
 		break;
 		case shadernode_type::GLASS:
 		{
 			ccl::GlassBsdfNode* node = dynamic_cast<ccl::GlassBsdfNode*>(shnode);
-			node->distribution = (ccl::ClosureType)value;
+			node->set_distribution((ccl::ClosureType)value);
 		}
 		break;
 		case shadernode_type::ANISOTROPIC:
 		{
 			ccl::AnisotropicBsdfNode* node = dynamic_cast<ccl::AnisotropicBsdfNode*>(shnode);
-			node->distribution = (ccl::ClosureType)value;
+			node->set_distribution((ccl::ClosureType)value);
 		}
 		break;
 		case shadernode_type::WAVE_TEXTURE:
 		{
 			if (ename == "wave") {
 				ccl::WaveTextureNode* node = dynamic_cast<ccl::WaveTextureNode*>(shnode);
-				node->type = (ccl::NodeWaveType)value;
+				node->set_wave_type((ccl::NodeWaveType)value);
 			}
 			if (ename == "profile") {
 				ccl::WaveTextureNode* node = dynamic_cast<ccl::WaveTextureNode*>(shnode);
-				node->profile = (ccl::NodeWaveProfile)value;
+				node->set_profile((ccl::NodeWaveProfile)value);
 			}
 		}
 		break;
@@ -808,13 +816,13 @@ void cycles_shadernode_set_enum(unsigned int client_id, unsigned int scene_id, u
 		{
 			ccl::VoronoiTextureNode* node = dynamic_cast<ccl::VoronoiTextureNode*>(shnode);
 			if (ename == "metric") {
-				node->metric = (ccl::NodeVoronoiDistanceMetric)value;
+				node->set_metric((ccl::NodeVoronoiDistanceMetric)value);
 			}
 			else if (ename == "feature") {
-				node->feature = (ccl::NodeVoronoiFeature)value;
+				node->set_feature((ccl::NodeVoronoiFeature)value);
 			}
 			else if (ename == "dimension") {
-				node->dimensions = value;
+				node->set_dimensions(value);
 			}
 		}
 		break;
@@ -822,29 +830,31 @@ void cycles_shadernode_set_enum(unsigned int client_id, unsigned int scene_id, u
 		{
 			ccl::MusgraveTextureNode* node = dynamic_cast<ccl::MusgraveTextureNode*>(shnode);
 			if(ename=="musgrave") {
-				node->type = (ccl::NodeMusgraveType)value;
+				node->set_musgrave_type((ccl::NodeMusgraveType)value);
 			} else if(ename=="dimension") {
-				node->dimensions = value;
+				node->set_dimensions(value);
 			}
 		}
 		break;
 		case shadernode_type::SKY_TEXTURE:
 		{
 			ccl::SkyTextureNode* node = dynamic_cast<ccl::SkyTextureNode*>(shnode);
-			node->type = (ccl::NodeSkyType)value;
+			node->set_sky_type((ccl::NodeSkyType)value);
 		}
 		break;
 		case shadernode_type::ENVIRONMENT_TEXTURE:
 		{
 			ccl::EnvironmentTextureNode* node = dynamic_cast<ccl::EnvironmentTextureNode*>(shnode);
 			if (ename == "color_space") {
-				_set_colorspace(node->colorspace, value);
+                OpenImageIO_v2_2::ustring colspace;
+				_set_colorspace(colspace, value);
+                node->set_colorspace(colspace);
 			}
 			else if (ename == "projection") {
-				node->projection = (ccl::NodeEnvironmentProjection)value;
+				node->set_projection((ccl::NodeEnvironmentProjection)value);
 			}
 			if (ename == "interpolation") {
-				node->interpolation = (ccl::InterpolationType)value;
+				node->set_interpolation((ccl::InterpolationType)value);
 			}
 		}
 		break;
@@ -852,45 +862,50 @@ void cycles_shadernode_set_enum(unsigned int client_id, unsigned int scene_id, u
 		{
 			ccl::ImageTextureNode* node = dynamic_cast<ccl::ImageTextureNode*>(shnode);
 			if (ename == "color_space") {
-				_set_colorspace(node->colorspace, value);
+                OpenImageIO_v2_2::ustring colspace;
+				_set_colorspace(colspace, value);
+                node->set_colorspace(colspace);
 			}
 			else if (ename == "projection") {
-				node->projection = (ccl::NodeImageProjection)value;
+				node->set_projection((ccl::NodeImageProjection)value);
 			}
 			else if (ename == "interpolation") {
-				node->interpolation = (ccl::InterpolationType)value;
+				node->set_interpolation((ccl::InterpolationType)value);
 			}
 			break;
 		}
 		case shadernode_type::TEXTURE_COORDINATE:
 		{
 			ccl::TextureCoordinateNode* node = dynamic_cast<ccl::TextureCoordinateNode*>(shnode);
+            // TODO: XXXX port over decal support from old Cycles integration
+            /*
 			if (ename == "decal_projection") {
 				node->decal_projection = (ccl::NodeImageDecalProjection)value;
 			}
+            */
 			break;
 		}
 		case shadernode_type::GRADIENT_TEXTURE:
 		{
 			ccl::GradientTextureNode* node = dynamic_cast<ccl::GradientTextureNode*>(shnode);
-			node->type = (ccl::NodeGradientType)value;
+			node->set_gradient_type((ccl::NodeGradientType)value);
 			break;
 		}
 		case shadernode_type::SUBSURFACE_SCATTERING:
 		{
 			ccl::SubsurfaceScatteringNode* node = dynamic_cast<ccl::SubsurfaceScatteringNode*>(shnode);
-			node->falloff = (ccl::ClosureType)value;
+			node->set_method((ccl::ClosureType)value);
 			break;
 		}
 		case shadernode_type::PRINCIPLED_BSDF:
 		{
 			if (ename == "distribution") {
 				ccl::PrincipledBsdfNode* node = dynamic_cast<ccl::PrincipledBsdfNode*>(shnode);
-				node->distribution = (ccl::ClosureType)value;
+				node->set_distribution((ccl::ClosureType)value);
 			}
 			else if (ename == "sss") {
 				ccl::PrincipledBsdfNode* node = dynamic_cast<ccl::PrincipledBsdfNode*>(shnode);
-				node->subsurface_method = (ccl::ClosureType)value;
+				node->set_subsurface_method((ccl::ClosureType)value);
 			}
 			break;
 
@@ -898,7 +913,7 @@ void cycles_shadernode_set_enum(unsigned int client_id, unsigned int scene_id, u
 		case shadernode_type::NORMALMAP:
 		{
 			ccl::NormalMapNode* node = dynamic_cast<ccl::NormalMapNode*>(shnode);
-			node->space = (ccl::NodeNormalMapSpace)value;
+			node->set_space((ccl::NodeNormalMapSpace)value);
 			break;
 		}
 		default:
@@ -968,6 +983,8 @@ CCImage* get_ccimage(std::string imgname, T* img, unsigned int width, unsigned i
 
 void cycles_shadernode_set_member_float_img(unsigned int client_id, unsigned int scene_id, unsigned int shader_id, unsigned int shnode_id, shadernode_type shn_type, const char* member_name, const char* img_name, float* img, unsigned int width, unsigned int height, unsigned int depth, unsigned int channels)
 {
+    // TODO: XXXX reimplement image/env texture setting
+    /*
 	CCScene* csce = nullptr;
 	ccl::Scene* sce = nullptr;
 	if (scene_find(scene_id, &csce, &sce)) {
@@ -1000,12 +1017,14 @@ void cycles_shadernode_set_member_float_img(unsigned int client_id, unsigned int
 				break;
 			}
 		}
-
 	}
+    */
 }
 
 void cycles_shadernode_set_member_byte_img(unsigned int client_id, unsigned int scene_id, unsigned int shader_id, unsigned int shnode_id, shadernode_type shn_type, const char* member_name, const char* img_name, unsigned char* img, unsigned int width, unsigned int height, unsigned int depth, unsigned int channels)
 {
+    // TODO: XXXX reimplement image/env texture setting
+    /*
 	CCScene* csce = nullptr;
 	ccl::Scene* sce = nullptr;
 	if (scene_find(scene_id, &csce, &sce)) {
@@ -1037,8 +1056,8 @@ void cycles_shadernode_set_member_byte_img(unsigned int client_id, unsigned int 
 				break;
 			}
 		}
-
 	}
+    */
 }
 
 void cycles_shadernode_set_member_bool(unsigned int client_id, unsigned int scene_id, unsigned int shader_id, unsigned int shnode_id, shadernode_type shn_type, const char* member_name, bool value)
@@ -1050,7 +1069,7 @@ void cycles_shadernode_set_member_bool(unsigned int client_id, unsigned int scen
 		case shadernode_type::MATH:
 		{
 			ccl::MathNode* mnode = dynamic_cast<ccl::MathNode*>(shnode);
-			mnode->use_clamp = value;
+			mnode->set_use_clamp(value);
 		}
 		break;
 		case shadernode_type::MAPPING:
@@ -1066,7 +1085,7 @@ void cycles_shadernode_set_member_bool(unsigned int client_id, unsigned int scen
 			ccl::RGBRampNode* colorramp = dynamic_cast<ccl::RGBRampNode*>(shnode);
 			if (mname == "interpolate")
 			{
-				colorramp->interpolate = value;
+				colorramp->set_interpolate(value);
 			}
 		}
 		break;
@@ -1074,7 +1093,7 @@ void cycles_shadernode_set_member_bool(unsigned int client_id, unsigned int scen
 		{
 			ccl::BumpNode* bump = dynamic_cast<ccl::BumpNode*>(shnode);
 			if (mname == "invert") {
-				bump->invert = value;
+				bump->set_invert(value);
 			}
 		}
 		break;
@@ -1083,18 +1102,21 @@ void cycles_shadernode_set_member_bool(unsigned int client_id, unsigned int scen
 			ccl::ImageTextureNode* imgtex = dynamic_cast<ccl::ImageTextureNode*>(shnode);
 			if (mname == "use_alpha") {
 				if (value) {
-					imgtex->alpha_type = ccl::ImageAlphaType::IMAGE_ALPHA_AUTO;
+					imgtex->set_alpha_type(ccl::ImageAlphaType::IMAGE_ALPHA_AUTO);
 				}
 				else {
-					imgtex->alpha_type = ccl::ImageAlphaType::IMAGE_ALPHA_IGNORE;
+					imgtex->set_alpha_type(ccl::ImageAlphaType::IMAGE_ALPHA_IGNORE);
 				}
 			}
 			/*else if (mname == "is_linear") {
 				imgtex->is_linear = value;
 			}*/
+            // TODO: XXXX port over alternate_tiles support from old Cycles integration
+            /*
 			else if (mname == "alternate_tiles") {
 				imgtex->alternate_tiles = value;
 			}
+            */
 		}
 		break;
 		case shadernode_type::ENVIRONMENT_TEXTURE:
@@ -1109,7 +1131,7 @@ void cycles_shadernode_set_member_bool(unsigned int client_id, unsigned int scen
 		{
 			ccl::TextureCoordinateNode* texco = dynamic_cast<ccl::TextureCoordinateNode*>(shnode);
 			if (mname == "use_transform") {
-				texco->use_transform = value;
+				texco->set_use_transform(value);
 			}
 		}
 		break;
@@ -1117,10 +1139,12 @@ void cycles_shadernode_set_member_bool(unsigned int client_id, unsigned int scen
 		{
 			ccl::MixNode* mix = dynamic_cast<ccl::MixNode*>(shnode);
 			if (mname == "use_clamp") {
-				mix->use_clamp = value;
+				mix->set_use_clamp(value);
 			}
 		}
 		break;
+        // TODO: XXXX port over Rhino procedural textures
+        /*
 		case shadernode_type::RHINO_NOISE_TEXTURE:
 		{
 			ccl::RhinoNoiseTextureNode* node = dynamic_cast<ccl::RhinoNoiseTextureNode*>(shnode);
@@ -1184,6 +1208,7 @@ void cycles_shadernode_set_member_bool(unsigned int client_id, unsigned int scen
 				node->is_hdr = value;
 		}
 		break;
+        */
 		default:
 			break;
 		}
@@ -1200,19 +1225,19 @@ void cycles_shadernode_set_member_int(unsigned int client_id, unsigned int scene
 		{
 			ccl::BrickTextureNode* bricknode = dynamic_cast<ccl::BrickTextureNode*>(shnode);
 			if (mname == "offset_frequency")
-				bricknode->offset_frequency = value;
+				bricknode->set_offset_frequency(value);
 			else if (mname == "squash_frequency")
-				bricknode->squash_frequency = value;
+				bricknode->set_squash_frequency(value);
 		}
 		break;
 		case shadernode_type::IMAGE_TEXTURE:
 		{
 			ccl::ImageTextureNode* imgnode = dynamic_cast<ccl::ImageTextureNode*>(shnode);
 			if (mname == "interpolation") {
-				imgnode->interpolation = (ccl::InterpolationType)value;
+				imgnode->set_interpolation((ccl::InterpolationType)value);
 			}
 			if (mname == "extension") {
-				imgnode->extension = (ccl::ExtensionType)value;
+				imgnode->set_extension((ccl::ExtensionType)value);
 			}
 		}
 		break;
@@ -1220,10 +1245,12 @@ void cycles_shadernode_set_member_int(unsigned int client_id, unsigned int scene
 		{
 			ccl::MagicTextureNode* envnode = dynamic_cast<ccl::MagicTextureNode*>(shnode);
 			if (mname == "depth") {
-				envnode->depth = value;
+				envnode->set_depth(value);
 			}
 		}
 		break;
+        // TODO: XXXX Port Rhino procedural textures
+        /*
 		case shadernode_type::RHINO_NOISE_TEXTURE:
 		{
 			ccl::RhinoNoiseTextureNode* node = dynamic_cast<ccl::RhinoNoiseTextureNode*>(shnode);
@@ -1302,6 +1329,7 @@ void cycles_shadernode_set_member_int(unsigned int client_id, unsigned int scene
 				node->tile_type = (ccl::RhinoProceduralTileType)value;
 		}
 		break;
+        */
 		default:
 			break;
 		}
@@ -1319,20 +1347,22 @@ void cycles_shadernode_set_member_float(unsigned int client_id, unsigned int sce
 		case shadernode_type::VALUE:
 		{
 			ccl::ValueNode* valuenode = dynamic_cast<ccl::ValueNode*>(shnode);
-			valuenode->value = value;
+			valuenode->set_value(value);
 		}
 		break;
 		case shadernode_type::IMAGE_TEXTURE:
 		{
 			ccl::ImageTextureNode* imtexnode = dynamic_cast<ccl::ImageTextureNode*>(shnode);
 			if (mname == "projection_blend") {
-				imtexnode->projection_blend = value;
+				imtexnode->set_projection_blend(value);
 			}
 		}
 		break;
 		case shadernode_type::TEXTURE_COORDINATE:
 		{
 			ccl::TextureCoordinateNode* texconode = dynamic_cast<ccl::TextureCoordinateNode*>(shnode);
+            // TODO: XXXX port decal support from old Cycles integration
+            /*
 			if (mname == "decal_height") {
 				texconode->height = value;
 			}
@@ -1351,26 +1381,29 @@ void cycles_shadernode_set_member_float(unsigned int client_id, unsigned int sce
 			else if (mname == "decal_ver_end") {
 				texconode->vertical_sweep_end = value;
 			}
+            */
 		}
 		break;
 		case shadernode_type::BRICK_TEXTURE:
 		{
 			ccl::BrickTextureNode* bricknode = dynamic_cast<ccl::BrickTextureNode*>(shnode);
 			if (mname == "offset")
-				bricknode->offset = value;
+				bricknode->set_offset(value);
 			else if (mname == "squash")
-				bricknode->squash = value;
+				bricknode->set_squash(value);
 		}
 		break;
 		case shadernode_type::SKY_TEXTURE:
 		{
 			ccl::SkyTextureNode* skynode = dynamic_cast<ccl::SkyTextureNode*>(shnode);
 			if (mname == "turbidity")
-				skynode->turbidity = value;
+				skynode->set_turbidity(value);
 			else if (mname == "ground_albedo")
-				skynode->ground_albedo = value;
+				skynode->set_ground_albedo(value);
 		}
 		break;
+        // TODO: port over Rhino procedurals
+        /*
 		case shadernode_type::RHINO_AZIMUTH_ALTITUDE_TRANSFORM:
 		{
 			ccl::AzimuthAltitudeTransformNode* azimuth_altitude_node = dynamic_cast<ccl::AzimuthAltitudeTransformNode*>(shnode);
@@ -1511,13 +1544,14 @@ void cycles_shadernode_set_member_float(unsigned int client_id, unsigned int sce
 				node->hue_shift = value;
 		}
 		break;
+        */
 		default:
 			break;
 		}
 	}
 }
 
-static void set_transform(ccl::Transform& tfm, float x, float y, float z, float w, int index)
+static void _set_transform(ccl::Transform& tfm, float x, float y, float z, float w, int index)
 {
 	if (index == 0) {
 		tfm.x.x = x;
@@ -1549,37 +1583,48 @@ void cycles_shadernode_set_member_vec4_at_index(unsigned int client_id, unsigned
 		case shadernode_type::COLOR_RAMP:
 		{
 			ccl::RGBRampNode* colorramp = dynamic_cast<ccl::RGBRampNode*>(shnode);
-			if (colorramp->ramp.capacity() < index + 1) {
-				colorramp->ramp.resize(index + 1);
-				colorramp->ramp_alpha.resize(index + 1);
+            auto ramp = colorramp->get_ramp();
+            auto ramp_alpha = colorramp->get_ramp_alpha();
+			if (ramp.capacity() < index + 1) {
+				ramp.resize(index + 1);
+				ramp_alpha.resize(index + 1);
 			}
-			colorramp->ramp[index] = ccl::make_float3(x, y, z);
-			colorramp->ramp_alpha[index] = w;
+			ramp[index] = ccl::make_float3(x, y, z);
+			ramp_alpha[index] = w;
 		}
 		break;
 		case shadernode_type::TEXTURE_COORDINATE:
 		{
 			ccl::TextureCoordinateNode* texco = dynamic_cast<ccl::TextureCoordinateNode*>(shnode);
-			if(mname == "object_transform") {
-				set_transform(texco->ob_tfm, x, y, z, w, index);
+            // TODO: XXXX verify const casting works
+            if(mname == "object_transform") {
+                auto obxform = const_cast<ccl::Transform&>(texco->get_ob_tfm());
+				_set_transform(obxform, x, y, z, w, index);
 			}
+            // TODO: XXXX determine how pxyz/nxyz/uvw are used - decals related. Port
+            /*
 			else if(mname == "pxyz") {
-				set_transform(texco->pxyz, x, y, z, w, index);
+                auto pxyz = const_cast<ccl::Transform&>(texco->get_)
+				_set_transform(texco->pxyz, x, y, z, w, index);
 			}
 			else if(mname == "nxyz") {
-				set_transform(texco->nxyz, x, y, z, w, index);
+				_set_transform(texco->nxyz, x, y, z, w, index);
 			}
 			else if(mname == "uvw") {
-				set_transform(texco->uvw, x, y, z, w, index);
+				_set_transform(texco->uvw, x, y, z, w, index);
 			}
+            */
 		}
 		break;
+        // TODO: XXXX port over matrix math node from old Cycles integration
+        /*
 		case shadernode_type::MATRIX_MATH:
 		{
 			ccl::MatrixMathNode* matmath = dynamic_cast<ccl::MatrixMathNode*>(shnode);
 			set_transform(matmath->tfm, x, y, z, w, index);
 		}
 		break;
+        */
 		default:
 			break;
 		}
@@ -1596,17 +1641,13 @@ void cycles_shadernode_set_member_vec(unsigned int client_id, unsigned int scene
 		case shadernode_type::COLOR:
 		{
 			ccl::ColorNode* colnode = dynamic_cast<ccl::ColorNode*>(shnode);
-			colnode->value.x = x;
-			colnode->value.y = y;
-			colnode->value.z = z;
+            colnode->set_value(ccl::make_float3(x, y, z));
 		}
 		break;
 		case shadernode_type::SKY_TEXTURE:
 		{
 			ccl::SkyTextureNode* sunnode = dynamic_cast<ccl::SkyTextureNode*>(shnode);
-			sunnode->sun_direction.x = x;
-			sunnode->sun_direction.y = y;
-			sunnode->sun_direction.z = z;
+            sunnode->set_sun_direction(ccl::make_float3(x, y, z));
 		}
 		break;
 		case shadernode_type::MAPPING:
@@ -1627,6 +1668,8 @@ void cycles_shadernode_set_member_vec(unsigned int client_id, unsigned int scene
 		case shadernode_type::TEXTURE_COORDINATE:
 		{
 			ccl::TextureCoordinateNode* texco = dynamic_cast<ccl::TextureCoordinateNode*>(shnode);
+            // TODO: XXXX port over decal support
+            /*
 			if (mname == "origin") {
 				texco->decal_origin.x = x;
 				texco->decal_origin.y = y;
@@ -1642,8 +1685,11 @@ void cycles_shadernode_set_member_vec(unsigned int client_id, unsigned int scene
 				texco->decal_up.y = y;
 				texco->decal_up.z = z;
 			}
+            */
 		}
 		break;
+        // TODO: XXXX port rhino procedural textures
+        /*
 		case shadernode_type::RHINO_PHYSICAL_SKY_TEXTURE:
 		{
 			ccl::RhinoPhysicalSkyTextureNode* node = dynamic_cast<ccl::RhinoPhysicalSkyTextureNode*>(shnode);
@@ -1684,6 +1730,7 @@ void cycles_shadernode_set_member_vec(unsigned int client_id, unsigned int scene
 			}
 		}
 		break;
+        */
 		default:
 			break;
 		}
@@ -1694,6 +1741,7 @@ void cycles_shadernode_set_member_string(unsigned int client_id, unsigned int sc
 {
 	auto mname = std::string{ member_name };
 	auto mval = std::string{ value };
+    auto umval = OpenImageIO_v2_2::ustring(mval);
 
 	ccl::ShaderNode* shnode = _shader_node_find(scene_id, shader_id, shnode_id);
 	if (shnode)
@@ -1703,19 +1751,22 @@ void cycles_shadernode_set_member_string(unsigned int client_id, unsigned int sc
 		case shadernode_type::ATTRIBUTE:
 		{
 			ccl::AttributeNode* attrn = dynamic_cast<ccl::AttributeNode*>(shnode);
-			attrn->attribute = mval;
+			attrn->set_attribute(umval);
 		}
 		break;
+        // TODO: XXXX port decal support, uvmap used for that in texco node
+        /*
 		case shadernode_type::TEXTURE_COORDINATE:
 		{
 			ccl::TextureCoordinateNode* texco = dynamic_cast<ccl::TextureCoordinateNode*>(shnode);
-			texco->uvmap = mval;
+			texco->set_uvmap(mval);
 		}
 		break;
+        */
 		case shadernode_type::NORMALMAP:
 		{
 			ccl::NormalMapNode* normalmap = dynamic_cast<ccl::NormalMapNode*>(shnode);
-			normalmap->attribute = mval;
+			normalmap->set_attribute(umval);
 		}
 		break;
 		default:

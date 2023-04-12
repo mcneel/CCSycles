@@ -87,7 +87,9 @@ void CCScene::builtin_image_info(const std::string& builtin_name, void* builtin_
 	imdata.height = img->height;
 	imdata.depth = img->depth;
 	imdata.channels = img->channels;
-	imdata.is_float = img->is_float;
+	// TODO: XXXX figure out how to do images
+    // TODO: XXXX probably just utilize OIIO directly
+    //imdata.is_float = img->is_float;
 }
 
 bool CCScene::builtin_image_pixels(const std::string& builtin_name, void* builtin_data, int tile, unsigned char* pixels, const size_t pixels_size, const bool associate_alpha, const bool free_cache)
@@ -167,15 +169,21 @@ unsigned int cycles_scene_create(unsigned int client_id, unsigned int scene_para
 
 			scenes[cscid]->scene = new ccl::Scene(*params, session->device);
 			scenes[cscid]->params_id = scene_params_id;
+            // TODO: XXXX revisit image handling. preference: use OIIO
+            /*
 			scenes[cscid]->scene->image_manager->builtin_image_info_cb = function_bind(&CCScene::builtin_image_info, scenes[cscid], std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
 			scenes[cscid]->scene->image_manager->builtin_image_pixels_cb = function_bind(&CCScene::builtin_image_pixels, scenes[cscid], std::placeholders::_1, std::placeholders::_2, std::placeholders::_3, std::placeholders::_4, std::placeholders::_5, std::placeholders::_6, std::placeholders::_7);
 			scenes[cscid]->scene->image_manager->builtin_image_float_pixels_cb = function_bind(&CCScene::builtin_image_float_pixels, scenes[cscid], std::placeholders::_1, std::placeholders::_2, std::placeholders::_3, std::placeholders::_4, std::placeholders::_5, std::placeholders::_6, std::placeholders::_7);
+             */
 			
 			// TODO: Is this the right spot?
+            // TODO: XXXX port rhino procedurals from old integration
+            /*
 			scenes[cscid]->scene->shader_manager->set_rhino_perlin_noise_table(ccycles_rhino_perlin_noise_table);
 			scenes[cscid]->scene->shader_manager->set_rhino_impulse_noise_table(ccycles_rhino_impulse_noise_table);
 			scenes[cscid]->scene->shader_manager->set_rhino_vc_noise_table(ccycles_rhino_vc_noise_table);
 			scenes[cscid]->scene->shader_manager->set_rhino_aaltonen_noise_table(ccycles_rhino_aaltonen_noise_table);
+            */
 
 			logger.logit(client_id, "Created scene ", cscid, " with scene_params ", scene_params_id, " and device ", session->device->info.id);
 			return cscid;

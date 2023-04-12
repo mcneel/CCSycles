@@ -21,14 +21,15 @@ void cycles_camera_set_size(unsigned int client_id, unsigned int scene_id, unsig
 	CCScene* csce = nullptr;
 	ccl::Scene* sce = nullptr;
 	if(scene_find(scene_id, &csce, &sce)) {
-		sce->camera->width = width;
-		sce->camera->height = height;
+        // TODO: find out if need to set full_width and full_height
+        sce->camera->set_screen_size(width, height);
 		// TODO: APIfy need_[device_]update
-		sce->camera->need_update = true;
+		sce->camera->need_flags_update = true;
 		sce->camera->need_device_update = true;
 	}
 }
 
+/*
 unsigned int cycles_camera_get_width(unsigned int client_id, unsigned int scene_id)
 {
 	CCScene* csce = nullptr;
@@ -50,13 +51,14 @@ unsigned int cycles_camera_get_height(unsigned int client_id, unsigned int scene
 
 	return 0;
 }
+ */
 
 void cycles_camera_set_type(unsigned int client_id, unsigned int scene_id, camera_type type)
 {
 	CCScene* csce = nullptr;
 	ccl::Scene* sce = nullptr;
 	if(scene_find(scene_id, &csce, &sce)) {
-		sce->camera->type = (ccl::CameraType)type;
+		sce->camera->set_camera_type((ccl::CameraType)type);
 	}
 }
 
@@ -65,7 +67,7 @@ void cycles_camera_set_panorama_type(unsigned int client_id, unsigned int scene_
 	CCScene* csce = nullptr;
 	ccl::Scene* sce = nullptr;
 	if(scene_find(scene_id, &csce, &sce)) {
-		sce->camera->panorama_type = (ccl::PanoramaType)type;
+		sce->camera->set_panorama_type((ccl::PanoramaType)type);
 	}
 }
 
@@ -84,7 +86,7 @@ void cycles_camera_set_matrix(unsigned int client_id, unsigned int scene_id,
 			"\t ", e, ",", f, ",", g, ",", h, "\n",
 			"\t ", i, ",", j, ",", k, ",", l, "\n"
 			);
-		sce->camera->matrix = mat;
+		sce->camera->set_matrix(mat);
 	}
 }
 
@@ -118,7 +120,8 @@ void cycles_camera_update(unsigned int client_id, unsigned int scene_id)
 	ccl::Scene* sce = nullptr;
 	if(scene_find(scene_id, &csce, &sce)) {
 		logger.logit(client_id, "Updating camera for scene ", scene_id); 
-		sce->camera->need_update = true;
+		sce->camera->need_flags_update = true;
+        sce->camera->need_device_update = true;
 		sce->camera->update(sce);
 	}
 }
@@ -129,7 +132,7 @@ void cycles_camera_set_fov(unsigned int client_id, unsigned int scene_id, float 
 	ccl::Scene* sce = nullptr;
 	if(scene_find(scene_id, &csce, &sce)) {
 		logger.logit(client_id, "Setting camera fov to ", fov);
-		sce->camera->fov = fov;
+		sce->camera->set_fov(fov);
 	}
 }
 
@@ -139,7 +142,7 @@ void cycles_camera_set_sensor_width(unsigned int client_id, unsigned int scene_i
 	ccl::Scene* sce = nullptr;
 	if(scene_find(scene_id, &csce, &sce)) {
 		logger.logit(client_id, "Setting camera sensor_width to ", sensor_width);
-		sce->camera->sensorwidth = sensor_width;
+		sce->camera->set_sensorwidth(sensor_width);
 	}
 }
 
@@ -149,7 +152,7 @@ void cycles_camera_set_sensor_height(unsigned int client_id, unsigned int scene_
 	ccl::Scene* sce = nullptr;
 	if(scene_find(scene_id, &csce, &sce)) {
 		logger.logit(client_id, "Setting camera sensor_height to ", sensor_height);
-		sce->camera->sensorheight = sensor_height;
+		sce->camera->set_sensorheight(sensor_height);
 	}
 }
 
@@ -159,7 +162,7 @@ void cycles_camera_set_nearclip(unsigned int client_id, unsigned int scene_id, f
 	ccl::Scene* sce = nullptr;
 	if(scene_find(scene_id, &csce, &sce)) {
 		logger.logit(client_id, "Setting camera nearclip to ", nearclip);
-		sce->camera->nearclip = nearclip;
+		sce->camera->set_nearclip(nearclip);
 	}
 }
 
@@ -169,7 +172,7 @@ void cycles_camera_set_farclip(unsigned int client_id, unsigned int scene_id, fl
 	ccl::Scene* sce = nullptr;
 	if(scene_find(scene_id, &csce, &sce)) {
 		logger.logit(client_id, "Setting camera farclip to ", farclip);
-		sce->camera->farclip = farclip;
+		sce->camera->set_farclip(farclip);
 	}
 }
 
@@ -179,7 +182,7 @@ void cycles_camera_set_aperturesize(unsigned int client_id, unsigned int scene_i
 	ccl::Scene* sce = nullptr;
 	if(scene_find(scene_id, &csce, &sce)) {
 		logger.logit(client_id, "Setting camera aperturesize to ", aperturesize);
-		sce->camera->aperturesize = aperturesize;
+		sce->camera->set_aperturesize(aperturesize);
 	}
 }
 
@@ -189,7 +192,7 @@ void cycles_camera_set_aperture_ratio(unsigned int client_id, unsigned int scene
 	ccl::Scene* sce = nullptr;
 	if(scene_find(scene_id, &csce, &sce)) {
 		logger.logit(client_id, "Setting camera aperture_ratio to ", aperture_ratio);
-		sce->camera->aperture_ratio = aperture_ratio;
+		sce->camera->set_aperture_ratio(aperture_ratio);
 	}
 }
 
@@ -199,7 +202,7 @@ void cycles_camera_set_blades(unsigned int client_id, unsigned int scene_id, uns
 	ccl::Scene* sce = nullptr;
 	if(scene_find(scene_id, &csce, &sce)) {
 		logger.logit(client_id, "Setting camera blades to ", blades);
-		sce->camera->blades = blades;
+		sce->camera->set_blades(blades);
 	}
 }
 
@@ -209,7 +212,7 @@ void cycles_camera_set_bladesrotation(unsigned int client_id, unsigned int scene
 	ccl::Scene* sce = nullptr;
 	if(scene_find(scene_id, &csce, &sce)) {
 		logger.logit(client_id, "Setting camera bladesrotation to ", bladesrotation);
-		sce->camera->bladesrotation = bladesrotation;
+		sce->camera->set_bladesrotation(bladesrotation);
 	}
 }
 
@@ -219,7 +222,7 @@ void cycles_camera_set_focaldistance(unsigned int client_id, unsigned int scene_
 	ccl::Scene* sce = nullptr;
 	if(scene_find(scene_id, &csce, &sce)) {
 		logger.logit(client_id, "Setting camera focaldistance to ", focaldistance);
-		sce->camera->focaldistance = focaldistance;
+		sce->camera->set_focaldistance(focaldistance);
 	}
 }
 
@@ -229,7 +232,7 @@ void cycles_camera_set_shuttertime(unsigned int client_id, unsigned int scene_id
 	ccl::Scene* sce = nullptr;
 	if(scene_find(scene_id, &csce, &sce)) {
 		logger.logit(client_id, "Setting camera shuttertime to ", shuttertime);
-		sce->camera->shuttertime = shuttertime;
+		sce->camera->set_shuttertime(shuttertime);
 	}
 }
 
@@ -239,7 +242,7 @@ void cycles_camera_set_fisheye_fov(unsigned int client_id, unsigned int scene_id
 	ccl::Scene* sce = nullptr;
 	if(scene_find(scene_id, &csce, &sce)) {
 		logger.logit(client_id, "Setting camera fisheye_fov to ", fisheye_fov);
-		sce->camera->fisheye_fov = fisheye_fov;
+		sce->camera->set_fisheye_fov(fisheye_fov);
 	}
 }
 
@@ -249,6 +252,6 @@ void cycles_camera_set_fisheye_lens(unsigned int client_id, unsigned int scene_i
 	ccl::Scene* sce = nullptr;
 	if(scene_find(scene_id, &csce, &sce)) {
 		logger.logit(client_id, "Setting camera fisheye_lens to ", fisheye_lens);
-		sce->camera->fisheye_lens = fisheye_lens;
+		sce->camera->set_fisheye_lens(fisheye_lens);
 	}
 }

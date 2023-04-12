@@ -254,21 +254,21 @@ copy /Y "$(ProjectDir)x64\$(ConfigurationName)\ccycles.pdb" "$(SolutionDir)bin\$
     <None Include="cycles_api.def" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="background.cpp" />
-    <ClCompile Include="camera.cpp" />
-    <ClCompile Include="ccycles.cpp" />
-    <ClCompile Include="device.cpp" />
-    <ClCompile Include="film.cpp" />
-    <ClCompile Include="integrator.cpp" />
-    <ClCompile Include="light.cpp" />
     <ClCompile Include="mesh.cpp" />
-    <ClCompile Include="object.cpp" />
-    <ClCompile Include="scene.cpp" />
     <ClCompile Include="scene_parameters.cpp" />
-    <ClCompile Include="session.cpp" />
+    <ClCompile Include="scene.cpp" />
+    <ClCompile Include="camera.cpp" />
+    <ClCompile Include="object.cpp" />
+    <ClCompile Include="light.cpp" />
+    <ClCompile Include="film.cpp" />
     <ClCompile Include="session_parameters.cpp" />
+    <ClCompile Include="device.cpp" />
     <ClCompile Include="shader.cpp" />
+    <ClCompile Include="session.cpp" />
     <ClCompile Include="transform.cpp" />
+    <ClCompile Include="background.cpp" />
+    <ClCompile Include="integrator.cpp" />
+    <ClCompile Include="ccycles.cpp" />
     <ClCompile Include="mikktspace.c" />
   </ItemGroup>
   <ItemGroup>

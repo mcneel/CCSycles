@@ -16,38 +16,39 @@ limitations under the License.
 
 #pragma once
 
+
 #include <vector>
 #include <chrono>
-#include <ctime>
+//#include <ctime>
 #include <thread>
-#include <mutex>
+//#include <mutex>
 #include <string>
 
 #pragma warning ( push )
 
 #pragma warning ( disable : 4244 )
 
-#include "background.h"
-#include "camera.h"
-#include "colorspace.h"
-#include "device.h"
-#include "film.h"
-#include "graph.h"
-#include "integrator.h"
-#include "light.h"
-#include "mesh.h"
-#include "nodes.h"
-#include "rhino_nodes.h"
-#include "object.h"
-#include "scene.h"
-#include "session.h"
-#include "shader.h"
+#include "scene/background.h"
+#include "scene/camera.h"
+#include "scene/colorspace.h"
+#include "device/device.h"
+#include "scene/film.h"
+#include "scene/shader_graph.h"
+#include "scene/integrator.h"
+#include "scene/light.h"
+#include "scene/mesh.h"
+#include "scene/shader_nodes.h"
+//#include "rhino_nodes.h"
+#include "scene/object.h"
+#include "scene/scene.h"
+#include "session/session.h"
+#include "scene/shader.h"
 
-#include "util_color.h"
-#include "util_function.h"
-#include "util_progress.h"
-#include "util_string.h"
-#include "util_thread.h"
+#include "util/color.h"
+#include "util/function.h"
+#include "util/progress.h"
+#include "util/string.h"
+#include "util/thread.h"
 
 #pragma warning ( pop )
 
@@ -147,17 +148,12 @@ struct CCImage {
 		bool is_float;
 };
 
-#ifndef GLuint
-typedef unsigned int GLuint;
-#endif
 
 class CCSession final {
 public:
 	unsigned int id{ 0 };
 	ccl::SessionParams params;
 	ccl::Session* session = nullptr;
-
-	GLuint program = 0;
 
 	/* The status update handler for ccl::Session update callback.
 	 */
@@ -167,10 +163,12 @@ public:
 	void test_cancel(void);
 	/* The update render tile handler for ccl::Session rendertile update callback.
 	 */
-	void update_render_tile(ccl::RenderTile &tile, bool highlight);
+	// TODO: XXXX Rework render result updating via output driver
+    //void update_render_tile(ccl::RenderTile &tile, bool highlight);
 	/* The write render tile handler for ccl::Session rendertile write callback.
 	 */
-	void write_render_tile(ccl::RenderTile &tile);
+    // TODO: XXXX Rework render result updating via output driver
+	//void write_render_tile(ccl::RenderTile &tile);
 	/* The display update handler for ccl::Session.
 	 *
 	 */
