@@ -1,0 +1,12 @@
+cmake_minimum_required(VERSION 3.25)
+project(ccycles)
+set (CMAKE_CXX_STANDARD 14)
+add_compile_definitions(CCL_NAMESPACE_BEGIN=\"namespace ccl  {\")
+add_compile_definitions(CCL_NAMESPACE_END=})
+
+file( GLOB SRCS *.cpp *.h)
+add_library( ccycles STATIC ${SRCS} )
+#set_target_properties(ccycles PROPERTIES LINKER_LANGUAGE CXX)
+target_include_directories(ccycles PRIVATE ../cycles/src)
+target_include_directories(ccycles PRIVATE ../../../../../../big_libs/OpenImageIO-2.2.19/include)
+target_include_directories(ccycles PRIVATE ../../../../../../big_libs/OpenEXR-2.5.5/include)
