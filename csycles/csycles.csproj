@@ -79,11 +79,6 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Condition=" '$(OS)' == 'Windows_NT' " Include="..\ccycles\ccycles.vcxproj" PrivateAssets="all">
-      <LinkLibraryDependencies>false</LinkLibraryDependencies>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -235,31 +230,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <CCSyclesFiles Include="$(TargetDir)$(ProjectName).*" />
-    <EmbreeFiles Include="$(SolutionDir)..\..\big_libs\embree-3.13.2\lib\embree3$(EmbreeVersion).dll">
-      <Link>Dependencies\EmbreeFiles\%(Filename)%(Extension)</Link>
-    </EmbreeFiles>
-    <OpenEXRFiles Include="$(SolutionDir)..\..\big_libs\OpenEXR-2.5.5\lib\*$(OpenEXRVersion).dll">
-      <Link>Dependencies\OpenEXRFiles\%(Filename)%(Extension)</Link>
-    </OpenEXRFiles>
-    <OpenImageIOFiles Include="$(SolutionDir)..\..\big_libs\OpenImageIO-2.2.19\lib\*$(OpenImageIOVersion).dll">
-      <Link>Dependencies\OpenImageIOFiles\%(Filename)%(Extension)</Link>
-    </OpenImageIOFiles>
-    <OpenImageIOJpegFiles Include="$(SolutionDir)..\..\big_libs\OpenImageIO-2.2.19\lib\$(Configuration)\jpeg*.*">
-      <Link>Dependencies\OpenImageIOFiles\%(Filename)%(Extension)</Link>
-    </OpenImageIOJpegFiles>
-    <CUDAFiles Include="$(SolutionDir)..\..\big_libs\RhinoCycles\lib\**\*">
-      <Link>Dependencies\CUDAFiles\%(RecursiveDir)%(Filename)%(Extension)</Link>
-    </CUDAFiles>
-    <KernelFiles Include="$(ProjecDir)..\cycles\src\kernel\**\*" Exclude="$(ProjecDir)..\cycles\src\kernel\**\CMakeLists.*">
-      <Link>Dependencies\KernelFiles\%(RecursiveDir)%(Filename)%(Extension)</Link>
-    </KernelFiles>
-    <BoostFiles Include="$(SolutionDir)..\..\big_libs\boost\stagerelease\lib\boost_*$(BoostToolset).dll">
-      <Link>Dependencies\BoostFiles\%(RecursiveDir)%(Filename)%(Extension)</Link>
-    </BoostFiles>
-    <UtilFiles Include="$(ProjecDir)..\cycles\src\util\**\*.h" Exclude="$(ProjecDir)..\cycles\src\util\**\CMakeLists.*">
-      <Link>Dependencies\util\%(RecursiveDir)%(Filename)%(Extension)</Link>
-    </UtilFiles>
+    <CCFiles Include="$(ProjectDir)..\cycles\instal\**\*">
+			<Link>Dependecies\CCyclesPrebuilt</Link>
+		</CCFiles>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="License\" />
@@ -307,15 +280,6 @@ XCopy "$(ProjectDir)..\cycles\src\util\util_static_assert.h" "$(SolutionDir)$(Ou
     <PreBuildEvent />
   </PropertyGroup>
   <Target Name="CopyFiles" AfterTargets="AfterBuild">
-    <Copy SourceFiles="@(CCSyclesFiles)" DestinationFolder="$(ProjectDir)..\..\..\..\..\$(OutDir)Plug-ins\" />
-    <Copy SourceFiles="@(OpenImageIOFiles)" DestinationFolder="$(SolutionDir)..\$(OutDir)" Condition="'$(OS)' == 'Windows_NT'" />
-    <Copy SourceFiles="@(OpenImageIOJpegFiles)" DestinationFolder="$(SolutionDir)..\$(OutDir)" Condition="'$(OS)' == 'Windows_NT'" />
-    <Copy SourceFiles="@(EmbreeFiles)" DestinationFolder="$(SolutionDir)..\$(OutDir)" Condition="'$(OS)' == 'Windows_NT'" />
-    <Copy SourceFiles="@(OpenEXRFiles)" DestinationFolder="$(SolutionDir)..\$(OutDir)" Condition="'$(OS)' == 'Windows_NT'" />
-    <Copy SourceFiles="$(ProjectDir)..\pthreads\x64\$(ConfigurationName)\pthreads.dll" DestinationFolder="$(SolutionDir)..\$(OutDir)" Condition="'$(OS)' == 'Windows_NT'" />
-    <Copy SourceFiles="@(BoostFiles)" DestinationFolder="$(SolutionDir)..\$(OutDir)" Condition="'$(OS)' == 'Windows_NT'" />
-    <Copy SourceFiles="@(CUDAFiles)" DestinationFolder="$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\lib\%(RecursiveDir)" />
-    <Copy SourceFiles="@(KernelFiles)" DestinationFolder="$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\source\kernel\%(RecursiveDir)" />
-    <Copy SourceFiles="@(UtilFiles)" DestinationFolder="$(SolutionDir)..\$(OutDir)Plug-ins\RhinoCycles\source\util\%(RecursiveDir)" />
+    <Copy SourceFiles="@(CCycles)" DestinationFolder="$(SolutionDir)..\$(OutDir)Plug-ins\%(RecursiveDir)" />
   </Target>
 </Project>
