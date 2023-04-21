@@ -44,7 +44,7 @@ namespace ccl
 		{
 			get { return sc; }
 			set {
-				CSycles.session_set_scene(Client.Id, Id, value.Id);
+				//CSycles.session_set_scene(Client.Id, Id, value.Id);
 				sc = value;
 			}
 		}
