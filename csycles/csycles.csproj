@@ -231,8 +231,20 @@
   </ItemGroup>
   <ItemGroup>
     <CCFiles Include="$(ProjectDir)..\cycles\instal\**\*">
-			<Link>Dependecies\CCyclesPrebuilt</Link>
-		</CCFiles>
+      <Link>Dependecies\CCyclesPrebuilt</Link>
+    </CCFiles>
+    <OpenEXRFiles Include="$(SolutionDir)..\..\big_libs\OpenEXR-2.5.5\lib\*$(OpenEXRVersion).dll">
+      <Link>Dependencies\OpenEXRFiles\%(Filename)%(Extension)</Link>
+    </OpenEXRFiles>
+    <OpenImageIOFiles Include="$(SolutionDir)..\..\big_libs\OpenImageIO-2.2.19\lib\*$(OpenImageIOVersion).dll">
+      <Link>Dependencies\OpenImageIOFiles\%(Filename)%(Extension)</Link>
+    </OpenImageIOFiles>
+    <OpenImageIOJpegFiles Include="$(SolutionDir)..\..\big_libs\OpenImageIO-2.2.19\lib\$(Configuration)\jpeg*.*">
+      <Link>Dependencies\OpenImageIOFiles\%(Filename)%(Extension)</Link>
+    </OpenImageIOJpegFiles>
+    <BoostFiles Include="$(SolutionDir)..\..\big_libs\boost\stagerelease\lib\boost_*$(BoostToolset).dll">
+      <Link>Dependencies\BoostFiles\%(RecursiveDir)%(Filename)%(Extension)</Link>
+    </BoostFiles>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="License\" />
@@ -280,6 +292,10 @@ XCopy "$(ProjectDir)..\cycles\src\util\util_static_assert.h" "$(SolutionDir)$(Ou
     <PreBuildEvent />
   </PropertyGroup>
   <Target Name="CopyFiles" AfterTargets="AfterBuild">
-    <Copy SourceFiles="@(CCycles)" DestinationFolder="$(SolutionDir)..\$(OutDir)Plug-ins\%(RecursiveDir)" />
+    <Copy SourceFiles="@(CCFiles)" DestinationFolder="$(SolutionDir)..\$(OutDir)Plug-ins\%(RecursiveDir)" />
+    <Copy SourceFiles="@(OpenImageIOFiles)" DestinationFolder="$(SolutionDir)..\$(OutDir)" Condition="'$(OS)' == 'Windows_NT'" />
+    <Copy SourceFiles="@(OpenImageIOJpegFiles)" DestinationFolder="$(SolutionDir)..\$(OutDir)" Condition="'$(OS)' == 'Windows_NT'" />
+    <Copy SourceFiles="@(OpenEXRFiles)" DestinationFolder="$(SolutionDir)..\$(OutDir)" Condition="'$(OS)' == 'Windows_NT'" />
+    <Copy SourceFiles="@(BoostFiles)" DestinationFolder="$(SolutionDir)..\$(OutDir)" Condition="'$(OS)' == 'Windows_NT'" />
   </Target>
 </Project>
