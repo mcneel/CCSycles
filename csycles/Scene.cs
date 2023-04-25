@@ -67,6 +67,9 @@ namespace ccl
 		/// <param name="session">The Session to create scene for</param>
 		public Scene(Client client, SceneParameters sceneParams, Session session)
 		{
+#if SCENESTUFF
+// TODO: XXXX scenes are created directly by ccl::Session constructor.
+// TODO: XXXX wrap access of scene through session.
 			Client = client;
 			Id = CSycles.scene_create(Client.Id, sceneParams.Id, session.Id);
 			Background = new Background(this);
@@ -90,6 +93,7 @@ namespace ccl
 
 			// set ourself to client as reference
 			client.Scene = this;
+#endif
 		}
 
 		/// <summary>

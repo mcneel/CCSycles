@@ -223,7 +223,8 @@ namespace ccl
 		public void Destroy()
 		{
 			if (Destroyed) return;
-			CSycles.session_destroy(Client.Id, Id, Scene.Id);
+			// TODO: XXXX scene no longer managed separately, should all go through session.
+			CSycles.session_destroy(Client.Id, Id, 0);
 			Destroyed = true;
 		}
 

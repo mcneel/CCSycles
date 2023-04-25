@@ -26,19 +26,21 @@ namespace ccl
 	/// <summary>
 	/// Device types that Cycles can support.
 	///
-	/// Note that currently focus is on CPU and CUDA
-	/// and CUDA MULTI support, but others can be
+	/// Note that currently focus is on Cpu and Cuda
+	/// and Cuda Multi support, but others can be
 	/// added when needed and possible
 	/// </summary>
 	public enum DeviceType : uint
 	{
 		None,
-		CPU,
-		OpenCL,
-		CUDA,
-		Network,
+		Cpu,
+		Cuda,
 		Multi,
 		Optix,
+		Hip,
+		Metal,
+		OneApi,
+		Dummy,
 	}
 
 	/// <summary>
@@ -46,11 +48,12 @@ namespace ccl
 	/// </summary>
   public enum DeviceTypeMask : uint
   {
-		CPU = (1 << (int)DeviceType.CPU),
-		OpenCL = (1 << (int)DeviceType.OpenCL),
-		CUDA = (1 << (int)DeviceType.CUDA),
-		Optix = (1 << (int)DeviceType.Optix),
-		Network = (1 << (int)DeviceType.Network),
+		CPU = (1 << (int)DeviceType.Cpu),
+		CUDA = (1 << (int)DeviceType.Cuda),
+		OPTIX = (1 << (int)DeviceType.Optix),
+		HIP = (1 << (int)DeviceType.Hip),
+		METAL = (1 << (int)DeviceType.Metal),
+		ONEAPI = (1 << (int)DeviceType.OneApi),
 		All = 0xFFFFFFFF
   }
 

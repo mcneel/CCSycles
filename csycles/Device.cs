@@ -49,8 +49,6 @@ namespace ccl
 			{
 				if (IsCuda)
 					return Name.Split('_')[1];
-				if (IsOpenCl)
-					return Name.Split('_')[2];
 				if (IsOptix)
 					return $"{Name.Split('_')[1]} (Optix)";
 				if (IsMulti)
@@ -79,19 +77,14 @@ namespace ccl
 		/// </summary>
 		public bool DisplayDevice { get; private set; }
 		/// <summary>
-		/// True if this is a CUDA device
+		/// True if this is a Cuda device
 		/// </summary>
-		public bool IsCuda => Type == DeviceType.CUDA;
+		public bool IsCuda => Type == DeviceType.Cuda;
 
 		/// <summary>
-		/// True if this device is an OpenCL device
+		/// True if this device is a Cpu
 		/// </summary>
-		public bool IsOpenCl => Type == DeviceType.OpenCL;
-
-		/// <summary>
-		/// True if this device is a CPU
-		/// </summary>
-		public bool IsCpu => Type == DeviceType.CPU;
+		public bool IsCpu => Type == DeviceType.Cpu;
 
 		/// <summary>
 		/// True if this device is an OptiX device
@@ -109,14 +102,10 @@ namespace ccl
 		public bool IsMulti => Type == DeviceType.Multi;
 
 		/// <summary>
-		/// True if this is a Multi CUDA device
+		/// True if this is a Multi Cuda device
 		/// </summary>
-		public bool IsMultiCuda => Type == DeviceType.Multi && Subdevices.Where((Device d) => d.Type == DeviceType.CUDA).Any();
+		public bool IsMultiCuda => Type == DeviceType.Multi && Subdevices.Where((Device d) => d.Type == DeviceType.Cuda).Any();
 
-		/// <summary>
-		/// True if this is a Multi OpenCL device
-		/// </summary>
-		public bool IsMultiOpenCl => Type == DeviceType.Multi && Subdevices.Where((Device d) => d.Type == DeviceType.OpenCL).Any();
 
 		/// <summary>
 		/// True if this is a Multi Optix device
@@ -130,7 +119,7 @@ namespace ccl
 		public override string ToString() => $"{base.ToString()}: {Description} ({Type}), Id {Id} Num {Num} Name {Name} DisplayDevice {DisplayDevice} AdvancedShading {AdvancedShading}";
 
 		/// <summary>
-		/// Get the default device (CPU)
+		/// Get the default device (Cpu)
 		/// </summary>
 		/// <returns>The default device</returns>
 		static public Device Default => GetDevice(0);
@@ -248,7 +237,7 @@ namespace ccl
 		}
 
 		/// <summary>
-		/// True if any of the available devices is a CUDA device
+		/// True if any of the available devices is a Cuda device
 		/// </summary>
 		/// <returns></returns>
 		static public bool CudaAvailable()
@@ -279,7 +268,7 @@ namespace ccl
 
 		/// <summary>
 		/// Returns the first cuda device if it exists,
-		/// the default rendering device (CPU) if not.
+		/// the default rendering device (Cpu) if not.
 		/// </summary>
 		static public Device FirstCuda
 		{
@@ -292,39 +281,10 @@ namespace ccl
 			}
 		}
 
-		/// <summary>
-		/// Returns the first openCL device if it exists and is ready,
-		/// the default rendering device (CPU) if not.
-		/// </summary>
-		static public Device FirstOpenCL
-		{
-			get
-			{
-				var d = (from device in Devices
-								 where device.IsOpenCl || device.IsMultiOpenCl
-								 select device).FirstOrDefault();
-				return d ?? Default;
-			}
-		}
-
-		/// <summary>
-		/// Returns the first Multi OpenCL device if it exists and is ready,
-		/// the default rendering device (CPU) if not.
-		/// </summary>
-		static public Device FirstMultiOpenCL
-		{
-			get
-			{
-				var d = (from device in Devices
-								 where device.IsMultiOpenCl
-								 select device).FirstOrDefault();
-				return d ?? Default;
-			}
-		}
 
 		/// <summary>
 		/// Get the first GPU if one exists and is ready,
-		/// the default rendering device (CPU) if not.
+		/// the default rendering device (Cpu) if not.
 		/// </summary>
 		static public Device FirstGpu
 		{
@@ -339,8 +299,8 @@ namespace ccl
 		}
 
 		/// <summary>
-		/// Get the first CPU if one exists,
-		/// the default rendering device (CPU) if not.
+		/// Get the first Cpu if one exists,
+		/// the default rendering device (Cpu) if not.
 		/// </summary>
 		static public Device FirstCpu
 		{
@@ -476,7 +436,7 @@ namespace ccl
 
 		/// <summary>
 		/// Get the device for given string. If the string doesn't parse correctly
-		/// the first CUDA device (or CPU if no CUDA device was found) is picked.
+		/// the first Cuda device (or Cpu if no Cuda device was found) is picked.
 		/// </summary>
 		/// <param name="res"></param>
 		/// <returns></returns>

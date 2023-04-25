@@ -157,7 +157,7 @@ namespace ccl
 		}
 
 		/// <summary>
-		/// The number of CPU threads to use to handle the rendering process.
+		/// The number of Cpu threads to use to handle the rendering process.
 		/// 
 		/// 0 means automatic thread count based on available logic cores.
 		/// </summary>

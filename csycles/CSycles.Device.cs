@@ -56,9 +56,9 @@ namespace ccl
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		private static extern uint cycles_number_cuda_devices();
 		/// <summary>
-		/// Get the number of available CUDA devices.
+		/// Get the number of available Cuda devices.
 		/// </summary>
-		/// <returns>number of available CUDA devices.</returns>
+		/// <returns>number of available Cuda devices.</returns>
 		public static uint number_cuda_devices()
 		{
 			return cycles_number_cuda_devices();

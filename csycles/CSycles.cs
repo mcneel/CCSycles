@@ -235,7 +235,7 @@ namespace ccl
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		private static extern void cycles_debug_set_cpu_kernel(int stdout);
 		/**
-		 * Set true to ensure CPU uses split kernel
+		 * Set true to ensure Cpu uses split kernel
 		 */
 		public static void debug_set_cpu_kernel(bool split)
 		{
@@ -299,7 +299,7 @@ namespace ccl
 		/// 0 = force disable OpenCL
 		/// 1 = all
 		/// 2 = default
-		/// 3 = CPU
+		/// 3 = Cpu
 		/// 4 = GPU
 		/// 5 = accelerator
 		/// </param>
