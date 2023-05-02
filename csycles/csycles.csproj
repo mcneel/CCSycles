@@ -230,9 +230,8 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <CCFiles Include="$(ProjectDir)..\cycles\instal\**\*">
-      <Link>Dependecies\CCyclesPrebuilt</Link>
-    </CCFiles>
+    <CCyclesDeps Include="$(ProjectDir)..\cycles\instal\**\*.*" />
+    <CCyclesDll Include="$(ProjectDir)..\cycles\build\bin\$(Configuration)\*" />
     <OpenEXRFiles Include="$(SolutionDir)..\..\big_libs\OpenEXR-2.5.5\lib\*$(OpenEXRVersion).dll">
       <Link>Dependencies\OpenEXRFiles\%(Filename)%(Extension)</Link>
     </OpenEXRFiles>
@@ -292,7 +291,10 @@ XCopy "$(ProjectDir)..\cycles\src\util\util_static_assert.h" "$(SolutionDir)$(Ou
     <PreBuildEvent />
   </PropertyGroup>
   <Target Name="CopyFiles" AfterTargets="AfterBuild">
-    <Copy SourceFiles="@(CCFiles)" DestinationFolder="$(SolutionDir)..\$(OutDir)Plug-ins\%(RecursiveDir)" />
+    <Message Importance="high" Text="CCycles DLL files: @(CCyclesDll) &lt;&lt;--" />
+    <Message Importance="high" Text="Cycles dependencies files: @(CCyclesDeps) &lt;&lt;--" />
+    <Copy SourceFiles="@(CCyclesDeps)" DestinationFiles="$(SolutionDir)..\$(OutDir)Plug-ins\%(RecursiveDir)" SkipUnchangedFiles="false" />
+    <Copy SourceFiles="@(CCyclesDll)" DestinationFolder="$(SolutionDir)..\$(OutDir)Plug-ins\" SkipUnchangedFiles="false" />
     <Copy SourceFiles="@(OpenImageIOFiles)" DestinationFolder="$(SolutionDir)..\$(OutDir)" Condition="'$(OS)' == 'Windows_NT'" />
     <Copy SourceFiles="@(OpenImageIOJpegFiles)" DestinationFolder="$(SolutionDir)..\$(OutDir)" Condition="'$(OS)' == 'Windows_NT'" />
     <Copy SourceFiles="@(OpenEXRFiles)" DestinationFolder="$(SolutionDir)..\$(OutDir)" Condition="'$(OS)' == 'Windows_NT'" />
