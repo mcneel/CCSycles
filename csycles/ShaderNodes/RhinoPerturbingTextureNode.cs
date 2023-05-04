@@ -1,4 +1,4 @@
-﻿/**
+/**
 Copyright 2014 Robert McNeel and Associates
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -61,7 +61,7 @@ namespace ccl.ShaderNodes
 			outputs = new PerturbingPart1TextureOutputs(this);
 		}
 
-		internal override void SetDirectMembers(uint clientId, uint sceneId, uint shaderId)
+		internal override void SetDirectMembers(uint sceneId, uint shaderId)
 		{
 		}
 	}
@@ -113,9 +113,9 @@ namespace ccl.ShaderNodes
 			outputs = new PerturbingPart2TextureOutputs(this);
 		}
 
-		internal override void SetDirectMembers(uint clientId, uint sceneId, uint shaderId)
+		internal override void SetDirectMembers(uint sceneId, uint shaderId)
 		{
-			CSycles.shadernode_set_member_float(clientId, sceneId, shaderId, Id, Type, "Amount", Amount);
+			CSycles.shadernode_set_member_float(sceneId, shaderId, Id, Type, "Amount", Amount);
 		}
 	}
 }

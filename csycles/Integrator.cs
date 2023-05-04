@@ -1,4 +1,4 @@
-﻿/**
+/**
 Copyright 2014 Robert McNeel and Associates
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -40,7 +40,7 @@ namespace ccl
 		/// </summary>
 		public void TagForUpdate()
 		{
-			CSycles.integrator_tag_update(Scene.Client.Id, Scene.Id);
+			CSycles.integrator_tag_update(Scene.Id);
 		}
 
 		/// <summary>
@@ -50,7 +50,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.integrator_set_max_bounce(Scene.Client.Id, Scene.Id, value);
+				CSycles.integrator_set_max_bounce(Scene.Id, value);
 				
 			}
 		}
@@ -62,7 +62,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.integrator_set_min_bounce(Scene.Client.Id, Scene.Id, value);
+				CSycles.integrator_set_min_bounce(Scene.Id, value);
 				
 			}
 		}
@@ -76,7 +76,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.integrator_set_transparent_max_bounce(Scene.Client.Id, Scene.Id, value);
+				CSycles.integrator_set_transparent_max_bounce(Scene.Id, value);
 			}
 		}
 		/// <summary>
@@ -88,7 +88,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.integrator_set_transparent_min_bounce(Scene.Client.Id, Scene.Id, value);
+				CSycles.integrator_set_transparent_min_bounce(Scene.Id, value);
 			}
 		}
 
@@ -101,7 +101,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.integrator_set_max_diffuse_bounce(Scene.Client.Id, Scene.Id, value);
+				CSycles.integrator_set_max_diffuse_bounce(Scene.Id, value);
 			}
 		}
 
@@ -112,7 +112,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.integrator_set_max_glossy_bounce(Scene.Client.Id, Scene.Id, value);
+				CSycles.integrator_set_max_glossy_bounce(Scene.Id, value);
 			}
 		}
 
@@ -125,7 +125,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.integrator_set_max_transmission_bounce(Scene.Client.Id, Scene.Id, value);
+				CSycles.integrator_set_max_transmission_bounce(Scene.Id, value);
 			}
 		}
 
@@ -138,7 +138,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.integrator_set_max_volume_bounce(Scene.Client.Id, Scene.Id, value);
+				CSycles.integrator_set_max_volume_bounce(Scene.Id, value);
 			}
 		}
 
@@ -149,7 +149,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.integrator_set_no_caustics(Scene.Client.Id, Scene.Id, value);
+				CSycles.integrator_set_no_caustics(Scene.Id, value);
 			}
 		}
 
@@ -160,7 +160,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.integrator_set_no_shadows(Scene.Client.Id, Scene.Id, value);
+				CSycles.integrator_set_no_shadows(Scene.Id, value);
 			}
 		}
 
@@ -173,7 +173,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.integrator_set_diffuse_samples(Scene.Client.Id, Scene.Id, value);
+				CSycles.integrator_set_diffuse_samples(Scene.Id, value);
 			}
 		}
 
@@ -186,7 +186,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.integrator_set_glossy_samples(Scene.Client.Id, Scene.Id, value);
+				CSycles.integrator_set_glossy_samples(Scene.Id, value);
 			}
 		}
 
@@ -199,7 +199,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.integrator_set_transmission_samples(Scene.Client.Id, Scene.Id, value);
+				CSycles.integrator_set_transmission_samples(Scene.Id, value);
 			}
 		}
 
@@ -212,7 +212,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.integrator_set_ao_samples(Scene.Client.Id, Scene.Id, value);
+				CSycles.integrator_set_ao_samples(Scene.Id, value);
 			}
 		}
 
@@ -223,7 +223,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.integrator_set_mesh_light_samples(Scene.Client.Id, Scene.Id, value);
+				CSycles.integrator_set_mesh_light_samples(Scene.Id, value);
 			}
 		}
 
@@ -234,7 +234,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.integrator_set_subsurface_samples(Scene.Client.Id, Scene.Id, value);
+				CSycles.integrator_set_subsurface_samples(Scene.Id, value);
 			}
 		}
 
@@ -245,7 +245,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.integrator_set_volume_samples(Scene.Client.Id, Scene.Id, value);
+				CSycles.integrator_set_volume_samples(Scene.Id, value);
 			}
 		}
 
@@ -256,7 +256,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.integrator_set_aa_samples(Scene.Client.Id, Scene.Id, value);
+				CSycles.integrator_set_aa_samples(Scene.Id, value);
 			}
 		}
 
@@ -267,7 +267,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.integrator_set_filter_glossy(Scene.Client.Id, Scene.Id, value);
+				CSycles.integrator_set_filter_glossy(Scene.Id, value);
 			}
 		}
 
@@ -278,7 +278,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.integrator_set_method(Scene.Client.Id, Scene.Id, value);
+				CSycles.integrator_set_method(Scene.Id, value);
 			}
 		}
 
@@ -289,7 +289,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.integrator_set_sample_all_lights_direct(Scene.Client.Id, Scene.Id, value);
+				CSycles.integrator_set_sample_all_lights_direct(Scene.Id, value);
 			}
 		}
 
@@ -300,7 +300,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.integrator_set_sample_all_lights_indirect(Scene.Client.Id, Scene.Id, value);
+				CSycles.integrator_set_sample_all_lights_indirect(Scene.Id, value);
 			}
 		}
 
@@ -311,7 +311,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.integrator_set_volume_step_size(Scene.Client.Id, Scene.Id, value);
+				CSycles.integrator_set_volume_step_size(Scene.Id, value);
 			}
 		}
 
@@ -322,7 +322,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.integrator_set_volume_max_steps(Scene.Client.Id, Scene.Id, value);
+				CSycles.integrator_set_volume_max_steps(Scene.Id, value);
 			}
 		}
 
@@ -333,7 +333,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.integrator_set_seed(Scene.Client.Id, Scene.Id, value);
+				CSycles.integrator_set_seed(Scene.Id, value);
 			}
 		}
 
@@ -344,7 +344,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.integrator_set_sample_clamp_direct(Scene.Client.Id, Scene.Id, value);
+				CSycles.integrator_set_sample_clamp_direct(Scene.Id, value);
 			}
 		}
 
@@ -355,7 +355,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.integrator_set_sample_clamp_indirect(Scene.Client.Id, Scene.Id, value);
+				CSycles.integrator_set_sample_clamp_indirect(Scene.Id, value);
 			}
 		}
 
@@ -366,7 +366,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.integrator_set_light_sampling_threshold(Scene.Client.Id, Scene.Id, value);
+				CSycles.integrator_set_light_sampling_threshold(Scene.Id, value);
 			}
 		}
 
@@ -377,7 +377,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.integrator_set_sampling_pattern(Scene.Client.Id, Scene.Id, value);
+				CSycles.integrator_set_sampling_pattern(Scene.Id, value);
 			}
 		}
 	}

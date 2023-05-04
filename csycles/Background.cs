@@ -1,4 +1,4 @@
-﻿/**
+/**
 Copyright 2014 Robert McNeel and Associates
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -45,11 +45,11 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.scene_set_background_shader(Scene.Client.Id, Scene.Id, Scene.GetShaderSceneId(value));
+				CSycles.scene_set_background_shader(Scene.Id, Scene.GetShaderSceneId(value));
 			}
 			get
 			{
-				var shid = CSycles.scene_get_background_shader(Scene.Client.Id, Scene.Id);
+				var shid = CSycles.scene_get_background_shader(Scene.Id);
 
 				return Scene.ShaderFromSceneId(shid);
 			}
@@ -62,7 +62,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.scene_set_background_ao_distance(Scene.Client.Id, Scene.Id, value);
+				CSycles.scene_set_background_ao_distance(Scene.Id, value);
 			}
 		}
 
@@ -73,7 +73,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.scene_set_background_ao_factor(Scene.Client.Id, Scene.Id, value);
+				CSycles.scene_set_background_ao_factor(Scene.Id, value);
 			}
 		}
 
@@ -84,7 +84,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.scene_set_background_visibility(Scene.Client.Id, Scene.Id, value);
+				CSycles.scene_set_background_visibility(Scene.Id, value);
 			}
 		}
 
@@ -95,7 +95,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.scene_set_background_transparent(Scene.Client.Id, Scene.Id, value);
+				CSycles.scene_set_background_transparent(Scene.Id, value);
 			}
 		}
 	}

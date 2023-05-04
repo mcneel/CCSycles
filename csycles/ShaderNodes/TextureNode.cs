@@ -1,4 +1,4 @@
-﻿/**
+/**
 Copyright 2014 Robert McNeel and Associates
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -206,29 +206,29 @@ namespace ccl.ShaderNodes
 			ColorSpace = (TextureColorSpace)Enum.Parse(typeof(TextureColorSpace), cs, true);
 		}
 
-		internal override void SetDirectMembers(uint clientId, uint sceneId, uint shaderId)
+		internal override void SetDirectMembers(uint sceneId, uint shaderId)
 		{
-			CSycles.shadernode_set_member_bool(clientId, sceneId, shaderId, Id, Type, "useminmax", UseMin || UseMax);
+			CSycles.shadernode_set_member_bool(sceneId, shaderId, Id, Type, "useminmax", UseMin || UseMax);
 			if (UseMin)
 			{
-				CSycles.shadernode_set_member_vec(clientId, sceneId, shaderId, Id, Type, "min", Min.x, Min.y, Min.z);
+				CSycles.shadernode_set_member_vec(sceneId, shaderId, Id, Type, "min", Min.x, Min.y, Min.z);
 			}
 			if (UseMax)
 			{
-				CSycles.shadernode_set_member_vec(clientId, sceneId, shaderId, Id, Type, "max", Max.x, Max.y, Max.z);
+				CSycles.shadernode_set_member_vec(sceneId, shaderId, Id, Type, "max", Max.x, Max.y, Max.z);
 			}
 			var tr = Translation;
-			CSycles.shadernode_texmapping_set_transformation(clientId, sceneId, shaderId, Id, Type, 0, tr.x, tr.y, tr.z);
+			CSycles.shadernode_texmapping_set_transformation(sceneId, shaderId, Id, Type, 0, tr.x, tr.y, tr.z);
 			var rt = Rotation;
-			CSycles.shadernode_texmapping_set_transformation(clientId, sceneId, shaderId, Id, Type, 1, rt.x, rt.y, rt.z);
+			CSycles.shadernode_texmapping_set_transformation(sceneId, shaderId, Id, Type, 1, rt.x, rt.y, rt.z);
 			var sc = Scale;
-			CSycles.shadernode_texmapping_set_transformation(clientId, sceneId, shaderId, Id, Type, 2, sc.x, sc.y, sc.z);
+			CSycles.shadernode_texmapping_set_transformation(sceneId, shaderId, Id, Type, 2, sc.x, sc.y, sc.z);
 
-			CSycles.shadernode_texmapping_set_mapping(clientId, sceneId, shaderId, Id, Type, (uint)XMapping, (uint)YMapping, (uint)ZMapping);
+			CSycles.shadernode_texmapping_set_mapping(sceneId, shaderId, Id, Type, (uint)XMapping, (uint)YMapping, (uint)ZMapping);
 
-			CSycles.shadernode_texmapping_set_type(clientId, sceneId, shaderId, Id, Type, (uint)Mapping);
+			CSycles.shadernode_texmapping_set_type(sceneId, shaderId, Id, Type, (uint)Mapping);
 
-			CSycles.shadernode_set_member_bool(clientId, sceneId, shaderId, Id, Type, "is_linear", IsLinear);
+			CSycles.shadernode_set_member_bool(sceneId, shaderId, Id, Type, "is_linear", IsLinear);
 		}
 
 		protected void ImageParseXml(System.Xml.XmlReader xmlNode)

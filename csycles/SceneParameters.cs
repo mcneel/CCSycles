@@ -1,4 +1,4 @@
-﻿/**
+/**
 Copyright 2014 Robert McNeel and Associates
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -45,7 +45,7 @@ namespace ccl
 		public SceneParameters(Client client, ShadingSystem shadingSystem, BvhType bvhType, bool bvhSpatialSplit, BvhLayout bvhLayout, bool persistentData)
 		{
 			Client = client;
-			Id = CSycles.scene_params_create(Client.Id, shadingSystem, bvhType, bvhSpatialSplit, bvhLayout, persistentData);
+			Id = CSycles.scene_params_create(shadingSystem, bvhType, bvhSpatialSplit, bvhLayout, persistentData);
 		}
 
 		/// <summary>
@@ -55,7 +55,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.scene_params_set_bvh_type(Client.Id, Id, value);
+				CSycles.scene_params_set_bvh_type(Id, value);
 			}
 		}
 
@@ -66,7 +66,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.scene_params_set_bvh_spatial_split(Client.Id, Id, value);
+				CSycles.scene_params_set_bvh_spatial_split(Id, value);
 			}
 		}
 
@@ -77,7 +77,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.scene_params_set_qbvh(Client.Id, Id, value);
+				CSycles.scene_params_set_qbvh(Id, value);
 			}
 		}
 
@@ -90,7 +90,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.scene_params_set_shadingsystem(Client.Id, Id, value);
+				CSycles.scene_params_set_shadingsystem(Id, value);
 			}
 		}
 
@@ -101,7 +101,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.scene_params_set_persistent_data(Client.Id, Id, value);
+				CSycles.scene_params_set_persistent_data(Id, value);
 			}
 		}
 	}

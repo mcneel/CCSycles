@@ -1,4 +1,4 @@
-﻿/**
+/**
 Copyright 2014 Robert McNeel and Associates
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,6 +21,7 @@ using System.Drawing;
 using System.Xml;
 using System.Collections.Generic;
 
+#if LEGACY
 namespace ccl
 {
 	public class CSyclesXmlReader
@@ -584,3 +585,4 @@ namespace ccl
 		}
 	}
 }
+#endif

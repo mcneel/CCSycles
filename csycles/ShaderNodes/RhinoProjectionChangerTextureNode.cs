@@ -1,4 +1,4 @@
-﻿/**
+/**
 Copyright 2014 Robert McNeel and Associates
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -74,12 +74,12 @@ namespace ccl.ShaderNodes
 			outputs = new ProjectionChangerTextureOutputs(this);
 		}
 
-		internal override void SetDirectMembers(uint clientId, uint sceneId, uint shaderId)
+		internal override void SetDirectMembers(uint sceneId, uint shaderId)
 		{
-			CSycles.shadernode_set_member_int(clientId, sceneId, shaderId, Id, Type, "InputProjectionType", (int)InputProjectionType);
-			CSycles.shadernode_set_member_int(clientId, sceneId, shaderId, Id, Type, "OutputProjectionType", (int)OutputProjectionType);
-			CSycles.shadernode_set_member_float(clientId, sceneId, shaderId, Id, Type, "Azimuth", Azimuth);
-			CSycles.shadernode_set_member_float(clientId, sceneId, shaderId, Id, Type, "Altitude", Altitude);
+			CSycles.shadernode_set_member_int(sceneId, shaderId, Id, Type, "InputProjectionType", (int)InputProjectionType);
+			CSycles.shadernode_set_member_int(sceneId, shaderId, Id, Type, "OutputProjectionType", (int)OutputProjectionType);
+			CSycles.shadernode_set_member_float(sceneId, shaderId, Id, Type, "Azimuth", Azimuth);
+			CSycles.shadernode_set_member_float(sceneId, shaderId, Id, Type, "Altitude", Altitude);
 		}
 	}
 }

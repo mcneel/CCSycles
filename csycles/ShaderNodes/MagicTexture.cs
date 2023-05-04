@@ -1,4 +1,4 @@
-﻿/**
+/**
 Copyright 2014 Robert McNeel and Associates
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -71,9 +71,9 @@ namespace ccl.ShaderNodes
 
 		public int Depth { get; set; }
 
-		internal override void SetDirectMembers(uint clientId, uint sceneId, uint shaderId)
+		internal override void SetDirectMembers(uint sceneId, uint shaderId)
 		{
-			CSycles.shadernode_set_member_int(clientId, sceneId, shaderId, Id, Type, "depth", Depth);
+			CSycles.shadernode_set_member_int(sceneId, shaderId, Id, Type, "depth", Depth);
 		}
 
 		internal override void ParseXml(XmlReader xmlNode)

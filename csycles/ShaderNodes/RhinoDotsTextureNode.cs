@@ -1,4 +1,4 @@
-﻿/**
+/**
 Copyright 2014 Robert McNeel and Associates
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -87,15 +87,15 @@ namespace ccl.ShaderNodes
 			outputs = new DotsTextureOutputs(this);
 		}
 
-		internal override void SetDirectMembers(uint clientId, uint sceneId, uint shaderId)
+		internal override void SetDirectMembers(uint sceneId, uint shaderId)
 		{
-			CSycles.shadernode_set_member_int(clientId, sceneId, shaderId, Id, Type, "DataCount", DataCount);
-			CSycles.shadernode_set_member_int(clientId, sceneId, shaderId, Id, Type, "TreeNodeCount", TreeNodeCount);
-			CSycles.shadernode_set_member_float(clientId, sceneId, shaderId, Id, Type, "SampleAreaSize", SampleAreaSize);
-			CSycles.shadernode_set_member_bool(clientId, sceneId, shaderId, Id, Type, "Rings", Rings);
-			CSycles.shadernode_set_member_float(clientId, sceneId, shaderId, Id, Type, "RingRadius", RingRadius);
-			CSycles.shadernode_set_member_int(clientId, sceneId, shaderId, Id, Type, "FalloffType", (int)FalloffType);
-			CSycles.shadernode_set_member_int(clientId, sceneId, shaderId, Id, Type, "CompositionType", (int)CompositionType);
+			CSycles.shadernode_set_member_int(sceneId, shaderId, Id, Type, "DataCount", DataCount);
+			CSycles.shadernode_set_member_int(sceneId, shaderId, Id, Type, "TreeNodeCount", TreeNodeCount);
+			CSycles.shadernode_set_member_float(sceneId, shaderId, Id, Type, "SampleAreaSize", SampleAreaSize);
+			CSycles.shadernode_set_member_bool(sceneId, shaderId, Id, Type, "Rings", Rings);
+			CSycles.shadernode_set_member_float(sceneId, shaderId, Id, Type, "RingRadius", RingRadius);
+			CSycles.shadernode_set_member_int(sceneId, shaderId, Id, Type, "FalloffType", (int)FalloffType);
+			CSycles.shadernode_set_member_int(sceneId, shaderId, Id, Type, "CompositionType", (int)CompositionType);
 		}
 	}
 }

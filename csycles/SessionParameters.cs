@@ -1,4 +1,4 @@
-﻿/**
+/**
 Copyright 2014 Robert McNeel and Associates
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,6 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 **/
 
+using System;
 using System.Drawing;
 
 namespace ccl
@@ -29,17 +30,15 @@ namespace ccl
 		/// <summary>
 		/// Get the ID for the session parameters.
 		/// </summary>
-		public uint Id { get; }
-		private Client Client { get; }
+		public IntPtr Id { get; }
 		/// <summary>
 		/// Create session parameters using <c>Device</c>
 		/// </summary>
 		/// <param name="dev">The device to create session parameters for</param>
-		public SessionParameters(Client client, Device dev)
+		public SessionParameters(Device dev)
 		{
-			Client = client;
 			_device = dev;
-			Id = CSycles.session_params_create(Client.Id, (uint)dev.Id);
+			Id = CSycles.session_params_create((uint)dev.Id);
 		}
 
 		/// <summary>
@@ -50,7 +49,7 @@ namespace ccl
 			set
 			{
 				_device = value;
-				CSycles.session_params_set_device(Client.Id, Id, (uint)_device.Id);
+				CSycles.session_params_set_device(Id, (uint)_device.Id);
 			}
 		}
 
@@ -61,7 +60,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.session_params_set_background(Client.Id, Id, value);
+				CSycles.session_params_set_background(Id, value);
 			}
 		}
 
@@ -72,7 +71,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.session_params_set_progressive_refine(Client.Id, Id, value);
+				CSycles.session_params_set_progressive_refine(Id, value);
 			}
 		}
 
@@ -83,7 +82,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.session_params_set_progressive(Client.Id, Id, value);
+				CSycles.session_params_set_progressive(Id, value);
 			}
 		}
 
@@ -94,7 +93,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.session_params_set_output_path(Client.Id, Id, value);
+				CSycles.session_params_set_output_path(Id, value);
 			}
 		}
 
@@ -105,7 +104,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.session_params_set_experimental(Client.Id, Id, value);
+				CSycles.session_params_set_experimental(Id, value);
 			}
 		}
 
@@ -116,18 +115,18 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.session_params_set_samples(Client.Id, Id, value);
+				CSycles.session_params_set_samples(Id, value);
 			}
 		}
 
 		/// <summary>
 		/// Set the Size of a tile used during rendering
 		/// </summary>
-		public Size TileSize
+		public int TileSize
 		{
 			set
 			{
-				CSycles.session_params_set_tile_size(Client.Id, Id, (uint)value.Width, (uint)value.Height);
+				CSycles.session_params_set_tile_size(Id, (uint)value);
 			}
 		}
 
@@ -138,7 +137,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.session_params_set_tile_order(Client.Id, Id, value);
+				CSycles.session_params_set_tile_order(Id, value);
 			}
 		}
 
@@ -152,7 +151,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.session_params_set_start_resolution(Client.Id, Id, value);
+				CSycles.session_params_set_start_resolution(Id, value);
 			}
 		}
 
@@ -165,7 +164,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.session_params_set_threads(Client.Id, Id, value);
+				CSycles.session_params_set_threads(Id, value);
 			}
 		}
 
@@ -178,7 +177,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.session_params_set_display_buffer_linear(Client.Id, Id, value);
+				CSycles.session_params_set_display_buffer_linear(Id, value);
 			}
 		}
 
@@ -186,7 +185,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.session_params_set_skip_linear_to_srgb_conversion(Client.Id, Id, value);
+				CSycles.session_params_set_skip_linear_to_srgb_conversion(Id, value);
 			}
 		}
 
@@ -197,7 +196,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.session_params_set_cancel_timeout(Client.Id, Id, value);
+				CSycles.session_params_set_cancel_timeout(Id, value);
 			}
 		}
 
@@ -208,7 +207,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.session_params_set_reset_timeout(Client.Id, Id, value);
+				CSycles.session_params_set_reset_timeout(Id, value);
 			}
 		}
 
@@ -219,7 +218,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.session_params_set_text_timeout(Client.Id, Id, value);
+				CSycles.session_params_set_text_timeout(Id, value);
 			}
 		}
 
@@ -232,7 +231,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.session_params_set_shadingsystem(Client.Id, Id, value);
+				CSycles.session_params_set_shadingsystem(Id, value);
 			}
 		}
 
@@ -243,7 +242,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.session_params_set_pixel_size(Client.Id, Id, (uint)value);
+				CSycles.session_params_set_pixel_size(Id, (uint)value);
 			}
 		}
 	}

@@ -1,4 +1,4 @@
-﻿/**
+/**
 Copyright 2014 Robert McNeel and Associates
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -68,11 +68,11 @@ namespace ccl.ShaderNodes
 			outputs = new TileTextureOutputs(this);
 		}
 
-		internal override void SetDirectMembers(uint clientId, uint sceneId, uint shaderId)
+		internal override void SetDirectMembers(uint sceneId, uint shaderId)
 		{
-			CSycles.shadernode_set_member_int(clientId, sceneId, shaderId, Id, Type, "Type", (int)TileType);
-			CSycles.shadernode_set_member_vec(clientId, sceneId, shaderId, Id, Type, "Phase", PhaseX, PhaseY, PhaseZ);
-			CSycles.shadernode_set_member_vec(clientId, sceneId, shaderId, Id, Type, "JoinWidth", JoinWidthX, JoinWidthY, JoinWidthZ);
+			CSycles.shadernode_set_member_int(sceneId, shaderId, Id, Type, "Type", (int)TileType);
+			CSycles.shadernode_set_member_vec(sceneId, shaderId, Id, Type, "Phase", PhaseX, PhaseY, PhaseZ);
+			CSycles.shadernode_set_member_vec(sceneId, shaderId, Id, Type, "JoinWidth", JoinWidthX, JoinWidthY, JoinWidthZ);
 		}
 	}
 }

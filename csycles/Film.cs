@@ -1,4 +1,4 @@
-﻿/**
+/**
 Copyright 2014 Robert McNeel and Associates
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -44,7 +44,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.film_set_exposure(Scene.Client.Id, Scene.Id, value);
+				CSycles.film_set_exposure(Scene.Id, value);
 			}
 		}
 
@@ -55,7 +55,7 @@ namespace ccl
 		/// <param name="filterWidth">for proper Box use 1.0f</param>
 		public void SetFilter(FilterType filterType, float filterWidth)
 		{
-			CSycles.film_set_filter(Scene.Client.Id, Scene.Id, filterType, filterWidth);
+			CSycles.film_set_filter(Scene.Id, filterType, filterWidth);
 		}
 
 		/// <summary>
@@ -63,7 +63,7 @@ namespace ccl
 		/// </summary>
 		public void Update()
 		{
-			CSycles.film_tag_update(Scene.Client.Id, Scene.Id);
+			CSycles.film_tag_update(Scene.Id);
 		}
 	}
 }

@@ -1,4 +1,4 @@
-﻿/**
+/**
 Copyright 2014 Robert McNeel and Associates
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -123,10 +123,10 @@ namespace ccl.ShaderNodes
 			return str;
 		}
 
-		internal override void SetEnums(uint clientId, uint sceneId, uint shaderId)
+		internal override void SetEnums(uint sceneId, uint shaderId)
 		{
-			CSycles.shadernode_set_enum(clientId, sceneId, shaderId, Id, Type, "musgrave", (int)MusgraveType);
-			CSycles.shadernode_set_enum(clientId, sceneId, shaderId, Id, Type, "dimension", (int)Dimension);
+			CSycles.shadernode_set_enum(sceneId, shaderId, Id, Type, "musgrave", (int)MusgraveType);
+			CSycles.shadernode_set_enum(sceneId, shaderId, Id, Type, "dimension", (int)Dimension);
 		}
 
 		internal override void ParseXml(XmlReader xmlNode)

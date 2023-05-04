@@ -1,4 +1,4 @@
-﻿/**
+/**
 Copyright 2014-2017 Robert McNeel and Associates
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -106,11 +106,11 @@ namespace ccl.ShaderNodes
 			outputs = new AttributeOutputs(this);
 		}
 
-		internal override void SetDirectMembers(uint clientId, uint sceneId, uint shaderId)
+		internal override void SetDirectMembers(uint sceneId, uint shaderId)
 		{
 
 			var val = Attribute;
-			CSycles.shadernode_set_member_string(clientId, sceneId, shaderId, Id, Type, "attribute", val);
+			CSycles.shadernode_set_member_string(sceneId, shaderId, Id, Type, "attribute", val);
 		}
 
 		internal override void ParseXml(XmlReader xmlNode)

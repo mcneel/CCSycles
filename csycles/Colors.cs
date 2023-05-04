@@ -1,4 +1,4 @@
-﻿namespace ccl
+namespace ccl
 {
 	public static class Colors
 	{

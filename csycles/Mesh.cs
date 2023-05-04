@@ -1,4 +1,4 @@
-﻿/**
+/**
 Copyright 2014 Robert McNeel and Associates
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -28,7 +28,7 @@ namespace ccl
 		/// <summary>
 		/// Reference to client.
 		/// </summary>
-		private Client Client { get; }
+		private Session Client { get; }
 		/// <summary>
 		/// Shader used for this mesh.
 		/// </summary>
@@ -39,12 +39,12 @@ namespace ccl
 		/// </summary>
 		/// <param name="client"></param>
 		/// <param name="shader"></param>
-		public Mesh(Client client, Shader shader)
+		public Mesh(Session client, Shader shader)
 		{
 			Client = client;
 			Shader = shader;
 
-			Id = CSycles.scene_add_mesh(Client.Id, Client.Scene.Id, Client.Scene.GetShaderSceneId(shader));
+			Id = CSycles.scene_add_mesh(Client.Scene.Id, Client.Scene.GetShaderSceneId(shader));
 			System.Diagnostics.Trace.WriteLine($"Created mesh {Id} with shader {shader.Id}\n");
 		}
 
@@ -54,7 +54,7 @@ namespace ccl
 		/// <param name="client"></param>
 		/// <param name="id"></param>
 		/// <param name="shader"></param>
-		internal Mesh(Client client, uint id, Shader shader)
+		internal Mesh(Session client, uint id, Shader shader)
 		{
 			Client = client;
 			Shader = shader;
@@ -67,7 +67,7 @@ namespace ccl
 		/// </summary>
 		public void ClearData()
 		{
-			CSycles.mesh_clear(Client.Id, Client.Scene.Id, Id);
+			CSycles.mesh_clear(Client.Scene.Id, Id);
 		}
 
 		/// <summary>
@@ -78,7 +78,7 @@ namespace ccl
 		{
 			System.Diagnostics.Trace.WriteLine($"on mesh {Id} replacing {Shader.Id} with {shader.Id}\n");
 			Shader = shader;
-			CSycles.mesh_set_shader(Client.Id, Client.Scene.Id, Id, Client.Scene.GetShaderSceneId(Shader));
+			CSycles.mesh_set_shader(Client.Scene.Id, Id, Client.Scene.GetShaderSceneId(Shader));
 			TagRebuild();
 		}
 
@@ -87,7 +87,7 @@ namespace ccl
 		/// </summary>
 		public void TagRebuild()
 		{
-			CSycles.mesh_tag_rebuild(Client.Id, Client.Scene.Id, Id);
+			CSycles.mesh_tag_rebuild(Client.Scene.Id, Id);
 		}
 
 		/// <summary>
@@ -96,7 +96,7 @@ namespace ccl
 		/// <param name="uvmap_name"></param>
 		public void AttrTangentSpace(string uvmap_name)
 		{
-			CSycles.mesh_attr_tangentspace(Client.Id, Client.Scene.Id, Id, uvmap_name);
+			CSycles.mesh_attr_tangentspace(Client.Scene.Id, Id, uvmap_name);
 		}
 
 		/// <summary>
@@ -106,7 +106,7 @@ namespace ccl
 		/// <param name="fcount"></param>
 		public void Reserve(uint vcount, uint fcount)
 		{
-			CSycles.mesh_reserve(Client.Id, Client.Scene.Id, Id, vcount, fcount);
+			CSycles.mesh_reserve(Client.Scene.Id, Id, vcount, fcount);
 		}
 
 		/// <summary>
@@ -116,7 +116,7 @@ namespace ccl
 		/// <param name="fcount"></param>
 		public void Resize(uint vcount, uint fcount)
 		{
-			CSycles.mesh_resize(Client.Id, Client.Scene.Id, Id, vcount, fcount);
+			CSycles.mesh_resize(Client.Scene.Id, Id, vcount, fcount);
 		}
 
 		/// <summary>
@@ -125,7 +125,7 @@ namespace ccl
 		/// <param name="verts"></param>
 		public void SetVerts(ref float[] verts)
 		{
-			CSycles.mesh_set_verts(Client.Id, Client.Scene.Id, Id, ref verts, (uint) (verts.Length/3));
+			CSycles.mesh_set_verts(Client.Scene.Id, Id, ref verts, (uint) (verts.Length/3));
 		}
 
 		/// <summary>
@@ -135,7 +135,7 @@ namespace ccl
 		/// <param name="smooth"></param>
 		public void SetVertTris(ref int[] faces, bool smooth)
 		{
-			CSycles.mesh_set_tris(Client.Id, Client.Scene.Id, Id, ref faces, (uint) (faces.Length/3), Client.Scene.GetShaderSceneId(Shader), smooth);
+			CSycles.mesh_set_tris(Client.Scene.Id, Id, ref faces, (uint) (faces.Length/3), Client.Scene.GetShaderSceneId(Shader), smooth);
 		}
 
 		/// <summary>
@@ -144,7 +144,7 @@ namespace ccl
 		/// <param name="vertex_normals"></param>
 		public void SetVertNormals(ref float[] vertex_normals)
 		{
-			CSycles.mesh_set_vertex_normals(Client.Id, Client.Scene.Id, Id, ref vertex_normals, (uint) (vertex_normals.Length/3));
+			CSycles.mesh_set_vertex_normals(Client.Scene.Id, Id, ref vertex_normals, (uint) (vertex_normals.Length/3));
 		}
 
 		/// <summary>
@@ -154,7 +154,7 @@ namespace ccl
 		/// <param name="uvmap_name">Name for the UV map attribute set</param>
 		public void SetUvs(ref float[] uvs, string uvmap_name)
 		{
-			CSycles.mesh_set_uvs(Client.Id, Client.Scene.Id, Id, ref uvs, (uint) (uvs.Length/2), uvmap_name);
+			CSycles.mesh_set_uvs(Client.Scene.Id, Id, ref uvs, (uint) (uvs.Length/2), uvmap_name);
 		}
 
 		/// <summary>
@@ -163,7 +163,7 @@ namespace ccl
 		/// <param name="uvs"></param>
 		public void SetVertexColors(ref float[] vertexcolors)
 		{
-			CSycles.mesh_set_vertex_colors(Client.Id, Client.Scene.Id, Id, ref vertexcolors, (uint) (vertexcolors.Length/3));
+			CSycles.mesh_set_vertex_colors(Client.Scene.Id, Id, ref vertexcolors, (uint) (vertexcolors.Length/3));
 		}
 
 		/// <summary>
@@ -176,7 +176,7 @@ namespace ccl
 		/// <param name="smooth"></param>
 		public void AddTri(uint v0, uint v1, uint v2, Shader shader, bool smooth)
 		{
-			CSycles.mesh_add_triangle(Client.Id, Client.Scene.Id, Id, v0, v1, v2, Client.Scene.GetShaderSceneId(shader), smooth);
+			CSycles.mesh_add_triangle(Client.Scene.Id, Id, v0, v1, v2, Client.Scene.GetShaderSceneId(shader), smooth);
 		}
 
 		/// <summary>
@@ -190,7 +190,7 @@ namespace ccl
 		/// <param name="smooth"></param>
 		public void SetTri(uint idx, uint v0, uint v1, uint v2, Shader shader, bool smooth)
 		{
-			CSycles.mesh_set_triangle(Client.Id, Client.Scene.Id, Id, idx, v0, v1, v2, Client.Scene.GetShaderSceneId(shader), smooth);
+			CSycles.mesh_set_triangle(Client.Scene.Id, Id, idx, v0, v1, v2, Client.Scene.GetShaderSceneId(shader), smooth);
 		}
 	}
 }

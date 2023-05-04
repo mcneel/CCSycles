@@ -1,4 +1,4 @@
-﻿/**
+/**
 Copyright 2014 Robert McNeel and Associates
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -39,7 +39,7 @@ namespace ccl
 		/// Get the ID for this shader. This ID is given by CCycles
 		/// </summary>
 		public uint Id { get; }
-		private Client Client { get; }
+		private Session Client { get; }
 		public ShaderType Type { get; set; }
 
 		private bool CreatedInCycles { get; set; }
@@ -59,10 +59,10 @@ namespace ccl
 		/// </summary>
 		/// <param name="client">Client ID for C[CS]ycles API.</param>
 		/// <param name="type">The type of shader to create</param>
-		public Shader(Client client, ShaderType type)
+		public Shader(Session client, ShaderType type)
 		{
 			Client = client;
-			Id = CSycles.create_shader(Client.Id, Client.Scene.Id);
+			Id = CSycles.create_shader(Client.Scene.Id);
 			CommonConstructor(type, false);
 		}
 
@@ -74,7 +74,7 @@ namespace ccl
 		/// <param name="client"></param>
 		/// <param name="type"></param>
 		/// <param name="id"></param>
-		internal Shader(Client client, ShaderType type, uint id)
+		internal Shader(Session client, ShaderType type, uint id)
 		{
 			Client = client;
 			Id = id;
@@ -106,7 +106,7 @@ namespace ccl
 		/// </summary>
 		public virtual void Recreate()
 		{
-			CSycles.shader_new_graph(Client.Id, Client.Scene.Id, Id);
+			CSycles.shader_new_graph(Client.Scene.Id, Id);
 
 			CreatedInCycles = false;
 
@@ -125,7 +125,7 @@ namespace ccl
 		}
 		public virtual void Tag(bool use)
 		{
-			CSycles.scene_tag_shader(Client.Id, Client.Scene.Id, Id, use);
+			CSycles.scene_tag_shader(Client.Scene.Id, Id, use);
 		}
 
 		/// <summary>
@@ -133,7 +133,7 @@ namespace ccl
 		/// </summary>
 		/// <param name="client"></param>
 		/// <returns></returns>
-		static public Shader WrapDefaultSurfaceShader(Client client)
+		static public Shader WrapDefaultSurfaceShader(Session client)
 		{
 			var shader = new Shader(client, ShaderType.Material, CSycles.DEFAULT_SURFACE_SHADER) {Name = "default_surface"};
 
@@ -154,7 +154,7 @@ namespace ccl
 		/// </summary>
 		/// <param name="client"></param>
 		/// <returns></returns>
-		static public Shader WrapDefaultLightShader(Client client)
+		static public Shader WrapDefaultLightShader(Session client)
 		{
 			var shader = new Shader(client, ShaderType.Material, CSycles.DEFAULT_LIGHT_SHADER) {Name = "default_light"};
 
@@ -176,7 +176,7 @@ namespace ccl
 		/// </summary>
 		/// <param name="client"></param>
 		/// <returns></returns>
-		static public Shader WrapDefaultBackgroundShader(Client client)
+		static public Shader WrapDefaultBackgroundShader(Session client)
 		{
 			var shader = new Shader(client, ShaderType.World, CSycles.DEFAULT_BACKGROUND_SHADER) {Name = "default_background"};
 
@@ -188,7 +188,7 @@ namespace ccl
 		/// </summary>
 		/// <param name="client"></param>
 		/// <returns></returns>
-		static public Shader WrapDefaultEmptyShader(Client client)
+		static public Shader WrapDefaultEmptyShader(Session client)
 		{
 			var shader = new Shader(client, ShaderType.Material, CSycles.DEFAULT_EMPTY_SHADER) {Name = "default_empty"};
 
@@ -216,7 +216,7 @@ namespace ccl
 				return;
 			}
 
-			var nodeid = CSycles.add_shader_node(Client.Id, Client.Scene.Id, Id, node.Type);
+			var nodeid = CSycles.add_shader_node(Client.Scene.Id, Id, node.Type);
 			node.Id = nodeid;
 			m_nodes.Add(node);
 		}
@@ -237,14 +237,14 @@ namespace ccl
 			foreach (var node in m_nodes)
 			{
 				/* set enumerations */
-				node.SetEnums(Client.Id, Client.Scene.Id, Id);
+				node.SetEnums(Client.Scene.Id, Id);
 
 				/* set direct member variables */
-				node.SetDirectMembers(Client.Id, Client.Scene.Id, Id);
+				node.SetDirectMembers(Client.Scene.Id, Id);
 
 				if (node.inputs == null) continue;
 
-				node.SetSockets(Client.Id, Client.Scene.Id, Id);
+				node.SetSockets(Client.Scene.Id, Id);
 
 				foreach (var socket in node.inputs.Sockets)
 				{
@@ -270,7 +270,7 @@ namespace ccl
 		{
 			if (m_nodes.Contains(from) && m_nodes.Contains(to))
 			{
-				CSycles.shader_connect_nodes(Client.Id, Client.Scene.Id, Id, from.Id, fromout, to.Id, toin);
+				CSycles.shader_connect_nodes(Client.Scene.Id, Id, from.Id, fromout, to.Id, toin);
 			}
 			else
 			{
@@ -289,7 +289,7 @@ namespace ccl
 			set
 			{
 				m_name = value;
-				if(!CreatedInCycles && Client!=null) CSycles.shader_set_name(Client.Id, Client.Scene.Id, Id, m_name);
+				if(!CreatedInCycles && Client!=null) CSycles.shader_set_name(Client.Scene.Id, Id, m_name);
 			}
 			get
 			{
@@ -304,7 +304,7 @@ namespace ccl
 		{
 			set
 			{
-				if(!CreatedInCycles && Client!=null) CSycles.shader_set_use_mis(Client.Id, Client.Scene.Id, Id, value);
+				if(!CreatedInCycles && Client!=null) CSycles.shader_set_use_mis(Client.Scene.Id, Id, value);
 			}
 		}
 
@@ -315,7 +315,7 @@ namespace ccl
 		{
 			set
 			{
-				if(!CreatedInCycles && Client!=null) CSycles.shader_set_use_transparent_shadow(Client.Id, Client.Scene.Id, Id, value);
+				if(!CreatedInCycles && Client!=null) CSycles.shader_set_use_transparent_shadow(Client.Scene.Id, Id, value);
 			}
 		}
 
@@ -326,7 +326,7 @@ namespace ccl
 		{
 			set
 			{
-				if(!CreatedInCycles && Client!=null) CSycles.shader_set_heterogeneous_volume(Client.Id, Client.Scene.Id, Id, value);
+				if(!CreatedInCycles && Client!=null) CSycles.shader_set_heterogeneous_volume(Client.Scene.Id, Id, value);
 			}
 		}
 

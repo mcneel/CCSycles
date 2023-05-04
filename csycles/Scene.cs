@@ -1,4 +1,4 @@
-﻿/**
+/**
 Copyright 2014 Robert McNeel and Associates
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -28,11 +28,6 @@ namespace ccl
 		/// Get the ID of the created Scene as given by CCycles
 		/// </summary>
 		public uint Id { get; private set; }
-
-		/// <summary>
-		/// Client ID for CCycles API
-		/// </summary>
-		internal Client Client { get; set; }
 
 		/// <summary>
 		/// Access to the Camera for this Scene
@@ -65,13 +60,13 @@ namespace ccl
 		/// <param name="client">The client from C[CS]ycles API</param>
 		/// <param name="sceneParams">The SceneParameters to create scene with</param>
 		/// <param name="session">The Session to create scene for</param>
-		public Scene(Client client, SceneParameters sceneParams, Session session)
+		public Scene(Session session)
 		{
 #if SCENESTUFF
 // TODO: XXXX scenes are created directly by ccl::Session constructor.
 // TODO: XXXX wrap access of scene through session.
 			Client = client;
-			Id = CSycles.scene_create(Client.Id, sceneParams.Id, session.Id);
+			Id = CSycles.scene_create(sceneParams.Id, session.Id);
 			Background = new Background(this);
 			Camera = new Camera(this);
 			Integrator = new Integrator(this);
@@ -107,7 +102,7 @@ namespace ccl
 		/// <returns>Scene-specific ID for the Shader</returns>
 		public uint AddShader(Shader shader)
 		{
-			var shader_in_scene_id = CSycles.scene_add_shader(Client.Id, Id, shader.Id);
+			var shader_in_scene_id = CSycles.scene_add_shader(Id, shader.Id);
 			m_shader_in_scene_ids.Add(shader, shader_in_scene_id);
 			return shader_in_scene_id;
 		}
@@ -159,11 +154,11 @@ namespace ccl
 		{
 			get
 			{
-				return GetShader(CSycles.scene_get_default_surface_shader(Client.Id, Id));
+				return GetShader(CSycles.scene_get_default_surface_shader(Id));
 			}
 			set
 			{
-				CSycles.scene_set_default_surface_shader(Client.Id, Id, GetShaderSceneId(value));
+				CSycles.scene_set_default_surface_shader(Id, GetShaderSceneId(value));
 			}
 		}
 		//public static uint scene_create(uint scene_params_id, uint deviceid)
@@ -176,7 +171,7 @@ namespace ccl
 		/// </summary>
 		public void Reset()
 		{
-			CSycles.scene_reset(Client.Id, Id);
+			CSycles.scene_reset(Id);
 		}
 
 		/// <summary>
@@ -185,7 +180,7 @@ namespace ccl
 		/// <returns>True if lock was acquired, false otherwise</returns>
 		public bool TryLock()
 		{
-			return CSycles.scene_try_lock(Client.Id, Id);
+			return CSycles.scene_try_lock(Id);
 		}
 
 		/// <summary>
@@ -193,7 +188,7 @@ namespace ccl
 		/// </summary>
 		public void Lock()
 		{
-			CSycles.scene_lock(Client.Id, Id);
+			CSycles.scene_lock(Id);
 		}
 
 		/// <summary>
@@ -201,12 +196,12 @@ namespace ccl
 		/// </summary>
 		public void Unlock()
 		{
-			CSycles.scene_unlock(Client.Id, Id);
+			CSycles.scene_unlock(Id);
 		}
 
 		public void ClearClippingPlanes()
 		{
-			CSycles.scene_clear_clipping_planes(Client.Id, Id);
+			CSycles.scene_clear_clipping_planes(Id);
 		}
 	}
 }

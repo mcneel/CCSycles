@@ -1,4 +1,4 @@
-﻿/**
+/**
 Copyright 2014 Robert McNeel and Associates
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -77,15 +77,15 @@ namespace ccl.ShaderNodes
 
 		public string Attribute { get; set; } = "uvmap1";
 
-		internal override void SetEnums(uint clientId, uint sceneId, uint shaderId)
+		internal override void SetEnums(uint sceneId, uint shaderId)
 		{
-			CSycles.shadernode_set_enum(clientId, sceneId, shaderId, Id, Type, "type", (int)SpaceType);
+			CSycles.shadernode_set_enum(sceneId, shaderId, Id, Type, "type", (int)SpaceType);
 		}
 
-		internal override void SetDirectMembers(uint clientId, uint sceneId, uint shaderId)
+		internal override void SetDirectMembers(uint sceneId, uint shaderId)
 		{
-			base.SetDirectMembers(clientId, sceneId, shaderId);
-			CSycles.shadernode_set_member_string(clientId, sceneId, shaderId, Id, ShaderNodeType.NoiseTexture, "attribute", Attribute);
+			base.SetDirectMembers(sceneId, shaderId);
+			CSycles.shadernode_set_member_string(sceneId, shaderId, Id, ShaderNodeType.NoiseTexture, "attribute", Attribute);
 		}
 
 

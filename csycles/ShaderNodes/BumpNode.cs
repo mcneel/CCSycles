@@ -1,4 +1,4 @@
-﻿/**
+/**
 Copyright 2014 Robert McNeel and Associates
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -107,9 +107,9 @@ namespace ccl.ShaderNodes
 		/// </summary>
 		public bool Invert { get; set; }
 
-		internal override void SetDirectMembers(uint clientId, uint sceneId, uint shaderId)
+		internal override void SetDirectMembers(uint sceneId, uint shaderId)
 		{
-			CSycles.shadernode_set_member_bool(clientId, sceneId, shaderId, Id, Type, "invert", Invert);
+			CSycles.shadernode_set_member_bool(sceneId, shaderId, Id, Type, "invert", Invert);
 		}
 
 		internal override void ParseXml(System.Xml.XmlReader xmlNode)

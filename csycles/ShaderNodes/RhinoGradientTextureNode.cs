@@ -1,4 +1,4 @@
-﻿/**
+/**
 Copyright 2014 Robert McNeel and Associates
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -68,13 +68,13 @@ namespace ccl.ShaderNodes
 			outputs = new GradientTextureOutputs(this);
 		}
 
-		internal override void SetDirectMembers(uint clientId, uint sceneId, uint shaderId)
+		internal override void SetDirectMembers(uint sceneId, uint shaderId)
 		{
-			CSycles.shadernode_set_member_int(clientId, sceneId, shaderId, Id, Type, "GradientType", (int)GradientType);
-			CSycles.shadernode_set_member_bool(clientId, sceneId, shaderId, Id, Type, "FlipAlternate", FlipAlternate);
-			CSycles.shadernode_set_member_bool(clientId, sceneId, shaderId, Id, Type, "UseCustomCurve", UseCustomCurve);
-			//CSycles.shadernode_set_member_int(clientId, sceneId, shaderId, Id, Type, "PointWidth", PointWidth);
-			//CSycles.shadernode_set_member_int(clientId, sceneId, shaderId, Id, Type, "PointHeight", PointHeight);
+			CSycles.shadernode_set_member_int(sceneId, shaderId, Id, Type, "GradientType", (int)GradientType);
+			CSycles.shadernode_set_member_bool(sceneId, shaderId, Id, Type, "FlipAlternate", FlipAlternate);
+			CSycles.shadernode_set_member_bool(sceneId, shaderId, Id, Type, "UseCustomCurve", UseCustomCurve);
+			//CSycles.shadernode_set_member_int(sceneId, shaderId, Id, Type, "PointWidth", PointWidth);
+			//CSycles.shadernode_set_member_int(sceneId, shaderId, Id, Type, "PointHeight", PointHeight);
 		}
 	}
 }

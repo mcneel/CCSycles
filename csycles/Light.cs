@@ -1,4 +1,4 @@
-﻿/**
+/**
 Copyright 2014 Robert McNeel and Associates
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -32,7 +32,7 @@ namespace ccl
 		/// <summary>
 		/// Reference to client for which light was created.
 		/// </summary>
-		public Client Client { get; internal set; }
+		public Session Client { get; internal set; }
 		public Shader Shader { get; set; }
 		/// <summary>
 		/// Create a new light.
@@ -43,12 +43,12 @@ namespace ccl
 		/// <param name="client"></param>
 		/// <param name="scene"></param>
 		/// <param name="lightShader"></param>
-		public Light(Client client, Scene scene, Shader lightShader)
+		public Light(Session client, Scene scene, Shader lightShader)
 		{
 			Client = client;
 			Scene = scene;
 			Shader = lightShader;
-			Id = CSycles.create_light(Client.Id, Scene.Id, scene.GetShaderSceneId(lightShader));
+			Id = CSycles.create_light(Scene.Id, scene.GetShaderSceneId(lightShader));
 		}
 
 		/// <summary>
@@ -56,7 +56,7 @@ namespace ccl
 		/// </summary>
 		public void TagUpdate()
 		{
-			CSycles.light_tag_update(Client.Id, Scene.Id, Id);
+			CSycles.light_tag_update(Scene.Id, Id);
 		}
 
 		/// <summary>
@@ -66,7 +66,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.light_set_type(Client.Id, Scene.Id, Id, value);
+				CSycles.light_set_type(Scene.Id, Id, value);
 			}
 		}
 
@@ -77,7 +77,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.light_set_use_mis(Client.Id, Scene.Id, Id, value);
+				CSycles.light_set_use_mis(Scene.Id, Id, value);
 			}
 		}
 
@@ -88,7 +88,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.light_set_cast_shadow(Client.Id, Scene.Id, Id, value);
+				CSycles.light_set_cast_shadow(Scene.Id, Id, value);
 			}
 		}
 
@@ -99,7 +99,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.light_set_samples(Client.Id, Scene.Id, Id, value);
+				CSycles.light_set_samples(Scene.Id, Id, value);
 			}
 		}
 
@@ -110,7 +110,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.light_set_max_bounces(Client.Id, Scene.Id, Id, value);
+				CSycles.light_set_max_bounces(Scene.Id, Id, value);
 			}
 		}
 
@@ -121,7 +121,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.light_set_map_resolution(Client.Id, Scene.Id, Id, value);
+				CSycles.light_set_map_resolution(Scene.Id, Id, value);
 			}
 		}
 
@@ -132,7 +132,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.light_set_size(Client.Id, Scene.Id, Id, value);
+				CSycles.light_set_size(Scene.Id, Id, value);
 			}
 		}
 
@@ -143,7 +143,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.light_set_angle(Client.Id, Scene.Id, Id, value);
+				CSycles.light_set_angle(Scene.Id, Id, value);
 			}
 		}
 
@@ -154,7 +154,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.light_set_co(Client.Id, Scene.Id, Id, value.x, value.y, value.z);
+				CSycles.light_set_co(Scene.Id, Id, value.x, value.y, value.z);
 			}
 		}
 
@@ -165,7 +165,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.light_set_dir(Client.Id, Scene.Id, Id, value.x, value.y, value.z);
+				CSycles.light_set_dir(Scene.Id, Id, value.x, value.y, value.z);
 			}
 		}
 
@@ -176,7 +176,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.light_set_sizeu(Client.Id, Scene.Id, Id, value);
+				CSycles.light_set_sizeu(Scene.Id, Id, value);
 			}
 		}
 
@@ -187,7 +187,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.light_set_sizev(Client.Id, Scene.Id, Id, value);
+				CSycles.light_set_sizev(Scene.Id, Id, value);
 			}
 		}
 
@@ -198,7 +198,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.light_set_axisu(Client.Id, Scene.Id, Id, value.x, value.y, value.z);
+				CSycles.light_set_axisu(Scene.Id, Id, value.x, value.y, value.z);
 			}
 		}
 
@@ -209,7 +209,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.light_set_axisv(Client.Id, Scene.Id, Id, value.x, value.y, value.z);
+				CSycles.light_set_axisv(Scene.Id, Id, value.x, value.y, value.z);
 			}
 		}
 
@@ -220,7 +220,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.light_set_spot_angle(Client.Id, Scene.Id, Id, value);
+				CSycles.light_set_spot_angle(Scene.Id, Id, value);
 			}
 		}
 
@@ -231,7 +231,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.light_set_spot_smooth(Client.Id, Scene.Id, Id, value);
+				CSycles.light_set_spot_smooth(Scene.Id, Id, value);
 			}
 		}
 	}

@@ -1,4 +1,4 @@
-﻿/**
+/**
 Copyright 2014 Robert McNeel and Associates
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -68,20 +68,20 @@ namespace ccl.ShaderNodes
 			outputs = new TextureAdjustmentTextureOutputs(this);
 		}
 
-		internal override void SetDirectMembers(uint clientId, uint sceneId, uint shaderId)
+		internal override void SetDirectMembers(uint sceneId, uint shaderId)
 		{
-			CSycles.shadernode_set_member_bool(clientId, sceneId, shaderId, Id, Type, "Grayscale", Grayscale);
-			CSycles.shadernode_set_member_bool(clientId, sceneId, shaderId, Id, Type, "Invert", Invert);
-			CSycles.shadernode_set_member_bool(clientId, sceneId, shaderId, Id, Type, "Clamp", Clamp);
-			CSycles.shadernode_set_member_bool(clientId, sceneId, shaderId, Id, Type, "ScaleToClamp", ScaleToClamp);
-			CSycles.shadernode_set_member_float(clientId, sceneId, shaderId, Id, Type, "Multiplier", Multiplier);
-			CSycles.shadernode_set_member_float(clientId, sceneId, shaderId, Id, Type, "ClampMin", ClampMin);
-			CSycles.shadernode_set_member_float(clientId, sceneId, shaderId, Id, Type, "ClampMax", ClampMax);
-			CSycles.shadernode_set_member_float(clientId, sceneId, shaderId, Id, Type, "Gain", Gain);
-			CSycles.shadernode_set_member_float(clientId, sceneId, shaderId, Id, Type, "Gamma", Gamma);
-			CSycles.shadernode_set_member_float(clientId, sceneId, shaderId, Id, Type, "Saturation", Saturation);
-			CSycles.shadernode_set_member_float(clientId, sceneId, shaderId, Id, Type, "HueShift", HueShift);
-			CSycles.shadernode_set_member_bool(clientId, sceneId, shaderId, Id, Type, "IsHdr", IsHdr);
+			CSycles.shadernode_set_member_bool(sceneId, shaderId, Id, Type, "Grayscale", Grayscale);
+			CSycles.shadernode_set_member_bool(sceneId, shaderId, Id, Type, "Invert", Invert);
+			CSycles.shadernode_set_member_bool(sceneId, shaderId, Id, Type, "Clamp", Clamp);
+			CSycles.shadernode_set_member_bool(sceneId, shaderId, Id, Type, "ScaleToClamp", ScaleToClamp);
+			CSycles.shadernode_set_member_float(sceneId, shaderId, Id, Type, "Multiplier", Multiplier);
+			CSycles.shadernode_set_member_float(sceneId, shaderId, Id, Type, "ClampMin", ClampMin);
+			CSycles.shadernode_set_member_float(sceneId, shaderId, Id, Type, "ClampMax", ClampMax);
+			CSycles.shadernode_set_member_float(sceneId, shaderId, Id, Type, "Gain", Gain);
+			CSycles.shadernode_set_member_float(sceneId, shaderId, Id, Type, "Gamma", Gamma);
+			CSycles.shadernode_set_member_float(sceneId, shaderId, Id, Type, "Saturation", Saturation);
+			CSycles.shadernode_set_member_float(sceneId, shaderId, Id, Type, "HueShift", HueShift);
+			CSycles.shadernode_set_member_bool(sceneId, shaderId, Id, Type, "IsHdr", IsHdr);
 		}
 	}
 }

@@ -1,4 +1,4 @@
-﻿/**
+/**
 Copyright 2014 Robert McNeel and Associates
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -43,8 +43,8 @@ namespace ccl
 		public Scene Scene
 		{
 			get { return sc; }
-			set {
-				//CSycles.session_set_scene(Client.Id, Id, value.Id);
+			private set {
+				//CSycles.session_set_scene(Id, value.Id);
 				sc = value;
 			}
 		}
@@ -55,23 +55,17 @@ namespace ccl
 		/// <summary>
 		/// Get the ID for this session
 		/// </summary>
-		public uint Id { get; }
-
-		/// <summary>
-		/// Reference to client used for this session
-		/// </summary>
-		private Client Client { get; }
+		public IntPtr Id { get; }
 
 		/// <summary>
 		/// Create a new session using the given SessionParameters and Scene
 		/// </summary>
 		/// <param name="sessionParams">Previously created SessionParameters to create Session with</param>
-		/// <param name="scene">Previously created Scene to create Session with</param>
-		public Session(Client client, SessionParameters sessionParams)
+		public Session(SessionParameters sessionParams)
 		{
-			Client = client;
 			SessionParams = sessionParams;
-			Id = CSycles.session_create(Client.Id, sessionParams.Id);
+			Id = CSycles.session_create(sessionParams.Id);
+			Scene = new Scene(this);
 		}
 
 		/// <summary>
@@ -88,7 +82,7 @@ namespace ccl
 			{
 				if (Destroyed) return;
 				updateCallback = value;
-				CSycles.session_set_update_callback(Client.Id, Id, value);
+				CSycles.session_set_update_callback(Id, value);
 			}
 		}
 
@@ -106,7 +100,7 @@ namespace ccl
 			{
 				if (Destroyed) return;
 				testCancelCallback = value;
-				CSycles.session_set_cancel_callback(Client.Id, Id, value);
+				CSycles.session_set_cancel_callback(Id, value);
 			}
 		}
 
@@ -124,7 +118,7 @@ namespace ccl
 			{
 				if (Destroyed) return;
 				updateTileCallback = value;
-				CSycles.session_set_update_tile_callback(Client.Id, Id, value);
+				CSycles.session_set_update_tile_callback(Id, value);
 			}
 		}
 
@@ -141,7 +135,7 @@ namespace ccl
 			{
 				if (Destroyed) return;
 				writeTileCallback = value;
-				CSycles.session_set_write_tile_callback(Client.Id, Id, value);
+				CSycles.session_set_write_tile_callback(Id, value);
 			}
 		}
 
@@ -156,7 +150,7 @@ namespace ccl
 			{
 				if (Destroyed) return;
 				displayUpdateCallback = value;
-				CSycles.session_set_display_update_callback(Client.Id, Id, value);
+				CSycles.session_set_display_update_callback(Id, value);
 			}
 		}
 
@@ -167,8 +161,8 @@ namespace ccl
 		public void Start()
 		{
 			if (Destroyed) return;
-			CSycles.progress_reset(Client.Id, Id);
-			CSycles.session_start(Client.Id, Id);
+			CSycles.progress_reset(Id);
+			CSycles.session_start(Id);
 		}
 
 		/// <summary>
@@ -177,7 +171,7 @@ namespace ccl
 		public void PrepareRun()
 		{
 			if(Destroyed) return;
-			CSycles.session_prepare_run(Client.Id, Id);
+			CSycles.session_prepare_run(Id);
 		}
 
 		/// <summary>
@@ -186,7 +180,7 @@ namespace ccl
 		public int Sample()
 		{
 			if(Destroyed) return -1;
-			return CSycles.session_sample(Client.Id, Id);
+			return CSycles.session_sample(Id);
 		}
 
 		/// <summary>
@@ -195,7 +189,7 @@ namespace ccl
 		public void EndRun()
 		{
 			if(Destroyed) return;
-			CSycles.session_end_run(Client.Id, Id);
+			CSycles.session_end_run(Id);
 		}
 
 		/// <summary>
@@ -204,7 +198,7 @@ namespace ccl
 		public void Wait()
 		{
 			if (Destroyed) return;
-			CSycles.session_wait(Client.Id, Id);
+			CSycles.session_wait(Id);
 		}
 
 		/// <summary>
@@ -214,7 +208,7 @@ namespace ccl
 		public void Cancel(string cancelMessage)
 		{
 			if (Destroyed) return;
-			CSycles.session_cancel(Client.Id, Id, cancelMessage);
+			CSycles.session_cancel(Id, cancelMessage);
 		}
 
 		/// <summary>
@@ -224,7 +218,7 @@ namespace ccl
 		{
 			if (Destroyed) return;
 			// TODO: XXXX scene no longer managed separately, should all go through session.
-			CSycles.session_destroy(Client.Id, Id, 0);
+			CSycles.session_destroy(Id, 0);
 			Destroyed = true;
 		}
 
@@ -236,7 +230,7 @@ namespace ccl
 			}
 			else
 			{
-				CSycles.session_get_float_buffer(Client.Id, Id, pt, ref pixel_buffer);
+				CSycles.session_get_float_buffer(Id, pt, ref pixel_buffer);
 			}
 		}
 
@@ -251,8 +245,8 @@ namespace ccl
 		public int Reset(uint width, uint height, uint samples, uint full_x, uint full_y, uint full_width, uint full_height )
 		{
 			if (Destroyed) return -1;
-			CSycles.progress_reset(Client.Id, Id);
-			return CSycles.session_reset(Client.Id, Id, width, height, samples, full_x, full_y, full_width, full_height);
+			CSycles.progress_reset(Id);
+			return CSycles.session_reset(Id, width, height, samples, full_x, full_y, full_width, full_height);
 		}
 
 		public int Reset(int width, int height, int samples, int full_x, int full_y, int full_width, int full_height )
@@ -267,13 +261,13 @@ namespace ccl
 		public void SetPause(bool pause)
 		{
 			if (Destroyed) return;
-			CSycles.session_set_pause(Client.Id, Id, pause);
+			CSycles.session_set_pause(Id, pause);
 		}
 
 		public bool IsPaused()
 		{
 			if (Destroyed) return false;
-			return CSycles.session_is_paused(Client.Id, Id);
+			return CSycles.session_is_paused(Id);
 		}
 
 		/// <summary>
@@ -284,7 +278,7 @@ namespace ccl
 		public void SetSamples(int samples)
 		{
 			if (Destroyed) return;
-			CSycles.session_set_samples(Client.Id, Id, samples);
+			CSycles.session_set_samples(Id, samples);
 		}
 
 
@@ -303,7 +297,7 @@ namespace ccl
 		public void AddPass(PassType pass)
 		{
 			if (Destroyed) return;
-			CSycles.session_add_pass(Client.Id, Id, pass);
+			CSycles.session_add_pass(Id, pass);
 			if (!_passes.Contains(pass)) {
 				_passes.Add(pass);
 			}
@@ -316,8 +310,8 @@ namespace ccl
 		{
 			if (Destroyed) return;
 			_passes.Clear();
-			CSycles.session_clear_passes(Client.Id, Id);
-			CSycles.session_add_pass(Client.Id, Id, PassType.Combined);
+			CSycles.session_clear_passes(Id);
+			CSycles.session_add_pass(Id, PassType.Combined);
 			_passes.Add(PassType.Combined);
 		}
 	}

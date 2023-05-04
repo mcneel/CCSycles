@@ -1,4 +1,4 @@
-﻿/**
+/**
 Copyright 2014 Robert McNeel and Associates
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -188,21 +188,21 @@ namespace ccl
 		public delegate void LoggerCallback([MarshalAsAttribute(UnmanagedType.LPStr)] string msg);
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_set_logger(uint clientId, IntPtr loggerCb);
+		private static extern void cycles_set_logger(IntPtr loggerCb);
 		/// <summary>
 		/// Set the logger function to CCycles.
 		/// </summary>
 		/// <param name="clientId">ID of client</param>
 		/// <param name="loggerCb">The logger callback function.</param>
-		public static void set_logger(uint clientId, LoggerCallback loggerCb)
+		public static void set_logger(LoggerCallback loggerCb)
 		{
 			var intptr_delegate = Marshal.GetFunctionPointerForDelegate(loggerCb);
-			cycles_set_logger(clientId, intptr_delegate);
+			cycles_set_logger(intptr_delegate);
 		}
 
-		public static void remove_logger(uint clientId)
+		public static void remove_logger()
 		{
-			cycles_set_logger(clientId, IntPtr.Zero);
+			cycles_set_logger(IntPtr.Zero);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
@@ -225,10 +225,10 @@ namespace ccl
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_release_client(uint clientId);
-		public static void release_client(uint clientId)
+		private static extern void cycles_release_client();
+		public static void release_client()
 		{
-			cycles_release_client(clientId);
+			cycles_release_client();
 		}
 
 

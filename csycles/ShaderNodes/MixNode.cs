@@ -1,4 +1,4 @@
-﻿/**
+/**
 Copyright 2014 Robert McNeel and Associates
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -110,14 +110,14 @@ namespace ccl.ShaderNodes
 		public BlendTypes BlendType { get; set; }
 		public bool UseClamp { get; set; }
 
-		internal override void SetEnums(uint clientId, uint sceneId, uint shaderId)
+		internal override void SetEnums(uint sceneId, uint shaderId)
 		{
-			CSycles.shadernode_set_enum(clientId, sceneId, shaderId, Id, Type, "type", (int)BlendType);
+			CSycles.shadernode_set_enum(sceneId, shaderId, Id, Type, "type", (int)BlendType);
 		}
 
-		internal override void SetDirectMembers(uint clientId, uint sceneId, uint shaderId)
+		internal override void SetDirectMembers(uint sceneId, uint shaderId)
 		{
-			CSycles.shadernode_set_member_bool(clientId, sceneId, shaderId, Id, Type, "use_clamp", UseClamp);
+			CSycles.shadernode_set_member_bool(sceneId, shaderId, Id, Type, "use_clamp", UseClamp);
 		}
 
 		private void SetBlendType(string op)

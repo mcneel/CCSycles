@@ -1,4 +1,4 @@
-﻿/**
+/**
 Copyright 2014 Robert McNeel and Associates
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -45,11 +45,11 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.camera_set_size(Scene.Client.Id, Scene.Id, (uint)value.Width, (uint)value.Height);
+				CSycles.camera_set_size(Scene.Id, (uint)value.Width, (uint)value.Height);
 			}
 			get
 			{
-				return new Size((int)CSycles.camera_get_width(Scene.Client.Id, Scene.Id), (int)CSycles.camera_get_height(Scene.Client.Id, Scene.Id));
+				return new Size((int)CSycles.camera_get_width(Scene.Id), (int)CSycles.camera_get_height(Scene.Id));
 			}
 		}
 
@@ -60,7 +60,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.camera_set_matrix(Scene.Client.Id, Scene.Id, value);
+				CSycles.camera_set_matrix(Scene.Id, value);
 			}
 		}
 
@@ -71,7 +71,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.camera_set_type(Scene.Client.Id, Scene.Id, value);
+				CSycles.camera_set_type(Scene.Id, value);
 			}
 		}
 
@@ -82,7 +82,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.camera_set_panorama_type(Scene.Client.Id, Scene.Id, value);
+				CSycles.camera_set_panorama_type(Scene.Id, value);
 			}
 		}
 
@@ -93,7 +93,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.camera_set_fov(Scene.Client.Id, Scene.Id, value);
+				CSycles.camera_set_fov(Scene.Id, value);
 			}
 		}
 
@@ -104,7 +104,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.camera_set_sensor_width(Scene.Client.Id, Scene.Id, value);
+				CSycles.camera_set_sensor_width(Scene.Id, value);
 			}
 		}
 
@@ -115,7 +115,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.camera_set_sensor_height(Scene.Client.Id, Scene.Id, value);
+				CSycles.camera_set_sensor_height(Scene.Id, value);
 			}
 		}
 
@@ -126,7 +126,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.camera_set_nearclip(Scene.Client.Id, Scene.Id, value);
+				CSycles.camera_set_nearclip(Scene.Id, value);
 			}
 		}
 
@@ -137,7 +137,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.camera_set_farclip(Scene.Client.Id, Scene.Id, value);
+				CSycles.camera_set_farclip(Scene.Id, value);
 			}
 		}
 
@@ -148,7 +148,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.camera_set_aperturesize(Scene.Client.Id, Scene.Id, value);
+				CSycles.camera_set_aperturesize(Scene.Id, value);
 			}
 		}
 
@@ -159,7 +159,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.camera_set_aperture_ratio(Scene.Client.Id, Scene.Id, value);
+				CSycles.camera_set_aperture_ratio(Scene.Id, value);
 			}
 		}
 
@@ -170,7 +170,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.camera_set_blades(Scene.Client.Id, Scene.Id, value);
+				CSycles.camera_set_blades(Scene.Id, value);
 			}
 		}
 
@@ -181,7 +181,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.camera_set_bladesrotation(Scene.Client.Id, Scene.Id, value);
+				CSycles.camera_set_bladesrotation(Scene.Id, value);
 			}
 		}
 
@@ -192,7 +192,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.camera_set_focaldistance(Scene.Client.Id, Scene.Id, value);
+				CSycles.camera_set_focaldistance(Scene.Id, value);
 			}
 		}
 
@@ -203,7 +203,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.camera_set_shuttertime(Scene.Client.Id, Scene.Id, value);
+				CSycles.camera_set_shuttertime(Scene.Id, value);
 			}
 		}
 
@@ -214,7 +214,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.camera_set_fisheye_fov(Scene.Client.Id, Scene.Id, value);
+				CSycles.camera_set_fisheye_fov(Scene.Id, value);
 			}
 		}
 
@@ -225,7 +225,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.camera_set_fisheye_lens(Scene.Client.Id, Scene.Id, value);
+				CSycles.camera_set_fisheye_lens(Scene.Id, value);
 			}
 		}
 
@@ -234,7 +234,7 @@ namespace ccl
 		/// </summary>
 		public void Update()
 		{
-			CSycles.camera_update(Scene.Client.Id, Scene.Id);
+			CSycles.camera_update(Scene.Id);
 		}
 
 		/// <summary>
@@ -242,7 +242,7 @@ namespace ccl
 		/// </summary>
 		public void ComputeAutoViewPlane()
 		{
-			CSycles.camera_compute_auto_viewplane(Scene.Client.Id, Scene.Id);
+			CSycles.camera_compute_auto_viewplane(Scene.Id);
 		}
 
 		/// <summary>
@@ -254,7 +254,7 @@ namespace ccl
 		/// <param name="bottom"></param>
 		public void SetViewPlane(float left, float right, float top, float bottom)
 		{
-			CSycles.camera_set_viewplane(Scene.Client.Id, Scene.Id, left, right, top, bottom);
+			CSycles.camera_set_viewplane(Scene.Id, left, right, top, bottom);
 		}
 	}
 }

@@ -1,4 +1,4 @@
-﻿/**
+/**
 Copyright 2014 Robert McNeel and Associates
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -106,9 +106,9 @@ namespace ccl.ShaderNodes
 		}
 
 		AnisotropicDistribution Distribution { get; set; }
-		internal override void SetEnums(uint clientId, uint sceneId, uint shaderId)
+		internal override void SetEnums(uint sceneId, uint shaderId)
 		{
-			CSycles.shadernode_set_enum(clientId, sceneId, shaderId, Id, Type, "distribution", (int)Distribution);
+			CSycles.shadernode_set_enum(sceneId, shaderId, Id, Type, "distribution", (int)Distribution);
 		}
 
 		internal override void ParseXml(XmlReader xmlNode)

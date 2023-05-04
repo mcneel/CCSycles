@@ -1,4 +1,4 @@
-﻿/**
+/**
 Copyright 2014 Robert McNeel and Associates
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -31,14 +31,14 @@ namespace ccl
 		/// <summary>
 		/// Scene reference of this client
 		/// </summary>
-		public Scene Scene { get; set; }
+		//public Scene Scene { get; set; }
 
 		/// <summary>
 		/// Create a new client
 		/// </summary>
 		public Client()
 		{
-			Id = CSycles.new_client();
+			Id = 0; // CSycles.new_client();
 		}
 
 		/// <summary>
@@ -46,7 +46,7 @@ namespace ccl
 		/// </summary>
 		public void Dispose()
 		{
-			CSycles.release_client(Id);
+			//CSycles.release_client();
 		}
 	}
 }

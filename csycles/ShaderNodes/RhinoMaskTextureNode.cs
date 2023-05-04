@@ -1,4 +1,4 @@
-﻿/**
+/**
 Copyright 2014 Robert McNeel and Associates
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -65,9 +65,9 @@ namespace ccl.ShaderNodes
 			outputs = new MaskTextureOutputs(this);
 		}
 
-		internal override void SetDirectMembers(uint clientId, uint sceneId, uint shaderId)
+		internal override void SetDirectMembers(uint sceneId, uint shaderId)
 		{
-			CSycles.shadernode_set_member_int(clientId, sceneId, shaderId, Id, Type, "MaskType", (int)MaskType);
+			CSycles.shadernode_set_member_int(sceneId, shaderId, Id, Type, "MaskType", (int)MaskType);
 		}
 	}
 }

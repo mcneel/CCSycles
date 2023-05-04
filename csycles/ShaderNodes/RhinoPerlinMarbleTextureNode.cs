@@ -1,4 +1,4 @@
-﻿/**
+/**
 Copyright 2014 Robert McNeel and Associates
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -64,14 +64,14 @@ namespace ccl.ShaderNodes
 			outputs = new PerlinMarlinTextureOutputs(this);
 		}
 
-		internal override void SetDirectMembers(uint clientId, uint sceneId, uint shaderId)
+		internal override void SetDirectMembers(uint sceneId, uint shaderId)
 		{
-			CSycles.shadernode_set_member_int(clientId, sceneId, shaderId, Id, Type, "Levels", Levels);
-			CSycles.shadernode_set_member_float(clientId, sceneId, shaderId, Id, Type, "Noise", Noise);
-			CSycles.shadernode_set_member_float(clientId, sceneId, shaderId, Id, Type, "Blur", Blur);
-			CSycles.shadernode_set_member_float(clientId, sceneId, shaderId, Id, Type, "Size", Size);
-			CSycles.shadernode_set_member_float(clientId, sceneId, shaderId, Id, Type, "Color1Saturation", Color1Saturation);
-			CSycles.shadernode_set_member_float(clientId, sceneId, shaderId, Id, Type, "Color2Saturation", Color2Saturation);
+			CSycles.shadernode_set_member_int(sceneId, shaderId, Id, Type, "Levels", Levels);
+			CSycles.shadernode_set_member_float(sceneId, shaderId, Id, Type, "Noise", Noise);
+			CSycles.shadernode_set_member_float(sceneId, shaderId, Id, Type, "Blur", Blur);
+			CSycles.shadernode_set_member_float(sceneId, shaderId, Id, Type, "Size", Size);
+			CSycles.shadernode_set_member_float(sceneId, shaderId, Id, Type, "Color1Saturation", Color1Saturation);
+			CSycles.shadernode_set_member_float(sceneId, shaderId, Id, Type, "Color2Saturation", Color2Saturation);
 		}
 	}
 }

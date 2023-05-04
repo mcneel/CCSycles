@@ -1,4 +1,4 @@
-﻿/**
+/**
 Copyright 2014 Robert McNeel and Associates
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -112,17 +112,17 @@ namespace ccl.ShaderNodes
 
 		public Operations Operation { get; set; }
 
-		internal override void SetEnums(uint clientId, uint sceneId, uint shaderId)
+		internal override void SetEnums(uint sceneId, uint shaderId)
 		{
-			CSycles.shadernode_set_enum(clientId, sceneId, shaderId, Id, Type, "operation", (int)Operation);
+			CSycles.shadernode_set_enum(sceneId, shaderId, Id, Type, "operation", (int)Operation);
 		}
 
-		internal override void SetDirectMembers(uint clientId, uint sceneId, uint shaderId)
+		internal override void SetDirectMembers(uint sceneId, uint shaderId)
 		{
 			var tfm = Transform;
-			CSycles.shadernode_set_member_vec4_at_index(clientId, sceneId, shaderId, Id, Type, "tfm_x", tfm.x.x, tfm.x.y, tfm.x.z, tfm.x.w, 0);
-			CSycles.shadernode_set_member_vec4_at_index(clientId, sceneId, shaderId, Id, Type, "tfm_y", tfm.y.x, tfm.y.y, tfm.y.z, tfm.y.w, 1);
-			CSycles.shadernode_set_member_vec4_at_index(clientId, sceneId, shaderId, Id, Type, "tfm_z", tfm.z.x, tfm.z.y, tfm.z.z, tfm.z.w, 2);
+			CSycles.shadernode_set_member_vec4_at_index(sceneId, shaderId, Id, Type, "tfm_x", tfm.x.x, tfm.x.y, tfm.x.z, tfm.x.w, 0);
+			CSycles.shadernode_set_member_vec4_at_index(sceneId, shaderId, Id, Type, "tfm_y", tfm.y.x, tfm.y.y, tfm.y.z, tfm.y.w, 1);
+			CSycles.shadernode_set_member_vec4_at_index(sceneId, shaderId, Id, Type, "tfm_z", tfm.z.x, tfm.z.y, tfm.z.z, tfm.z.w, 2);
 		}
 
 		internal override void ParseXml(XmlReader xmlNode)
