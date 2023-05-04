@@ -234,6 +234,26 @@ namespace ccl
 			}
 		}
 
+		public void RetainPixelBuffer(PassType pt, ref IntPtr pixel_buffer)
+		{
+			if (Destroyed)
+			{
+				pixel_buffer = IntPtr.Zero;
+			}
+			else
+			{
+				CSycles.session_retain_float_buffer(Id, pt, ref pixel_buffer);
+			}
+		}
+
+		public void ReleasePixelBuffer(PassType pt)
+		{
+			if (!Destroyed)
+			{
+				CSycles.session_release_float_buffer(Id, pt);
+			}
+		}
+
 
 		/// <summary>
 		/// Reset a Session

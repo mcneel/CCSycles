@@ -160,6 +160,20 @@ namespace ccl
 		{
 			cycles_session_get_float_buffer(sessionId, (int)passType, ref pixels);
 		}
+
+		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		private static extern void cycles_session_retain_float_buffer(IntPtr sessionId, int passType, ref IntPtr pixels);
+		public static void session_retain_float_buffer(IntPtr sessionId, PassType passType, ref IntPtr pixels)
+		{
+			cycles_session_retain_float_buffer(sessionId, (int)passType, ref pixels);
+		}
+
+		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		private static extern void cycles_session_release_float_buffer(IntPtr sessionId, int passType);
+		public static void session_release_float_buffer(IntPtr sessionId, PassType passType)
+		{
+			cycles_session_release_float_buffer(sessionId, (int)passType);
+		}
 		#endregion
 
 		#region session parameters
