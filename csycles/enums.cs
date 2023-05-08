@@ -304,48 +304,62 @@ namespace ccl
 
 	public enum PassType : int
 	{
-		/* Main passes */
+		None = 0,
+
+		/* Light Passes */
 		Combined = 1,
-		Depth,
+		Emission,
+		Background,
+		Ao,
+		Diffuse,
+		DiffuseDirect,
+		DiffuseIndirect,
+		Glossy,
+		GlossyDirect,
+		GlossyIndirect,
+		Transmission,
+		TransmissionDirect,
+		TransmissionIndirect,
+		Volume,
+		VolumeDirect,
+		VolumeIndirect,
+		CategoryLightEnd = 31,
+
+		/* Data passes */
+		Depth = 32,
+		Position,
 		Normal,
+		Roughness,
 		Uv,
 		ObjectId,
 		MaterialId,
 		Motion,
 		MotionWeight,
-#if __KERNEL_DEBUG__
-		BvhTraversedNodes,
-		BvhTraversedInstances,
-		BvhIntersections,
-		RayBounces,
-#endif
-		RenderTime,
-		Cryptomatte,
+		CryptoMatte,
 		AovColor,
 		AovValue,
-		CategoryMainEnd = 31,
-
-		Mist = 32,
-		Emission,
-		Background,
-		Ao,
-		Shadow,
-		Light, /* No Real Pass, Used To Force UseLightPass */
-		DiffuseDirect,
-		DiffuseIndirect,
+		AdaptiveAuxBuffer,
+		SampleCount,
 		DiffuseColor,
-		GlossyDirect,
-		GlossyIndirect,
 		GlossyColor,
-		TransmissionDirect,
-		TransmissionIndirect,
 		TransmissionColor,
-		SubsurfaceDirect,
-		SubsurfaceIndirect,
-		SubsurfaceColor,
-		VolumeDirect,
-		VolumeIndirect,
-		/* No Scatter Color Since It'S Tricky To Define What It Would Even Mean. */
-		CategoryLightEnd = 63,
+		Mist,
+		DenoisingNormal,
+		DenoisingAlbedo,
+		DenoisingDepth,
+		DenoisingPrevious,
+		ShadowCatcher,
+		ShadowCatcherSampleCount,
+		ShadowCatcherMatte,
+		GuidingColor,
+		GuidingProbability,
+		GuidingAvgRoughness,
+		CategoryDataEnd = 63,
+
+		BakePrimitive,
+		BakeDifferential,
+		CategoryBakeEnd = 95,
+
+		Num
 	}
 }
