@@ -15,6 +15,7 @@ limitations under the License.
 **/
 
 using System.Xml;
+using System;
 using ccl.ShaderNodes.Sockets;
 using ccl.Attributes;
 using System.Text;
@@ -77,15 +78,15 @@ namespace ccl.ShaderNodes
 
 		public string Attribute { get; set; } = "uvmap1";
 
-		internal override void SetEnums(uint sceneId, uint shaderId)
+		internal override void SetEnums(IntPtr sessionId, IntPtr shaderId)
 		{
-			CSycles.shadernode_set_enum(sceneId, shaderId, Id, Type, "type", (int)SpaceType);
+			CSycles.shadernode_set_enum(sessionId, shaderId, Id, Type, "type", (int)SpaceType);
 		}
 
-		internal override void SetDirectMembers(uint sceneId, uint shaderId)
+		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
 		{
-			base.SetDirectMembers(sceneId, shaderId);
-			CSycles.shadernode_set_member_string(sceneId, shaderId, Id, ShaderNodeType.NoiseTexture, "attribute", Attribute);
+			base.SetDirectMembers(sessionId, shaderId);
+			CSycles.shadernode_set_member_string(sessionId, shaderId, Id, ShaderNodeType.NoiseTexture, "attribute", Attribute);
 		}
 
 

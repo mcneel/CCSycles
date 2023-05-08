@@ -162,9 +162,9 @@ namespace ccl.ShaderNodes
 			Operation = (Operations)Enum.Parse(typeof(Operations), op, true);
 		}
 
-		internal override void SetEnums(uint sceneId, uint shaderId)
+		internal override void SetEnums(IntPtr sessionId, IntPtr shaderId)
 		{
-			CSycles.shadernode_set_enum(sceneId, shaderId, Id, Type, "operation", (int)Operation);
+			CSycles.shadernode_set_enum(sessionId, shaderId, Id, Type, "operation", (int)Operation);
 		}
 
 		internal override void ParseXml(XmlReader xmlNode)

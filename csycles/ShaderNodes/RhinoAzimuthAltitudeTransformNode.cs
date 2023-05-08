@@ -15,6 +15,7 @@ limitations under the License.
 **/
 
 using System.Xml;
+using System;
 using ccl.ShaderNodes.Sockets;
 using ccl.Attributes;
 using System.Text;
@@ -65,11 +66,11 @@ namespace ccl.ShaderNodes
 			Threshold = 0.001f;
 		}
 
-		internal override void SetDirectMembers(uint sceneId, uint shaderId)
+		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
 		{
-			CSycles.shadernode_set_member_float(sceneId, shaderId, Id, Type, "azimuth", Azimuth);
-			CSycles.shadernode_set_member_float(sceneId, shaderId, Id, Type, "altitude", Altitude);
-			CSycles.shadernode_set_member_float(sceneId, shaderId, Id, Type, "threshold", Threshold);
+			CSycles.shadernode_set_member_float(sessionId, shaderId, Id, Type, "azimuth", Azimuth);
+			CSycles.shadernode_set_member_float(sessionId, shaderId, Id, Type, "altitude", Altitude);
+			CSycles.shadernode_set_member_float(sessionId, shaderId, Id, Type, "threshold", Threshold);
 		}
 
 	}

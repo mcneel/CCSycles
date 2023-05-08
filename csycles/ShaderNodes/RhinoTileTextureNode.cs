@@ -16,6 +16,7 @@ limitations under the License.
 
 using ccl.ShaderNodes.Sockets;
 using ccl.Attributes;
+using System;
 
 namespace ccl.ShaderNodes
 {
@@ -68,11 +69,11 @@ namespace ccl.ShaderNodes
 			outputs = new TileTextureOutputs(this);
 		}
 
-		internal override void SetDirectMembers(uint sceneId, uint shaderId)
+		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
 		{
-			CSycles.shadernode_set_member_int(sceneId, shaderId, Id, Type, "Type", (int)TileType);
-			CSycles.shadernode_set_member_vec(sceneId, shaderId, Id, Type, "Phase", PhaseX, PhaseY, PhaseZ);
-			CSycles.shadernode_set_member_vec(sceneId, shaderId, Id, Type, "JoinWidth", JoinWidthX, JoinWidthY, JoinWidthZ);
+			CSycles.shadernode_set_member_int(sessionId, shaderId, Id, Type, "Type", (int)TileType);
+			CSycles.shadernode_set_member_vec(sessionId, shaderId, Id, Type, "Phase", PhaseX, PhaseY, PhaseZ);
+			CSycles.shadernode_set_member_vec(sessionId, shaderId, Id, Type, "JoinWidth", JoinWidthX, JoinWidthY, JoinWidthZ);
 		}
 	}
 }

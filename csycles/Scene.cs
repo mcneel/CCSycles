@@ -16,6 +16,7 @@ limitations under the License.
 
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 namespace ccl
 {
@@ -25,32 +26,32 @@ namespace ccl
 	public class Scene
 	{
 		/// <summary>
-		/// Get the ID of the created Scene as given by CCycles
+		/// Get the ID of the created Session as given by CCycles
 		/// </summary>
-		public uint Id { get; private set; }
+		public IntPtr Id { get; private set; }
 
 		/// <summary>
-		/// Access to the Camera for this Scene
+		/// Access to the Camera for this Session
 		/// </summary>
 		public Camera Camera { get; private set; }
 
 		/// <summary>
-		/// Access to the Integrator settings for this Scene
+		/// Access to the Integrator settings for this Session
 		/// </summary>
 		public Integrator Integrator { get; private set; }
 
 		/// <summary>
-		/// Access to the Bacground settings for this Scene
+		/// Access to the Bacground settings for this Session
 		/// </summary>
 		public Background Background { get; private set; }
 
 		/// <summary>
-		/// Access to the Film for this Scene
+		/// Access to the Film for this Session
 		/// </summary>
 		public Film Film { get; private set; }
 
 		/// <summary>
-		/// Access to the Device used for this Scene
+		/// Access to the Device used for this Session
 		/// </summary>
 		public Device Device { get; private set; }
 
@@ -62,13 +63,15 @@ namespace ccl
 		/// <param name="session">The Session to create scene for</param>
 		public Scene(Session session)
 		{
+			// for now use Session.Id as Session.Id too, since they are now tightly coupled in Cycles
+			Id = session.Id;
+			Camera = new Camera(session);
 #if SCENESTUFF
 // TODO: XXXX scenes are created directly by ccl::Session constructor.
 // TODO: XXXX wrap access of scene through session.
 			Client = client;
 			Id = CSycles.scene_create(sceneParams.Id, session.Id);
 			Background = new Background(this);
-			Camera = new Camera(this);
 			Integrator = new Integrator(this);
 			Film = new Film(this);
 
@@ -96,10 +99,10 @@ namespace ccl
 		/// </summary>
 		private readonly Dictionary<Shader, uint> m_shader_in_scene_ids = new Dictionary<Shader, uint>();
 		/// <summary>
-		/// Add a Shader to Scene, assigning it a scene specific ID.
+		/// Add a Shader to Session, assigning it a scene specific ID.
 		/// </summary>
-		/// <param name="shader">The Shader to add to the Scene</param>
-		/// <returns>Scene-specific ID for the Shader</returns>
+		/// <param name="shader">The Shader to add to the Session</param>
+		/// <returns>Session-specific ID for the Shader</returns>
 		public uint AddShader(Shader shader)
 		{
 			var shader_in_scene_id = CSycles.scene_add_shader(Id, shader.Id);
@@ -111,7 +114,7 @@ namespace ccl
 		/// Get the scene-specific Id for Shader
 		/// </summary>
 		/// <param name="shader">Shader to query for</param>
-		/// <returns>Scene-specific Id</returns>
+		/// <returns>Session-specific Id</returns>
 		public uint GetShaderSceneId(Shader shader)
 		{
 			return m_shader_in_scene_ids[shader];
@@ -138,7 +141,7 @@ namespace ccl
 		}
 
 		/// <summary>
-		/// Get a shader based on Scene-specific ID.
+		/// Get a shader based on Session-specific ID.
 		/// </summary>
 		/// <param name="id"></param>
 		/// <returns></returns>

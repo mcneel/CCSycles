@@ -17,6 +17,7 @@ limitations under the License.
 using System.Xml;
 using ccl.ShaderNodes.Sockets;
 using ccl.Attributes;
+using System;
 
 namespace ccl.ShaderNodes
 {
@@ -71,9 +72,9 @@ namespace ccl.ShaderNodes
 
 		public int Depth { get; set; }
 
-		internal override void SetDirectMembers(uint sceneId, uint shaderId)
+		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
 		{
-			CSycles.shadernode_set_member_int(sceneId, shaderId, Id, Type, "depth", Depth);
+			CSycles.shadernode_set_member_int(sessionId, shaderId, Id, Type, "depth", Depth);
 		}
 
 		internal override void ParseXml(XmlReader xmlNode)

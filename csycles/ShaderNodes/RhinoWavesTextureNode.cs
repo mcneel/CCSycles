@@ -16,6 +16,7 @@ limitations under the License.
 
 using ccl.ShaderNodes.Sockets;
 using ccl.Attributes;
+using System;
 
 namespace ccl.ShaderNodes
 {
@@ -69,13 +70,13 @@ namespace ccl.ShaderNodes
 			ins.Color3.Value = new float4(1.0f, 1.0f, 1.0f);
 		}
 
-		internal override void SetDirectMembers(uint sceneId, uint shaderId)
+		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
 		{
-			CSycles.shadernode_set_member_int(sceneId, shaderId, Id, Type, "WaveType", (int)WaveType);
-			CSycles.shadernode_set_member_float(sceneId, shaderId, Id, Type, "WaveWidth", WaveWidth);
-			CSycles.shadernode_set_member_bool(sceneId, shaderId, Id, Type, "WaveWidthTextureOn", WaveWidthTextureOn);
-			CSycles.shadernode_set_member_float(sceneId, shaderId, Id, Type, "Contrast1", Contrast1);
-			CSycles.shadernode_set_member_float(sceneId, shaderId, Id, Type, "Contrast2", Contrast2);
+			CSycles.shadernode_set_member_int(sessionId, shaderId, Id, Type, "WaveType", (int)WaveType);
+			CSycles.shadernode_set_member_float(sessionId, shaderId, Id, Type, "WaveWidth", WaveWidth);
+			CSycles.shadernode_set_member_bool(sessionId, shaderId, Id, Type, "WaveWidthTextureOn", WaveWidthTextureOn);
+			CSycles.shadernode_set_member_float(sessionId, shaderId, Id, Type, "Contrast1", Contrast1);
+			CSycles.shadernode_set_member_float(sessionId, shaderId, Id, Type, "Contrast2", Contrast2);
 		}
 	}
 
@@ -117,9 +118,9 @@ namespace ccl.ShaderNodes
 			outputs = new WavesWidthTextureOutputs(this);
 		}
 
-		internal override void SetDirectMembers(uint sceneId, uint shaderId)
+		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
 		{
-			CSycles.shadernode_set_member_int(sceneId, shaderId, Id, Type, "WaveType", (int)WaveType);
+			CSycles.shadernode_set_member_int(sessionId, shaderId, Id, Type, "WaveType", (int)WaveType);
 		}
 	}
 }

@@ -35,17 +35,10 @@ namespace ccl
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern uint cycles_session_set_scene(IntPtr sessionId, uint sceneId);
-		public static uint session_set_scene(IntPtr sessionId, uint sceneId)
+		private static extern uint cycles_session_destroy(IntPtr sessionId);
+		public static uint session_destroy(IntPtr sessionId)
 		{
-			return cycles_session_set_scene(sessionId, sceneId);
-		}
-
-		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern uint cycles_session_destroy(IntPtr sessionId, uint sceneId);
-		public static uint session_destroy(IntPtr sessionId, uint sceneId)
-		{
-			return cycles_session_destroy(sessionId, sceneId);
+			return cycles_session_destroy(sessionId);
 		}
 
 		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]

@@ -29,10 +29,10 @@ namespace ccl
 
 		/// <summary>
 		/// Create a background representation for scene. Generally this
-		/// is handled by the Scene, therefor this is an internally visible
+		/// is handled by the Session, therefor this is an internally visible
 		/// constructor
 		/// </summary>
-		/// <param name="scene">Scene for which to create background</param>
+		/// <param name="scene">Session for which to create background</param>
 		internal Background(Scene scene)
 		{
 			Scene = scene;

@@ -17,6 +17,7 @@ limitations under the License.
 using System.Xml;
 using ccl.ShaderNodes.Sockets;
 using ccl.Attributes;
+using System;
 
 namespace ccl.ShaderNodes
 {
@@ -80,18 +81,18 @@ namespace ccl.ShaderNodes
 			outputs = new NoiseTextureOutputs(this);
 		}
 
-		internal override void SetDirectMembers(uint sceneId, uint shaderId)
+		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
 		{
-			CSycles.shadernode_set_member_int(sceneId, shaderId, Id, Type, "NoiseType", (int)NoiseType);
-			CSycles.shadernode_set_member_int(sceneId, shaderId, Id, Type, "SpecSynthType", (int)SpecSynthType);
-			CSycles.shadernode_set_member_int(sceneId, shaderId, Id, Type, "OctaveCount", OctaveCount);
-			CSycles.shadernode_set_member_float(sceneId, shaderId, Id, Type, "FrequencyMultiplier", FrequencyMultiplier);
-			CSycles.shadernode_set_member_float(sceneId, shaderId, Id, Type, "AmplitudeMultiplier", AmplitudeMultiplier);
-			CSycles.shadernode_set_member_float(sceneId, shaderId, Id, Type, "ClampMin", ClampMin);
-			CSycles.shadernode_set_member_float(sceneId, shaderId, Id, Type, "ClampMax", ClampMax);
-			CSycles.shadernode_set_member_bool(sceneId, shaderId, Id, Type, "ScaleToClamp", ScaleToClamp);
-			CSycles.shadernode_set_member_bool(sceneId, shaderId, Id, Type, "Inverse", Inverse);
-			CSycles.shadernode_set_member_float(sceneId, shaderId, Id, Type, "Gain", Gain);
+			CSycles.shadernode_set_member_int(sessionId, shaderId, Id, Type, "NoiseType", (int)NoiseType);
+			CSycles.shadernode_set_member_int(sessionId, shaderId, Id, Type, "SpecSynthType", (int)SpecSynthType);
+			CSycles.shadernode_set_member_int(sessionId, shaderId, Id, Type, "OctaveCount", OctaveCount);
+			CSycles.shadernode_set_member_float(sessionId, shaderId, Id, Type, "FrequencyMultiplier", FrequencyMultiplier);
+			CSycles.shadernode_set_member_float(sessionId, shaderId, Id, Type, "AmplitudeMultiplier", AmplitudeMultiplier);
+			CSycles.shadernode_set_member_float(sessionId, shaderId, Id, Type, "ClampMin", ClampMin);
+			CSycles.shadernode_set_member_float(sessionId, shaderId, Id, Type, "ClampMax", ClampMax);
+			CSycles.shadernode_set_member_bool(sessionId, shaderId, Id, Type, "ScaleToClamp", ScaleToClamp);
+			CSycles.shadernode_set_member_bool(sessionId, shaderId, Id, Type, "Inverse", Inverse);
+			CSycles.shadernode_set_member_float(sessionId, shaderId, Id, Type, "Gain", Gain);
 		}
 	}
 }

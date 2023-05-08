@@ -38,7 +38,7 @@ namespace ccl
 		/// <summary>
 		/// Get the ID for this shader. This ID is given by CCycles
 		/// </summary>
-		public uint Id { get; }
+		public IntPtr Id { get; }
 		private Session Client { get; }
 		public ShaderType Type { get; set; }
 
@@ -74,7 +74,7 @@ namespace ccl
 		/// <param name="client"></param>
 		/// <param name="type"></param>
 		/// <param name="id"></param>
-		internal Shader(Session client, ShaderType type, uint id)
+		internal Shader(Session client, ShaderType type, IntPtr id)
 		{
 			Client = client;
 			Id = id;
@@ -203,6 +203,7 @@ namespace ccl
 		/// <param name="node">ShaderNode to add</param>
 		public virtual void AddNode(ShaderNode node)
 		{
+#if LEGACY_SHADERS
 			if (node is OutputNode)
 			{
 				node.Id = CSycles.OUTPUT_SHADERNODE_ID;
@@ -219,6 +220,7 @@ namespace ccl
 			var nodeid = CSycles.add_shader_node(Client.Scene.Id, Id, node.Type);
 			node.Id = nodeid;
 			m_nodes.Add(node);
+#endif
 		}
 
 		/// <summary>
@@ -230,6 +232,7 @@ namespace ccl
 		/// </summary>
 		public virtual void FinalizeGraph()
 		{
+#if LEGACY_SHADERS
 			if (Verbose)
 			{
 				Utilities.ConsoleWrite($"Finalizing {Name}");
@@ -257,6 +260,7 @@ namespace ccl
 					Connect(from.Parent, from.Name, node, socket.Name);
 				}
 			}
+#endif
 		}
 
 		/// <summary>

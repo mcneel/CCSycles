@@ -26,15 +26,15 @@ namespace ccl
 		/// <summary>
 		/// Reference to the scene in which this camera is contained.
 		/// </summary>
-		internal Scene Scene { get; set; }
+		internal Session Session { get; set; }
 
 		/// <summary>
-		/// Create a new camera representation for Scene.
+		/// Create a new camera representation for Session.
 		/// </summary>
 		/// <param name="scene"></param>
-		internal Camera(Scene scene)
+		internal Camera(Session session)
 		{
-			Scene = scene;
+			Session = session;
 		}
 
 		/// <summary>
@@ -45,11 +45,11 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.camera_set_size(Scene.Id, (uint)value.Width, (uint)value.Height);
+				CSycles.camera_set_size(Session.Id, (uint)value.Width, (uint)value.Height);
 			}
 			get
 			{
-				return new Size((int)CSycles.camera_get_width(Scene.Id), (int)CSycles.camera_get_height(Scene.Id));
+				return new Size((int)CSycles.camera_get_width(Session.Id), (int)CSycles.camera_get_height(Session.Id));
 			}
 		}
 
@@ -60,7 +60,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.camera_set_matrix(Scene.Id, value);
+				CSycles.camera_set_matrix(Session.Id, value);
 			}
 		}
 
@@ -71,7 +71,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.camera_set_type(Scene.Id, value);
+				CSycles.camera_set_type(Session.Id, value);
 			}
 		}
 
@@ -82,7 +82,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.camera_set_panorama_type(Scene.Id, value);
+				CSycles.camera_set_panorama_type(Session.Id, value);
 			}
 		}
 
@@ -93,7 +93,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.camera_set_fov(Scene.Id, value);
+				CSycles.camera_set_fov(Session.Id, value);
 			}
 		}
 
@@ -104,7 +104,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.camera_set_sensor_width(Scene.Id, value);
+				CSycles.camera_set_sensor_width(Session.Id, value);
 			}
 		}
 
@@ -115,7 +115,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.camera_set_sensor_height(Scene.Id, value);
+				CSycles.camera_set_sensor_height(Session.Id, value);
 			}
 		}
 
@@ -126,7 +126,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.camera_set_nearclip(Scene.Id, value);
+				CSycles.camera_set_nearclip(Session.Id, value);
 			}
 		}
 
@@ -137,7 +137,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.camera_set_farclip(Scene.Id, value);
+				CSycles.camera_set_farclip(Session.Id, value);
 			}
 		}
 
@@ -148,7 +148,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.camera_set_aperturesize(Scene.Id, value);
+				CSycles.camera_set_aperturesize(Session.Id, value);
 			}
 		}
 
@@ -159,7 +159,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.camera_set_aperture_ratio(Scene.Id, value);
+				CSycles.camera_set_aperture_ratio(Session.Id, value);
 			}
 		}
 
@@ -170,7 +170,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.camera_set_blades(Scene.Id, value);
+				CSycles.camera_set_blades(Session.Id, value);
 			}
 		}
 
@@ -181,7 +181,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.camera_set_bladesrotation(Scene.Id, value);
+				CSycles.camera_set_bladesrotation(Session.Id, value);
 			}
 		}
 
@@ -192,7 +192,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.camera_set_focaldistance(Scene.Id, value);
+				CSycles.camera_set_focaldistance(Session.Id, value);
 			}
 		}
 
@@ -203,7 +203,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.camera_set_shuttertime(Scene.Id, value);
+				CSycles.camera_set_shuttertime(Session.Id, value);
 			}
 		}
 
@@ -214,7 +214,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.camera_set_fisheye_fov(Scene.Id, value);
+				CSycles.camera_set_fisheye_fov(Session.Id, value);
 			}
 		}
 
@@ -225,7 +225,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.camera_set_fisheye_lens(Scene.Id, value);
+				CSycles.camera_set_fisheye_lens(Session.Id, value);
 			}
 		}
 
@@ -234,7 +234,7 @@ namespace ccl
 		/// </summary>
 		public void Update()
 		{
-			CSycles.camera_update(Scene.Id);
+			CSycles.camera_update(Session.Id);
 		}
 
 		/// <summary>
@@ -242,7 +242,7 @@ namespace ccl
 		/// </summary>
 		public void ComputeAutoViewPlane()
 		{
-			CSycles.camera_compute_auto_viewplane(Scene.Id);
+			CSycles.camera_compute_auto_viewplane(Session.Id);
 		}
 
 		/// <summary>
@@ -254,7 +254,7 @@ namespace ccl
 		/// <param name="bottom"></param>
 		public void SetViewPlane(float left, float right, float top, float bottom)
 		{
-			CSycles.camera_set_viewplane(Scene.Id, left, right, top, bottom);
+			CSycles.camera_set_viewplane(Session.Id, left, right, top, bottom);
 		}
 	}
 }

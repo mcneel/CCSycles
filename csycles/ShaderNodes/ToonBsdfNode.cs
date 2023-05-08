@@ -17,6 +17,7 @@ limitations under the License.
 using System.Xml;
 using ccl.ShaderNodes.Sockets;
 using ccl.Attributes;
+using System;
 
 namespace ccl.ShaderNodes
 {
@@ -89,9 +90,9 @@ namespace ccl.ShaderNodes
 		}
 		public Components Component { get; set; }
 
-		internal override void SetEnums(uint sceneId, uint shaderId)
+		internal override void SetEnums(IntPtr sessionId, IntPtr shaderId)
 		{
-			CSycles.shadernode_set_enum(sceneId, shaderId, Id, Type, "component", (int)Component);
+			CSycles.shadernode_set_enum(sessionId, shaderId, Id, Type, "component", (int)Component);
 		}
 
 		internal override void ParseXml(XmlReader xmlNode)

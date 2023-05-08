@@ -367,16 +367,16 @@ namespace ccl.ShaderNodes
 		/// </summary>
 		public ColorBand ColorBand { get; set; }
 
-		internal override void SetDirectMembers(uint sceneId, uint shaderId)
+		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
 		{
 			var val = Interpolate;
 			var color = new float4();
-			CSycles.shadernode_set_member_bool(sceneId, shaderId, Id, Type, "interpolate", val);
+			CSycles.shadernode_set_member_bool(sessionId, shaderId, Id, Type, "interpolate", val);
 
 			for (var i = 0; i < RampTableSize; i++)
 			{
 				ColorBand.evaluate((float) i/(float) (RampTableSize - 1), color);
-				CSycles.shadernode_set_member_vec4_at_index(sceneId, shaderId, Id, Type, "ramp", color.x, color.y, color.z, color.w, i);
+				CSycles.shadernode_set_member_vec4_at_index(sessionId, shaderId, Id, Type, "ramp", color.x, color.y, color.z, color.w, i);
 			}
 		}
 

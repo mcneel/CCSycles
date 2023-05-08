@@ -31,7 +31,7 @@ namespace ccl
 		/// <summary>
 		/// Scene reference of this client
 		/// </summary>
-		//public Scene Scene { get; set; }
+		//public Session Session { get; set; }
 
 		/// <summary>
 		/// Create a new client

@@ -16,6 +16,7 @@ limitations under the License.
 
 using System.Text;
 using System.Xml;
+using System;
 using ccl.Attributes;
 using ccl.ShaderNodes.Sockets;
 
@@ -106,11 +107,11 @@ namespace ccl.ShaderNodes
 			outputs = new AttributeOutputs(this);
 		}
 
-		internal override void SetDirectMembers(uint sceneId, uint shaderId)
+		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
 		{
 
 			var val = Attribute;
-			CSycles.shadernode_set_member_string(sceneId, shaderId, Id, Type, "attribute", val);
+			CSycles.shadernode_set_member_string(sessionId, shaderId, Id, Type, "attribute", val);
 		}
 
 		internal override void ParseXml(XmlReader xmlNode)

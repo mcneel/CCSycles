@@ -18,6 +18,7 @@ using System.Xml;
 using ccl.ShaderNodes.Sockets;
 using ccl.Attributes;
 using System.Text;
+using System;
 
 namespace ccl.ShaderNodes
 {
@@ -61,10 +62,10 @@ namespace ccl.ShaderNodes
 
 		public bool UsePixelSize { get; set; } = false;
 
-		internal override void SetDirectMembers(uint sceneId, uint shaderId)
+		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
 		{
-			CSycles.shadernode_set_member_bool(sceneId, shaderId, Id, Type, "usepixelsize", UsePixelSize);
-			base.SetDirectMembers(sceneId, shaderId);
+			CSycles.shadernode_set_member_bool(sessionId, shaderId, Id, Type, "usepixelsize", UsePixelSize);
+			base.SetDirectMembers(sessionId, shaderId);
 		}
 
 		internal override void ParseXml(XmlReader xmlNode)

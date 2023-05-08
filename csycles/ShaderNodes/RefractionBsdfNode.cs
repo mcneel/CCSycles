@@ -85,9 +85,9 @@ namespace ccl.ShaderNodes
 			Distribution = (RefractionDistribution) Enum.Parse(typeof (RefractionDistribution), dist, true);
 		}
 
-		internal override void SetEnums(uint sceneId, uint shaderId)
+		internal override void SetEnums(IntPtr sessionId, IntPtr shaderId)
 		{
-			CSycles.shadernode_set_enum(sceneId, shaderId, Id, Type, "distribution", (int)Distribution);
+			CSycles.shadernode_set_enum(sessionId, shaderId, Id, Type, "distribution", (int)Distribution);
 		}
 
 		internal override void ParseXml(XmlReader xmlNode)

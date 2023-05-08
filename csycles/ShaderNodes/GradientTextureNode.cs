@@ -131,9 +131,9 @@ namespace ccl.ShaderNodes
 		/// </summary>
 		public GradientType Gradient { get; set; }
 
-		internal override void SetEnums(uint sceneId, uint shaderId)
+		internal override void SetEnums(IntPtr sessionId, IntPtr shaderId)
 		{
-			CSycles.shadernode_set_enum(sceneId, shaderId, Id, Type, "gradient", (int)Gradient);
+			CSycles.shadernode_set_enum(sessionId, shaderId, Id, Type, "gradient", (int)Gradient);
 		}
 
 		internal override void ParseXml(XmlReader xmlNode)

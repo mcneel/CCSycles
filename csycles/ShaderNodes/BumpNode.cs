@@ -16,6 +16,7 @@ limitations under the License.
 
 using ccl.ShaderNodes.Sockets;
 using ccl.Attributes;
+using System;
 
 namespace ccl.ShaderNodes
 {
@@ -107,9 +108,9 @@ namespace ccl.ShaderNodes
 		/// </summary>
 		public bool Invert { get; set; }
 
-		internal override void SetDirectMembers(uint sceneId, uint shaderId)
+		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
 		{
-			CSycles.shadernode_set_member_bool(sceneId, shaderId, Id, Type, "invert", Invert);
+			CSycles.shadernode_set_member_bool(sessionId, shaderId, Id, Type, "invert", Invert);
 		}
 
 		internal override void ParseXml(System.Xml.XmlReader xmlNode)

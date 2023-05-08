@@ -25,7 +25,7 @@ namespace ccl
 	/// The Session is used to manage the render process at the highest level. Here one can set
 	/// the different callbacks to retrieve render results and updates and statistics during a render.
 	///
-	/// A session is created using SessionParameters and a Scene.
+	/// A session is created using SessionParameters and a Session.
 	///
 	/// Through Session the render process is started and ended.
 	/// </summary>
@@ -38,7 +38,7 @@ namespace ccl
 
 		private Scene sc;
 		/// <summary>
-		/// Get or set the Scene used for this Session
+		/// Get or set the Session used for this Session
 		/// </summary>
 		public Scene Scene
 		{
@@ -58,7 +58,7 @@ namespace ccl
 		public IntPtr Id { get; }
 
 		/// <summary>
-		/// Create a new session using the given SessionParameters and Scene
+		/// Create a new session using the given SessionParameters and Session
 		/// </summary>
 		/// <param name="sessionParams">Previously created SessionParameters to create Session with</param>
 		public Session(SessionParameters sessionParams)
@@ -218,7 +218,7 @@ namespace ccl
 		{
 			if (Destroyed) return;
 			// TODO: XXXX scene no longer managed separately, should all go through session.
-			CSycles.session_destroy(Id, 0);
+			CSycles.session_destroy(Id);
 			Destroyed = true;
 		}
 

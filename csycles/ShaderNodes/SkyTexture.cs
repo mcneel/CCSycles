@@ -80,18 +80,18 @@ namespace ccl.ShaderNodes
 		/// </summary>
 		public SkyTypes SkyType { get; set; }
 
-		internal override void SetEnums(uint sceneId, uint shaderId)
+		internal override void SetEnums(IntPtr sessionId, IntPtr shaderId)
 		{
-			CSycles.shadernode_set_enum(sceneId, shaderId, Id, Type, "sky", (int)SkyType);
+			CSycles.shadernode_set_enum(sessionId, shaderId, Id, Type, "sky", (int)SkyType);
 		}
 
-		internal override void SetDirectMembers(uint sceneId, uint shaderId)
+		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
 		{
-			base.SetDirectMembers(sceneId, shaderId);
-			CSycles.shadernode_set_member_float(sceneId, shaderId, Id, Type, "turbidity", Turbidity);
-			CSycles.shadernode_set_member_float(sceneId, shaderId, Id, Type, "ground_albedo", GroundAlbedo);
+			base.SetDirectMembers(sessionId, shaderId);
+			CSycles.shadernode_set_member_float(sessionId, shaderId, Id, Type, "turbidity", Turbidity);
+			CSycles.shadernode_set_member_float(sessionId, shaderId, Id, Type, "ground_albedo", GroundAlbedo);
 			var sd = SunDirection;
-			CSycles.shadernode_set_member_vec(sceneId, shaderId, Id, Type, "sun_direction", sd.x, sd.y, sd.z);
+			CSycles.shadernode_set_member_vec(sessionId, shaderId, Id, Type, "sun_direction", sd.x, sd.y, sd.z);
 		}
 
 		internal override void ParseXml(XmlReader xmlNode)

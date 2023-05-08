@@ -16,6 +16,7 @@ limitations under the License.
 
 using ccl.ShaderNodes.Sockets;
 using ccl.Attributes;
+using System;
 
 namespace ccl.ShaderNodes
 {
@@ -64,14 +65,14 @@ namespace ccl.ShaderNodes
 			outputs = new PerlinMarlinTextureOutputs(this);
 		}
 
-		internal override void SetDirectMembers(uint sceneId, uint shaderId)
+		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
 		{
-			CSycles.shadernode_set_member_int(sceneId, shaderId, Id, Type, "Levels", Levels);
-			CSycles.shadernode_set_member_float(sceneId, shaderId, Id, Type, "Noise", Noise);
-			CSycles.shadernode_set_member_float(sceneId, shaderId, Id, Type, "Blur", Blur);
-			CSycles.shadernode_set_member_float(sceneId, shaderId, Id, Type, "Size", Size);
-			CSycles.shadernode_set_member_float(sceneId, shaderId, Id, Type, "Color1Saturation", Color1Saturation);
-			CSycles.shadernode_set_member_float(sceneId, shaderId, Id, Type, "Color2Saturation", Color2Saturation);
+			CSycles.shadernode_set_member_int(sessionId, shaderId, Id, Type, "Levels", Levels);
+			CSycles.shadernode_set_member_float(sessionId, shaderId, Id, Type, "Noise", Noise);
+			CSycles.shadernode_set_member_float(sessionId, shaderId, Id, Type, "Blur", Blur);
+			CSycles.shadernode_set_member_float(sessionId, shaderId, Id, Type, "Size", Size);
+			CSycles.shadernode_set_member_float(sessionId, shaderId, Id, Type, "Color1Saturation", Color1Saturation);
+			CSycles.shadernode_set_member_float(sessionId, shaderId, Id, Type, "Color2Saturation", Color2Saturation);
 		}
 	}
 }

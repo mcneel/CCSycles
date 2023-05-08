@@ -16,6 +16,7 @@ limitations under the License.
 
 using ccl.ShaderNodes.Sockets;
 using ccl.Attributes;
+using System;
 
 namespace ccl.ShaderNodes
 {
@@ -53,9 +54,9 @@ namespace ccl.ShaderNodes
 		/// </summary>
 		public float Value { get; set; }
 
-		internal override void SetDirectMembers(uint sceneId, uint shaderId)
+		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
 		{
-			CSycles.shadernode_set_member_float(sceneId, shaderId, Id, Type, "value", Value);
+			CSycles.shadernode_set_member_float(sessionId, shaderId, Id, Type, "value", Value);
 		}
 		internal override void ParseXml(System.Xml.XmlReader xmlNode)
 		{

@@ -125,11 +125,11 @@ namespace ccl.ShaderNodes
 		public Metrics Metric { get; set; } = Metrics.Euclidian;
 		public Features Feature { get; set; } = Features.F1;
 
-		internal override void SetEnums(uint sceneId, uint shaderId)
+		internal override void SetEnums(IntPtr sessionId, IntPtr shaderId)
 		{
-			CSycles.shadernode_set_enum(sceneId, shaderId, Id, Type, "dimension", (int)Dimension);
-			CSycles.shadernode_set_enum(sceneId, shaderId, Id, Type, "metric", (int)Metric);
-			CSycles.shadernode_set_enum(sceneId, shaderId, Id, Type, "feature", (int)Feature);
+			CSycles.shadernode_set_enum(sessionId, shaderId, Id, Type, "dimension", (int)Dimension);
+			CSycles.shadernode_set_enum(sessionId, shaderId, Id, Type, "metric", (int)Metric);
+			CSycles.shadernode_set_enum(sessionId, shaderId, Id, Type, "feature", (int)Feature);
 		}
 
 		internal override void ParseXml(XmlReader xmlNode)

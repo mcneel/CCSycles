@@ -1,4 +1,5 @@
 using System.Runtime.InteropServices;
+using System;
 
 namespace ccl
 {
@@ -6,213 +7,213 @@ namespace ccl
 	{
 #region integrator
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_integrator_tag_update(uint sceneId);
-		public static void integrator_tag_update(uint sceneId)
+		private static extern void cycles_integrator_tag_update(IntPtr sessionId);
+		public static void integrator_tag_update(IntPtr sessionId)
 		{
-			cycles_integrator_tag_update(sceneId);
+			cycles_integrator_tag_update(sessionId);
 		}
 		
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_integrator_set_max_bounce(uint sceneId, int value);
-		public static void integrator_set_max_bounce(uint sceneId, int value)
+		private static extern void cycles_integrator_set_max_bounce(IntPtr sessionId, int value);
+		public static void integrator_set_max_bounce(IntPtr sessionId, int value)
 		{
-			cycles_integrator_set_max_bounce(sceneId, value);
+			cycles_integrator_set_max_bounce(sessionId, value);
 		}
 		
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_integrator_set_min_bounce(uint sceneId, int value);
-		public static void integrator_set_min_bounce(uint sceneId, int value)
+		private static extern void cycles_integrator_set_min_bounce(IntPtr sessionId, int value);
+		public static void integrator_set_min_bounce(IntPtr sessionId, int value)
 		{
-			cycles_integrator_set_min_bounce(sceneId, value);
+			cycles_integrator_set_min_bounce(sessionId, value);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_integrator_set_max_diffuse_bounce(uint sceneId, int value);
-		public static void integrator_set_max_diffuse_bounce(uint sceneId, int value)
+		private static extern void cycles_integrator_set_max_diffuse_bounce(IntPtr sessionId, int value);
+		public static void integrator_set_max_diffuse_bounce(IntPtr sessionId, int value)
 		{
-			cycles_integrator_set_max_diffuse_bounce(sceneId, value);
+			cycles_integrator_set_max_diffuse_bounce(sessionId, value);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_integrator_set_max_glossy_bounce(uint sceneId, int value);
-		public static void integrator_set_max_glossy_bounce(uint sceneId, int value)
+		private static extern void cycles_integrator_set_max_glossy_bounce(IntPtr sessionId, int value);
+		public static void integrator_set_max_glossy_bounce(IntPtr sessionId, int value)
 		{
-			cycles_integrator_set_max_glossy_bounce(sceneId, value);
+			cycles_integrator_set_max_glossy_bounce(sessionId, value);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_integrator_set_max_transmission_bounce(uint sceneId, int value);
-		public static void integrator_set_max_transmission_bounce(uint sceneId, int value)
+		private static extern void cycles_integrator_set_max_transmission_bounce(IntPtr sessionId, int value);
+		public static void integrator_set_max_transmission_bounce(IntPtr sessionId, int value)
 		{
-			cycles_integrator_set_max_transmission_bounce(sceneId, value);
+			cycles_integrator_set_max_transmission_bounce(sessionId, value);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_integrator_set_max_volume_bounce(uint sceneId, int value);
-		public static void integrator_set_max_volume_bounce(uint sceneId, int value)
+		private static extern void cycles_integrator_set_max_volume_bounce(IntPtr sessionId, int value);
+		public static void integrator_set_max_volume_bounce(IntPtr sessionId, int value)
 		{
-			cycles_integrator_set_max_volume_bounce(sceneId, value);
+			cycles_integrator_set_max_volume_bounce(sessionId, value);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_integrator_set_transparent_max_bounce(uint sceneId, int value);
-		public static void integrator_set_transparent_max_bounce(uint sceneId, int value)
+		private static extern void cycles_integrator_set_transparent_max_bounce(IntPtr sessionId, int value);
+		public static void integrator_set_transparent_max_bounce(IntPtr sessionId, int value)
 		{
-			cycles_integrator_set_transparent_max_bounce(sceneId, value);
+			cycles_integrator_set_transparent_max_bounce(sessionId, value);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_integrator_set_transparent_min_bounce(uint sceneId, int value);
-		public static void integrator_set_transparent_min_bounce(uint sceneId, int value)
+		private static extern void cycles_integrator_set_transparent_min_bounce(IntPtr sessionId, int value);
+		public static void integrator_set_transparent_min_bounce(IntPtr sessionId, int value)
 		{
-			cycles_integrator_set_transparent_min_bounce(sceneId, value);
+			cycles_integrator_set_transparent_min_bounce(sessionId, value);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_integrator_set_diffuse_samples(uint sceneId, int value);
-		public static void integrator_set_diffuse_samples(uint sceneId, int value)
+		private static extern void cycles_integrator_set_diffuse_samples(IntPtr sessionId, int value);
+		public static void integrator_set_diffuse_samples(IntPtr sessionId, int value)
 		{
-			cycles_integrator_set_diffuse_samples(sceneId, value);
+			cycles_integrator_set_diffuse_samples(sessionId, value);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_integrator_set_glossy_samples(uint sceneId, int value);
-		public static void integrator_set_glossy_samples(uint sceneId, int value)
+		private static extern void cycles_integrator_set_glossy_samples(IntPtr sessionId, int value);
+		public static void integrator_set_glossy_samples(IntPtr sessionId, int value)
 		{
-			cycles_integrator_set_glossy_samples(sceneId, value);
+			cycles_integrator_set_glossy_samples(sessionId, value);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_integrator_set_transmission_samples(uint sceneId, int value);
-		public static void integrator_set_transmission_samples(uint sceneId, int value)
+		private static extern void cycles_integrator_set_transmission_samples(IntPtr sessionId, int value);
+		public static void integrator_set_transmission_samples(IntPtr sessionId, int value)
 		{
-			cycles_integrator_set_transmission_samples(sceneId, value);
+			cycles_integrator_set_transmission_samples(sessionId, value);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_integrator_set_ao_samples(uint sceneId, int value);
-		public static void integrator_set_ao_samples(uint sceneId, int value)
+		private static extern void cycles_integrator_set_ao_samples(IntPtr sessionId, int value);
+		public static void integrator_set_ao_samples(IntPtr sessionId, int value)
 		{
-			cycles_integrator_set_ao_samples(sceneId, value);
+			cycles_integrator_set_ao_samples(sessionId, value);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_integrator_set_mesh_light_samples(uint sceneId, int value);
-		public static void integrator_set_mesh_light_samples(uint sceneId, int value)
+		private static extern void cycles_integrator_set_mesh_light_samples(IntPtr sessionId, int value);
+		public static void integrator_set_mesh_light_samples(IntPtr sessionId, int value)
 		{
-			cycles_integrator_set_mesh_light_samples(sceneId, value);
+			cycles_integrator_set_mesh_light_samples(sessionId, value);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_integrator_set_subsurface_samples(uint sceneId, int value);
-		public static void integrator_set_subsurface_samples(uint sceneId, int value)
+		private static extern void cycles_integrator_set_subsurface_samples(IntPtr sessionId, int value);
+		public static void integrator_set_subsurface_samples(IntPtr sessionId, int value)
 		{
-			cycles_integrator_set_subsurface_samples(sceneId, value);
+			cycles_integrator_set_subsurface_samples(sessionId, value);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_integrator_set_volume_samples(uint sceneId, int value);
-		public static void integrator_set_volume_samples(uint sceneId, int value)
+		private static extern void cycles_integrator_set_volume_samples(IntPtr sessionId, int value);
+		public static void integrator_set_volume_samples(IntPtr sessionId, int value)
 		{
-			cycles_integrator_set_volume_samples(sceneId, value);
+			cycles_integrator_set_volume_samples(sessionId, value);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_integrator_set_aa_samples(uint sceneId, int value);
-		public static void integrator_set_aa_samples(uint sceneId, int value)
+		private static extern void cycles_integrator_set_aa_samples(IntPtr sessionId, int value);
+		public static void integrator_set_aa_samples(IntPtr sessionId, int value)
 		{
-			cycles_integrator_set_aa_samples(sceneId, value);
+			cycles_integrator_set_aa_samples(sessionId, value);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_integrator_set_no_caustics(uint sceneId, bool value);
-		public static void integrator_set_no_caustics(uint sceneId, bool value)
+		private static extern void cycles_integrator_set_no_caustics(IntPtr sessionId, bool value);
+		public static void integrator_set_no_caustics(IntPtr sessionId, bool value)
 		{
-			cycles_integrator_set_no_caustics(sceneId, value);
+			cycles_integrator_set_no_caustics(sessionId, value);
 		}
 		
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_integrator_set_no_shadows(uint sceneId, bool value);
-		public static void integrator_set_no_shadows(uint sceneId, bool value)
+		private static extern void cycles_integrator_set_no_shadows(IntPtr sessionId, bool value);
+		public static void integrator_set_no_shadows(IntPtr sessionId, bool value)
 		{
-			cycles_integrator_set_no_shadows(sceneId, value);
+			cycles_integrator_set_no_shadows(sessionId, value);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_integrator_set_filter_glossy(uint sceneId, float value);
-		public static void integrator_set_filter_glossy(uint sceneId, float value)
+		private static extern void cycles_integrator_set_filter_glossy(IntPtr sessionId, float value);
+		public static void integrator_set_filter_glossy(IntPtr sessionId, float value)
 		{
-			cycles_integrator_set_filter_glossy(sceneId, value);
+			cycles_integrator_set_filter_glossy(sessionId, value);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_integrator_set_method(uint sceneId, int value);
-		public static void integrator_set_method(uint sceneId, IntegratorMethod value)
+		private static extern void cycles_integrator_set_method(IntPtr sessionId, int value);
+		public static void integrator_set_method(IntPtr sessionId, IntegratorMethod value)
 		{
-			cycles_integrator_set_method(sceneId, (int)value);
+			cycles_integrator_set_method(sessionId, (int)value);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_integrator_set_sample_all_lights_direct(uint sceneId, bool value);
-		public static void integrator_set_sample_all_lights_direct(uint sceneId, bool value)
+		private static extern void cycles_integrator_set_sample_all_lights_direct(IntPtr sessionId, bool value);
+		public static void integrator_set_sample_all_lights_direct(IntPtr sessionId, bool value)
 		{
-			cycles_integrator_set_sample_all_lights_direct(sceneId, value);
+			cycles_integrator_set_sample_all_lights_direct(sessionId, value);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_integrator_set_sample_all_lights_indirect(uint sceneId, bool value);
-		public static void integrator_set_sample_all_lights_indirect(uint sceneId, bool value)
+		private static extern void cycles_integrator_set_sample_all_lights_indirect(IntPtr sessionId, bool value);
+		public static void integrator_set_sample_all_lights_indirect(IntPtr sessionId, bool value)
 		{
-			cycles_integrator_set_sample_all_lights_indirect(sceneId, value);
+			cycles_integrator_set_sample_all_lights_indirect(sessionId, value);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_integrator_set_volume_step_size(uint sceneId, float value);
-		public static void integrator_set_volume_step_size(uint sceneId, float value)
+		private static extern void cycles_integrator_set_volume_step_size(IntPtr sessionId, float value);
+		public static void integrator_set_volume_step_size(IntPtr sessionId, float value)
 		{
-			cycles_integrator_set_volume_step_size(sceneId, value);
+			cycles_integrator_set_volume_step_size(sessionId, value);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_integrator_set_volume_max_steps(uint sceneId, int value);
-		public static void integrator_set_volume_max_steps(uint sceneId, int value)
+		private static extern void cycles_integrator_set_volume_max_steps(IntPtr sessionId, int value);
+		public static void integrator_set_volume_max_steps(IntPtr sessionId, int value)
 		{
-			cycles_integrator_set_volume_max_steps(sceneId, value);
+			cycles_integrator_set_volume_max_steps(sessionId, value);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_integrator_set_seed(uint sceneId, int value);
-		public static void integrator_set_seed(uint sceneId, int value)
+		private static extern void cycles_integrator_set_seed(IntPtr sessionId, int value);
+		public static void integrator_set_seed(IntPtr sessionId, int value)
 		{
-			cycles_integrator_set_seed(sceneId, value);
+			cycles_integrator_set_seed(sessionId, value);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_integrator_set_sampling_pattern(uint sceneId, uint value);
-		public static void integrator_set_sampling_pattern(uint sceneId, SamplingPattern value)
+		private static extern void cycles_integrator_set_sampling_pattern(IntPtr sessionId, uint value);
+		public static void integrator_set_sampling_pattern(IntPtr sessionId, SamplingPattern value)
 		{
-			cycles_integrator_set_sampling_pattern(sceneId, (uint)value);
+			cycles_integrator_set_sampling_pattern(sessionId, (uint)value);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_integrator_set_sample_clamp_direct(uint sceneId, float value);
-		public static void integrator_set_sample_clamp_direct(uint sceneId, float value)
+		private static extern void cycles_integrator_set_sample_clamp_direct(IntPtr sessionId, float value);
+		public static void integrator_set_sample_clamp_direct(IntPtr sessionId, float value)
 		{
-			cycles_integrator_set_sample_clamp_direct(sceneId, value);
+			cycles_integrator_set_sample_clamp_direct(sessionId, value);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_integrator_set_sample_clamp_indirect(uint sceneId, float value);
-		public static void integrator_set_sample_clamp_indirect(uint sceneId, float value)
+		private static extern void cycles_integrator_set_sample_clamp_indirect(IntPtr sessionId, float value);
+		public static void integrator_set_sample_clamp_indirect(IntPtr sessionId, float value)
 		{
-			cycles_integrator_set_sample_clamp_indirect(sceneId, value);
+			cycles_integrator_set_sample_clamp_indirect(sessionId, value);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_integrator_set_light_sampling_threshold(uint sceneId, float value);
-		public static void integrator_set_light_sampling_threshold(uint sceneId, float value)
+		private static extern void cycles_integrator_set_light_sampling_threshold(IntPtr sessionId, float value);
+		public static void integrator_set_light_sampling_threshold(IntPtr sessionId, float value)
 		{
-			cycles_integrator_set_light_sampling_threshold(sceneId, value);
+			cycles_integrator_set_light_sampling_threshold(sessionId, value);
 		}
 
   

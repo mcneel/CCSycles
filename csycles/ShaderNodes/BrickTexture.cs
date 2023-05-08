@@ -15,6 +15,7 @@ limitations under the License.
 **/
 
 using System.Xml;
+using System;
 using ccl.ShaderNodes.Sockets;
 using ccl.Attributes;
 
@@ -183,12 +184,12 @@ namespace ccl.ShaderNodes
 		public int SquashFrequency { get; set; }
 #endregion
 
-		internal override void SetDirectMembers(uint sceneId, uint shaderId)
+		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
 		{
-			CSycles.shadernode_set_member_float(sceneId, shaderId, Id, Type, "offset", Offset);
-			CSycles.shadernode_set_member_int(sceneId, shaderId, Id, Type, "offset_frequency", OffsetFrequency);
-			CSycles.shadernode_set_member_float(sceneId, shaderId, Id, Type, "squash", Squash);
-			CSycles.shadernode_set_member_int(sceneId, shaderId, Id, Type, "squash_frequency", SquashFrequency);
+			CSycles.shadernode_set_member_float(sessionId, shaderId, Id, Type, "offset", Offset);
+			CSycles.shadernode_set_member_int(sessionId, shaderId, Id, Type, "offset_frequency", OffsetFrequency);
+			CSycles.shadernode_set_member_float(sessionId, shaderId, Id, Type, "squash", Squash);
+			CSycles.shadernode_set_member_int(sessionId, shaderId, Id, Type, "squash_frequency", SquashFrequency);
 		}
 
 		internal override void ParseXml(XmlReader xmlNode)

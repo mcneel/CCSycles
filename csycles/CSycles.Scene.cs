@@ -14,131 +14,131 @@ namespace ccl
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_scene_reset(uint sceneId);
-		public static void scene_reset(uint sceneId)
+		private static extern void cycles_scene_reset(IntPtr sessionId);
+		public static void scene_reset(IntPtr sessionId)
 		{
-			cycles_scene_reset(sceneId);
+			cycles_scene_reset(sessionId);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		[return: MarshalAs(UnmanagedType.U1)]
-		private static extern bool cycles_scene_try_lock(uint sceneId);
-		public static bool scene_try_lock(uint sceneId)
+		private static extern bool cycles_scene_try_lock(IntPtr sessionId);
+		public static bool scene_try_lock(IntPtr sessionId)
 		{
-			return cycles_scene_try_lock(sceneId);
+			return cycles_scene_try_lock(sessionId);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_scene_lock(uint sceneId);
-		public static void scene_lock(uint sceneId)
+		private static extern void cycles_scene_lock(IntPtr sessionId);
+		public static void scene_lock(IntPtr sessionId)
 		{
-			cycles_scene_lock(sceneId);
+			cycles_scene_lock(sessionId);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_scene_unlock(uint sceneId);
-		public static void scene_unlock(uint sceneId)
+		private static extern void cycles_scene_unlock(IntPtr sessionId);
+		public static void scene_unlock(IntPtr sessionId)
 		{
-			cycles_scene_unlock(sceneId);
+			cycles_scene_unlock(sessionId);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern uint cycles_scene_add_object(uint sceneId);
-		public static uint scene_add_object(uint sceneId)
+		private static extern uint cycles_scene_add_object(IntPtr sessionId);
+		public static uint scene_add_object(IntPtr sessionId)
 		{
-			return cycles_scene_add_object(sceneId);
+			return cycles_scene_add_object(sessionId);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern uint cycles_scene_add_mesh_object(uint sceneId, uint objectId, uint shaderId);
-		public static uint scene_add_mesh_object(uint sceneId, uint objectId, uint shaderId)
+		private static extern uint cycles_scene_add_mesh_object(IntPtr sessionId, uint objectId, uint shaderId);
+		public static uint scene_add_mesh_object(IntPtr sessionId, uint objectId, uint shaderId)
 		{
-			return cycles_scene_add_mesh_object(sceneId, objectId, shaderId);
+			return cycles_scene_add_mesh_object(sessionId, objectId, shaderId);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern uint cycles_scene_add_mesh(uint sceneId, uint shaderId);
-		public static uint scene_add_mesh(uint sceneId, uint shaderId)
+		private static extern uint cycles_scene_add_mesh(IntPtr sessionId, uint shaderId);
+		public static uint scene_add_mesh(IntPtr sessionId, uint shaderId)
 		{
-			return cycles_scene_add_mesh(sceneId, shaderId);
+			return cycles_scene_add_mesh(sessionId, shaderId);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false,
 			CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_scene_set_background_shader(uint sceneId, uint shaderId);
-		public static void scene_set_background_shader(uint sceneId, uint shaderId)
+		private static extern void cycles_scene_set_background_shader(IntPtr sessionId, uint shaderId);
+		public static void scene_set_background_shader(IntPtr sessionId, uint shaderId)
 		{
-			cycles_scene_set_background_shader(sceneId, shaderId);
+			cycles_scene_set_background_shader(sessionId, shaderId);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false,
 			CallingConvention = CallingConvention.Cdecl)]
-		private static extern uint cycles_scene_get_background_shader(uint sceneId);
-		public static uint scene_get_background_shader(uint sceneId)
+		private static extern uint cycles_scene_get_background_shader(IntPtr sessionId);
+		public static uint scene_get_background_shader(IntPtr sessionId)
 		{
-			return cycles_scene_get_background_shader(sceneId);
+			return cycles_scene_get_background_shader(sessionId);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false,
 			CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_scene_set_default_surface_shader(uint sceneId, uint shaderId);
+		private static extern void cycles_scene_set_default_surface_shader(IntPtr sessionId, uint shaderId);
 		/// <summary>
-		/// Set the default surface shader for sceneId to shaderId.
+		/// Set the default surface shader for sessionId to shaderId.
 		/// 
 		/// Note that this shaderId has to be the scene-specific shader id.
 		/// </summary>
 		/// <param name="clientId">ID of client</param>
-		/// <param name="sceneId">Scene for which the default shader is set</param>
+		/// <param name="sessionId">Session for which the default shader is set</param>
 		/// <param name="shaderId">The shader to which the default shader is set</param>
-		public static void scene_set_default_surface_shader(uint sceneId, uint shaderId)
+		public static void scene_set_default_surface_shader(IntPtr sessionId, uint shaderId)
 		{
-			cycles_scene_set_default_surface_shader(sceneId, shaderId);
+			cycles_scene_set_default_surface_shader(sessionId, shaderId);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false,
 			CallingConvention = CallingConvention.Cdecl)]
-		private static extern uint cycles_scene_get_default_surface_shader(uint sceneId);
+		private static extern uint cycles_scene_get_default_surface_shader(IntPtr sessionId);
 		/// <summary>
-		/// Get the default surface shader id for sceneId
+		/// Get the default surface shader id for sessionId
 		/// </summary>
 		/// <param name="clientId">ID of client</param>
-		/// <param name="sceneId"></param>
+		/// <param name="sessionId"></param>
 		/// <returns></returns>
-		public static uint scene_get_default_surface_shader(uint sceneId)
+		public static uint scene_get_default_surface_shader(IntPtr sessionId)
 		{
-			return cycles_scene_get_default_surface_shader(sceneId);
+			return cycles_scene_get_default_surface_shader(sessionId);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_scene_set_background_transparent(uint sceneId, bool transparent);
+		private static extern void cycles_scene_set_background_transparent(IntPtr sessionId, bool transparent);
 
-		public static void scene_set_background_transparent(uint sceneId, bool transparent)
+		public static void scene_set_background_transparent(IntPtr sessionId, bool transparent)
 		{
-			cycles_scene_set_background_transparent(sceneId, transparent);
+			cycles_scene_set_background_transparent(sessionId, transparent);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_scene_set_background_ao_factor(uint sceneId, float aoFactor);
+		private static extern void cycles_scene_set_background_ao_factor(IntPtr sessionId, float aoFactor);
 
-		public static void scene_set_background_ao_factor(uint sceneId, float aoFactor)
+		public static void scene_set_background_ao_factor(IntPtr sessionId, float aoFactor)
 		{
-			cycles_scene_set_background_ao_factor(sceneId, aoFactor);
+			cycles_scene_set_background_ao_factor(sessionId, aoFactor);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_scene_set_background_ao_distance(uint sceneId, float aoDistance);
+		private static extern void cycles_scene_set_background_ao_distance(IntPtr sessionId, float aoDistance);
 
-		public static void scene_set_background_ao_distance(uint sceneId, float aoDistance)
+		public static void scene_set_background_ao_distance(IntPtr sessionId, float aoDistance)
 		{
-			cycles_scene_set_background_ao_distance(sceneId, aoDistance);
+			cycles_scene_set_background_ao_distance(sessionId, aoDistance);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_scene_set_background_visibility(uint sceneId, uint raypathFlag);
+		private static extern void cycles_scene_set_background_visibility(IntPtr sessionId, uint raypathFlag);
 
-		public static void scene_set_background_visibility(uint sceneId, PathRay raypathFlag)
+		public static void scene_set_background_visibility(IntPtr sessionId, PathRay raypathFlag)
 		{
-			cycles_scene_set_background_visibility(sceneId, (uint)raypathFlag);
+			cycles_scene_set_background_visibility(sessionId, (uint)raypathFlag);
 		}
 #endregion
 

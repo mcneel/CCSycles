@@ -16,6 +16,7 @@ limitations under the License.
 
 using ccl.ShaderNodes.Sockets;
 using ccl.Attributes;
+using System;
 
 namespace ccl.ShaderNodes
 {
@@ -56,12 +57,12 @@ namespace ccl.ShaderNodes
 			outputs = new FbmTextureOutputs(this);
 		}
 
-		internal override void SetDirectMembers(uint sceneId, uint shaderId)
+		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
 		{
-			CSycles.shadernode_set_member_bool(sceneId, shaderId, Id, Type, "IsTurbulent", IsTurbulent);
-			CSycles.shadernode_set_member_int(sceneId, shaderId, Id, Type, "MaxOctaves", MaxOctaves);
-			CSycles.shadernode_set_member_float(sceneId, shaderId, Id, Type, "Gain", Gain);
-			CSycles.shadernode_set_member_float(sceneId, shaderId, Id, Type, "Roughness", Roughness);
+			CSycles.shadernode_set_member_bool(sessionId, shaderId, Id, Type, "IsTurbulent", IsTurbulent);
+			CSycles.shadernode_set_member_int(sessionId, shaderId, Id, Type, "MaxOctaves", MaxOctaves);
+			CSycles.shadernode_set_member_float(sessionId, shaderId, Id, Type, "Gain", Gain);
+			CSycles.shadernode_set_member_float(sessionId, shaderId, Id, Type, "Roughness", Roughness);
 		}
 	}
 }

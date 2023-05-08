@@ -29,7 +29,7 @@ namespace ccl
 		internal Scene Scene { get; set; }
 
 		/// <summary>
-		/// Create a new film representation for Scene.
+		/// Create a new film representation for Session.
 		/// </summary>
 		/// <param name="scene"></param>
 		internal Film(Scene scene)

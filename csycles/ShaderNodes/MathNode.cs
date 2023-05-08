@@ -227,14 +227,14 @@ namespace ccl.ShaderNodes
 		/// </summary>
 		public bool UseClamp { get; set; }
 
-		internal override void SetEnums(uint sceneId, uint shaderId)
+		internal override void SetEnums(IntPtr sessionId, IntPtr shaderId)
 		{
-			CSycles.shadernode_set_enum(sceneId, shaderId, Id, Type, "operation", (int)Operation);
+			CSycles.shadernode_set_enum(sessionId, shaderId, Id, Type, "operation", (int)Operation);
 		}
 
-		internal override void SetDirectMembers(uint sceneId, uint shaderId)
+		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
 		{
-			CSycles.shadernode_set_member_bool(sceneId, shaderId, Id, Type, "use_clamp", UseClamp);
+			CSycles.shadernode_set_member_bool(sessionId, shaderId, Id, Type, "use_clamp", UseClamp);
 		}
 
 		internal override void ParseXml(XmlReader xmlNode)

@@ -15,6 +15,7 @@ limitations under the License.
 **/
 
 using System.Xml;
+using System;
 using ccl.ShaderNodes.Sockets;
 using ccl.Attributes;
 using System.Text;
@@ -123,10 +124,10 @@ namespace ccl.ShaderNodes
 			return str;
 		}
 
-		internal override void SetEnums(uint sceneId, uint shaderId)
+		internal override void SetEnums(IntPtr sessionId, IntPtr shaderId)
 		{
-			CSycles.shadernode_set_enum(sceneId, shaderId, Id, Type, "musgrave", (int)MusgraveType);
-			CSycles.shadernode_set_enum(sceneId, shaderId, Id, Type, "dimension", (int)Dimension);
+			CSycles.shadernode_set_enum(sessionId, shaderId, Id, Type, "musgrave", (int)MusgraveType);
+			CSycles.shadernode_set_enum(sessionId, shaderId, Id, Type, "dimension", (int)Dimension);
 		}
 
 		internal override void ParseXml(XmlReader xmlNode)
