@@ -19,22 +19,22 @@ using System.Drawing;
 namespace ccl
 {
 	/// <summary>
-	/// Film representation in a Cycles scene.
+	/// Film representation in a Cycles session.
 	/// </summary>
 	public class Film
 	{
 		/// <summary>
-		/// Reference to the scene in which this film is contained.
+		/// Reference to the session in which this film is contained.
 		/// </summary>
-		internal Scene Scene { get; set; }
+		internal Session Session { get; set; }
 
 		/// <summary>
 		/// Create a new film representation for Session.
 		/// </summary>
-		/// <param name="scene"></param>
-		internal Film(Scene scene)
+		/// <param name="session"></param>
+		internal Film(Session session)
 		{
-			Scene = scene;
+			Session = session;
 		}
 
 		/// <summary>
@@ -44,7 +44,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.film_set_exposure(Scene.Id, value);
+				CSycles.film_set_exposure(Session.Id, value);
 			}
 		}
 
@@ -55,7 +55,7 @@ namespace ccl
 		/// <param name="filterWidth">for proper Box use 1.0f</param>
 		public void SetFilter(FilterType filterType, float filterWidth)
 		{
-			CSycles.film_set_filter(Scene.Id, filterType, filterWidth);
+			CSycles.film_set_filter(Session.Id, filterType, filterWidth);
 		}
 
 		/// <summary>
@@ -63,7 +63,7 @@ namespace ccl
 		/// </summary>
 		public void Update()
 		{
-			CSycles.film_tag_update(Scene.Id);
+			CSycles.film_tag_update(Session.Id);
 		}
 	}
 }

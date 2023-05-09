@@ -29,7 +29,7 @@ namespace ccl
 		public uint Id { get; }
 
 		/// <summary>
-		/// Scene reference of this client
+		/// Session reference of this client
 		/// </summary>
 		//public Session Session { get; set; }
 

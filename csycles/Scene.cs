@@ -66,6 +66,8 @@ namespace ccl
 			// for now use Session.Id as Session.Id too, since they are now tightly coupled in Cycles
 			Id = session.Id;
 			Camera = new Camera(session);
+			Integrator = new Integrator(session);
+			Film = new Film(session);
 #if SCENESTUFF
 // TODO: XXXX scenes are created directly by ccl::Session constructor.
 // TODO: XXXX wrap access of scene through session.
