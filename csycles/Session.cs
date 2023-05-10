@@ -234,7 +234,7 @@ namespace ccl
 			}
 		}
 
-		public void RetainPixelBuffer(PassType pt, ref IntPtr pixel_buffer)
+		public void RetainPixelBuffer(PassType pt, int width, int height, ref IntPtr pixel_buffer)
 		{
 			if (Destroyed)
 			{
@@ -242,7 +242,7 @@ namespace ccl
 			}
 			else
 			{
-				CSycles.session_retain_float_buffer(Id, pt, ref pixel_buffer);
+				CSycles.session_retain_float_buffer(Id, pt, width, height, ref pixel_buffer);
 			}
 		}
 
