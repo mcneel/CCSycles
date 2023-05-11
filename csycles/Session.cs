@@ -284,12 +284,6 @@ namespace ccl
 			CSycles.session_set_pause(Id, pause);
 		}
 
-		public bool IsPaused()
-		{
-			if (Destroyed) return false;
-			return CSycles.session_is_paused(Id);
-		}
-
 		/// <summary>
 		/// Set sample count for session to render. This can be used to increase the sample
 		/// count for an interactive render session.
