@@ -154,6 +154,28 @@ namespace ccl
 		}
 
 		/// <summary>
+		/// Set to true for reflective caustics
+		/// </summary>
+		public bool CausticsReflective
+		{
+			set
+			{
+				CSycles.integrator_set_caustics_reflective(Session.Id, value);
+			}
+		}
+
+		/// <summary>
+		/// Set to true for refractive caustics
+		/// </summary>
+		public bool CausticsRefractive
+		{
+			set
+			{
+				CSycles.integrator_set_caustics_refractive(Session.Id, value);
+			}
+		}
+
+		/// <summary>
 		/// Set to true if shadows shouldn't be traced
 		/// </summary>
 		public bool NoShadows
@@ -164,55 +186,52 @@ namespace ccl
 			}
 		}
 
+
 		/// <summary>
-		/// Set the amount of samples for diffuse rays to take.
+		/// Set the amount of bounces for AO rays
 		/// 
 		/// Used when BranchedPath tracing is set.
 		/// </summary>
-		public int DiffuseSamples
+		public int AoBounces
 		{
 			set
 			{
-				CSycles.integrator_set_diffuse_samples(Session.Id, value);
+				CSycles.integrator_set_ao_bounces(Session.Id, value);
 			}
 		}
 
 		/// <summary>
-		/// Set the amount of samples for glossy rays to take.
+		/// Set the amount of factor for AO rays
 		/// 
 		/// Used when BranchedPath tracing is set.
 		/// </summary>
-		public int GlossySamples
+		public float AoFactor
 		{
 			set
 			{
-				CSycles.integrator_set_glossy_samples(Session.Id, value);
+				CSycles.integrator_set_ao_factor(Session.Id, value);
 			}
 		}
 
 		/// <summary>
-		/// Set the amount of samples for transmission rays to take.
-		/// 
-		/// Used when BranchedPath tracing is set.
+		/// Set the amount of distance for AO
 		/// </summary>
-		public int TransmissionSamples
+		public float AoDistance
 		{
 			set
 			{
-				CSycles.integrator_set_transmission_samples(Session.Id, value);
+				CSycles.integrator_set_ao_distance(Session.Id, value);
 			}
 		}
 
 		/// <summary>
-		/// Set the amount of samples for AO rays to take.
-		/// 
-		/// Used when BranchedPath tracing is set.
+		/// Set additive factor for AO
 		/// </summary>
-		public int AoSamples
+		public float AoAdditiveFactor
 		{
 			set
 			{
-				CSycles.integrator_set_ao_samples(Session.Id, value);
+				CSycles.integrator_set_ao_additive_factor(Session.Id, value);
 			}
 		}
 
@@ -228,24 +247,13 @@ namespace ccl
 		}
 
 		/// <summary>
-		/// Set the sample count for subsurface
-		/// </summary>
-		public int SubsurfaceSamples
-		{
-			set
-			{
-				CSycles.integrator_set_subsurface_samples(Session.Id, value);
-			}
-		}
-
-		/// <summary>
 		/// Set the amount of volume samples
 		/// </summary>
 		public int VolumeSamples
 		{
 			set
 			{
-				CSycles.integrator_set_volume_samples(Session.Id, value);
+				CSycles.integrator_set_volume_max_steps(Session.Id, value);
 			}
 		}
 
@@ -305,13 +313,13 @@ namespace ccl
 		}
 
 		/// <summary>
-		/// Set the step size for volume tracing
+		/// Set the step rate for volume tracing
 		/// </summary>
-		public float VolumeStepSize
+		public float VolumeStepRate
 		{
 			set
 			{
-				CSycles.integrator_set_volume_step_size(Session.Id, value);
+				CSycles.integrator_set_volume_step_rate(Session.Id, value);
 			}
 		}
 

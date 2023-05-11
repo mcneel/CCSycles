@@ -56,28 +56,6 @@ namespace ccl
 		}
 
 		/// <summary>
-		/// Set the Ambient Occlusion distance
-		/// </summary>
-		public float AoDistance
-		{
-			set
-			{
-				CSycles.scene_set_background_ao_distance(Scene.Id, value);
-			}
-		}
-
-		/// <summary>
-		/// Set the Ambient Occlusion factor
-		/// </summary>
-		public float AoFactor
-		{
-			set
-			{
-				CSycles.scene_set_background_ao_factor(Scene.Id, value);
-			}
-		}
-
-		/// <summary>
 		/// Set the rays to which the background is responsive
 		/// </summary>
 		public PathRay Visibility

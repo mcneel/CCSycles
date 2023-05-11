@@ -118,22 +118,6 @@ namespace ccl
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_scene_set_background_ao_factor(IntPtr sessionId, float aoFactor);
-
-		public static void scene_set_background_ao_factor(IntPtr sessionId, float aoFactor)
-		{
-			cycles_scene_set_background_ao_factor(sessionId, aoFactor);
-		}
-
-		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_scene_set_background_ao_distance(IntPtr sessionId, float aoDistance);
-
-		public static void scene_set_background_ao_distance(IntPtr sessionId, float aoDistance)
-		{
-			cycles_scene_set_background_ao_distance(sessionId, aoDistance);
-		}
-
-		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		private static extern void cycles_scene_set_background_visibility(IntPtr sessionId, uint raypathFlag);
 
 		public static void scene_set_background_visibility(IntPtr sessionId, PathRay raypathFlag)

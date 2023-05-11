@@ -138,7 +138,7 @@ namespace ccl
 			if (Utilities.Instance.get_int(ref intvar, node.GetAttribute("diffuse_samples"))) state.Scene.Integrator.DiffuseSamples = intvar;
 			if (Utilities.Instance.get_int(ref intvar, node.GetAttribute("glossy_samples"))) state.Scene.Integrator.GlossySamples = intvar;
 			if (Utilities.Instance.get_int(ref intvar, node.GetAttribute("transmission_samples"))) state.Scene.Integrator.TransmissionSamples = intvar;
-			if (Utilities.Instance.get_int(ref intvar, node.GetAttribute("ao_samples"))) state.Scene.Integrator.AoSamples = intvar;
+			if (Utilities.Instance.get_int(ref intvar, node.GetAttribute("ao_bounces"))) state.Scene.Integrator.AoBounces = intvar;
 			if (Utilities.Instance.get_int(ref intvar, node.GetAttribute("mesh_light_samples"))) state.Scene.Integrator.MeshLightSamples = intvar;
 			if (Utilities.Instance.get_int(ref intvar, node.GetAttribute("subsurface_samples"))) state.Scene.Integrator.SubsurfaceSamples = intvar;
 			if (Utilities.Instance.get_int(ref intvar, node.GetAttribute("volume_samples"))) state.Scene.Integrator.VolumeSamples = intvar;
@@ -152,7 +152,7 @@ namespace ccl
 
 			if (Utilities.Instance.get_int(ref intvar, node.GetAttribute("transparent_max_bounce"))) state.Scene.Integrator.TransparentMaxBounce = intvar;
 
-			if (Utilities.Instance.get_float(ref floatvar, node.GetAttribute("volume_step_size"))) state.Scene.Integrator.VolumeStepSize = floatvar;
+			if (Utilities.Instance.get_float(ref floatvar, node.GetAttribute("volume_step_size"))) state.Scene.Integrator.VolumeStepRate = floatvar;
 			if (Utilities.Instance.get_int(ref intvar, node.GetAttribute("volume_max_steps"))) state.Scene.Integrator.VolumeMaxSteps = intvar;
 
 			/* \todo wrap caustics form separation

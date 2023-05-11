@@ -70,31 +70,31 @@ namespace ccl
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_integrator_set_diffuse_samples(IntPtr sessionId, int value);
-		public static void integrator_set_diffuse_samples(IntPtr sessionId, int value)
+		private static extern void cycles_integrator_set_ao_bounces(IntPtr sessionId, int value);
+		public static void integrator_set_ao_bounces(IntPtr sessionId, int value)
 		{
-			cycles_integrator_set_diffuse_samples(sessionId, value);
+			cycles_integrator_set_ao_bounces(sessionId, value);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_integrator_set_glossy_samples(IntPtr sessionId, int value);
-		public static void integrator_set_glossy_samples(IntPtr sessionId, int value)
+		private static extern void cycles_integrator_set_ao_factor(IntPtr sessionId, float value);
+		public static void integrator_set_ao_factor(IntPtr sessionId, float value)
 		{
-			cycles_integrator_set_glossy_samples(sessionId, value);
+			cycles_integrator_set_ao_factor(sessionId, value);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_integrator_set_transmission_samples(IntPtr sessionId, int value);
-		public static void integrator_set_transmission_samples(IntPtr sessionId, int value)
+		private static extern void cycles_integrator_set_ao_distance(IntPtr sessionId, float value);
+		public static void integrator_set_ao_distance(IntPtr sessionId, float value)
 		{
-			cycles_integrator_set_transmission_samples(sessionId, value);
+			cycles_integrator_set_ao_distance(sessionId, value);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_integrator_set_ao_samples(IntPtr sessionId, int value);
-		public static void integrator_set_ao_samples(IntPtr sessionId, int value)
+		private static extern void cycles_integrator_set_ao_additive_factor(IntPtr sessionId, float value);
+		public static void integrator_set_ao_additive_factor(IntPtr sessionId, float value)
 		{
-			cycles_integrator_set_ao_samples(sessionId, value);
+			cycles_integrator_set_ao_additive_factor(sessionId, value);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
@@ -102,20 +102,6 @@ namespace ccl
 		public static void integrator_set_mesh_light_samples(IntPtr sessionId, int value)
 		{
 			cycles_integrator_set_mesh_light_samples(sessionId, value);
-		}
-
-		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_integrator_set_subsurface_samples(IntPtr sessionId, int value);
-		public static void integrator_set_subsurface_samples(IntPtr sessionId, int value)
-		{
-			cycles_integrator_set_subsurface_samples(sessionId, value);
-		}
-
-		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_integrator_set_volume_samples(IntPtr sessionId, int value);
-		public static void integrator_set_volume_samples(IntPtr sessionId, int value)
-		{
-			cycles_integrator_set_volume_samples(sessionId, value);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
@@ -130,6 +116,20 @@ namespace ccl
 		public static void integrator_set_no_caustics(IntPtr sessionId, bool value)
 		{
 			cycles_integrator_set_no_caustics(sessionId, value);
+		}
+
+		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		private static extern void cycles_integrator_set_caustics_reflective(IntPtr sessionId, bool value);
+		public static void integrator_set_caustics_reflective(IntPtr sessionId, bool value)
+		{
+			cycles_integrator_set_caustics_reflective(sessionId, value);
+		}
+
+		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		private static extern void cycles_integrator_set_caustics_refractive(IntPtr sessionId, bool value);
+		public static void integrator_set_caustics_refractive(IntPtr sessionId, bool value)
+		{
+			cycles_integrator_set_caustics_refractive(sessionId, value);
 		}
 		
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
@@ -168,10 +168,10 @@ namespace ccl
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_integrator_set_volume_step_size(IntPtr sessionId, float value);
-		public static void integrator_set_volume_step_size(IntPtr sessionId, float value)
+		private static extern void cycles_integrator_set_volume_step_rate(IntPtr sessionId, float value);
+		public static void integrator_set_volume_step_rate(IntPtr sessionId, float value)
 		{
-			cycles_integrator_set_volume_step_size(sessionId, value);
+			cycles_integrator_set_volume_step_rate(sessionId, value);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
