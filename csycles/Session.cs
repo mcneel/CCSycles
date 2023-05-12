@@ -166,15 +166,6 @@ namespace ccl
 		}
 
 		/// <summary>
-		/// Set up the session for running through the sampler.
-		/// </summary>
-		public void PrepareRun()
-		{
-			if(Destroyed) return;
-			CSycles.session_prepare_run(Id);
-		}
-
-		/// <summary>
 		/// Sample one pass. Return -1 when no pass was rendered, zero or positive when something was rendered.
 		/// </summary>
 		public int Sample()
