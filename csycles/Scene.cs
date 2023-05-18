@@ -119,7 +119,15 @@ namespace ccl
 		/// <returns>Session-specific Id</returns>
 		public uint GetShaderSceneId(Shader shader)
 		{
-			return m_shader_in_scene_ids[shader];
+			if (null != shader)
+			{
+				uint ssid;
+				if (m_shader_in_scene_ids.TryGetValue(shader, out ssid))
+				{
+					return ssid;
+				}
+			}
+			return 0xFFFFFFFF;
 		}
 
 		/// <summary>

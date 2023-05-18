@@ -50,13 +50,6 @@ namespace ccl
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern uint cycles_scene_add_mesh_object(IntPtr sessionId, uint objectId, uint shaderId);
-		public static uint scene_add_mesh_object(IntPtr sessionId, uint objectId, uint shaderId)
-		{
-			return cycles_scene_add_mesh_object(sessionId, objectId, shaderId);
-		}
-
-		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		private static extern uint cycles_scene_add_mesh(IntPtr sessionId, uint shaderId);
 		public static uint scene_add_mesh(IntPtr sessionId, uint shaderId)
 		{

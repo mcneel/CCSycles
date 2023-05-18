@@ -44,8 +44,10 @@ namespace ccl
 			Client = client;
 			Shader = shader;
 
-			Id = CSycles.scene_add_mesh(Client.Scene.Id, Client.Scene.GetShaderSceneId(shader));
-			System.Diagnostics.Trace.WriteLine($"Created mesh {Id} with shader {shader.Id}\n");
+			var ssid = Client.Scene.GetShaderSceneId(shader);
+
+			Id = CSycles.scene_add_mesh(Client.Scene.Id, ssid);
+			System.Diagnostics.Trace.WriteLine($"Created mesh {Id} with shader {ssid}\n");
 		}
 
 		/// <summary>
