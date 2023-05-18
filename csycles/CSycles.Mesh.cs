@@ -7,8 +7,8 @@ namespace ccl
 	{
 #region mesh
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private unsafe static extern void cycles_mesh_set_verts(IntPtr sessionId, uint meshId, float* verts, uint vcount);
-		public static void mesh_set_verts(IntPtr sessionId, uint meshId, ref float[] verts, uint vcount)
+		private unsafe static extern void cycles_mesh_set_verts(IntPtr sessionId, IntPtr meshId, float* verts, uint vcount);
+		public static void mesh_set_verts(IntPtr sessionId, IntPtr meshId, ref float[] verts, uint vcount)
 		{
 			unsafe
 			{
@@ -20,8 +20,8 @@ namespace ccl
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private unsafe static extern void cycles_mesh_set_uvs(IntPtr sessionId, uint meshId, float* uvs, uint uvcount, [MarshalAs(UnmanagedType.LPStr)] string uvmap_name);
-		public static void mesh_set_uvs(IntPtr sessionId, uint meshId, ref float[] uvs, uint uvcount, string uvmap_name)
+		private unsafe static extern void cycles_mesh_set_uvs(IntPtr sessionId, IntPtr meshId, float* uvs, uint uvcount, [MarshalAs(UnmanagedType.LPStr)] string uvmap_name);
+		public static void mesh_set_uvs(IntPtr sessionId, IntPtr meshId, ref float[] uvs, uint uvcount, string uvmap_name)
 		{
 			unsafe
 			{
@@ -33,8 +33,8 @@ namespace ccl
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private unsafe static extern void cycles_mesh_set_vertex_normals(IntPtr sessionId, uint meshId, float* vertex_normals, uint vncount);
-		public static void mesh_set_vertex_normals(IntPtr sessionId, uint meshId, ref float[] vertex_normals, uint vncount)
+		private unsafe static extern void cycles_mesh_set_vertex_normals(IntPtr sessionId, IntPtr meshId, float* vertex_normals, uint vncount);
+		public static void mesh_set_vertex_normals(IntPtr sessionId, IntPtr meshId, ref float[] vertex_normals, uint vncount)
 		{
 			unsafe
 			{
@@ -45,8 +45,8 @@ namespace ccl
 			}
 		}
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private unsafe static extern void cycles_mesh_set_vertex_colors(IntPtr sessionId, uint meshId, float* vertex_colors, uint vccount);
-		public static void mesh_set_vertex_colors(IntPtr sessionId, uint meshId, ref float[] vertex_colors, uint vccount)
+		private unsafe static extern void cycles_mesh_set_vertex_colors(IntPtr sessionId, IntPtr meshId, float* vertex_colors, uint vccount);
+		public static void mesh_set_vertex_colors(IntPtr sessionId, IntPtr meshId, ref float[] vertex_colors, uint vccount)
 		{
 			unsafe
 			{
@@ -58,8 +58,8 @@ namespace ccl
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private unsafe static extern void cycles_mesh_set_tris(IntPtr sessionId, uint meshId, int* faces, uint fcount, uint shaderId, uint smooth);
-		public static void mesh_set_tris(IntPtr sessionId, uint meshId, ref int[] tris, uint fcount, uint shaderId, bool smooth)
+		private unsafe static extern void cycles_mesh_set_tris(IntPtr sessionId, IntPtr meshId, int* faces, uint fcount, uint shaderId, uint smooth);
+		public static void mesh_set_tris(IntPtr sessionId, IntPtr meshId, ref int[] tris, uint fcount, uint shaderId, bool smooth)
 		{
 			unsafe
 			{
@@ -71,75 +71,75 @@ namespace ccl
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_mesh_set_triangle(IntPtr sessionId, uint meshId, uint tri_idx, uint v0, uint v1, uint v2, uint shaderId, uint smooth);
+		private static extern void cycles_mesh_set_triangle(IntPtr sessionId, IntPtr meshId, uint tri_idx, uint v0, uint v1, uint v2, uint shaderId, uint smooth);
 
-		public static void mesh_set_triangle(IntPtr sessionId, uint meshId, uint tri_idx, uint v0, uint v1, uint v2,
+		public static void mesh_set_triangle(IntPtr sessionId, IntPtr meshId, uint tri_idx, uint v0, uint v1, uint v2,
 			uint shaderId, bool smooth)
 		{
 			cycles_mesh_set_triangle(sessionId, meshId, tri_idx, v0, v1, v2, shaderId, (uint)(smooth ? 1 : 0));
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_mesh_add_triangle(IntPtr sessionId, uint meshId, uint v0, uint v1, uint v2, uint shaderId, uint smooth);
+		private static extern void cycles_mesh_add_triangle(IntPtr sessionId, IntPtr meshId, uint v0, uint v1, uint v2, uint shaderId, uint smooth);
 
-		public static void mesh_add_triangle(IntPtr sessionId, uint meshId, uint v0, uint v1, uint v2,
+		public static void mesh_add_triangle(IntPtr sessionId, IntPtr meshId, uint v0, uint v1, uint v2,
 			uint shaderId, bool smooth)
 		{
 			cycles_mesh_add_triangle(sessionId, meshId, v0, v1, v2, shaderId, (uint)(smooth ? 1 : 0));
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_mesh_set_smooth(IntPtr sessionId, uint meshId, uint smooth);
+		private static extern void cycles_mesh_set_smooth(IntPtr sessionId, IntPtr meshId, uint smooth);
 
-		public static void mesh_set_smooth(IntPtr sessionId, uint meshId, bool smooth)
+		public static void mesh_set_smooth(IntPtr sessionId, IntPtr meshId, bool smooth)
 		{
 			cycles_mesh_set_smooth(sessionId, meshId, (uint)(smooth ? 1 : 0));
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_mesh_set_shader(IntPtr sessionId, uint meshId, uint shader);
+		private static extern void cycles_geometry_set_shader(IntPtr sessionId, IntPtr geometry, uint shader);
 
-		public static void mesh_set_shader(IntPtr sessionId, uint meshId, uint shaderId)
+		public static void geometry_set_shader(IntPtr sessionId, IntPtr geometry, uint shaderId)
 		{
-			cycles_mesh_set_shader(sessionId, meshId, shaderId);
+			cycles_geometry_set_shader(sessionId, geometry, shaderId);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_mesh_clear(IntPtr sessionId, uint meshId);
+		private static extern void cycles_geometry_clear(IntPtr sessionId, IntPtr meshId);
 
-		public static void mesh_clear(IntPtr sessionId, uint meshId)
+		public static void geometry_clear(IntPtr sessionId, IntPtr meshId)
 		{
-			cycles_mesh_clear(sessionId, meshId);
+			cycles_geometry_clear(sessionId, meshId);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_mesh_resize(IntPtr sessionId, uint meshId, uint vcount, uint fcount);
+		private static extern void cycles_mesh_resize(IntPtr sessionId, IntPtr meshId, uint vcount, uint fcount);
 
-		public static void mesh_resize(IntPtr sessionId, uint meshId, uint vcount, uint fcount)
+		public static void mesh_resize(IntPtr sessionId, IntPtr meshId, uint vcount, uint fcount)
 		{
 			cycles_mesh_resize(sessionId, meshId, vcount, fcount);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_mesh_reserve(IntPtr sessionId, uint meshId, uint vcount, uint fcount);
+		private static extern void cycles_mesh_reserve(IntPtr sessionId, IntPtr meshId, uint vcount, uint fcount);
 
-		public static void mesh_reserve(IntPtr sessionId, uint meshId, uint vcount, uint fcount)
+		public static void mesh_reserve(IntPtr sessionId, IntPtr meshId, uint vcount, uint fcount)
 		{
 			cycles_mesh_reserve(sessionId, meshId, vcount, fcount);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_mesh_tag_rebuild(IntPtr sessionId, uint meshId);
+		private static extern void cycles_geometry_tag_rebuild(IntPtr sessionId, IntPtr meshId);
 
-		public static void mesh_tag_rebuild(IntPtr sessionId, uint meshId)
+		public static void geometry_tag_rebuild(IntPtr sessionId, IntPtr meshId)
 		{
-			cycles_mesh_tag_rebuild(sessionId, meshId);
+			cycles_geometry_tag_rebuild(sessionId, meshId);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_mesh_attr_tangentspace(IntPtr sessionId, uint meshId, [MarshalAs(UnmanagedType.LPStr)] string uvmap_name);
+		private static extern void cycles_mesh_attr_tangentspace(IntPtr sessionId, IntPtr meshId, [MarshalAs(UnmanagedType.LPStr)] string uvmap_name);
 
-		public static void mesh_attr_tangentspace(IntPtr sessionId, uint meshId, string uvmap_name)
+		public static void mesh_attr_tangentspace(IntPtr sessionId, IntPtr meshId, string uvmap_name)
 		{
 			cycles_mesh_attr_tangentspace(sessionId, meshId, uvmap_name);
 		}

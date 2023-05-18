@@ -7,11 +7,11 @@ namespace ccl
 	{
 #region object
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_scene_object_set_matrix(IntPtr sessionId, uint objectId,
+		private static extern void cycles_scene_object_set_matrix(IntPtr sessionId, IntPtr objectId,
 			float a, float b, float c, float d,
 			float e, float f, float g, float h,
 			float i, float j, float k, float l);
-		public static void object_set_matrix(IntPtr sessionId, uint objectId, Transform t)
+		public static void object_set_matrix(IntPtr sessionId, IntPtr objectId, Transform t)
 		{
 			cycles_scene_object_set_matrix(sessionId, objectId,
 				t.x.x, t.x.y, t.x.z, t.x.w,
@@ -20,11 +20,11 @@ namespace ccl
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_scene_object_set_ocs_frame(IntPtr sessionId, uint objectId,
+		private static extern void cycles_scene_object_set_ocs_frame(IntPtr sessionId, IntPtr objectId,
 			float a, float b, float c, float d,
 			float e, float f, float g, float h,
 			float i, float j, float k, float l);
-		public static void object_set_ocs_frame(IntPtr sessionId, uint objectId, Transform t)
+		public static void object_set_ocs_frame(IntPtr sessionId, IntPtr objectId, Transform t)
 		{
 			cycles_scene_object_set_ocs_frame(sessionId, objectId,
 				t.x.x, t.x.y, t.x.z, t.x.w,
@@ -33,85 +33,85 @@ namespace ccl
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_scene_object_set_mesh(IntPtr sessionId, uint objectId, uint meshId);
-		public static void object_set_mesh(IntPtr sessionId, uint objectId, uint meshId)
+		private static extern void cycles_scene_object_set_geometry(IntPtr sessionId, IntPtr obj, IntPtr geometry);
+		public static void object_set_geometry(IntPtr sessionId, IntPtr obj, IntPtr geometry)
 		{
-			cycles_scene_object_set_mesh(sessionId, objectId, meshId);
+			cycles_scene_object_set_geometry(sessionId, obj, geometry);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern uint cycles_scene_object_get_mesh(IntPtr sessionId, uint objectId);
-		public static uint object_get_mesh(IntPtr sessionId, uint objectId)
+		private static extern IntPtr cycles_scene_object_get_geometry(IntPtr sessionId, IntPtr objectId);
+		public static IntPtr object_get_geometry(IntPtr sessionId, IntPtr objectId)
 		{
-			return cycles_scene_object_get_mesh(sessionId, objectId);
+			return cycles_scene_object_get_geometry(sessionId, objectId);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_scene_object_set_visibility(IntPtr sessionId, uint objectId, uint visibility);
-		public static void object_set_visibility(IntPtr sessionId, uint objectId, PathRay visibility)
+		private static extern void cycles_scene_object_set_visibility(IntPtr sessionId, IntPtr objectId, uint visibility);
+		public static void object_set_visibility(IntPtr sessionId, IntPtr objectId, PathRay visibility)
 		{
 			cycles_scene_object_set_visibility(sessionId, objectId, (uint)visibility);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_scene_object_set_shader(IntPtr sessionId, uint objectId, uint shader);
-		public static void object_set_shader(IntPtr sessionId, uint objectId, uint shader)
+		private static extern void cycles_scene_object_set_shader(IntPtr sessionId, IntPtr objectId, uint shader);
+		public static void object_set_shader(IntPtr sessionId, IntPtr objectId, uint shader)
 		{
 			cycles_scene_object_set_shader(sessionId, objectId, shader);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_scene_object_set_is_shadowcatcher(IntPtr sessionId, uint objectId, bool is_shadowcatcher);
-		public static void object_set_is_shadowcatcher(IntPtr sessionId, uint objectId, bool is_shadowcatcher)
+		private static extern void cycles_scene_object_set_is_shadowcatcher(IntPtr sessionId, IntPtr objectId, bool is_shadowcatcher);
+		public static void object_set_is_shadowcatcher(IntPtr sessionId, IntPtr objectId, bool is_shadowcatcher)
 		{
 			cycles_scene_object_set_is_shadowcatcher(sessionId, objectId, is_shadowcatcher);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_scene_object_set_mesh_light_no_cast_shadow(IntPtr sessionId, uint objectId, bool mesh_light_no_cast_shadow);
-		public static void object_set_mesh_light_no_cast_shadow(IntPtr sessionId, uint objectId, bool mesh_light_no_cast_shadow)
+		private static extern void cycles_scene_object_set_mesh_light_no_cast_shadow(IntPtr sessionId, IntPtr objectId, bool mesh_light_no_cast_shadow);
+		public static void object_set_mesh_light_no_cast_shadow(IntPtr sessionId, IntPtr objectId, bool mesh_light_no_cast_shadow)
 		{
 			cycles_scene_object_set_mesh_light_no_cast_shadow(sessionId, objectId, mesh_light_no_cast_shadow);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_scene_object_set_is_block_instance(IntPtr sessionId, uint objectId, bool is_block_instance);
-		public static void object_set_is_block_instance(IntPtr sessionId, uint objectId, bool is_block_instance)
+		private static extern void cycles_scene_object_set_is_block_instance(IntPtr sessionId, IntPtr objectId, bool is_block_instance);
+		public static void object_set_is_block_instance(IntPtr sessionId, IntPtr objectId, bool is_block_instance)
 		{
 			cycles_scene_object_set_is_block_instance(sessionId, objectId, is_block_instance);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_scene_object_set_cutout(IntPtr sessionId, uint objectId, bool cutout);
-		public static void object_set_cutout(IntPtr sessionId, uint objectId, bool cutout)
+		private static extern void cycles_scene_object_set_cutout(IntPtr sessionId, IntPtr objectId, bool cutout);
+		public static void object_set_cutout(IntPtr sessionId, IntPtr objectId, bool cutout)
 		{
 			cycles_scene_object_set_cutout(sessionId, objectId, cutout);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_scene_object_set_ignore_cutout(IntPtr sessionId, uint objectId, bool ignore_cutout);
-		public static void object_set_ignore_cutout(IntPtr sessionId, uint objectId, bool ignore_cutout)
+		private static extern void cycles_scene_object_set_ignore_cutout(IntPtr sessionId, IntPtr objectId, bool ignore_cutout);
+		public static void object_set_ignore_cutout(IntPtr sessionId, IntPtr objectId, bool ignore_cutout)
 		{
 			cycles_scene_object_set_ignore_cutout(sessionId, objectId, ignore_cutout);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_object_tag_update(IntPtr sessionId, uint objectId);
-		public static void object_tag_update(IntPtr sessionId, uint objectId)
+		private static extern void cycles_object_tag_update(IntPtr sessionId, IntPtr objectId);
+		public static void object_tag_update(IntPtr sessionId, IntPtr objectId)
 		{
 			cycles_object_tag_update(sessionId, objectId);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_object_set_pass_id(IntPtr sessionId, uint objectId, int pass_id);
-		public static void object_set_pass_id(IntPtr sessionId, uint objectId, int pass_id)
+		private static extern void cycles_object_set_pass_id(IntPtr sessionId, IntPtr objectId, int pass_id);
+		public static void object_set_pass_id(IntPtr sessionId, IntPtr objectId, int pass_id)
 		{
 			cycles_object_set_pass_id(sessionId, objectId, pass_id);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_object_set_random_id(IntPtr sessionId, uint objectId, uint random_id);
-		public static void object_set_random_id(IntPtr sessionId, uint objectId, uint random_id)
+		private static extern void cycles_object_set_random_id(IntPtr sessionId, IntPtr objectId, uint random_id);
+		public static void object_set_random_id(IntPtr sessionId, IntPtr objectId, uint random_id)
 		{
 			cycles_object_set_random_id(sessionId, objectId, random_id);
 		}

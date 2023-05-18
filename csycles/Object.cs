@@ -64,7 +64,7 @@ namespace ccl
 		/// <summary>
 		/// Id of the Cycles object.
 		/// </summary>
-		public uint Id { get; }
+		public System.IntPtr ObjectPtr { get; }
 		/// <summary>
 		/// Reference to the client.
 		/// </summary>
@@ -79,7 +79,7 @@ namespace ccl
 		{
 			Client = client;
 
-			Id = CSycles.scene_add_object(Client.Scene.Id);
+			ObjectPtr = CSycles.scene_add_object(Client.Scene.Id);
 		}
 
 		private Mesh m_mesh = null;
@@ -95,7 +95,7 @@ namespace ccl
 			set
 			{
 				m_mesh = value;
-				CSycles.object_set_mesh(Client.Scene.Id, Id, value.Id);
+				CSycles.object_set_geometry(Client.Scene.Id, ObjectPtr, value.GeometryPointer);
 			}
 		}
 
@@ -104,7 +104,7 @@ namespace ccl
 		/// </summary>
 		public void TagUpdate()
 		{
-			CSycles.object_tag_update(Client.Scene.Id, Id);
+			CSycles.object_tag_update(Client.Scene.Id, ObjectPtr);
 		}
 
 		/// <summary>
@@ -114,7 +114,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.object_set_matrix(Client.Scene.Id, Id, value);
+				CSycles.object_set_matrix(Client.Scene.Id, ObjectPtr, value);
 			}
 		}
 
@@ -125,7 +125,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.object_set_ocs_frame(Client.Scene.Id, Id, value);
+				CSycles.object_set_ocs_frame(Client.Scene.Id, ObjectPtr, value);
 			}
 		}
 
@@ -136,7 +136,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.object_set_visibility(Client.Scene.Id, Id, value);
+				CSycles.object_set_visibility(Client.Scene.Id, ObjectPtr, value);
 			}
 		}
 
@@ -144,7 +144,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.object_set_shader(Client.Scene.Id, Id, value);
+				CSycles.object_set_shader(Client.Scene.Id, ObjectPtr, value);
 			}
 		}
 
@@ -155,7 +155,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.object_set_is_shadowcatcher(Client.Scene.Id, Id, value);
+				CSycles.object_set_is_shadowcatcher(Client.Scene.Id, ObjectPtr, value);
 			}
 		}
 
@@ -166,7 +166,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.object_set_mesh_light_no_cast_shadow(Client.Scene.Id, Id, value);
+				CSycles.object_set_mesh_light_no_cast_shadow(Client.Scene.Id, ObjectPtr, value);
 			}
 		}
 
@@ -177,7 +177,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.object_set_is_block_instance(Client.Scene.Id, Id, value);
+				CSycles.object_set_is_block_instance(Client.Scene.Id, ObjectPtr, value);
 			}
 		}
 
@@ -188,7 +188,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.object_set_cutout(Client.Scene.Id, Id, value);
+				CSycles.object_set_cutout(Client.Scene.Id, ObjectPtr, value);
 			}
 		}
 
@@ -199,7 +199,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.object_set_ignore_cutout(Client.Scene.Id, Id, value);
+				CSycles.object_set_ignore_cutout(Client.Scene.Id, ObjectPtr, value);
 			}
 		}
 
@@ -210,7 +210,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.object_set_pass_id(Client.Scene.Id, Id, value);
+				CSycles.object_set_pass_id(Client.Scene.Id, ObjectPtr, value);
 			}
 		}
 
@@ -221,7 +221,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.object_set_random_id(Client.Scene.Id, Id, value);
+				CSycles.object_set_random_id(Client.Scene.Id, ObjectPtr, value);
 			}
 		}
 	}
