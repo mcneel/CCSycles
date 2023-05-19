@@ -40,13 +40,6 @@ namespace ccl
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern IntPtr cycles_scene_object_get_geometry(IntPtr sessionId, IntPtr objectId);
-		public static IntPtr object_get_geometry(IntPtr sessionId, IntPtr objectId)
-		{
-			return cycles_scene_object_get_geometry(sessionId, objectId);
-		}
-
-		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		private static extern void cycles_scene_object_set_visibility(IntPtr sessionId, IntPtr objectId, uint visibility);
 		public static void object_set_visibility(IntPtr sessionId, IntPtr objectId, PathRay visibility)
 		{
