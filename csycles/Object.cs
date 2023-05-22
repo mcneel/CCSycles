@@ -171,17 +171,6 @@ namespace ccl
 		}
 
 		/// <summary>
-		/// Set to true if object is a block instance.
-		/// </summary>
-		public bool IsBlockInstance
-		{
-			set
-			{
-				CSycles.object_set_is_block_instance(Client.Scene.Id, ObjectPtr, value);
-			}
-		}
-
-		/// <summary>
 		/// Set to true to use this object as cutout
 		/// </summary>
 		public bool Cutout

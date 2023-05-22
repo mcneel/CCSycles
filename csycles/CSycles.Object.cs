@@ -68,13 +68,6 @@ namespace ccl
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_scene_object_set_is_block_instance(IntPtr sessionId, IntPtr objectId, bool is_block_instance);
-		public static void object_set_is_block_instance(IntPtr sessionId, IntPtr objectId, bool is_block_instance)
-		{
-			cycles_scene_object_set_is_block_instance(sessionId, objectId, is_block_instance);
-		}
-
-		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		private static extern void cycles_scene_object_set_cutout(IntPtr sessionId, IntPtr objectId, bool cutout);
 		public static void object_set_cutout(IntPtr sessionId, IntPtr objectId, bool cutout)
 		{
