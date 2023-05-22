@@ -38,13 +38,13 @@ namespace ccl.ShaderNodes
 		/// <summary>
 		/// Create new RgbToBw node
 		/// </summary>
-		public RgbToLuminanceNode() : this("An RgbToLuminance node") { }
+		public RgbToLuminanceNode(Shader shader) : this(shader, "An RgbToLuminance node") { }
 			
 		/// <summary>
 		/// Create new RgbToLuminance node with given name
 		/// </summary>
-		public RgbToLuminanceNode(string name) :
-			base(ShaderNodeType.RgbToLuminance, name)
+		public RgbToLuminanceNode(Shader shader, string name) :
+			base(shader, true)
 		{
 			inputs = new ConvertRgbInputs(this);
 			outputs = new ConvertValOutputs(this);

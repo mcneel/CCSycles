@@ -45,9 +45,8 @@ namespace ccl.ShaderNodes
 		public CheckerTextureInputs ins => (CheckerTextureInputs)inputs;
 		public CheckerTextureOutputs outs => (CheckerTextureOutputs)outputs;
 
-		public CheckerTextureProceduralNode() : this("a checker texture") { }
-		public CheckerTextureProceduralNode(string name)
-			: base(ShaderNodeType.RhinoCheckerTexture, name)
+		public CheckerTextureProceduralNode(Shader shader) : this(shader, "a checker texture") { }
+		public CheckerTextureProceduralNode(Shader shader, string name) : base(shader, true)
 		{
 			inputs = new CheckerTextureInputs(this);
 			outputs = new CheckerTextureOutputs(this);

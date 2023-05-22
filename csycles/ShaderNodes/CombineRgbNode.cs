@@ -57,9 +57,9 @@ namespace ccl.ShaderNodes
 		public CombineRgbInputs ins => (CombineRgbInputs)inputs;
 		public CombineRgbOutputs outs => (CombineRgbOutputs)outputs;
 
-		public CombineRgbNode() : this("a combine rgb node") { }
-		public CombineRgbNode(string name) :
-			base(ShaderNodeType.CombineRgb, name)
+		public CombineRgbNode(Shader shader) : this(shader, "a combine rgb node") { }
+		public CombineRgbNode(Shader shader, string name) :
+			base(shader, true)
 		{
 			inputs = new CombineRgbInputs(this);
 			outputs = new CombineRgbOutputs(this);

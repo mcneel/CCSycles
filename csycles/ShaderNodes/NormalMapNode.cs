@@ -61,9 +61,9 @@ namespace ccl.ShaderNodes
 		public NormalMapInputs ins => (NormalMapInputs)inputs;
 		public NormalMapOutputs outs => (NormalMapOutputs)outputs;
 
-		public NormalMapNode() : this("a normalmap node") { }
-		public NormalMapNode(string name)
-			: base(ShaderNodeType.NormalMap, name)
+		public NormalMapNode(Shader shader) : this(shader, "a normalmap node") { }
+		public NormalMapNode(Shader shader, string name)
+			: base(shader, true)
 		{
 			inputs = new NormalMapInputs(this);
 			outputs = new NormalMapOutputs(this);
@@ -80,13 +80,13 @@ namespace ccl.ShaderNodes
 
 		internal override void SetEnums(IntPtr sessionId, IntPtr shaderId)
 		{
-			CSycles.shadernode_set_enum(sessionId, shaderId, Id, Type, "type", (int)SpaceType);
+			CSycles.shadernode_set_enum(Id, "type", (int)SpaceType);
 		}
 
 		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
 		{
 			base.SetDirectMembers(sessionId, shaderId);
-			CSycles.shadernode_set_member_string(sessionId, shaderId, Id, ShaderNodeType.NoiseTexture, "attribute", Attribute);
+			CSycles.shadernode_set_member_string(Id, "attribute", Attribute);
 		}
 
 

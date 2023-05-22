@@ -66,9 +66,9 @@ namespace ccl.ShaderNodes
 
 		public GlassInputs ins => (GlassInputs)inputs;
 		public GlassOutputs outs => (GlassOutputs)outputs;
-		public GlassBsdfNode() : this("a glass bsdf") { }
-		public GlassBsdfNode(string name)
-			: base(ShaderNodeType.Glass, name)
+		public GlassBsdfNode(Shader shader) : this(shader, "a glass bsdf") { }
+		public GlassBsdfNode(Shader shader, string name)
+			: base(shader, true)
 		{
 			inputs = new GlassInputs(this);
 			outputs = new GlassOutputs(this);
@@ -85,7 +85,7 @@ namespace ccl.ShaderNodes
 
 		internal override void SetEnums(IntPtr sessionId, IntPtr shaderId)
 		{
-			CSycles.shadernode_set_enum(sessionId, shaderId, Id, Type, "distribution", (int)Distribution);
+			CSycles.shadernode_set_enum(Id, "distribution", (int)Distribution);
 		}
 
 		internal override void ParseXml(XmlReader xmlNode)

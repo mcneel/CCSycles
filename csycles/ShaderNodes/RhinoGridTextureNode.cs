@@ -48,9 +48,9 @@ namespace ccl.ShaderNodes
 		public int Cells { get; set; }
 		public float FontThickness { get; set; }
 
-		public GridTextureProceduralNode() : this("a grid texture") { }
-		public GridTextureProceduralNode(string name)
-			: base(ShaderNodeType.RhinoGridTexture, name)
+		public GridTextureProceduralNode(Shader shader) : this(shader, "a grid texture") { }
+		public GridTextureProceduralNode(Shader shader, string name)
+			: base(shader, true)
 		{
 			inputs = new GridTextureInputs(this);
 			outputs = new GridTextureOutputs(this);
@@ -58,8 +58,8 @@ namespace ccl.ShaderNodes
 
 		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
 		{
-			CSycles.shadernode_set_member_int(sessionId, shaderId, Id, Type, "Cells", Cells);
-			CSycles.shadernode_set_member_float(sessionId, shaderId, Id, Type, "FontThickness", FontThickness);
+			CSycles.shadernode_set_member_int(Id, "Cells", Cells);
+			CSycles.shadernode_set_member_float(Id, "FontThickness", FontThickness);
 		}
 	}
 }

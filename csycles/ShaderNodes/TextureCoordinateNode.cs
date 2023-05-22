@@ -104,10 +104,10 @@ namespace ccl.ShaderNodes
 		public TextureCoordinateInputs ins => (TextureCoordinateInputs)inputs;
 		public TextureCoordinateOutputs outs => (TextureCoordinateOutputs)outputs;
 
-		public TextureCoordinateNode()
-			: this("a texcoord") { }
-		public TextureCoordinateNode(string name)
-			: base(ShaderNodeType.TextureCoordinate, name)
+		public TextureCoordinateNode(Shader shader)
+			: this(shader, "a texcoord") { }
+		public TextureCoordinateNode(Shader shader, string name)
+			: base(shader, true)
 		{
 			inputs = new TextureCoordinateInputs();
 			outputs = new TextureCoordinateOutputs(this);
@@ -202,50 +202,50 @@ namespace ccl.ShaderNodes
 
 	internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
 		{
-			CSycles.shadernode_set_member_bool(sessionId, shaderId, Id, ShaderNodeType.TextureCoordinate, "use_transform", UseTransform);
+			CSycles.shadernode_set_member_bool(Id, "use_transform", UseTransform);
 
 			if (UseTransform)
 			{
 				var obt = ObjectTransform;
 
-				CSycles.shadernode_set_member_vec4_at_index(sessionId, shaderId, Id, ShaderNodeType.TextureCoordinate, "object_transform", obt.x.x, obt.x.y, obt.x.z, obt.x.w, 0);
-				CSycles.shadernode_set_member_vec4_at_index(sessionId, shaderId, Id, ShaderNodeType.TextureCoordinate, "object_transform", obt.y.x, obt.y.y, obt.y.z, obt.y.w, 1);
-				CSycles.shadernode_set_member_vec4_at_index(sessionId, shaderId, Id, ShaderNodeType.TextureCoordinate, "object_transform", obt.z.x, obt.z.y, obt.z.z, obt.z.w, 2);
+				CSycles.shadernode_set_member_vec4_at_index(Id, "object_transform", obt.x.x, obt.x.y, obt.x.z, obt.x.w, 0);
+				CSycles.shadernode_set_member_vec4_at_index(Id, "object_transform", obt.y.x, obt.y.y, obt.y.z, obt.y.w, 1);
+				CSycles.shadernode_set_member_vec4_at_index(Id, "object_transform", obt.z.x, obt.z.y, obt.z.z, obt.z.w, 2);
 			}
-			CSycles.shadernode_set_member_float(sessionId, shaderId, Id, Type, "decal_height", DecalHeight);
-			CSycles.shadernode_set_member_float(sessionId, shaderId, Id, Type, "decal_radius", DecalRadius);
-			CSycles.shadernode_set_member_float(sessionId, shaderId, Id, Type, "decal_hor_start", HorizontalSweepStart);
-			CSycles.shadernode_set_member_float(sessionId, shaderId, Id, Type, "decal_hor_end", HorizontalSweepEnd);
-			CSycles.shadernode_set_member_float(sessionId, shaderId, Id, Type, "decal_ver_start", VerticalSweepStart);
-			CSycles.shadernode_set_member_float(sessionId, shaderId, Id, Type, "decal_ver_end", VerticalSweepEnd);
-			CSycles.shadernode_set_member_vec(sessionId, shaderId, Id, Type, "origin", DecalOrigin.x, DecalOrigin.y, DecalOrigin.z);
-			CSycles.shadernode_set_member_vec(sessionId, shaderId, Id, Type, "across", Across.x, Across.y, Across.z);
-			CSycles.shadernode_set_member_vec(sessionId, shaderId, Id, Type, "up", Up.x, Up.y, Up.z);
+			CSycles.shadernode_set_member_float(Id, "decal_height", DecalHeight);
+			CSycles.shadernode_set_member_float(Id, "decal_radius", DecalRadius);
+			CSycles.shadernode_set_member_float(Id, "decal_hor_start", HorizontalSweepStart);
+			CSycles.shadernode_set_member_float(Id, "decal_hor_end", HorizontalSweepEnd);
+			CSycles.shadernode_set_member_float(Id, "decal_ver_start", VerticalSweepStart);
+			CSycles.shadernode_set_member_float(Id, "decal_ver_end", VerticalSweepEnd);
+			CSycles.shadernode_set_member_vec(Id, "origin", DecalOrigin.x, DecalOrigin.y, DecalOrigin.z);
+			CSycles.shadernode_set_member_vec(Id, "across", Across.x, Across.y, Across.z);
+			CSycles.shadernode_set_member_vec(Id, "up", Up.x, Up.y, Up.z);
 
 			var pxyz = DecalPxyz;
 
-			CSycles.shadernode_set_member_vec4_at_index(sessionId, shaderId, Id, ShaderNodeType.TextureCoordinate, "pxyz", pxyz.x.x, pxyz.x.y, pxyz.x.z, pxyz.x.w, 0);
-			CSycles.shadernode_set_member_vec4_at_index(sessionId, shaderId, Id, ShaderNodeType.TextureCoordinate, "pxyz", pxyz.y.x, pxyz.y.y, pxyz.y.z, pxyz.y.w, 1);
-			CSycles.shadernode_set_member_vec4_at_index(sessionId, shaderId, Id, ShaderNodeType.TextureCoordinate, "pxyz", pxyz.z.x, pxyz.z.y, pxyz.z.z, pxyz.z.w, 2);
+			CSycles.shadernode_set_member_vec4_at_index(Id, "pxyz", pxyz.x.x, pxyz.x.y, pxyz.x.z, pxyz.x.w, 0);
+			CSycles.shadernode_set_member_vec4_at_index(Id, "pxyz", pxyz.y.x, pxyz.y.y, pxyz.y.z, pxyz.y.w, 1);
+			CSycles.shadernode_set_member_vec4_at_index(Id, "pxyz", pxyz.z.x, pxyz.z.y, pxyz.z.z, pxyz.z.w, 2);
 
 			var nxyz = DecalNxyz;
 
-			CSycles.shadernode_set_member_vec4_at_index(sessionId, shaderId, Id, ShaderNodeType.TextureCoordinate, "nxyz", nxyz.x.x, nxyz.x.y, nxyz.x.z, nxyz.x.w, 0);
-			CSycles.shadernode_set_member_vec4_at_index(sessionId, shaderId, Id, ShaderNodeType.TextureCoordinate, "nxyz", nxyz.y.x, nxyz.y.y, nxyz.y.z, nxyz.y.w, 1);
-			CSycles.shadernode_set_member_vec4_at_index(sessionId, shaderId, Id, ShaderNodeType.TextureCoordinate, "nxyz", nxyz.z.x, nxyz.z.y, nxyz.z.z, nxyz.z.w, 2);
+			CSycles.shadernode_set_member_vec4_at_index(Id, "nxyz", nxyz.x.x, nxyz.x.y, nxyz.x.z, nxyz.x.w, 0);
+			CSycles.shadernode_set_member_vec4_at_index(Id, "nxyz", nxyz.y.x, nxyz.y.y, nxyz.y.z, nxyz.y.w, 1);
+			CSycles.shadernode_set_member_vec4_at_index(Id, "nxyz", nxyz.z.x, nxyz.z.y, nxyz.z.z, nxyz.z.w, 2);
 
 			var uvw = DecalUvw;
 
-			CSycles.shadernode_set_member_vec4_at_index(sessionId, shaderId, Id, ShaderNodeType.TextureCoordinate, "uvw", uvw.x.x, uvw.x.y, uvw.x.z, uvw.x.w, 0);
-			CSycles.shadernode_set_member_vec4_at_index(sessionId, shaderId, Id, ShaderNodeType.TextureCoordinate, "uvw", uvw.y.x, uvw.y.y, uvw.y.z, uvw.y.w, 1);
-			CSycles.shadernode_set_member_vec4_at_index(sessionId, shaderId, Id, ShaderNodeType.TextureCoordinate, "uvw", uvw.z.x, uvw.z.y, uvw.z.z, uvw.z.w, 2);
+			CSycles.shadernode_set_member_vec4_at_index(Id, "uvw", uvw.x.x, uvw.x.y, uvw.x.z, uvw.x.w, 0);
+			CSycles.shadernode_set_member_vec4_at_index(Id, "uvw", uvw.y.x, uvw.y.y, uvw.y.z, uvw.y.w, 1);
+			CSycles.shadernode_set_member_vec4_at_index(Id, "uvw", uvw.z.x, uvw.z.y, uvw.z.z, uvw.z.w, 2);
 
-			CSycles.shadernode_set_member_string(sessionId, shaderId, Id, ShaderNodeType.TextureCoordinate, "uvmap", UvMap);
+			CSycles.shadernode_set_member_string(Id, "uvmap", UvMap);
 		}
 
 		internal override void SetEnums(IntPtr sessionId, IntPtr shaderId)
 		{
-			CSycles.shadernode_set_enum(sessionId, shaderId, Id, Type, "decal_projection", (int)Direction);
+			CSycles.shadernode_set_enum(Id, "decal_projection", (int)Direction);
 		}
 
 		internal override void ParseXml(System.Xml.XmlReader xmlNode)

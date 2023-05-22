@@ -134,14 +134,13 @@ namespace ccl.ShaderNodes
 		/// <summary>
 		/// VectorMath node operates on float inputs (note, some operations use only Vector1)
 		/// </summary>
-		public VectorMathNode() :
-			this("a vector math node")
+		public VectorMathNode(Shader shader) : this(shader, "a vector math node")
 		{
 
 		}
 
-		public VectorMathNode(string name) :
-			base(ShaderNodeType.VectorMath, name)
+		public VectorMathNode(Shader shader, string name) :
+			base(shader, true)
 		{
 			inputs = new VectorMathInputs(this);
 			outputs = new VectorMathOutputs(this);
@@ -164,7 +163,7 @@ namespace ccl.ShaderNodes
 
 		internal override void SetEnums(IntPtr sessionId, IntPtr shaderId)
 		{
-			CSycles.shadernode_set_enum(sessionId, shaderId, Id, Type, "operation", (int)Operation);
+			CSycles.shadernode_set_enum(Id, "operation", (int)Operation);
 		}
 
 		internal override void ParseXml(XmlReader xmlNode)
@@ -199,48 +198,48 @@ namespace ccl.ShaderNodes
 	public class VectorAdd: VectorMathNode
 	{
 
-		public VectorAdd() : this("a vector add node") {}
-		public VectorAdd(string name) : base(name) { Operation = Operations.Add; }
+		public VectorAdd(Shader shader) : this(shader, "a vector add node") {}
+		public VectorAdd(Shader shader, string name) : base(shader, name) { Operation = Operations.Add; }
 		public override string ShaderNodeTypeName => "vector_math";
 	}
 	[ShaderNode("vector_subtract")]
 	public class VectorSubtract: VectorMathNode
 	{
 
-		public VectorSubtract() : this("a vector subtract node") {}
-		public VectorSubtract(string name) : base(name) { Operation = Operations.Subtract; }
+		public VectorSubtract(Shader shader) : this(shader, "a vector subtract node") {}
+		public VectorSubtract(Shader shader, string name) : base(shader, name) { Operation = Operations.Subtract; }
 		public override string ShaderNodeTypeName => "vector_math";
 	}
 	[ShaderNode("vector_average")]
 	public class VectorAverage: VectorMathNode
 	{
 
-		public VectorAverage() : this("a vector average node") {}
-		public VectorAverage(string name) : base(name) { Operation = Operations.Average; }
+		public VectorAverage(Shader shader) : this(shader, "a vector average node") {}
+		public VectorAverage(Shader shader, string name) : base(shader, name) { Operation = Operations.Average; }
 		public override string ShaderNodeTypeName => "vector_math";
 	}
 	[ShaderNode("vector_cross")]
 	public class VectorCross_Product: VectorMathNode
 	{
 
-		public VectorCross_Product() : this("a vector cross node") {}
-		public VectorCross_Product(string name) : base(name) { Operation = Operations.Cross_Product; }
+		public VectorCross_Product(Shader shader) : this(shader, "a vector cross node") {}
+		public VectorCross_Product(Shader shader, string name) : base(shader, name) { Operation = Operations.Cross_Product; }
 		public override string ShaderNodeTypeName => "vector_math";
 	}
 	[ShaderNode("vector_dot")]
 	public class VectorDot_Product: VectorMathNode
 	{
 
-		public VectorDot_Product() : this("a vector dot node") {}
-		public VectorDot_Product(string name) : base(name) { Operation = Operations.Dot_Product; }
+		public VectorDot_Product(Shader shader) : this(shader, "a vector dot node") {}
+		public VectorDot_Product(Shader shader, string name) : base(shader, name) { Operation = Operations.Dot_Product; }
 		public override string ShaderNodeTypeName => "vector_math";
 	}
 	[ShaderNode("vector_normalize")]
 	public class VectorNormalize: VectorMathNode
 	{
 
-		public VectorNormalize() : this("a vector normalize node") {}
-		public VectorNormalize(string name) : base(name) { Operation = Operations.Normalize; }
+		public VectorNormalize(Shader shader) : this(shader, "a vector normalize node") {}
+		public VectorNormalize(Shader shader, string name) : base(shader, name) { Operation = Operations.Normalize; }
 		public override string ShaderNodeTypeName => "vector_math";
 	}
 }

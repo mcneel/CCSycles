@@ -30,9 +30,7 @@ namespace ccl.ShaderNodes
 	[ShaderNode("shadernode base", true)]
 	public class ShaderNode
 	{
-		private static int _runtimeSerial = 0;
 
-		private int id;
 		/// <summary>
 		/// Set a name for this node
 		/// </summary>
@@ -45,8 +43,7 @@ namespace ccl.ShaderNodes
 		{
 			get
 			{
-				//var s = $"{ShaderNodeTypeCodeName}{id}";
-				var s = $"{Name}{id}";
+				var s = $"{Name}{Id}";
 				return Extensions.FirstCharacterToLower(s);
 			}
 		}
@@ -54,7 +51,7 @@ namespace ccl.ShaderNodes
 		/// <summary>
 		/// Get the node ID. This is set when created in Cycles.
 		/// </summary>
-		public uint Id { get; internal set; }
+		public IntPtr Id { get; internal set; }
 		/// <summary>
 		/// Get the shader node type. Set in the constructor.
 		/// </summary>
@@ -95,6 +92,7 @@ namespace ccl.ShaderNodes
 			throw new NotImplementedException($"Should implement GetClosureSocket for this node {Type}");
 		}
 
+#if OLDSTUFF
 		/// <summary>
 		/// Create node of type ShaderNodeType type
 		/// </summary>
@@ -110,9 +108,29 @@ namespace ccl.ShaderNodes
 		/// <param name="name"></param>
 		internal ShaderNode(ShaderNodeType type, string name)
 		{
-			id = _runtimeSerial++;
 			Type = type;
 			Name = name;
+		}
+#endif
+
+		internal ShaderNode(Shader shader, bool _)
+		{
+			ConstructShaderNode(shader, ShaderNodeTypeName);
+		}
+
+		internal ShaderNode(Shader shader, IntPtr shadernodePtr)
+		{
+			Id = shadernodePtr;
+			Shader = shader;
+		}
+
+		public Shader Shader { get; private set; }
+
+
+		internal void ConstructShaderNode(Shader shader, string name)
+		{
+			Id = CSycles.add_shader_node(shader.Id, name);
+			Shader = shader;
 		}
 
 		/// <summary>
@@ -148,15 +166,15 @@ namespace ccl.ShaderNodes
 				{
 					if (socket is FloatSocket float_socket)
 					{
-						CSycles.shadernode_set_attribute_float(sessionId, shaderId, Id, float_socket.Name, float_socket.Value);
+						CSycles.shadernode_set_attribute_float(Id, float_socket.Name, float_socket.Value);
 					}
 					if (socket is IntSocket int_socket)
 					{
-						CSycles.shadernode_set_attribute_int(sessionId, shaderId, Id, int_socket.Name, int_socket.Value);
+						CSycles.shadernode_set_attribute_int(Id, int_socket.Name, int_socket.Value);
 					}
 					if (socket is Float4Socket float4_socket)
 					{
-						CSycles.shadernode_set_attribute_vec(sessionId, shaderId, Id, float4_socket.Name, float4_socket.Value);
+						CSycles.shadernode_set_attribute_vec(Id, float4_socket.Name, float4_socket.Value);
 					}
 				}
 			}

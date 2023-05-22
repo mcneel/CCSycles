@@ -60,9 +60,9 @@ namespace ccl.ShaderNodes
 		public NoiseInputs ins => (NoiseInputs)inputs;
 		public NoiseOutputs outs => (NoiseOutputs)outputs;
 
-		public NoiseTexture() : this("a noise texture") { }
-		public NoiseTexture(string name)
-			: base(ShaderNodeType.NoiseTexture, name)
+		public NoiseTexture(Shader shader) : this(shader, "a noise texture") { }
+		public NoiseTexture(Shader shader, string name)
+			: base(shader, name)
 		{
 			inputs = new NoiseInputs(this);
 			outputs = new NoiseOutputs(this);

@@ -65,9 +65,8 @@ namespace ccl.ShaderNodes
 		public GlossyInputs ins => (GlossyInputs)inputs;
 		public GlossyOutputs outs => (GlossyOutputs)outputs;
 
-		public GlossyBsdfNode() : this("a glossy bsdf node") { }
-		public GlossyBsdfNode(string name) :
-			base(ShaderNodeType.Glossy, name)
+		public GlossyBsdfNode(Shader shader) : this(shader, "a glossy bsdf node") { }
+		public GlossyBsdfNode(Shader shader, string name) : base(shader, true)
 		{
 			inputs = new GlossyInputs(this);
 			outputs = new GlossyOutputs(this);
@@ -93,7 +92,7 @@ namespace ccl.ShaderNodes
 
 		internal override void SetEnums(IntPtr sessionId, IntPtr shaderId)
 		{
-			CSycles.shadernode_set_enum(sessionId, shaderId, Id, Type, "distribution", (int)Distribution);
+			CSycles.shadernode_set_enum(Id, "distribution", (int)Distribution);
 		}
 
 		internal override void ParseXml(XmlReader xmlNode)

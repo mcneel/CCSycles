@@ -91,9 +91,9 @@ namespace ccl.ShaderNodes
 		/// <summary>
 		/// Create new BumpNode with blend type Bump.
 		/// </summary>
-		public BumpNode() : this("a bump node") { }
-		public BumpNode(string name) :
-			base(ShaderNodeType.Bump, name)
+		public BumpNode(Shader shader) : this(shader, "a bump node") { }
+		public BumpNode(Shader shader, string name) :
+			base(shader, true)
 		{
 			inputs = new BumpInputs(this);
 			outputs = new BumpOutputs(this);
@@ -110,7 +110,7 @@ namespace ccl.ShaderNodes
 
 		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
 		{
-			CSycles.shadernode_set_member_bool(sessionId, shaderId, Id, Type, "invert", Invert);
+			CSycles.shadernode_set_member_bool(Id, "invert", Invert);
 		}
 
 		internal override void ParseXml(System.Xml.XmlReader xmlNode)

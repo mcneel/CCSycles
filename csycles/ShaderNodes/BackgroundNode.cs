@@ -79,8 +79,8 @@ namespace ccl.ShaderNodes
 		/// <summary>
 		/// Create a new background/world shader node
 		/// </summary>
-		public BackgroundNode() :
-			this("a background")
+		public BackgroundNode(Shader shader) :
+			this(shader, "a background")
 		{
 		}
 
@@ -88,8 +88,8 @@ namespace ccl.ShaderNodes
 		/// Create a new background/world shader node with given name
 		/// </summary>
 		/// <param name="name">Name for shader node</param>
-		public BackgroundNode(string name) :
-			base(ShaderNodeType.Background, name)
+		public BackgroundNode(Shader shader, string name) :
+			base(shader, true)
 		{
 			inputs = new BackgroundInputs(this);
 			outputs = new BackgroundOutputs(this);

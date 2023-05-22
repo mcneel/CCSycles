@@ -49,9 +49,9 @@ namespace ccl.ShaderNodes
 		public float Gain { get; set; }
 		public float Roughness { get; set; }
 
-		public FbmTextureProceduralNode() : this("an fbm texture") { }
-		public FbmTextureProceduralNode(string name)
-			: base(ShaderNodeType.RhinoFbmTexture, name)
+		public FbmTextureProceduralNode(Shader shader) : this(shader, "an fbm texture") { }
+		public FbmTextureProceduralNode(Shader shader, string name)
+			: base(shader, true)
 		{
 			inputs = new FbmTextureInputs(this);
 			outputs = new FbmTextureOutputs(this);
@@ -59,10 +59,10 @@ namespace ccl.ShaderNodes
 
 		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
 		{
-			CSycles.shadernode_set_member_bool(sessionId, shaderId, Id, Type, "IsTurbulent", IsTurbulent);
-			CSycles.shadernode_set_member_int(sessionId, shaderId, Id, Type, "MaxOctaves", MaxOctaves);
-			CSycles.shadernode_set_member_float(sessionId, shaderId, Id, Type, "Gain", Gain);
-			CSycles.shadernode_set_member_float(sessionId, shaderId, Id, Type, "Roughness", Roughness);
+			CSycles.shadernode_set_member_bool(Id, "IsTurbulent", IsTurbulent);
+			CSycles.shadernode_set_member_int(Id, "MaxOctaves", MaxOctaves);
+			CSycles.shadernode_set_member_float(Id, "Gain", Gain);
+			CSycles.shadernode_set_member_float(Id, "Roughness", Roughness);
 		}
 	}
 }

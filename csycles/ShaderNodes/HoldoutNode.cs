@@ -50,10 +50,10 @@ namespace ccl.ShaderNodes
 		public HoldoutInputs ins => (HoldoutInputs)inputs;
 		public HoldoutOutputs outs => (HoldoutOutputs)outputs;
 
-		public HoldoutNode() : this("a holdout node") { }
+		public HoldoutNode(Shader shader) : this(shader, "a holdout node") { }
 
-		public HoldoutNode(string name)
-			: base(ShaderNodeType.Holdout, name)
+		public HoldoutNode(Shader shader, string name)
+			: base(shader, true)
 		{
 			inputs = new HoldoutInputs(this);
 			outputs = new HoldoutOutputs(this);

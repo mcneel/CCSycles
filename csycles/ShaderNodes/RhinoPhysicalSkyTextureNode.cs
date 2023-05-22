@@ -65,9 +65,8 @@ namespace ccl.ShaderNodes
 		public float InverseWavelengthsZ { get; set; }
 		public float Exposure { get; set; }
 
-		public PhysicalSkyTextureProceduralNode() : this("a physical sky texture") { }
-		public PhysicalSkyTextureProceduralNode(string name)
-			: base(ShaderNodeType.RhinoPhysicalSkyTexture, name)
+		public PhysicalSkyTextureProceduralNode(Shader shader) : this(shader, "a physical sky texture") { }
+		public PhysicalSkyTextureProceduralNode(Shader shader, string name) : base(shader, true)
 		{
 			inputs = new PhysicalSkyTextureInputs(this);
 			outputs = new PhysicalSkyTextureOutputs(this);
@@ -75,16 +74,16 @@ namespace ccl.ShaderNodes
 
 		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
 		{
-			CSycles.shadernode_set_member_vec(sessionId, shaderId, Id, Type, "SunDirection", SunDirectionX, SunDirectionY, SunDirectionZ);
-			CSycles.shadernode_set_member_float(sessionId, shaderId, Id, Type, "AtmosphericDensity", AtmosphericDensity);
-			CSycles.shadernode_set_member_float(sessionId, shaderId, Id, Type, "RayleighScattering", RayleighScattering);
-			CSycles.shadernode_set_member_float(sessionId, shaderId, Id, Type, "MieScattering", MieScattering);
-			CSycles.shadernode_set_member_bool(sessionId, shaderId, Id, Type, "ShowSun", ShowSun);
-			CSycles.shadernode_set_member_float(sessionId, shaderId, Id, Type, "SunBrightness", SunBrightness);
-			CSycles.shadernode_set_member_float(sessionId, shaderId, Id, Type, "SunSize", SunSize);
-			CSycles.shadernode_set_member_vec(sessionId, shaderId, Id, Type, "SunColor", SunColorRed, SunColorGreen, SunColorBlue);
-			CSycles.shadernode_set_member_vec(sessionId, shaderId, Id, Type, "InverseWavelengths", InverseWavelengthsX, InverseWavelengthsY, InverseWavelengthsZ);
-			CSycles.shadernode_set_member_float(sessionId, shaderId, Id, Type, "Exposure", Exposure);
+			CSycles.shadernode_set_member_vec(Id, "SunDirection", SunDirectionX, SunDirectionY, SunDirectionZ);
+			CSycles.shadernode_set_member_float(Id, "AtmosphericDensity", AtmosphericDensity);
+			CSycles.shadernode_set_member_float(Id, "RayleighScattering", RayleighScattering);
+			CSycles.shadernode_set_member_float(Id, "MieScattering", MieScattering);
+			CSycles.shadernode_set_member_bool(Id, "ShowSun", ShowSun);
+			CSycles.shadernode_set_member_float(Id, "SunBrightness", SunBrightness);
+			CSycles.shadernode_set_member_float(Id, "SunSize", SunSize);
+			CSycles.shadernode_set_member_vec(Id, "SunColor", SunColorRed, SunColorGreen, SunColorBlue);
+			CSycles.shadernode_set_member_vec(Id, "InverseWavelengths", InverseWavelengthsX, InverseWavelengthsY, InverseWavelengthsZ);
+			CSycles.shadernode_set_member_float(Id, "Exposure", Exposure);
 		}
 	}
 }

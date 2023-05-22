@@ -65,9 +65,9 @@ namespace ccl.ShaderNodes
 		public RefractionBsdfInputs ins => (RefractionBsdfInputs)inputs;
 		public RefractionBsdfOutputs outs => (RefractionBsdfOutputs)outputs;
 
-		public RefractionBsdfNode() : this("a refraction bsdf node") { }
-		public RefractionBsdfNode(string name) :
-			base(ShaderNodeType.Refraction, name)
+		public RefractionBsdfNode(Shader shader) : this(shader, "a refraction bsdf node") { }
+		public RefractionBsdfNode(Shader shader, string name) :
+			base(shader, true)
 		{
 			inputs = new RefractionBsdfInputs(this);
 			outputs = new RefractionBsdfOutputs(this);
@@ -87,7 +87,7 @@ namespace ccl.ShaderNodes
 
 		internal override void SetEnums(IntPtr sessionId, IntPtr shaderId)
 		{
-			CSycles.shadernode_set_enum(sessionId, shaderId, Id, Type, "distribution", (int)Distribution);
+			CSycles.shadernode_set_enum(Id, "distribution", (int)Distribution);
 		}
 
 		internal override void ParseXml(XmlReader xmlNode)

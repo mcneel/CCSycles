@@ -34,147 +34,132 @@ namespace ccl
 			return cycles_scene_shader_id(sessionId, shaderId);
 		}
 
-		/// <summary>
-		/// The output shader node ID for any graph is always 0.
-		/// </summary>
-		// TODO: XXXX figure out correct approach
-		static public readonly IntPtr OUTPUT_SHADERNODE_ID = (IntPtr)0;
-
-		static public readonly IntPtr DEFAULT_SURFACE_SHADER = (IntPtr)0;
-		static public readonly IntPtr DEFAULT_LIGHT_SHADER = (IntPtr)1;
-		static public readonly IntPtr DEFAULT_BACKGROUND_SHADER = (IntPtr)2;
-		static public readonly IntPtr DEFAULT_EMPTY_SHADER = (IntPtr)3;
-
-
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern uint cycles_add_shader_node(IntPtr sessionId, IntPtr shaderId, uint shnType);
-		public static uint add_shader_node(IntPtr sessionId, IntPtr shaderId, ShaderNodeType shnType)
+		private static extern IntPtr cycles_add_shader_node(IntPtr shaderId, [MarshalAs(UnmanagedType.LPStr)]string shnType);
+		public static IntPtr add_shader_node(IntPtr shaderId, string node_type)
 		{
-			return cycles_add_shader_node(sessionId, shaderId, (uint) shnType);
+			return cycles_add_shader_node(shaderId, node_type);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false,
 			CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_shadernode_texmapping_set_transformation(IntPtr sessionId, IntPtr shaderId, uint shadernodeId, uint shnType, uint transformType, float x, float y, float z);
-		public static void shadernode_texmapping_set_transformation(IntPtr sessionId, IntPtr shaderId, uint shadernodeId, ShaderNodeType shnType, uint transformType, float x, float y, float z)
+		private static extern void cycles_shadernode_texmapping_set_transformation(IntPtr shadernodeId, uint transformType, float x, float y, float z);
+		public static void shadernode_texmapping_set_transformation(IntPtr shadernodeId, uint transformType, float x, float y, float z)
 		{
-			cycles_shadernode_texmapping_set_transformation(sessionId, shaderId, shadernodeId, (uint) shnType, transformType, x, y, z);
+			cycles_shadernode_texmapping_set_transformation(shadernodeId, transformType, x, y, z);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false,
 			CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_shadernode_texmapping_set_mapping(IntPtr sessionId, IntPtr shaderId, uint shadernodeId, uint shnType, uint mappingx, uint mappingy, uint mappingz);
-		public static void shadernode_texmapping_set_mapping(IntPtr sessionId, IntPtr shaderId, uint shadernodeId, ShaderNodeType shnType, uint mappingx, uint mappingy, uint mappingz)
+		private static extern void cycles_shadernode_texmapping_set_mapping(IntPtr shadernodeId, uint mappingx, uint mappingy, uint mappingz);
+		public static void shadernode_texmapping_set_mapping(IntPtr shadernodeId, uint mappingx, uint mappingy, uint mappingz)
 		{
-			cycles_shadernode_texmapping_set_mapping(sessionId, shaderId, shadernodeId, (uint) shnType, mappingx, mappingy, mappingz);
+			cycles_shadernode_texmapping_set_mapping(shadernodeId, mappingx, mappingy, mappingz);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false,
 			CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_shadernode_texmapping_set_projection(IntPtr sessionId, IntPtr shaderId, uint shadernodeId, uint shnType, uint projection);
+		private static extern void cycles_shadernode_texmapping_set_projection(IntPtr shadernodeId, uint projection);
 		[Obsolete("No longer existing")]
-		public static void shadernode_texmapping_set_projection(IntPtr sessionId, IntPtr shaderId, uint shadernodeId, ShaderNodeType shnType, uint projection)
+		public static void shadernode_texmapping_set_projection(IntPtr shadernodeId, uint projection)
 		{
-			cycles_shadernode_texmapping_set_projection(sessionId, shaderId, shadernodeId, (uint) shnType, projection);
+			cycles_shadernode_texmapping_set_projection(shadernodeId, projection);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false,
 			CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_shadernode_texmapping_set_type(IntPtr sessionId, IntPtr shaderId, uint shadernodeId, uint shnType, uint type);
-		public static void shadernode_texmapping_set_type(IntPtr sessionId, IntPtr shaderId, uint shadernodeId, ShaderNodeType shnType, uint type)
+		private static extern void cycles_shadernode_texmapping_set_type(IntPtr shadernodeId, uint type);
+		public static void shadernode_texmapping_set_type(IntPtr shadernodeId, uint type)
 		{
-			cycles_shadernode_texmapping_set_type(sessionId, shaderId, shadernodeId, (uint) shnType, type);
+			cycles_shadernode_texmapping_set_type(shadernodeId, type);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CharSet = CharSet.Ansi,
 			CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_shadernode_set_enum(IntPtr sessionId, IntPtr shaderId, uint shadernodeId, uint shnType, [MarshalAs(UnmanagedType.LPStr)] string enum_name, int value);
+		private static extern void cycles_shadernode_set_enum(IntPtr shadernodeId, [MarshalAs(UnmanagedType.LPStr)] string enum_name, int value);
 		/// <summary>
 		/// Set enumeration value for a shader node
 		/// </summary>
-		/// <param name="clientId">Client</param>
+		/// <param name="clientId">Session</param>
 		/// <param name="sceneId">Session</param>
 		/// <param name="shaderId">Shader ID</param>
 		/// <param name="shadernodeId">Node ID in shader</param>
 		/// <param name="shnType">Type of shader node</param>
 		/// <param name="enum_name">Name of enumeration. Used mostly for nodes that have multiple</param>
 		/// <param name="value">Int value of the enumeration</param>
-		public static void shadernode_set_enum(IntPtr sessionId, IntPtr shaderId, uint shadernodeId, ShaderNodeType shnType, string enum_name, int value)
+		public static void shadernode_set_enum(IntPtr shadernodeId, string enum_name, int value)
 		{
-			cycles_shadernode_set_enum(sessionId, shaderId, shadernodeId, (uint) shnType, enum_name, value);
+			cycles_shadernode_set_enum(shadernodeId, enum_name, value);
 		}
 		[DllImport(Constants.ccycles, SetLastError = false, CharSet = CharSet.Ansi,
 			CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_shadernode_set_attribute_int(IntPtr sessionId, IntPtr shaderId, uint shadernodeId, string name, int val);
-		public static void shadernode_set_attribute_int(IntPtr sessionId, IntPtr shaderId, uint shadernodeId,  [MarshalAs(UnmanagedType.LPStr)] string name, int val)
+		private static extern void cycles_shadernode_set_attribute_int(IntPtr shadernodeId, string name, int val);
+		public static void shadernode_set_attribute_int(IntPtr shadernodeId,  [MarshalAs(UnmanagedType.LPStr)] string name, int val)
 		{
-			cycles_shadernode_set_attribute_int(sessionId, shaderId, shadernodeId, name, val);
+			cycles_shadernode_set_attribute_int(shadernodeId, name, val);
 		}
 		[DllImport(Constants.ccycles, SetLastError = false, CharSet = CharSet.Ansi,
 			CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_shadernode_set_attribute_float(IntPtr sessionId, IntPtr shaderId, uint shadernodeId, string name, float val);
-		public static void shadernode_set_attribute_float(IntPtr sessionId, IntPtr shaderId, uint shadernodeId,  [MarshalAs(UnmanagedType.LPStr)] string name, float val)
+		private static extern void cycles_shadernode_set_attribute_float(IntPtr shadernodeId, string name, float val);
+		public static void shadernode_set_attribute_float(IntPtr shadernodeId,  [MarshalAs(UnmanagedType.LPStr)] string name, float val)
 		{
-			cycles_shadernode_set_attribute_float(sessionId, shaderId, shadernodeId, name, val);
+			cycles_shadernode_set_attribute_float(shadernodeId, name, val);
 		}
 		[DllImport(Constants.ccycles, SetLastError = false, CharSet = CharSet.Ansi,
 			CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_shadernode_set_attribute_vec(IntPtr sessionId, IntPtr shaderId, uint shadernodeId, string name, float x, float y, float z);
-		public static void shadernode_set_attribute_vec(IntPtr sessionId, IntPtr shaderId, uint shadernodeId,  [MarshalAs(UnmanagedType.LPStr)] string name, float4 val)
+		private static extern void cycles_shadernode_set_attribute_vec(IntPtr shadernodeId, string name, float x, float y, float z);
+		public static void shadernode_set_attribute_vec(IntPtr shadernodeId,  [MarshalAs(UnmanagedType.LPStr)] string name, float4 val)
 		{
-			cycles_shadernode_set_attribute_vec(sessionId, shaderId, shadernodeId, name, val.x, val.y, val.z);
+			cycles_shadernode_set_attribute_vec(shadernodeId, name, val.x, val.y, val.z);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CharSet = CharSet.Ansi,
 			CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_shadernode_set_member_float(IntPtr sessionId, IntPtr shaderId, uint shadernodeId, uint shnType, string name, float val);
-		public static void shadernode_set_member_float(IntPtr sessionId, IntPtr shaderId, uint shadernodeId, ShaderNodeType shnType,
+		private static extern void cycles_shadernode_set_member_float(IntPtr shadernodeId, string name, float val);
+		public static void shadernode_set_member_float(IntPtr shadernodeId, 
 			[MarshalAs(UnmanagedType.LPStr)] string name, float val)
 		{
-			cycles_shadernode_set_member_float(sessionId, shaderId, shadernodeId, (uint)shnType, name, val);
+			cycles_shadernode_set_member_float(shadernodeId, name, val);
 		}
 		[DllImport(Constants.ccycles, SetLastError = false, CharSet = CharSet.Ansi,
 			CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_shadernode_set_member_int(IntPtr sessionId, IntPtr shaderId, uint shadernodeId, uint shnType, string name, int val);
-		public static void shadernode_set_member_int(IntPtr sessionId, IntPtr shaderId, uint shadernodeId, ShaderNodeType shnType,
+		private static extern void cycles_shadernode_set_member_int(IntPtr  shadernodeId, string name, int val);
+		public static void shadernode_set_member_int(IntPtr  shadernodeId, 
 			[MarshalAs(UnmanagedType.LPStr)] string name, int val)
 		{
-			cycles_shadernode_set_member_int(sessionId, shaderId, shadernodeId, (uint)shnType, name, val);
+			cycles_shadernode_set_member_int(shadernodeId, name, val);
 		}
 		[DllImport(Constants.ccycles, SetLastError = false, CharSet = CharSet.Ansi,
 			CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_shadernode_set_member_bool(IntPtr sessionId, IntPtr shaderId, uint shadernodeId, uint shnType, string name, bool val);
-		public static void shadernode_set_member_bool(IntPtr sessionId, IntPtr shaderId, uint shadernodeId, ShaderNodeType shnType,
-			[MarshalAs(UnmanagedType.LPStr)] string name, bool val)
+		private static extern void cycles_shadernode_set_member_bool(IntPtr shadernodeId, string name, bool val);
+		public static void shadernode_set_member_bool(IntPtr shadernodeId, [MarshalAs(UnmanagedType.LPStr)] string name, bool val)
 		{
-			cycles_shadernode_set_member_bool(sessionId, shaderId, shadernodeId, (uint)shnType, name, val);
+			cycles_shadernode_set_member_bool(shadernodeId, name, val);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CharSet = CharSet.Ansi,
 			CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_shadernode_set_member_vec(IntPtr sessionId, IntPtr shaderId, uint shadernodeId, uint shnType, string name, float x, float y, float z);
-		public static void shadernode_set_member_vec(IntPtr sessionId, IntPtr shaderId, uint shadernodeId, ShaderNodeType shnType,
-			[MarshalAs(UnmanagedType.LPStr)] string name, float x, float y, float z)
+		private static extern void cycles_shadernode_set_member_vec(IntPtr shadernodeId, string name, float x, float y, float z);
+		public static void shadernode_set_member_vec(IntPtr shadernodeId, [MarshalAs(UnmanagedType.LPStr)] string name, float x, float y, float z)
 		{
-			cycles_shadernode_set_member_vec(sessionId, shaderId, shadernodeId, (uint)shnType, name, x, y, z);
+			cycles_shadernode_set_member_vec(shadernodeId, name, x, y, z);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CharSet = CharSet.Ansi,
 			CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_shadernode_set_member_string(IntPtr sessionId, IntPtr shaderId, uint shadernodeId, uint shnType, string name, string value);
-		public static void shadernode_set_member_string(IntPtr sessionId, IntPtr shaderId, uint shadernodeId, ShaderNodeType shnType,
-			[MarshalAs(UnmanagedType.LPStr)] string name, [MarshalAs(UnmanagedType.LPStr)] string value)
+		private static extern void cycles_shadernode_set_member_string(IntPtr shadernodeId, string name, string value);
+		public static void shadernode_set_member_string(IntPtr shadernodeId, [MarshalAs(UnmanagedType.LPStr)] string name, [MarshalAs(UnmanagedType.LPStr)] string value)
 		{
-			cycles_shadernode_set_member_string(sessionId, shaderId, shadernodeId, (uint)shnType, name, value);
+			cycles_shadernode_set_member_string(shadernodeId, name, value);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CharSet = CharSet.Ansi,
 			CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_shadernode_set_member_vec4_at_index(IntPtr sessionId, IntPtr shaderId, uint shadernodeId, uint shnType, string name, float x, float y, float z, float w, int index);
-		public static void shadernode_set_member_vec4_at_index(IntPtr sessionId, IntPtr shaderId, uint shadernodeId, ShaderNodeType shnType,
+		private static extern void cycles_shadernode_set_member_vec4_at_index(IntPtr shadernodeId, string name, float x, float y, float z, float w, int index);
+		public static void shadernode_set_member_vec4_at_index(IntPtr shadernodeId,
 			[MarshalAs(UnmanagedType.LPStr)] string name, float x, float y, float z, float w, int index)
 		{
-			cycles_shadernode_set_member_vec4_at_index(sessionId, shaderId, shadernodeId, (uint)shnType, name, x, y, z, w, index);
+			cycles_shadernode_set_member_vec4_at_index(shadernodeId, name, x, y, z, w, index);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CharSet = CharSet.Ansi,
@@ -220,10 +205,24 @@ namespace ccl
 
 		[DllImport(Constants.ccycles, SetLastError = false, CharSet = CharSet.Ansi,
 			CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_shader_set_name(IntPtr sessionId, IntPtr shaderId, [MarshalAs(UnmanagedType.LPStr)] string name);
-		public static void shader_set_name(IntPtr sessionId, IntPtr shaderId, string name)
+		private static extern void cycles_shader_set_name(IntPtr shaderId, [MarshalAs(UnmanagedType.LPStr)] string name);
+		public static void shader_set_name(IntPtr shaderId, string name)
 		{
-			cycles_shader_set_name(sessionId, shaderId, name);
+			cycles_shader_set_name(shaderId, name);
+		}
+		[DllImport(Constants.ccycles, SetLastError = false, CharSet = CharSet.Ansi,
+			CallingConvention = CallingConvention.Cdecl)]
+		private static extern bool cycles_shader_get_name(IntPtr shaderId, IntPtr stringholder);
+		public static string shader_get_name(IntPtr shaderId)
+		{
+			using (CSStringHolder stringHolder = new CSStringHolder()) {
+				bool success = cycles_shader_get_name(shaderId, stringHolder.Ptr);
+				if(success) {
+					string name = stringHolder.Value;
+				  return name;
+				}
+			}
+			return $"Name failed for {shaderId}";
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false,
@@ -256,6 +255,35 @@ namespace ccl
 		public static void shader_new_graph(IntPtr sessionId, IntPtr shaderId)
 		{
 			cycles_shader_new_graph(sessionId, shaderId);
+		}
+		[DllImport(Constants.ccycles, SetLastError = false,
+			CallingConvention = CallingConvention.Cdecl)]
+		private static extern int cycles_shader_node_count(IntPtr shader);
+		public static int shader_node_count(IntPtr shader)
+		{
+			return cycles_shader_node_count(shader);
+		}
+		[DllImport(Constants.ccycles, SetLastError = false,
+			CallingConvention = CallingConvention.Cdecl)]
+		private static extern IntPtr cycles_shader_node_get(IntPtr shader, int idx);
+		public static IntPtr shader_node_get(IntPtr shader, int idx)
+		{
+			return cycles_shader_node_get(shader, idx);
+		}
+		[DllImport(Constants.ccycles, SetLastError = false,
+			CallingConvention = CallingConvention.Cdecl)]
+		private static extern bool cycles_shadernode_get_name(IntPtr shn, IntPtr strholder);
+		public static string shadernode_get_name(IntPtr shn)
+		{
+			using (CSStringHolder stringHolder = new CSStringHolder()) {
+				bool success = cycles_shadernode_get_name(shn, stringHolder.Ptr);
+				if(success) {
+					string name = stringHolder.Value;
+				  return name;
+				}
+			}
+
+			return "";
 		}
 
 

@@ -87,7 +87,7 @@ namespace ccl.ShaderNodes
 		/// <summary>
 		/// Create a new Add attribute.
 		/// </summary>
-		public AttributeNode() : this("An add attribute node")
+		public AttributeNode(Shader shader) : this(shader, "An add attribute node")
 		{
 		}
 
@@ -100,8 +100,8 @@ namespace ccl.ShaderNodes
 		/// Create a new Add attribute with name
 		/// </summary>
 		/// <param name="name"></param>
-		public AttributeNode(string name) :
-			base(ShaderNodeType.Attribute, name)
+		public AttributeNode(Shader shader, string name) :
+			base(shader, true)
 		{
 			inputs = new AttributeInputs();
 			outputs = new AttributeOutputs(this);
@@ -111,7 +111,7 @@ namespace ccl.ShaderNodes
 		{
 
 			var val = Attribute;
-			CSycles.shadernode_set_member_string(sessionId, shaderId, Id, Type, "attribute", val);
+			CSycles.shadernode_set_member_string(Id, "attribute", val);
 		}
 
 		internal override void ParseXml(XmlReader xmlNode)

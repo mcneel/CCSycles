@@ -50,9 +50,9 @@ namespace ccl.ShaderNodes
 		public WireframeInputs ins => (WireframeInputs)inputs;
 		public WireframeOutputs outs => (WireframeOutputs)outputs;
 
-		public WireframeNode() : this("a wireframe node") { }
-		public WireframeNode(string name)
-			: base(ShaderNodeType.Wireframe, name)
+		public WireframeNode(Shader shader) : this(shader, "a wireframe node") { }
+		public WireframeNode(Shader shader, string name)
+			: base(shader, true)
 		{
 			inputs = new WireframeInputs(this);
 			outputs = new WireframeOutputs(this);
@@ -64,7 +64,7 @@ namespace ccl.ShaderNodes
 
 		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
 		{
-			CSycles.shadernode_set_member_bool(sessionId, shaderId, Id, Type, "usepixelsize", UsePixelSize);
+			CSycles.shadernode_set_member_bool(Id, "usepixelsize", UsePixelSize);
 			base.SetDirectMembers(sessionId, shaderId);
 		}
 

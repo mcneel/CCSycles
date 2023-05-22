@@ -107,13 +107,13 @@ namespace ccl.ShaderNodes
 		/// <summary>
 		/// Create a new GeometryInfoNode
 		/// </summary>
-		public GeometryInfoNode()
-			: this(String.Empty)
+		public GeometryInfoNode(Shader shader)
+			: this(shader, "a geometry info node")
 		{
 		}
 
-		public GeometryInfoNode(string name)
-			: base(ShaderNodeType.GeometryInfo, name)
+		public GeometryInfoNode(Shader shader, string name)
+			: base(shader, true)
 		{
 			inputs = new GeometryInfoInputs();
 			outputs = new GeometryInfoOutputs(this);

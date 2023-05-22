@@ -119,6 +119,26 @@ namespace ccl
 			throw new InvalidDataException($"Node with xmlname '{xmlName}' not found.");
 		}
 
+		public ShaderNodes.ShaderNode CreateShaderNode(Shader shader, string nodeTypeName, string nodeName)
+		{
+			if(!g_registered_shadernodes.ContainsKey(nodeTypeName))
+			{
+				throw new InvalidDataException($"Node type '{nodeTypeName}' not found.");
+			}
+			var constructTypes = new Type[2];
+			constructTypes[0] = typeof(Shader);
+			constructTypes[1] = typeof(string);
+
+			var shnt = g_registered_shadernodes[nodeTypeName];
+			var constructor = shnt.GetConstructor(constructTypes);
+
+			var parameters = new object[2];
+			parameters[0] = shader;
+			parameters[1] = nodeTypeName;
+
+			return constructor.Invoke(parameters) as ShaderNodes.ShaderNode;
+		}
+
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		private static extern void cycles_initialise(uint mask);
 		/// <summary>

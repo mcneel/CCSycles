@@ -41,9 +41,9 @@ namespace ccl.ShaderNodes
 
 		public ValueInputs ins => (ValueInputs)inputs;
 		public ValueOutputs outs => (ValueOutputs)outputs;
-		public ValueNode() : this("a value input node") { }
-		public ValueNode(string name) :
-			base(ShaderNodeType.Value, name)
+		public ValueNode(Shader shader) : this(shader, "a value input node") { }
+		public ValueNode(Shader shader, string name) :
+			base(shader, true)
 		{
 			inputs = null;
 			outputs = new ValueOutputs(this);
@@ -56,7 +56,7 @@ namespace ccl.ShaderNodes
 
 		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
 		{
-			CSycles.shadernode_set_member_float(sessionId, shaderId, Id, Type, "value", Value);
+			CSycles.shadernode_set_member_float(Id, "value", Value);
 		}
 		internal override void ParseXml(System.Xml.XmlReader xmlNode)
 		{

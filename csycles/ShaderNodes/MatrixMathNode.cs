@@ -92,14 +92,13 @@ namespace ccl.ShaderNodes
 		/// <summary>
 		/// MatrixMath node operates on float inputs (note, some operations use only Value1)
 		/// </summary>
-		public MatrixMathNode() :
-			this("a matrix mathnode")
+		public MatrixMathNode(Shader shader) : this(shader, "a matrix mathnode")
 		{
 
 		}
 
-		public MatrixMathNode(string name) :
-			base(ShaderNodeType.MatrixMath, name)
+		public MatrixMathNode(Shader shader, string name) :
+			base(shader, true)
 		{
 			inputs = new MatrixMathInputs(this);
 			outputs = new MatrixMathOutputs(this);
@@ -115,15 +114,15 @@ namespace ccl.ShaderNodes
 
 		internal override void SetEnums(IntPtr sessionId, IntPtr shaderId)
 		{
-			CSycles.shadernode_set_enum(sessionId, shaderId, Id, Type, "operation", (int)Operation);
+			CSycles.shadernode_set_enum(Id, "operation", (int)Operation);
 		}
 
 		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
 		{
 			var tfm = Transform;
-			CSycles.shadernode_set_member_vec4_at_index(sessionId, shaderId, Id, Type, "tfm_x", tfm.x.x, tfm.x.y, tfm.x.z, tfm.x.w, 0);
-			CSycles.shadernode_set_member_vec4_at_index(sessionId, shaderId, Id, Type, "tfm_y", tfm.y.x, tfm.y.y, tfm.y.z, tfm.y.w, 1);
-			CSycles.shadernode_set_member_vec4_at_index(sessionId, shaderId, Id, Type, "tfm_z", tfm.z.x, tfm.z.y, tfm.z.z, tfm.z.w, 2);
+			CSycles.shadernode_set_member_vec4_at_index(Id, "tfm_x", tfm.x.x, tfm.x.y, tfm.x.z, tfm.x.w, 0);
+			CSycles.shadernode_set_member_vec4_at_index(Id, "tfm_x", tfm.x.x, tfm.x.y, tfm.x.z, tfm.x.w, 1);
+			CSycles.shadernode_set_member_vec4_at_index(Id, "tfm_x", tfm.x.x, tfm.x.y, tfm.x.z, tfm.x.w, 2);
 		}
 
 		internal override void ParseXml(XmlReader xmlNode)

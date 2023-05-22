@@ -68,12 +68,12 @@ namespace ccl
 			Camera = new Camera(session);
 			Integrator = new Integrator(session);
 			Film = new Film(session);
+			Background = new Background(session);
 #if SCENESTUFF
 // TODO: XXXX scenes are created directly by ccl::Session constructor.
 // TODO: XXXX wrap access of scene through session.
 			Client = client;
 			Id = CSycles.scene_create(sceneParams.Id, session.Id);
-			Background = new Background(this);
 			Integrator = new Integrator(this);
 			Film = new Film(this);
 

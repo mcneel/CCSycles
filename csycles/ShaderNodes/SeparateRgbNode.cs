@@ -57,9 +57,8 @@ namespace ccl.ShaderNodes
 		/// <summary>
 		/// Create new Separate RGB node.
 		/// </summary>
-		public SeparateRgbNode() : this("a separate rgb node") { }
-		public SeparateRgbNode(string name) :
-			base(ShaderNodeType.SeparateRgb, name)
+		public SeparateRgbNode(Shader shader) : this(shader, "a separate rgb node") { }
+		public SeparateRgbNode(Shader shader, string name) : base(shader, true)
 		{
 			inputs = new SeparateRgbInputs(this);
 			outputs = new SeparateRgbOutputs(this);

@@ -57,9 +57,9 @@ namespace ccl.ShaderNodes
 		public CombineHsvInputs ins => (CombineHsvInputs)inputs;
 		public CombineHsvOutputs outs => (CombineHsvOutputs)outputs;
 
-		public CombineHsvNode() : this("A combine HSV node") { }
-		public CombineHsvNode(string name) :
-			base(ShaderNodeType.CombineHsv, name)
+		public CombineHsvNode(Shader shader) : this(shader, "A combine HSV node") { }
+		public CombineHsvNode(Shader shader, string name) :
+			base(shader, true)
 		{
 			inputs = new CombineHsvInputs(this);
 			outputs = new CombineHsvOutputs(this);

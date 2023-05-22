@@ -117,9 +117,9 @@ namespace ccl.ShaderNodes
 		/// <summary>
 		/// Create a new Scatter volume node
 		/// </summary>
-		public SubsurfaceScatteringNode() : this("a subsurface scattering node") { }
-		public SubsurfaceScatteringNode(string name) :
-			base(ShaderNodeType.SubsurfaceScattering, name)
+		public SubsurfaceScatteringNode(Shader shader) : this(shader, "a subsurface scattering node") { }
+		public SubsurfaceScatteringNode(Shader shader, string name) :
+			base(shader, true)
 		{
 			inputs = new SubsurfaceScatteringInputs(this);
 			outputs = new SubsurfaceScatteringOutputs(this);
@@ -136,7 +136,7 @@ namespace ccl.ShaderNodes
 
 		internal override void SetEnums(IntPtr sessionId, IntPtr shaderId)
 		{
-			CSycles.shadernode_set_enum(sessionId, shaderId, Id, Type, "falloff", (int)Falloff);
+			CSycles.shadernode_set_enum(Id, "falloff", (int)Falloff);
 		}
 
 		internal override void ParseXml(XmlReader xmlNode)

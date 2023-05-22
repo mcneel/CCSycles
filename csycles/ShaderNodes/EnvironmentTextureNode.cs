@@ -79,13 +79,13 @@ namespace ccl.ShaderNodes
 		/// </summary>
 		public EnvironmentTextureOutputs outs => (EnvironmentTextureOutputs)outputs;
 
-		public EnvironmentTextureNode() : this("an env texture node") { }
+		public EnvironmentTextureNode(Shader shader) : this(shader, "an env texture node") { }
 
 		/// <summary>
 		/// Create an EnvironmentTextureNode
 		/// </summary>
-		public EnvironmentTextureNode(string name) :
-			base(ShaderNodeType.EnvironmentTexture, name)
+		public EnvironmentTextureNode(Shader shader, string name) :
+			base(shader, name)
 		{
 
 			inputs = new EnvironmentTextureInputs(this);
@@ -107,16 +107,17 @@ namespace ccl.ShaderNodes
 
 		internal override void SetEnums(IntPtr sessionId, IntPtr shaderId)
 		{
-			CSycles.shadernode_set_enum(sessionId, shaderId, Id, Type, "projection", (int)Projection);
-			CSycles.shadernode_set_enum(sessionId, shaderId, Id, Type, "color_space", (int)ColorSpace);
-			CSycles.shadernode_set_enum(sessionId, shaderId, Id, Type, "interpolation", (int)Interpolation);
+			CSycles.shadernode_set_enum(Id, "projection", (int)Projection);
+			CSycles.shadernode_set_enum(Id, "color_space", (int)ColorSpace);
+			CSycles.shadernode_set_enum(Id, "interpolation", (int)Interpolation);
 		}
 
 		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
 		{
 			base.SetDirectMembers(sessionId, shaderId);
 
-			CSycles.shadernode_set_member_bool(sessionId, shaderId, Id, Type, "is_linear", IsLinear);
+			CSycles.shadernode_set_member_bool(Id, "is_linear", IsLinear);
+#if OLDIMGS
 			if (FloatImagePtr != IntPtr.Zero)
 			{
 				CSycles.shadernode_set_member_float_img(sessionId, shaderId, Id, Type, "builtin-data", Filename ?? String.Format("{0}-{0}-{0}", shaderId, Id), FloatImagePtr, Width, Height, 1, 4);
@@ -125,6 +126,7 @@ namespace ccl.ShaderNodes
 			{
 				CSycles.shadernode_set_member_byte_img(sessionId, shaderId, Id, Type, "builtin-data", Filename ?? String.Format("{0}-{0}-{0}", shaderId, Id), ByteImagePtr, Width, Height, 1, 4);
 			}
+#endif
 		}
 
 		internal override void ParseXml(XmlReader xmlNode)

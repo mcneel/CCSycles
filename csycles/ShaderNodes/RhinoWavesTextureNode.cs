@@ -59,9 +59,9 @@ namespace ccl.ShaderNodes
 		public float Contrast1 { get; set; } = 1.0f;
 		public float Contrast2 { get; set; } = 0.5f;
 
-		public WavesTextureProceduralNode() : this("a waves texture") { }
-		public WavesTextureProceduralNode(string name)
-			: base(ShaderNodeType.RhinoWavesTexture, name)
+		public WavesTextureProceduralNode(Shader shader) : this(shader, "a waves texture") { }
+		public WavesTextureProceduralNode(Shader shader, string name)
+			: base(shader, true)
 		{
 			inputs = new WavesTextureInputs(this);
 			outputs = new WavesTextureOutputs(this);
@@ -72,11 +72,11 @@ namespace ccl.ShaderNodes
 
 		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
 		{
-			CSycles.shadernode_set_member_int(sessionId, shaderId, Id, Type, "WaveType", (int)WaveType);
-			CSycles.shadernode_set_member_float(sessionId, shaderId, Id, Type, "WaveWidth", WaveWidth);
-			CSycles.shadernode_set_member_bool(sessionId, shaderId, Id, Type, "WaveWidthTextureOn", WaveWidthTextureOn);
-			CSycles.shadernode_set_member_float(sessionId, shaderId, Id, Type, "Contrast1", Contrast1);
-			CSycles.shadernode_set_member_float(sessionId, shaderId, Id, Type, "Contrast2", Contrast2);
+			CSycles.shadernode_set_member_int(Id, "WaveType", (int)WaveType);
+			CSycles.shadernode_set_member_float(Id, "WaveWidth", WaveWidth);
+			CSycles.shadernode_set_member_bool(Id, "WaveWidthTextureOn", WaveWidthTextureOn);
+			CSycles.shadernode_set_member_float(Id, "Contrast1", Contrast1);
+			CSycles.shadernode_set_member_float(Id, "Contrast2", Contrast2);
 		}
 	}
 
@@ -110,9 +110,9 @@ namespace ccl.ShaderNodes
 
 		public WavesTextureProceduralNode.WaveTypes WaveType { get; set; } = WavesTextureProceduralNode.WaveTypes.LINEAR;
 
-		public WavesWidthTextureProceduralNode() : this("a waves width texture") { }
-		public WavesWidthTextureProceduralNode(string name)
-			: base(ShaderNodeType.RhinoWavesWidthTexture, name)
+		public WavesWidthTextureProceduralNode(Shader shader) : this(shader, "a waves width texture") { }
+		public WavesWidthTextureProceduralNode(Shader shader, string name)
+			: base(shader, true)
 		{
 			inputs = new WavesWidthTextureInputs(this);
 			outputs = new WavesWidthTextureOutputs(this);
@@ -120,7 +120,7 @@ namespace ccl.ShaderNodes
 
 		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
 		{
-			CSycles.shadernode_set_member_int(sessionId, shaderId, Id, Type, "WaveType", (int)WaveType);
+			CSycles.shadernode_set_member_int(Id, "WaveType", (int)WaveType);
 		}
 	}
 }

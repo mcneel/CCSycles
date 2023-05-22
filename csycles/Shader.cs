@@ -16,6 +16,7 @@ limitations under the License.
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Text;
 using System.Xml;
@@ -39,7 +40,7 @@ namespace ccl
 		/// Get the ID for this shader. This ID is given by CCycles
 		/// </summary>
 		public IntPtr Id { get; }
-		private Session Client { get; }
+		private Session Session { get; }
 		public ShaderType Type { get; set; }
 
 		private bool CreatedInCycles { get; set; }
@@ -55,14 +56,14 @@ namespace ccl
 		public OutputNode Output { get; internal set; }
 
 		/// <summary>
-		/// Create a new shader for client.
+		/// Create a new shader for session.
 		/// </summary>
-		/// <param name="client">Client ID for C[CS]ycles API.</param>
+		/// <param name="session">Session ID for C[CS]ycles API.</param>
 		/// <param name="type">The type of shader to create</param>
-		public Shader(Session client, ShaderType type)
+		public Shader(Session session, ShaderType type)
 		{
-			Client = client;
-			Id = CSycles.create_shader(Client.Scene.Id);
+			Session = session;
+			Id = CSycles.create_shader(Session.Scene.Id);
 			CommonConstructor(type, false);
 		}
 
@@ -71,12 +72,12 @@ namespace ccl
 		/// functionality through this can be limited.
 		/// Generally used only for interal matters
 		/// </summary>
-		/// <param name="client"></param>
+		/// <param name="session"></param>
 		/// <param name="type"></param>
 		/// <param name="id"></param>
-		internal Shader(Session client, ShaderType type, IntPtr id)
+		internal Shader(Session session, ShaderType type, IntPtr id)
 		{
-			Client = client;
+			Session = session;
 			Id = id;
 			CommonConstructor(type, true);
 		}
@@ -84,12 +85,23 @@ namespace ccl
 		private void CommonConstructor(ShaderType type, bool createdInCycles)
 		{
 			Type = type;
+			int nodeCount = CSycles.shader_node_count(Id);
+			for(int i = 0; i < nodeCount; i++)
+			{
+				IntPtr shn = CSycles.shader_node_get(Id, i);
+				string name = CSycles.shadernode_get_name(shn);
+				Console.WriteLine($"Shadernode {shn} with type name {name}");
+				Debug.WriteLine($"Shadernode {shn} with type name {name}");
+			}
+			/*
 			Output = new OutputNode();
 			AddNode(Output);
+			*/
 			CreatedInCycles = createdInCycles;
 			Verbose = false;
 		}
 
+		/*
 		/// <summary>
 		/// Create a shader outside of the Cycles system. Can be used to set up a
 		/// shader graph for serialisation purposes.
@@ -100,20 +112,17 @@ namespace ccl
 			Type = type;
 			Output = new OutputNode();
 		}
+		*/
 
 		/// <summary>
 		/// Clear the shader graph for this node, so it can be repopulated.
 		/// </summary>
 		public virtual void Recreate()
 		{
-			CSycles.shader_new_graph(Client.Scene.Id, Id);
-
-			CreatedInCycles = false;
+			CSycles.shader_new_graph(Session.Scene.Id, Id);
 
 			m_nodes.Clear();
-
-			Output = new OutputNode();
-			AddNode(Output);
+			CommonConstructor(Type, CreatedInCycles);
 		}
 
 		/// <summary>
@@ -125,74 +134,7 @@ namespace ccl
 		}
 		public virtual void Tag(bool use)
 		{
-			CSycles.scene_tag_shader(Client.Scene.Id, Id, use);
-		}
-
-		/// <summary>
-		/// Static constructor for wrapping default surface shader created by Cycles shader manager.
-		/// </summary>
-		/// <param name="client"></param>
-		/// <returns></returns>
-		static public Shader WrapDefaultSurfaceShader(Session client)
-		{
-			var shader = new Shader(client, ShaderType.Material, CSycles.DEFAULT_SURFACE_SHADER) {Name = "default_surface"};
-
-			// just add nodes so we have local node presentation, but no need to actually finalise
-			// since it already exists in Cycles.
-			var diffuse_bsdf = new DiffuseBsdfNode();
-			diffuse_bsdf.ins.Color.Value = new float4(0.8f);
-
-			shader.AddNode(diffuse_bsdf);
-
-			diffuse_bsdf.outs.BSDF.Connect(shader.Output.ins.Surface);
-
-			return shader;
-		}
-
-		/// <summary>
-		/// Static constructor for wrapping default light shader created by Cycles shader manager.
-		/// </summary>
-		/// <param name="client"></param>
-		/// <returns></returns>
-		static public Shader WrapDefaultLightShader(Session client)
-		{
-			var shader = new Shader(client, ShaderType.Material, CSycles.DEFAULT_LIGHT_SHADER) {Name = "default_light"};
-
-			// just add nodes so we have local node presentation, but no need to actually finalise
-			// since it already exists in Cycles.
-			var emission_node = new EmissionNode();
-			emission_node.ins.Color.Value = new float4(0.8f);
-			emission_node.ins.Strength.Value = 0.0f;
-
-			shader.AddNode(emission_node);
-
-			emission_node.outs.Emission.Connect(shader.Output.ins.Surface);
-
-			return shader;
-		}
-
-		/// <summary>
-		/// Static constructor for wrapping default background shader created by Cycles shader manager.
-		/// </summary>
-		/// <param name="client"></param>
-		/// <returns></returns>
-		static public Shader WrapDefaultBackgroundShader(Session client)
-		{
-			var shader = new Shader(client, ShaderType.World, CSycles.DEFAULT_BACKGROUND_SHADER) {Name = "default_background"};
-
-			return shader;
-		}
-
-		/// <summary>
-		/// Static constructor for wrapping default empty shader created by Cycles shader manager.
-		/// </summary>
-		/// <param name="client"></param>
-		/// <returns></returns>
-		static public Shader WrapDefaultEmptyShader(Session client)
-		{
-			var shader = new Shader(client, ShaderType.Material, CSycles.DEFAULT_EMPTY_SHADER) {Name = "default_empty"};
-
-			return shader;
+			CSycles.scene_tag_shader(Session.Scene.Id, Id, use);
 		}
 
 		readonly internal List<ShaderNode> m_nodes = new List<ShaderNode>();
@@ -203,24 +145,22 @@ namespace ccl
 		/// <param name="node">ShaderNode to add</param>
 		public virtual void AddNode(ShaderNode node)
 		{
-#if LEGACY_SHADERS
-			if (node is OutputNode)
+#if DONOTHING
+			if(node is OutputNode)
 			{
-				node.Id = CSycles.OUTPUT_SHADERNODE_ID;
-				m_nodes.Add(node);
-				return;
+				return; //(re-)creating shader gives us a an output node in C++ already. This
+				        // is given to use via common constructor
 			}
 
-			if (CreatedInCycles)
-			{
-				m_nodes.Add(node);
-				return;
-			}
-
-			var nodeid = CSycles.add_shader_node(Client.Scene.Id, Id, node.Type);
+			var nodeid = CSycles.add_shader_node( Id, node.ShaderNodeTypeName);
 			node.Id = nodeid;
 			m_nodes.Add(node);
 #endif
+		}
+
+		public void CreateNode(string nodeTypeName)
+		{
+			// XXXX
 		}
 
 		/// <summary>
@@ -272,32 +212,31 @@ namespace ccl
 		/// <param name="toin"></param>
 		private void Connect(ShaderNode from, string fromout, ShaderNode to, string toin)
 		{
+#if REDO
 			if (m_nodes.Contains(from) && m_nodes.Contains(to))
 			{
-				CSycles.shader_connect_nodes(Client.Scene.Id, Id, from.Id, fromout, to.Id, toin);
+				CSycles.shader_connect_nodes(Session.Scene.Id, Id, from.Id, fromout, to.Id, toin);
 			}
 			else
 			{
 				throw new ArgumentException($"Cannot connect {@from} to {to}");
 			}
+#endif
 		}
 
-		private string m_name;
-	private bool disposedValue;
 
-	/// <summary>
-	/// Set the name of the Shader
-	/// </summary>
-	public string Name
+		/// <summary>
+		/// Set the name of the Shader
+		/// </summary>
+		public string Name
 		{
 			set
 			{
-				m_name = value;
-				if(!CreatedInCycles && Client!=null) CSycles.shader_set_name(Client.Scene.Id, Id, m_name);
+				CSycles.shader_set_name(Id, value);
 			}
 			get
 			{
-				return m_name;
+				return CSycles.shader_get_name(Id);
 			}
 		}
 
@@ -308,7 +247,7 @@ namespace ccl
 		{
 			set
 			{
-				if(!CreatedInCycles && Client!=null) CSycles.shader_set_use_mis(Client.Scene.Id, Id, value);
+				if (!CreatedInCycles && Session != null) CSycles.shader_set_use_mis(Session.Scene.Id, Id, value);
 			}
 		}
 
@@ -319,7 +258,7 @@ namespace ccl
 		{
 			set
 			{
-				if(!CreatedInCycles && Client!=null) CSycles.shader_set_use_transparent_shadow(Client.Scene.Id, Id, value);
+				if (!CreatedInCycles && Session != null) CSycles.shader_set_use_transparent_shadow(Session.Scene.Id, Id, value);
 			}
 		}
 
@@ -330,7 +269,7 @@ namespace ccl
 		{
 			set
 			{
-				if(!CreatedInCycles && Client!=null) CSycles.shader_set_heterogeneous_volume(Client.Scene.Id, Id, value);
+				if (!CreatedInCycles && Session != null) CSycles.shader_set_heterogeneous_volume(Session.Scene.Id, Id, value);
 			}
 		}
 
@@ -360,23 +299,16 @@ namespace ccl
 			}
 		}
 
-	protected virtual void Dispose(bool disposing)
-	{
-	  if (!disposedValue)
-	  {
-		if (disposing)
+		protected virtual void Dispose(bool disposing)
 		{
-		  m_nodes.Clear();
+			// C# no longer owns shaders at any stage. No disposing of
+			// unmanaged resources
 		}
-		disposedValue = true;
-	  }
-	}
 
-	public void Dispose()
-	{
-	  // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
-	  Dispose(disposing: true);
-	  GC.SuppressFinalize(this);
+		public void Dispose()
+		{
+			// C# no longer owns shaders at any stage. No disposing of
+			// unmanaged resources
+		}
 	}
-  }
 }

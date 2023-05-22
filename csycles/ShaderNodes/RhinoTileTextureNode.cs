@@ -61,9 +61,9 @@ namespace ccl.ShaderNodes
 		public float JoinWidthY { get; set; }
 		public float JoinWidthZ { get; set; }
 
-		public TileTextureProceduralNode() : this("a tile texture") { }
-		public TileTextureProceduralNode(string name)
-			: base(ShaderNodeType.RhinoTileTexture, name)
+		public TileTextureProceduralNode(Shader shader) : this(shader, "a tile texture") { }
+		public TileTextureProceduralNode(Shader shader, string name)
+			: base(shader, true)
 		{
 			inputs = new TileTextureInputs(this);
 			outputs = new TileTextureOutputs(this);
@@ -71,9 +71,9 @@ namespace ccl.ShaderNodes
 
 		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
 		{
-			CSycles.shadernode_set_member_int(sessionId, shaderId, Id, Type, "Type", (int)TileType);
-			CSycles.shadernode_set_member_vec(sessionId, shaderId, Id, Type, "Phase", PhaseX, PhaseY, PhaseZ);
-			CSycles.shadernode_set_member_vec(sessionId, shaderId, Id, Type, "JoinWidth", JoinWidthX, JoinWidthY, JoinWidthZ);
+			CSycles.shadernode_set_member_int(Id, "Type", (int)TileType);
+			CSycles.shadernode_set_member_vec(Id, "Phase", PhaseX, PhaseY, PhaseZ);
+			CSycles.shadernode_set_member_vec(Id, "JoinWidth", JoinWidthX, JoinWidthY, JoinWidthZ);
 		}
 	}
 }

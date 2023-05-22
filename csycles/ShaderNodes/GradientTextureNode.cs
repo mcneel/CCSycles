@@ -117,9 +117,9 @@ namespace ccl.ShaderNodes
 		/// <summary>
 		/// Create GradientTextureNode
 		/// </summary>
-		public GradientTextureNode() : this("a gradient texture") { }
-		public GradientTextureNode(string name)
-			: base(ShaderNodeType.GradientTexture, name)
+		public GradientTextureNode(Shader shader) : this(shader, "a gradient texture") { }
+		public GradientTextureNode(Shader shader, string name)
+			: base(shader, name)
 		{
 			inputs = new GradientInputs(this);
 			outputs = new GradientOutputs(this);
@@ -133,7 +133,7 @@ namespace ccl.ShaderNodes
 
 		internal override void SetEnums(IntPtr sessionId, IntPtr shaderId)
 		{
-			CSycles.shadernode_set_enum(sessionId, shaderId, Id, Type, "gradient", (int)Gradient);
+			CSycles.shadernode_set_enum(Id, "gradient", (int)Gradient);
 		}
 
 		internal override void ParseXml(XmlReader xmlNode)

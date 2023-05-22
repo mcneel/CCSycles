@@ -51,9 +51,8 @@ namespace ccl.ShaderNodes
 		public EmissionInputs ins => (EmissionInputs)inputs;
 		public EmissionOutputs outs => (EmissionOutputs)outputs;
 
-		public EmissionNode() : this("an emission node") { }
-		public EmissionNode(string name)
-			: base(ShaderNodeType.Emission, name)
+		public EmissionNode(Shader shader) : this(shader, "an emission node") { }
+		public EmissionNode(Shader shader, string name) : base(shader, true)
 		{
 			inputs = new EmissionInputs(this);
 			outputs = new EmissionOutputs(this);

@@ -78,9 +78,9 @@ namespace ccl.ShaderNodes
 		public WaveInputs ins => (WaveInputs)inputs;
 		public WaveOutputs outs => (WaveOutputs)outputs;
 
-		public WaveTexture() : this("a wave texture") { }
-		public WaveTexture(string name)
-			: base(ShaderNodeType.WaveTexture, name)
+		public WaveTexture(Shader shader) : this(shader, "a wave texture") { }
+		public WaveTexture(Shader shader, string name)
+			: base(shader, name)
 		{
 			inputs = new WaveInputs(this);
 			outputs = new WaveOutputs(this);
@@ -105,8 +105,8 @@ namespace ccl.ShaderNodes
 
 		internal override void SetEnums(IntPtr sessionId, IntPtr shaderId)
 		{
-			CSycles.shadernode_set_enum(sessionId, shaderId, Id, Type, "wave", (int)WaveType);
-			CSycles.shadernode_set_enum(sessionId, shaderId, Id, Type, "profile", (int)WaveProfile);
+			CSycles.shadernode_set_enum(Id, "wave", (int)WaveType);
+			CSycles.shadernode_set_enum(Id, "profile", (int)WaveProfile);
 		}
 
 		internal override void ParseXml(XmlReader xmlNode)

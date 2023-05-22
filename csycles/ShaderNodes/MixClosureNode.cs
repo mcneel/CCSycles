@@ -87,14 +87,14 @@ namespace ccl.ShaderNodes
 		/// <summary>
 		/// Create MixClosureNode. Fac input is by default 0.5f
 		/// </summary>
-		public MixClosureNode() : 
-			this("a mix closure")
+		public MixClosureNode(Shader shader) : 
+			this(shader, "a mix closure")
 		{
 			
 		}
 
-		public MixClosureNode(string name) :
-			base(ShaderNodeType.MixClosure, name)
+		public MixClosureNode(Shader shader, string name) :
+			base(shader, true)
 		{
 			inputs = new MixClosureInputs(this);
 			outputs = new MixClosureOutputs(this);

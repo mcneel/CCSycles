@@ -50,9 +50,8 @@ namespace ccl.ShaderNodes
 		public float WorldLuminance { get; set; }
 		public float MaxLuminance { get; set; }
 
-		public ExposureTextureProceduralNode() : this("an exposure texture") { }
-		public ExposureTextureProceduralNode(string name)
-			: base(ShaderNodeType.RhinoExposureTexture, name)
+		public ExposureTextureProceduralNode(Shader shader) : this(shader, "an exposure texture") { }
+		public ExposureTextureProceduralNode(Shader shader, string name) : base(shader, true)
 		{
 			inputs = new ExposureTextureInputs(this);
 			outputs = new ExposureTextureOutputs(this);
@@ -60,10 +59,10 @@ namespace ccl.ShaderNodes
 
 		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
 		{
-			CSycles.shadernode_set_member_float(sessionId, shaderId, Id, Type, "Exposure", Exposure);
-			CSycles.shadernode_set_member_float(sessionId, shaderId, Id, Type, "Multiplier", Multiplier);
-			CSycles.shadernode_set_member_float(sessionId, shaderId, Id, Type, "WorldLuminance", WorldLuminance);
-			CSycles.shadernode_set_member_float(sessionId, shaderId, Id, Type, "MaxLuminance", MaxLuminance);
+			CSycles.shadernode_set_member_float(Id, "Exposure", Exposure);
+			CSycles.shadernode_set_member_float(Id, "Multiplier", Multiplier);
+			CSycles.shadernode_set_member_float(Id, "WorldLuminance", WorldLuminance);
+			CSycles.shadernode_set_member_float(Id, "MaxLuminance", MaxLuminance);
 		}
 	}
 }

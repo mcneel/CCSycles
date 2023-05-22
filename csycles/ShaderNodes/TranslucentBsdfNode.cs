@@ -60,12 +60,12 @@ namespace ccl.ShaderNodes
 		/// <summary>
 		/// Create a new Translucent BSDF closure. Default Color is white
 		/// </summary>
-		public TranslucentBsdfNode() : this("a translucent bsdf node") { }
+		public TranslucentBsdfNode(Shader shader) : this(shader, "a translucent bsdf node") { }
 		/// <summary>
 		/// Create a new Translucent BSDF closure. Default Color is white
 		/// </summary>
-		public TranslucentBsdfNode(string name) :
-			base(ShaderNodeType.Translucent, name)
+		public TranslucentBsdfNode(Shader shader, string name) :
+			base(shader, true)
 		{
 			inputs = new TranslucentBsdfInputs(this);
 			outputs = new TranslucentBsdfOutputs(this);

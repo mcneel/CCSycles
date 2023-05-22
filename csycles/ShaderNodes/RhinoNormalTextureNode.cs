@@ -69,9 +69,9 @@ namespace ccl.ShaderNodes
 		public NormalPart1TextureInputs ins => (NormalPart1TextureInputs)inputs;
 		public NormalPart1TextureOutputs outs => (NormalPart1TextureOutputs)outputs;
 
-		public NormalPart1TextureProceduralNode() : this("a normal part 1 texture") { }
-		public NormalPart1TextureProceduralNode(string name)
-			: base(ShaderNodeType.RhinoNormalPart1Texture, name)
+		public NormalPart1TextureProceduralNode(Shader shader) : this(shader, "a normal part 1 texture") { }
+		public NormalPart1TextureProceduralNode(Shader shader, string name)
+			: base(shader, true)
 		{
 			inputs = new NormalPart1TextureInputs(this);
 			outputs = new NormalPart1TextureOutputs(this);
@@ -131,9 +131,9 @@ namespace ccl.ShaderNodes
 		public NormalPart2TextureInputs ins => (NormalPart2TextureInputs)inputs;
 		public NormalPart2TextureOutputs outs => (NormalPart2TextureOutputs)outputs;
 
-		public NormalPart2TextureProceduralNode() : this("a normal part 2 texture") { }
-		public NormalPart2TextureProceduralNode(string name)
-			: base(ShaderNodeType.RhinoNormalPart2Texture, name)
+		public NormalPart2TextureProceduralNode(Shader shader) : this(shader, "a normal part 2 texture") { }
+		public NormalPart2TextureProceduralNode(Shader shader, string name)
+			: base(shader, true)
 		{
 			inputs = new NormalPart2TextureInputs(this);
 			outputs = new NormalPart2TextureOutputs(this);

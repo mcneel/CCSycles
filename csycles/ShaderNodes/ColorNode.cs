@@ -67,7 +67,7 @@ namespace ccl.ShaderNodes
 		/// <summary>
 		/// Create a ColorNode
 		/// </summary>
-		public ColorNode() : this("a rgb input")
+		public ColorNode(Shader shader) : this(shader, "a rgb input")
 		{
 		}
 
@@ -75,8 +75,8 @@ namespace ccl.ShaderNodes
 		/// Create a ColorNode with name
 		/// </summary>
 		/// <param name="name"></param>
-		public ColorNode(string name) :
-			base(ShaderNodeType.Color, name)
+		public ColorNode(Shader shader, string name) :
+			base(shader, true)
 		{
 			inputs = null;
 			outputs = new ColorOutputs(this);
@@ -91,7 +91,7 @@ namespace ccl.ShaderNodes
 		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
 		{
 			var val = Value;
-			CSycles.shadernode_set_member_vec(sessionId, shaderId, Id, Type, "value", val.x, val.y, val.z);
+			CSycles.shadernode_set_member_vec(Id, "value", val.x, val.y, val.z);
 		}
 
 		internal override void ParseXml(System.Xml.XmlReader xmlNode)

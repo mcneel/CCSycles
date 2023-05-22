@@ -133,9 +133,9 @@ namespace ccl.ShaderNodes
 		/// <summary>
 		/// Create a new Principled BSDF closure.
 		/// </summary>
-		public PrincipledBsdfNode() : this("a principled bsdf node") { }
-		public PrincipledBsdfNode(string name) :
-			base(ShaderNodeType.Principled, name)
+		public PrincipledBsdfNode(Shader shader) : this(shader, "a principled bsdf node") { }
+		public PrincipledBsdfNode(Shader shader, string name) :
+			base(shader, true)
 		{
 			/* TODO: Add scatter method property */
 			inputs = new PrincipledBsdfInputs(this);
@@ -165,8 +165,8 @@ namespace ccl.ShaderNodes
 
 		internal override void SetEnums(IntPtr sessionId, IntPtr shaderId)
 		{
-			CSycles.shadernode_set_enum(sessionId, shaderId, Id, Type, "distribution", (int)Distribution);
-			CSycles.shadernode_set_enum(sessionId, shaderId, Id, Type, "sss", (int)Sss);
+			CSycles.shadernode_set_enum(Id, "distribution", (int)Distribution);
+			CSycles.shadernode_set_enum(Id, "sss", (int)Sss);
 		}
 
 		internal override void ParseXml(XmlReader xmlNode)

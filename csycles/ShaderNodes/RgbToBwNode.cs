@@ -73,13 +73,13 @@ namespace ccl.ShaderNodes
 		/// <summary>
 		/// Create new RgbToBw node
 		/// </summary>
-		public RgbToBwNode() : this("An RgbToBw node") { }
+		public RgbToBwNode(Shader shader) : this(shader, "An RgbToBw node") { }
 			
 		/// <summary>
 		/// Create new RgbToBw node with given name
 		/// </summary>
-		public RgbToBwNode(string name) :
-			base(ShaderNodeType.RgbToBw, name)
+		public RgbToBwNode(Shader shader, string name) :
+			base(shader, true)
 		{
 			inputs = new ConvertRgbInputs(this);
 			outputs = new ConvertValOutputs(this);

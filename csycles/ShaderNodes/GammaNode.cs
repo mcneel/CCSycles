@@ -51,9 +51,8 @@ namespace ccl.ShaderNodes
 		public GammaInputs ins => (GammaInputs)inputs;
 		public GammaOutputs outs => (GammaOutputs)outputs;
 
-		public GammaNode() : this("a gamma node") {}
-		public GammaNode(string name)
-			: base(ShaderNodeType.Gamma, name)
+		public GammaNode(Shader shader) : this(shader, "a gamma node") {}
+		public GammaNode(Shader shader, string name) : base(shader, true)
 		{
 			inputs = new GammaInputs(this);
 			outputs = new GammaOutputs(this);

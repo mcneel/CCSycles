@@ -57,9 +57,9 @@ namespace ccl.ShaderNodes
 		public float Color1Saturation { get; set; }
 		public float Color2Saturation { get; set; }
 
-		public PerlinMarbleTextureProceduralNode() : this("a perlin marble texture") { }
-		public PerlinMarbleTextureProceduralNode(string name)
-			: base(ShaderNodeType.RhinoPerlinMarbleTexture, name)
+		public PerlinMarbleTextureProceduralNode(Shader shader) : this(shader, "a perlin marble texture") { }
+		public PerlinMarbleTextureProceduralNode(Shader shader, string name)
+			: base(shader, true)
 		{
 			inputs = new PerlinMarbleTextureInputs(this);
 			outputs = new PerlinMarlinTextureOutputs(this);
@@ -67,12 +67,12 @@ namespace ccl.ShaderNodes
 
 		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
 		{
-			CSycles.shadernode_set_member_int(sessionId, shaderId, Id, Type, "Levels", Levels);
-			CSycles.shadernode_set_member_float(sessionId, shaderId, Id, Type, "Noise", Noise);
-			CSycles.shadernode_set_member_float(sessionId, shaderId, Id, Type, "Blur", Blur);
-			CSycles.shadernode_set_member_float(sessionId, shaderId, Id, Type, "Size", Size);
-			CSycles.shadernode_set_member_float(sessionId, shaderId, Id, Type, "Color1Saturation", Color1Saturation);
-			CSycles.shadernode_set_member_float(sessionId, shaderId, Id, Type, "Color2Saturation", Color2Saturation);
+			CSycles.shadernode_set_member_int(Id, "Levels", Levels);
+			CSycles.shadernode_set_member_float(Id, "Noise", Noise);
+			CSycles.shadernode_set_member_float(Id, "Blur", Blur);
+			CSycles.shadernode_set_member_float(Id, "Size", Size);
+			CSycles.shadernode_set_member_float(Id, "Color1Saturation", Color1Saturation);
+			CSycles.shadernode_set_member_float(Id, "Color2Saturation", Color2Saturation);
 		}
 	}
 }

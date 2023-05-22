@@ -61,9 +61,9 @@ namespace ccl.ShaderNodes
 		public float HueShift { get; set; }
 		public bool IsHdr { get; set; }
 
-		public TextureAdjustmentTextureProceduralNode() : this("a texture adjustment texture") { }
-		public TextureAdjustmentTextureProceduralNode(string name)
-			: base(ShaderNodeType.RhinoTextureAdjustmentTexture, name)
+		public TextureAdjustmentTextureProceduralNode(Shader shader) : this(shader, "a texture adjustment texture") { }
+		public TextureAdjustmentTextureProceduralNode(Shader shader, string name)
+			: base(shader, true)
 		{
 			inputs = new TextureAdjustmentTextureInputs(this);
 			outputs = new TextureAdjustmentTextureOutputs(this);
@@ -71,18 +71,18 @@ namespace ccl.ShaderNodes
 
 		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
 		{
-			CSycles.shadernode_set_member_bool(sessionId, shaderId, Id, Type, "Grayscale", Grayscale);
-			CSycles.shadernode_set_member_bool(sessionId, shaderId, Id, Type, "Invert", Invert);
-			CSycles.shadernode_set_member_bool(sessionId, shaderId, Id, Type, "Clamp", Clamp);
-			CSycles.shadernode_set_member_bool(sessionId, shaderId, Id, Type, "ScaleToClamp", ScaleToClamp);
-			CSycles.shadernode_set_member_float(sessionId, shaderId, Id, Type, "Multiplier", Multiplier);
-			CSycles.shadernode_set_member_float(sessionId, shaderId, Id, Type, "ClampMin", ClampMin);
-			CSycles.shadernode_set_member_float(sessionId, shaderId, Id, Type, "ClampMax", ClampMax);
-			CSycles.shadernode_set_member_float(sessionId, shaderId, Id, Type, "Gain", Gain);
-			CSycles.shadernode_set_member_float(sessionId, shaderId, Id, Type, "Gamma", Gamma);
-			CSycles.shadernode_set_member_float(sessionId, shaderId, Id, Type, "Saturation", Saturation);
-			CSycles.shadernode_set_member_float(sessionId, shaderId, Id, Type, "HueShift", HueShift);
-			CSycles.shadernode_set_member_bool(sessionId, shaderId, Id, Type, "IsHdr", IsHdr);
+			CSycles.shadernode_set_member_bool(Id, "Grayscale", Grayscale);
+			CSycles.shadernode_set_member_bool(Id, "Invert", Invert);
+			CSycles.shadernode_set_member_bool(Id, "Clamp", Clamp);
+			CSycles.shadernode_set_member_bool(Id, "ScaleToClamp", ScaleToClamp);
+			CSycles.shadernode_set_member_float(Id, "Multiplier", Multiplier);
+			CSycles.shadernode_set_member_float(Id, "ClampMin", ClampMin);
+			CSycles.shadernode_set_member_float(Id, "ClampMax", ClampMax);
+			CSycles.shadernode_set_member_float(Id, "Gain", Gain);
+			CSycles.shadernode_set_member_float(Id, "Gamma", Gamma);
+			CSycles.shadernode_set_member_float(Id, "Saturation", Saturation);
+			CSycles.shadernode_set_member_float(Id, "HueShift", HueShift);
+			CSycles.shadernode_set_member_bool(Id, "IsHdr", IsHdr);
 		}
 	}
 }

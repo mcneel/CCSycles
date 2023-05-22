@@ -50,9 +50,9 @@ namespace ccl.ShaderNodes
 		public CameraDataInputs ins => (CameraDataInputs)inputs;
 		public CameraDataOutputs outs => (CameraDataOutputs)outputs;
 
-		public CameraDataNode() : this("a camera data node") {}
-		public CameraDataNode(string name)
-			: base(ShaderNodeType.Camera, name)
+		public CameraDataNode(Shader shader) : this(shader, "a camera data node") {}
+		public CameraDataNode(Shader shader, string name)
+			: base(shader, true)
 		{
 			inputs = new CameraDataInputs(this);
 			outputs = new CameraDataOutputs(this);

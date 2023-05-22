@@ -79,9 +79,9 @@ namespace ccl.ShaderNodes
 		/// <summary>
 		/// Create a new Anisotropic BSDF closure.
 		/// </summary>
-		public AnisotropicBsdfNode() : this("a anisotropic bsdf node") { }
-		public AnisotropicBsdfNode(string name) :
-			base(ShaderNodeType.Anisotropic, name)
+		public AnisotropicBsdfNode(Shader shader) : this(shader, "a anisotropic bsdf node") { }
+		public AnisotropicBsdfNode(Shader shader, string name) :
+			base(shader, true)
 		{
 			inputs = new AnisotropicBsdfInputs(this);
 			outputs = new AnisotropicBsdfOutputs(this);
@@ -109,7 +109,7 @@ namespace ccl.ShaderNodes
 		AnisotropicDistribution Distribution { get; set; }
 		internal override void SetEnums(IntPtr sessionId, IntPtr shaderId)
 		{
-			CSycles.shadernode_set_enum(sessionId, shaderId, Id, Type, "distribution", (int)Distribution);
+			CSycles.shadernode_set_enum(Id, "distribution", (int)Distribution);
 		}
 
 		internal override void ParseXml(XmlReader xmlNode)

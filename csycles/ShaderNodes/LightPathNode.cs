@@ -161,13 +161,13 @@ namespace ccl.ShaderNodes
 		/// <summary>
 		/// Create a new LightPathNode
 		/// </summary>
-		public LightPathNode()
-			: this(String.Empty)
+		public LightPathNode(Shader shader)
+			: this(shader, "a light path node")
 		{
 		}
 
-		public LightPathNode(string name)
-			: base(ShaderNodeType.LightPath, name)
+		public LightPathNode(Shader shader, string name)
+			: base(shader, true)
 		{
 			inputs = new LightPathInputs();
 			outputs = new LightPathOutputs(this);

@@ -50,9 +50,9 @@ namespace ccl.ShaderNodes
 		public bool UseBlendColor { get; set; }
 		public float BlendFactor { get; set; }
 
-		public BlendTextureProceduralNode() : this("a blend texture") { }
-		public BlendTextureProceduralNode(string name)
-			: base(ShaderNodeType.RhinoBlendTexture, name)
+		public BlendTextureProceduralNode(Shader shader) : this(shader, "a blend texture") { }
+		public BlendTextureProceduralNode(Shader shader, string name)
+			: base(shader, true)
 		{
 			inputs = new BlendTextureInputs(this);
 			outputs = new BlendTextureOutputs(this);
@@ -60,8 +60,8 @@ namespace ccl.ShaderNodes
 
 		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
 		{
-			CSycles.shadernode_set_member_bool(sessionId, shaderId, Id, Type, "UseBlendColor", UseBlendColor);
-			CSycles.shadernode_set_member_float(sessionId, shaderId, Id, Type, "BlendFactor", BlendFactor);
+			CSycles.shadernode_set_member_bool(Id, "UseBlendColor", UseBlendColor);
+			CSycles.shadernode_set_member_float(Id, "BlendFactor", BlendFactor);
 		}
 	}
 }

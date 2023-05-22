@@ -60,9 +60,9 @@ namespace ccl.ShaderNodes
 		/// <summary>
 		/// Create a new Scatter volume node
 		/// </summary>
-		public ScatterVolumeNode() : this("a scatter volume node") { }
-		public ScatterVolumeNode(string name) :
-			base(ShaderNodeType.ScatterVolume, name)
+		public ScatterVolumeNode(Shader shader) : this(shader, "a scatter volume node") { }
+		public ScatterVolumeNode(Shader shader, string name) :
+			base(shader, true)
 		{
 			inputs = new ScatterVolumeInputs(this);
 			outputs = new ScatterVolumeOutputs(this);

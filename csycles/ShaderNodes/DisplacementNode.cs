@@ -66,9 +66,9 @@ namespace ccl.ShaderNodes
 		/// <summary>
 		/// Create a new Diffuse Displacement closure.
 		/// </summary>
-		public DisplacementNode() : this("a displacement node") { }
-		public DisplacementNode(string name) :
-			base(ShaderNodeType.Displacement, name)
+		public DisplacementNode(Shader shader) : this(shader, "a displacement node") { }
+		public DisplacementNode(Shader shader, string name) :
+			base(shader, true)
 		{
 			inputs = new DisplacementInputs(this);
 			outputs = new DisplacementOutputs(this);

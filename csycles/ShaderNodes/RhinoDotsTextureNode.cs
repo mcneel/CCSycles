@@ -80,9 +80,8 @@ namespace ccl.ShaderNodes
 		public FalloffTypes FalloffType { get; set; }
 		public CompositionTypes CompositionType { get; set; }
 
-		public DotsTextureProceduralNode() : this("a dots texture") { }
-		public DotsTextureProceduralNode(string name)
-			: base(ShaderNodeType.RhinoTextureAdjustmentTexture, name)
+		public DotsTextureProceduralNode(Shader shader) : this(shader, "a dots texture") { }
+		public DotsTextureProceduralNode(Shader shader, string name) : base(shader, true)
 		{
 			inputs = new DotsTextureInputs(this);
 			outputs = new DotsTextureOutputs(this);
@@ -90,13 +89,13 @@ namespace ccl.ShaderNodes
 
 		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
 		{
-			CSycles.shadernode_set_member_int(sessionId, shaderId, Id, Type, "DataCount", DataCount);
-			CSycles.shadernode_set_member_int(sessionId, shaderId, Id, Type, "TreeNodeCount", TreeNodeCount);
-			CSycles.shadernode_set_member_float(sessionId, shaderId, Id, Type, "SampleAreaSize", SampleAreaSize);
-			CSycles.shadernode_set_member_bool(sessionId, shaderId, Id, Type, "Rings", Rings);
-			CSycles.shadernode_set_member_float(sessionId, shaderId, Id, Type, "RingRadius", RingRadius);
-			CSycles.shadernode_set_member_int(sessionId, shaderId, Id, Type, "FalloffType", (int)FalloffType);
-			CSycles.shadernode_set_member_int(sessionId, shaderId, Id, Type, "CompositionType", (int)CompositionType);
+			CSycles.shadernode_set_member_int(Id, "DataCount", DataCount);
+			CSycles.shadernode_set_member_int(Id, "TreeNodeCount", TreeNodeCount);
+			CSycles.shadernode_set_member_float(Id, "SampleAreaSize", SampleAreaSize);
+			CSycles.shadernode_set_member_bool(Id, "Rings", Rings);
+			CSycles.shadernode_set_member_float(Id, "RingRadius", RingRadius);
+			CSycles.shadernode_set_member_int(Id, "FalloffType", (int)FalloffType);
+			CSycles.shadernode_set_member_int(Id, "CompositionType", (int)CompositionType);
 		}
 	}
 }

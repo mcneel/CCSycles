@@ -84,9 +84,9 @@ namespace ccl.ShaderNodes
 		public MusgraveInputs ins => (MusgraveInputs)inputs;
 		public MusgraveOutputs outs => (MusgraveOutputs)outputs;
 
-		public MusgraveTexture() : this("a musgrave texture") { }
-		public MusgraveTexture(string name)
-			: base(ShaderNodeType.MusgraveTexture, name)
+		public MusgraveTexture(Shader shader) : this(shader, "a musgrave texture") { }
+		public MusgraveTexture(Shader shader, string name)
+			: base(shader, name)
 		{
 			inputs = new MusgraveInputs(this);
 			outputs = new MusgraveOutputs(this);
@@ -126,8 +126,8 @@ namespace ccl.ShaderNodes
 
 		internal override void SetEnums(IntPtr sessionId, IntPtr shaderId)
 		{
-			CSycles.shadernode_set_enum(sessionId, shaderId, Id, Type, "musgrave", (int)MusgraveType);
-			CSycles.shadernode_set_enum(sessionId, shaderId, Id, Type, "dimension", (int)Dimension);
+			CSycles.shadernode_set_enum(Id, "musgrave", (int)MusgraveType);
+			CSycles.shadernode_set_enum(Id, "dimension", (int)Dimension);
 		}
 
 		internal override void ParseXml(XmlReader xmlNode)

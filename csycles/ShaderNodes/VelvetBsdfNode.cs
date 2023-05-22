@@ -64,9 +64,9 @@ namespace ccl.ShaderNodes
 		/// <summary>
 		/// Create a new Velvet BSDF closure.
 		/// </summary>
-		public VelvetBsdfNode() : this("a velvet bsdf node") { }
-		public VelvetBsdfNode(string name) :
-			base(ShaderNodeType.Velvet, name)
+		public VelvetBsdfNode(Shader shader) : this(shader, "a velvet bsdf node") { }
+		public VelvetBsdfNode(Shader shader, string name) :
+			base(shader, true)
 		{
 			inputs = new VelvetBsdfInputs(this);
 			outputs = new VelvetBsdfOutputs(this);

@@ -102,9 +102,9 @@ namespace ccl.ShaderNodes
 		public VoronoiInputs ins => (VoronoiInputs)inputs;
 		public VoronoiOutputs outs => (VoronoiOutputs)outputs;
 
-		public VoronoiTexture() : this("a voronoi texture") { }
-		public VoronoiTexture(string name)
-			: base(ShaderNodeType.VoronoiTexture, name)
+		public VoronoiTexture(Shader shader) : this(shader, "a voronoi texture") { }
+		public VoronoiTexture(Shader shader, string name)
+			: base(shader, name)
 		{
 			inputs = new VoronoiInputs(this);
 			outputs = new VoronoiOutputs(this);
@@ -127,9 +127,9 @@ namespace ccl.ShaderNodes
 
 		internal override void SetEnums(IntPtr sessionId, IntPtr shaderId)
 		{
-			CSycles.shadernode_set_enum(sessionId, shaderId, Id, Type, "dimension", (int)Dimension);
-			CSycles.shadernode_set_enum(sessionId, shaderId, Id, Type, "metric", (int)Metric);
-			CSycles.shadernode_set_enum(sessionId, shaderId, Id, Type, "feature", (int)Feature);
+			CSycles.shadernode_set_enum(Id, "dimension", (int)Dimension);
+			CSycles.shadernode_set_enum(Id, "metric", (int)Metric);
+			CSycles.shadernode_set_enum(Id, "feature", (int)Feature);
 		}
 
 		internal override void ParseXml(XmlReader xmlNode)

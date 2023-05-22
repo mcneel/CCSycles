@@ -65,13 +65,13 @@ namespace ccl.ShaderNodes
 		/// <summary>
 		/// Create a new TangentNode
 		/// </summary>
-		public TangentNode()
-			: this(string.Empty)
+		public TangentNode(Shader shader)
+			: this(shader, "a tangent node")
 		{
 		}
 
-		public TangentNode(string name)
-			: base(ShaderNodeType.Tangent, name)
+		public TangentNode(Shader shader, string name)
+			: base(shader, true)
 		{
 			inputs = new TangentInputs();
 			outputs = new TangentOutputs(this);

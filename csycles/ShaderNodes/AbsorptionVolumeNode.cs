@@ -57,9 +57,10 @@ namespace ccl.ShaderNodes
 		/// <summary>
 		/// Create a new Absorption volume node
 		/// </summary>
-		public AbsorptionVolumeNode() : this("a absorption volume node") { }
-		public AbsorptionVolumeNode(string name) :
-			base(ShaderNodeType.AbsorptionVolume, name)
+		public AbsorptionVolumeNode(Shader shader) : this(shader, "a absorption volume node") { }
+
+		public AbsorptionVolumeNode(Shader shader, string name) :
+			base(shader, true)
 		{
 			inputs = new AbsorptionVolumeInputs(this);
 			outputs = new AbsorptionVolumeOutputs(this);

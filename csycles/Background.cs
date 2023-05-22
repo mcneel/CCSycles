@@ -25,7 +25,7 @@ namespace ccl
 		/// <summary>
 		/// Reference to scene for which this the background is
 		/// </summary>
-		internal Scene Scene { get; set; }
+		internal Session Session { get; set; }
 
 		/// <summary>
 		/// Create a background representation for scene. Generally this
@@ -33,11 +33,12 @@ namespace ccl
 		/// constructor
 		/// </summary>
 		/// <param name="scene">Session for which to create background</param>
-		internal Background(Scene scene)
+		internal Background(Session scene)
 		{
-			Scene = scene;
+			Session = scene;
 		}
 
+		Shader bgShader;
 		/// <summary>
 		/// Get or set the background shader
 		/// </summary>
@@ -45,13 +46,17 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.scene_set_background_shader(Scene.Id, Scene.GetShaderSceneId(value));
+				bgShader = value;
+				CSycles.scene_set_background_shader(Session.Scene.Id, value.Id);
 			}
 			get
 			{
-				var shid = CSycles.scene_get_background_shader(Scene.Id);
-
-				return Scene.ShaderFromSceneId(shid);
+				if(bgShader == null)
+				{
+					var shid = CSycles.scene_get_background_shader(Session.Scene.Id);
+					bgShader = new Shader(Session, Shader.ShaderType.World, shid);
+				}
+				return bgShader;
 			}
 		}
 
@@ -62,7 +67,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.scene_set_background_visibility(Scene.Id, value);
+				CSycles.scene_set_background_visibility(Session.Scene.Id, value);
 			}
 		}
 
@@ -73,7 +78,7 @@ namespace ccl
 		{
 			set
 			{
-				CSycles.scene_set_background_transparent(Scene.Id, value);
+				CSycles.scene_set_background_transparent(Session.Scene.Id, value);
 			}
 		}
 	}

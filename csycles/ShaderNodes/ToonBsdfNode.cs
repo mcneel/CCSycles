@@ -74,12 +74,12 @@ namespace ccl.ShaderNodes
 		/// <summary>
 		/// Create a new Toon BSDF closure. Default Color is white
 		/// </summary>
-		public ToonBsdfNode() : this("a toon bsdf node") { }
+		public ToonBsdfNode(Shader shader) : this(shader, "a toon bsdf node") { }
 		/// <summary>
 		/// Create a new Toon BSDF closure. Default Color is white
 		/// </summary>
-		public ToonBsdfNode(string name) :
-			base(ShaderNodeType.Toon, name)
+		public ToonBsdfNode(Shader shader, string name) :
+			base(shader, true)
 		{
 			inputs = new ToonBsdfInputs(this);
 			outputs = new ToonBsdfOutputs(this);
@@ -92,7 +92,7 @@ namespace ccl.ShaderNodes
 
 		internal override void SetEnums(IntPtr sessionId, IntPtr shaderId)
 		{
-			CSycles.shadernode_set_enum(sessionId, shaderId, Id, Type, "component", (int)Component);
+			CSycles.shadernode_set_enum(Id, "component", (int)Component);
 		}
 
 		internal override void ParseXml(XmlReader xmlNode)

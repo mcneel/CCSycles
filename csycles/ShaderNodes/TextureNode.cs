@@ -91,11 +91,11 @@ namespace ccl.ShaderNodes
 			Z = 3
 		}
 
-		internal TextureNode(ShaderNodeType type) :
+		internal TextureNode(Shader type) :
 			this(type, "texturenode baseclass") { }
 
-		internal TextureNode(ShaderNodeType type, string name) :
-			base(type, name) {
+		internal TextureNode(Shader shader, string name) :
+			base(shader, true) {
 				Mapping = MappingType.Texture;
 				UseMin = false;
 				UseMax = false;
@@ -208,27 +208,27 @@ namespace ccl.ShaderNodes
 
 		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
 		{
-			CSycles.shadernode_set_member_bool(sessionId, shaderId, Id, Type, "useminmax", UseMin || UseMax);
+			CSycles.shadernode_set_member_bool(Id, "useminmax", UseMin || UseMax);
 			if (UseMin)
 			{
-				CSycles.shadernode_set_member_vec(sessionId, shaderId, Id, Type, "min", Min.x, Min.y, Min.z);
+				CSycles.shadernode_set_member_vec(Id, "min", Min.x, Min.y, Min.z);
 			}
 			if (UseMax)
 			{
-				CSycles.shadernode_set_member_vec(sessionId, shaderId, Id, Type, "max", Max.x, Max.y, Max.z);
+				CSycles.shadernode_set_member_vec(Id, "max", Max.x, Max.y, Max.z);
 			}
 			var tr = Translation;
-			CSycles.shadernode_texmapping_set_transformation(sessionId, shaderId, Id, Type, 0, tr.x, tr.y, tr.z);
+			CSycles.shadernode_texmapping_set_transformation(Id, 0, tr.x, tr.y, tr.z);
 			var rt = Rotation;
-			CSycles.shadernode_texmapping_set_transformation(sessionId, shaderId, Id, Type, 1, rt.x, rt.y, rt.z);
+			CSycles.shadernode_texmapping_set_transformation(Id, 1, rt.x, rt.y, rt.z);
 			var sc = Scale;
-			CSycles.shadernode_texmapping_set_transformation(sessionId, shaderId, Id, Type, 2, sc.x, sc.y, sc.z);
+			CSycles.shadernode_texmapping_set_transformation(Id, 2, sc.x, sc.y, sc.z);
 
-			CSycles.shadernode_texmapping_set_mapping(sessionId, shaderId, Id, Type, (uint)XMapping, (uint)YMapping, (uint)ZMapping);
+			CSycles.shadernode_texmapping_set_mapping(Id, (uint)XMapping, (uint)YMapping, (uint)ZMapping);
 
-			CSycles.shadernode_texmapping_set_type(sessionId, shaderId, Id, Type, (uint)Mapping);
+			CSycles.shadernode_texmapping_set_type(Id, (uint)Mapping);
 
-			CSycles.shadernode_set_member_bool(sessionId, shaderId, Id, Type, "is_linear", IsLinear);
+			CSycles.shadernode_set_member_bool(Id, "is_linear", IsLinear);
 		}
 
 		protected void ImageParseXml(System.Xml.XmlReader xmlNode)

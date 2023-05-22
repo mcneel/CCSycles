@@ -61,9 +61,9 @@ namespace ccl.ShaderNodes
 		public int PointWidth { get; set; }
 		public int PointHeight { get; set; }
 
-		public GradientTextureProceduralNode() : this("a gradient texture") { }
-		public GradientTextureProceduralNode(string name)
-			: base(ShaderNodeType.RhinoGradientTexture, name)
+		public GradientTextureProceduralNode(Shader shader) : this(shader, "a gradient texture") { }
+		public GradientTextureProceduralNode(Shader shader, string name)
+			: base(shader, true)
 		{
 			inputs = new GradientTextureInputs(this);
 			outputs = new GradientTextureOutputs(this);
@@ -71,9 +71,9 @@ namespace ccl.ShaderNodes
 
 		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
 		{
-			CSycles.shadernode_set_member_int(sessionId, shaderId, Id, Type, "GradientType", (int)GradientType);
-			CSycles.shadernode_set_member_bool(sessionId, shaderId, Id, Type, "FlipAlternate", FlipAlternate);
-			CSycles.shadernode_set_member_bool(sessionId, shaderId, Id, Type, "UseCustomCurve", UseCustomCurve);
+			CSycles.shadernode_set_member_int(Id, "GradientType", (int)GradientType);
+			CSycles.shadernode_set_member_bool(Id, "FlipAlternate", FlipAlternate);
+			CSycles.shadernode_set_member_bool(Id, "UseCustomCurve", UseCustomCurve);
 			//CSycles.shadernode_set_member_int(sessionId, shaderId, Id, Type, "PointWidth", PointWidth);
 			//CSycles.shadernode_set_member_int(sessionId, shaderId, Id, Type, "PointHeight", PointHeight);
 		}

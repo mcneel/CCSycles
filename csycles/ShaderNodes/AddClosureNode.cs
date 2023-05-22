@@ -94,7 +94,7 @@ namespace ccl.ShaderNodes
 		/// <summary>
 		/// Create a new Add closure.
 		/// </summary>
-		public AddClosureNode() : this("An add closures node")
+		public AddClosureNode(Shader shader) : this(shader, "An add closures node")
 		{
 		}
 
@@ -102,8 +102,8 @@ namespace ccl.ShaderNodes
 		/// Create a new Add closure with name
 		/// </summary>
 		/// <param name="name"></param>
-		public AddClosureNode(string name) :
-			base(ShaderNodeType.AddClosure, name)
+		public AddClosureNode(Shader shader, string name) :
+			base(shader, true)
 		{
 			inputs = new AddClosureInputs(this);
 			outputs = new AddClosureOutputs(this);

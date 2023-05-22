@@ -58,9 +58,9 @@ namespace ccl.ShaderNodes
 
 		public MaskTypes MaskType { get; set; }
 
-		public MaskTextureProceduralNode() : this("a mask texture") { }
-		public MaskTextureProceduralNode(string name)
-			: base(ShaderNodeType.RhinoMaskTexture, name)
+		public MaskTextureProceduralNode(Shader shader) : this(shader, "a mask texture") { }
+		public MaskTextureProceduralNode(Shader shader, string name)
+			: base(shader, true)
 		{
 			inputs = new MaskTextureInputs(this);
 			outputs = new MaskTextureOutputs(this);
@@ -68,7 +68,7 @@ namespace ccl.ShaderNodes
 
 		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
 		{
-			CSycles.shadernode_set_member_int(sessionId, shaderId, Id, Type, "MaskType", (int)MaskType);
+			CSycles.shadernode_set_member_int(Id, "MaskType", (int)MaskType);
 		}
 	}
 }

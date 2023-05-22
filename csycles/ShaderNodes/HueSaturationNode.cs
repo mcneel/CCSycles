@@ -60,9 +60,9 @@ namespace ccl.ShaderNodes
 		public HueSaturationInputs ins => (HueSaturationInputs)inputs;
 		public HueSaturationOutputs outs => (HueSaturationOutputs)outputs;
 
-		public HueSaturationNode() : this("a HSV node") { }
-		public HueSaturationNode(string name)
-			: base(ShaderNodeType.HueSaturation, name)
+		public HueSaturationNode(Shader shader) : this(shader, "a HSV node") { }
+		public HueSaturationNode(Shader shader, string name)
+			: base(shader, true)
 		{
 			inputs = new HueSaturationInputs(this);
 			outputs = new HueSaturationOutputs(this);

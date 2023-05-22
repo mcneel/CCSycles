@@ -135,14 +135,14 @@ namespace ccl.ShaderNodes
 		/// <summary>
 		/// Create a brick texture
 		/// </summary>
-		public BrickTexture() : this("a brick texture") { }
+		public BrickTexture(Shader shader) : this(shader, "a brick texture") { }
 
 		/// <summary>
 		/// Create a brick texture with name
 		/// </summary>
 		/// <param name="name"></param>
-		public BrickTexture(string name) :
-			base(ShaderNodeType.BrickTexture, name)
+		public BrickTexture(Shader shader, string name) :
+			base(shader, name)
 		{
 			inputs = new BrickInputs(this);
 			outputs = new BrickOutputs(this);
@@ -186,10 +186,10 @@ namespace ccl.ShaderNodes
 
 		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
 		{
-			CSycles.shadernode_set_member_float(sessionId, shaderId, Id, Type, "offset", Offset);
-			CSycles.shadernode_set_member_int(sessionId, shaderId, Id, Type, "offset_frequency", OffsetFrequency);
-			CSycles.shadernode_set_member_float(sessionId, shaderId, Id, Type, "squash", Squash);
-			CSycles.shadernode_set_member_int(sessionId, shaderId, Id, Type, "squash_frequency", SquashFrequency);
+			CSycles.shadernode_set_member_float(Id, "offset", Offset);
+			CSycles.shadernode_set_member_int(Id, "offset_frequency", OffsetFrequency);
+			CSycles.shadernode_set_member_float(Id, "squash", Squash);
+			CSycles.shadernode_set_member_int(Id, "squash_frequency", SquashFrequency);
 		}
 
 		internal override void ParseXml(XmlReader xmlNode)

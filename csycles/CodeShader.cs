@@ -28,7 +28,9 @@ namespace ccl
 	/// </summary>
 	public class CodeShader : Shader
 	{
-		public CodeShader(ShaderType type) : base(type)
+		// @todo XXXX Fixup CodeShader
+		// TODO XXXX Fixup CodeShader
+		public CodeShader(Session session, ShaderType type) : base(session, type)
 		{
 			Xml = "";
 			Code = "";
@@ -40,8 +42,10 @@ namespace ccl
 			Xml = "";
 			m_nodes.Clear();
 
-			Output = new OutputNode();
-			AddNode(Output);
+			// TODO XXXX
+
+			/*Output = new OutputNode();
+			AddNode(Output);*/
 		}
 
 		/// <summary>

@@ -54,9 +54,8 @@ namespace ccl.ShaderNodes
 		public PerturbingPart1TextureInputs ins => (PerturbingPart1TextureInputs)inputs;
 		public PerturbingPart1TextureOutputs outs => (PerturbingPart1TextureOutputs)outputs;
 
-		public PerturbingPart1TextureProceduralNode() : this("a pertrubing part1 texture") { }
-		public PerturbingPart1TextureProceduralNode(string name)
-			: base(ShaderNodeType.RhinoPerturbingPart1Texture, name)
+		public PerturbingPart1TextureProceduralNode(Shader shader) : this(shader, "a pertrubing part1 texture") { }
+		public PerturbingPart1TextureProceduralNode(Shader shader, string name) : base(shader, true)
 		{
 			inputs = new PerturbingPart1TextureInputs(this);
 			outputs = new PerturbingPart1TextureOutputs(this);
@@ -106,9 +105,8 @@ namespace ccl.ShaderNodes
 
 		public float Amount { get; set; } = 0.1f;
 
-		public PerturbingPart2TextureProceduralNode() : this("a pertrubing part2 texture") { }
-		public PerturbingPart2TextureProceduralNode(string name)
-			: base(ShaderNodeType.RhinoPerturbingPart2Texture, name)
+		public PerturbingPart2TextureProceduralNode(Shader shader) : this(shader, "a pertrubing part2 texture") { }
+		public PerturbingPart2TextureProceduralNode(Shader shader, string name) : base(shader, true)
 		{
 			inputs = new PerturbingPart2TextureInputs(this);
 			outputs = new PerturbingPart2TextureOutputs(this);
@@ -116,7 +114,7 @@ namespace ccl.ShaderNodes
 
 		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
 		{
-			CSycles.shadernode_set_member_float(sessionId, shaderId, Id, Type, "Amount", Amount);
+			CSycles.shadernode_set_member_float(Id, "Amount", Amount);
 		}
 	}
 }

@@ -78,13 +78,13 @@ namespace ccl.ShaderNodes
 		/// <summary>
 		/// Create a new ObjectInfoNode
 		/// </summary>
-		public ObjectInfoNode()
-			: this(string.Empty)
+		public ObjectInfoNode(Shader shader)
+			: this(shader, "an object info node")
 		{
 		}
 
-		public ObjectInfoNode(string name)
-			: base(ShaderNodeType.ObjectInfo, name)
+		public ObjectInfoNode(Shader shader, string name)
+			: base(shader, true)
 		{
 			inputs = new ObjectInfoInputs();
 			outputs = new ObjectInfoOutputs(this);

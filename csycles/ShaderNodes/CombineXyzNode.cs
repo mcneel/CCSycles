@@ -57,9 +57,8 @@ namespace ccl.ShaderNodes
 		public CombineXyzInputs ins => (CombineXyzInputs)inputs;
 		public CombineXyzOutputs outs => (CombineXyzOutputs)outputs;
 
-		public CombineXyzNode() : this("a combine XYZ node") { }
-		public CombineXyzNode(string name) :
-			base(ShaderNodeType.CombineXyz, name)
+		public CombineXyzNode(Shader shader) : this(shader, "a combine XYZ node") { }
+		public CombineXyzNode(Shader shader, string name) : base(shader, true)
 		{
 			inputs = new CombineXyzInputs(this);
 			outputs = new CombineXyzOutputs(this);

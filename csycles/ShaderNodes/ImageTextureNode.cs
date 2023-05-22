@@ -91,12 +91,12 @@ namespace ccl.ShaderNodes
 		/// </summary>
 		public ImageTextureOutputs outs => (ImageTextureOutputs)outputs;
 
-		public ImageTextureNode() : this("an image texture node")
+		public ImageTextureNode(Shader shader) : this(shader, "an image texture node")
 		{
 		}
 
-		public ImageTextureNode(string name) :
-			base(ShaderNodeType.ImageTexture, name)
+		public ImageTextureNode(Shader shader, string name) :
+			base(shader, name)
 		{
 
 			inputs = new ImageTextureInputs(this);
@@ -142,19 +142,20 @@ namespace ccl.ShaderNodes
 
 		internal override void SetEnums(IntPtr sessionId, IntPtr shaderId)
 		{
-			CSycles.shadernode_set_enum(sessionId, shaderId, Id, Type, "color_space", (int)ColorSpace);
-			CSycles.shadernode_set_enum(sessionId, shaderId, Id, Type, "projection", (int)Projection);
-			CSycles.shadernode_set_enum(sessionId, shaderId, Id, Type, "interpolation", (int)Interpolation);
+			CSycles.shadernode_set_enum(Id,"color_space", (int)ColorSpace);
+			CSycles.shadernode_set_enum(Id, "projection", (int)Projection);
+			CSycles.shadernode_set_enum(Id, "interpolation", (int)Interpolation);
 		}
 
 		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
 		{
 			base.SetDirectMembers(sessionId, shaderId);
-			CSycles.shadernode_set_member_float(sessionId, shaderId, Id, Type, "projection_blend", ProjectionBlend);
-			CSycles.shadernode_set_member_int(sessionId, shaderId, Id, Type, "extension", (int)Extension);
-			CSycles.shadernode_set_member_bool(sessionId, shaderId, Id, Type, "use_alpha", UseAlpha);
-			CSycles.shadernode_set_member_bool(sessionId, shaderId, Id, Type, "is_linear", IsLinear);
-			CSycles.shadernode_set_member_bool(sessionId, shaderId, Id, Type, "alternate_tiles", AlternateTiles);
+			CSycles.shadernode_set_member_float(Id, "projection_blend", ProjectionBlend);
+			CSycles.shadernode_set_member_int(Id, "extension", (int)Extension);
+			CSycles.shadernode_set_member_bool(Id, "use_alpha", UseAlpha);
+			CSycles.shadernode_set_member_bool(Id, "is_linear", IsLinear);
+			CSycles.shadernode_set_member_bool(Id, "alternate_tiles", AlternateTiles);
+#if OLDIMGS
 			if (FloatImagePtr != IntPtr.Zero)
 			{
 				CSycles.shadernode_set_member_float_img(sessionId, shaderId, Id, Type, "builtin-data", Filename ?? String.Format("{0}-{0}-{0}", shaderId, Id), FloatImagePtr, Width, Height, 1, 4);
@@ -163,6 +164,7 @@ namespace ccl.ShaderNodes
 			{
 				CSycles.shadernode_set_member_byte_img(sessionId, shaderId, Id, Type, "builtin-data", Filename ?? String.Format("{0}-{0}-{0}", shaderId, Id), ByteImagePtr, Width, Height, 1, 4);
 			}
+#endif
 		}
 		private void SetProjection(string projection)
 		{

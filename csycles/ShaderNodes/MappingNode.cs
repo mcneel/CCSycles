@@ -89,12 +89,12 @@ namespace ccl.ShaderNodes
 		/// <summary>
 		/// Create new MappingNode
 		/// </summary>
-		public MappingNode() : this("a mapping node")
+		public MappingNode(Shader shader) : this(shader, "a mapping node")
 		{
 		}
 
-		public MappingNode(string name) :
-			base(ShaderNodeType.Mapping, name)
+		public MappingNode(Shader shader, string name) :
+			base(shader, name)
 		{
 			inputs = new MappingInputs(this);
 			outputs = new MappingOutputs(this);

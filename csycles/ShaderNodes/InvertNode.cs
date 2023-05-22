@@ -59,7 +59,7 @@ namespace ccl.ShaderNodes
 		/// <summary>
 		/// Create new InvertNode. By default Color input is black.
 		/// </summary>
-		public InvertNode() : this("an invert color node")
+		public InvertNode(Shader shader) : this(shader, "an invert color node")
 		{
 		}
 
@@ -67,8 +67,8 @@ namespace ccl.ShaderNodes
 		/// Create new InvertNode with blend type Invert and name.
 		/// </summary>
 		/// <param name="name"></param>
-		public InvertNode(string name) :
-			base(ShaderNodeType.Invert, name)
+		public InvertNode(Shader shader, string name) :
+			base(shader, true)
 		{
 			inputs = new InvertInputs(this);
 			outputs = new InvertOutputs(this);

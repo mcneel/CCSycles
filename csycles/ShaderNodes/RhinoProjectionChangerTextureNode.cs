@@ -67,9 +67,9 @@ namespace ccl.ShaderNodes
 		public float Azimuth { get; set; }
 		public float Altitude { get; set; }
 
-		public ProjectionChangerTextureProceduralNode() : this("a projection changer texture") { }
-		public ProjectionChangerTextureProceduralNode(string name)
-			: base(ShaderNodeType.RhinoProjectionChangerTexture, name)
+		public ProjectionChangerTextureProceduralNode(Shader shader) : this(shader, "a projection changer texture") { }
+		public ProjectionChangerTextureProceduralNode(Shader shader, string name)
+			: base(shader, true)
 		{
 			inputs = new ProjectionChangerTextureInputs(this);
 			outputs = new ProjectionChangerTextureOutputs(this);
@@ -77,10 +77,10 @@ namespace ccl.ShaderNodes
 
 		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
 		{
-			CSycles.shadernode_set_member_int(sessionId, shaderId, Id, Type, "InputProjectionType", (int)InputProjectionType);
-			CSycles.shadernode_set_member_int(sessionId, shaderId, Id, Type, "OutputProjectionType", (int)OutputProjectionType);
-			CSycles.shadernode_set_member_float(sessionId, shaderId, Id, Type, "Azimuth", Azimuth);
-			CSycles.shadernode_set_member_float(sessionId, shaderId, Id, Type, "Altitude", Altitude);
+			CSycles.shadernode_set_member_int(Id, "InputProjectionType", (int)InputProjectionType);
+			CSycles.shadernode_set_member_int(Id, "OutputProjectionType", (int)OutputProjectionType);
+			CSycles.shadernode_set_member_float(Id, "Azimuth", Azimuth);
+			CSycles.shadernode_set_member_float(Id, "Altitude", Altitude);
 		}
 	}
 }

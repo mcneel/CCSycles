@@ -58,9 +58,9 @@ namespace ccl.ShaderNodes
 		public MagicInputs ins => (MagicInputs)inputs;
 		public MagicOutputs outs => (MagicOutputs)outputs;
 
-		public MagicTexture() : this("a magic texture") { }
-		public MagicTexture(string name)
-			: base(ShaderNodeType.MagicTexture, name)
+		public MagicTexture(Shader shader) : this(shader, "a magic texture") { }
+		public MagicTexture(Shader shader, string name)
+			: base(shader, name)
 		{
 			inputs = new MagicInputs(this);
 			outputs = new MagicOutputs(this);
@@ -74,7 +74,7 @@ namespace ccl.ShaderNodes
 
 		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
 		{
-			CSycles.shadernode_set_member_int(sessionId, shaderId, Id, Type, "depth", Depth);
+			CSycles.shadernode_set_member_int(Id, "depth", Depth);
 		}
 
 		internal override void ParseXml(XmlReader xmlNode)

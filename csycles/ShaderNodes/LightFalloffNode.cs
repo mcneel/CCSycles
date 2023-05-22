@@ -56,9 +56,9 @@ namespace ccl.ShaderNodes
 		public LightFalloffInputs ins => (LightFalloffInputs)inputs;
 		public LightFalloffOutputs outs => (LightFalloffOutputs)outputs;
 
-		public LightFalloffNode() : this("a light fall-off node") { }
-		public LightFalloffNode(string name) :
-			base(ShaderNodeType.LightFalloff, name)
+		public LightFalloffNode(Shader shader) : this(shader, "a light fall-off node") { }
+		public LightFalloffNode(Shader shader, string name) :
+			base(shader, true)
 		{
 			inputs = new LightFalloffInputs(this);
 			outputs = new LightFalloffOutputs(this);

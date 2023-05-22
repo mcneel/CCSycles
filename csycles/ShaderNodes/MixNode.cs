@@ -85,7 +85,7 @@ namespace ccl.ShaderNodes
 		/// <summary>
 		/// Create new MixNode with blend type Mix. By default Color inputs are black.
 		/// </summary>
-		public MixNode() : this("a mix color node")
+		public MixNode(Shader shader) : this(shader, "a mix color node")
 		{
 		}
 
@@ -93,8 +93,8 @@ namespace ccl.ShaderNodes
 		/// Create new MixNode with blend type Mix and name.
 		/// </summary>
 		/// <param name="name"></param>
-		public MixNode(string name) :
-			base(ShaderNodeType.Mix, name)
+		public MixNode(Shader shader, string name) :
+			base(shader, true)
 		{
 			inputs = new MixInputs(this);
 			outputs = new MixOutputs(this);
@@ -112,12 +112,12 @@ namespace ccl.ShaderNodes
 
 		internal override void SetEnums(IntPtr sessionId, IntPtr shaderId)
 		{
-			CSycles.shadernode_set_enum(sessionId, shaderId, Id, Type, "type", (int)BlendType);
+			CSycles.shadernode_set_enum(Id, "type", (int)BlendType);
 		}
 
 		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
 		{
-			CSycles.shadernode_set_member_bool(sessionId, shaderId, Id, Type, "use_clamp", UseClamp);
+			CSycles.shadernode_set_member_bool(Id, "use_clamp", UseClamp);
 		}
 
 		private void SetBlendType(string op)

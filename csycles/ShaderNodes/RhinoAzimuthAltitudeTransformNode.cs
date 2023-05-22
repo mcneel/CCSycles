@@ -54,9 +54,9 @@ namespace ccl.ShaderNodes
 		public float Altitude { get; set; } = 0.0f;
 		public float Threshold { get; set; } = 0.001f;
 
-		public RhinoAzimuthAltitudeTransformNode() : this("a azimuth altitude transform node") { }
-		public RhinoAzimuthAltitudeTransformNode(string name)
-			: base(ShaderNodeType.RhinoAzimuthAltitudeTransform, name)
+		public RhinoAzimuthAltitudeTransformNode(Shader shader) : this(shader, "a azimuth altitude transform node") { }
+		public RhinoAzimuthAltitudeTransformNode(Shader shader, string name)
+			: base(shader, true)
 		{
 			inputs = new RhinoAzimuthAltitudeTransformInputs(this);
 			outputs = new RhinoAzimuthAltitudeTransformOutputs(this);
@@ -68,9 +68,9 @@ namespace ccl.ShaderNodes
 
 		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
 		{
-			CSycles.shadernode_set_member_float(sessionId, shaderId, Id, Type, "azimuth", Azimuth);
-			CSycles.shadernode_set_member_float(sessionId, shaderId, Id, Type, "altitude", Altitude);
-			CSycles.shadernode_set_member_float(sessionId, shaderId, Id, Type, "threshold", Threshold);
+			CSycles.shadernode_set_member_float(Id, "azimuth", Azimuth);
+			CSycles.shadernode_set_member_float(Id, "altitude", Altitude);
+			CSycles.shadernode_set_member_float(Id, "threshold", Threshold);
 		}
 
 	}

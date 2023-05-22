@@ -322,7 +322,7 @@ namespace ccl.ShaderNodes
 	///
 	/// Interpolate input factor (0.0f-1.0f) to a color on the ColorBand of the node.
 	/// </summary>
-	[ShaderNode("color_ramp")]
+	[ShaderNode("rgb_ramp")]
 	public class ColorRampNode : ShaderNode
 	{
 		/// <summary>
@@ -338,13 +338,11 @@ namespace ccl.ShaderNodes
 		/// <summary>
 		/// Create a ColorRampNode
 		/// </summary>
-		public ColorRampNode() :
-			this("a color ramp node")
+		public ColorRampNode(Shader shader) : this(shader, "a color ramp node")
 		{
 		}
 
-		public ColorRampNode(string name) :
-			base(ShaderNodeType.ColorRamp, name)
+		public ColorRampNode(Shader shader, string name) : base(shader, true)
 		{
 			inputs = new ColorRampInputs(this);
 			outputs = new ColorRampOutputs(this);
@@ -371,12 +369,12 @@ namespace ccl.ShaderNodes
 		{
 			var val = Interpolate;
 			var color = new float4();
-			CSycles.shadernode_set_member_bool(sessionId, shaderId, Id, Type, "interpolate", val);
+			CSycles.shadernode_set_member_bool(Id, "interpolate", val);
 
 			for (var i = 0; i < RampTableSize; i++)
 			{
 				ColorBand.evaluate((float) i/(float) (RampTableSize - 1), color);
-				CSycles.shadernode_set_member_vec4_at_index(sessionId, shaderId, Id, Type, "ramp", color.x, color.y, color.z, color.w, i);
+				CSycles.shadernode_set_member_vec4_at_index(Id, "ramp", color.x, color.y, color.z, color.w, i);
 			}
 		}
 

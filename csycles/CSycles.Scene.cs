@@ -58,16 +58,16 @@ namespace ccl
 
 		[DllImport(Constants.ccycles, SetLastError = false,
 			CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_scene_set_background_shader(IntPtr sessionId, uint shaderId);
-		public static void scene_set_background_shader(IntPtr sessionId, uint shaderId)
+		private static extern void cycles_scene_set_background_shader(IntPtr sessionId, IntPtr shaderId);
+		public static void scene_set_background_shader(IntPtr sessionId, IntPtr shaderId)
 		{
 			cycles_scene_set_background_shader(sessionId, shaderId);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false,
 			CallingConvention = CallingConvention.Cdecl)]
-		private static extern uint cycles_scene_get_background_shader(IntPtr sessionId);
-		public static uint scene_get_background_shader(IntPtr sessionId)
+		private static extern IntPtr cycles_scene_get_background_shader(IntPtr sessionId);
+		public static IntPtr scene_get_background_shader(IntPtr sessionId)
 		{
 			return cycles_scene_get_background_shader(sessionId);
 		}

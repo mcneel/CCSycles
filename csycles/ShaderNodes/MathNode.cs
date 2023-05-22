@@ -194,14 +194,14 @@ namespace ccl.ShaderNodes
 		/// <summary>
 		/// Math node operates on float inputs (note, some operations use only Value1)
 		/// </summary>
-		public MathNode() :
-			this("a mathnode")
+		public MathNode(Shader shader) :
+			this(shader, "a mathnode")
 		{
 
 		}
 
-		public MathNode(string name) :
-			base(ShaderNodeType.Math, name)
+		public MathNode(Shader shader, string name) :
+			base(shader, true)
 		{
 			inputs = new MathInputs(this);
 			outputs = new MathOutputs(this);
@@ -229,12 +229,12 @@ namespace ccl.ShaderNodes
 
 		internal override void SetEnums(IntPtr sessionId, IntPtr shaderId)
 		{
-			CSycles.shadernode_set_enum(sessionId, shaderId, Id, Type, "operation", (int)Operation);
+			CSycles.shadernode_set_enum(Id, "operation", (int)Operation);
 		}
 
 		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
 		{
-			CSycles.shadernode_set_member_bool(sessionId, shaderId, Id, Type, "use_clamp", UseClamp);
+			CSycles.shadernode_set_member_bool(Id, "use_clamp", UseClamp);
 		}
 
 		internal override void ParseXml(XmlReader xmlNode)
@@ -276,134 +276,134 @@ namespace ccl.ShaderNodes
 	[ShaderNode("math_add")]
 	public class MathAdd : MathNode
 	{
-		public MathAdd() : this("an add mathnode") {}
-		public MathAdd(string name) : base(name) { Operation = Operations.Add; }
+		public MathAdd(Shader shader) : this(shader, "an add mathnode") {}
+		public MathAdd(Shader shader, string name) : base(shader, name) { Operation = Operations.Add; }
 		public override string ShaderNodeTypeName => "math";
 	}
 	[ShaderNode("math_subtract")]
 	public class MathSubtract : MathNode
 	{
-		public MathSubtract() : this("an subtract mathnode") {}
-		public MathSubtract(string name) : base(name) { Operation = Operations.Subtract; }
+		public MathSubtract(Shader shader) : this(shader, "an subtract mathnode") {}
+		public MathSubtract(Shader shader, string name) : base(shader, name) { Operation = Operations.Subtract; }
 		public override string ShaderNodeTypeName => "math";
 	}
 	[ShaderNode("math_multiply")]
 	public class MathMultiply : MathNode
 	{
-		public MathMultiply() : this("an multiply mathnode") {}
-		public MathMultiply(string name) : base(name) { Operation = Operations.Multiply; }
+		public MathMultiply(Shader shader) : this(shader, "an multiply mathnode") {}
+		public MathMultiply(Shader shader, string name) : base(shader, name) { Operation = Operations.Multiply; }
 		public override string ShaderNodeTypeName => "math";
 	}
 	[ShaderNode("math_divide")]
 	public class MathDivide : MathNode
 	{
-		public MathDivide() : this("an divide mathnode") {}
-		public MathDivide(string name) : base(name) { Operation = Operations.Divide; }
+		public MathDivide(Shader shader) : this(shader, "an divide mathnode") {}
+		public MathDivide(Shader shader, string name) : base(shader, name) { Operation = Operations.Divide; }
 		public override string ShaderNodeTypeName => "math";
 	}
 	[ShaderNode("math_sine")]
 	public class MathSine : MathNode
 	{
-		public MathSine() : this("an sine mathnode") {}
-		public MathSine(string name) : base(name) { Operation = Operations.Sine; }
+		public MathSine(Shader shader) : this(shader, "an sine mathnode") {}
+		public MathSine(Shader shader, string name) : base(shader, name) { Operation = Operations.Sine; }
 		public override string ShaderNodeTypeName => "math";
 	}
 	[ShaderNode("math_cosine")]
 	public class MathCosine : MathNode
 	{
-		public MathCosine() : this("an cosine mathnode") {}
-		public MathCosine(string name) : base(name) { Operation = Operations.Cosine; }
+		public MathCosine(Shader shader) : this(shader, "an cosine mathnode") {}
+		public MathCosine(Shader shader, string name) : base(shader, name) { Operation = Operations.Cosine; }
 		public override string ShaderNodeTypeName => "math";
 	}
 	[ShaderNode("math_tangent")]
 	public class MathTangent : MathNode
 	{
-		public MathTangent() : this("an tangent mathnode") {}
-		public MathTangent(string name) : base(name) { Operation = Operations.Tangent; }
+		public MathTangent(Shader shader) : this(shader, "an tangent mathnode") {}
+		public MathTangent(Shader shader, string name) : base(shader, name) { Operation = Operations.Tangent; }
 		public override string ShaderNodeTypeName => "math";
 	}
 	[ShaderNode("math_arcsine")]
 	public class MathArcsine : MathNode
 	{
-		public MathArcsine() : this("an arcsine mathnode") {}
-		public MathArcsine(string name) : base(name) { Operation = Operations.Arcsine; }
+		public MathArcsine(Shader shader) : this(shader, "an arcsine mathnode") {}
+		public MathArcsine(Shader shader, string name) : base(shader, name) { Operation = Operations.Arcsine; }
 		public override string ShaderNodeTypeName => "math";
 	}
 	[ShaderNode("math_arccosine")]
 	public class MathArccosine : MathNode
 	{
-		public MathArccosine() : this("an arccosine mathnode") {}
-		public MathArccosine(string name) : base(name) { Operation = Operations.Arccosine; }
+		public MathArccosine(Shader shader) : this(shader, "an arccosine mathnode") {}
+		public MathArccosine(Shader shader, string name) : base(shader, name) { Operation = Operations.Arccosine; }
 		public override string ShaderNodeTypeName => "math";
 	}
 	[ShaderNode("math_arctangent")]
 	public class MathArctangent : MathNode
 	{
-		public MathArctangent() : this("an arctangent mathnode") {}
-		public MathArctangent(string name) : base(name) { Operation = Operations.Arctangent; }
+		public MathArctangent(Shader shader) : this(shader, "an arctangent mathnode") {}
+		public MathArctangent(Shader shader, string name) : base(shader, name) { Operation = Operations.Arctangent; }
 		public override string ShaderNodeTypeName => "math";
 	}
 	[ShaderNode("math_power")]
 	public class MathPower : MathNode
 	{
-		public MathPower() : this("an power mathnode") {}
-		public MathPower(string name) : base(name) { Operation = Operations.Power; }
+		public MathPower(Shader shader) : this(shader, "an power mathnode") {}
+		public MathPower(Shader shader, string name) : base(shader, name) { Operation = Operations.Power; }
 		public override string ShaderNodeTypeName => "math";
 	}
 	[ShaderNode("math_logarithm")]
 	public class MathLogarithm : MathNode
 	{
-		public MathLogarithm() : this("an logarithm mathnode") {}
-		public MathLogarithm(string name) : base(name) { Operation = Operations.Logarithm; }
+		public MathLogarithm(Shader shader) : this(shader, "an logarithm mathnode") {}
+		public MathLogarithm(Shader shader, string name) : base(shader, name) { Operation = Operations.Logarithm; }
 		public override string ShaderNodeTypeName => "math";
 	}
 	[ShaderNode("math_minimum")]
 	public class MathMinimum : MathNode
 	{
-		public MathMinimum() : this("an minimum mathnode") {}
-		public MathMinimum(string name) : base(name) { Operation = Operations.Minimum; }
+		public MathMinimum(Shader shader) : this(shader, "an minimum mathnode") {}
+		public MathMinimum(Shader shader, string name) : base(shader, name) { Operation = Operations.Minimum; }
 		public override string ShaderNodeTypeName => "math";
 	}
 	[ShaderNode("math_maximum")]
 	public class MathMaximum : MathNode
 	{
-		public MathMaximum() : this("an maximum mathnode") {}
-		public MathMaximum(string name) : base(name) { Operation = Operations.Maximum; }
+		public MathMaximum(Shader shader) : this(shader, "an maximum mathnode") {}
+		public MathMaximum(Shader shader, string name) : base(shader, name) { Operation = Operations.Maximum; }
 		public override string ShaderNodeTypeName => "math";
 	}
 	[ShaderNode("math_round")]
 	public class MathRound : MathNode
 	{
-		public MathRound() : this("an round mathnode") {}
-		public MathRound(string name) : base(name) { Operation = Operations.Round; }
+		public MathRound(Shader shader) : this(shader, "an round mathnode") {}
+		public MathRound(Shader shader, string name) : base(shader, name) { Operation = Operations.Round; }
 		public override string ShaderNodeTypeName => "math";
 	}
 	[ShaderNode("math_lessthan")]
 	public class MathLess_Than : MathNode
 	{
-		public MathLess_Than() : this("an lessthan mathnode") {}
-		public MathLess_Than(string name) : base(name) { Operation = Operations.Less_Than; }
+		public MathLess_Than(Shader shader) : this(shader, "an lessthan mathnode") {}
+		public MathLess_Than(Shader shader, string name) : base(shader, name) { Operation = Operations.Less_Than; }
 		public override string ShaderNodeTypeName => "math";
 	}
 	[ShaderNode("math_greaterthan")]
 	public class MathGreater_Than : MathNode
 	{
-		public MathGreater_Than() : this("an greaterthan mathnode") {}
-		public MathGreater_Than(string name) : base(name) { Operation = Operations.Greater_Than; }
+		public MathGreater_Than(Shader shader) : this(shader, "an greaterthan mathnode") {}
+		public MathGreater_Than(Shader shader, string name) : base(shader, name) { Operation = Operations.Greater_Than; }
 		public override string ShaderNodeTypeName => "math";
 	}
 	[ShaderNode("math_modulo")]
 	public class MathModulo : MathNode
 	{
-		public MathModulo() : this("an modulo mathnode") {}
-		public MathModulo(string name) : base(name) { Operation = Operations.Modulo; }
+		public MathModulo(Shader shader) : this(shader, "an modulo mathnode") {}
+		public MathModulo(Shader shader, string name) : base(shader, name) { Operation = Operations.Modulo; }
 		public override string ShaderNodeTypeName => "math";
 	}
 	[ShaderNode("math_absolute")]
 	public class MathAbsolute : MathNode
 	{
-		public MathAbsolute() : this("an absolute mathnode") {}
-		public MathAbsolute(string name) : base(name) { Operation = Operations.Absolute; }
+		public MathAbsolute(Shader shader) : this(shader, "an absolute mathnode") {}
+		public MathAbsolute(Shader shader, string name) : base(shader, name) { Operation = Operations.Absolute; }
 		public override string ShaderNodeTypeName => "math";
 	}
 }
