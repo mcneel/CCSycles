@@ -61,8 +61,9 @@ namespace ccl
 		private static void LoadShaderNodes()
 		{
 			Assembly ccass = Assembly.GetExecutingAssembly();
-			var constructTypes = new Type[1];
-			constructTypes[0] = typeof(string);
+			var constructTypes = new Type[2];
+			constructTypes[0] = typeof(ccl.Shader);
+			constructTypes[1] = typeof(string);
 
 			var exported_types = ccass.GetExportedTypes();
 			var shadernode_type = typeof(ShaderNodes.ShaderNode);
@@ -83,7 +84,7 @@ namespace ccl
 				var constructor = exported_type.GetConstructor(constructTypes);
 				if (constructor == null)
 				{
-					throw new NotImplementedException(String.Format("Class {0} must include a constructor that takes a name", exported_type));
+					throw new NotImplementedException(String.Format("Class {0} must include a constructor that takes a shader and a name", exported_type));
 				}
 
 				if (!g_registered_shadernodes.ContainsKey(shnattr.Name))

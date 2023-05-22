@@ -251,10 +251,10 @@ namespace ccl
 
 		[DllImport(Constants.ccycles, SetLastError = false,
 			CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_shader_new_graph(IntPtr sessionId, IntPtr shaderId);
-		public static void shader_new_graph(IntPtr sessionId, IntPtr shaderId)
+		private static extern void cycles_shader_new_graph(IntPtr shaderId);
+		public static void shader_new_graph(IntPtr shaderId)
 		{
-			cycles_shader_new_graph(sessionId, shaderId);
+			cycles_shader_new_graph(shaderId);
 		}
 		[DllImport(Constants.ccycles, SetLastError = false,
 			CallingConvention = CallingConvention.Cdecl)]

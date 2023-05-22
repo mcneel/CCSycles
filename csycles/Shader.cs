@@ -119,7 +119,7 @@ namespace ccl
 		/// </summary>
 		public virtual void Recreate()
 		{
-			CSycles.shader_new_graph(Session.Scene.Id, Id);
+			CSycles.shader_new_graph(Id);
 
 			m_nodes.Clear();
 			CommonConstructor(Type, CreatedInCycles);
