@@ -77,6 +77,16 @@ namespace ccl.ShaderNodes
 		public NoiseTextureProceduralNode(Shader shader, string name)
 			: base(shader, true)
 		{
+			FinalizeConstructor();
+		}
+
+		internal NoiseTextureProceduralNode(Shader shader, IntPtr intPtr) : base(shader, intPtr)
+		{
+			FinalizeConstructor();
+		}
+
+		private void FinalizeConstructor()
+		{
 			inputs = new NoiseTextureInputs(this);
 			outputs = new NoiseTextureOutputs(this);
 		}

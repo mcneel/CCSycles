@@ -54,6 +54,16 @@ namespace ccl.ShaderNodes
 		public WireframeNode(Shader shader, string name)
 			: base(shader, true)
 		{
+			FinalizeConstructor();
+		}
+
+		internal WireframeNode(Shader shader, IntPtr intPtr) : base(shader, intPtr)
+		{
+			FinalizeConstructor();
+		}
+
+		private void FinalizeConstructor()
+		{
 			inputs = new WireframeInputs(this);
 			outputs = new WireframeOutputs(this);
 

@@ -15,6 +15,7 @@ limitations under the License.
 **/
 
 using ccl.Attributes;
+using System;
 
 namespace ccl.ShaderNodes
 {
@@ -45,6 +46,16 @@ namespace ccl.ShaderNodes
 		/// </summary>
 		public RgbToLuminanceNode(Shader shader, string name) :
 			base(shader, true)
+		{
+			FinalizeConstructor();
+		}
+
+		internal RgbToLuminanceNode(Shader shader, IntPtr intPtr) : base(shader, intPtr)
+		{
+			FinalizeConstructor();
+		}
+
+		private void FinalizeConstructor()
 		{
 			inputs = new ConvertRgbInputs(this);
 			outputs = new ConvertValOutputs(this);

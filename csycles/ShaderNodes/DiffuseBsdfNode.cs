@@ -17,6 +17,7 @@ limitations under the License.
 using System.Xml;
 using ccl.ShaderNodes.Sockets;
 using ccl.Attributes;
+using System;
 
 namespace ccl.ShaderNodes
 {
@@ -67,6 +68,16 @@ namespace ccl.ShaderNodes
 		public DiffuseBsdfNode(Shader shader) : this(shader, "a diffuse bsdf node") { }
 		public DiffuseBsdfNode(Shader shader, string name) :
 			base(shader, true)
+		{
+			FinalizeConstructor();
+		}
+
+		internal DiffuseBsdfNode(Shader shader, IntPtr intPtr) : base(shader, intPtr)
+		{
+			FinalizeConstructor();
+		}
+
+		private void FinalizeConstructor()
 		{
 			inputs = new DiffuseBsdfInputs(this);
 			outputs = new DiffuseBsdfOutputs(this);

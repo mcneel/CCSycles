@@ -17,6 +17,7 @@ limitations under the License.
 using System.Xml;
 using ccl.ShaderNodes.Sockets;
 using ccl.Attributes;
+using System;
 
 namespace ccl.ShaderNodes
 {
@@ -59,6 +60,16 @@ namespace ccl.ShaderNodes
 		/// </summary>
 		public SeparateRgbNode(Shader shader) : this(shader, "a separate rgb node") { }
 		public SeparateRgbNode(Shader shader, string name) : base(shader, true)
+		{
+			FinalizeConstructor();
+		}
+
+		internal SeparateRgbNode(Shader shader, IntPtr intPtr) : base(shader, intPtr)
+		{
+			FinalizeConstructor();
+		}
+
+		private void FinalizeConstructor()
 		{
 			inputs = new SeparateRgbInputs(this);
 			outputs = new SeparateRgbOutputs(this);

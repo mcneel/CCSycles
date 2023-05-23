@@ -95,15 +95,26 @@ namespace ccl.ShaderNodes
 			this(type, "texturenode baseclass") { }
 
 		internal TextureNode(Shader shader, string name) :
-			base(shader, true) {
-				Mapping = MappingType.Texture;
-				UseMin = false;
-				UseMax = false;
-				Translation = new float4(0.0f);
-				Rotation = new float4(0.0f);
-				Scale = new float4(1.0f);
-				Min = new float4(float.MinValue);
-				Max = new float4(float.MaxValue);
+			base(shader, true)
+		{
+			FinalizeConstructor();
+		}
+
+		internal TextureNode(Shader shader, IntPtr shaderNodePtr) : base(shader, shaderNodePtr)
+		{
+			FinalizeConstructor();
+		}
+
+		private void FinalizeConstructor()
+		{
+			Mapping = MappingType.Texture;
+			UseMin = false;
+			UseMax = false;
+			Translation = new float4(0.0f);
+			Rotation = new float4(0.0f);
+			Scale = new float4(1.0f);
+			Min = new float4(float.MinValue);
+			Max = new float4(float.MaxValue);
 		}
 
 		/// <summary>

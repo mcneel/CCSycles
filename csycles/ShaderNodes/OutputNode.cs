@@ -18,6 +18,7 @@ using ccl.ShaderNodes.Sockets;
 using ccl.Attributes;
 using System.Text;
 using System.Linq;
+using System;
 
 namespace ccl.ShaderNodes
 {
@@ -70,9 +71,19 @@ namespace ccl.ShaderNodes
 		public OutputNode(Shader shader, string name) :
 			base(shader, true)
 		{
+			FinalizeConstructor();
+		}
+
+		internal OutputNode(Shader shader, IntPtr shaderNodePtr) : base(shader, shaderNodePtr)
+		{
+			FinalizeConstructor();
+		}
+
+		private void FinalizeConstructor()
+		{
 			inputs = new OutputInputs(this);
 			outputs = new OutputOutputs(this);
 		}
-	}
+  }
 
 }

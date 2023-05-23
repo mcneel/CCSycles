@@ -100,6 +100,16 @@ namespace ccl.ShaderNodes
 		public MatrixMathNode(Shader shader, string name) :
 			base(shader, true)
 		{
+			FinalizeConstructor();
+		}
+
+		internal MatrixMathNode(Shader shader, IntPtr ptr) : base(shader, ptr)
+		{
+			FinalizeConstructor();
+		}
+
+		private void FinalizeConstructor()
+		{
 			inputs = new MatrixMathInputs(this);
 			outputs = new MatrixMathOutputs(this);
 

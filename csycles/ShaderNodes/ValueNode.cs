@@ -45,6 +45,16 @@ namespace ccl.ShaderNodes
 		public ValueNode(Shader shader, string name) :
 			base(shader, true)
 		{
+			FinalizeConstructor();
+		}
+
+		internal ValueNode(Shader shader, IntPtr intPtr) : base(shader, intPtr)
+		{
+			FinalizeConstructor();
+		}
+
+		private void FinalizeConstructor()
+		{
 			inputs = null;
 			outputs = new ValueOutputs(this);
 		}

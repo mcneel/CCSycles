@@ -32,12 +32,12 @@ namespace ccl.ShaderNodes
 	{
 
 		/// <summary>
-		/// Set a name for this node
+		/// Set a shaderNodeTypeName for this node
 		/// </summary>
 		public string Name { get; set; }
 
 		/// <summary>
-		/// Get name that can be used as variable name
+		/// Get shaderNodeTypeName that can be used as variable shaderNodeTypeName
 		/// </summary>
 		public virtual string VariableName
 		{
@@ -58,7 +58,7 @@ namespace ccl.ShaderNodes
 		public ShaderNodeType Type { get; }
 
 		/// <summary>
-		/// Get the XML name of the node type as string.
+		/// Get the XML shaderNodeTypeName of the node type as string.
 		/// </summary>
 		virtual public string ShaderNodeTypeName
 		{
@@ -127,9 +127,9 @@ namespace ccl.ShaderNodes
 		public Shader Shader { get; private set; }
 
 
-		internal void ConstructShaderNode(Shader shader, string name)
+		internal void ConstructShaderNode(Shader shader, string shaderNodeTypeName)
 		{
-			Id = CSycles.add_shader_node(shader.Id, name);
+			Id = CSycles.add_shader_node(shader.Id, shaderNodeTypeName);
 			Shader = shader;
 		}
 
@@ -137,9 +137,9 @@ namespace ccl.ShaderNodes
 		/// A node deriving from ShaderNode should override this if
 		/// it has enumerations that need to be committed to Cycles
 		/// </summary>
-		/// <param name="clientId"></param>
-		/// <param name="sceneId"></param>
-		/// <param name="shaderId"></param>
+		/// <param shaderNodeTypeName="clientId"></param>
+		/// <param shaderNodeTypeName="sceneId"></param>
+		/// <param shaderNodeTypeName="shaderId"></param>
 		virtual internal void SetEnums(IntPtr sessionId, IntPtr shaderId)
 		{
 			// do nothing
@@ -149,9 +149,9 @@ namespace ccl.ShaderNodes
 		/// A node deriving from ShaderNode should override this if
 		/// it has direct members that need to be committed to Cycles
 		/// </summary>
-		/// <param name="clientId"></param>
-		/// <param name="sceneId"></param>
-		/// <param name="shaderId"></param>
+		/// <param shaderNodeTypeName="clientId"></param>
+		/// <param shaderNodeTypeName="sceneId"></param>
+		/// <param shaderNodeTypeName="shaderId"></param>
 		virtual internal void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
 		{
 			// do nothing
@@ -189,7 +189,7 @@ namespace ccl.ShaderNodes
 		/// <summary>
 		/// Implement ParseXml to support proper XMl support.
 		/// </summary>
-		/// <param name="xmlNode"></param>
+		/// <param shaderNodeTypeName="xmlNode"></param>
 		virtual internal void ParseXml(XmlReader xmlNode)
 		{
 		}
@@ -207,7 +207,7 @@ namespace ccl.ShaderNodes
 		public virtual string CreateXml()
 		{
 			var nfi = Utilities.Instance.NumberFormatInfo;
-			var xml = new StringBuilder($"<{ShaderNodeTypeName} name=\"{VariableName}\" ", 1024);
+			var xml = new StringBuilder($"<{ShaderNodeTypeName} shaderNodeTypeName=\"{VariableName}\" ", 1024);
 
 			foreach (var inp in inputs.Sockets)
 			{

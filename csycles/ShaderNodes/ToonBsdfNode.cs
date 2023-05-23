@@ -81,6 +81,16 @@ namespace ccl.ShaderNodes
 		public ToonBsdfNode(Shader shader, string name) :
 			base(shader, true)
 		{
+			FinalizeConstructor();
+		}
+
+		internal ToonBsdfNode(Shader shader, IntPtr intPtr) : base(shader, intPtr)
+		{
+			FinalizeConstructor();
+		}
+
+		private void FinalizeConstructor()
+		{
 			inputs = new ToonBsdfInputs(this);
 			outputs = new ToonBsdfOutputs(this);
 			ins.Color.Value = new float4(1.0f, 1.0f, 1.0f, 1.0f);
@@ -88,6 +98,7 @@ namespace ccl.ShaderNodes
 			ins.Smooth.Value = 0.0f;
 			Component = Components.Diffuse;
 		}
+
 		public Components Component { get; set; }
 
 		internal override void SetEnums(IntPtr sessionId, IntPtr shaderId)

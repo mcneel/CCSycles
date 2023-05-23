@@ -43,8 +43,6 @@ namespace ccl
 		private Session Session { get; }
 		public ShaderType Type { get; set; }
 
-		private bool CreatedInCycles { get; set; }
-
 		/// <summary>
 		/// Print out debug information if set to true. Default false.
 		/// </summary>
@@ -64,7 +62,7 @@ namespace ccl
 		{
 			Session = session;
 			Id = CSycles.create_shader(Session.Scene.Id);
-			CommonConstructor(type, false);
+			CommonConstructor(type);
 		}
 
 		/// <summary>
@@ -79,10 +77,10 @@ namespace ccl
 		{
 			Session = session;
 			Id = id;
-			CommonConstructor(type, true);
+			CommonConstructor(type);
 		}
 
-		private void CommonConstructor(ShaderType type, bool createdInCycles)
+		private void CommonConstructor(ShaderType type)
 		{
 			Type = type;
 			int nodeCount = CSycles.shader_node_count(Id);
@@ -92,12 +90,9 @@ namespace ccl
 				string name = CSycles.shadernode_get_name(shn);
 				Console.WriteLine($"Shadernode {shn} with type name {name}");
 				Debug.WriteLine($"Shadernode {shn} with type name {name}");
+				ShaderNode n = CSycles.CreateShaderNode(this, shn, name);
+				AddNode(n);
 			}
-			/*
-			Output = new OutputNode();
-			AddNode(Output);
-			*/
-			CreatedInCycles = createdInCycles;
 			Verbose = false;
 		}
 
@@ -122,7 +117,7 @@ namespace ccl
 			CSycles.shader_new_graph(Id);
 
 			m_nodes.Clear();
-			CommonConstructor(Type, CreatedInCycles);
+			CommonConstructor(Type);
 		}
 
 		/// <summary>
@@ -145,6 +140,7 @@ namespace ccl
 		/// <param name="node">ShaderNode to add</param>
 		public virtual void AddNode(ShaderNode node)
 		{
+			if(node is OutputNode) Output = (OutputNode)node;
 #if DONOTHING
 			if(node is OutputNode)
 			{
@@ -154,8 +150,8 @@ namespace ccl
 
 			var nodeid = CSycles.add_shader_node( Id, node.ShaderNodeTypeName);
 			node.Id = nodeid;
-			m_nodes.Add(node);
 #endif
+			m_nodes.Add(node);
 		}
 
 		public void CreateNode(string nodeTypeName)
@@ -247,7 +243,7 @@ namespace ccl
 		{
 			set
 			{
-				if (!CreatedInCycles && Session != null) CSycles.shader_set_use_mis(Session.Scene.Id, Id, value);
+				if (Session != null) CSycles.shader_set_use_mis(Session.Scene.Id, Id, value);
 			}
 		}
 
@@ -258,7 +254,7 @@ namespace ccl
 		{
 			set
 			{
-				if (!CreatedInCycles && Session != null) CSycles.shader_set_use_transparent_shadow(Session.Scene.Id, Id, value);
+				if (Session != null) CSycles.shader_set_use_transparent_shadow(Session.Scene.Id, Id, value);
 			}
 		}
 
@@ -269,14 +265,14 @@ namespace ccl
 		{
 			set
 			{
-				if (!CreatedInCycles && Session != null) CSycles.shader_set_heterogeneous_volume(Session.Scene.Id, Id, value);
+				if (Session != null) CSycles.shader_set_heterogeneous_volume(Session.Scene.Id, Id, value);
 			}
 		}
 
 		/// <summary>
 		/// Create node graph in the given shader from the passed XML.
 		///
-		/// Note that you should call FinalizeGraph on shader if you are not further
+		/// Note that you should call FinalizeConstructor on shader if you are not further
 		/// changing the graph.
 		/// </summary>
 		/// <param name="shader">Shader to populate with nodes from the XML representation.</param>

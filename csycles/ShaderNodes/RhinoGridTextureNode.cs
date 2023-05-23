@@ -52,6 +52,16 @@ namespace ccl.ShaderNodes
 		public GridTextureProceduralNode(Shader shader, string name)
 			: base(shader, true)
 		{
+			FinalizeConstructor();
+		}
+
+		internal GridTextureProceduralNode(Shader shader, IntPtr intPtr) : base(shader, intPtr)
+		{
+			FinalizeConstructor();
+		}
+
+		private void FinalizeConstructor()
+		{
 			inputs = new GridTextureInputs(this);
 			outputs = new GridTextureOutputs(this);
 		}

@@ -17,6 +17,7 @@ limitations under the License.
 using System.Xml;
 using ccl.ShaderNodes.Sockets;
 using ccl.Attributes;
+using System;
 
 namespace ccl.ShaderNodes
 {
@@ -59,6 +60,16 @@ namespace ccl.ShaderNodes
 
 		public CombineXyzNode(Shader shader) : this(shader, "a combine XYZ node") { }
 		public CombineXyzNode(Shader shader, string name) : base(shader, true)
+		{
+			FinalizeConstructor();
+		}
+
+		internal CombineXyzNode(Shader shader, IntPtr intPtr) : base(shader, intPtr)
+		{
+			FinalizeConstructor();
+		}
+
+		private void FinalizeConstructor()
 		{
 			inputs = new CombineXyzInputs(this);
 			outputs = new CombineXyzOutputs(this);

@@ -61,6 +61,16 @@ namespace ccl.ShaderNodes
 		public PerlinMarbleTextureProceduralNode(Shader shader, string name)
 			: base(shader, true)
 		{
+			FinalizeConstructor();
+		}
+
+		internal PerlinMarbleTextureProceduralNode(Shader shader, IntPtr intPtr) : base(shader, intPtr)
+		{
+			FinalizeConstructor();
+		}
+
+		private void FinalizeConstructor()
+		{
 			inputs = new PerlinMarbleTextureInputs(this);
 			outputs = new PerlinMarlinTextureOutputs(this);
 		}

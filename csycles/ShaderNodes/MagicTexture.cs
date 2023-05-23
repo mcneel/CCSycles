@@ -62,6 +62,16 @@ namespace ccl.ShaderNodes
 		public MagicTexture(Shader shader, string name)
 			: base(shader, name)
 		{
+			FinalizeConstructor();
+		}
+
+		internal MagicTexture(Shader shader, IntPtr intPtr) : base(shader, intPtr)
+		{
+			FinalizeConstructor();
+		}
+
+		private void FinalizeConstructor()
+		{
 			inputs = new MagicInputs(this);
 			outputs = new MagicOutputs(this);
 

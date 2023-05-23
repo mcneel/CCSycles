@@ -16,6 +16,7 @@ limitations under the License.
 
 using ccl.ShaderNodes.Sockets;
 using ccl.Attributes;
+using System;
 
 namespace ccl.ShaderNodes
 {
@@ -55,11 +56,21 @@ namespace ccl.ShaderNodes
 		public HoldoutNode(Shader shader, string name)
 			: base(shader, true)
 		{
+			FinalizeConstructor();
+		}
+
+		internal HoldoutNode(Shader shader, IntPtr intPtr) : base(shader, intPtr)
+		{
+			FinalizeConstructor();
+		}
+
+		private void FinalizeConstructor()
+		{
 			inputs = new HoldoutInputs(this);
 			outputs = new HoldoutOutputs(this);
 
 			ins.SurfaceMixWeight.Value = 0.0f;
 			ins.VolumeMixWeight.Value = 0.0f;
 		}
-	}
+  }
 }

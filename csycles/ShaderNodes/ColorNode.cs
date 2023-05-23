@@ -78,6 +78,16 @@ namespace ccl.ShaderNodes
 		public ColorNode(Shader shader, string name) :
 			base(shader, true)
 		{
+			FinalizeConstructor();
+		}
+
+		internal ColorNode(Shader shader, IntPtr intPtr) : base(shader, intPtr)
+		{
+			FinalizeConstructor();
+		}
+
+		private void FinalizeConstructor()
+		{
 			inputs = null;
 			outputs = new ColorOutputs(this);
 			Value = new float4(0.8f);

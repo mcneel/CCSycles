@@ -96,6 +96,16 @@ namespace ccl.ShaderNodes
 		public MappingNode(Shader shader, string name) :
 			base(shader, name)
 		{
+			FinalizeConstructor();
+		}
+
+		internal MappingNode(Shader shader, IntPtr intPtr) : base(shader, intPtr)
+		{
+			FinalizeConstructor();
+		}
+
+		private void FinalizeConstructor()
+		{
 			inputs = new MappingInputs(this);
 			outputs = new MappingOutputs(this);
 		}

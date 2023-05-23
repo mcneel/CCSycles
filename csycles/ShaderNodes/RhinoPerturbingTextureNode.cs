@@ -57,6 +57,16 @@ namespace ccl.ShaderNodes
 		public PerturbingPart1TextureProceduralNode(Shader shader) : this(shader, "a pertrubing part1 texture") { }
 		public PerturbingPart1TextureProceduralNode(Shader shader, string name) : base(shader, true)
 		{
+			FinalizeConstructor();
+		}
+
+		internal PerturbingPart1TextureProceduralNode(Shader shader, IntPtr intPtr) : base(shader, intPtr)
+		{
+			FinalizeConstructor();
+		}
+
+		private void FinalizeConstructor()
+		{
 			inputs = new PerturbingPart1TextureInputs(this);
 			outputs = new PerturbingPart1TextureOutputs(this);
 		}
@@ -107,6 +117,16 @@ namespace ccl.ShaderNodes
 
 		public PerturbingPart2TextureProceduralNode(Shader shader) : this(shader, "a pertrubing part2 texture") { }
 		public PerturbingPart2TextureProceduralNode(Shader shader, string name) : base(shader, true)
+		{
+			FinalizeConstructor();
+		}
+
+		internal PerturbingPart2TextureProceduralNode(Shader shader, IntPtr intPtr) : base(shader, intPtr)
+		{
+			FinalizeConstructor();
+		}
+
+		private void FinalizeConstructor()
 		{
 			inputs = new PerturbingPart2TextureInputs(this);
 			outputs = new PerturbingPart2TextureOutputs(this);

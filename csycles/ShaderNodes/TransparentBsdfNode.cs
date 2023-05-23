@@ -17,6 +17,7 @@ limitations under the License.
 using System.Xml;
 using ccl.ShaderNodes.Sockets;
 using ccl.Attributes;
+using System;
 
 namespace ccl.ShaderNodes
 {
@@ -61,6 +62,16 @@ namespace ccl.ShaderNodes
 		/// Create a new Transparent BSDF closure. Default Color is white
 		/// </summary>
 		public TransparentBsdfNode(Shader shader, string name) : base(shader, true)
+		{
+			FinalizeConstructor();
+		}
+
+		internal TransparentBsdfNode(Shader shader, IntPtr intPtr) : base(shader, intPtr)
+		{
+			FinalizeConstructor();
+		}
+
+		private void FinalizeConstructor()
 		{
 			inputs = new TransparentBsdfInputs(this);
 			outputs = new TransparentBsdfOutputs(this);

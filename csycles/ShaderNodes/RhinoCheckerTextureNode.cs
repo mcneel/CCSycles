@@ -48,6 +48,16 @@ namespace ccl.ShaderNodes
 		public CheckerTextureProceduralNode(Shader shader) : this(shader, "a checker texture") { }
 		public CheckerTextureProceduralNode(Shader shader, string name) : base(shader, true)
 		{
+			FinalizeConstructor();
+		}
+
+		internal CheckerTextureProceduralNode(Shader shader, IntPtr intPtr ) : base(shader, intPtr)
+		{
+			FinalizeConstructor();
+		}
+
+		private void FinalizeConstructor()
+		{
 			inputs = new CheckerTextureInputs(this);
 			outputs = new CheckerTextureOutputs(this);
 		}

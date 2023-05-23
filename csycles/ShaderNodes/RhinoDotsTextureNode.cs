@@ -83,6 +83,16 @@ namespace ccl.ShaderNodes
 		public DotsTextureProceduralNode(Shader shader) : this(shader, "a dots texture") { }
 		public DotsTextureProceduralNode(Shader shader, string name) : base(shader, true)
 		{
+			FinalzeConstructor();
+		}
+
+		internal DotsTextureProceduralNode(Shader shader, IntPtr intPtr) : base(shader, intPtr)
+		{
+			FinalzeConstructor();
+		}
+
+		private void FinalzeConstructor()
+		{
 			inputs = new DotsTextureInputs(this);
 			outputs = new DotsTextureOutputs(this);
 		}

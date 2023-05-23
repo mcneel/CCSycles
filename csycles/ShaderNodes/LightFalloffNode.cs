@@ -17,6 +17,7 @@ limitations under the License.
 using System.Xml;
 using ccl.ShaderNodes.Sockets;
 using ccl.Attributes;
+using System;
 
 namespace ccl.ShaderNodes
 {
@@ -59,6 +60,16 @@ namespace ccl.ShaderNodes
 		public LightFalloffNode(Shader shader) : this(shader, "a light fall-off node") { }
 		public LightFalloffNode(Shader shader, string name) :
 			base(shader, true)
+		{
+			FinalizeConstructor();
+		}
+
+		internal LightFalloffNode(Shader shader, IntPtr intPtr) : base(shader, intPtr)
+		{
+			FinalizeConstructor();
+		}
+
+		private void FinalizeConstructor()
 		{
 			inputs = new LightFalloffInputs(this);
 			outputs = new LightFalloffOutputs(this);

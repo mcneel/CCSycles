@@ -44,7 +44,7 @@ namespace ccl.ShaderNodes
 		}
 	}
 
-	[ShaderNode("rhino_azimuth_altitude_transform")]
+	[ShaderNode("azimuth_altitude_transform")]
 	public class RhinoAzimuthAltitudeTransformNode : ShaderNode
 	{
 		public RhinoAzimuthAltitudeTransformInputs ins => (RhinoAzimuthAltitudeTransformInputs)inputs;
@@ -57,6 +57,16 @@ namespace ccl.ShaderNodes
 		public RhinoAzimuthAltitudeTransformNode(Shader shader) : this(shader, "a azimuth altitude transform node") { }
 		public RhinoAzimuthAltitudeTransformNode(Shader shader, string name)
 			: base(shader, true)
+		{
+			FinalizeConstructor();
+		}
+
+		internal RhinoAzimuthAltitudeTransformNode(Shader shader, IntPtr intPtr) : base(shader, intPtr)
+		{
+			FinalizeConstructor();
+		}
+
+		private void FinalizeConstructor()
 		{
 			inputs = new RhinoAzimuthAltitudeTransformInputs(this);
 			outputs = new RhinoAzimuthAltitudeTransformOutputs(this);

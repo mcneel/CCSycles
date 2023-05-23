@@ -95,6 +95,16 @@ namespace ccl.ShaderNodes
 		public BumpNode(Shader shader, string name) :
 			base(shader, true)
 		{
+			FinalizeConstructor();
+		}
+
+		internal BumpNode(Shader shader, IntPtr intPtr) : base(shader, intPtr)
+		{
+			FinalizeConstructor();
+		}
+
+		private void FinalizeConstructor()
+		{
 			inputs = new BumpInputs(this);
 			outputs = new BumpOutputs(this);
 

@@ -17,6 +17,7 @@ limitations under the License.
 using System.Xml;
 using ccl.ShaderNodes.Sockets;
 using ccl.Attributes;
+using System;
 
 namespace ccl.ShaderNodes
 {
@@ -53,6 +54,16 @@ namespace ccl.ShaderNodes
 
 		public EmissionNode(Shader shader) : this(shader, "an emission node") { }
 		public EmissionNode(Shader shader, string name) : base(shader, true)
+		{
+			FinalizeConstructor();
+		}
+
+		internal EmissionNode(Shader shader, IntPtr intPtr) : base(shader, intPtr)
+		{
+			FinalizeConstructor();
+		}
+
+		private void FinalizeConstructor()
 		{
 			inputs = new EmissionInputs(this);
 			outputs = new EmissionOutputs(this);

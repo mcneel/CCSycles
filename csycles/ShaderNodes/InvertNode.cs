@@ -70,6 +70,16 @@ namespace ccl.ShaderNodes
 		public InvertNode(Shader shader, string name) :
 			base(shader, true)
 		{
+			FinalizeConstructor();
+		}
+
+		internal InvertNode(Shader shader, IntPtr intPtr) : base(shader, intPtr)
+		{
+			FinalizeConstructor();
+		}
+
+		private void FinalizeConstructor()
+		{
 			inputs = new InvertInputs(this);
 			outputs = new InvertOutputs(this);
 

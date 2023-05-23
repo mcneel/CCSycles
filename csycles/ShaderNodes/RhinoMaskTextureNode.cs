@@ -62,6 +62,16 @@ namespace ccl.ShaderNodes
 		public MaskTextureProceduralNode(Shader shader, string name)
 			: base(shader, true)
 		{
+			FinalizeConstructor();
+		}
+
+		internal MaskTextureProceduralNode(Shader shader, IntPtr intPtr) : base(shader, intPtr)
+		{
+			FinalizeConstructor();
+		}
+
+		private void FinalizeConstructor()
+		{
 			inputs = new MaskTextureInputs(this);
 			outputs = new MaskTextureOutputs(this);
 		}

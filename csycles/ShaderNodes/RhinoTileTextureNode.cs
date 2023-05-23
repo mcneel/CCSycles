@@ -65,6 +65,16 @@ namespace ccl.ShaderNodes
 		public TileTextureProceduralNode(Shader shader, string name)
 			: base(shader, true)
 		{
+			FinalizeConstructor();
+		}
+
+		internal TileTextureProceduralNode(Shader shader, IntPtr intPtr) : base(shader, intPtr)
+		{
+			FinalizeConstructor();
+		}
+
+		private void FinalizeConstructor()
+		{
 			inputs = new TileTextureInputs(this);
 			outputs = new TileTextureOutputs(this);
 		}

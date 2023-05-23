@@ -344,6 +344,16 @@ namespace ccl.ShaderNodes
 
 		public ColorRampNode(Shader shader, string name) : base(shader, true)
 		{
+			FinalizeConstructor();
+		}
+
+		internal ColorRampNode(Shader shader, IntPtr intPtr) : base(shader, intPtr)
+		{
+			FinalizeConstructor();
+		}
+
+		private void FinalizeConstructor()
+		{
 			inputs = new ColorRampInputs(this);
 			outputs = new ColorRampOutputs(this);
 			Interpolate = true;

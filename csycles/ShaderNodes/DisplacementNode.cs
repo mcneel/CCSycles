@@ -17,6 +17,7 @@ limitations under the License.
 using System.Xml;
 using ccl.ShaderNodes.Sockets;
 using ccl.Attributes;
+using System;
 
 namespace ccl.ShaderNodes
 {
@@ -69,6 +70,16 @@ namespace ccl.ShaderNodes
 		public DisplacementNode(Shader shader) : this(shader, "a displacement node") { }
 		public DisplacementNode(Shader shader, string name) :
 			base(shader, true)
+		{
+			FinalizeConstructor();
+		}
+
+		internal DisplacementNode(Shader shader, IntPtr intPtr) : base(shader, intPtr)
+		{
+			FinalizeConstructor();
+		}
+
+		private void FinalizeConstructor()
 		{
 			inputs = new DisplacementInputs(this);
 			outputs = new DisplacementOutputs(this);

@@ -121,6 +121,16 @@ namespace ccl.ShaderNodes
 		public GradientTextureNode(Shader shader, string name)
 			: base(shader, name)
 		{
+			FinalizeConstructor();
+		}
+
+		internal GradientTextureNode(Shader shader, IntPtr intPtr) : base(shader, intPtr)
+		{
+			FinalizeConstructor();
+		}
+
+		private void FinalizeConstructor()
+		{
 			inputs = new GradientInputs(this);
 			outputs = new GradientOutputs(this);
 			Gradient = GradientType.Linear;

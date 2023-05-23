@@ -17,6 +17,7 @@ limitations under the License.
 using System.Xml;
 using ccl.ShaderNodes.Sockets;
 using ccl.Attributes;
+using System;
 
 namespace ccl.ShaderNodes
 {
@@ -62,6 +63,16 @@ namespace ccl.ShaderNodes
 		public CheckerTexture(Shader shader) : this(shader, "a checker texture") { }
 		public CheckerTexture(Shader shader, string name)
 			: base(shader, name)
+		{
+			FinalizeConstructor();
+		}
+
+		internal CheckerTexture(Shader shader, IntPtr intPtr) : base(shader, intPtr)
+		{
+			FinalizeConstructor();
+		}
+
+		private void FinalizeConstructor()
 		{
 			inputs = new CheckerInputs(this);
 			outputs = new CheckerOutputs(this);

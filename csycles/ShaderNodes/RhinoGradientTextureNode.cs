@@ -65,6 +65,16 @@ namespace ccl.ShaderNodes
 		public GradientTextureProceduralNode(Shader shader, string name)
 			: base(shader, true)
 		{
+			FinalizeConstructor();
+		}
+
+		internal GradientTextureProceduralNode(Shader shader, IntPtr intPtr) : base(shader, intPtr)
+		{
+			FinalizeConstructor();
+		}
+
+		private void FinalizeConstructor()
+		{
 			inputs = new GradientTextureInputs(this);
 			outputs = new GradientTextureOutputs(this);
 		}

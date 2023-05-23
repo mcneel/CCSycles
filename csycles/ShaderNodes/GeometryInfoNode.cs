@@ -115,8 +115,18 @@ namespace ccl.ShaderNodes
 		public GeometryInfoNode(Shader shader, string name)
 			: base(shader, true)
 		{
+			FinalizeConstructor();
+		}
+
+		internal GeometryInfoNode(Shader shader, IntPtr intPtr) : base(shader, intPtr)
+		{
+			FinalizeConstructor();
+		}
+
+		private void FinalizeConstructor()
+		{
 			inputs = new GeometryInfoInputs();
 			outputs = new GeometryInfoOutputs(this);
 		}
-	}
+  }
 }

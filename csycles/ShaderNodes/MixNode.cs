@@ -96,6 +96,16 @@ namespace ccl.ShaderNodes
 		public MixNode(Shader shader, string name) :
 			base(shader, true)
 		{
+			FinalizeConstructor();
+		}
+
+		internal MixNode(Shader shader, IntPtr intptr) : base(shader, intptr)
+		{
+			FinalizeConstructor();
+		}
+
+		private void FinalizeConstructor()
+		{
 			inputs = new MixInputs(this);
 			outputs = new MixOutputs(this);
 

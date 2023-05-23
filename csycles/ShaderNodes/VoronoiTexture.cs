@@ -106,6 +106,16 @@ namespace ccl.ShaderNodes
 		public VoronoiTexture(Shader shader, string name)
 			: base(shader, name)
 		{
+			FinalizeConstructor();
+		}
+
+		internal VoronoiTexture(Shader shader, IntPtr intPtr) : base(shader, intPtr)
+		{
+			FinalizeConstructor();
+		}
+
+		private void FinalizeConstructor()
+		{
 			inputs = new VoronoiInputs(this);
 			outputs = new VoronoiOutputs(this);
 

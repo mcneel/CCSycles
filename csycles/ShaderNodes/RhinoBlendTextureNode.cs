@@ -54,6 +54,16 @@ namespace ccl.ShaderNodes
 		public BlendTextureProceduralNode(Shader shader, string name)
 			: base(shader, true)
 		{
+			FinalizeConstructor();
+		}
+
+		internal BlendTextureProceduralNode(Shader shader, IntPtr intPtr) : base(shader, intPtr)
+		{
+			FinalizeConstructor();
+		}
+
+		private void FinalizeConstructor()
+		{
 			inputs = new BlendTextureInputs(this);
 			outputs = new BlendTextureOutputs(this);
 		}

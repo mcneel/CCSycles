@@ -103,6 +103,16 @@ namespace ccl.ShaderNodes
 		public AttributeNode(Shader shader, string name) :
 			base(shader, true)
 		{
+			FinalizeConstructor();
+		}
+
+		internal AttributeNode(Shader shader, IntPtr shaderNodePtr) : base(shader, shaderNodePtr)
+		{
+			FinalizeConstructor();
+		}
+
+		private void FinalizeConstructor()
+		{
 			inputs = new AttributeInputs();
 			outputs = new AttributeOutputs(this);
 		}

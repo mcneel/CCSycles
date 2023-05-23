@@ -54,6 +54,16 @@ namespace ccl.ShaderNodes
 		public SkyTexture(Shader shader, string name)
 			: base(shader, name)
 		{
+			FinalizeConstructor();
+		}
+
+		internal SkyTexture(Shader shader, IntPtr intPtr) : base(shader, intPtr)
+		{
+			FinalizeConstructor();
+		}
+
+		private void FinalizeConstructor()
+		{
 			inputs = new SkyInputs(this);
 			outputs = new SkyOutputs(this);
 

@@ -71,6 +71,16 @@ namespace ccl.ShaderNodes
 		public ProjectionChangerTextureProceduralNode(Shader shader, string name)
 			: base(shader, true)
 		{
+			FinalizeConstructor();
+		}
+
+		internal ProjectionChangerTextureProceduralNode(Shader shader, IntPtr intPtr) : base(shader, intPtr)
+		{
+			FinalizeConstructor();
+		}
+
+		private void FinalizeConstructor()
+		{
 			inputs = new ProjectionChangerTextureInputs(this);
 			outputs = new ProjectionChangerTextureOutputs(this);
 		}

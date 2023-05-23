@@ -83,6 +83,16 @@ namespace ccl.ShaderNodes
 		public AnisotropicBsdfNode(Shader shader, string name) :
 			base(shader, true)
 		{
+			FinalizeConstructor();
+		}
+
+		internal AnisotropicBsdfNode(Shader shader, IntPtr shaderNodePtr) : base(shader, shaderNodePtr)
+		{
+			FinalizeConstructor();
+		}
+
+		private void FinalizeConstructor()
+		{
 			inputs = new AnisotropicBsdfInputs(this);
 			outputs = new AnisotropicBsdfOutputs(this);
 			ins.Color.Value = new float4(1.0f);
@@ -93,6 +103,7 @@ namespace ccl.ShaderNodes
 
 			Distribution = AnisotropicDistribution.GGX;
 		}
+
 		public void SetDistribution(string dist)
 		{
 			dist = dist.Replace("-", "_");

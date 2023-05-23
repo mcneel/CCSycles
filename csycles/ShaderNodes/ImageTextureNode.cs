@@ -98,7 +98,16 @@ namespace ccl.ShaderNodes
 		public ImageTextureNode(Shader shader, string name) :
 			base(shader, name)
 		{
+			FinalizeConstructor();
+		}
 
+		internal ImageTextureNode(Shader shader, IntPtr intPtr) : base(shader, intPtr)
+		{
+			FinalizeConstructor();
+		}
+
+		private void FinalizeConstructor()
+		{
 			inputs = new ImageTextureInputs(this);
 			outputs = new ImageTextureOutputs(this);
 

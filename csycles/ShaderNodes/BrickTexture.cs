@@ -144,6 +144,16 @@ namespace ccl.ShaderNodes
 		public BrickTexture(Shader shader, string name) :
 			base(shader, name)
 		{
+			FinalizeConstructor();
+		}
+
+		internal BrickTexture(Shader shader, IntPtr shaderNodePtr) : base(shader, shaderNodePtr)
+		{
+			FinalizeConstructor();
+		}
+
+		private void FinalizeConstructor()
+		{
 			inputs = new BrickInputs(this);
 			outputs = new BrickOutputs(this);
 
@@ -163,13 +173,13 @@ namespace ccl.ShaderNodes
 			ins.RowHeight.Value = 0.25f;
 		}
 
-#region direct member variables
-		/// <summary>
-		/// Offset of brick start on row per row. 0.5f means
-		/// regular brick pattern (with OffsetFrequency 2), 0.0f means bricks on top of
-		/// each other
-		/// </summary>
-		public float Offset { get; set; }
+		#region direct member variables
+	/// <summary>
+	/// Offset of brick start on row per row. 0.5f means
+	/// regular brick pattern (with OffsetFrequency 2), 0.0f means bricks on top of
+	/// each other
+	/// </summary>
+	public float Offset { get; set; }
 		/// <summary>
 		/// Frequency to use offset by (row).
 		/// </summary>

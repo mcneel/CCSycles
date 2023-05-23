@@ -17,6 +17,7 @@ limitations under the License.
 using System.Xml;
 using ccl.ShaderNodes.Sockets;
 using ccl.Attributes;
+using System;
 
 namespace ccl.ShaderNodes
 {
@@ -63,7 +64,7 @@ namespace ccl.ShaderNodes
 	/// <summary>
 	/// Background shader node. Used in world/background shaders
 	/// </summary>
-	[ShaderNode("background")]
+	[ShaderNode("background_shader")]
 	public class BackgroundNode : ShaderNode
 	{
 		/// <summary>
@@ -91,13 +92,23 @@ namespace ccl.ShaderNodes
 		public BackgroundNode(Shader shader, string name) :
 			base(shader, true)
 		{
+			FinalizeConstructor();
+		}
+
+		internal BackgroundNode(Shader shader, IntPtr shaderNodePtr) : base(shader, shaderNodePtr)
+		{
+			FinalizeConstructor();
+		}
+
+		private void FinalizeConstructor()
+		{
 			inputs = new BackgroundInputs(this);
 			outputs = new BackgroundOutputs(this);
 			ins.Color.Value = new float4();
 			ins.Strength.Value = 1.0f;
 		}
 
-		internal override void ParseXml(XmlReader xmlNode)
+	internal override void ParseXml(XmlReader xmlNode)
 		{
 			Utilities.Instance.get_float4(ins.Color, xmlNode.GetAttribute("color"));
 			Utilities.Instance.get_float(ins.Strength, xmlNode.GetAttribute("strength"));

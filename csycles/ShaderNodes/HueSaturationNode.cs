@@ -17,6 +17,7 @@ limitations under the License.
 using System.Xml;
 using ccl.ShaderNodes.Sockets;
 using ccl.Attributes;
+using System;
 
 namespace ccl.ShaderNodes
 {
@@ -63,6 +64,16 @@ namespace ccl.ShaderNodes
 		public HueSaturationNode(Shader shader) : this(shader, "a HSV node") { }
 		public HueSaturationNode(Shader shader, string name)
 			: base(shader, true)
+		{
+			FinalizeConstructor();
+		}
+
+		internal HueSaturationNode(Shader shader, IntPtr intPtr) : base(shader, intPtr)
+		{
+			FinalizeConstructor();
+		}
+
+		private void FinalizeConstructor()
 		{
 			inputs = new HueSaturationInputs(this);
 			outputs = new HueSaturationOutputs(this);

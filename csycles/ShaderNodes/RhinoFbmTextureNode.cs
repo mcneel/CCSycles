@@ -53,6 +53,16 @@ namespace ccl.ShaderNodes
 		public FbmTextureProceduralNode(Shader shader, string name)
 			: base(shader, true)
 		{
+			FinalizeConstructor();
+		}
+
+		internal FbmTextureProceduralNode(Shader shader, IntPtr intPtr) : base(shader, intPtr)
+		{
+			FinalizeConstructor();
+		}
+
+		private void FinalizeConstructor()
+		{
 			inputs = new FbmTextureInputs(this);
 			outputs = new FbmTextureOutputs(this);
 		}

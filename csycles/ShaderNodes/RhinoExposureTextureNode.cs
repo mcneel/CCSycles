@@ -53,6 +53,16 @@ namespace ccl.ShaderNodes
 		public ExposureTextureProceduralNode(Shader shader) : this(shader, "an exposure texture") { }
 		public ExposureTextureProceduralNode(Shader shader, string name) : base(shader, true)
 		{
+			FinalizeConstructor();
+		}
+
+		internal ExposureTextureProceduralNode(Shader shader, IntPtr intPtr) : base(shader, intPtr)
+		{
+			FinalizeConstructor();
+		}
+
+		private void FinalizeConstructor()
+		{
 			inputs = new ExposureTextureInputs(this);
 			outputs = new ExposureTextureOutputs(this);
 		}

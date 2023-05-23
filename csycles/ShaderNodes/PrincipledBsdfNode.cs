@@ -137,6 +137,16 @@ namespace ccl.ShaderNodes
 		public PrincipledBsdfNode(Shader shader, string name) :
 			base(shader, true)
 		{
+			FinalizeConstructor();
+		}
+
+		internal PrincipledBsdfNode(Shader shader, IntPtr intPtr) : base(shader, intPtr)
+		{
+			FinalizeConstructor();
+		}
+
+		private void FinalizeConstructor()
+		{
 			/* TODO: Add scatter method property */
 			inputs = new PrincipledBsdfInputs(this);
 			outputs = new PrincipledBsdfOutputs(this);

@@ -70,6 +70,16 @@ namespace ccl.ShaderNodes
 		public GlassBsdfNode(Shader shader, string name)
 			: base(shader, true)
 		{
+			FinalizeConstructor();
+		}
+
+		internal GlassBsdfNode(Shader shader, IntPtr intPtr) : base(shader, intPtr)
+		{
+			FinalizeConstructor();
+		}
+
+		private void FinalizeConstructor()
+		{
 			inputs = new GlassInputs(this);
 			outputs = new GlassOutputs(this);
 

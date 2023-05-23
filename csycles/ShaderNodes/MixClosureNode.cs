@@ -14,6 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 **/
 
+using System;
 using System.Xml;
 using ccl.Attributes;
 using ccl.ShaderNodes.Sockets;
@@ -95,6 +96,16 @@ namespace ccl.ShaderNodes
 
 		public MixClosureNode(Shader shader, string name) :
 			base(shader, true)
+		{
+			FinalizeConstructor();
+		}
+
+		internal MixClosureNode(Shader shader, IntPtr intPtr) : base(shader, intPtr)
+		{
+			FinalizeConstructor();
+		}
+
+		private void FinalizeConstructor()
 		{
 			inputs = new MixClosureInputs(this);
 			outputs = new MixClosureOutputs(this);

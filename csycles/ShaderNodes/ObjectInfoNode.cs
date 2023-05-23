@@ -86,9 +86,19 @@ namespace ccl.ShaderNodes
 		public ObjectInfoNode(Shader shader, string name)
 			: base(shader, true)
 		{
+			FinalizeConstructor();
+		}
+
+		internal ObjectInfoNode(Shader shader, IntPtr intPtr) : base(shader, intPtr)
+		{
+			FinalizeConstructor();
+		}
+
+		private void FinalizeConstructor()
+		{
 			inputs = new ObjectInfoInputs();
 			outputs = new ObjectInfoOutputs(this);
 		}
-	}
+  }
 }
 

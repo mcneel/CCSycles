@@ -68,6 +68,16 @@ namespace ccl.ShaderNodes
 		public GlossyBsdfNode(Shader shader) : this(shader, "a glossy bsdf node") { }
 		public GlossyBsdfNode(Shader shader, string name) : base(shader, true)
 		{
+			FinalizeConstructor();
+		}
+
+		internal GlossyBsdfNode(Shader shader, IntPtr intPtr) : base(shader, intPtr)
+		{
+			FinalizeConstructor();
+		}
+
+		private void FinalizeConstructor()
+		{
 			inputs = new GlossyInputs(this);
 			outputs = new GlossyOutputs(this);
 			Distribution = GlossyDistribution.Multiscatter_GGX;

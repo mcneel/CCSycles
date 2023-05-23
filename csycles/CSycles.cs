@@ -61,9 +61,13 @@ namespace ccl
 		private static void LoadShaderNodes()
 		{
 			Assembly ccass = Assembly.GetExecutingAssembly();
-			var constructTypes = new Type[2];
-			constructTypes[0] = typeof(ccl.Shader);
-			constructTypes[1] = typeof(string);
+			var shaderAndNameConstructor = new Type[2];
+			shaderAndNameConstructor[0] = typeof(ccl.Shader);
+			shaderAndNameConstructor[1] = typeof(string);
+
+			var internalConstructor = new Type[2];
+			internalConstructor[0] = typeof(ccl.Shader);
+			internalConstructor[1] = typeof(IntPtr);
 
 			var exported_types = ccass.GetExportedTypes();
 			var shadernode_type = typeof(ShaderNodes.ShaderNode);
@@ -81,10 +85,16 @@ namespace ccl
 				if (shnattr == null || shnattr.IsBase)
 					continue;
 
-				var constructor = exported_type.GetConstructor(constructTypes);
+				var constructor = exported_type.GetConstructor(shaderAndNameConstructor);
 				if (constructor == null)
 				{
 					throw new NotImplementedException(String.Format("Class {0} must include a constructor that takes a shader and a name", exported_type));
+				}
+
+				constructor = exported_type.GetConstructor(BindingFlags.NonPublic | BindingFlags.Instance, null, internalConstructor, null);
+				if (constructor == null)
+				{
+					throw new NotImplementedException(String.Format("Class {0} must include an internal constructor that takes a shader and an IntPtr to a shadernode", exported_type));
 				}
 
 				if (!g_registered_shadernodes.ContainsKey(shnattr.Name))
@@ -101,43 +111,45 @@ namespace ccl
 		/// <param name="xmlName"></param>
 		/// <param name="nodeName"></param>
 		/// <returns>a new ShaderNode if xmlName is registered, null otherwise</returns>
-		internal static ShaderNodes.ShaderNode CreateShaderNode(string xmlName, string nodeName)
+		internal static ShaderNodes.ShaderNode CreateShaderNode(Shader shader, string xmlName, string nodeName)
 		{
 			if (xmlName.Equals("shader")) return null;
 
 			if (g_registered_shadernodes.ContainsKey(xmlName))
 			{
-				var constructTypes = new Type[1];
-				constructTypes[0] = typeof(string);
+				var constructTypes = new Type[2];
+				constructTypes[0] = typeof(Shader);
+				constructTypes[1] = typeof(string);
 				var shnt = g_registered_shadernodes[xmlName];
 				var constructor = shnt.GetConstructor(constructTypes);
-				var param = new object[1];
-				param[0] = nodeName;
+				var param = new object[2];
+				param[0] = shader;
+				param[1] = nodeName;
 
 				return constructor.Invoke(param) as ShaderNodes.ShaderNode;
 			}
 
-			throw new InvalidDataException($"Node with xmlname '{xmlName}' not found.");
+			throw new InvalidDataException($"Node type '{xmlName}' not found.");
 		}
-
-		public ShaderNodes.ShaderNode CreateShaderNode(Shader shader, string nodeTypeName, string nodeName)
+		internal static ShaderNodes.ShaderNode CreateShaderNode(Shader shader, IntPtr shaderNodePtr, string xmlName)
 		{
-			if(!g_registered_shadernodes.ContainsKey(nodeTypeName))
+			if (xmlName.Equals("shader")) return null;
+
+			if (g_registered_shadernodes.ContainsKey(xmlName))
 			{
-				throw new InvalidDataException($"Node type '{nodeTypeName}' not found.");
+				var constructTypes = new Type[2];
+				constructTypes[0] = typeof(Shader);
+				constructTypes[1] = typeof(IntPtr);
+				var shnt = g_registered_shadernodes[xmlName];
+				var constructor = shnt.GetConstructor(BindingFlags.NonPublic | BindingFlags.Instance, null, constructTypes, new ParameterModifier[]{ });
+				var param = new object[2];
+				param[0] = shader;
+				param[1] = shaderNodePtr;
+
+				return constructor.Invoke(param) as ShaderNodes.ShaderNode;
 			}
-			var constructTypes = new Type[2];
-			constructTypes[0] = typeof(Shader);
-			constructTypes[1] = typeof(string);
 
-			var shnt = g_registered_shadernodes[nodeTypeName];
-			var constructor = shnt.GetConstructor(constructTypes);
-
-			var parameters = new object[2];
-			parameters[0] = shader;
-			parameters[1] = nodeTypeName;
-
-			return constructor.Invoke(parameters) as ShaderNodes.ShaderNode;
+			throw new InvalidDataException($"Node type '{xmlName}' not found.");
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]

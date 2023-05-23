@@ -76,12 +76,12 @@ namespace ccl
 		}
 
 		/// <summary>
-		/// C# code after call to FinalizeGraph()
+		/// C# code after call to FinalizeConstructor()
 		/// </summary>
 		public string Code { get; private set; }
 
 		/// <summary>
-		/// XML code after call to FinalizeGraph()
+		/// XML code after call to FinalizeConstructor()
 		/// </summary>
 		public string Xml { get; private set; }
 

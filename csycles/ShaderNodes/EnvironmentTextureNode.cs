@@ -87,7 +87,16 @@ namespace ccl.ShaderNodes
 		public EnvironmentTextureNode(Shader shader, string name) :
 			base(shader, name)
 		{
+			FinalizeConstructor();
+		}
 
+		internal EnvironmentTextureNode(Shader shader, IntPtr intPtr) : base(shader, intPtr)
+		{
+			FinalizeConstructor();
+		}
+
+		private void FinalizeConstructor()
+		{
 			inputs = new EnvironmentTextureInputs(this);
 			outputs = new EnvironmentTextureOutputs(this);
 
@@ -95,6 +104,7 @@ namespace ccl.ShaderNodes
 			ColorSpace = TextureColorSpace.None;
 			Projection = EnvironmentProjection.Equirectangular;
 		}
+
 		/// <summary>
 		/// Get or set environment projection
 		/// </summary>

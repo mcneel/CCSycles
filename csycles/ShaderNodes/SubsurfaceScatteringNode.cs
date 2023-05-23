@@ -121,6 +121,16 @@ namespace ccl.ShaderNodes
 		public SubsurfaceScatteringNode(Shader shader, string name) :
 			base(shader, true)
 		{
+			FinalizeConstructor();
+		}
+
+		internal SubsurfaceScatteringNode(Shader shader, IntPtr intPtr) : base(shader, intPtr)
+		{
+			FinalizeConstructor();
+		}
+
+		private void FinalizeConstructor()
+		{
 			inputs = new SubsurfaceScatteringInputs(this);
 			outputs = new SubsurfaceScatteringOutputs(this);
 			ins.Color.Value = new float4(1.0f);

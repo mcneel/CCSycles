@@ -17,6 +17,7 @@ limitations under the License.
 using System.Xml;
 using ccl.ShaderNodes.Sockets;
 using ccl.Attributes;
+using System;
 
 namespace ccl.ShaderNodes
 {
@@ -59,6 +60,16 @@ namespace ccl.ShaderNodes
 
 		public SeparateXyzNode(Shader shader) : this(shader, "a separate XYZ node") { }
 		public SeparateXyzNode(Shader shader, string name) : base(shader, true)
+		{
+			FinalizeConstructor();
+		}
+
+		internal SeparateXyzNode(Shader shader, IntPtr intPtr) : base(shader, intPtr)
+		{
+			FinalizeConstructor();
+		}
+
+		private void FinalizeConstructor()
 		{
 			inputs = new SeparateXyzInputs(this);
 			outputs = new SeparateXyzOutputs(this);

@@ -65,6 +65,16 @@ namespace ccl.ShaderNodes
 		public TextureAdjustmentTextureProceduralNode(Shader shader, string name)
 			: base(shader, true)
 		{
+			FinalizeConstructor();
+		}
+
+		internal TextureAdjustmentTextureProceduralNode(Shader shader, IntPtr intPtr) : base(shader, intPtr)
+		{
+			FinalizeConstructor();
+		}
+
+		private void FinalizeConstructor()
+		{
 			inputs = new TextureAdjustmentTextureInputs(this);
 			outputs = new TextureAdjustmentTextureOutputs(this);
 		}

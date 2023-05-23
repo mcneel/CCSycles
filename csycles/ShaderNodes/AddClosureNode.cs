@@ -16,6 +16,7 @@ limitations under the License.
 
 using ccl.Attributes;
 using ccl.ShaderNodes.Sockets;
+using System;
 
 /**
  * \defgroup cclshadernodes CSycles Shader Nodes
@@ -104,6 +105,16 @@ namespace ccl.ShaderNodes
 		/// <param name="name"></param>
 		public AddClosureNode(Shader shader, string name) :
 			base(shader, true)
+		{
+			FinalizeConstructor();
+		}
+
+		internal AddClosureNode(Shader shader, IntPtr shaderNodePtr) : base(shader, shaderNodePtr)
+		{
+			FinalizeConstructor();
+		}
+
+		private void FinalizeConstructor()
 		{
 			inputs = new AddClosureInputs(this);
 			outputs = new AddClosureOutputs(this);

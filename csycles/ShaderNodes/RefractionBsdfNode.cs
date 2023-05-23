@@ -69,6 +69,16 @@ namespace ccl.ShaderNodes
 		public RefractionBsdfNode(Shader shader, string name) :
 			base(shader, true)
 		{
+			FinalizeConstructor();
+		}
+
+		internal RefractionBsdfNode(Shader shader, IntPtr intPtr) : base(shader, intPtr)
+		{
+			FinalizeConstructor();
+		}
+
+		private void FinalizeConstructor()
+		{
 			inputs = new RefractionBsdfInputs(this);
 			outputs = new RefractionBsdfOutputs(this);
 

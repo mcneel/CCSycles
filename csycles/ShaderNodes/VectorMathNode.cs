@@ -142,6 +142,16 @@ namespace ccl.ShaderNodes
 		public VectorMathNode(Shader shader, string name) :
 			base(shader, true)
 		{
+			FinalizeConstructor();
+		}
+
+		internal VectorMathNode(Shader shader, IntPtr intPtr) : base(shader, intPtr)
+		{
+			FinalizeConstructor();
+		}
+
+		private void FinalizeConstructor()
+		{
 			inputs = new VectorMathInputs(this);
 			outputs = new VectorMathOutputs(this);
 
@@ -200,6 +210,7 @@ namespace ccl.ShaderNodes
 
 		public VectorAdd(Shader shader) : this(shader, "a vector add node") {}
 		public VectorAdd(Shader shader, string name) : base(shader, name) { Operation = Operations.Add; }
+		internal VectorAdd(Shader shader, IntPtr intPtr) : base(shader, intPtr) { Operation = Operations.Add; }
 		public override string ShaderNodeTypeName => "vector_math";
 	}
 	[ShaderNode("vector_subtract")]
@@ -208,6 +219,7 @@ namespace ccl.ShaderNodes
 
 		public VectorSubtract(Shader shader) : this(shader, "a vector subtract node") {}
 		public VectorSubtract(Shader shader, string name) : base(shader, name) { Operation = Operations.Subtract; }
+		internal VectorSubtract(Shader shader, IntPtr intPtr) : base(shader, intPtr) { Operation = Operations.Subtract; }
 		public override string ShaderNodeTypeName => "vector_math";
 	}
 	[ShaderNode("vector_average")]
@@ -216,6 +228,7 @@ namespace ccl.ShaderNodes
 
 		public VectorAverage(Shader shader) : this(shader, "a vector average node") {}
 		public VectorAverage(Shader shader, string name) : base(shader, name) { Operation = Operations.Average; }
+		internal VectorAverage(Shader shader, IntPtr intPtr) : base(shader, intPtr) { Operation = Operations.Average; }
 		public override string ShaderNodeTypeName => "vector_math";
 	}
 	[ShaderNode("vector_cross")]
@@ -224,6 +237,7 @@ namespace ccl.ShaderNodes
 
 		public VectorCross_Product(Shader shader) : this(shader, "a vector cross node") {}
 		public VectorCross_Product(Shader shader, string name) : base(shader, name) { Operation = Operations.Cross_Product; }
+		internal VectorCross_Product(Shader shader, IntPtr intPtr) : base(shader, intPtr) { Operation = Operations.Cross_Product; }
 		public override string ShaderNodeTypeName => "vector_math";
 	}
 	[ShaderNode("vector_dot")]
@@ -232,6 +246,7 @@ namespace ccl.ShaderNodes
 
 		public VectorDot_Product(Shader shader) : this(shader, "a vector dot node") {}
 		public VectorDot_Product(Shader shader, string name) : base(shader, name) { Operation = Operations.Dot_Product; }
+		internal VectorDot_Product(Shader shader, IntPtr intPtr) : base(shader, intPtr) { Operation = Operations.Dot_Product; }
 		public override string ShaderNodeTypeName => "vector_math";
 	}
 	[ShaderNode("vector_normalize")]
@@ -240,6 +255,7 @@ namespace ccl.ShaderNodes
 
 		public VectorNormalize(Shader shader) : this(shader, "a vector normalize node") {}
 		public VectorNormalize(Shader shader, string name) : base(shader, name) { Operation = Operations.Normalize; }
+		internal VectorNormalize(Shader shader, IntPtr intPtr) : base(shader, intPtr) { Operation = Operations.Normalize; }
 		public override string ShaderNodeTypeName => "vector_math";
 	}
 }

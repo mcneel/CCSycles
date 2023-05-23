@@ -63,6 +63,16 @@ namespace ccl.ShaderNodes
 		public WavesTextureProceduralNode(Shader shader, string name)
 			: base(shader, true)
 		{
+			FinalizeConstructor();
+		}
+
+		internal WavesTextureProceduralNode(Shader shader, IntPtr intPtr) : base(shader, intPtr)
+		{
+			FinalizeConstructor();
+		}
+
+		private void FinalizeConstructor()
+		{
 			inputs = new WavesTextureInputs(this);
 			outputs = new WavesTextureOutputs(this);
 			ins.Color1.Value = new float4(0.0f, 0.0f, 0.0f);
@@ -113,6 +123,16 @@ namespace ccl.ShaderNodes
 		public WavesWidthTextureProceduralNode(Shader shader) : this(shader, "a waves width texture") { }
 		public WavesWidthTextureProceduralNode(Shader shader, string name)
 			: base(shader, true)
+		{
+			FinalizeConstructor();
+		}
+
+		internal WavesWidthTextureProceduralNode(Shader shader, IntPtr intPtr) : base(shader, intPtr)
+		{
+			FinalizeConstructor();
+		}
+
+		private void FinalizeConstructor()
 		{
 			inputs = new WavesWidthTextureInputs(this);
 			outputs = new WavesWidthTextureOutputs(this);

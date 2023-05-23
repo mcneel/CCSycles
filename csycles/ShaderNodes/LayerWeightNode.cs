@@ -17,6 +17,7 @@ limitations under the License.
 using System.Xml;
 using ccl.ShaderNodes.Sockets;
 using ccl.Attributes;
+using System;
 
 namespace ccl.ShaderNodes
 {
@@ -57,6 +58,16 @@ namespace ccl.ShaderNodes
 		public LayerWeightNode(Shader shader) : this(shader, "a layerweight node") { }
 		public LayerWeightNode(Shader shader, string name)
 			: base(shader, true)
+		{
+			FinalizeConstructor();
+		}
+
+		internal LayerWeightNode(Shader shader, IntPtr intPtr) : base(shader, intPtr)
+		{
+			FinalizeConstructor();
+		}
+
+		private void FinalizeConstructor()
 		{
 			inputs = new LayerWeightInputs(this);
 			outputs = new LayerWeightOutputs(this);

@@ -273,7 +273,7 @@ namespace ccl
 						}
 						break;
 					default:
-						shader_node = CSycles.CreateShaderNode(xmlNode.Name, nodename);
+						shader_node = CSycles.CreateShaderNode(shader, xmlNode.Name, nodename);
 						break;
 				}
 				if (shader_node != null)

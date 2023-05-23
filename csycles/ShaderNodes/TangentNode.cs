@@ -73,9 +73,19 @@ namespace ccl.ShaderNodes
 		public TangentNode(Shader shader, string name)
 			: base(shader, true)
 		{
+			FinalizeConstructor();
+		}
+
+		internal TangentNode(Shader shader, IntPtr intPtr) : base(shader, intPtr)
+		{
+			FinalizeConstructor();
+		}
+
+		private void FinalizeConstructor()
+		{
 			inputs = new TangentInputs();
 			outputs = new TangentOutputs(this);
 		}
-	}
+  }
 }
 

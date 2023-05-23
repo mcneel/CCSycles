@@ -17,6 +17,7 @@ limitations under the License.
 using System.Xml;
 using ccl.ShaderNodes.Sockets;
 using ccl.Attributes;
+using System;
 
 namespace ccl.ShaderNodes
 {
@@ -53,6 +54,16 @@ namespace ccl.ShaderNodes
 		public FresnelNode(Shader shader) : this(shader, "a fresnel input node") { }
 		public FresnelNode(Shader shader, string name) :
 			base(shader, true)
+		{
+			FinalizeConstructor();
+		}
+
+		internal FresnelNode(Shader shader, IntPtr intPtr) : base(shader, intPtr)
+		{
+			FinalizeConstructor();
+		}
+
+		private void FinalizeConstructor()
 		{
 			inputs = new FresnelInputs(this);
 			outputs = new FresnelOutputs(this);

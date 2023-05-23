@@ -65,6 +65,16 @@ namespace ccl.ShaderNodes
 		public NormalMapNode(Shader shader, string name)
 			: base(shader, true)
 		{
+			FinalizeConstructor();
+		}
+
+		internal NormalMapNode(Shader shader, IntPtr intPtr) : base(shader, intPtr)
+		{
+			FinalizeConstructor();
+		}
+
+		private void FinalizeConstructor()
+		{
 			inputs = new NormalMapInputs(this);
 			outputs = new NormalMapOutputs(this);
 

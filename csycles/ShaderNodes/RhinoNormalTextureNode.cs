@@ -73,6 +73,16 @@ namespace ccl.ShaderNodes
 		public NormalPart1TextureProceduralNode(Shader shader, string name)
 			: base(shader, true)
 		{
+			FinalizeConstructor();
+		}
+
+		internal NormalPart1TextureProceduralNode(Shader shader, IntPtr intPtr) : base(shader, intPtr)
+		{
+			FinalizeConstructor();
+		}
+
+		private void FinalizeConstructor()
+		{
 			inputs = new NormalPart1TextureInputs(this);
 			outputs = new NormalPart1TextureOutputs(this);
 		}
@@ -134,6 +144,16 @@ namespace ccl.ShaderNodes
 		public NormalPart2TextureProceduralNode(Shader shader) : this(shader, "a normal part 2 texture") { }
 		public NormalPart2TextureProceduralNode(Shader shader, string name)
 			: base(shader, true)
+		{
+			FinalizeConstructor();
+		}
+
+		internal NormalPart2TextureProceduralNode(Shader shader, IntPtr intPtr) : base(shader, intPtr)
+		{
+			FinalizeConstructor();
+		}
+
+		private void FinalizeConstructor()
 		{
 			inputs = new NormalPart2TextureInputs(this);
 			outputs = new NormalPart2TextureOutputs(this);

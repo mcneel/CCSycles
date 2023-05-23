@@ -169,8 +169,18 @@ namespace ccl.ShaderNodes
 		public LightPathNode(Shader shader, string name)
 			: base(shader, true)
 		{
+			FinalizeConstructor();
+		}
+
+		internal LightPathNode(Shader shader, IntPtr intPtr) : base(shader, intPtr)
+		{
+			FinalizeConstructor();
+		}
+
+		private void FinalizeConstructor()
+		{
 			inputs = new LightPathInputs();
 			outputs = new LightPathOutputs(this);
 		}
-	}
+  }
 }

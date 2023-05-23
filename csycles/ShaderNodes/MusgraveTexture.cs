@@ -88,6 +88,16 @@ namespace ccl.ShaderNodes
 		public MusgraveTexture(Shader shader, string name)
 			: base(shader, name)
 		{
+			FinalizeConstructor();
+		}
+
+		internal MusgraveTexture(Shader shader, IntPtr intPtr) : base(shader, intPtr)
+		{
+			FinalizeConstructor();
+		}
+
+		private void FinalizeConstructor()
+		{
 			inputs = new MusgraveInputs(this);
 			outputs = new MusgraveOutputs(this);
 

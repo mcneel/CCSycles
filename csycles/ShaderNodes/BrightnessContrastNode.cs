@@ -17,6 +17,7 @@ limitations under the License.
 using System.Xml;
 using ccl.ShaderNodes.Sockets;
 using ccl.Attributes;
+using System;
 
 namespace ccl.ShaderNodes
 {
@@ -48,7 +49,7 @@ namespace ccl.ShaderNodes
 		}
 	}
 
-	[ShaderNode("brightness")]
+	[ShaderNode("brightness_contrast")]
 	public class BrightnessContrastNode : ShaderNode
 	{
 		public BrightnessContrastInputs ins => (BrightnessContrastInputs)inputs;
@@ -57,6 +58,16 @@ namespace ccl.ShaderNodes
 		public BrightnessContrastNode(Shader shader) : this(shader, "a brightness contrast node") { }
 		public BrightnessContrastNode(Shader shader, string name)
 			: base(shader, true)
+		{
+			FinalizeConstructor();
+		}
+
+		internal BrightnessContrastNode(Shader shader, IntPtr shaderNodePtr) : base(shader, shaderNodePtr)
+		{
+			FinalizeConstructor();
+		}
+
+		private void FinalizeConstructor()
 		{
 			inputs = new BrightnessContrastInputs(this);
 			outputs = new BrightnessContrastOutputs(this);

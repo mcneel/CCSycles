@@ -82,6 +82,16 @@ namespace ccl.ShaderNodes
 		public WaveTexture(Shader shader, string name)
 			: base(shader, name)
 		{
+			FinalizeConstructor();
+		}
+
+		internal WaveTexture(Shader shader, IntPtr intPtr) : base(shader, intPtr)
+		{
+			FinalizeConstructor();
+		}
+
+		private void FinalizeConstructor()
+		{
 			inputs = new WaveInputs(this);
 			outputs = new WaveOutputs(this);
 

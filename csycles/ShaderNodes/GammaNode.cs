@@ -17,6 +17,7 @@ limitations under the License.
 using System.Xml;
 using ccl.ShaderNodes.Sockets;
 using ccl.Attributes;
+using System;
 
 namespace ccl.ShaderNodes
 {
@@ -53,6 +54,16 @@ namespace ccl.ShaderNodes
 
 		public GammaNode(Shader shader) : this(shader, "a gamma node") {}
 		public GammaNode(Shader shader, string name) : base(shader, true)
+		{
+			FinalizeConstructor();
+		}
+
+		internal GammaNode(Shader shader, IntPtr intPtr) : base(shader, intPtr)
+		{
+			FinalizeConstructor();
+		}
+
+		private void FinalizeConstructor()
 		{
 			inputs = new GammaInputs(this);
 			outputs = new GammaOutputs(this);

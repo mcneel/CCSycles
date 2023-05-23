@@ -17,6 +17,7 @@ limitations under the License.
 using System.Xml;
 using ccl.ShaderNodes.Sockets;
 using ccl.Attributes;
+using System;
 
 namespace ccl.ShaderNodes
 {
@@ -62,11 +63,22 @@ namespace ccl.ShaderNodes
 		public AbsorptionVolumeNode(Shader shader, string name) :
 			base(shader, true)
 		{
+			FinalizeConstructor();
+		}
+
+		internal AbsorptionVolumeNode(Shader shader, IntPtr shaderNodePtr) : base(shader, shaderNodePtr)
+		{
+			FinalizeConstructor();
+		}
+
+		private void FinalizeConstructor()
+		{
 			inputs = new AbsorptionVolumeInputs(this);
 			outputs = new AbsorptionVolumeOutputs(this);
 			ins.Color.Value = new float4(1.0f);
 			ins.Density.Value = 1.0f;
 		}
+
 
 		internal override void ParseXml(XmlReader xmlNode)
 		{
