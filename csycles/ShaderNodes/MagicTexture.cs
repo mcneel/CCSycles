@@ -82,7 +82,7 @@ namespace ccl.ShaderNodes
 
 		public int Depth { get; set; }
 
-		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
+		internal override void SetDirectMembers()
 		{
 			CSycles.shadernode_set_member_int(Id, "depth", Depth);
 		}

@@ -76,7 +76,7 @@ namespace ccl.ShaderNodes
 			outputs = new MaskTextureOutputs(this);
 		}
 
-		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
+		internal override void SetDirectMembers()
 		{
 			CSycles.shadernode_set_member_int(Id, "MaskType", (int)MaskType);
 		}

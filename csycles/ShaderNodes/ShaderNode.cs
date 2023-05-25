@@ -152,7 +152,7 @@ namespace ccl.ShaderNodes
 		/// <param shaderNodeTypeName="clientId"></param>
 		/// <param shaderNodeTypeName="sceneId"></param>
 		/// <param shaderNodeTypeName="shaderId"></param>
-		virtual internal void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
+		virtual internal void SetDirectMembers()
 		{
 			// do nothing
 		}

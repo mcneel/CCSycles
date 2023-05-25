@@ -375,7 +375,7 @@ namespace ccl.ShaderNodes
 		/// </summary>
 		public ColorBand ColorBand { get; set; }
 
-		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
+		internal override void SetDirectMembers()
 		{
 			var val = Interpolate;
 			var color = new float4();

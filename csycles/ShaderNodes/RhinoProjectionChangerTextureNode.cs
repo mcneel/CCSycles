@@ -85,7 +85,7 @@ namespace ccl.ShaderNodes
 			outputs = new ProjectionChangerTextureOutputs(this);
 		}
 
-		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
+		internal override void SetDirectMembers()
 		{
 			CSycles.shadernode_set_member_int(Id, "InputProjectionType", (int)InputProjectionType);
 			CSycles.shadernode_set_member_int(Id, "OutputProjectionType", (int)OutputProjectionType);

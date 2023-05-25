@@ -87,7 +87,7 @@ namespace ccl.ShaderNodes
 			outputs = new NormalPart1TextureOutputs(this);
 		}
 
-		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
+		internal override void SetDirectMembers()
 		{
 		}
 	}
@@ -159,7 +159,7 @@ namespace ccl.ShaderNodes
 			outputs = new NormalPart2TextureOutputs(this);
 		}
 
-		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
+		internal override void SetDirectMembers()
 		{
 		}
 	}

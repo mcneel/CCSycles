@@ -95,9 +95,9 @@ namespace ccl.ShaderNodes
 			CSycles.shadernode_set_enum(Id, "sky", (int)SkyType);
 		}
 
-		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
+		internal override void SetDirectMembers()
 		{
-			base.SetDirectMembers(sessionId, shaderId);
+			base.SetDirectMembers();
 			CSycles.shadernode_set_member_float(Id, "turbidity", Turbidity);
 			CSycles.shadernode_set_member_float(Id, "ground_albedo", GroundAlbedo);
 			var sd = SunDirection;

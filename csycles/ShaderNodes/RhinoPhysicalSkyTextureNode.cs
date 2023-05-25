@@ -82,7 +82,7 @@ namespace ccl.ShaderNodes
 			outputs = new PhysicalSkyTextureOutputs(this);
 		}
 
-		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
+		internal override void SetDirectMembers()
 		{
 			CSycles.shadernode_set_member_vec(Id, "SunDirection", SunDirectionX, SunDirectionY, SunDirectionZ);
 			CSycles.shadernode_set_member_float(Id, "AtmosphericDensity", AtmosphericDensity);

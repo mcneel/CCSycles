@@ -194,7 +194,7 @@ namespace ccl.ShaderNodes
 		public int SquashFrequency { get; set; }
 #endregion
 
-		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
+		internal override void SetDirectMembers()
 		{
 			CSycles.shadernode_set_member_float(Id, "offset", Offset);
 			CSycles.shadernode_set_member_int(Id, "offset_frequency", OffsetFrequency);

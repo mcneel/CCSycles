@@ -156,9 +156,9 @@ namespace ccl.ShaderNodes
 			CSycles.shadernode_set_enum(Id, "interpolation", (int)Interpolation);
 		}
 
-		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
+		internal override void SetDirectMembers()
 		{
-			base.SetDirectMembers(sessionId, shaderId);
+			base.SetDirectMembers();
 			CSycles.shadernode_set_member_float(Id, "projection_blend", ProjectionBlend);
 			CSycles.shadernode_set_member_int(Id, "extension", (int)Extension);
 			CSycles.shadernode_set_member_bool(Id, "use_alpha", UseAlpha);

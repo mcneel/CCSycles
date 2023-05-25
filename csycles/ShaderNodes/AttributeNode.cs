@@ -117,7 +117,7 @@ namespace ccl.ShaderNodes
 			outputs = new AttributeOutputs(this);
 		}
 
-		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
+		internal override void SetDirectMembers()
 		{
 
 			var val = Attribute;

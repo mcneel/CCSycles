@@ -68,7 +68,7 @@ namespace ccl.ShaderNodes
 			outputs = new BlendTextureOutputs(this);
 		}
 
-		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
+		internal override void SetDirectMembers()
 		{
 			CSycles.shadernode_set_member_bool(Id, "UseBlendColor", UseBlendColor);
 			CSycles.shadernode_set_member_float(Id, "BlendFactor", BlendFactor);

@@ -196,11 +196,11 @@ namespace ccl
 
 		[DllImport(Constants.ccycles, SetLastError = false, CharSet = CharSet.Ansi,
 			CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_shader_connect_nodes(IntPtr sessionId, IntPtr shaderId, uint fromId, string from, uint toId,
+		private static extern void cycles_shader_connect_nodes(IntPtr shaderId, IntPtr fromId, string from, IntPtr toId,
 			string to);
-		public static void shader_connect_nodes(IntPtr sessionId, IntPtr shaderId, uint fromId, string from, uint toId, string to)
+		public static void shader_connect_nodes(IntPtr shaderId, IntPtr fromId, string from, IntPtr toId, string to)
 		{
-			cycles_shader_connect_nodes(sessionId, shaderId, fromId, from, toId, to);
+			cycles_shader_connect_nodes(shaderId, fromId, from, toId, to);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CharSet = CharSet.Ansi,

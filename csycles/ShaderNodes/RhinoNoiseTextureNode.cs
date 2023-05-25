@@ -91,7 +91,7 @@ namespace ccl.ShaderNodes
 			outputs = new NoiseTextureOutputs(this);
 		}
 
-		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
+		internal override void SetDirectMembers()
 		{
 			CSycles.shadernode_set_member_int(Id, "NoiseType", (int)NoiseType);
 			CSycles.shadernode_set_member_int(Id, "SpecSynthType", (int)SpecSynthType);

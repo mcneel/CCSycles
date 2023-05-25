@@ -217,7 +217,7 @@ namespace ccl.ShaderNodes
 			ColorSpace = (TextureColorSpace)Enum.Parse(typeof(TextureColorSpace), cs, true);
 		}
 
-		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
+		internal override void SetDirectMembers()
 		{
 			CSycles.shadernode_set_member_bool(Id, "useminmax", UseMin || UseMax);
 			if (UseMin)

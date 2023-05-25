@@ -67,7 +67,7 @@ namespace ccl.ShaderNodes
 			outputs = new FbmTextureOutputs(this);
 		}
 
-		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
+		internal override void SetDirectMembers()
 		{
 			CSycles.shadernode_set_member_bool(Id, "IsTurbulent", IsTurbulent);
 			CSycles.shadernode_set_member_int(Id, "MaxOctaves", MaxOctaves);

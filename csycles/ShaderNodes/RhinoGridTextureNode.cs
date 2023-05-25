@@ -66,7 +66,7 @@ namespace ccl.ShaderNodes
 			outputs = new GridTextureOutputs(this);
 		}
 
-		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
+		internal override void SetDirectMembers()
 		{
 			CSycles.shadernode_set_member_int(Id, "Cells", Cells);
 			CSycles.shadernode_set_member_float(Id, "FontThickness", FontThickness);

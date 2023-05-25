@@ -75,7 +75,7 @@ namespace ccl.ShaderNodes
 			outputs = new PerlinMarlinTextureOutputs(this);
 		}
 
-		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
+		internal override void SetDirectMembers()
 		{
 			CSycles.shadernode_set_member_int(Id, "Levels", Levels);
 			CSycles.shadernode_set_member_float(Id, "Noise", Noise);

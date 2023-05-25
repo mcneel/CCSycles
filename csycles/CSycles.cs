@@ -19,6 +19,7 @@ using System.Runtime.InteropServices;
 using System.Reflection;
 using System.Collections.Generic;
 using System.IO;
+using ccl.ShaderNodes;
 
 /** \namespace ccl
  * \brief Namespace containing the low-level wrapping API of ccycles.dll and a set of higher-level classes.
@@ -146,7 +147,12 @@ namespace ccl
 				param[0] = shader;
 				param[1] = shaderNodePtr;
 
-				return constructor.Invoke(param) as ShaderNodes.ShaderNode;
+				ShaderNode shader_node = constructor.Invoke(param) as ShaderNode;
+
+				if (shader_node is OutputNode output_node)
+					shader.Output = output_node;
+
+				return shader_node;
 			}
 
 			throw new InvalidDataException($"Node type '{xmlName}' not found.");

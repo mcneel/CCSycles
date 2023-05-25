@@ -80,7 +80,7 @@ namespace ccl.ShaderNodes
 			ins.Color3.Value = new float4(1.0f, 1.0f, 1.0f);
 		}
 
-		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
+		internal override void SetDirectMembers()
 		{
 			CSycles.shadernode_set_member_int(Id, "WaveType", (int)WaveType);
 			CSycles.shadernode_set_member_float(Id, "WaveWidth", WaveWidth);
@@ -138,7 +138,7 @@ namespace ccl.ShaderNodes
 			outputs = new WavesWidthTextureOutputs(this);
 		}
 
-		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
+		internal override void SetDirectMembers()
 		{
 			CSycles.shadernode_set_member_int(Id, "WaveType", (int)WaveType);
 		}

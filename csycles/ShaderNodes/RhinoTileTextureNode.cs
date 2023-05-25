@@ -79,7 +79,7 @@ namespace ccl.ShaderNodes
 			outputs = new TileTextureOutputs(this);
 		}
 
-		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
+		internal override void SetDirectMembers()
 		{
 			CSycles.shadernode_set_member_int(Id, "Type", (int)TileType);
 			CSycles.shadernode_set_member_vec(Id, "Phase", PhaseX, PhaseY, PhaseZ);

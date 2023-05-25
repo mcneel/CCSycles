@@ -79,7 +79,7 @@ namespace ccl.ShaderNodes
 			outputs = new GradientTextureOutputs(this);
 		}
 
-		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
+		internal override void SetDirectMembers()
 		{
 			CSycles.shadernode_set_member_int(Id, "GradientType", (int)GradientType);
 			CSycles.shadernode_set_member_bool(Id, "FlipAlternate", FlipAlternate);

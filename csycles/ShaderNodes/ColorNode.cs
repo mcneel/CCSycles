@@ -98,7 +98,7 @@ namespace ccl.ShaderNodes
 		/// </summary>
 		public float4 Value { get; set; }
 
-		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
+		internal override void SetDirectMembers()
 		{
 			var val = Value;
 			CSycles.shadernode_set_member_vec(Id, "value", val.x, val.y, val.z);

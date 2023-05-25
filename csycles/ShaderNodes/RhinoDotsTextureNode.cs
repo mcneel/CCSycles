@@ -97,7 +97,7 @@ namespace ccl.ShaderNodes
 			outputs = new DotsTextureOutputs(this);
 		}
 
-		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
+		internal override void SetDirectMembers()
 		{
 			CSycles.shadernode_set_member_int(Id, "DataCount", DataCount);
 			CSycles.shadernode_set_member_int(Id, "TreeNodeCount", TreeNodeCount);

@@ -209,7 +209,7 @@ namespace ccl.ShaderNodes
 
 	public string UvMap { get; set; } = "uvmap1";
 
-	internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
+	internal override void SetDirectMembers()
 		{
 			CSycles.shadernode_set_member_bool(Id, "use_transform", UseTransform);
 
@@ -373,7 +373,7 @@ namespace ccl.ShaderNodes
 
 		public string UvMap { get; set; } = "uvmap1";
 
-		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
+		internal override void SetDirectMembers()
 		{
 			CSycles.shadernode_set_member_bool(Id, "use_transform", UseTransform);
 

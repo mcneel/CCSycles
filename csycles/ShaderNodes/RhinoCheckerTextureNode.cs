@@ -62,7 +62,7 @@ namespace ccl.ShaderNodes
 			outputs = new CheckerTextureOutputs(this);
 		}
 
-		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
+		internal override void SetDirectMembers()
 		{
 		}
 	}

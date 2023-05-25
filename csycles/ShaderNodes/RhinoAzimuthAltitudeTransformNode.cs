@@ -76,7 +76,7 @@ namespace ccl.ShaderNodes
 			Threshold = 0.001f;
 		}
 
-		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
+		internal override void SetDirectMembers()
 		{
 			CSycles.shadernode_set_member_float(Id, "azimuth", Azimuth);
 			CSycles.shadernode_set_member_float(Id, "altitude", Altitude);

@@ -93,9 +93,9 @@ namespace ccl.ShaderNodes
 			CSycles.shadernode_set_enum(Id, "type", (int)SpaceType);
 		}
 
-		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
+		internal override void SetDirectMembers()
 		{
-			base.SetDirectMembers(sessionId, shaderId);
+			base.SetDirectMembers();
 			CSycles.shadernode_set_member_string(Id, "attribute", Attribute);
 		}
 

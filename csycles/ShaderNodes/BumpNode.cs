@@ -118,7 +118,7 @@ namespace ccl.ShaderNodes
 		/// </summary>
 		public bool Invert { get; set; }
 
-		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
+		internal override void SetDirectMembers()
 		{
 			CSycles.shadernode_set_member_bool(Id, "invert", Invert);
 		}

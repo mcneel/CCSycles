@@ -140,17 +140,6 @@ namespace ccl
 		/// <param name="node">ShaderNode to add</param>
 		public virtual void AddNode(ShaderNode node)
 		{
-			if(node is OutputNode) Output = (OutputNode)node;
-#if DONOTHING
-			if(node is OutputNode)
-			{
-				return; //(re-)creating shader gives us a an output node in C++ already. This
-				        // is given to use via common constructor
-			}
-
-			var nodeid = CSycles.add_shader_node( Id, node.ShaderNodeTypeName);
-			node.Id = nodeid;
-#endif
 			m_nodes.Add(node);
 		}
 
@@ -168,35 +157,29 @@ namespace ccl
 		/// </summary>
 		public virtual void FinalizeGraph()
 		{
-#if LEGACY_SHADERS
-			if (Verbose)
-			{
-				Utilities.ConsoleWrite($"Finalizing {Name}");
-			}
 			foreach (var node in m_nodes)
 			{
 				/* set enumerations */
-				node.SetEnums(Client.Scene.Id, Id);
+				//node.SetEnums(Client.Scene.Id, Id);
 
 				/* set direct member variables */
-				node.SetDirectMembers(Client.Scene.Id, Id);
+				node.SetDirectMembers();
 
-				if (node.inputs == null) continue;
+				//if (node.inputs == null) continue;
 
-				node.SetSockets(Client.Scene.Id, Id);
+				//node.SetSockets(Client.Scene.Id, Id);
 
-				foreach (var socket in node.inputs.Sockets)
-				{
-					var from = socket.ConnectionFrom;
-					if (from == null) continue;
-					if (Verbose)
-					{
-						Utilities.ConsoleWrite($"Shader {Name}: Connecting {from.Path} to {socket.Path}\n");
-					}
-					Connect(from.Parent, from.Name, node, socket.Name);
-				}
+				//foreach (var socket in node.inputs.Sockets)
+				//{
+				//	var from = socket.ConnectionFrom;
+				//	if (from == null) continue;
+				//	if (Verbose)
+				//	{
+				//		Utilities.ConsoleWrite($"Shader {Name}: Connecting {from.Path} to {socket.Path}\n");
+				//	}
+				//	Connect(from.Parent, from.Name, node, socket.Name);
+				//}
 			}
-#endif
 		}
 
 		/// <summary>
@@ -206,18 +189,9 @@ namespace ccl
 		/// <param name="fromout"></param>
 		/// <param name="to"></param>
 		/// <param name="toin"></param>
-		private void Connect(ShaderNode from, string fromout, ShaderNode to, string toin)
+		public void Connect(ShaderNode from, string fromout, ShaderNode to, string toin)
 		{
-#if REDO
-			if (m_nodes.Contains(from) && m_nodes.Contains(to))
-			{
-				CSycles.shader_connect_nodes(Session.Scene.Id, Id, from.Id, fromout, to.Id, toin);
-			}
-			else
-			{
-				throw new ArgumentException($"Cannot connect {@from} to {to}");
-			}
-#endif
+			CSycles.shader_connect_nodes(Id, from.Id, fromout, to.Id, toin);
 		}
 
 

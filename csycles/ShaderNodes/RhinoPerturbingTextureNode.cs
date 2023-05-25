@@ -71,7 +71,7 @@ namespace ccl.ShaderNodes
 			outputs = new PerturbingPart1TextureOutputs(this);
 		}
 
-		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
+		internal override void SetDirectMembers()
 		{
 		}
 	}
@@ -132,7 +132,7 @@ namespace ccl.ShaderNodes
 			outputs = new PerturbingPart2TextureOutputs(this);
 		}
 
-		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
+		internal override void SetDirectMembers()
 		{
 			CSycles.shadernode_set_member_float(Id, "Amount", Amount);
 		}

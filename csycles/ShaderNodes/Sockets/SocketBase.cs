@@ -86,7 +86,7 @@ namespace ccl.ShaderNodes.Sockets
 
 		public void Connect(ISocket to)
 		{
-			to.ConnectionFrom = this;
+			Parent.Shader.Connect(Parent, Name, to.Parent, to.Name);
 		}
 
 		internal SocketBase(ShaderNode parentNode, string name)

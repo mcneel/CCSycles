@@ -125,7 +125,7 @@ namespace ccl.ShaderNodes
 			CSycles.shadernode_set_enum(Id, "type", (int)BlendType);
 		}
 
-		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
+		internal override void SetDirectMembers()
 		{
 			CSycles.shadernode_set_member_bool(Id, "use_clamp", UseClamp);
 		}

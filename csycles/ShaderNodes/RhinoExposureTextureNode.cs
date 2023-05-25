@@ -67,7 +67,7 @@ namespace ccl.ShaderNodes
 			outputs = new ExposureTextureOutputs(this);
 		}
 
-		internal override void SetDirectMembers(IntPtr sessionId, IntPtr shaderId)
+		internal override void SetDirectMembers()
 		{
 			CSycles.shadernode_set_member_float(Id, "Exposure", Exposure);
 			CSycles.shadernode_set_member_float(Id, "Multiplier", Multiplier);
