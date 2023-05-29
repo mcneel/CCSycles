@@ -173,7 +173,7 @@ namespace ccl.ShaderNodes
 		public Distributions Distribution { get; set; }
 		public SubsurfaceScatteringNode.FalloffTypes Sss {get; set; }
 
-		internal override void SetEnums(IntPtr sessionId, IntPtr shaderId)
+		internal override void SetEnums()
 		{
 			CSycles.shadernode_set_enum(Id, "distribution", (int)Distribution);
 			CSycles.shadernode_set_enum(Id, "sss", (int)Sss);

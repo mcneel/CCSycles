@@ -115,7 +115,7 @@ namespace ccl.ShaderNodes
 			Projection = (EnvironmentProjection)Enum.Parse(typeof(EnvironmentProjection), projection, true);
 		}
 
-		internal override void SetEnums(IntPtr sessionId, IntPtr shaderId)
+		internal override void SetEnums()
 		{
 			CSycles.shadernode_set_enum(Id, "projection", (int)Projection);
 			CSycles.shadernode_set_enum(Id, "color_space", (int)ColorSpace);

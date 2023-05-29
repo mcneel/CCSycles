@@ -122,7 +122,7 @@ namespace ccl.ShaderNodes
 
 		public Operations Operation { get; set; }
 
-		internal override void SetEnums(IntPtr sessionId, IntPtr shaderId)
+		internal override void SetEnums()
 		{
 			CSycles.shadernode_set_enum(Id, "operation", (int)Operation);
 		}

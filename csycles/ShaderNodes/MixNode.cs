@@ -120,7 +120,7 @@ namespace ccl.ShaderNodes
 		public BlendTypes BlendType { get; set; }
 		public bool UseClamp { get; set; }
 
-		internal override void SetEnums(IntPtr sessionId, IntPtr shaderId)
+		internal override void SetEnums()
 		{
 			CSycles.shadernode_set_enum(Id, "type", (int)BlendType);
 		}

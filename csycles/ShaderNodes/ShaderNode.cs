@@ -140,7 +140,7 @@ namespace ccl.ShaderNodes
 		/// <param shaderNodeTypeName="clientId"></param>
 		/// <param shaderNodeTypeName="sceneId"></param>
 		/// <param shaderNodeTypeName="shaderId"></param>
-		virtual internal void SetEnums(IntPtr sessionId, IntPtr shaderId)
+		virtual internal void SetEnums()
 		{
 			// do nothing
 		}
@@ -157,7 +157,7 @@ namespace ccl.ShaderNodes
 			// do nothing
 		}
 
-		internal void SetSockets(IntPtr sessionId, IntPtr shaderId)
+		internal void SetSockets()
 		{
 			/* set node attributes */
 			if (inputs != null)

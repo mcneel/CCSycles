@@ -160,14 +160,14 @@ namespace ccl
 			foreach (var node in m_nodes)
 			{
 				/* set enumerations */
-				//node.SetEnums(Client.Scene.Id, Id);
+				node.SetEnums();
 
 				/* set direct member variables */
 				node.SetDirectMembers();
 
-				//if (node.inputs == null) continue;
+				if (node.inputs == null) continue;
 
-				//node.SetSockets(Client.Scene.Id, Id);
+				node.SetSockets();
 
 				//foreach (var socket in node.inputs.Sockets)
 				//{

@@ -252,7 +252,7 @@ namespace ccl.ShaderNodes
 			CSycles.shadernode_set_member_string(Id, "uvmap", UvMap);
 		}
 
-		internal override void SetEnums(IntPtr sessionId, IntPtr shaderId)
+		internal override void SetEnums()
 		{
 			CSycles.shadernode_set_enum(Id, "decal_projection", (int)Direction);
 		}
@@ -416,7 +416,7 @@ namespace ccl.ShaderNodes
 			CSycles.shadernode_set_member_string(Id, "uvmap", UvMap);
 		}
 
-		internal override void SetEnums(IntPtr sessionId, IntPtr shaderId)
+		internal override void SetEnums()
 		{
 			CSycles.shadernode_set_enum(Id, "decal_projection", (int)Direction);
 		}

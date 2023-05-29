@@ -134,7 +134,7 @@ namespace ccl.ShaderNodes
 			return str;
 		}
 
-		internal override void SetEnums(IntPtr sessionId, IntPtr shaderId)
+		internal override void SetEnums()
 		{
 			CSycles.shadernode_set_enum(Id, "musgrave", (int)MusgraveType);
 			CSycles.shadernode_set_enum(Id, "dimension", (int)Dimension);

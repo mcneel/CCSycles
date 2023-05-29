@@ -144,7 +144,7 @@ namespace ccl.ShaderNodes
 
 		public FalloffTypes Falloff { get; set; }
 
-		internal override void SetEnums(IntPtr sessionId, IntPtr shaderId)
+		internal override void SetEnums()
 		{
 			CSycles.shadernode_set_enum(Id, "falloff", (int)Falloff);
 		}
