@@ -176,18 +176,6 @@ namespace ccl
 		}
 
 		/// <summary>
-		/// Set to true if shadows shouldn't be traced
-		/// </summary>
-		public bool NoShadows
-		{
-			set
-			{
-				CSycles.integrator_set_no_shadows(Session.Id, value);
-			}
-		}
-
-
-		/// <summary>
 		/// Set the amount of bounces for AO rays
 		/// 
 		/// Used when BranchedPath tracing is set.
@@ -236,17 +224,6 @@ namespace ccl
 		}
 
 		/// <summary>
-		/// Set the sample count for mesh lights
-		/// </summary>
-		public int MeshLightSamples
-		{
-			set
-			{
-				CSycles.integrator_set_mesh_light_samples(Session.Id, value);
-			}
-		}
-
-		/// <summary>
 		/// Set the amount of volume samples
 		/// </summary>
 		public int VolumeSamples
@@ -280,35 +257,24 @@ namespace ccl
 		}
 
 		/// <summary>
-		/// Set the integration method to use (Path or BranchedPath)
+		/// Set to true if all direct lights should be used.
 		/// </summary>
-		public IntegratorMethod IntegratorMethod
+		public bool UseDirectLight
 		{
 			set
 			{
-				CSycles.integrator_set_method(Session.Id, value);
+				CSycles.integrator_set_use_direct_light(Session.Id, value);
 			}
 		}
 
 		/// <summary>
-		/// Set to true if all direct lights should be sampled.
+		/// Set to true if all indirect lights should be used.
 		/// </summary>
-		public bool SampleAllLightsDirect
+		public bool UseIndirectLight
 		{
 			set
 			{
-				CSycles.integrator_set_sample_all_lights_direct(Session.Id, value);
-			}
-		}
-
-		/// <summary>
-		/// Set to true if all indirect lights should be sampled.
-		/// </summary>
-		public bool SampleAllLightsIndirect
-		{
-			set
-			{
-				CSycles.integrator_set_sample_all_lights_indirect(Session.Id, value);
+				CSycles.integrator_set_use_indirect_light(Session.Id, value);
 			}
 		}
 

@@ -14,17 +14,10 @@ namespace ccl
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern uint cycles_scene_tag_shader(IntPtr sessionId, IntPtr shaderId, bool use);
-		public static uint scene_tag_shader(IntPtr sessionId, IntPtr shaderId, bool use)
+		private static extern void cycles_scene_tag_shader(IntPtr sessionId, IntPtr shaderId, bool use);
+		public static void scene_tag_shader(IntPtr sessionId, IntPtr shaderId, bool use)
 		{
-			return cycles_scene_tag_shader(sessionId, shaderId, use);
-		}
-
-		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern uint cycles_scene_add_shader(IntPtr sessionId, IntPtr shaderId);
-		public static uint scene_add_shader(IntPtr sessionId, IntPtr shaderId)
-		{
-			return cycles_scene_add_shader(sessionId, shaderId);
+			cycles_scene_tag_shader(sessionId, shaderId, use);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]

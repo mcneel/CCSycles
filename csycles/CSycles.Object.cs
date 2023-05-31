@@ -47,8 +47,8 @@ namespace ccl
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_scene_object_set_shader(IntPtr sessionId, IntPtr objectId, uint shader);
-		public static void object_set_shader(IntPtr sessionId, IntPtr objectId, uint shader)
+		private static extern void cycles_scene_object_set_shader(IntPtr sessionId, IntPtr objectId, IntPtr shader);
+		public static void object_set_shader(IntPtr sessionId, IntPtr objectId, IntPtr shader)
 		{
 			cycles_scene_object_set_shader(sessionId, objectId, shader);
 		}
@@ -65,20 +65,6 @@ namespace ccl
 		public static void object_set_mesh_light_no_cast_shadow(IntPtr sessionId, IntPtr objectId, bool mesh_light_no_cast_shadow)
 		{
 			cycles_scene_object_set_mesh_light_no_cast_shadow(sessionId, objectId, mesh_light_no_cast_shadow);
-		}
-
-		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_scene_object_set_cutout(IntPtr sessionId, IntPtr objectId, bool cutout);
-		public static void object_set_cutout(IntPtr sessionId, IntPtr objectId, bool cutout)
-		{
-			cycles_scene_object_set_cutout(sessionId, objectId, cutout);
-		}
-
-		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_scene_object_set_ignore_cutout(IntPtr sessionId, IntPtr objectId, bool ignore_cutout);
-		public static void object_set_ignore_cutout(IntPtr sessionId, IntPtr objectId, bool ignore_cutout)
-		{
-			cycles_scene_object_set_ignore_cutout(sessionId, objectId, ignore_cutout);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]

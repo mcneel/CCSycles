@@ -31,17 +31,11 @@ namespace ccl
 	/// </summary>
 	public class Shader : IDisposable
 	{
-		public enum ShaderType
-		{
-			Material,
-			World
-		}
 		/// <summary>
 		/// Get the ID for this shader. This ID is given by CCycles
 		/// </summary>
 		public IntPtr Id { get; }
-		private Session Session { get; }
-		public ShaderType Type { get; set; }
+		private Scene Scene { get; }
 
 		/// <summary>
 		/// Print out debug information if set to true. Default false.
@@ -58,11 +52,11 @@ namespace ccl
 		/// </summary>
 		/// <param name="session">Session ID for C[CS]ycles API.</param>
 		/// <param name="type">The type of shader to create</param>
-		public Shader(Session session, ShaderType type)
+		public Shader(Scene scene)
 		{
-			Session = session;
-			Id = CSycles.create_shader(Session.Scene.Id);
-			CommonConstructor(type);
+			Scene = scene;
+			Id = CSycles.create_shader(scene.Id);
+			CommonConstructor();
 		}
 
 		/// <summary>
@@ -73,16 +67,15 @@ namespace ccl
 		/// <param name="session"></param>
 		/// <param name="type"></param>
 		/// <param name="id"></param>
-		internal Shader(Session session, ShaderType type, IntPtr id)
+		internal Shader(Scene scene, IntPtr id)
 		{
-			Session = session;
+			Scene = scene;
 			Id = id;
-			CommonConstructor(type);
+			CommonConstructor();
 		}
 
-		private void CommonConstructor(ShaderType type)
+		private void CommonConstructor()
 		{
-			Type = type;
 			int nodeCount = CSycles.shader_node_count(Id);
 			for(int i = 0; i < nodeCount; i++)
 			{
@@ -117,7 +110,7 @@ namespace ccl
 			CSycles.shader_new_graph(Id);
 
 			m_nodes.Clear();
-			CommonConstructor(Type);
+			CommonConstructor();
 		}
 
 		/// <summary>
@@ -129,7 +122,7 @@ namespace ccl
 		}
 		public virtual void Tag(bool use)
 		{
-			CSycles.scene_tag_shader(Session.Scene.Id, Id, use);
+			CSycles.scene_tag_shader(Scene.Id, Id, use);
 		}
 
 		readonly internal List<ShaderNode> m_nodes = new List<ShaderNode>();
@@ -217,7 +210,7 @@ namespace ccl
 		{
 			set
 			{
-				if (Session != null) CSycles.shader_set_use_mis(Session.Scene.Id, Id, value);
+				if (Scene != null) CSycles.shader_set_use_mis(Scene.Id, Id, value);
 			}
 		}
 
@@ -228,7 +221,7 @@ namespace ccl
 		{
 			set
 			{
-				if (Session != null) CSycles.shader_set_use_transparent_shadow(Session.Scene.Id, Id, value);
+				if (Scene != null) CSycles.shader_set_use_transparent_shadow(Scene.Id, Id, value);
 			}
 		}
 
@@ -239,7 +232,7 @@ namespace ccl
 		{
 			set
 			{
-				if (Session != null) CSycles.shader_set_heterogeneous_volume(Session.Scene.Id, Id, value);
+				if (Scene != null) CSycles.shader_set_heterogeneous_volume(Scene.Id, Id, value);
 			}
 		}
 

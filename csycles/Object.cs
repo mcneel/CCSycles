@@ -14,6 +14,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 **/
 
+using System;
+
 namespace ccl
 {
 
@@ -140,7 +142,7 @@ namespace ccl
 			}
 		}
 
-		public uint Shader
+		public IntPtr Shader
 		{
 			set
 			{
@@ -167,28 +169,6 @@ namespace ccl
 			set
 			{
 				CSycles.object_set_mesh_light_no_cast_shadow(Client.Scene.Id, ObjectPtr, value);
-			}
-		}
-
-		/// <summary>
-		/// Set to true to use this object as cutout
-		/// </summary>
-		public bool Cutout
-		{
-			set
-			{
-				CSycles.object_set_cutout(Client.Scene.Id, ObjectPtr, value);
-			}
-		}
-
-		/// <summary>
-		/// Set to true to have this object ignore cutouts
-		/// </summary>
-		public bool IgnoreCutout
-		{
-			set
-			{
-				CSycles.object_set_ignore_cutout(Client.Scene.Id, ObjectPtr, value);
 			}
 		}
 

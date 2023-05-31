@@ -97,67 +97,16 @@ namespace ccl
 		}
 
 		/// <summary>
-		/// A mapping of <c>Shader</c>s and their scene specific IDs.
-		/// </summary>
-		private readonly Dictionary<Shader, uint> m_shader_in_scene_ids = new Dictionary<Shader, uint>();
-		/// <summary>
-		/// Add a Shader to Session, assigning it a scene specific ID.
-		/// </summary>
-		/// <param name="shader">The Shader to add to the Session</param>
-		/// <returns>Session-specific ID for the Shader</returns>
-		public uint AddShader(Shader shader)
-		{
-			var shader_in_scene_id = CSycles.scene_add_shader(Id, shader.Id);
-			m_shader_in_scene_ids.Add(shader, shader_in_scene_id);
-			return shader_in_scene_id;
-		}
-
-		/// <summary>
-		/// Get the scene-specific Id for Shader
-		/// </summary>
-		/// <param name="shader">Shader to query for</param>
-		/// <returns>Session-specific Id</returns>
-		public uint GetShaderSceneId(Shader shader)
-		{
-			if (null != shader)
-			{
-				uint ssid;
-				if (m_shader_in_scene_ids.TryGetValue(shader, out ssid))
-				{
-					return ssid;
-				}
-			}
-			return 0xFFFFFFFF;
-		}
-
-		/// <summary>
-		/// Give the Shader that corresponds to the shader ID in this scene.
-		/// </summary>
-		/// <param name="shaderId">shader ID in scene</param>
-		/// <returns>Shader</returns>
-		public Shader ShaderFromSceneId(uint shaderId)
-		{
-			return (from kvp in m_shader_in_scene_ids where kvp.Value == shaderId select kvp.Key).FirstOrDefault();
-		}
-
-		/// <summary>
 		/// Get the first shader with name
 		/// </summary>
 		/// <param name="name">Name of shader to look for</param>
 		/// <returns>Shader or null if no shader with name was found.</returns>
 		public Shader ShaderWithName(string name)
 		{
-			return (from kvp in m_shader_in_scene_ids where kvp.Key.Name.Equals(name) select kvp.Key).FirstOrDefault();
-		}
+			// TODO: XXXX
+			//return (from kvp in m_shader_in_scene_ids where kvp.Key.Name.Equals(name) select kvp.Key).FirstOrDefault();
 
-		/// <summary>
-		/// Get a shader based on Session-specific ID.
-		/// </summary>
-		/// <param name="id"></param>
-		/// <returns></returns>
-		private Shader GetShader(uint id)
-		{
-			return (from kvp in m_shader_in_scene_ids where kvp.Value == id select kvp.Key).FirstOrDefault();
+			return null;
 		}
 
 		/// <summary>
@@ -167,11 +116,12 @@ namespace ccl
 		{
 			get
 			{
-				return GetShader(CSycles.scene_get_default_surface_shader(Id));
+				return new Shader(this, CSycles.scene_get_default_surface_shader(Id));
 			}
 			set
 			{
-				CSycles.scene_set_default_surface_shader(Id, GetShaderSceneId(value));
+				if(value != null)
+					CSycles.scene_set_default_surface_shader(Id, value.Id);
 			}
 		}
 		//public static uint scene_create(uint scene_params_id, uint deviceid)

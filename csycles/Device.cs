@@ -69,10 +69,6 @@ namespace ccl
 		/// </summary>
 		public DeviceType Type { get; private set; }
 		/// <summary>
-		/// True if this device supports advanced shading
-		/// </summary>
-		public bool AdvancedShading { get; private set; }
-		/// <summary>
 		/// True if this device is used as a display device
 		/// </summary>
 		public bool DisplayDevice { get; private set; }
@@ -131,7 +127,7 @@ namespace ccl
 		/// String representation of this device
 		/// </summary>
 		/// <returns>String representation of this device</returns>
-		public override string ToString() => $"{base.ToString()}: {Description} ({Type}), Id {Id} Num {Num} Name {Name} DisplayDevice {DisplayDevice} AdvancedShading {AdvancedShading}";
+		public override string ToString() => $"{base.ToString()}: {Description} ({Type}), Id {Id} Num {Num} Name {Name} DisplayDevice {DisplayDevice}";
 
 		/// <summary>
 		/// Get the default device (Cpu)
@@ -365,7 +361,6 @@ namespace ccl
 				Name = CSycles.DeviceId(idx),
 				Num = CSycles.device_num(idx),
 				Type = CSycles.device_type(idx),
-				AdvancedShading = CSycles.device_advanced_shading(idx),
 				DisplayDevice = CSycles.device_display_device(idx),
 			};
 

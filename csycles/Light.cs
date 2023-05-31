@@ -14,6 +14,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 **/
 
+using System;
+
 namespace ccl
 {
 	/// <summary>
@@ -24,7 +26,7 @@ namespace ccl
 		/// <summary>
 		/// Id of this light after creation.
 		/// </summary>
-		public uint Id { get; internal set; }
+		public IntPtr Id { get; internal set; }
 		/// <summary>
 		/// Reference to scene in which light was created.
 		/// </summary>
@@ -48,7 +50,7 @@ namespace ccl
 			Client = client;
 			Scene = scene;
 			Shader = lightShader;
-			Id = CSycles.create_light(Scene.Id, scene.GetShaderSceneId(lightShader));
+			Id = CSycles.create_light(Scene.Id, lightShader.Id);
 		}
 
 		/// <summary>

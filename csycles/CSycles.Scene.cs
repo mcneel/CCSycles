@@ -50,8 +50,8 @@ namespace ccl
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern IntPtr cycles_scene_add_mesh(IntPtr sessionId, uint shaderId);
-		public static IntPtr scene_add_mesh(IntPtr sessionId, uint shaderId)
+		private static extern IntPtr cycles_scene_add_mesh(IntPtr sessionId, IntPtr shaderId);
+		public static IntPtr scene_add_mesh(IntPtr sessionId, IntPtr shaderId)
 		{
 			return cycles_scene_add_mesh(sessionId, shaderId);
 		}
@@ -74,7 +74,7 @@ namespace ccl
 
 		[DllImport(Constants.ccycles, SetLastError = false,
 			CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_scene_set_default_surface_shader(IntPtr sessionId, uint shaderId);
+		private static extern void cycles_scene_set_default_surface_shader(IntPtr sessionId, IntPtr shaderId);
 		/// <summary>
 		/// Set the default surface shader for sessionId to shaderId.
 		/// 
@@ -83,21 +83,20 @@ namespace ccl
 		/// <param name="clientId">ID of client</param>
 		/// <param name="sessionId">Session for which the default shader is set</param>
 		/// <param name="shaderId">The shader to which the default shader is set</param>
-		public static void scene_set_default_surface_shader(IntPtr sessionId, uint shaderId)
+		public static void scene_set_default_surface_shader(IntPtr sessionId, IntPtr shaderId)
 		{
 			cycles_scene_set_default_surface_shader(sessionId, shaderId);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false,
 			CallingConvention = CallingConvention.Cdecl)]
-		private static extern uint cycles_scene_get_default_surface_shader(IntPtr sessionId);
+		private static extern IntPtr cycles_scene_get_default_surface_shader(IntPtr sessionId);
 		/// <summary>
-		/// Get the default surface shader id for sessionId
+		/// Get the default surface shader for sessionId
 		/// </summary>
-		/// <param name="clientId">ID of client</param>
 		/// <param name="sessionId"></param>
 		/// <returns></returns>
-		public static uint scene_get_default_surface_shader(IntPtr sessionId)
+		public static IntPtr scene_get_default_surface_shader(IntPtr sessionId)
 		{
 			return cycles_scene_get_default_surface_shader(sessionId);
 		}

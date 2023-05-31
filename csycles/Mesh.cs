@@ -43,11 +43,8 @@ namespace ccl
 		{
 			Client = client;
 			Shader = shader;
-
-			var ssid = Client.Scene.GetShaderSceneId(shader);
-
-		  GeometryPointer = CSycles.scene_add_mesh(Client.Scene.Id, ssid);
-			System.Diagnostics.Trace.WriteLine($"Created mesh {GeometryPointer} with shader {ssid}\n");
+			GeometryPointer = CSycles.scene_add_mesh(Client.Scene.Id, shader.Id);
+			System.Diagnostics.Trace.WriteLine($"Created mesh {GeometryPointer} with shader {shader.Id}\n");
 		}
 
 		/// <summary>
@@ -80,7 +77,7 @@ namespace ccl
 		{
 			System.Diagnostics.Trace.WriteLine($"on mesh {GeometryPointer} replacing {Shader.Id} with {shader.Id}\n");
 			Shader = shader;
-			CSycles.geometry_set_shader(Client.Scene.Id, GeometryPointer, Client.Scene.GetShaderSceneId(Shader));
+			CSycles.geometry_set_shader(Client.Scene.Id, GeometryPointer, Shader.Id);
 			TagRebuild();
 		}
 
@@ -137,7 +134,7 @@ namespace ccl
 		/// <param name="smooth"></param>
 		public void SetVertTris(ref int[] faces, bool smooth)
 		{
-			CSycles.mesh_set_tris(Client.Scene.Id, GeometryPointer, ref faces, (uint) (faces.Length/3), Client.Scene.GetShaderSceneId(Shader), smooth);
+			CSycles.mesh_set_tris(Client.Scene.Id, GeometryPointer, ref faces, (uint) (faces.Length/3), Shader.Id, smooth);
 		}
 
 		/// <summary>
@@ -178,7 +175,7 @@ namespace ccl
 		/// <param name="smooth"></param>
 		public void AddTri(uint v0, uint v1, uint v2, Shader shader, bool smooth)
 		{
-			CSycles.mesh_add_triangle(Client.Scene.Id, GeometryPointer, v0, v1, v2, Client.Scene.GetShaderSceneId(shader), smooth);
+			CSycles.mesh_add_triangle(Client.Scene.Id, GeometryPointer, v0, v1, v2, shader.Id, smooth);
 		}
 
 		/// <summary>
@@ -192,7 +189,7 @@ namespace ccl
 		/// <param name="smooth"></param>
 		public void SetTri(uint idx, uint v0, uint v1, uint v2, Shader shader, bool smooth)
 		{
-			CSycles.mesh_set_triangle(Client.Scene.Id, GeometryPointer, idx, v0, v1, v2, Client.Scene.GetShaderSceneId(shader), smooth);
+			CSycles.mesh_set_triangle(Client.Scene.Id, GeometryPointer, idx, v0, v1, v2, shader.Id, smooth);
 		}
 	}
 }

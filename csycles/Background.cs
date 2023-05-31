@@ -54,7 +54,7 @@ namespace ccl
 				if(bgShader == null)
 				{
 					var shid = CSycles.scene_get_background_shader(Session.Scene.Id);
-					bgShader = new Shader(Session, Shader.ShaderType.World, shid);
+					bgShader = new Shader(Session.Scene, shid);
 				}
 				return bgShader;
 			}

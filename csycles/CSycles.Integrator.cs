@@ -98,13 +98,6 @@ namespace ccl
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_integrator_set_mesh_light_samples(IntPtr sessionId, int value);
-		public static void integrator_set_mesh_light_samples(IntPtr sessionId, int value)
-		{
-			cycles_integrator_set_mesh_light_samples(sessionId, value);
-		}
-
-		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		private static extern void cycles_integrator_set_aa_samples(IntPtr sessionId, int value);
 		public static void integrator_set_aa_samples(IntPtr sessionId, int value)
 		{
@@ -131,13 +124,6 @@ namespace ccl
 		{
 			cycles_integrator_set_caustics_refractive(sessionId, value);
 		}
-		
-		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_integrator_set_no_shadows(IntPtr sessionId, bool value);
-		public static void integrator_set_no_shadows(IntPtr sessionId, bool value)
-		{
-			cycles_integrator_set_no_shadows(sessionId, value);
-		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		private static extern void cycles_integrator_set_filter_glossy(IntPtr sessionId, float value);
@@ -147,24 +133,17 @@ namespace ccl
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_integrator_set_method(IntPtr sessionId, int value);
-		public static void integrator_set_method(IntPtr sessionId, IntegratorMethod value)
+		private static extern void cycles_integrator_set_use_direct_light(IntPtr sessionId, bool value);
+		public static void integrator_set_use_direct_light(IntPtr sessionId, bool value)
 		{
-			cycles_integrator_set_method(sessionId, (int)value);
+			cycles_integrator_set_use_direct_light(sessionId, value);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_integrator_set_sample_all_lights_direct(IntPtr sessionId, bool value);
-		public static void integrator_set_sample_all_lights_direct(IntPtr sessionId, bool value)
+		private static extern void cycles_integrator_set_use_indirect_light(IntPtr sessionId, bool value);
+		public static void integrator_set_use_indirect_light(IntPtr sessionId, bool value)
 		{
-			cycles_integrator_set_sample_all_lights_direct(sessionId, value);
-		}
-
-		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_integrator_set_sample_all_lights_indirect(IntPtr sessionId, bool value);
-		public static void integrator_set_sample_all_lights_indirect(IntPtr sessionId, bool value)
-		{
-			cycles_integrator_set_sample_all_lights_indirect(sessionId, value);
+			cycles_integrator_set_use_indirect_light(sessionId, value);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]

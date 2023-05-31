@@ -65,28 +65,6 @@ namespace ccl
 		}
 
 		/// <summary>
-		/// Set to true if rendering should be progressively refined
-		/// </summary>
-		public bool ProgressiveRefine
-		{
-			set
-			{
-				CSycles.session_params_set_progressive_refine(Id, value);
-			}
-		}
-
-		/// <summary>
-		/// Set to true if rendering should be progressive
-		/// </summary>
-		public bool Progressive
-		{
-			set
-			{
-				CSycles.session_params_set_progressive(Id, value);
-			}
-		}
-
-		/// <summary>
 		/// Set the output path to which final render should be written
 		/// </summary>
 		public string OutputPath
@@ -142,20 +120,6 @@ namespace ccl
 		}
 
 		/// <summary>
-		/// Set the initial resolution at which updates should be pushed by the renderer.
-		/// 
-		/// Higher values means a more complete result is shown, but might take longer before
-		/// anything visible is pushed.
-		/// </summary>
-		public int StartResolution
-		{
-			set
-			{
-				CSycles.session_params_set_start_resolution(Id, value);
-			}
-		}
-
-		/// <summary>
 		/// The number of Cpu threads to use to handle the rendering process.
 		/// 
 		/// 0 means automatic thread count based on available logic cores.
@@ -165,27 +129,6 @@ namespace ccl
 			set
 			{
 				CSycles.session_params_set_threads(Id, value);
-			}
-		}
-
-		/// <summary>
-		/// Set to true if the display buffer should be handled linearly. This will
-		/// use internally a half-float buffer if set to true, otherwise a byte buffer
-		/// for the rendered result.
-		/// </summary>
-		public bool DisplayBufferLinear
-		{
-			set
-			{
-				CSycles.session_params_set_display_buffer_linear(Id, value);
-			}
-		}
-
-		public bool SkipLinearToSrgbConversion
-		{
-			set
-			{
-				CSycles.session_params_set_skip_linear_to_srgb_conversion(Id, value);
 			}
 		}
 

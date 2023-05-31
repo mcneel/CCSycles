@@ -125,21 +125,6 @@ namespace ccl
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		[return: MarshalAs(UnmanagedType.U1)]
-		private static extern bool cycles_device_advanced_shading(int i);
-		/// <summary>
-		/// Query if device supports advanced shading.
-		///
-		/// \todo explain what advanced shading entails.
-		/// </summary>
-		/// <param name="i">Device ID to query</param>
-		/// <returns>True if the device supports advanced shading.</returns>
-		public static bool device_advanced_shading(int i)
-		{
-			return cycles_device_advanced_shading(i);
-		}
-
-		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		[return: MarshalAs(UnmanagedType.U1)]
 		private static extern bool cycles_device_display_device(int i);
 		/// <summary>
 		/// Query if device is used as display device.

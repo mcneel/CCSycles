@@ -58,8 +58,8 @@ namespace ccl
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private unsafe static extern void cycles_mesh_set_tris(IntPtr sessionId, IntPtr meshId, int* faces, uint fcount, uint shaderId, uint smooth);
-		public static void mesh_set_tris(IntPtr sessionId, IntPtr meshId, ref int[] tris, uint fcount, uint shaderId, bool smooth)
+		private unsafe static extern void cycles_mesh_set_tris(IntPtr sessionId, IntPtr meshId, int* faces, uint fcount, IntPtr shaderId, uint smooth);
+		public static void mesh_set_tris(IntPtr sessionId, IntPtr meshId, ref int[] tris, uint fcount, IntPtr shaderId, bool smooth)
 		{
 			unsafe
 			{
@@ -71,19 +71,19 @@ namespace ccl
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_mesh_set_triangle(IntPtr sessionId, IntPtr meshId, uint tri_idx, uint v0, uint v1, uint v2, uint shaderId, uint smooth);
+		private static extern void cycles_mesh_set_triangle(IntPtr sessionId, IntPtr meshId, uint tri_idx, uint v0, uint v1, uint v2, IntPtr shaderId, uint smooth);
 
 		public static void mesh_set_triangle(IntPtr sessionId, IntPtr meshId, uint tri_idx, uint v0, uint v1, uint v2,
-			uint shaderId, bool smooth)
+			IntPtr shaderId, bool smooth)
 		{
 			cycles_mesh_set_triangle(sessionId, meshId, tri_idx, v0, v1, v2, shaderId, (uint)(smooth ? 1 : 0));
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_mesh_add_triangle(IntPtr sessionId, IntPtr meshId, uint v0, uint v1, uint v2, uint shaderId, uint smooth);
+		private static extern void cycles_mesh_add_triangle(IntPtr sessionId, IntPtr meshId, uint v0, uint v1, uint v2, IntPtr shaderId, uint smooth);
 
 		public static void mesh_add_triangle(IntPtr sessionId, IntPtr meshId, uint v0, uint v1, uint v2,
-			uint shaderId, bool smooth)
+			IntPtr shaderId, bool smooth)
 		{
 			cycles_mesh_add_triangle(sessionId, meshId, v0, v1, v2, shaderId, (uint)(smooth ? 1 : 0));
 		}
@@ -97,9 +97,9 @@ namespace ccl
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_geometry_set_shader(IntPtr sessionId, IntPtr geometry, uint shader);
+		private static extern void cycles_geometry_set_shader(IntPtr sessionId, IntPtr geometry, IntPtr shader);
 
-		public static void geometry_set_shader(IntPtr sessionId, IntPtr geometry, uint shaderId)
+		public static void geometry_set_shader(IntPtr sessionId, IntPtr geometry, IntPtr shaderId)
 		{
 			cycles_geometry_set_shader(sessionId, geometry, shaderId);
 		}

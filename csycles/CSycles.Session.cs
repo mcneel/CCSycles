@@ -191,26 +191,12 @@ namespace ccl
 			cycles_session_params_set_background(sessionParamsId, (uint)(background ? 1 : 0));
 		}
 
-		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_session_params_set_progressive_refine(IntPtr sessionParamsId, uint progressiveRefine);
-		public static void session_params_set_progressive_refine(IntPtr sessionParamsId, bool progressiveRefine)
-		{
-			cycles_session_params_set_progressive_refine(sessionParamsId, (uint)(progressiveRefine?1:0));
-		}
-
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
 		[System.Diagnostics.CodeAnalysis.SuppressMessage("Globalization", "CA2101:Specify marshaling for P/Invoke string arguments", Justification = "Using simple c string")]
 		private static extern void cycles_session_params_set_output_path(IntPtr sessionParamsId, [MarshalAs(UnmanagedType.LPStr)] string outputPath);
 		public static void session_params_set_output_path(IntPtr sessionParamsId, string outputPath)
 		{
 			cycles_session_params_set_output_path(sessionParamsId, outputPath);
-		}
-
-		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_session_params_set_progressive(IntPtr sessionParamsId, uint progressive);
-		public static void session_params_set_progressive(IntPtr sessionParamsId, bool progressive)
-		{
-			cycles_session_params_set_progressive(sessionParamsId, (uint)(progressive?1:0));
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
@@ -242,31 +228,10 @@ namespace ccl
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_session_params_set_start_resolution(IntPtr sessionParamsId, int startResolution);
-		public static void session_params_set_start_resolution(IntPtr sessionParamsId, int startResolution)
-		{
-			cycles_session_params_set_start_resolution(sessionParamsId, startResolution);
-		}
-
-		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		private static extern void cycles_session_params_set_threads(IntPtr sessionParamsId, uint threads);
 		public static void session_params_set_threads(IntPtr sessionParamsId, uint threads)
 		{
 			cycles_session_params_set_threads(sessionParamsId, threads);
-		}
-
-		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_session_params_set_display_buffer_linear(IntPtr sessionParamsId, uint displayBufferLinear);
-		public static void session_params_set_display_buffer_linear(IntPtr sessionParamsId, bool displayBufferLinear)
-		{
-			cycles_session_params_set_display_buffer_linear(sessionParamsId, (uint)(displayBufferLinear ? 1 : 0));
-		}
-
-		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_session_params_set_skip_linear_to_srgb_conversion(IntPtr sessionParamsId, uint skipLinearToSrgbConversion);
-		public static void session_params_set_skip_linear_to_srgb_conversion(IntPtr sessionParamsId, bool skipLinearToSrgbConversion)
-		{
-			cycles_session_params_set_skip_linear_to_srgb_conversion(sessionParamsId, (uint)(skipLinearToSrgbConversion ? 1 : 0));
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]

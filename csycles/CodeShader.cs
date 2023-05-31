@@ -30,7 +30,7 @@ namespace ccl
 	{
 		// @todo XXXX Fixup CodeShader
 		// TODO XXXX Fixup CodeShader
-		public CodeShader(Session session, ShaderType type) : base(session, type)
+		public CodeShader(Scene scene) : base(scene)
 		{
 			Xml = "";
 			Code = "";
@@ -92,7 +92,7 @@ namespace ccl
 		/// </summary>
 		public override void FinalizeGraph()
 		{
-			var code = new StringBuilder($"var shader = new Shader(ccl.Shader.ShaderType.{Type});", 10240);
+			var code = new StringBuilder($"var shader = new Shader();", 10240);
 			var xml = new StringBuilder(1024);
 
 			if (Verbose) System.Diagnostics.Debug.WriteLine($"Finalizing XML and Code {Name}");
