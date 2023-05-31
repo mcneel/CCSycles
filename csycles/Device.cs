@@ -92,6 +92,21 @@ namespace ccl
 		public bool IsOptix => Type == DeviceType.Optix;
 
 		/// <summary>
+		/// True if this device is a Metal device
+		/// </summary>
+		public bool IsMetal => Type == DeviceType.Metal;
+
+		/// <summary>
+		/// True if this device is a HIP device
+		/// </summary>
+		public bool IsHip => Type == DeviceType.Hip;
+
+		/// <summary>
+		/// True if this device is a OneAPI device
+		/// </summary>
+		public bool IsOneApi => Type == DeviceType.OneApi;
+
+		/// <summary>
 		/// True if this device is a GPU
 		/// </summary>
 		public bool IsGpu => !IsCpu;
@@ -242,7 +257,27 @@ namespace ccl
 		/// <returns></returns>
 		static public bool CudaAvailable()
 		{
-			return CSycles.number_cuda_devices() > 0;
+			return CSycles.number_devices_by_type(ccl.DeviceType.Cuda) > 0;
+		}
+
+		static public bool OptixAvailable()
+		{
+			return CSycles.number_devices_by_type(ccl.DeviceType.Optix) > 0;
+		}
+
+		static public bool HipAvailable()
+		{
+			return CSycles.number_devices_by_type(ccl.DeviceType.Hip) > 0;
+		}
+
+		static public bool OneApiAvailable()
+		{
+			return CSycles.number_devices_by_type(ccl.DeviceType.OneApi) > 0;
+		}
+
+		static public bool MetalAvailable()
+		{
+			return CSycles.number_devices_by_type(ccl.DeviceType.Metal) > 0;
 		}
 
 		public const int MultiOffset = 100000;

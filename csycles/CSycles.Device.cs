@@ -54,14 +54,14 @@ namespace ccl
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern uint cycles_number_cuda_devices();
+		private static extern uint cycles_number_devices_by_type(ccl.DeviceType device_type);
 		/// <summary>
 		/// Get the number of available Cuda devices.
 		/// </summary>
 		/// <returns>number of available Cuda devices.</returns>
-		public static uint number_cuda_devices()
+		public static uint number_devices_by_type(ccl.DeviceType device_type)
 		{
-			return cycles_number_cuda_devices();
+			return cycles_number_devices_by_type(device_type);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
