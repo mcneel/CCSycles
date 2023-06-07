@@ -148,7 +148,7 @@ namespace ccl
 		/// This step also commits any values set to input sockets, enumerations
 		/// and direct member variables.
 		/// </summary>
-		public virtual void FinalizeGraph()
+		public virtual void WriteDataToNodes()
 		{
 			foreach (var node in m_nodes)
 			{
@@ -161,17 +161,6 @@ namespace ccl
 				if (node.inputs == null) continue;
 
 				node.SetSockets();
-
-				//foreach (var socket in node.inputs.Sockets)
-				//{
-				//	var from = socket.ConnectionFrom;
-				//	if (from == null) continue;
-				//	if (Verbose)
-				//	{
-				//		Utilities.ConsoleWrite($"Shader {Name}: Connecting {from.Path} to {socket.Path}\n");
-				//	}
-				//	Connect(from.Parent, from.Name, node, socket.Name);
-				//}
 			}
 		}
 

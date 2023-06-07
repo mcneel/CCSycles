@@ -284,7 +284,7 @@ namespace ccl
 				}
 			}
 
-			if(finalize) shader.FinalizeGraph();
+			if(finalize) shader.WriteDataToNodes();
 		}
 	}
 }

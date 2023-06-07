@@ -90,7 +90,7 @@ namespace ccl
 		/// through code and generating both XML and C# strings that represent
 		/// the node graph
 		/// </summary>
-		public override void FinalizeGraph()
+		public override void WriteDataToNodes()
 		{
 			var code = new StringBuilder($"var shader = new Shader();", 10240);
 			var xml = new StringBuilder(1024);
