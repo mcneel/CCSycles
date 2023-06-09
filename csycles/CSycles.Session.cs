@@ -221,13 +221,6 @@ namespace ccl
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_session_params_set_tile_order(IntPtr sessionParamsId, uint tileOrder);
-		public static void session_params_set_tile_order(IntPtr sessionParamsId, TileOrder tileOrder)
-		{
-			cycles_session_params_set_tile_order(sessionParamsId, (uint)tileOrder);
-		}
-
-		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		private static extern void cycles_session_params_set_threads(IntPtr sessionParamsId, uint threads);
 		public static void session_params_set_threads(IntPtr sessionParamsId, uint threads)
 		{

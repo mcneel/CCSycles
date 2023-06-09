@@ -205,16 +205,6 @@ namespace ccl
   Default = Bvh8,
 	}
 
-	public enum TileOrder : uint
-	{
-		Center,
-		RightToLeft,
-		LeftToRight,
-		TopToBottom,
-		BottomToTop,
-		HilbertSpiral
-	}
-
 	public enum CameraType : uint
 	{
 		Perspective,

@@ -109,17 +109,6 @@ namespace ccl
 		}
 
 		/// <summary>
-		/// Set the TileOrder in which tiles are rendered
-		/// </summary>
-		public TileOrder TileOrder
-		{
-			set
-			{
-				CSycles.session_params_set_tile_order(Id, value);
-			}
-		}
-
-		/// <summary>
 		/// The number of Cpu threads to use to handle the rendering process.
 		/// 
 		/// 0 means automatic thread count based on available logic cores.
