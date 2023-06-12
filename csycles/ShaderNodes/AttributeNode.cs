@@ -52,15 +52,18 @@ namespace ccl.ShaderNodes
 		public ColorSocket Color { get; set; }
 		public VectorSocket Vector { get; set; }
 		public FloatSocket Fac { get; set; }
+		public FloatSocket Alpha { get; set; }
 
 		internal AttributeOutputs(ShaderNode parentNode)
 		{
-			Color = new ColorSocket(parentNode, "Color");
+			Color = new ColorSocket(parentNode, "Color", "color");
 			AddSocket(Color);
-			Vector = new VectorSocket(parentNode, "Vector");
+			Vector = new VectorSocket(parentNode, "Vector", "vector");
 			AddSocket(Vector);
-			Fac = new FloatSocket(parentNode, "Fac");
+			Fac = new FloatSocket(parentNode, "Fac","fac");
 			AddSocket(Fac);
+			Alpha = new FloatSocket(parentNode, "Alpha","alpha");
+			AddSocket(Alpha);
 		}
 	}
 
@@ -92,7 +95,7 @@ namespace ccl.ShaderNodes
 		}
 
 		/// <summary>
-		/// Name of the attribute to use
+		/// UiName of the attribute to use
 		/// </summary>
 		public string Attribute { get; set; }
 

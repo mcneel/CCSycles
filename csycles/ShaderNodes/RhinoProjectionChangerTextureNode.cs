@@ -26,7 +26,7 @@ namespace ccl.ShaderNodes
 
 		public ProjectionChangerTextureInputs(ShaderNode parentNode)
 		{
-			UVW = new VectorSocket(parentNode, "UVW");
+			UVW = new VectorSocket(parentNode, "UVW", "uvw");
 			AddSocket(UVW);
 		}
 	}
@@ -37,7 +37,7 @@ namespace ccl.ShaderNodes
 
 		public ProjectionChangerTextureOutputs(ShaderNode parentNode)
 		{
-			OutputUVW = new VectorSocket(parentNode, "Output UVW");
+			OutputUVW = new VectorSocket(parentNode, "Output UVW", "out_uvw");
 			AddSocket(OutputUVW);
 		}
 	}

@@ -28,9 +28,9 @@ namespace ccl.ShaderNodes
 
 		internal TranslucentBsdfInputs(ShaderNode parentNode)
 		{
-			Color = new ColorSocket(parentNode, "Color");
+			Color = new ColorSocket(parentNode, "Color", "color");
 			AddSocket(Color);
-			Normal = new VectorSocket(parentNode, "Normal");
+			Normal = new VectorSocket(parentNode, "Normal", "normal");
 			AddSocket(Normal);
 
 		}
@@ -42,7 +42,7 @@ namespace ccl.ShaderNodes
 
 		internal TranslucentBsdfOutputs(ShaderNode parentNode)
 		{
-			BSDF = new ClosureSocket(parentNode, "BSDF");
+			BSDF = new ClosureSocket(parentNode, "BSDF", "BSDF");
 			AddSocket(BSDF);
 		}
 	}

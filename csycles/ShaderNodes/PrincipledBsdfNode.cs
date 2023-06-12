@@ -48,27 +48,27 @@ namespace ccl.ShaderNodes
 		public PrincipledBsdfInputs(ShaderNode parentNode)
 		{
 
-			BaseColor = new ColorSocket(parentNode, "Base Color");
+			BaseColor = new ColorSocket(parentNode, "Base Color", "base_color");
 			//SpecularColor          = new ColorSocket(parentNode, "Specular Color");
-			Subsurface             = new FloatSocket(parentNode, "Subsurface");
-			SubsurfaceRadius       = new VectorSocket(parentNode, "Subsurface Radius");
-			SubsurfaceColor        = new ColorSocket(parentNode, "Subsurface Color");
-			Metallic               = new FloatSocket(parentNode, "Metallic");
-			Specular               = new FloatSocket(parentNode, "Specular");
-			SpecularTint           = new FloatSocket(parentNode, "Specular Tint");
-			Roughness              = new FloatSocket(parentNode, "Roughness");
-			Anisotropic            = new FloatSocket(parentNode, "Anisotropic");
-			Sheen                  = new FloatSocket(parentNode, "Sheen");
-			SheenTint              = new FloatSocket(parentNode, "Sheen Tint");
-			Clearcoat              = new FloatSocket(parentNode, "Clearcoat");
-			ClearcoatGloss         = new FloatSocket(parentNode, "Clearcoat Roughness");
-			IOR                    = new FloatSocket(parentNode, "IOR");
-			Transmission           = new FloatSocket(parentNode, "Transmission");
-			TransmissionRoughness  = new FloatSocket(parentNode, "Transmission Roughness");
-			AnisotropicRotation    = new FloatSocket(parentNode, "Anisotropic Rotation");
-			Normal                 = new VectorSocket(parentNode, "Normal");
-			ClearcoatNormal        = new VectorSocket(parentNode, "Clearcoat Normal");
-			Tangent                = new VectorSocket(parentNode, "Tangent");
+			Subsurface             = new FloatSocket(parentNode, "Subsurface", "subsurface");
+			SubsurfaceRadius       = new VectorSocket(parentNode, "Subsurface Radius", "subsurface_radius");
+			SubsurfaceColor        = new ColorSocket(parentNode, "Subsurface Color", "subsurface_color");
+			Metallic               = new FloatSocket(parentNode, "Metallic", "metallic");
+			Specular               = new FloatSocket(parentNode, "Specular", "specular");
+			SpecularTint           = new FloatSocket(parentNode, "Specular Tint", "specular_tint");
+			Roughness              = new FloatSocket(parentNode, "Roughness", "roughness");
+			Anisotropic            = new FloatSocket(parentNode, "Anisotropic", "anisotropic");
+			Sheen                  = new FloatSocket(parentNode, "Sheen", "sheen");
+			SheenTint              = new FloatSocket(parentNode, "Sheen Tint", "sheen_tint");
+			Clearcoat              = new FloatSocket(parentNode, "Clearcoat", "clearcoat");
+			ClearcoatGloss         = new FloatSocket(parentNode, "Clearcoat Roughness", "clearcoat_roughness");
+			IOR                    = new FloatSocket(parentNode, "IOR", "ior");
+			Transmission           = new FloatSocket(parentNode, "Transmission", "transmission");
+			TransmissionRoughness  = new FloatSocket(parentNode, "Transmission Roughness", "transmission_roughness");
+			AnisotropicRotation    = new FloatSocket(parentNode, "Anisotropic Rotation",  "anisotropic_rotation");
+			Normal                 = new VectorSocket(parentNode, "Normal", "normal");
+			ClearcoatNormal        = new VectorSocket(parentNode, "Clearcoat Normal", "clearcoat_normal");
+			Tangent                = new VectorSocket(parentNode, "Tangent", "tangent");
 
 			AddSocket(BaseColor);
 			//AddSocket(SpecularColor);
@@ -100,7 +100,7 @@ namespace ccl.ShaderNodes
 
 		public PrincipledBsdfOutputs(ShaderNode parentNode)
 		{
-			BSDF = new ClosureSocket(parentNode, "BSDF");
+			BSDF = new ClosureSocket(parentNode, "BSDF", "BSDF");
 			AddSocket(BSDF);
 		}
 	}

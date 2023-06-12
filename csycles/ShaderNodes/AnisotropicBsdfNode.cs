@@ -32,17 +32,17 @@ namespace ccl.ShaderNodes
 
 		public AnisotropicBsdfInputs(ShaderNode parentNode)
 		{
-			Color = new ColorSocket(parentNode, "Color");
+			Color = new ColorSocket(parentNode, "Color", "color");
 			AddSocket(Color);
-			Tangent = new VectorSocket(parentNode, "Tangent");
+			Tangent = new VectorSocket(parentNode, "Tangent", "tangent");
 			AddSocket(Tangent);
-			Normal = new VectorSocket(parentNode, "Normal");
+			Normal = new VectorSocket(parentNode, "Normal","normal");
 			AddSocket(Normal);
-			Roughness = new FloatSocket(parentNode, "Roughness");
+			Roughness = new FloatSocket(parentNode, "Roughness", "roughness");
 			AddSocket(Roughness);
-			Anisotropy = new FloatSocket(parentNode, "Anisotropy");
+			Anisotropy = new FloatSocket(parentNode, "Anisotropy", "anisotropy");
 			AddSocket(Anisotropy);
-			Rotation = new FloatSocket(parentNode, "Rotation");
+			Rotation = new FloatSocket(parentNode, "Rotation", "rotation");
 			AddSocket(Rotation);
 		}
 	}
@@ -53,7 +53,7 @@ namespace ccl.ShaderNodes
 
 		public AnisotropicBsdfOutputs(ShaderNode parentNode)
 		{
-			BSDF = new ClosureSocket(parentNode, "BSDF");
+			BSDF = new ClosureSocket(parentNode, "BSDF", "BSDF");
 			AddSocket(BSDF);
 		}
 	}

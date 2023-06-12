@@ -54,8 +54,8 @@ namespace ccl
 		{
 			foreach (var socket in Sockets)
 			{
-				if (XmlSocketName(socket.Name, false).ToLowerInvariant().Equals(name.ToLowerInvariant())) return socket;
-				if (XmlSocketName(socket.Name, true).ToLowerInvariant().Equals(name.ToLowerInvariant())) return socket;
+				if (XmlSocketName(socket.UiName, false).ToLowerInvariant().Equals(name.ToLowerInvariant())) return socket;
+				if (XmlSocketName(socket.UiName, true).ToLowerInvariant().Equals(name.ToLowerInvariant())) return socket;
 			}
 
 			throw new ArgumentException($"Socket {name} doesn't exist", nameof(name));
@@ -84,7 +84,7 @@ namespace ccl
 		/// 
 		/// Case insensitive.
 		/// </summary>
-		/// <param name="n">Name of property to search for</param>
+		/// <param name="n">UiName of property to search for</param>
 		/// <returns></returns>
 		public bool HasSocket(string n)
 		{

@@ -30,13 +30,13 @@ namespace ccl.ShaderNodes
 
 		public DisplacementInputs(ShaderNode parentNode)
 		{
-			Height = new FloatSocket(parentNode, "Height");
+			Height = new FloatSocket(parentNode, "Height", "height");
 			AddSocket(Height);
-			Midlevel = new FloatSocket(parentNode, "Midlevel");
+			Midlevel = new FloatSocket(parentNode, "Midlevel", "midlevel");
 			AddSocket(Midlevel);
-			Scale = new FloatSocket(parentNode, "Scale");
+			Scale = new FloatSocket(parentNode, "Scale", "scale");
 			AddSocket(Scale);
-			Normal = new VectorSocket(parentNode, "Normal");
+			Normal = new VectorSocket(parentNode, "Normal", "normal");
 			AddSocket(Normal);
 		}
 	}
@@ -47,7 +47,7 @@ namespace ccl.ShaderNodes
 
 		public DisplacementOutputs(ShaderNode parentNode)
 		{
-			Displacement = new VectorSocket(parentNode, "Displacement");
+			Displacement = new VectorSocket(parentNode, "Displacement", "displacement");
 			AddSocket(Displacement);
 		}
 	}

@@ -27,9 +27,9 @@ namespace ccl.ShaderNodes
 
 		public BlendTextureInputs(ShaderNode parentNode) : base(parentNode)
 		{
-			UVW = new VectorSocket(parentNode, "UVW");
+			UVW = new VectorSocket(parentNode, "UVW", "uvw");
 			AddSocket(UVW);
-			BlendColor = new ColorSocket(parentNode, "BlendColor");
+			BlendColor = new ColorSocket(parentNode, "BlendColor", "blend_color");
 			AddSocket(BlendColor);
 		}
 	}

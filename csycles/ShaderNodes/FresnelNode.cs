@@ -23,15 +23,12 @@ namespace ccl.ShaderNodes
 {
 	public class FresnelInputs : Inputs
 	{
-		public VectorSocket Normal { get; set; }
 		public FloatSocket IOR { get; set; }
 
 		internal FresnelInputs(ShaderNode parentNode)
 		{
-			IOR = new FloatSocket(parentNode, "IOR");
+			IOR = new FloatSocket(parentNode, "IOR", "IOR");
 			AddSocket(IOR);
-			Normal = new VectorSocket(parentNode, "Normal");
-			AddSocket(Normal);
 		}
 	}
 
@@ -41,7 +38,7 @@ namespace ccl.ShaderNodes
 
 		internal FresnelOutputs(ShaderNode parentNode)
 		{
-			Fac = new FloatSocket(parentNode, "Fac");
+			Fac = new FloatSocket(parentNode, "Fac", "fac");
 			AddSocket(Fac);
 		}
 	}
@@ -68,13 +65,11 @@ namespace ccl.ShaderNodes
 			inputs = new FresnelInputs(this);
 			outputs = new FresnelOutputs(this);
 			ins.IOR.Value = 1.45f;
-			ins.Normal.Value = new float4();
 		}
 
 		internal override void ParseXml(XmlReader xmlNode)
 		{
 			Utilities.Instance.get_float(ins.IOR, xmlNode.GetAttribute("ior"));
-			Utilities.Instance.get_float4(ins.Normal, xmlNode.GetAttribute("normal"));
 		}
 	}
 }

@@ -127,7 +127,7 @@ namespace ccl
 		/// String representation of this device
 		/// </summary>
 		/// <returns>String representation of this device</returns>
-		public override string ToString() => $"{base.ToString()}: {Description} ({Type}), Id {Id} Num {Num} Name {Name} DisplayDevice {DisplayDevice}";
+		public override string ToString() => $"{base.ToString()}: {Description} ({Type}), Id {Id} Num {Num} UiName {Name} DisplayDevice {DisplayDevice}";
 
 		/// <summary>
 		/// Get the default device (Cpu)

@@ -41,17 +41,32 @@ namespace ccl.ShaderNodes
 		/// BumpNode distance
 		/// </summary>
 		public FloatSocket Distance { get; set; }
+		public BoolSocket Invert { get; set; }
+		public BoolSocket UseObjectSpace { get; set; }
+		public FloatSocket SampleX { get; set; }
+		public FloatSocket SampleY { get; set; }
+		public FloatSocket SampleCenter { get; set; }
 
 		internal BumpInputs(ShaderNode parentNode)
 		{
-			Height = new FloatSocket(parentNode, "Height");
+			Invert = new BoolSocket(parentNode, "Invert", "invert");
+			AddSocket(Invert);
+			UseObjectSpace = new BoolSocket(parentNode, "UseObjectSpace", "use_object_space");
+			AddSocket(UseObjectSpace);
+			Height = new FloatSocket(parentNode, "Height", "height");
 			AddSocket(Height);
-			Normal = new VectorSocket(parentNode, "Normal");
+			Normal = new VectorSocket(parentNode, "Normal", "normal");
 			AddSocket(Normal);
-			Strength = new FloatSocket(parentNode, "Strength");
+			Strength = new FloatSocket(parentNode, "Strength", "strength");
 			AddSocket(Strength);
-			Distance = new FloatSocket(parentNode, "Distance");
+			Distance = new FloatSocket(parentNode, "Distance", "distance");
 			AddSocket(Distance);
+			SampleCenter = new FloatSocket(parentNode, "SampleCenter", "sample_center");
+			AddSocket(SampleCenter);
+			SampleX = new FloatSocket(parentNode, "SampleX", "sample_x");
+			AddSocket(SampleX);
+			SampleY = new FloatSocket(parentNode, "SampleY", "sample_y");
+			AddSocket(SampleY);
 		}
 	}
 
@@ -67,7 +82,7 @@ namespace ccl.ShaderNodes
 
 		internal BumpOutputs(ShaderNode parentNode)
 		{
-			Normal = new VectorSocket(parentNode, "Normal");
+			Normal = new VectorSocket(parentNode, "Normal", "normal");
 			AddSocket(Normal);
 		}
 	}

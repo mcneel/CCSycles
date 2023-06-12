@@ -37,7 +37,7 @@ namespace ccl.ShaderNodes
 		/// <param name="parentNode"></param>
 		internal MatrixMathInputs(ShaderNode parentNode)
 		{
-			Vector = new VectorSocket(parentNode, "Vector");
+			Vector = new VectorSocket(parentNode, "Vector", "vector");
 			AddSocket(Vector);
 		}
 	}
@@ -58,7 +58,7 @@ namespace ccl.ShaderNodes
 		/// <param name="parentNode"></param>
 		internal MatrixMathOutputs(ShaderNode parentNode)
 		{
-			Vector = new VectorSocket(parentNode, "Vector");
+			Vector = new VectorSocket(parentNode, "Vector", "vector");
 			AddSocket(Vector);
 		}
 	}

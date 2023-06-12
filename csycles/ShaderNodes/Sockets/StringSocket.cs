@@ -18,8 +18,7 @@ namespace ccl.ShaderNodes.Sockets
 {
 	public class StringSocket : SocketBase<string>
 	{
-		public StringSocket(ShaderNode parentNode, string name)
-			: base(parentNode, name)
+		public StringSocket(ShaderNode parentNode, string name, string internalname) : base(parentNode, name, internalname)
 		{
 			Value = "";
 		}

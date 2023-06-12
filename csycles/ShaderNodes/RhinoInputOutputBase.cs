@@ -29,16 +29,16 @@ namespace ccl.ShaderNodes
 
 		public TwoColorInputs(ShaderNode parentNode)
 		{
-			Color1 = new ColorSocket(parentNode, "Color1");
+			Color1 = new ColorSocket(parentNode, "Color1", "color1");
 			Color1.Value = new float4(0.0f, 0.0f, 0.0f, 1.0f);
 			AddSocket(Color1);
-			Alpha1 = new FloatSocket(parentNode, "Alpha1");
+			Alpha1 = new FloatSocket(parentNode, "Alpha1", "alpha1");
 			Alpha1.Value = 1.0f;
 			AddSocket(Alpha1);
-			Color2 = new ColorSocket(parentNode, "Color2");
+			Color2 = new ColorSocket(parentNode, "Color2", "color2");
 			Color2.Value = new float4(1.0f, 1.0f, 1.0f, 1.0f);
 			AddSocket(Color2);
-			Alpha2 = new FloatSocket(parentNode, "Alpha2");
+			Alpha2 = new FloatSocket(parentNode, "Alpha2", "alpha2");
 			Alpha2.Value = 1.0f;
 			AddSocket(Alpha2);
 		}
@@ -51,9 +51,9 @@ namespace ccl.ShaderNodes
 
 		public TwoColorOutputs(ShaderNode parentNode)
 		{
-			Color = new ColorSocket(parentNode, "Color");
+			Color = new ColorSocket(parentNode, "Color", "out_color");
 			AddSocket(Color);
-			Alpha = new FloatSocket(parentNode, "Alpha");
+			Alpha = new FloatSocket(parentNode, "Alpha", "out_alpha");
 			AddSocket(Alpha);
 		}
 	}

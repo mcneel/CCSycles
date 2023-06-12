@@ -43,11 +43,11 @@ namespace ccl.ShaderNodes
 
 		internal MixClosureInputs(ShaderNode parentNode)
 		{
-			Closure1 = new ClosureSocket(parentNode, "Closure1");
+			Closure1 = new ClosureSocket(parentNode, "Closure1", "closure1");
 			AddSocket(Closure1);
-			Closure2 = new ClosureSocket(parentNode, "Closure2");
+			Closure2 = new ClosureSocket(parentNode, "Closure2", "closure2");
 			AddSocket(Closure2);
-			Fac = new FloatSocket(parentNode, "Fac");
+			Fac = new FloatSocket(parentNode, "Fac", "fac");
 			AddSocket(Fac);
 		}
 	}
@@ -64,7 +64,7 @@ namespace ccl.ShaderNodes
 
 		internal MixClosureOutputs(ShaderNode parentNode)
 		{
-			Closure = new ClosureSocket(parentNode, "Closure");
+			Closure = new ClosureSocket(parentNode, "Closure", "closure");
 			AddSocket(Closure);
 		}
 	}

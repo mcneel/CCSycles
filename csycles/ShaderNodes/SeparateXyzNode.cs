@@ -27,7 +27,7 @@ namespace ccl.ShaderNodes
 
 		public SeparateXyzInputs(ShaderNode parentNode)
 		{
-			Vector = new VectorSocket(parentNode, "Vector");
+			Vector = new VectorSocket(parentNode, "Vector", "vector");
 			AddSocket(Vector);
 		}
 	}
@@ -40,11 +40,11 @@ namespace ccl.ShaderNodes
 
 		public SeparateXyzOutputs(ShaderNode parentNode)
 		{
-			X = new FloatSocket(parentNode, "X");
+			X = new FloatSocket(parentNode, "X", "x");
 			AddSocket(X);
-			Y = new FloatSocket(parentNode, "Y");
+			Y = new FloatSocket(parentNode, "Y", "y");
 			AddSocket(Y);
-			Z = new FloatSocket(parentNode, "Z");
+			Z = new FloatSocket(parentNode, "Z", "z");
 			AddSocket(Z);
 		}
 	}

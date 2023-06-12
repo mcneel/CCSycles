@@ -32,15 +32,15 @@ namespace ccl.ShaderNodes
 
 		public WaveInputs(ShaderNode parentNode)
 		{
-			Vector = new VectorSocket(parentNode, "Vector");
+			Vector = new VectorSocket(parentNode, "Vector", "vector");
 			AddSocket(Vector);
-			Scale = new FloatSocket(parentNode, "Scale");
+			Scale = new FloatSocket(parentNode, "Scale", "scale");
 			AddSocket(Scale);
-			Distortion = new FloatSocket(parentNode, "Distortion");
+			Distortion = new FloatSocket(parentNode, "Distortion", "distortion");
 			AddSocket(Distortion);
-			Detail = new FloatSocket(parentNode, "Detail");
+			Detail = new FloatSocket(parentNode, "Detail", "detail");
 			AddSocket(Detail);
-			DetailScale = new FloatSocket(parentNode, "Detail Scale");
+			DetailScale = new FloatSocket(parentNode, "Detail Scale", "detail_scale");
 			AddSocket(DetailScale);
 		}
 	}
@@ -52,9 +52,9 @@ namespace ccl.ShaderNodes
 
 		public WaveOutputs(ShaderNode parentNode)
 		{
-			Color = new ColorSocket(parentNode, "Color");
+			Color = new ColorSocket(parentNode, "Color", "color");
 			AddSocket(Color);
-			Fac = new FloatSocket(parentNode, "Fac");
+			Fac = new FloatSocket(parentNode, "Fac", "fac");
 			AddSocket(Fac);
 		}
 	}

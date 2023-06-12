@@ -20,6 +20,7 @@ using System.Reflection;
 using System.Collections.Generic;
 using System.IO;
 using ccl.ShaderNodes;
+using System.Globalization;
 
 /** \namespace ccl
  * \brief Namespace containing the low-level wrapping API of ccycles.dll and a set of higher-level classes.
@@ -52,6 +53,7 @@ namespace ccl
 #endif
 			LoadShaderNodes();
 			g_ccycles_loaded = true;
+			GenShaderNodeCode();
 		}
 
 		private static readonly Dictionary<string, Type> g_registered_shadernodes = new Dictionary<string, Type>();
@@ -316,5 +318,96 @@ namespace ccl
 		}
 		#endregion
 
+		internal enum SocketType
+		{
+			UNDEFINED,
+
+			BOOLEAN,
+			FLOAT,
+			INT,
+			UINT,
+			COLOR,
+			COLOR2, /* used in convert node to signal different rgb_to_luminance should be used */
+			VECTOR,
+			POINT,
+			NORMAL,
+			POINT2,
+			CLOSURE,
+			STRING,
+			ENUM,
+			TRANSFORM,
+			NODE,
+
+			BOOLEAN_ARRAY,
+			FLOAT_ARRAY,
+			INT_ARRAY,
+			COLOR_ARRAY,
+			VECTOR_ARRAY,
+			POINT_ARRAY,
+			NORMAL_ARRAY,
+			POINT2_ARRAY,
+			STRING_ARRAY,
+			TRANSFORM_ARRAY,
+			NODE_ARRAY,
+		}
+		public static void GenShaderNodeCode()
+		{
+			// Creates a TextInfo based on the "en-US" culture.
+			TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
+
+#if WIN32
+			var path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? "";
+			var AutoGenFolder = Path.Combine(path, "AutoGenCycles");
+			Directory.CreateDirectory(AutoGenFolder);
+#endif
+			int typecount = get_shadernodetype_count();
+			for(int i = 0; i < typecount; i++)
+			{
+				IntPtr nodeType = get_shadernodetype(i);
+				string n = nodetype_get_name(nodeType);
+				string intname = n;
+				n = n.Replace("_", " ");
+				n = textInfo.ToTitleCase(n);
+				n = n.Replace(" ", "");
+				var nodefile = Path.Combine(AutoGenFolder, $"{n}.cs");
+				var nodeinputs = $"public class {n}Inputs : Inputs {{\nSOCKETS \n\ninternal {n}Inputs(ShaderNode parentNode)\n\t{{\nSOCKETCONSTRUCT\t}}\n}}";
+				var nodeoutputs = $"public class {n}Outputs : Outputs {{\nSOCKETS\n\ninternal {n}Outputs(ShaderNode parentNode)\n\t{{\nSOCKETCONSTRUCT\t}}\n}}";
+
+				int inp_sock_count = shadernode_get_socketcount(nodeType, 0);
+				int out_sock_count = shadernode_get_socketcount(nodeType, 1);
+
+				var sockets = "";
+				var socketconstruct = "";
+				for (int inpi = 0; inpi < inp_sock_count; inpi++)
+				{
+					IntPtr socketType = shadernode_get_sockettype(nodeType, inpi, 0);
+					string internal_name = sockettype_get_internal_name(socketType);
+					string ui_name = sockettype_get_ui_name(socketType);
+					string SocketUiName = ui_name.Replace(" ", "");
+					SocketType socket_type = (SocketType)sockettype_get_type(socketType);
+					string socket_type_name = textInfo.ToTitleCase($"{socket_type}".ToLowerInvariant());
+					sockets += $"\tpublic {socket_type_name}Socket {SocketUiName} {{ get; set; }}\n";
+					socketconstruct += $"\t\t{SocketUiName} = new {socket_type_name}Socket(parentNode, \"{ui_name}\", \"{internal_name}\");\n";
+				}
+				nodeinputs = nodeinputs.Replace("SOCKETS", sockets);
+				nodeinputs = nodeinputs.Replace("SOCKETCONSTRUCT", socketconstruct);
+				sockets = "";
+				socketconstruct = "";
+				for (int outi = 0; outi < out_sock_count; outi++)
+				{
+					IntPtr socketType = shadernode_get_sockettype(nodeType, outi, 1);
+					string internal_name = sockettype_get_internal_name(socketType);
+					string ui_name = sockettype_get_ui_name(socketType);
+					string SocketUiName = ui_name.Replace(" ", "");
+					SocketType socket_type = (SocketType)sockettype_get_type(socketType);
+					string socket_type_name = textInfo.ToTitleCase($"{socket_type}".ToLowerInvariant());
+					sockets += $"\tpublic {socket_type_name}Socket {SocketUiName} {{ get; set; }}\n";
+					socketconstruct += $"\t\t{SocketUiName} = new {socket_type_name}Socket(parentNode, \"{ui_name}\", \"{internal_name}\");\n";
+				}
+				nodeoutputs = nodeoutputs.Replace("SOCKETS", sockets);
+				nodeoutputs = nodeoutputs.Replace("SOCKETCONSTRUCT", socketconstruct);
+				File.WriteAllText(nodefile, $"//{intname}\n\n" + nodeinputs + "\n\n" + nodeoutputs);
+			}
+		}
 	}
 }

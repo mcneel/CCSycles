@@ -34,7 +34,7 @@ namespace ccl.ShaderNodes
 
 		internal TangentOutputs(ShaderNode parentNode)
 		{
-			Tangent = new VectorSocket(parentNode, "Tangent");
+			Tangent = new VectorSocket(parentNode, "Tangent", "tangent");
 			AddSocket(Tangent);
 		}
 	}

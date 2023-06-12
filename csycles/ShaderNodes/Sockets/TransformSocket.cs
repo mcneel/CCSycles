@@ -26,8 +26,7 @@ namespace ccl.ShaderNodes.Sockets
 		/// </summary>
 		/// <param name="parentNode"></param>
 		/// <param name="name"></param>
-		public TransformSocket(ShaderNode parentNode, string name)
-			: base(parentNode, name)
+		public TransformSocket(ShaderNode parentNode, string name, string internalname) : base(parentNode, name, internalname)
 		{
 			Value = new Transform();
 		}

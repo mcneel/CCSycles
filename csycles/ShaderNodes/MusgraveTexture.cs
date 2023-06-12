@@ -31,32 +31,36 @@ namespace ccl.ShaderNodes
 		public FloatSocket Lacunarity{ get; set; }
 		public FloatSocket Offset{ get; set; }
 		public FloatSocket Gain{ get; set; }
+		public FloatSocket W { get; set; }
 
 		public MusgraveInputs(ShaderNode parentNode)
 		{
-			Vector = new VectorSocket(parentNode, "Vector");
+			Vector = new VectorSocket(parentNode, "Vector", "vector");
 			AddSocket(Vector);
-			Scale = new FloatSocket(parentNode, "Scale");
+			Scale = new FloatSocket(parentNode, "Scale", "scale");
 			AddSocket(Scale);
-			Detail = new FloatSocket(parentNode, "Detail");
+			Detail = new FloatSocket(parentNode, "Detail", "detail");
 			AddSocket(Detail);
-			Dimension = new FloatSocket(parentNode, "Dimension");
+			Dimension = new FloatSocket(parentNode, "Dimension", "dimension");
 			AddSocket(Dimension);
-			Lacunarity = new FloatSocket(parentNode, "Lacunarity");
+			Lacunarity = new FloatSocket(parentNode, "Lacunarity", "lacunarity");
 			AddSocket(Lacunarity);
+			Offset = new FloatSocket(parentNode, "Offset", "offset");
+			AddSocket(Offset);
+			Gain = new FloatSocket(parentNode, "Gain", "gain");
+			AddSocket(Gain);
+			W = new FloatSocket(parentNode, "W", "w");
+			AddSocket(W);
 		}
 	}
 
 	public class MusgraveOutputs : Outputs
 	{
-		public ColorSocket Color { get; set; }
 		public FloatSocket Fac { get; set; }
 
 		public MusgraveOutputs(ShaderNode parentNode)
 		{
-			Color = new ColorSocket(parentNode, "Color");
-			AddSocket(Color);
-			Fac = new FloatSocket(parentNode, "Fac");
+			Fac = new FloatSocket(parentNode, "Fac", "fac");
 			AddSocket(Fac);
 		}
 	}

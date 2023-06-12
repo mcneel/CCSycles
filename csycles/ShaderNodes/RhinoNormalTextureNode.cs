@@ -26,7 +26,7 @@ namespace ccl.ShaderNodes
 
 		public NormalPart1TextureInputs(ShaderNode parentNode)
 		{
-			UVW = new VectorSocket(parentNode, "UVW");
+			UVW = new VectorSocket(parentNode, "UVW", "uvw");
 			AddSocket(UVW);
 		}
 	}
@@ -44,21 +44,21 @@ namespace ccl.ShaderNodes
 
 		public NormalPart1TextureOutputs(ShaderNode parentNode)
 		{
-			UVW1 = new VectorSocket(parentNode, "UVW1");
+			UVW1 = new VectorSocket(parentNode, "UVW1", "uvw1_out");
 			AddSocket(UVW1);
-			UVW2 = new VectorSocket(parentNode, "UVW2");
+			UVW2 = new VectorSocket(parentNode, "UVW2", "uvw2_out");
 			AddSocket(UVW2);
-			UVW3 = new VectorSocket(parentNode, "UVW3");
+			UVW3 = new VectorSocket(parentNode, "UVW3", "uvw3_out");
 			AddSocket(UVW3);
-			UVW4 = new VectorSocket(parentNode, "UVW4");
+			UVW4 = new VectorSocket(parentNode, "UVW4", "uvw4_out");
 			AddSocket(UVW4);
-			UVW5 = new VectorSocket(parentNode, "UVW5");
+			UVW5 = new VectorSocket(parentNode, "UVW5", "uvw5_out");
 			AddSocket(UVW5);
-			UVW6 = new VectorSocket(parentNode, "UVW6");
+			UVW6 = new VectorSocket(parentNode, "UVW6", "uvw6_out");
 			AddSocket(UVW6);
-			UVW7 = new VectorSocket(parentNode, "UVW7");
+			UVW7 = new VectorSocket(parentNode, "UVW7", "uvw7_out");
 			AddSocket(UVW7);
-			UVW8 = new VectorSocket(parentNode, "UVW8");
+			UVW8 = new VectorSocket(parentNode, "UVW8", "uvw8_out");
 			AddSocket(UVW8);
 		}
 	}
@@ -105,21 +105,21 @@ namespace ccl.ShaderNodes
 
 		public NormalPart2TextureInputs(ShaderNode parentNode)
 		{
-			Color1 = new ColorSocket(parentNode, "Color1");
+			Color1 = new ColorSocket(parentNode, "Color1", "color1");
 			AddSocket(Color1);
-			Color2 = new ColorSocket(parentNode, "Color2");
+			Color2 = new ColorSocket(parentNode, "Color2", "color2");
 			AddSocket(Color2);
-			Color3 = new ColorSocket(parentNode, "Color3");
+			Color3 = new ColorSocket(parentNode, "Color3", "color3");
 			AddSocket(Color3);
-			Color4 = new ColorSocket(parentNode, "Color4");
+			Color4 = new ColorSocket(parentNode, "Color4", "color4");
 			AddSocket(Color4);
-			Color5 = new ColorSocket(parentNode, "Color5");
+			Color5 = new ColorSocket(parentNode, "Color5", "color5");
 			AddSocket(Color5);
-			Color6 = new ColorSocket(parentNode, "Color6");
+			Color6 = new ColorSocket(parentNode, "Color6", "color6");
 			AddSocket(Color6);
-			Color7 = new ColorSocket(parentNode, "Color7");
+			Color7 = new ColorSocket(parentNode, "Color7", "color7");
 			AddSocket(Color7);
-			Color8 = new ColorSocket(parentNode, "Color8");
+			Color8 = new ColorSocket(parentNode, "Color8", "color8");
 			AddSocket(Color8);
 		}
 	}
@@ -130,7 +130,7 @@ namespace ccl.ShaderNodes
 
 		public NormalPart2TextureOutputs(ShaderNode parentNode)
 		{
-			Color = new ColorSocket(parentNode, "Color");
+			Color = new ColorSocket(parentNode, "Color", "color_out");
 			AddSocket(Color);
 		}
 	}

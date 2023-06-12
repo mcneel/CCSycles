@@ -36,15 +36,18 @@ namespace ccl.ShaderNodes
 		/// Only useful for material output nodes
 		/// </summary>
 		public Float4Socket Displacement { get; set; }
+		public Float4Socket Normal { get; set; }
 
 		internal OutputInputs(ShaderNode parentNode)
 		{
-			Surface = new ClosureSocket(parentNode, "Surface");
+			Surface = new ClosureSocket(parentNode, "Surface", "surface");
 			AddSocket(Surface);
-			Volume = new ClosureSocket(parentNode, "Volume");
+			Volume = new ClosureSocket(parentNode, "Volume", "volume");
 			AddSocket(Volume);
-			Displacement = new Float4Socket(parentNode, "Displacement");
+			Displacement = new Float4Socket(parentNode, "Displacement", "displacement");
 			AddSocket(Displacement);
+			Normal = new Float4Socket(parentNode, "Normal", "normal");
+			AddSocket(Normal);
 		}
 	}
 

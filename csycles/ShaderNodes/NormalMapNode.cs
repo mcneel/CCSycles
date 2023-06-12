@@ -29,9 +29,9 @@ namespace ccl.ShaderNodes
 
 		internal NormalMapInputs(ShaderNode parentNode)
 		{
-			Strength = new FloatSocket(parentNode, "Strength");
+			Strength = new FloatSocket(parentNode, "Strength", "strength");
 			AddSocket(Strength);
-			Color = new ColorSocket(parentNode, "Color");
+			Color = new ColorSocket(parentNode, "Color", "color");
 			AddSocket(Color);
 		}
 	}
@@ -42,7 +42,7 @@ namespace ccl.ShaderNodes
 
 		internal NormalMapOutputs(ShaderNode parentNode)
 		{
-			Normal = new VectorSocket(parentNode, "Normal");
+			Normal = new VectorSocket(parentNode, "Normal", "normal");
 			AddSocket(Normal);
 		}
 	}

@@ -25,24 +25,24 @@ namespace ccl.ShaderNodes
 	{
 		public ColorSocket Color { get; set; }
 		public FloatSocket Scale { get; set; }
-		public FloatSocket Sharpness { get; set; }
-		public FloatSocket TextureBlur { get; set; }
+		public FloatSocket Anisotropy { get; set; }
+		public FloatSocket IOR { get; set; }
 		public VectorSocket Radius { get; set; }
 		public VectorSocket Normal { get; set; }
 
 		public SubsurfaceScatteringInputs(ShaderNode parentNode)
 		{
-			Color = new ColorSocket(parentNode, "Color");
+			Color = new ColorSocket(parentNode, "Color", "color");
 			AddSocket(Color);
-			Scale = new FloatSocket(parentNode, "Scale");
+			Scale = new FloatSocket(parentNode, "Scale", "scale");
 			AddSocket(Scale);
-			Sharpness = new FloatSocket(parentNode, "Sharpness");
-			AddSocket(Sharpness);
-			TextureBlur = new FloatSocket(parentNode, "Texture Blur");
-			AddSocket(TextureBlur);
-			Radius = new VectorSocket(parentNode, "Radius");
+			Anisotropy = new FloatSocket(parentNode, "Anisotropy", "subsurface_anisotropy");
+			AddSocket(Anisotropy);
+			IOR = new FloatSocket(parentNode, "IOR", "subsurface_ior");
+			AddSocket(IOR);
+			Radius = new VectorSocket(parentNode, "Radius", "radius");
 			AddSocket(Radius);
-			Normal = new VectorSocket(parentNode, "Normal");
+			Normal = new VectorSocket(parentNode, "Normal", "normal");
 			AddSocket(Normal);
 		}
 	}
@@ -53,7 +53,7 @@ namespace ccl.ShaderNodes
 
 		public SubsurfaceScatteringOutputs(ShaderNode parentNode)
 		{
-			BSSRDF = new ClosureSocket(parentNode, "BSSRDF");
+			BSSRDF = new ClosureSocket(parentNode, "BSSRDF", "BSSRDF");
 			AddSocket(BSSRDF);
 		}
 	}
@@ -135,8 +135,8 @@ namespace ccl.ShaderNodes
 			outputs = new SubsurfaceScatteringOutputs(this);
 			ins.Color.Value = new float4(1.0f);
 			ins.Scale.Value = 0.01f;
-			ins.Sharpness.Value = 0.0f;
-			ins.TextureBlur.Value = 0.0f;
+			ins.Anisotropy.Value = 0.0f;
+			ins.IOR.Value = 0.0f;
 			ins.Radius.Value = new float4(1.0f);
 			ins.Normal.Value = new float4(0.0f);
 			Falloff = FalloffTypes.Burley;
@@ -153,8 +153,8 @@ namespace ccl.ShaderNodes
 		{
 			Utilities.Instance.get_float4(ins.Color, xmlNode.GetAttribute("color"));
 			Utilities.Instance.get_float(ins.Scale, xmlNode.GetAttribute("scale"));
-			Utilities.Instance.get_float(ins.Sharpness, xmlNode.GetAttribute("sharpness"));
-			Utilities.Instance.get_float(ins.TextureBlur, xmlNode.GetAttribute("texture_blur"));
+			Utilities.Instance.get_float(ins.Anisotropy, xmlNode.GetAttribute("sharpness"));
+			Utilities.Instance.get_float(ins.IOR, xmlNode.GetAttribute("texture_blur"));
 
 			var falloff = xmlNode.GetAttribute("falloff");
 			if(!string.IsNullOrEmpty(falloff))

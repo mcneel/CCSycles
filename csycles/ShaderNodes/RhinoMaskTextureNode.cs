@@ -27,9 +27,9 @@ namespace ccl.ShaderNodes
 
 		public MaskTextureInputs(ShaderNode parentNode)
 		{
-			Color = new ColorSocket(parentNode, "Color");
+			Color = new ColorSocket(parentNode, "Color", "color");
 			AddSocket(Color);
-			Alpha = new FloatSocket(parentNode, "Alpha");
+			Alpha = new FloatSocket(parentNode, "Alpha", "alpha");
 			AddSocket(Alpha);
 		}
 	}

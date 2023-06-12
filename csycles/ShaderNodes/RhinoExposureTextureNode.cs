@@ -26,7 +26,7 @@ namespace ccl.ShaderNodes
 
 		public ExposureTextureInputs(ShaderNode parentNode)
 		{
-			Color = new ColorSocket(parentNode, "Color");
+			Color = new ColorSocket(parentNode, "Color", "color");
 			AddSocket(Color);
 		}
 	}

@@ -52,10 +52,6 @@ namespace ccl.ShaderNodes
 		/// Get the node ID. This is set when created in Cycles.
 		/// </summary>
 		public IntPtr Id { get; internal set; }
-		/// <summary>
-		/// Get the shader node type. Set in the constructor.
-		/// </summary>
-		public ShaderNodeType Type { get; }
 
 		/// <summary>
 		/// Get the XML shaderNodeTypeName of the node type as string.
@@ -89,7 +85,7 @@ namespace ccl.ShaderNodes
 
 		public virtual ClosureSocket GetClosureSocket()
 		{
-			throw new NotImplementedException($"Should implement GetClosureSocket for this node {Type}");
+			throw new NotImplementedException($"Should implement GetClosureSocket for this node {ShaderNodeTypeName}");
 		}
 
 #if OLDSTUFF
@@ -166,15 +162,24 @@ namespace ccl.ShaderNodes
 				{
 					if (socket is FloatSocket float_socket)
 					{
-						CSycles.shadernode_set_attribute_float(Id, float_socket.Name, float_socket.Value);
+						CSycles.shadernode_set_attribute_float(Id, float_socket.InternalName, float_socket.Value);
 					}
 					if (socket is IntSocket int_socket)
 					{
-						CSycles.shadernode_set_attribute_int(Id, int_socket.Name, int_socket.Value);
+						CSycles.shadernode_set_attribute_int(Id, int_socket.InternalName, int_socket.Value);
 					}
 					if (socket is Float4Socket float4_socket)
 					{
-						CSycles.shadernode_set_attribute_vec(Id, float4_socket.Name, float4_socket.Value);
+						CSycles.shadernode_set_attribute_vec(Id, float4_socket.InternalName, float4_socket.Value);
+					}
+					if (socket is BoolSocket bool_socket)
+					{
+						CSycles.shadernode_set_attribute_bool(Id, bool_socket.InternalName, bool_socket.Value);
+					}
+					if (socket is StringSocket string_socket)
+					{
+						if (string.IsNullOrEmpty(string_socket.Value)) continue;
+						CSycles.shadernode_set_attribute_string(Id, string_socket.InternalName, string_socket.Value);
 					}
 				}
 			}
@@ -182,7 +187,7 @@ namespace ccl.ShaderNodes
 
 		public override string ToString()
 		{
-			var str = $"{Name} ({Type})";
+			var str = $"{Name} ({ShaderNodeTypeName})";
 			return str;
 		}
 

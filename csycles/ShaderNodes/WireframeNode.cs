@@ -28,7 +28,7 @@ namespace ccl.ShaderNodes
 
 		internal WireframeInputs(ShaderNode parentNode)
 		{
-			Size = new FloatSocket(parentNode, "Size");
+			Size = new FloatSocket(parentNode, "Size", "size");
 			AddSocket(Size);
 		}
 	}
@@ -39,7 +39,7 @@ namespace ccl.ShaderNodes
 
 		internal WireframeOutputs(ShaderNode parentNode)
 		{
-			Fac = new FloatSocket(parentNode, "Fac");
+			Fac = new FloatSocket(parentNode, "Fac", "fac");
 			AddSocket(Fac);
 		}
 	}

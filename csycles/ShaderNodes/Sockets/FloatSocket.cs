@@ -28,9 +28,8 @@ namespace ccl.ShaderNodes.Sockets
 		/// The name of the socket has to correspond to the names in Cycles.
 		/// </summary>
 		/// <param name="parentNode">The ShaderNode for which the socket is created</param>
-		/// <param name="name">Name of the socket</param>
-		public FloatSocket(ShaderNode parentNode, string name)
-			: base(parentNode, name)
+		/// <param name="name">UiName of the socket</param>
+		public FloatSocket(ShaderNode parentNode, string name, string internalname) : base(parentNode, name, internalname)
 		{
 			Value = 0.0f;
 		}

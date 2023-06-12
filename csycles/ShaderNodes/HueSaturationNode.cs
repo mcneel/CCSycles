@@ -31,15 +31,15 @@ namespace ccl.ShaderNodes
 
 		public HueSaturationInputs(ShaderNode parentNode)
 		{
-			Hue = new FloatSocket(parentNode, "Hue");
+			Hue = new FloatSocket(parentNode, "Hue", "hue");
 			AddSocket(Hue);
-			Saturation = new FloatSocket(parentNode, "Saturation");
+			Saturation = new FloatSocket(parentNode, "Saturation", "saturation");
 			AddSocket(Saturation);
-			Value = new FloatSocket(parentNode, "Value");
+			Value = new FloatSocket(parentNode, "Value", "value");
 			AddSocket(Value);
-			Fac = new FloatSocket(parentNode, "Fac");
+			Fac = new FloatSocket(parentNode, "Fac", "fac");
 			AddSocket(Fac);
-			Color = new ColorSocket(parentNode, "Color");
+			Color = new ColorSocket(parentNode, "Color", "color");
 			AddSocket(Color);
 		}
 	}
@@ -50,7 +50,7 @@ namespace ccl.ShaderNodes
 
 		public HueSaturationOutputs(ShaderNode parentNode)
 		{
-			Color = new ClosureSocket(parentNode, "Color");
+			Color = new ClosureSocket(parentNode, "Color", "color");
 			AddSocket(Color);
 		}
 	}

@@ -95,43 +95,37 @@ namespace ccl.ShaderNodes
 		/// Transmission depth. Amount of transmission bounces.
 		/// </summary>
 		public FloatSocket TransmissionDepth { get; set; }
-		/// <summary>
-		/// No Ray set. Will be 1.0 if no path type ray has been set.
-		/// </summary>
-		public FloatSocket NoRaySet { get; set; }
 
 		internal LightPathOutputs(ShaderNode parentNode)
 		{
-			IsCameraRay = new FloatSocket(parentNode, "Is Camera Ray");
+			IsCameraRay = new FloatSocket(parentNode, "Is Camera Ray", "is_camera_ray");
 			AddSocket(IsCameraRay);
-			IsShadowRay = new FloatSocket(parentNode, "Is Shadow Ray");
+			IsShadowRay = new FloatSocket(parentNode, "Is Shadow Ray", "is_shadow_ray");
 			AddSocket(IsShadowRay);
-			IsDiffuseRay = new FloatSocket(parentNode, "Is Diffuse Ray");
+			IsDiffuseRay = new FloatSocket(parentNode, "Is Diffuse Ray", "is_diffuse_ray");
 			AddSocket(IsDiffuseRay);
-			IsGlossyRay = new FloatSocket(parentNode, "Is Glossy Ray");
+			IsGlossyRay = new FloatSocket(parentNode, "Is Glossy Ray", "is_glossy_ray");
 			AddSocket(IsGlossyRay);
-			IsSingularRay = new FloatSocket(parentNode, "Is Singular Ray");
+			IsSingularRay = new FloatSocket(parentNode, "Is Singular Ray", "is_singular_ray");
 			AddSocket(IsSingularRay);
-			IsReflectionRay = new FloatSocket(parentNode, "Is Reflection Ray");
+			IsReflectionRay = new FloatSocket(parentNode, "Is Reflection Ray", "is_reflection_ray");
 			AddSocket(IsReflectionRay);
-			IsTransmissionRay = new FloatSocket(parentNode, "Is Transmission Ray");
+			IsTransmissionRay = new FloatSocket(parentNode, "Is Transmission Ray", "is_transmission_ray");
 			AddSocket(IsTransmissionRay);
-			IsVolumeScatterRay = new FloatSocket(parentNode, "Is Volume Scatter Ray");
+			IsVolumeScatterRay = new FloatSocket(parentNode, "Is Volume Scatter Ray", "is_volume_scatter_ray");
 			AddSocket(IsVolumeScatterRay);
-			RayLength = new FloatSocket(parentNode, "Ray Length");
+			RayLength = new FloatSocket(parentNode, "Ray Length", "ray_length");
 			AddSocket(RayLength);
-			RayDepth = new FloatSocket(parentNode, "Ray Depth");
+			RayDepth = new FloatSocket(parentNode, "Ray Depth" ,"ray_depth");
 			AddSocket(RayDepth);
-			DiffuseDepth = new FloatSocket(parentNode, "Diffuse Depth");
+			DiffuseDepth = new FloatSocket(parentNode, "Diffuse Depth", "diffuse_depth");
 			AddSocket(DiffuseDepth);
-			GlossyDepth = new FloatSocket(parentNode, "Glossy Depth");
+			GlossyDepth = new FloatSocket(parentNode, "Glossy Depth", "glossy_depth");
 			AddSocket(GlossyDepth);
-			TransparentDepth = new FloatSocket(parentNode, "Transparent Depth");
+			TransparentDepth = new FloatSocket(parentNode, "Transparent Depth", "transparent_depth");
 			AddSocket(TransparentDepth);
-			TransmissionDepth = new FloatSocket(parentNode, "Transmission Depth");
+			TransmissionDepth = new FloatSocket(parentNode, "Transmission Depth", "transmission_depth");
 			AddSocket(TransmissionDepth);
-			NoRaySet = new FloatSocket(parentNode, "No Ray Set");
-			AddSocket(NoRaySet);
 		}
 	}
 

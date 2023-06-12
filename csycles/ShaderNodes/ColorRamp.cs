@@ -293,9 +293,9 @@ namespace ccl.ShaderNodes
 
 		internal ColorRampOutputs(ShaderNode parentNode)
 		{
-			Color = new ColorSocket(parentNode, "Color");
+			Color = new ColorSocket(parentNode, "Color", "color");
 			AddSocket(Color);
-			Alpha = new FloatSocket(parentNode, "Alpha");
+			Alpha = new FloatSocket(parentNode, "Alpha", "alpha");
 			AddSocket(Alpha);
 		}
 	}
@@ -312,7 +312,7 @@ namespace ccl.ShaderNodes
 
 		internal ColorRampInputs(ShaderNode parentNode)
 		{
-			Fac = new FloatSocket(parentNode, "Fac");
+			Fac = new FloatSocket(parentNode, "Fac", "fac");
 			AddSocket(Fac);
 		}
 	}

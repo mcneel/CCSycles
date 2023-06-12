@@ -78,7 +78,7 @@ namespace ccl
 		/// <param name="shaderId">Shader ID</param>
 		/// <param name="shadernodeId">Node ID in shader</param>
 		/// <param name="shnType">Type of shader node</param>
-		/// <param name="enum_name">Name of enumeration. Used mostly for nodes that have multiple</param>
+		/// <param name="enum_name">UiName of enumeration. Used mostly for nodes that have multiple</param>
 		/// <param name="value">Int value of the enumeration</param>
 		public static void shadernode_set_enum(IntPtr shadernodeId, string enum_name, int value)
 		{
@@ -90,6 +90,20 @@ namespace ccl
 		public static void shadernode_set_attribute_int(IntPtr shadernodeId,  [MarshalAs(UnmanagedType.LPStr)] string name, int val)
 		{
 			cycles_shadernode_set_attribute_int(shadernodeId, name, val);
+		}
+		[DllImport(Constants.ccycles, SetLastError = false, CharSet = CharSet.Ansi,
+			CallingConvention = CallingConvention.Cdecl)]
+		private static extern void cycles_shadernode_set_attribute_bool(IntPtr shadernodeId, string name, bool val);
+		public static void shadernode_set_attribute_bool(IntPtr shadernodeId,  [MarshalAs(UnmanagedType.LPStr)] string name, bool val)
+		{
+			cycles_shadernode_set_attribute_bool(shadernodeId, name, val);
+		}
+		[DllImport(Constants.ccycles, SetLastError = false, CharSet = CharSet.Ansi,
+			CallingConvention = CallingConvention.Cdecl)]
+		private static extern void cycles_shadernode_set_attribute_string(IntPtr shadernodeId, string name, string val);
+		public static void shadernode_set_attribute_string(IntPtr shadernodeId,  [MarshalAs(UnmanagedType.LPStr)] string name, [MarshalAs(UnmanagedType.LPStr)] string val)
+		{
+			cycles_shadernode_set_attribute_string(shadernodeId, name, val);
 		}
 		[DllImport(Constants.ccycles, SetLastError = false, CharSet = CharSet.Ansi,
 			CallingConvention = CallingConvention.Cdecl)]
@@ -155,15 +169,6 @@ namespace ccl
 			cycles_shadernode_set_member_vec4_at_index(shadernodeId, name, x, y, z, w, index);
 		}
 
-		[DllImport(Constants.ccycles, SetLastError = false, CharSet = CharSet.Ansi,
-			CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_shadernode_set_member_float_img(IntPtr sessionId, IntPtr shaderId, uint shadernodeId, uint shnType, string name, string  imgName, IntPtr img, uint width, uint height, uint depth, uint channels);
-		public static void shadernode_set_member_float_img(IntPtr sessionId, IntPtr shaderId, uint shadernodeId, ShaderNodeType shnType,
-			[MarshalAs(UnmanagedType.LPStr)] string name, [MarshalAs(UnmanagedType.LPStr)] string imgName, IntPtr img, uint width, uint height, uint depth, uint channels)
-		{
-			cycles_shadernode_set_member_float_img(sessionId, shaderId, shadernodeId, (uint)shnType, name, imgName, img, width, height, depth, channels);
-		}
-
 		[DllImport(Constants.ccycles, SetLastError = false, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
 		private static extern void cycles_apply_gamma_to_byte_buffer(IntPtr rgba_buffer, int size_in_bytes, float gamma);
 		public static void apply_gamma_to_byte_buffer(IntPtr rgba_buffer, int size_in_bytes, float gamma)
@@ -176,15 +181,6 @@ namespace ccl
 		public static void apply_gamma_to_float_buffer(IntPtr rgba_buffer, int size_in_bytes, float gamma)
 		{
 			cycles_apply_gamma_to_float_buffer(rgba_buffer, size_in_bytes, gamma);
-		}
-
-		[DllImport(Constants.ccycles, SetLastError = false, CharSet = CharSet.Ansi,
-			CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_shadernode_set_member_byte_img(IntPtr sessionId, IntPtr shaderId, uint shadernodeId, uint shnType, string name, string  imgName, IntPtr img, uint width, uint height, uint depth, uint channels);
-		public static void shadernode_set_member_byte_img(IntPtr sessionId, IntPtr shaderId, uint shadernodeId, ShaderNodeType shnType,
-			[MarshalAs(UnmanagedType.LPStr)] string name, [MarshalAs(UnmanagedType.LPStr)] string imgName, IntPtr img, uint width, uint height, uint depth, uint channels)
-		{
-			cycles_shadernode_set_member_byte_img(sessionId, shaderId, shadernodeId, (uint)shnType, name, imgName, img, width, height, depth, channels);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CharSet = CharSet.Ansi,
@@ -215,7 +211,86 @@ namespace ccl
 				  return name;
 				}
 			}
-			return $"Name failed for {shaderId}";
+			return $"UiName failed for {shaderId}";
+		}
+
+		[DllImport(Constants.ccycles, SetLastError = false, CharSet = CharSet.Ansi,
+			CallingConvention = CallingConvention.Cdecl)]
+		private static extern bool cycles_nodetype_get_name(IntPtr nodeTypePtr, IntPtr stringholder);
+		public static string nodetype_get_name(IntPtr nodeTypePtr)
+		{
+			using (CSStringHolder stringHolder = new CSStringHolder()) {
+				bool success = cycles_nodetype_get_name(nodeTypePtr, stringHolder.Ptr);
+				if(success) {
+					string name = stringHolder.Value;
+				  return name;
+				}
+			}
+			return $"UiName failed for {nodeTypePtr}";
+		}
+		[DllImport(Constants.ccycles, SetLastError = false,
+			CallingConvention = CallingConvention.Cdecl)]
+		private static extern int cycles_get_shadernodetype_count();
+		public static int get_shadernodetype_count()
+		{
+			return cycles_get_shadernodetype_count();
+		}
+		[DllImport(Constants.ccycles, SetLastError = false,
+			CallingConvention = CallingConvention.Cdecl)]
+		private static extern IntPtr cycles_get_shadernodetype(int idx);
+		public static IntPtr get_shadernodetype(int idx)
+		{
+			return cycles_get_shadernodetype(idx);
+		}
+
+		[DllImport(Constants.ccycles, SetLastError = false,
+			CallingConvention = CallingConvention.Cdecl)]
+		private static extern int cycles_shadernode_get_socketcount(IntPtr shader, int input_output);
+		public static int shadernode_get_socketcount(IntPtr shader, int input_output)
+		{
+			return cycles_shadernode_get_socketcount(shader, input_output);
+		}
+		[DllImport(Constants.ccycles, SetLastError = false,
+			CallingConvention = CallingConvention.Cdecl)]
+		private static extern IntPtr cycles_shadernode_get_sockettype(IntPtr shader, int idx, int input_output);
+		public static IntPtr shadernode_get_sockettype(IntPtr shader, int idx, int input_output)
+		{
+			return cycles_shadernode_get_sockettype(shader, idx, input_output);
+		}
+		[DllImport(Constants.ccycles, SetLastError = false, CharSet = CharSet.Ansi,
+			CallingConvention = CallingConvention.Cdecl)]
+		private static extern int cycles_sockettype_get_type(IntPtr sockettypeId);
+		public static int sockettype_get_type(IntPtr sockettypeId)
+		{
+				return cycles_sockettype_get_type(sockettypeId);
+		}
+		[DllImport(Constants.ccycles, SetLastError = false, CharSet = CharSet.Ansi,
+			CallingConvention = CallingConvention.Cdecl)]
+		private static extern bool cycles_sockettype_get_ui_name(IntPtr sockettypeId, IntPtr stringholder);
+		public static string sockettype_get_ui_name(IntPtr sockettypeId)
+		{
+			using (CSStringHolder stringHolder = new CSStringHolder()) {
+				bool success = cycles_sockettype_get_ui_name(sockettypeId, stringHolder.Ptr);
+				if(success) {
+					string name = stringHolder.Value;
+				  return name;
+				}
+			}
+			return $"UiName failed for {sockettypeId}";
+		}
+		[DllImport(Constants.ccycles, SetLastError = false, CharSet = CharSet.Ansi,
+			CallingConvention = CallingConvention.Cdecl)]
+		private static extern bool cycles_sockettype_get_internal_name(IntPtr sockettypeId, IntPtr stringholder);
+		public static string sockettype_get_internal_name(IntPtr sockettypeId)
+		{
+			using (CSStringHolder stringHolder = new CSStringHolder()) {
+				bool success = cycles_sockettype_get_internal_name(sockettypeId, stringHolder.Ptr);
+				if(success) {
+					string name = stringHolder.Value;
+				  return name;
+				}
+			}
+			return $"UiName failed for {sockettypeId}";
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false,

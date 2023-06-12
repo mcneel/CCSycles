@@ -29,11 +29,11 @@ namespace ccl.ShaderNodes
 
 		public ScatterVolumeInputs(ShaderNode parentNode)
 		{
-			Color = new ColorSocket(parentNode, "Color");
+			Color = new ColorSocket(parentNode, "Color", "color");
 			AddSocket(Color);
-			Density = new FloatSocket(parentNode, "Density");
+			Density = new FloatSocket(parentNode, "Density", "density");
 			AddSocket(Density);
-			Anisotropy = new FloatSocket(parentNode, "Anisotropy");
+			Anisotropy = new FloatSocket(parentNode, "Anisotropy", "anisotropy");
 			AddSocket(Anisotropy);
 		}
 	}
@@ -44,7 +44,7 @@ namespace ccl.ShaderNodes
 
 		public ScatterVolumeOutputs(ShaderNode parentNode)
 		{
-			Volume = new ClosureSocket(parentNode, "Volume");
+			Volume = new ClosureSocket(parentNode, "Volume", "volume");
 			AddSocket(Volume);
 		}
 	}

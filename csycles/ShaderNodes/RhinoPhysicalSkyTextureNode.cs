@@ -26,7 +26,7 @@ namespace ccl.ShaderNodes
 
 		public PhysicalSkyTextureInputs(ShaderNode parentNode)
 		{
-			UVW = new VectorSocket(parentNode, "UVW");
+			UVW = new VectorSocket(parentNode, "UVW", "uvw");
 			AddSocket(UVW);
 		}
 	}
@@ -37,7 +37,7 @@ namespace ccl.ShaderNodes
 
 		public PhysicalSkyTextureOutputs(ShaderNode parentNode)
 		{
-			Color = new ColorSocket(parentNode, "Color");
+			Color = new ColorSocket(parentNode, "Color", "out_color");
 			AddSocket(Color);
 		}
 	}

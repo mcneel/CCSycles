@@ -28,9 +28,9 @@ namespace ccl.ShaderNodes
 
 		public AbsorptionVolumeInputs(ShaderNode parentNode)
 		{
-			Color = new ColorSocket(parentNode, "Color");
+			Color = new ColorSocket(parentNode, "Color", "color");
 			AddSocket(Color);
-			Density = new FloatSocket(parentNode, "Density");
+			Density = new FloatSocket(parentNode, "Density", "density");
 			AddSocket(Density);
 		}
 	}
@@ -41,7 +41,7 @@ namespace ccl.ShaderNodes
 
 		public AbsorptionVolumeOutputs(ShaderNode parentNode)
 		{
-			Volume = new ClosureSocket(parentNode, "Volume");
+			Volume = new ClosureSocket(parentNode, "Volume", "volume");
 			AddSocket(Volume);
 		}
 	}

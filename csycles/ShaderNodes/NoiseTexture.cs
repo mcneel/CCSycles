@@ -27,17 +27,23 @@ namespace ccl.ShaderNodes
 		public FloatSocket Scale { get; set; }
 		public FloatSocket Detail { get; set; }
 		public FloatSocket Distortion { get; set; }
+		public FloatSocket Roughness { get; set; }
+		public FloatSocket W { get; set; }
 
 		public NoiseInputs(ShaderNode parentNode)
 		{
-			Vector = new VectorSocket(parentNode, "Vector");
+			Vector = new VectorSocket(parentNode, "Vector", "vector");
 			AddSocket(Vector);
-			Scale = new FloatSocket(parentNode, "Scale");
+			Scale = new FloatSocket(parentNode, "Scale", "scale");
 			AddSocket(Scale);
-			Detail = new FloatSocket(parentNode, "Detail");
+			Detail = new FloatSocket(parentNode, "Detail", "detail");
 			AddSocket(Detail);
-			Distortion = new FloatSocket(parentNode, "Distortion");
+			Distortion = new FloatSocket(parentNode, "Distortion", "distortion");
 			AddSocket(Distortion);
+			Roughness = new FloatSocket(parentNode, "Roughness", "roughness");
+			AddSocket(Roughness);
+			W = new FloatSocket(parentNode, "W", "w");
+			AddSocket(W);
 		}
 	}
 
@@ -48,9 +54,9 @@ namespace ccl.ShaderNodes
 
 		public NoiseOutputs(ShaderNode parentNode)
 		{
-			Color = new ColorSocket(parentNode, "Color");
+			Color = new ColorSocket(parentNode, "Color", "color");
 			AddSocket(Color);
-			Fac = new FloatSocket(parentNode, "Fac");
+			Fac = new FloatSocket(parentNode, "Fac", "fac");
 			AddSocket(Fac);
 		}
 	}

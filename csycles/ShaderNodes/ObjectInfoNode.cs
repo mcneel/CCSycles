@@ -38,17 +38,23 @@ namespace ccl.ShaderNodes
 		/// Random number for shaded object
 		/// </summary>
 		public FloatSocket Random { get; set; }
+		public FloatSocket Color { get; set; }
+		public FloatSocket Alpha { get; set; }
 
 		internal ObjectInfoOutputs(ShaderNode parentNode)
 		{
-			Location = new VectorSocket(parentNode, "Location");
+			Location = new VectorSocket(parentNode, "Location", "location");
 			AddSocket(Location);
-			ObjectIndex = new FloatSocket(parentNode, "ObjectIndex");
+			ObjectIndex = new FloatSocket(parentNode, "Object Index", "object_index");
 			AddSocket(ObjectIndex);
-			MaterialIndex = new FloatSocket(parentNode, "MaterialIndex");
+			MaterialIndex = new FloatSocket(parentNode, "Material Index", "material_index");
 			AddSocket(MaterialIndex);
-			Random = new FloatSocket(parentNode, "Random");
+			Random = new FloatSocket(parentNode, "Random", "random");
 			AddSocket(Random);
+			Color = new FloatSocket(parentNode, "Color", "color");
+			AddSocket(Color);
+			Alpha = new FloatSocket(parentNode, "Alpha", "alpha");
+			AddSocket(Alpha);
 		}
 	}
 

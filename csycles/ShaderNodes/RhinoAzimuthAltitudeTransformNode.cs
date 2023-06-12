@@ -28,7 +28,7 @@ namespace ccl.ShaderNodes
 
 		internal RhinoAzimuthAltitudeTransformInputs(ShaderNode parentNode)
 		{
-			Vector = new VectorSocket(parentNode, "Vector");
+			Vector = new VectorSocket(parentNode, "Vector", "vector");
 			AddSocket(Vector);
 		}
 	}
@@ -39,7 +39,7 @@ namespace ccl.ShaderNodes
 
 		internal RhinoAzimuthAltitudeTransformOutputs(ShaderNode parentNode)
 		{
-			Vector = new VectorSocket(parentNode, "Vector");
+			Vector = new VectorSocket(parentNode, "Vector", "vector");
 			AddSocket(Vector);
 		}
 	}

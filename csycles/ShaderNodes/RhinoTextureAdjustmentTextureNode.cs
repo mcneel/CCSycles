@@ -26,7 +26,7 @@ namespace ccl.ShaderNodes
 
 		public TextureAdjustmentTextureInputs(ShaderNode parentNode)
 		{
-			Color = new ColorSocket(parentNode, "Color");
+			Color = new ColorSocket(parentNode, "Color", "color");
 			AddSocket(Color);
 		}
 	}
@@ -37,7 +37,7 @@ namespace ccl.ShaderNodes
 
 		public TextureAdjustmentTextureOutputs(ShaderNode parentNode)
 		{
-			Color = new ColorSocket(parentNode, "Color");
+			Color = new ColorSocket(parentNode, "Color", "out_color");
 			AddSocket(Color);
 		}
 	}

@@ -32,7 +32,7 @@ namespace ccl.ShaderNodes
 
 		internal ColorOutputs(ShaderNode parentNode)
 		{
-			Color = new ColorSocket(parentNode, "Color");
+			Color = new ColorSocket(parentNode, "Color", "color");
 			AddSocket(Color);
 		}
 	}

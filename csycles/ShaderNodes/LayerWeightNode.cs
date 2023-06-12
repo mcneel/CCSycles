@@ -24,14 +24,11 @@ namespace ccl.ShaderNodes
 	public class LayerWeightInputs : Inputs
 	{
 		public FloatSocket Blend { get; set; }
-		public VectorSocket Normal { get; set; }
 
 		public LayerWeightInputs(ShaderNode parentNode)
 		{
-			Blend = new FloatSocket(parentNode, "Blend");
+			Blend = new FloatSocket(parentNode, "Blend", "blend");
 			AddSocket(Blend);
-			Normal = new VectorSocket(parentNode, "Normal");
-			AddSocket(Normal);
 		}
 	}
 
@@ -42,9 +39,9 @@ namespace ccl.ShaderNodes
 
 		public LayerWeightOutputs(ShaderNode parentNode)
 		{
-			Fresnel = new FloatSocket(parentNode, "Fresnel");
+			Fresnel = new FloatSocket(parentNode, "Fresnel", "fresnel");
 			AddSocket(Fresnel);
-			Facing = new FloatSocket(parentNode, "Facing");
+			Facing = new FloatSocket(parentNode, "Facing", "facing");
 			AddSocket(Facing);
 		}
 	}
@@ -72,14 +69,12 @@ namespace ccl.ShaderNodes
 			inputs = new LayerWeightInputs(this);
 			outputs = new LayerWeightOutputs(this);
 
-			ins.Normal.Value = new float4(0.0f);
 			ins.Blend.Value = 0.5f;
 		}
 
 		internal override void ParseXml(XmlReader xmlNode)
 		{
 			Utilities.Instance.get_float(ins.Blend, xmlNode.GetAttribute("blend"));
-			Utilities.Instance.get_float4(ins.Normal, xmlNode.GetAttribute("normal"));
 		}
 	}
 }

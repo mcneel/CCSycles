@@ -31,13 +31,13 @@ namespace ccl.ShaderNodes
 
 		internal RefractionBsdfInputs(ShaderNode parentNode)
 		{
-			Color = new ColorSocket(parentNode, "Color");
+			Color = new ColorSocket(parentNode, "Color", "color");
 			AddSocket(Color);
-			Roughness = new FloatSocket(parentNode, "Roughness");
+			Roughness = new FloatSocket(parentNode, "Roughness", "roughness");
 			AddSocket(Roughness);
-			IOR = new FloatSocket(parentNode, "IOR");
+			IOR = new FloatSocket(parentNode, "IOR", "IOR");
 			AddSocket(IOR);
-			Normal = new VectorSocket(parentNode, "Normal");
+			Normal = new VectorSocket(parentNode, "Normal", "normal");
 			AddSocket(Normal);
 		}
 	}
@@ -48,7 +48,7 @@ namespace ccl.ShaderNodes
 
 		internal RefractionBsdfOutputs(ShaderNode parentNode)
 		{
-			BSDF = new ClosureSocket(parentNode, "BSDF");
+			BSDF = new ClosureSocket(parentNode, "BSDF", "BSDF");
 			AddSocket(BSDF);
 		}
 	}

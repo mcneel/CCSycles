@@ -29,11 +29,11 @@ namespace ccl.ShaderNodes
 
 		public BrightnessContrastInputs(ShaderNode parentNode)
 		{
-			Color = new ColorSocket(parentNode, "Color");
+			Color = new ColorSocket(parentNode, "Color", "color");
 			AddSocket(Color);
-			Bright = new FloatSocket(parentNode, "Bright");
+			Bright = new FloatSocket(parentNode, "Bright", "bright");
 			AddSocket(Bright);
-			Contrast = new FloatSocket(parentNode, "Contrast");
+			Contrast = new FloatSocket(parentNode, "Contrast", "contrast");
 			AddSocket(Contrast);
 		}
 	}
@@ -44,7 +44,7 @@ namespace ccl.ShaderNodes
 
 		public BrightnessContrastOutputs(ShaderNode parentNode)
 		{
-			Color = new ClosureSocket(parentNode, "Color");
+			Color = new ClosureSocket(parentNode, "Color", "color");
 			AddSocket(Color);
 		}
 	}

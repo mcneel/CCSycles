@@ -28,9 +28,9 @@ namespace ccl.ShaderNodes
 
 		internal EmissionInputs(ShaderNode parentNode)
 		{
-			Color = new ColorSocket(parentNode, "Color");
+			Color = new ColorSocket(parentNode, "Color", "color");
 			AddSocket(Color);
-			Strength = new FloatSocket(parentNode, "Strength");
+			Strength = new FloatSocket(parentNode, "Strength", "strength");
 			AddSocket(Strength);
 		}
 	}
@@ -41,7 +41,7 @@ namespace ccl.ShaderNodes
 
 		internal EmissionOutputs(ShaderNode parentNode)
 		{
-			Emission = new ClosureSocket(parentNode, "Emission");
+			Emission = new ClosureSocket(parentNode, "Emission", "emission");
 			AddSocket(Emission);
 		}
 	}

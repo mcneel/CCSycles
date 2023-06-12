@@ -28,11 +28,11 @@ namespace ccl.ShaderNodes
 
 		public DotsTextureInputs(ShaderNode parentNode)
 		{
-			UVW = new VectorSocket(parentNode, "UVW");
+			UVW = new VectorSocket(parentNode, "UVW", "uvw");
 			AddSocket(UVW);
-			Color1 = new ColorSocket(parentNode, "Color1");
+			Color1 = new ColorSocket(parentNode, "Color1", "color1");
 			AddSocket(Color1);
-			Color2 = new ColorSocket(parentNode, "Color2");
+			Color2 = new ColorSocket(parentNode, "Color2", "color2");
 			AddSocket(Color2);
 		}
 	}
@@ -43,7 +43,7 @@ namespace ccl.ShaderNodes
 
 		public DotsTextureOutputs(ShaderNode parentNode)
 		{
-			Color = new ColorSocket(parentNode, "Color");
+			Color = new ColorSocket(parentNode, "Color","out_color");
 			AddSocket(Color);
 		}
 	}

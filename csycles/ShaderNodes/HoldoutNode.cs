@@ -22,15 +22,8 @@ namespace ccl.ShaderNodes
 {
 	public class HoldoutInputs : Inputs
 	{
-		public FloatSocket SurfaceMixWeight { get; set; }
-		public FloatSocket VolumeMixWeight { get; set; }
-
 		public HoldoutInputs(ShaderNode parentNode)
 		{
-			SurfaceMixWeight = new FloatSocket(parentNode, "SurfaceMixWeight");
-			AddSocket(SurfaceMixWeight);
-			VolumeMixWeight = new FloatSocket(parentNode, "VolumeMixWeight");
-			AddSocket(VolumeMixWeight);
 		}
 	}
 
@@ -40,7 +33,7 @@ namespace ccl.ShaderNodes
 
 		public HoldoutOutputs(ShaderNode parentNode)
 		{
-			Holdout = new ClosureSocket(parentNode, "Holdout");
+			Holdout = new ClosureSocket(parentNode, "Holdout", "holdout");
 			AddSocket(Holdout);
 		}
 	}
@@ -68,9 +61,6 @@ namespace ccl.ShaderNodes
 		{
 			inputs = new HoldoutInputs(this);
 			outputs = new HoldoutOutputs(this);
-
-			ins.SurfaceMixWeight.Value = 0.0f;
-			ins.VolumeMixWeight.Value = 0.0f;
 		}
   }
 }

@@ -30,11 +30,11 @@ namespace ccl.ShaderNodes
 
 		internal MixInputs(ShaderNode parentNode)
 		{
-			Color1 = new ColorSocket(parentNode, "Color1");
+			Color1 = new ColorSocket(parentNode, "Color1", "color1");
 			AddSocket(Color1);
-			Color2 = new ColorSocket(parentNode, "Color2");
+			Color2 = new ColorSocket(parentNode, "Color2", "color2");
 			AddSocket(Color2);
-			Fac = new FloatSocket(parentNode, "Fac");
+			Fac = new FloatSocket(parentNode, "Fac", "fac");
 			AddSocket(Fac);
 		}
 	}
@@ -45,7 +45,7 @@ namespace ccl.ShaderNodes
 
 		internal MixOutputs(ShaderNode parentNode)
 		{
-			Color = new ColorSocket(parentNode, "Color");
+			Color = new ColorSocket(parentNode, "Color", "color");
 			AddSocket(Color);
 		}
 	}

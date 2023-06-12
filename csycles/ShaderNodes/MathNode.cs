@@ -35,6 +35,7 @@ namespace ccl.ShaderNodes
 		/// MathNode Value2 input socket
 		/// </summary>
 		public FloatSocket Value2 { get; set; }
+		public FloatSocket Value3 { get; set; }
 
 		/// <summary>
 		/// Create MathNode input sockets
@@ -42,10 +43,12 @@ namespace ccl.ShaderNodes
 		/// <param name="parentNode"></param>
 		internal MathInputs(ShaderNode parentNode)
 		{
-			Value1 = new FloatSocket(parentNode, "Value1");
+			Value1 = new FloatSocket(parentNode, "Value1", "value1");
 			AddSocket(Value1);
-			Value2 = new FloatSocket(parentNode, "Value2");
+			Value2 = new FloatSocket(parentNode, "Value2", "value2");
 			AddSocket(Value2);
+			Value3 = new FloatSocket(parentNode, "Value2", "value3");
+			AddSocket(Value3);
 		}
 	}
 
@@ -65,7 +68,7 @@ namespace ccl.ShaderNodes
 		/// <param name="parentNode"></param>
 		internal MathOutputs(ShaderNode parentNode)
 		{
-			Value = new FloatSocket(parentNode, "Value");
+			Value = new FloatSocket(parentNode, "Value", "value");
 			AddSocket(Value);
 		}
 	}
@@ -219,6 +222,7 @@ namespace ccl.ShaderNodes
 			Operation = Operations.Add;
 			ins.Value1.Value = 0.0f;
 			ins.Value2.Value = 0.0f;
+			ins.Value3.Value = 0.0f;
 		}
 
 		/// <summary>

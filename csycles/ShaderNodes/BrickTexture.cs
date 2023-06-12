@@ -52,6 +52,10 @@ namespace ccl.ShaderNodes
 		/// BrickTexture thickness of mortar size
 		/// </summary>
 		public FloatSocket MortarSize { get; set; }
+		/// <summary>
+		/// BrickTexture thickness of mortar size
+		/// </summary>
+		public FloatSocket MortarSmooth { get; set; }
 
 		/// <summary>
 		/// BrickTexture color variance. -1.0f means Color1, 1.0f means Color2. Values in between will
@@ -71,24 +75,26 @@ namespace ccl.ShaderNodes
 
 		internal BrickInputs(ShaderNode parentNode)
 		{
-			Color1 = new ColorSocket(parentNode, "Color1");
+			Color1 = new ColorSocket(parentNode, "Color1", "color1");
 			AddSocket(Color1);
-			Color2 = new ColorSocket(parentNode, "Color2");
+			Color2 = new ColorSocket(parentNode, "Color2", "color2");
 			AddSocket(Color2);
-			Mortar = new ColorSocket(parentNode, "Mortar");
+			Mortar = new ColorSocket(parentNode, "Mortar", "mortar");
 			AddSocket(Mortar);
-			Vector= new ColorSocket(parentNode, "Vector");
+			Vector= new ColorSocket(parentNode, "Vector", "vector");
 			AddSocket(Vector);
 
-			Scale = new FloatSocket(parentNode, "Scale");
+			Scale = new FloatSocket(parentNode, "Scale", "scale");
 			AddSocket(Scale);
-			MortarSize = new FloatSocket(parentNode, "Mortar Size");
+			MortarSize = new FloatSocket(parentNode, "Mortar Size", "mortar_size");
 			AddSocket(MortarSize);
-			Bias = new FloatSocket(parentNode, "Bias");
+			MortarSmooth = new FloatSocket(parentNode, "Mortar Smooth", "mortar_smooth");
+			AddSocket(MortarSmooth);
+			Bias = new FloatSocket(parentNode, "Bias", "bias");
 			AddSocket(Bias);
-			BrickWidth = new FloatSocket(parentNode, "Brick Width");
+			BrickWidth = new FloatSocket(parentNode, "Brick Width", "brick_width");
 			AddSocket(BrickWidth);
-			RowHeight = new FloatSocket(parentNode, "Row Height");
+			RowHeight = new FloatSocket(parentNode, "Row Height", "row_height");
 			AddSocket(RowHeight);
 		}
 	}
@@ -109,9 +115,9 @@ namespace ccl.ShaderNodes
 
 		internal BrickOutputs(ShaderNode parentNode)
 		{
-			Color = new Float4Socket(parentNode, "Color");
+			Color = new Float4Socket(parentNode, "Color", "color");
 			AddSocket(Color);
-			Fac = new FloatSocket(parentNode, "Fac");
+			Fac = new FloatSocket(parentNode, "Fac", "fac");
 			AddSocket(Fac);
 		}
 	}

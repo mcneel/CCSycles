@@ -37,9 +37,9 @@ namespace ccl.ShaderNodes
 
 		internal BackgroundInputs(ShaderNode parentNode)
 		{
-			Color = new ColorSocket(parentNode, "Color");
+			Color = new ColorSocket(parentNode, "Color", "color");
 			AddSocket(Color);
-			Strength = new FloatSocket(parentNode, "Strength");
+			Strength = new FloatSocket(parentNode, "Strength", "strength");
 			AddSocket(Strength);
 		}
 	}
@@ -56,7 +56,7 @@ namespace ccl.ShaderNodes
 
 		internal BackgroundOutputs(ShaderNode parentNode)
 		{
-			Background = new ClosureSocket(parentNode, "Background");
+			Background = new ClosureSocket(parentNode, "Background", "background");
 			AddSocket(Background);
 		}
 	}
@@ -88,7 +88,7 @@ namespace ccl.ShaderNodes
 		/// <summary>
 		/// Create a new background/world shader node with given name
 		/// </summary>
-		/// <param name="name">Name for shader node</param>
+		/// <param name="name">UiName for shader node</param>
 		public BackgroundNode(Shader shader, string name) :
 			base(shader, true)
 		{

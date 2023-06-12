@@ -27,7 +27,7 @@ namespace ccl.ShaderNodes
 
 		public SeparateHsvInputs(ShaderNode parentNode)
 		{
-			Color = new ColorSocket(parentNode, "Color");
+			Color = new ColorSocket(parentNode, "Color" ,"color");
 			AddSocket(Color);
 		}
 	}
@@ -40,11 +40,11 @@ namespace ccl.ShaderNodes
 
 		public SeparateHsvOutputs(ShaderNode parentNode)
 		{
-			H = new FloatSocket(parentNode, "H");
+			H = new FloatSocket(parentNode, "H", "h");
 			AddSocket(H);
-			S = new FloatSocket(parentNode, "S");
+			S = new FloatSocket(parentNode, "S", "s");
 			AddSocket(S);
-			V = new FloatSocket(parentNode, "V");
+			V = new FloatSocket(parentNode, "V", "v");
 			AddSocket(V);
 		}
 	}

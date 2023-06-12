@@ -28,9 +28,9 @@ namespace ccl.ShaderNodes
 
 		public GammaInputs(ShaderNode parentNode)
 		{
-			Color = new ColorSocket(parentNode, "Color");
+			Color = new ColorSocket(parentNode, "Color", "color");
 			AddSocket(Color);
-			Gamma = new FloatSocket(parentNode, "Gamma");
+			Gamma = new FloatSocket(parentNode, "Gamma", "gamma");
 			AddSocket(Gamma);
 		}
 	}
@@ -41,7 +41,7 @@ namespace ccl.ShaderNodes
 
 		public GammaOutputs(ShaderNode parentNode)
 		{
-			Color = new ClosureSocket(parentNode, "Color");
+			Color = new ClosureSocket(parentNode, "Color", "color");
 			AddSocket(Color);
 		}
 	}

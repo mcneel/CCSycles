@@ -153,6 +153,7 @@
     <Compile Include="ShaderNodes\RhinoTextureAdjustmentTextureNode.cs" />
     <Compile Include="ShaderNodes\RhinoTileTextureNode.cs" />
     <Compile Include="ShaderNodes\RhinoWavesTextureNode.cs" />
+    <Compile Include="ShaderNodes\Sockets\BoolSocket.cs" />
     <Compile Include="ShaderNodes\Sockets\TransformSocket.cs" />
     <Compile Include="ShaderNodes\TangentNode.cs" />
     <Compile Include="ShaderNodes\ObjectInfoNode.cs" />

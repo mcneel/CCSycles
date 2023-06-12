@@ -23,12 +23,16 @@ namespace ccl.ShaderNodes.Sockets
 	public interface ISocket
 	{
 		/// <summary>
-		/// Get or set the name for this socket.
+		/// Get or set the UI Name for this socket.
 		/// </summary>
-		string Name { get; set; }
+		string UiName { get; set; }
+		/// <summary>
+		/// Get or set the Internal Name for this socket.
+		/// </summary>
+		string InternalName { get; set; }
 
 		/// <summary>
-		/// Get the XML-valid name for this socket.
+		/// Get the XML-valid uiName for this socket.
 		/// </summary>
 		string XmlName {get;}
 
@@ -37,7 +41,7 @@ namespace ccl.ShaderNodes.Sockets
 		/// </summary>
 		string ConnectTag{get;}
 		/// <summary>
-		/// Get the code name for this socket.
+		/// Get the code uiName for this socket.
 		/// </summary>
 		string CodeName {get;}
 		/// <summary>
@@ -79,20 +83,22 @@ namespace ccl.ShaderNodes.Sockets
 		public T Value { get; set; }
 		public ShaderNode Parent { get; set; }
 
-		public string Name { get; set; }
+		public string UiName { get; set; }
+		public string InternalName { get; set; }
 
-		public string XmlName => Name.Replace(' ', '_').ToLowerInvariant();
-		public string CodeName => Name.Replace(" ", string.Empty);
+		public string XmlName => UiName.Replace(' ', '_').ToLowerInvariant();
+		public string CodeName => UiName.Replace(" ", string.Empty);
 
 		public void Connect(ISocket to)
 		{
-			Parent.Shader.Connect(Parent, Name, to.Parent, to.Name);
+			Parent.Shader.Connect(Parent, UiName, to.Parent, to.UiName);
 		}
 
-		internal SocketBase(ShaderNode parentNode, string name)
+		internal SocketBase(ShaderNode parentNode, string uiName, string internalName = "UNSET")
 		{
 			Parent = parentNode;
-			Name = name;
+			UiName = uiName;
+			InternalName = internalName;
 		}
 
 		public ISocket ConnectionFrom { get; set; }
@@ -100,9 +106,9 @@ namespace ccl.ShaderNodes.Sockets
 		public string SetValueCode { get; set; }
 
 		/// <summary>
-		/// Get string containing node name, type and socket name
+		/// Get string containing node uiName, type and socket uiName
 		/// </summary>
-		public string Path => $"{Parent.Name}({Parent.Type}):{Name}";
+		public string Path => $"{Parent.Name}({Parent.ShaderNodeTypeName}):{UiName}";
 
 		/// <summary>
 		/// Get the C# connection code into this socket

@@ -29,11 +29,11 @@ namespace ccl.ShaderNodes
 
 		public LightFalloffOutputs(ShaderNode parentNode)
 		{
-			Quadratic = new FloatSocket(parentNode, "Quadratic");
+			Quadratic = new FloatSocket(parentNode, "Quadratic", "quadratic");
 			AddSocket(Quadratic);
-			Linear = new FloatSocket(parentNode, "Linear");
+			Linear = new FloatSocket(parentNode, "Linear", "linear");
 			AddSocket(Linear);
-			Constant = new FloatSocket(parentNode, "Constant");
+			Constant = new FloatSocket(parentNode, "Constant", "constant");
 			AddSocket(Constant);
 		}
 	}
@@ -44,9 +44,9 @@ namespace ccl.ShaderNodes
 		public FloatSocket Smooth { get; set; }
 		public LightFalloffInputs(ShaderNode parentNode)
 		{
-			Strength = new FloatSocket(parentNode, "Strength");
+			Strength = new FloatSocket(parentNode, "Strength", "strength");
 			AddSocket(Strength);
-			Smooth = new FloatSocket(parentNode, "Smooth");
+			Smooth = new FloatSocket(parentNode, "Smooth", "smooth");
 			AddSocket(Smooth);
 		}
 	}

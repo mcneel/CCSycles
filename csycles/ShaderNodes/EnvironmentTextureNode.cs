@@ -32,11 +32,14 @@ namespace ccl.ShaderNodes
 		/// EnvironmentTextureNode vector input
 		/// </summary>
 		public VectorSocket Vector { get; set; }
+		public StringSocket Filename { get; set; }
 
 		internal EnvironmentTextureInputs(ShaderNode parentNode)
 		{
-			Vector = new VectorSocket(parentNode, "Vector");
+			Vector = new VectorSocket(parentNode, "Vector", "vector");
 			AddSocket(Vector);
+			Filename = new StringSocket(parentNode, "Filename", "filename");
+			AddSocket(Filename);
 		}
 	}
 
@@ -56,9 +59,9 @@ namespace ccl.ShaderNodes
 
 		internal EnvironmentTextureOutputs(ShaderNode parentNode)
 		{
-			Color = new ColorSocket(parentNode, "Color");
+			Color = new ColorSocket(parentNode, "Color", "color");
 			AddSocket(Color);
-			Alpha = new FloatSocket(parentNode, "Alpha");
+			Alpha = new FloatSocket(parentNode, "Alpha", "alpha");
 			AddSocket(Alpha);
 		}
 	}
@@ -127,16 +130,6 @@ namespace ccl.ShaderNodes
 			base.SetDirectMembers();
 
 			CSycles.shadernode_set_member_bool(Id, "is_linear", IsLinear);
-#if OLDIMGS
-			if (FloatImagePtr != IntPtr.Zero)
-			{
-				CSycles.shadernode_set_member_float_img(sessionId, shaderId, Id, Type, "builtin-data", Filename ?? String.Format("{0}-{0}-{0}", shaderId, Id), FloatImagePtr, Width, Height, 1, 4);
-			}
-			else if (ByteImagePtr != IntPtr.Zero)
-			{
-				CSycles.shadernode_set_member_byte_img(sessionId, shaderId, Id, Type, "builtin-data", Filename ?? String.Format("{0}-{0}-{0}", shaderId, Id), ByteImagePtr, Width, Height, 1, 4);
-			}
-#endif
 		}
 
 		internal override void ParseXml(XmlReader xmlNode)

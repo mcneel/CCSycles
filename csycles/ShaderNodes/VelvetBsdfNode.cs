@@ -29,11 +29,11 @@ namespace ccl.ShaderNodes
 
 		public VelvetBsdfInputs(ShaderNode parentNode)
 		{
-			Color = new ColorSocket(parentNode, "Color");
+			Color = new ColorSocket(parentNode, "Color", "color");
 			AddSocket(Color);
-			Sigma = new FloatSocket(parentNode, "Sigma");
+			Sigma = new FloatSocket(parentNode, "Sigma", "sigma");
 			AddSocket(Sigma);
-			Normal = new VectorSocket(parentNode, "Normal");
+			Normal = new VectorSocket(parentNode, "Normal", "normal");
 			AddSocket(Normal);
 		}
 	}
@@ -44,7 +44,7 @@ namespace ccl.ShaderNodes
 
 		public VelvetBsdfOutputs(ShaderNode parentNode)
 		{
-			BSDF = new ClosureSocket(parentNode, "BSDF");
+			BSDF = new ClosureSocket(parentNode, "BSDF", "BSDF");
 			AddSocket(BSDF);
 		}
 	}

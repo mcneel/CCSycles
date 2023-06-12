@@ -33,7 +33,7 @@ namespace ccl.ShaderNodes
 
 		internal ConvertRgbInputs(ShaderNode parentNode)
 		{
-			Color = new ColorSocket(parentNode, "Color");
+			Color = new ColorSocket(parentNode, "Color", "color");
 			AddSocket(Color);
 		}
 	}
@@ -50,7 +50,7 @@ namespace ccl.ShaderNodes
 
 		internal ConvertValOutputs(ShaderNode parentNode)
 		{
-			Val = new FloatSocket(parentNode, "Val");
+			Val = new FloatSocket(parentNode, "Val", "val");
 			AddSocket(Val);
 		}
 	}

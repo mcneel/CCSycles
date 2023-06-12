@@ -46,11 +46,11 @@ namespace ccl.ShaderNodes
 
 		internal ImageTextureInputs(ShaderNode parentNode)
 		{
-			Vector = new VectorSocket(parentNode, "Vector");
+			Vector = new VectorSocket(parentNode, "Vector", "vector");
 			AddSocket(Vector);
-			DecalForward = new FloatSocket(parentNode, "DecalForward");
+			DecalForward = new FloatSocket(parentNode, "DecalForward", "decalforward");
 			AddSocket(DecalForward);
-			DecalUsage = new FloatSocket(parentNode, "DecalUsage");
+			DecalUsage = new FloatSocket(parentNode, "DecalUsage", "decalusage");
 			AddSocket(DecalUsage);
 		}
 	}
@@ -71,9 +71,9 @@ namespace ccl.ShaderNodes
 
 		internal ImageTextureOutputs(ShaderNode parentNode)
 		{
-			Color = new ColorSocket(parentNode, "Color");
+			Color = new ColorSocket(parentNode, "Color", "color");
 			AddSocket(Color);
-			Alpha = new FloatSocket(parentNode, "Alpha");
+			Alpha = new FloatSocket(parentNode, "Alpha" ,"alpha");
 			AddSocket(Alpha);
 		}
 	}

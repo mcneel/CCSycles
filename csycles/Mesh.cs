@@ -150,7 +150,7 @@ namespace ccl
 		/// Set UVs
 		/// </summary>
 		/// <param name="uvs">UV coordinates. Stride 2.</param>
-		/// <param name="uvmap_name">Name for the UV map attribute set</param>
+		/// <param name="uvmap_name">UiName for the UV map attribute set</param>
 		public void SetUvs(ref float[] uvs, string uvmap_name)
 		{
 			CSycles.mesh_set_uvs(Client.Scene.Id, GeometryPointer, ref uvs, (uint) (uvs.Length/2), uvmap_name);

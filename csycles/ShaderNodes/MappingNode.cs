@@ -36,13 +36,13 @@ namespace ccl.ShaderNodes
 
 		internal MappingInputs(ShaderNode parentNode)
 		{
-			Vector = new VectorSocket(parentNode, "Vector");
+			Vector = new VectorSocket(parentNode, "Vector", "vector");
 			AddSocket(Vector);
-			Location = new VectorSocket(parentNode, "Location");
+			Location = new VectorSocket(parentNode, "Location", "location");
 			AddSocket(Location);
-			Rotation = new VectorSocket(parentNode, "Rotation");
+			Rotation = new VectorSocket(parentNode, "Rotation", "rotation");
 			AddSocket(Rotation);
-			Scale = new VectorSocket(parentNode, "Scale");
+			Scale = new VectorSocket(parentNode, "Scale", "scale");
 			AddSocket(Scale);
 		}
 	}
@@ -59,7 +59,7 @@ namespace ccl.ShaderNodes
 
 		internal MappingOutputs(ShaderNode parentNode)
 		{
-			Vector = new VectorSocket(parentNode, "Vector");
+			Vector = new VectorSocket(parentNode, "Vector", "vector");
 			AddSocket(Vector);
 		}
 	}

@@ -33,17 +33,17 @@ namespace ccl.ShaderNodes
 
 		public VoronoiInputs(ShaderNode parentNode)
 		{
-			Vector = new VectorSocket(parentNode, "Vector");
+			Vector = new VectorSocket(parentNode, "Vector", "vector");
 			AddSocket(Vector);
-			W = new FloatSocket(parentNode, "W");
+			W = new FloatSocket(parentNode, "W", "w");
 			AddSocket(W);
-			Scale = new FloatSocket(parentNode, "Scale");
+			Scale = new FloatSocket(parentNode, "Scale", "scale");
 			AddSocket(Scale);
-			Smoothness = new FloatSocket(parentNode, "Smoothness");
+			Smoothness = new FloatSocket(parentNode, "Smoothness", "smoothness");
 			AddSocket(Smoothness);
-			Exponent = new FloatSocket(parentNode, "Exponent");
+			Exponent = new FloatSocket(parentNode, "Exponent", "exponent");
 			AddSocket(Exponent);
-			Randomness = new FloatSocket(parentNode, "Randomness");
+			Randomness = new FloatSocket(parentNode, "Randomness", "randomness");
 			AddSocket(Randomness);
 		}
 	}
@@ -58,15 +58,15 @@ namespace ccl.ShaderNodes
 
 		public VoronoiOutputs(ShaderNode parentNode)
 		{
-			Distance = new FloatSocket(parentNode, "Distance");
+			Distance = new FloatSocket(parentNode, "Distance", "distance");
 			AddSocket(Distance);
-			Color = new ColorSocket(parentNode, "Color");
+			Color = new ColorSocket(parentNode, "Color", "color");
 			AddSocket(Color);
-			Position = new VectorSocket(parentNode, "Position");
+			Position = new VectorSocket(parentNode, "Position", "position");
 			AddSocket(Position);
-			W = new FloatSocket(parentNode, "W");
+			W = new FloatSocket(parentNode, "W", "w");
 			AddSocket(W);
-			Radius = new FloatSocket(parentNode, "Radius");
+			Radius = new FloatSocket(parentNode, "Radius", "radius");
 			AddSocket(Radius);
 		}
 	}

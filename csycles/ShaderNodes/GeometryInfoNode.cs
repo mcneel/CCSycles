@@ -57,27 +57,30 @@ namespace ccl.ShaderNodes
 		/// Lighter values indicate convex angles, darker values indicate concave angles.
 		/// </summary>
 		public FloatSocket Pointiness { get; set; }
+		public FloatSocket RandomPerIsland { get; set; }
 
 		internal GeometryInfoOutputs(ShaderNode parentNode)
 		{
 			//IsCameraRay = new FloatSocket(parentNode, "Is Camera Ray");
 			//AddSocket(IsCameraRay);
-			Position = new VectorSocket(parentNode, "Position");
+			Position = new VectorSocket(parentNode, "Position", "position");
 			AddSocket(Position);
-			Normal = new VectorSocket(parentNode, "Normal");
+			Normal = new VectorSocket(parentNode, "Normal", "normal");
 			AddSocket(Normal);
-			Tangent = new VectorSocket(parentNode, "Tangent");
+			Tangent = new VectorSocket(parentNode, "Tangent", "tangent");
 			AddSocket(Tangent);
-			TrueNormal = new VectorSocket(parentNode, "True Normal");
+			TrueNormal = new VectorSocket(parentNode, "True Normal", "true_normal");
 			AddSocket(TrueNormal);
-			Incoming = new VectorSocket(parentNode, "Incoming");
+			Incoming = new VectorSocket(parentNode, "Incoming", "incoming");
 			AddSocket(Incoming);
-			Parametric = new VectorSocket(parentNode, "Parametric");
+			Parametric = new VectorSocket(parentNode, "Parametric", "parametric");
 			AddSocket(Parametric);
-			Backfacing = new FloatSocket(parentNode, "Backfacing");
+			Backfacing = new FloatSocket(parentNode, "Backfacing", "backfacing");
 			AddSocket(Backfacing);
-			Pointiness = new FloatSocket(parentNode, "Pointiness");
+			Pointiness = new FloatSocket(parentNode, "Pointiness", "pointiness");
 			AddSocket(Pointiness);
+			RandomPerIsland = new FloatSocket(parentNode, "RandomPerIsland", "random_per_island");
+			AddSocket(RandomPerIsland);
 		}
 	}
 

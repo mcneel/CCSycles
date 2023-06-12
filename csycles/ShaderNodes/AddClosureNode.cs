@@ -48,9 +48,9 @@ namespace ccl.ShaderNodes
 
 		internal AddClosureInputs(ShaderNode parentNode)
 		{
-			Closure1 = new ClosureSocket(parentNode, "Closure1");
+			Closure1 = new ClosureSocket(parentNode, "Closure1", "closure1");
 			AddSocket(Closure1);
-			Closure2 = new ClosureSocket(parentNode, "Closure2");
+			Closure2 = new ClosureSocket(parentNode, "Closure2", "closure2");
 			AddSocket(Closure2);
 		}
 	}
@@ -67,7 +67,7 @@ namespace ccl.ShaderNodes
 
 		internal AddClosureOutputs(ShaderNode parentNode)
 		{
-			Closure = new ClosureSocket(parentNode, "Closure");
+			Closure = new ClosureSocket(parentNode, "Closure", "closure");
 			AddSocket(Closure);
 		}
 	}

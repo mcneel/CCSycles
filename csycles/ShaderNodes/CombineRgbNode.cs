@@ -29,11 +29,11 @@ namespace ccl.ShaderNodes
 
 		public CombineRgbInputs(ShaderNode parentNode)
 		{
-			R = new FloatSocket(parentNode, "R");
+			R = new FloatSocket(parentNode, "R", "r");
 			AddSocket(R);
-			G = new FloatSocket(parentNode, "G");
+			G = new FloatSocket(parentNode, "G", "g");
 			AddSocket(G);
-			B = new FloatSocket(parentNode, "B");
+			B = new FloatSocket(parentNode, "B", "b");
 			AddSocket(B);
 		}
 	}
@@ -44,7 +44,7 @@ namespace ccl.ShaderNodes
 
 		public CombineRgbOutputs(ShaderNode parentNode)
 		{
-			Image = new ColorSocket(parentNode, "Image");
+			Image = new ColorSocket(parentNode, "Image", "image");
 			AddSocket(Image);
 		}
 	}

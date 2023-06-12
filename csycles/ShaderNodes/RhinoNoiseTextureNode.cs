@@ -27,7 +27,7 @@ namespace ccl.ShaderNodes
 
 		public NoiseTextureInputs(ShaderNode parentNode) : base(parentNode)
 		{
-			UVW = new VectorSocket(parentNode, "UVW");
+			UVW = new VectorSocket(parentNode, "UVW", "uvw");
 			AddSocket(UVW);
 		}
 	}

@@ -26,7 +26,7 @@ namespace ccl.ShaderNodes
 
 		public PerturbingPart1TextureInputs(ShaderNode parentNode)
 		{
-			UVW = new VectorSocket(parentNode, "UVW");
+			UVW = new VectorSocket(parentNode, "UVW", "uvw");
 			AddSocket(UVW);
 		}
 	}
@@ -39,11 +39,11 @@ namespace ccl.ShaderNodes
 
 		public PerturbingPart1TextureOutputs(ShaderNode parentNode)
 		{
-			UVW1 = new VectorSocket(parentNode, "UVW1");
+			UVW1 = new VectorSocket(parentNode, "UVW1", "out_uvw1");
 			AddSocket(UVW1);
-			UVW2 = new VectorSocket(parentNode, "UVW2");
+			UVW2 = new VectorSocket(parentNode, "UVW2", "out_uvw2");
 			AddSocket(UVW2);
-			UVW3 = new VectorSocket(parentNode, "UVW3");
+			UVW3 = new VectorSocket(parentNode, "UVW3", "out_uvw3");
 			AddSocket(UVW3);
 		}
 	}
@@ -85,13 +85,13 @@ namespace ccl.ShaderNodes
 
 		public PerturbingPart2TextureInputs(ShaderNode parentNode)
 		{
-			UVW = new VectorSocket(parentNode, "UVW");
+			UVW = new VectorSocket(parentNode, "UVW", "uvw");
 			AddSocket(UVW);
-			Color1 = new ColorSocket(parentNode, "Color1");
+			Color1 = new ColorSocket(parentNode, "Color1", "color1");
 			AddSocket(Color1);
-			Color2 = new ColorSocket(parentNode, "Color2");
+			Color2 = new ColorSocket(parentNode, "Color2", "color2");
 			AddSocket(Color2);
-			Color3 = new ColorSocket(parentNode, "Color3");
+			Color3 = new ColorSocket(parentNode, "Color3", "color3");
 			AddSocket(Color3);
 		}
 	}
@@ -102,7 +102,7 @@ namespace ccl.ShaderNodes
 
 		public PerturbingPart2TextureOutputs(ShaderNode parentNode)
 		{
-			PerturbedUVW = new VectorSocket(parentNode, "Perturbed UVW");
+			PerturbedUVW = new VectorSocket(parentNode, "Perturbed UVW", "out_uvw");
 			AddSocket(PerturbedUVW);
 		}
 	}

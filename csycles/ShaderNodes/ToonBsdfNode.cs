@@ -31,13 +31,13 @@ namespace ccl.ShaderNodes
 
 		internal ToonBsdfInputs(ShaderNode parentNode)
 		{
-			Color = new ColorSocket(parentNode, "Color");
+			Color = new ColorSocket(parentNode, "Color", "color");
 			AddSocket(Color);
-			Normal = new VectorSocket(parentNode, "Normal");
+			Normal = new VectorSocket(parentNode, "Normal", "normal");
 			AddSocket(Normal);
-			Size = new FloatSocket(parentNode, "Size");
+			Size = new FloatSocket(parentNode, "Size", "size");
 			AddSocket(Size);
-			Smooth = new FloatSocket(parentNode, "Smooth");
+			Smooth = new FloatSocket(parentNode, "Smooth", "smooth");
 			AddSocket(Smooth);
 
 		}
@@ -49,7 +49,7 @@ namespace ccl.ShaderNodes
 
 		internal ToonBsdfOutputs(ShaderNode parentNode)
 		{
-			BSDF = new ClosureSocket(parentNode, "BSDF");
+			BSDF = new ClosureSocket(parentNode, "BSDF", "BSDF");
 			AddSocket(BSDF);
 		}
 	}

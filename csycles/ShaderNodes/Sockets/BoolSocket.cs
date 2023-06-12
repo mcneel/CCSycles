@@ -16,13 +16,16 @@ limitations under the License.
 
 namespace ccl.ShaderNodes.Sockets
 {
-	/// <summary>
-	/// Base class to denote a closure socket
-	/// </summary>
-	public class ClosureSocket : SocketBase<object>
+	public class BoolSocket : SocketBase<bool>
 	{
-		public ClosureSocket(ShaderNode parentNode, string name, string internalname) : base(parentNode, name, internalname)
+		public BoolSocket(ShaderNode parentNode, string name, string internalname) : base(parentNode, name, internalname)
 		{
+			Value = false;
+		}
+		public override string ToString()
+		{
+			var nfi = Utilities.Instance.NumberFormatInfo;
+			return string.Format(nfi, "{0}", SetValueCode ?? Value.ToString());
 		}
 	}
 }

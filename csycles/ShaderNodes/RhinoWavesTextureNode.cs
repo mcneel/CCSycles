@@ -27,9 +27,9 @@ namespace ccl.ShaderNodes
 
 		public WavesTextureInputs(ShaderNode parentNode) : base(parentNode)
 		{
-			UVW = new VectorSocket(parentNode, "UVW");
+			UVW = new VectorSocket(parentNode, "UVW", "uvw");
 			AddSocket(UVW);
-			Color3 = new ColorSocket(parentNode, "Color3");
+			Color3 = new ColorSocket(parentNode, "Color3", "color3");
 			AddSocket(Color3);
 		}
 	}
@@ -96,7 +96,7 @@ namespace ccl.ShaderNodes
 
 		public WavesWidthTextureInputs(ShaderNode parentNode)
 		{
-			UVW = new VectorSocket(parentNode, "UVW");
+			UVW = new VectorSocket(parentNode, "UVW", "uvw");
 			AddSocket(UVW);
 		}
 	}
@@ -107,7 +107,7 @@ namespace ccl.ShaderNodes
 
 		public WavesWidthTextureOutputs(ShaderNode parentNode)
 		{
-			UVW = new VectorSocket(parentNode, "UVW");
+			UVW = new VectorSocket(parentNode, "UVW", "out_uvw");
 			AddSocket(UVW);
 		}
 	}

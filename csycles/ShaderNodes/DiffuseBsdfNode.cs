@@ -29,11 +29,11 @@ namespace ccl.ShaderNodes
 
 		public DiffuseBsdfInputs(ShaderNode parentNode)
 		{
-			Color = new ColorSocket(parentNode, "Color");
+			Color = new ColorSocket(parentNode, "Color", "color");
 			AddSocket(Color);
-			Roughness = new FloatSocket(parentNode, "Roughness");
+			Roughness = new FloatSocket(parentNode, "Roughness", "roughness");
 			AddSocket(Roughness);
-			Normal = new VectorSocket(parentNode, "Normal");
+			Normal = new VectorSocket(parentNode, "Normal", "normal");
 			AddSocket(Normal);
 		}
 	}
@@ -44,7 +44,7 @@ namespace ccl.ShaderNodes
 
 		public DiffuseBsdfOutputs(ShaderNode parentNode)
 		{
-			BSDF = new ClosureSocket(parentNode, "BSDF");
+			BSDF = new ClosureSocket(parentNode, "BSDF", "BSDF");
 			AddSocket(BSDF);
 		}
 	}

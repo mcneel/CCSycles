@@ -29,11 +29,11 @@ namespace ccl.ShaderNodes
 
 		public MagicInputs(ShaderNode parentNode)
 		{
-			Vector = new VectorSocket(parentNode, "Vector");
+			Vector = new VectorSocket(parentNode, "Vector", "vector");
 			AddSocket(Vector);
-			Scale = new FloatSocket(parentNode, "Scale");
+			Scale = new FloatSocket(parentNode, "Scale", "scale");
 			AddSocket(Scale);
-			Distortion = new FloatSocket(parentNode, "Distortion");
+			Distortion = new FloatSocket(parentNode, "Distortion", "distortion");
 			AddSocket(Distortion);
 		}
 	}
@@ -45,9 +45,9 @@ namespace ccl.ShaderNodes
 
 		public MagicOutputs(ShaderNode parentNode)
 		{
-			Color = new ColorSocket(parentNode, "Color");
+			Color = new ColorSocket(parentNode, "Color", "color");
 			AddSocket(Color);
-			Fac = new FloatSocket(parentNode, "Fac");
+			Fac = new FloatSocket(parentNode, "Fac", "fac");
 			AddSocket(Fac);
 		}
 	}

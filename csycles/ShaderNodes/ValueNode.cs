@@ -30,7 +30,7 @@ namespace ccl.ShaderNodes
 
 		internal ValueOutputs(ShaderNode parentNode)
 		{
-			Value = new FloatSocket(parentNode, "Value");
+			Value = new FloatSocket(parentNode, "Value", "value");
 			AddSocket(Value);
 		}
 	}

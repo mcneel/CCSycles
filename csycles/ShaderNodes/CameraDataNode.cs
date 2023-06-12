@@ -36,11 +36,11 @@ namespace ccl.ShaderNodes
 
 		public CameraDataOutputs(ShaderNode parentNode)
 		{
-			ViewVector = new VectorSocket(parentNode, "View Vector");
+			ViewVector = new VectorSocket(parentNode, "View Vector", "view_vector");
 			AddSocket(ViewVector);
-			ViewDepth = new FloatSocket(parentNode, "View Z Depth");
+			ViewDepth = new FloatSocket(parentNode, "View Z Depth", "view_z_depth");
 			AddSocket(ViewDepth);
-			ViewDistance = new FloatSocket(parentNode, "View Distance");
+			ViewDistance = new FloatSocket(parentNode, "View Distance", "view_distance");
 			AddSocket(ViewDistance);
 		}
 	}

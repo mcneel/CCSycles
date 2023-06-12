@@ -99,12 +99,12 @@ namespace ccl
 		/// <summary>
 		/// Get the first shader with name
 		/// </summary>
-		/// <param name="name">Name of shader to look for</param>
+		/// <param name="name">UiName of shader to look for</param>
 		/// <returns>Shader or null if no shader with name was found.</returns>
 		public Shader ShaderWithName(string name)
 		{
 			// TODO: XXXX
-			//return (from kvp in m_shader_in_scene_ids where kvp.Key.Name.Equals(name) select kvp.Key).FirstOrDefault();
+			//return (from kvp in m_shader_in_scene_ids where kvp.Key.UiName.Equals(name) select kvp.Key).FirstOrDefault();
 
 			return null;
 		}
