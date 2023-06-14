@@ -53,7 +53,7 @@ namespace ccl
 #endif
 			LoadShaderNodes();
 			g_ccycles_loaded = true;
-			GenShaderNodeCode();
+			//GenShaderNodeCode();
 		}
 
 		private static readonly Dictionary<string, Type> g_registered_shadernodes = new Dictionary<string, Type>();
