@@ -131,8 +131,8 @@ namespace ccl.ShaderNodes
 		{
 			var tfm = Transform;
 			CSycles.shadernode_set_member_vec4_at_index(Id, "tfm_x", tfm.x.x, tfm.x.y, tfm.x.z, tfm.x.w, 0);
-			CSycles.shadernode_set_member_vec4_at_index(Id, "tfm_x", tfm.x.x, tfm.x.y, tfm.x.z, tfm.x.w, 1);
-			CSycles.shadernode_set_member_vec4_at_index(Id, "tfm_x", tfm.x.x, tfm.x.y, tfm.x.z, tfm.x.w, 2);
+			CSycles.shadernode_set_member_vec4_at_index(Id, "tfm_y", tfm.y.x, tfm.y.y, tfm.y.z, tfm.y.w, 1);
+			CSycles.shadernode_set_member_vec4_at_index(Id, "tfm_z", tfm.z.x, tfm.z.y, tfm.z.z, tfm.z.w, 2);
 		}
 
 		internal override void ParseXml(XmlReader xmlNode)
