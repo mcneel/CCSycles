@@ -157,6 +157,7 @@
     <Compile Include="ShaderNodes\Sockets\TransformSocket.cs" />
     <Compile Include="ShaderNodes\TangentNode.cs" />
     <Compile Include="ShaderNodes\ObjectInfoNode.cs" />
+    <Compile Include="ShaderNodes\UVMapNode.cs" />
     <Compile Include="ShaderNodes\WireframeNode.cs" />
     <Compile Include="ShaderNodes\NormalMapNode.cs" />
     <Compile Include="ShaderNodes\InvertNode.cs" />

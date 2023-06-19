@@ -43,6 +43,7 @@ namespace ccl.ShaderNodes
 		/// connected to work.
 		/// </summary>
 		public FloatSocket DecalUsage { get; set; }
+		public StringSocket Filename { get; set; }
 
 		internal ImageTextureInputs(ShaderNode parentNode)
 		{
@@ -52,6 +53,8 @@ namespace ccl.ShaderNodes
 			AddSocket(DecalForward);
 			DecalUsage = new FloatSocket(parentNode, "DecalUsage", "decalusage");
 			AddSocket(DecalUsage);
+			Filename = new StringSocket(parentNode, "Filename", "filename");
+			AddSocket(Filename);
 		}
 	}
 
@@ -164,16 +167,6 @@ namespace ccl.ShaderNodes
 			CSycles.shadernode_set_member_bool(Id, "use_alpha", UseAlpha);
 			CSycles.shadernode_set_member_bool(Id, "is_linear", IsLinear);
 			CSycles.shadernode_set_member_bool(Id, "alternate_tiles", AlternateTiles);
-#if OLDIMGS
-			if (FloatImagePtr != IntPtr.Zero)
-			{
-				CSycles.shadernode_set_member_float_img(sessionId, shaderId, Id, Type, "builtin-data", Filename ?? String.Format("{0}-{0}-{0}", shaderId, Id), FloatImagePtr, Width, Height, 1, 4);
-			}
-			else if (ByteImagePtr != IntPtr.Zero)
-			{
-				CSycles.shadernode_set_member_byte_img(sessionId, shaderId, Id, Type, "builtin-data", Filename ?? String.Format("{0}-{0}-{0}", shaderId, Id), ByteImagePtr, Width, Height, 1, 4);
-			}
-#endif
 		}
 		private void SetProjection(string projection)
 		{

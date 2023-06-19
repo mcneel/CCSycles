@@ -120,6 +120,7 @@ namespace ccl.ShaderNodes
 
 		internal override void SetEnums()
 		{
+			Projection = EnvironmentProjection.Equirectangular;
 			CSycles.shadernode_set_enum(Id, "projection", (int)Projection);
 			CSycles.shadernode_set_enum(Id, "color_space", (int)ColorSpace);
 			CSycles.shadernode_set_enum(Id, "interpolation", (int)Interpolation);
