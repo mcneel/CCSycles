@@ -352,14 +352,13 @@ namespace ccl
 		}
 		public static void GenShaderNodeCode()
 		{
+#if WIN32
 			// Creates a TextInfo based on the "en-US" culture.
 			TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
 
-#if WIN32
 			var path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? "";
 			var AutoGenFolder = Path.Combine(path, "AutoGenCycles");
 			Directory.CreateDirectory(AutoGenFolder);
-#endif
 			int typecount = get_shadernodetype_count();
 			for(int i = 0; i < typecount; i++)
 			{
@@ -408,6 +407,7 @@ namespace ccl
 				nodeoutputs = nodeoutputs.Replace("SOCKETCONSTRUCT", socketconstruct);
 				File.WriteAllText(nodefile, $"//{intname}\n\n" + nodeinputs + "\n\n" + nodeoutputs);
 			}
+#endif
 		}
 	}
 }
