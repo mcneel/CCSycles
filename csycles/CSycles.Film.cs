@@ -34,6 +34,13 @@ namespace ccl
 			cycles_film_tag_update(sessionId);
 		}
 
-#endregion
+		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		private static extern void cycles_film_set_use_approximate_shadow_catcher(IntPtr sessionId, bool use_approximate_shadow_catcher);
+		public static void film_set_use_approximate_shadow_catcher(IntPtr sessionId, bool use_approximate_shadow_catcher)
+		{
+			cycles_film_set_use_approximate_shadow_catcher(sessionId, use_approximate_shadow_catcher);
+		}
+
+		#endregion
 	}
 }
