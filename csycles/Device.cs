@@ -445,7 +445,10 @@ namespace ccl
 			{
 				if (int.TryParse(item, out int x))
 				{
-					set.Add(x);
+					if (x > -1)
+					{
+						set.Add(x);
+					}
 				}
 			}
 			return set;
@@ -474,7 +477,7 @@ namespace ccl
 		{
 			var l = IdListFromString(res);
 
-			if (l.Count == 0) return FirstCuda;
+			if (l.Count == 0) return FirstGpu;
 			if(l.Count == 1)
 			{
 				return l[0] == -1 ? FirstCuda : GetDevice(l[0]);
