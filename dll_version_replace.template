@@ -1,0 +1,23 @@
+
+1 VERSIONINFO
+FILEVERSION VERSIONCOMMAS
+PRODUCTVERSION VERSIONCOMMAS
+FILEOS 0x40004
+FILETYPE 0x1
+{
+BLOCK "StringFileInfo"
+{
+	BLOCK "040904B0"
+	{
+		VALUE "FileDescription", "Dependency for Rhino Cycles integration"
+		VALUE "ProductName", "RhinoCycles integration"
+		VALUE "FileVersion", "VERSIONDOTS"
+		VALUE "ProductVersion", "VERSIONDOTS"
+	}
+}
+
+BLOCK "VarFileInfo"
+{
+	VALUE "Translation", 0x0409 0x04B0
+}
+}
