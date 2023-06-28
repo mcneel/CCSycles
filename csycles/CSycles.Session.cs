@@ -279,6 +279,13 @@ namespace ccl
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		private static extern int cycles_progress_get_rendered_tiles(IntPtr sessionId);
+		public static int progress_get_rendered_tiles(IntPtr sessionId)
+		{
+			return cycles_progress_get_rendered_tiles(sessionId);
+		}
+
+		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		private static extern void cycles_progress_get_time(IntPtr sessionId, out double totalTime, out double sampleTime);
 		public static void progress_get_time(IntPtr sessionId, out double totalTime, out double sampleTime)
 		{
