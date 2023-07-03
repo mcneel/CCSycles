@@ -176,6 +176,14 @@ namespace ccl
 			CSycles.shader_connect_nodes(Id, from.Id, fromout, to.Id, toin);
 		}
 
+		/// <summary>
+		/// Disconnect this node.
+		/// </summary>
+		/// <param name="node"></param>
+		public void Disconnect(ShaderNode from, string fromout)
+		{
+			CSycles.shader_disconnect_node(Id, from.Id, fromout);
+		}
 
 		/// <summary>
 		/// Set the name of the Shader

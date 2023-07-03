@@ -194,6 +194,14 @@ namespace ccl
 
 		[DllImport(Constants.ccycles, SetLastError = false, CharSet = CharSet.Ansi,
 			CallingConvention = CallingConvention.Cdecl)]
+		private static extern void cycles_shader_disconnect_node(IntPtr shaderId, IntPtr nodeId, string from);
+		public static void shader_disconnect_node(IntPtr shaderId, IntPtr nodeId, string from)
+		{
+			cycles_shader_disconnect_node(shaderId, nodeId, from);
+		}
+
+		[DllImport(Constants.ccycles, SetLastError = false, CharSet = CharSet.Ansi,
+			CallingConvention = CallingConvention.Cdecl)]
 		private static extern void cycles_shader_set_name(IntPtr shaderId, [MarshalAs(UnmanagedType.LPStr)] string name);
 		public static void shader_set_name(IntPtr shaderId, string name)
 		{

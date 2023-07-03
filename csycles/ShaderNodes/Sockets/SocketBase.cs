@@ -122,7 +122,7 @@ namespace ccl.ShaderNodes.Sockets
 		/// </summary>
 		public void ClearConnections()
 		{
-			ConnectionFrom = null;
+			Parent.Shader.Disconnect(Parent, UiName);
 		}
 
 		public override string ToString()
