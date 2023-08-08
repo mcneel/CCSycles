@@ -117,14 +117,15 @@ namespace ccl.ShaderNodes
 	{
 		public enum Distributions
 		{
-			GGX = 32,
-			Multiscatter_GGX = 30
+			GGX = 26,
+			Multiscatter_GGX = 24
 		}
 
 		public enum ScatterMethod
 		{
-			Burley = 42,
-			RandomWalk = 45,
+			Burley = 32,
+			RandomWalk = 33,
+			RandomWalkFixedRadius = 34,
 		}
 
 		public PrincipledBsdfInputs ins => (PrincipledBsdfInputs)inputs;
@@ -171,7 +172,7 @@ namespace ccl.ShaderNodes
 		}
 
 		public Distributions Distribution { get; set; }
-		public SubsurfaceScatteringNode.FalloffTypes Sss {get; set; }
+		public ScatterMethod Sss {get; set; }
 
 		internal override void SetEnums()
 		{
@@ -212,7 +213,7 @@ namespace ccl.ShaderNodes
 			str = "";
 			Utilities.Instance.read_string(ref str, xmlNode.GetAttribute("sss"));
 			if (!string.IsNullOrEmpty(str)) {
-				SubsurfaceScatteringNode.FalloffTypes sss;
+				ScatterMethod sss;
 				if (Enum.TryParse(str, true, out sss)) Sss = sss;
 			}
 		}

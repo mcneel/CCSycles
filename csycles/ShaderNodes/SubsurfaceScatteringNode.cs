@@ -66,12 +66,12 @@ namespace ccl.ShaderNodes
 	{
 		public enum FalloffTypes
 		{
-			Cubic = 40,
-			Gaussian = 41,
-			Principled = 42,
-			Burley = 43,
-			RandomWalk = 44,
-			PrincipledRandomWalk = 45
+			Cubic = 32,
+			Gaussian = 32,
+			Principled = 32,
+			Burley = 32,
+			RandomWalk = 33,
+			PrincipledRandomWalk = 34
 		}
 
 

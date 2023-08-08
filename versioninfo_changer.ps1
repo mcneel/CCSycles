@@ -17,13 +17,13 @@ Write-Host "-> $commas"
 
 Push-Location .\cycles\install
 
-Remove-Item *gyd*
-Remove-Item *_d.dll
-Remove-Item *.so
-Remove-Item *.so.*
-Remove-Item lib\*.so
-Remove-Item lib\*.so.*
-Remove-Item *_d_*.dll
+Remove-Item *gyd* -ErrorAction SilentlyContinue
+Remove-Item *_d.dll -ErrorAction SilentlyContinue
+Remove-Item *.so -ErrorAction SilentlyContinue
+Remove-Item *.so.* -ErrorAction SilentlyContinue
+Remove-Item lib\*.so -ErrorAction SilentlyContinue
+Remove-Item lib\*.so.* -ErrorAction SilentlyContinue
+Remove-Item *_d_*.dll -ErrorAction SilentlyContinue
 
 ResourceHacker -open .\dll_version_replace.rc -save .\dll_version_replace.res -action compile
 ResourceHacker -open ccycles.dll -save ccycles.dll -resource .\dll_version_replace.res -action addoverwrite -mask VERSIONINFO
