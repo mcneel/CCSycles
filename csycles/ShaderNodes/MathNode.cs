@@ -102,6 +102,7 @@ namespace ccl.ShaderNodes
 			/// Value = Value1 / Value2
 			/// </summary>
 			Divide,
+			MultiplyAdd,
 			/// <summary>
 			/// Value = sin(Value1). Value2 ignored
 			/// </summary>
@@ -117,6 +118,9 @@ namespace ccl.ShaderNodes
 			/// <summary>
 			/// Value = asin(Value1). Value2 ignored
 			/// </summary>
+			Sinh,
+			Cosh,
+			Tanh,
 			Arcsine,
 			/// <summary>
 			/// Value = acos(Value1). Value2 ignored
@@ -178,10 +182,22 @@ namespace ccl.ShaderNodes
 			/// Value = Value1 - floorf(Value1)
 			/// </summary>
 			Fract,
+			Trunc,
+			Snap,
+			Wrap,
+			Pingpong,
 			/// <summary>
 			/// Value = sqrtf(Value1)
 			/// </summary>
 			Sqrt,
+			InverseSqrt,
+			Sign,
+			Exponent,
+			Radians,
+			Degrees,
+			SmoothMin,
+			SmoothMax,
+			Compare
 		}
 
 		/// <summary>
@@ -311,6 +327,14 @@ namespace ccl.ShaderNodes
 		internal MathMultiply(Shader shader, IntPtr intPtr) : base(shader, intPtr) { Operation = Operations.Multiply; }
 		public override string ShaderNodeTypeName => "math";
 	}
+	[ShaderNode("math_multiply_add")]
+	public class MathMultiplyAdd : MathNode
+	{
+		public MathMultiplyAdd(Shader shader) : this(shader, "an multiply add mathnode") {}
+		public MathMultiplyAdd(Shader shader, string name) : base(shader, name) { Operation = Operations.MultiplyAdd; }
+		internal MathMultiplyAdd(Shader shader, IntPtr intPtr) : base(shader, intPtr) { Operation = Operations.MultiplyAdd; }
+		public override string ShaderNodeTypeName => "math";
+	}
 	[ShaderNode("math_divide")]
 	public class MathDivide : MathNode
 	{
@@ -341,6 +365,30 @@ namespace ccl.ShaderNodes
 		public MathTangent(Shader shader) : this(shader, "an tangent mathnode") {}
 		public MathTangent(Shader shader, string name) : base(shader, name) { Operation = Operations.Tangent; }
 		internal MathTangent(Shader shader, IntPtr intPtr) : base(shader, intPtr) { Operation = Operations.Tangent; }
+		public override string ShaderNodeTypeName => "math";
+	}
+	[ShaderNode("math_sinh")]
+	public class MathSinh: MathNode
+	{
+		public MathSinh(Shader shader) : this(shader, "an sinh mathnode") {}
+		public MathSinh(Shader shader, string name) : base(shader, name) { Operation = Operations.Sinh; }
+		internal MathSinh(Shader shader, IntPtr intPtr) : base(shader, intPtr) { Operation = Operations.Sinh; }
+		public override string ShaderNodeTypeName => "math";
+	}
+	[ShaderNode("math_cosh")]
+	public class MathCosh : MathNode
+	{
+		public MathCosh(Shader shader) : this(shader, "an cosh mathnode") {}
+		public MathCosh(Shader shader, string name) : base(shader, name) { Operation = Operations.Cosh; }
+		internal MathCosh(Shader shader, IntPtr intPtr) : base(shader, intPtr) { Operation = Operations.Cosh; }
+		public override string ShaderNodeTypeName => "math";
+	}
+	[ShaderNode("math_tanh")]
+	public class MathTanh : MathNode
+	{
+		public MathTanh(Shader shader) : this(shader, "an tanh mathnode") {}
+		public MathTanh(Shader shader, string name) : base(shader, name) { Operation = Operations.Tanh; }
+		internal MathTanh(Shader shader, IntPtr intPtr) : base(shader, intPtr) { Operation = Operations.Tanh; }
 		public override string ShaderNodeTypeName => "math";
 	}
 	[ShaderNode("math_arcsine")]
@@ -437,6 +485,14 @@ namespace ccl.ShaderNodes
 		public MathAbsolute(Shader shader) : this(shader, "an absolute mathnode") {}
 		public MathAbsolute(Shader shader, string name) : base(shader, name) { Operation = Operations.Absolute; }
 		internal MathAbsolute(Shader shader, IntPtr intPtr) : base(shader, intPtr) { Operation = Operations.Absolute; }
+		public override string ShaderNodeTypeName => "math";
+	}
+	[ShaderNode("math_compare")]
+	public class MathCompare : MathNode
+	{
+		public MathCompare(Shader shader) : this(shader, "an compare mathnode") {}
+		public MathCompare(Shader shader, string name) : base(shader, name) { Operation = Operations.Compare; }
+		internal MathCompare(Shader shader, IntPtr intPtr) : base(shader, intPtr) { Operation = Operations.Compare; }
 		public override string ShaderNodeTypeName => "math";
 	}
 }
