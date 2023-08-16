@@ -98,7 +98,7 @@ namespace ccl.ShaderNodes
 		}
 
 		public MatrixMathNode(Shader shader, string name) :
-			base(shader, true)
+			base(shader, name)
 		{
 			FinalizeConstructor();
 		}

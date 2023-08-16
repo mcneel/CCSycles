@@ -79,7 +79,7 @@ namespace ccl.ShaderNodes
 		/// Create a new Toon BSDF closure. Default Color is white
 		/// </summary>
 		public ToonBsdfNode(Shader shader, string name) :
-			base(shader, true)
+			base(shader, name)
 		{
 			FinalizeConstructor();
 		}

@@ -95,7 +95,7 @@ namespace ccl.ShaderNodes
 			this(type, "texturenode baseclass") { }
 
 		internal TextureNode(Shader shader, string name) :
-			base(shader, true)
+			base(shader, name)
 		{
 			FinalizeConstructor();
 		}

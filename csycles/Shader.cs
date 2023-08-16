@@ -89,6 +89,11 @@ namespace ccl
 			Verbose = false;
 		}
 
+		public void DumpGraph(string filename)
+		{
+			CSycles.shader_dump_graph(Id, filename);
+		}
+
 		/*
 		/// <summary>
 		/// Create a shader outside of the Cycles system. Can be used to set up a

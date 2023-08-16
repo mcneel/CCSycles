@@ -119,7 +119,7 @@ namespace ccl.ShaderNodes
 		/// </summary>
 		public SubsurfaceScatteringNode(Shader shader) : this(shader, "a subsurface scattering node") { }
 		public SubsurfaceScatteringNode(Shader shader, string name) :
-			base(shader, true)
+			base(shader, name)
 		{
 			FinalizeConstructor();
 		}

@@ -94,7 +94,7 @@ namespace ccl.ShaderNodes
 		/// </summary>
 		/// <param name="name"></param>
 		public MixNode(Shader shader, string name) :
-			base(shader, true)
+			base(shader, name)
 		{
 			FinalizeConstructor();
 		}

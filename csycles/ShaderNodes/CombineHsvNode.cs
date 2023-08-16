@@ -60,7 +60,7 @@ namespace ccl.ShaderNodes
 
 		public CombineHsvNode(Shader shader) : this(shader, "A combine HSV node") { }
 		public CombineHsvNode(Shader shader, string name) :
-			base(shader, true)
+			base(shader, name)
 		{
 			FinalizeConstructor();
 		}

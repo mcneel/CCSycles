@@ -50,7 +50,7 @@ namespace ccl.ShaderNodes
 		public FresnelOutputs outs => (FresnelOutputs)outputs;
 		public FresnelNode(Shader shader) : this(shader, "a fresnel input node") { }
 		public FresnelNode(Shader shader, string name) :
-			base(shader, true)
+			base(shader, name)
 		{
 			FinalizeConstructor();
 		}

@@ -59,7 +59,7 @@ namespace ccl.ShaderNodes
 
 		public LightFalloffNode(Shader shader) : this(shader, "a light fall-off node") { }
 		public LightFalloffNode(Shader shader, string name) :
-			base(shader, true)
+			base(shader, name)
 		{
 			FinalizeConstructor();
 		}

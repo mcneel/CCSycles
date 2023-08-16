@@ -63,7 +63,7 @@ namespace ccl.ShaderNodes
 
 		public TileTextureProceduralNode(Shader shader) : this(shader, "a tile texture") { }
 		public TileTextureProceduralNode(Shader shader, string name)
-			: base(shader, true)
+			: base(shader, name)
 		{
 			FinalizeConstructor();
 		}

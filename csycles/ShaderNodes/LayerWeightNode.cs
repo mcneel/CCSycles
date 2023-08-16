@@ -54,7 +54,7 @@ namespace ccl.ShaderNodes
 
 		public LayerWeightNode(Shader shader) : this(shader, "a layerweight node") { }
 		public LayerWeightNode(Shader shader, string name)
-			: base(shader, true)
+			: base(shader, name)
 		{
 			FinalizeConstructor();
 		}

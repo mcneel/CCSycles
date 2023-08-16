@@ -53,7 +53,7 @@ namespace ccl.ShaderNodes
 		public EmissionOutputs outs => (EmissionOutputs)outputs;
 
 		public EmissionNode(Shader shader) : this(shader, "an emission node") { }
-		public EmissionNode(Shader shader, string name) : base(shader, true)
+		public EmissionNode(Shader shader, string name) : base(shader, name)
 		{
 			FinalizeConstructor();
 		}

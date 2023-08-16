@@ -55,7 +55,7 @@ namespace ccl.ShaderNodes
 		public PerturbingPart1TextureOutputs outs => (PerturbingPart1TextureOutputs)outputs;
 
 		public PerturbingPart1TextureProceduralNode(Shader shader) : this(shader, "a pertrubing part1 texture") { }
-		public PerturbingPart1TextureProceduralNode(Shader shader, string name) : base(shader, true)
+		public PerturbingPart1TextureProceduralNode(Shader shader, string name) : base(shader, name)
 		{
 			FinalizeConstructor();
 		}
@@ -116,7 +116,7 @@ namespace ccl.ShaderNodes
 		public float Amount { get; set; } = 0.1f;
 
 		public PerturbingPart2TextureProceduralNode(Shader shader) : this(shader, "a pertrubing part2 texture") { }
-		public PerturbingPart2TextureProceduralNode(Shader shader, string name) : base(shader, true)
+		public PerturbingPart2TextureProceduralNode(Shader shader, string name) : base(shader, name)
 		{
 			FinalizeConstructor();
 		}

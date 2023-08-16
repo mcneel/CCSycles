@@ -48,12 +48,12 @@ namespace ccl.ShaderNodes
 			AddSocket(BSDF);
 		}
 	}
-	
+
 	/// <summary>
 	/// A Velvet BSDF closure.
 	/// This closure takes two inputs, <c>Color</c> and <c>Sigma</c>. The result
 	/// will be a regular diffuse shading.
-	/// 
+	///
 	/// There is one output <c>Closure</c>
 	/// </summary>
 	[ShaderNode("velvet_bsdf")]
@@ -67,7 +67,7 @@ namespace ccl.ShaderNodes
 		/// </summary>
 		public VelvetBsdfNode(Shader shader) : this(shader, "a velvet bsdf node") { }
 		public VelvetBsdfNode(Shader shader, string name) :
-			base(shader, true)
+			base(shader, name)
 		{
 			FinalizeConstructor();
 		}

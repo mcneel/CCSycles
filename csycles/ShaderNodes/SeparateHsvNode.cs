@@ -59,7 +59,7 @@ namespace ccl.ShaderNodes
 		/// Create new Separate HSV node.
 		/// </summary>
 		public SeparateHsvNode(Shader shader) : this(shader, "a separate HSV node") { }
-		public SeparateHsvNode(Shader shader, string name) : base(shader, true)
+		public SeparateHsvNode(Shader shader, string name) : base(shader, name)
 		{
 			FinalizeConstructor();
 		}

@@ -69,7 +69,7 @@ namespace ccl.ShaderNodes
 
 		public ProjectionChangerTextureProceduralNode(Shader shader) : this(shader, "a projection changer texture") { }
 		public ProjectionChangerTextureProceduralNode(Shader shader, string name)
-			: base(shader, true)
+			: base(shader, name)
 		{
 			FinalizeConstructor();
 		}

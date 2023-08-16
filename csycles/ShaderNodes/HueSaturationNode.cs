@@ -63,7 +63,7 @@ namespace ccl.ShaderNodes
 
 		public HueSaturationNode(Shader shader) : this(shader, "a HSV node") { }
 		public HueSaturationNode(Shader shader, string name)
-			: base(shader, true)
+			: base(shader, name)
 		{
 			FinalizeConstructor();
 		}

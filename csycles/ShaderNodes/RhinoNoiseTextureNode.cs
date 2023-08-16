@@ -75,7 +75,7 @@ namespace ccl.ShaderNodes
 
 		public NoiseTextureProceduralNode(Shader shader) : this(shader, "a noise texture") { }
 		public NoiseTextureProceduralNode(Shader shader, string name)
-			: base(shader, true)
+			: base(shader, name)
 		{
 			FinalizeConstructor();
 		}

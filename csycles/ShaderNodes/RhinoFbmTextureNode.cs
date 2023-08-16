@@ -51,7 +51,7 @@ namespace ccl.ShaderNodes
 
 		public FbmTextureProceduralNode(Shader shader) : this(shader, "an fbm texture") { }
 		public FbmTextureProceduralNode(Shader shader, string name)
-			: base(shader, true)
+			: base(shader, name)
 		{
 			FinalizeConstructor();
 		}

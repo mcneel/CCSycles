@@ -90,7 +90,7 @@ namespace ccl.ShaderNodes
 		}
 
 		public ObjectInfoNode(Shader shader, string name)
-			: base(shader, true)
+			: base(shader, name)
 		{
 			FinalizeConstructor();
 		}

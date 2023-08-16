@@ -66,7 +66,7 @@ namespace ccl.ShaderNodes
 		public float Exposure { get; set; }
 
 		public PhysicalSkyTextureProceduralNode(Shader shader) : this(shader, "a physical sky texture") { }
-		public PhysicalSkyTextureProceduralNode(Shader shader, string name) : base(shader, true)
+		public PhysicalSkyTextureProceduralNode(Shader shader, string name) : base(shader, name)
 		{
 			FinalizeConstructor();
 		}

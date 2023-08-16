@@ -61,7 +61,7 @@ namespace ccl.ShaderNodes
 
 		public WavesTextureProceduralNode(Shader shader) : this(shader, "a waves texture") { }
 		public WavesTextureProceduralNode(Shader shader, string name)
-			: base(shader, true)
+			: base(shader, name)
 		{
 			FinalizeConstructor();
 		}
@@ -122,7 +122,7 @@ namespace ccl.ShaderNodes
 
 		public WavesWidthTextureProceduralNode(Shader shader) : this(shader, "a waves width texture") { }
 		public WavesWidthTextureProceduralNode(Shader shader, string name)
-			: base(shader, true)
+			: base(shader, name)
 		{
 			FinalizeConstructor();
 		}

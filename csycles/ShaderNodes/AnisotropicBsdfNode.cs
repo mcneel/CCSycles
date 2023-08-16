@@ -81,7 +81,7 @@ namespace ccl.ShaderNodes
 		/// </summary>
 		public AnisotropicBsdfNode(Shader shader) : this(shader, "a anisotropic bsdf node") { }
 		public AnisotropicBsdfNode(Shader shader, string name) :
-			base(shader, true)
+			base(shader, name)
 		{
 			FinalizeConstructor();
 		}

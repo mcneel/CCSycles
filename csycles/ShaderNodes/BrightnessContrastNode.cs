@@ -57,7 +57,7 @@ namespace ccl.ShaderNodes
 
 		public BrightnessContrastNode(Shader shader) : this(shader, "a brightness contrast node") { }
 		public BrightnessContrastNode(Shader shader, string name)
-			: base(shader, true)
+			: base(shader, name)
 		{
 			FinalizeConstructor();
 		}

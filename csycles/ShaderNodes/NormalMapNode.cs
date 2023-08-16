@@ -63,7 +63,7 @@ namespace ccl.ShaderNodes
 
 		public NormalMapNode(Shader shader) : this(shader, "a normalmap node") { }
 		public NormalMapNode(Shader shader, string name)
-			: base(shader, true)
+			: base(shader, name)
 		{
 			FinalizeConstructor();
 		}

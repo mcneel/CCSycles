@@ -56,7 +56,7 @@ namespace ccl.ShaderNodes
 
 		public RhinoAzimuthAltitudeTransformNode(Shader shader) : this(shader, "a azimuth altitude transform node") { }
 		public RhinoAzimuthAltitudeTransformNode(Shader shader, string name)
-			: base(shader, true)
+			: base(shader, name)
 		{
 			FinalizeConstructor();
 		}

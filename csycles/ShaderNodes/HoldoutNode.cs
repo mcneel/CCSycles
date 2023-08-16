@@ -47,7 +47,7 @@ namespace ccl.ShaderNodes
 		public HoldoutNode(Shader shader) : this(shader, "a holdout node") { }
 
 		public HoldoutNode(Shader shader, string name)
-			: base(shader, true)
+			: base(shader, name)
 		{
 			FinalizeConstructor();
 		}

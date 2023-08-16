@@ -71,7 +71,7 @@ namespace ccl.ShaderNodes
 
 		public NormalPart1TextureProceduralNode(Shader shader) : this(shader, "a normal part 1 texture") { }
 		public NormalPart1TextureProceduralNode(Shader shader, string name)
-			: base(shader, true)
+			: base(shader, name)
 		{
 			FinalizeConstructor();
 		}
@@ -143,7 +143,7 @@ namespace ccl.ShaderNodes
 
 		public NormalPart2TextureProceduralNode(Shader shader) : this(shader, "a normal part 2 texture") { }
 		public NormalPart2TextureProceduralNode(Shader shader, string name)
-			: base(shader, true)
+			: base(shader, name)
 		{
 			FinalizeConstructor();
 		}

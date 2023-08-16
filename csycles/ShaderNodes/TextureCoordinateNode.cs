@@ -107,7 +107,7 @@ namespace ccl.ShaderNodes
 		public RhinoTextureCoordinateNode(Shader shader)
 			: this(shader, "a texcoord") { }
 		public RhinoTextureCoordinateNode(Shader shader, string name)
-			: base(shader, true)
+			: base(shader, name)
 		{
 			FinalizeConstructor();
 		}

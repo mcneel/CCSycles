@@ -220,7 +220,7 @@ namespace ccl.ShaderNodes
 		}
 
 		public MathNode(Shader shader, string name) :
-			base(shader, true)
+			base(shader, name)
 		{
 			FinalizeConstructor();
 		}

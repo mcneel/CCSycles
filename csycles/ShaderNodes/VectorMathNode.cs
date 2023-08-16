@@ -146,7 +146,7 @@ namespace ccl.ShaderNodes
 		}
 
 		public VectorMathNode(Shader shader, string name) :
-			base(shader, true)
+			base(shader, name)
 		{
 			FinalizeConstructor();
 		}

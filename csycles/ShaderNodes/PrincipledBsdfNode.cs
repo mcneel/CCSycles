@@ -136,7 +136,7 @@ namespace ccl.ShaderNodes
 		/// </summary>
 		public PrincipledBsdfNode(Shader shader) : this(shader, "a principled bsdf node") { }
 		public PrincipledBsdfNode(Shader shader, string name) :
-			base(shader, true)
+			base(shader, name)
 		{
 			FinalizeConstructor();
 		}

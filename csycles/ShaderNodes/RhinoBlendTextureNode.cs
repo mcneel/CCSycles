@@ -52,7 +52,7 @@ namespace ccl.ShaderNodes
 
 		public BlendTextureProceduralNode(Shader shader) : this(shader, "a blend texture") { }
 		public BlendTextureProceduralNode(Shader shader, string name)
-			: base(shader, true)
+			: base(shader, name)
 		{
 			FinalizeConstructor();
 		}

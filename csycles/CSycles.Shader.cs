@@ -28,10 +28,10 @@ namespace ccl
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern IntPtr cycles_add_shader_node(IntPtr shaderId, [MarshalAs(UnmanagedType.LPStr)]string shnType);
-		public static IntPtr add_shader_node(IntPtr shaderId, string node_type)
+		private static extern IntPtr cycles_add_shader_node(IntPtr shaderId, [MarshalAs(UnmanagedType.LPStr)]string shnType, [MarshalAs(UnmanagedType.LPStr)]string shnName);
+		public static IntPtr add_shader_node(IntPtr shaderId, string node_type, string node_name)
 		{
-			return cycles_add_shader_node(shaderId, node_type);
+			return cycles_add_shader_node(shaderId, node_type, node_name);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false,
@@ -123,7 +123,7 @@ namespace ccl
 		[DllImport(Constants.ccycles, SetLastError = false, CharSet = CharSet.Ansi,
 			CallingConvention = CallingConvention.Cdecl)]
 		private static extern void cycles_shadernode_set_member_float(IntPtr shadernodeId, string name, float val);
-		public static void shadernode_set_member_float(IntPtr shadernodeId, 
+		public static void shadernode_set_member_float(IntPtr shadernodeId,
 			[MarshalAs(UnmanagedType.LPStr)] string name, float val)
 		{
 			cycles_shadernode_set_member_float(shadernodeId, name, val);
@@ -131,7 +131,7 @@ namespace ccl
 		[DllImport(Constants.ccycles, SetLastError = false, CharSet = CharSet.Ansi,
 			CallingConvention = CallingConvention.Cdecl)]
 		private static extern void cycles_shadernode_set_member_int(IntPtr  shadernodeId, string name, int val);
-		public static void shadernode_set_member_int(IntPtr  shadernodeId, 
+		public static void shadernode_set_member_int(IntPtr  shadernodeId,
 			[MarshalAs(UnmanagedType.LPStr)] string name, int val)
 		{
 			cycles_shadernode_set_member_int(shadernodeId, name, val);
@@ -200,6 +200,13 @@ namespace ccl
 			cycles_shader_disconnect_node(shaderId, nodeId, from);
 		}
 
+		[DllImport(Constants.ccycles, SetLastError = false, CharSet = CharSet.Ansi,
+			CallingConvention = CallingConvention.Cdecl)]
+		private static extern void cycles_shader_dump_graph(IntPtr shaderId, [MarshalAs(UnmanagedType.LPStr)] string filename);
+		public static void shader_dump_graph(IntPtr shaderId, string filename)
+		{
+			cycles_shader_dump_graph(shaderId, filename);
+		}
 		[DllImport(Constants.ccycles, SetLastError = false, CharSet = CharSet.Ansi,
 			CallingConvention = CallingConvention.Cdecl)]
 		private static extern void cycles_shader_set_name(IntPtr shaderId, [MarshalAs(UnmanagedType.LPStr)] string name);

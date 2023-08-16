@@ -59,7 +59,7 @@ namespace ccl.ShaderNodes
 		public SeparateXyzOutputs outs => (SeparateXyzOutputs)outputs;
 
 		public SeparateXyzNode(Shader shader) : this(shader, "a separate XYZ node") { }
-		public SeparateXyzNode(Shader shader, string name) : base(shader, true)
+		public SeparateXyzNode(Shader shader, string name) : base(shader, name)
 		{
 			FinalizeConstructor();
 		}

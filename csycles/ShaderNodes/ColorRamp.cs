@@ -342,7 +342,7 @@ namespace ccl.ShaderNodes
 		{
 		}
 
-		public ColorRampNode(Shader shader, string name) : base(shader, true)
+		public ColorRampNode(Shader shader, string name) : base(shader, name)
 		{
 			FinalizeConstructor();
 		}

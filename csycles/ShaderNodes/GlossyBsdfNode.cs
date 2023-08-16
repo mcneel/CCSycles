@@ -66,7 +66,7 @@ namespace ccl.ShaderNodes
 		public GlossyOutputs outs => (GlossyOutputs)outputs;
 
 		public GlossyBsdfNode(Shader shader) : this(shader, "a glossy bsdf node") { }
-		public GlossyBsdfNode(Shader shader, string name) : base(shader, true)
+		public GlossyBsdfNode(Shader shader, string name) : base(shader, name)
 		{
 			FinalizeConstructor();
 		}

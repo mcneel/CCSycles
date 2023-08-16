@@ -76,7 +76,7 @@ namespace ccl.ShaderNodes
 		/// </summary>
 		/// <param name="name"></param>
 		public ColorNode(Shader shader, string name) :
-			base(shader, true)
+			base(shader, name)
 		{
 			FinalizeConstructor();
 		}

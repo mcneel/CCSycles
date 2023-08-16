@@ -42,7 +42,7 @@ namespace ccl.ShaderNodes
 			AddSocket(BSDF);
 		}
 	}
-	
+
 	/// <summary>
 	/// A Transparent BSDF closure.
 
@@ -61,7 +61,7 @@ namespace ccl.ShaderNodes
 		/// <summary>
 		/// Create a new Transparent BSDF closure. Default Color is white
 		/// </summary>
-		public TransparentBsdfNode(Shader shader, string name) : base(shader, true)
+		public TransparentBsdfNode(Shader shader, string name) : base(shader, name)
 		{
 			FinalizeConstructor();
 		}

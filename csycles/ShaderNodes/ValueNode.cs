@@ -43,7 +43,7 @@ namespace ccl.ShaderNodes
 		public ValueOutputs outs => (ValueOutputs)outputs;
 		public ValueNode(Shader shader) : this(shader, "a value input node") { }
 		public ValueNode(Shader shader, string name) :
-			base(shader, true)
+			base(shader, name)
 		{
 			FinalizeConstructor();
 		}

@@ -48,7 +48,7 @@ namespace ccl.ShaderNodes
 			AddSocket(Volume);
 		}
 	}
-	
+
 	/// <summary>
 	/// A scatter volume node.
 	/// </summary>
@@ -63,7 +63,7 @@ namespace ccl.ShaderNodes
 		/// </summary>
 		public ScatterVolumeNode(Shader shader) : this(shader, "a scatter volume node") { }
 		public ScatterVolumeNode(Shader shader, string name) :
-			base(shader, true)
+			base(shader, name)
 		{
 			FinalizeConstructor();
 		}

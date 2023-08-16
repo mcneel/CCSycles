@@ -116,7 +116,7 @@ namespace ccl.ShaderNodes
 		}
 
 		public GeometryInfoNode(Shader shader, string name)
-			: base(shader, true)
+			: base(shader, name)
 		{
 			FinalizeConstructor();
 		}

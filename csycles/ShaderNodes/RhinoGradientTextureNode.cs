@@ -63,7 +63,7 @@ namespace ccl.ShaderNodes
 
 		public GradientTextureProceduralNode(Shader shader) : this(shader, "a gradient texture") { }
 		public GradientTextureProceduralNode(Shader shader, string name)
-			: base(shader, true)
+			: base(shader, name)
 		{
 			FinalizeConstructor();
 		}

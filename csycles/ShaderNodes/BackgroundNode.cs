@@ -90,7 +90,7 @@ namespace ccl.ShaderNodes
 		/// </summary>
 		/// <param name="name">UiName for shader node</param>
 		public BackgroundNode(Shader shader, string name) :
-			base(shader, true)
+			base(shader, name)
 		{
 			FinalizeConstructor();
 		}

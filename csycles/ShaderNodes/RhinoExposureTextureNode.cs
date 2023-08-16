@@ -51,7 +51,7 @@ namespace ccl.ShaderNodes
 		public float MaxLuminance { get; set; }
 
 		public ExposureTextureProceduralNode(Shader shader) : this(shader, "an exposure texture") { }
-		public ExposureTextureProceduralNode(Shader shader, string name) : base(shader, true)
+		public ExposureTextureProceduralNode(Shader shader, string name) : base(shader, name)
 		{
 			FinalizeConstructor();
 		}

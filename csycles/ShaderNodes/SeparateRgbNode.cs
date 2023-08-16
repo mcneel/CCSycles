@@ -59,7 +59,7 @@ namespace ccl.ShaderNodes
 		/// Create new Separate RGB node.
 		/// </summary>
 		public SeparateRgbNode(Shader shader) : this(shader, "a separate rgb node") { }
-		public SeparateRgbNode(Shader shader, string name) : base(shader, true)
+		public SeparateRgbNode(Shader shader, string name) : base(shader, name)
 		{
 			FinalizeConstructor();
 		}

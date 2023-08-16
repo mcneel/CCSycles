@@ -81,7 +81,7 @@ namespace ccl.ShaderNodes
 		public CompositionTypes CompositionType { get; set; }
 
 		public DotsTextureProceduralNode(Shader shader) : this(shader, "a dots texture") { }
-		public DotsTextureProceduralNode(Shader shader, string name) : base(shader, true)
+		public DotsTextureProceduralNode(Shader shader, string name) : base(shader, name)
 		{
 			FinalzeConstructor();
 		}

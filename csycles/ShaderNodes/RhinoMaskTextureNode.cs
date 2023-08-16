@@ -60,7 +60,7 @@ namespace ccl.ShaderNodes
 
 		public MaskTextureProceduralNode(Shader shader) : this(shader, "a mask texture") { }
 		public MaskTextureProceduralNode(Shader shader, string name)
-			: base(shader, true)
+			: base(shader, name)
 		{
 			FinalizeConstructor();
 		}

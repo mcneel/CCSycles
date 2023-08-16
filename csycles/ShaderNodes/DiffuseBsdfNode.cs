@@ -48,12 +48,12 @@ namespace ccl.ShaderNodes
 			AddSocket(BSDF);
 		}
 	}
-	
+
 	/// <summary>
 	/// A Diffuse BSDF closure.
 	/// This closure takes two inputs, <c>Color</c> and <c>Roughness</c>. The result
 	/// will be a regular diffuse shading.
-	/// 
+	///
 	/// There is one output <c>Closure</c>
 	/// </summary>
 	[ShaderNode("diffuse_bsdf")]
@@ -67,7 +67,7 @@ namespace ccl.ShaderNodes
 		/// </summary>
 		public DiffuseBsdfNode(Shader shader) : this(shader, "a diffuse bsdf node") { }
 		public DiffuseBsdfNode(Shader shader, string name) :
-			base(shader, true)
+			base(shader, name)
 		{
 			FinalizeConstructor();
 		}

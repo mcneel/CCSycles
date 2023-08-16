@@ -53,7 +53,7 @@ namespace ccl.ShaderNodes
 
 		public CameraDataNode(Shader shader) : this(shader, "a camera data node") {}
 		public CameraDataNode(Shader shader, string name)
-			: base(shader, true)
+			: base(shader, name)
 		{
 			FinalizeConstructor();
 		}

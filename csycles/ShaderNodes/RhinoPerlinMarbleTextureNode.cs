@@ -59,7 +59,7 @@ namespace ccl.ShaderNodes
 
 		public PerlinMarbleTextureProceduralNode(Shader shader) : this(shader, "a perlin marble texture") { }
 		public PerlinMarbleTextureProceduralNode(Shader shader, string name)
-			: base(shader, true)
+			: base(shader, name)
 		{
 			FinalizeConstructor();
 		}

@@ -51,10 +51,10 @@ namespace ccl.ShaderNodes
 			AddSocket(Displacement);
 		}
 	}
-	
+
 	/// <summary>
 	/// A Displacement node.
-	/// 
+	///
 	/// There is one output <c>Displacement</c>. This needs to be
 	/// connected to the OutputNode.ins.Displacement input
 	/// </summary>
@@ -69,7 +69,7 @@ namespace ccl.ShaderNodes
 		/// </summary>
 		public DisplacementNode(Shader shader) : this(shader, "a displacement node") { }
 		public DisplacementNode(Shader shader, string name) :
-			base(shader, true)
+			base(shader, name)
 		{
 			FinalizeConstructor();
 		}

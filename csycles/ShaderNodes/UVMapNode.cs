@@ -49,7 +49,7 @@ namespace ccl.ShaderNodes
 		public UvMapOutputs outs => (UvMapOutputs)outputs;
 		public UvMapNode(Shader shader) : this(shader, "a uvmap node") { }
 		public UvMapNode(Shader shader, string name) :
-			base(shader, true)
+			base(shader, name)
 		{
 			FinalizeConstructor();
 		}

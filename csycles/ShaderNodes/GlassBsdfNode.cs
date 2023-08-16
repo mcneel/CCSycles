@@ -68,7 +68,7 @@ namespace ccl.ShaderNodes
 		public GlassOutputs outs => (GlassOutputs)outputs;
 		public GlassBsdfNode(Shader shader) : this(shader, "a glass bsdf") { }
 		public GlassBsdfNode(Shader shader, string name)
-			: base(shader, true)
+			: base(shader, name)
 		{
 			FinalizeConstructor();
 		}

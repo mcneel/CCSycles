@@ -50,7 +50,7 @@ namespace ccl.ShaderNodes
 
 		public GridTextureProceduralNode(Shader shader) : this(shader, "a grid texture") { }
 		public GridTextureProceduralNode(Shader shader, string name)
-			: base(shader, true)
+			: base(shader, name)
 		{
 			FinalizeConstructor();
 		}

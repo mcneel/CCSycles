@@ -63,7 +63,7 @@ namespace ccl.ShaderNodes
 
 		public TextureAdjustmentTextureProceduralNode(Shader shader) : this(shader, "a texture adjustment texture") { }
 		public TextureAdjustmentTextureProceduralNode(Shader shader, string name)
-			: base(shader, true)
+			: base(shader, name)
 		{
 			FinalizeConstructor();
 		}

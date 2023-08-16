@@ -75,12 +75,12 @@ namespace ccl.ShaderNodes
 		/// Create new RgbToBw node
 		/// </summary>
 		public RgbToBwNode(Shader shader) : this(shader, "An RgbToBw node") { }
-			
+
 		/// <summary>
 		/// Create new RgbToBw node with given name
 		/// </summary>
 		public RgbToBwNode(Shader shader, string name) :
-			base(shader, true)
+			base(shader, name)
 		{
 			FinalizeConstructor();
 		}

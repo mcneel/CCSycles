@@ -28,7 +28,7 @@ namespace ccl.ShaderNodes
 	{
 		/// <summary>
 		/// MixClosureNode Fac input socket (0.0 - 1.0f).
-		/// 
+		///
 		/// 0.0f means Closure1 only, 1.0f means Closure2 only
 		/// </summary>
 		public FloatSocket Fac { get; set; }
@@ -88,14 +88,14 @@ namespace ccl.ShaderNodes
 		/// <summary>
 		/// Create MixClosureNode. Fac input is by default 0.5f
 		/// </summary>
-		public MixClosureNode(Shader shader) : 
+		public MixClosureNode(Shader shader) :
 			this(shader, "a mix closure")
 		{
-			
+
 		}
 
 		public MixClosureNode(Shader shader, string name) :
-			base(shader, true)
+			base(shader, name)
 		{
 			FinalizeConstructor();
 		}

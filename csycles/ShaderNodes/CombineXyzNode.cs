@@ -59,7 +59,7 @@ namespace ccl.ShaderNodes
 		public CombineXyzOutputs outs => (CombineXyzOutputs)outputs;
 
 		public CombineXyzNode(Shader shader) : this(shader, "a combine XYZ node") { }
-		public CombineXyzNode(Shader shader, string name) : base(shader, true)
+		public CombineXyzNode(Shader shader, string name) : base(shader, name)
 		{
 			FinalizeConstructor();
 		}

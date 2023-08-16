@@ -108,7 +108,7 @@ namespace ccl.ShaderNodes
 		/// </summary>
 		public BumpNode(Shader shader) : this(shader, "a bump node") { }
 		public BumpNode(Shader shader, string name) :
-			base(shader, true)
+			base(shader, name)
 		{
 			FinalizeConstructor();
 		}

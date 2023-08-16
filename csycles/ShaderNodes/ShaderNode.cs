@@ -109,9 +109,9 @@ namespace ccl.ShaderNodes
 		}
 #endif
 
-		internal ShaderNode(Shader shader, bool _)
+		internal ShaderNode(Shader shader, string name)
 		{
-			ConstructShaderNode(shader, ShaderNodeTypeName);
+			ConstructShaderNode(shader, ShaderNodeTypeName, name);
 		}
 
 		internal ShaderNode(Shader shader, IntPtr shadernodePtr)
@@ -123,9 +123,9 @@ namespace ccl.ShaderNodes
 		public Shader Shader { get; private set; }
 
 
-		internal void ConstructShaderNode(Shader shader, string shaderNodeTypeName)
+		internal void ConstructShaderNode(Shader shader, string shaderNodeTypeName, string shaderNodeName)
 		{
-			Id = CSycles.add_shader_node(shader.Id, shaderNodeTypeName);
+			Id = CSycles.add_shader_node(shader.Id, shaderNodeTypeName, shaderNodeName);
 			Shader = shader;
 		}
 

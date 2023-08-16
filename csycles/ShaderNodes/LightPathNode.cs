@@ -22,14 +22,14 @@ namespace ccl.ShaderNodes
 {
 	/// <summary>
 	/// Output sockets for different ray type information.
-	/// 
+	///
 	/// See http://www.blender.org/manual/render/cycles/settings/light_paths.html for more information
 	/// </summary>
 	public class LightPathOutputs : Outputs
 	{
 		/// <summary>
 		/// Value is 1.0f when the handled ray is a camera ray.
-		/// 
+		///
 		/// The ray comes straight from the camera.
 		/// </summary>
 		public FloatSocket IsCameraRay { get; set; }
@@ -161,7 +161,7 @@ namespace ccl.ShaderNodes
 		}
 
 		public LightPathNode(Shader shader, string name)
-			: base(shader, true)
+			: base(shader, name)
 		{
 			FinalizeConstructor();
 		}

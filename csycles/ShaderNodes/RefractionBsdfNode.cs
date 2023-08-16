@@ -67,7 +67,7 @@ namespace ccl.ShaderNodes
 
 		public RefractionBsdfNode(Shader shader) : this(shader, "a refraction bsdf node") { }
 		public RefractionBsdfNode(Shader shader, string name) :
-			base(shader, true)
+			base(shader, name)
 		{
 			FinalizeConstructor();
 		}

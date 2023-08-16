@@ -45,7 +45,7 @@ namespace ccl.ShaderNodes
 			AddSocket(Volume);
 		}
 	}
-	
+
 	/// <summary>
 	/// A absorption volume node.
 	/// </summary>
@@ -61,7 +61,7 @@ namespace ccl.ShaderNodes
 		public AbsorptionVolumeNode(Shader shader) : this(shader, "a absorption volume node") { }
 
 		public AbsorptionVolumeNode(Shader shader, string name) :
-			base(shader, true)
+			base(shader, name)
 		{
 			FinalizeConstructor();
 		}

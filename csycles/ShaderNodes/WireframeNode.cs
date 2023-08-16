@@ -52,7 +52,7 @@ namespace ccl.ShaderNodes
 
 		public WireframeNode(Shader shader) : this(shader, "a wireframe node") { }
 		public WireframeNode(Shader shader, string name)
-			: base(shader, true)
+			: base(shader, name)
 		{
 			FinalizeConstructor();
 		}

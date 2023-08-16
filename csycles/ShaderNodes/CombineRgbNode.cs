@@ -60,7 +60,7 @@ namespace ccl.ShaderNodes
 
 		public CombineRgbNode(Shader shader) : this(shader, "a combine rgb node") { }
 		public CombineRgbNode(Shader shader, string name) :
-			base(shader, true)
+			base(shader, name)
 		{
 			FinalizeConstructor();
 		}

@@ -53,7 +53,7 @@ namespace ccl.ShaderNodes
 		public GammaOutputs outs => (GammaOutputs)outputs;
 
 		public GammaNode(Shader shader) : this(shader, "a gamma node") {}
-		public GammaNode(Shader shader, string name) : base(shader, true)
+		public GammaNode(Shader shader, string name) : base(shader, name)
 		{
 			FinalizeConstructor();
 		}

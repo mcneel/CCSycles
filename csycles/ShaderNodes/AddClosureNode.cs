@@ -25,7 +25,7 @@ using System;
 /**
  * \ingroup cclshadernodes
  *  This pacakage contains the high-level <c>ccl.ShaderNode</c>s to be used in a <c>ccl.Shader</c>.
- *  
+ *
  *  The classes give a clear and concise way of setting up <c>ccl.ShaderNode</c>s with a minimum of
  *  fuss.
  */
@@ -76,7 +76,7 @@ namespace ccl.ShaderNodes
 	/// An Add closure.
 	/// This closure takes two inputs, <c>Closure1</c> and <c>Closure2</c>. These
 	/// will be simply added together.
-	/// 
+	///
 	/// There is one output <c>Closure</c>
 	/// </summary>
 	[ShaderNode("add_closure")]
@@ -104,7 +104,7 @@ namespace ccl.ShaderNodes
 		/// </summary>
 		/// <param name="name"></param>
 		public AddClosureNode(Shader shader, string name) :
-			base(shader, true)
+			base(shader, name)
 		{
 			FinalizeConstructor();
 		}

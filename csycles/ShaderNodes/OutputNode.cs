@@ -55,7 +55,7 @@ namespace ccl.ShaderNodes
 	{
 		internal OutputOutputs(ShaderNode parentNode)
 		{
-			
+
 		}
 	}
 
@@ -72,7 +72,7 @@ namespace ccl.ShaderNodes
 
 		public OutputNode(Shader shader) : this(shader, "output") { }
 		public OutputNode(Shader shader, string name) :
-			base(shader, true)
+			base(shader, name)
 		{
 			FinalizeConstructor();
 		}
