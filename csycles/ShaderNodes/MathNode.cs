@@ -102,7 +102,6 @@ namespace ccl.ShaderNodes
 			/// Value = Value1 / Value2
 			/// </summary>
 			Divide,
-			MultiplyAdd,
 			/// <summary>
 			/// Value = sin(Value1). Value2 ignored
 			/// </summary>
@@ -118,9 +117,6 @@ namespace ccl.ShaderNodes
 			/// <summary>
 			/// Value = asin(Value1). Value2 ignored
 			/// </summary>
-			Sinh,
-			Cosh,
-			Tanh,
 			Arcsine,
 			/// <summary>
 			/// Value = acos(Value1). Value2 ignored
@@ -182,22 +178,75 @@ namespace ccl.ShaderNodes
 			/// Value = Value1 - floorf(Value1)
 			/// </summary>
 			Fract,
-			Trunc,
-			Snap,
-			Wrap,
-			Pingpong,
 			/// <summary>
 			/// Value = sqrtf(Value1)
 			/// </summary>
 			Sqrt,
+			/// <summary>
+			/// Value = inverse sqrtf(Value1)
+			/// </summary>
 			InverseSqrt,
+			/// <summary>
+			/// Value = 0.0f if Value1 == 0.0f, -1.0f if Value1 < 0.0f else 1.0f
+			/// </summary>
 			Sign,
+			/// <summary>
+			/// Value = expf(Value1)
+			/// </summary>
 			Exponent,
+			/// <summary>
+			/// Value = Value1 * (pi / 180.0f)
+			/// </summary>
 			Radians,
+			/// <summary>
+			/// Value = Value1 * (180.0f / pi)
+			/// </summary>
 			Degrees,
+			/// <summary>
+			/// Value = sinh(Value1)
+			/// </summary>
+			Sinh,
+			/// <summary>
+			/// Value = cosh(Value1)
+			/// </summary>
+			Cosh,
+			/// <summary>
+			/// Value = tanh(Value1)
+			/// </summary>
+			Tanh,
+			/// <summary>
+			/// Value = Value1 >= 0.0f ? floorf(Value1) : ceilf(Value1)
+			/// </summary>
+			Trunc,
+			/// <summary>
+			/// Value = floorf(safedivide(Value1, Value2)) * Value2
+			/// </summary>
+			Snap,
+			/// <summary>
+			///   float range = Value2 - Value3;
+			///   Value = (range != 0.0f) ? Value1 - (range * floorf((Value1 - Value3) / range)) : Value3;
+			/// </summary>
+			Wrap,
+			/// <summary>
+			/// Value = (Value1 == Value2 || abs(Value1 - Value2) <= Value3) ? 1.0f : 0.0f
+			/// </summary>
+			Compare,
+			/// <summary>
+			/// Value = Value1 * Value2 + Value3
+			/// </summary>
+			MultiplyAdd,
+			/// <summary>
+			/// Value = (Value2 != 0.0f) ? fabsf(fractf((Value1 - Value2) / (Value2 * 2.0f)) * Value2 * 2.0f - Value2) : 0.0f;
+			/// </summary>
+			Pingpong,
+			/// <summary>
+			/// Value = smoothmin(Value1, Value2, Value3)
+			/// </summary>
 			SmoothMin,
+			/// <summary>
+			/// Value = smoothmin(-Value1, -Value2, Value3)
+			/// </summary>
 			SmoothMax,
-			Compare
 		}
 
 		/// <summary>
