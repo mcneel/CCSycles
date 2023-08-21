@@ -127,6 +127,7 @@ namespace ccl.ShaderNodes
 		{
 			Id = CSycles.add_shader_node(shader.Id, shaderNodeTypeName, shaderNodeName);
 			Shader = shader;
+			Shader.AddNode(this);
 		}
 
 		/// <summary>
