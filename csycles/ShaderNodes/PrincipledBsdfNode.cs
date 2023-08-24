@@ -41,6 +41,9 @@ namespace ccl.ShaderNodes
 		public FloatSocket Transmission { get; set; }
 		public FloatSocket TransmissionRoughness { get; set; }
 		public FloatSocket AnisotropicRotation { get; set; }
+		public ColorSocket Emission { get; set; }
+		public FloatSocket EmissionStrength { get; set; }
+		public FloatSocket Alpha { get; set; }
 		public VectorSocket Normal { get; set; }
 		public VectorSocket ClearcoatNormal { get; set; }
 		public VectorSocket Tangent { get; set; }
@@ -66,6 +69,9 @@ namespace ccl.ShaderNodes
 			Transmission           = new FloatSocket(parentNode, "Transmission", "transmission");
 			TransmissionRoughness  = new FloatSocket(parentNode, "Transmission Roughness", "transmission_roughness");
 			AnisotropicRotation    = new FloatSocket(parentNode, "Anisotropic Rotation",  "anisotropic_rotation");
+			Emission               = new ColorSocket(parentNode, "Emission", "emission");
+			EmissionStrength       = new FloatSocket(parentNode, "Emission Strength", "emission_strength");
+			Alpha                  = new FloatSocket(parentNode, "Alpha", "alpha");
 			Normal                 = new VectorSocket(parentNode, "Normal", "normal");
 			ClearcoatNormal        = new VectorSocket(parentNode, "Clearcoat Normal", "clearcoat_normal");
 			Tangent                = new VectorSocket(parentNode, "Tangent", "tangent");
@@ -88,6 +94,7 @@ namespace ccl.ShaderNodes
 			AddSocket(IOR);
 			AddSocket(Transmission);
 			AddSocket(TransmissionRoughness);
+			AddSocket(Alpha);
 			AddSocket(Normal);
 			AddSocket(ClearcoatNormal);
 			AddSocket(Tangent);
@@ -168,6 +175,9 @@ namespace ccl.ShaderNodes
 			ins.IOR.Value = 1.45f;
 			ins.Transmission.Value = 0.0f;
 			ins.TransmissionRoughness.Value = 0.0f;
+			ins.Emission.Value = new float4(0.0f);
+			ins.EmissionStrength.Value = 0.0f;
+			ins.Alpha.Value = 1.0f;
 			Distribution = Distributions.GGX;
 		}
 
