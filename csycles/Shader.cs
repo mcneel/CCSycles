@@ -81,8 +81,6 @@ namespace ccl
 			{
 				IntPtr shn = CSycles.shader_node_get(Id, i);
 				string name = CSycles.shadernode_get_name(shn);
-				Console.WriteLine($"Shadernode {shn} with type name {name}");
-				Debug.WriteLine($"Shadernode {shn} with type name {name}");
 				ShaderNode n = CSycles.CreateShaderNode(this, shn, name);
 				AddNode(n);
 			}
