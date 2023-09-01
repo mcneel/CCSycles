@@ -154,7 +154,6 @@ namespace ccl.ShaderNodes
 
 		internal override void SetEnums()
 		{
-			CSycles.shadernode_set_enum(Id,"color_space", (int)ColorSpace);
 			CSycles.shadernode_set_enum(Id, "projection", (int)Projection);
 			CSycles.shadernode_set_enum(Id, "interpolation", (int)Interpolation);
 		}
@@ -165,7 +164,7 @@ namespace ccl.ShaderNodes
 			CSycles.shadernode_set_member_float(Id, "projection_blend", ProjectionBlend);
 			CSycles.shadernode_set_member_int(Id, "extension", (int)Extension);
 			CSycles.shadernode_set_member_bool(Id, "use_alpha", UseAlpha);
-			CSycles.shadernode_set_member_bool(Id, "is_linear", IsLinear);
+			//CSycles.shadernode_set_member_bool(Id, "is_linear", IsLinear);
 			CSycles.shadernode_set_member_bool(Id, "alternate_tiles", AlternateTiles);
 		}
 		private void SetProjection(string projection)

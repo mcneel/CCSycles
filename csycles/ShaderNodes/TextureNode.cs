@@ -219,6 +219,7 @@ namespace ccl.ShaderNodes
 
 		internal override void SetDirectMembers()
 		{
+			CSycles.shadernode_set_enum(Id, "color_space", ColorSpace == TextureColorSpace.None? 0 : 1);
 			CSycles.shadernode_set_member_bool(Id, "useminmax", UseMin || UseMax);
 			if (UseMin)
 			{
@@ -239,7 +240,7 @@ namespace ccl.ShaderNodes
 
 			CSycles.shadernode_texmapping_set_type(Id, (uint)Mapping);
 
-			CSycles.shadernode_set_member_bool(Id, "is_linear", IsLinear);
+			//CSycles.shadernode_set_member_bool(Id, "is_linear", IsLinear);
 		}
 
 		protected void ImageParseXml(System.Xml.XmlReader xmlNode)
