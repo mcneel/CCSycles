@@ -90,5 +90,11 @@ namespace ccl.ShaderNodes
 			Utilities.Instance.get_float4(ins.Color, xmlNode.GetAttribute("color"));
 			Utilities.Instance.get_float(ins.Roughness, xmlNode.GetAttribute("roughness"));
 		}
+
+		public override ClosureSocket GetClosureSocket()
+		{
+			return outs.BSDF;
+		}
+
 	}
 }
