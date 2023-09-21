@@ -98,7 +98,7 @@ namespace ccl
 		{
 			cycles_shadernode_set_attribute_bool(shadernodeId, name, val);
 		}
-		[DllImport(Constants.ccycles, SetLastError = false,
+		[DllImport(Constants.ccycles, SetLastError = false, CharSet = CharSet.Auto,
 			CallingConvention = CallingConvention.Cdecl)]
 		private static extern void cycles_shadernode_set_attribute_string(IntPtr shadernodeId, string name, string val);
 		public static void shadernode_set_attribute_string(IntPtr shadernodeId, string name, string val)
