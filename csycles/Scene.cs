@@ -17,6 +17,7 @@ limitations under the License.
 using System.Collections.Generic;
 using System.Linq;
 using System;
+using System.Threading;
 
 namespace ccl
 {
@@ -97,39 +98,6 @@ namespace ccl
 		}
 
 		/// <summary>
-		/// Get the first shader with name
-		/// </summary>
-		/// <param name="name">UiName of shader to look for</param>
-		/// <returns>Shader or null if no shader with name was found.</returns>
-		public Shader ShaderWithName(string name)
-		{
-			// TODO: XXXX
-			//return (from kvp in m_shader_in_scene_ids where kvp.Key.UiName.Equals(name) select kvp.Key).FirstOrDefault();
-
-			return null;
-		}
-
-		/// <summary>
-		/// Get or set the default surface shader for this scene.
-		/// </summary>
-		public Shader DefaultSurface
-		{
-			get
-			{
-				return new Shader(this, CSycles.scene_get_default_surface_shader(Id));
-			}
-			set
-			{
-				if(value != null)
-					CSycles.scene_set_default_surface_shader(Id, value.Id);
-			}
-		}
-		//public static uint scene_create(uint scene_params_id, uint deviceid)
-		//public static uint scene_add_object(uint scene_id)
-		//public static uint scene_add_mesh(uint scene_id, uint object_id, uint shader_id)
-		//public static void scene_set_default_surface_shader(uint scene_id, uint shader_id)
-
-		/// <summary>
 		/// Reset the scene, forcing update and device update in Cycles.
 		/// </summary>
 		public void Reset()
@@ -144,6 +112,19 @@ namespace ccl
 		public bool TryLock()
 		{
 			return CSycles.scene_try_lock(Id);
+		}
+
+		/// <summary>
+		/// Wait until lock on scene is acquired. While
+		/// acquire fails sleep for 10 milliseconds and
+		/// try again
+		/// </summary>
+		public void WaitUntilLocked()
+		{
+			while(!TryLock())
+			{
+				Thread.Sleep(10);
+			}
 		}
 
 		/// <summary>

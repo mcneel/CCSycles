@@ -29,12 +29,12 @@ namespace ccl
 	///
 	/// Through Session the render process is started and ended.
 	/// </summary>
-	public class Session
+	public class Session : IDisposable
 	{
 		/// <summary>
 		/// True if the session has already been destroyed.
 		/// </summary>
-		private bool Destroyed { get; set; }
+		private bool Destroyed;
 
 		private Scene sc;
 		/// <summary>
@@ -43,8 +43,8 @@ namespace ccl
 		public Scene Scene
 		{
 			get { return sc; }
-			private set {
-				//CSycles.session_set_scene(Id, value.Id);
+			private set
+			{
 				sc = value;
 			}
 		}
@@ -68,90 +68,16 @@ namespace ccl
 			Scene = new Scene(this);
 		}
 
-		/// <summary>
-		/// private reference to the update callback
-		/// </summary>
-		CSycles.UpdateCallback updateCallback;
-
-		/// <summary>
-		/// Set the CSycles.UpdateCallback to Cycles to receive progress updates
-		/// </summary>
-		public CSycles.UpdateCallback UpdateCallback
+		public void WaitUntilLocked()
 		{
-			set
-			{
-				if (Destroyed) return;
-				updateCallback = value;
-				CSycles.session_set_update_callback(Id, value);
-			}
+			if(Destroyed) return;
+			Scene.WaitUntilLocked();
 		}
 
-		/// <summary>
-		/// Private reference to the test cancel callback
-		/// </summary>
-		CSycles.TestCancelCallback testCancelCallback;
-
-		/// <summary>
-		/// Set the CSycles.TestCancelCallback to Cycles to test for session cancel
-		/// </summary>
-		public CSycles.TestCancelCallback TestCancelCallback
+		public void Unlock()
 		{
-			set
-			{
-				if (Destroyed) return;
-				testCancelCallback = value;
-				CSycles.session_set_cancel_callback(Id, value);
-			}
-		}
-
-		/// <summary>
-		/// Private reference to the tile update callback.
-		/// </summary>
-		CSycles.RenderTileCallback updateTileCallback;
-
-		/// <summary>
-		/// Set the CSycles.RenderTileCallback to use for render tile updates
-		/// </summary>
-		public CSycles.RenderTileCallback UpdateTileCallback
-		{
-			set
-			{
-				if (Destroyed) return;
-				updateTileCallback = value;
-				CSycles.session_set_update_tile_callback(Id, value);
-			}
-		}
-
-		/// <summary>
-		/// Private reference to the tile write callback
-		/// </summary>
-		CSycles.RenderTileCallback writeTileCallback;
-		/// <summary>
-		/// Set the CSycles.RenderTileCallback to use for render tile writes
-		/// </summary>
-		public CSycles.RenderTileCallback WriteTileCallback
-		{
-			set
-			{
-				if (Destroyed) return;
-				writeTileCallback = value;
-				CSycles.session_set_write_tile_callback(Id, value);
-			}
-		}
-
-		private CSycles.DisplayUpdateCallback displayUpdateCallback;
-		/// <summary>
-		/// Set the CSycles.DisplayUpdateCallback to use for signalling rendered
-		/// sample pass
-		/// </summary>
-		public CSycles.DisplayUpdateCallback DisplayUpdateCallback
-		{
-			set
-			{
-				if (Destroyed) return;
-				displayUpdateCallback = value;
-				CSycles.session_set_display_update_callback(Id, value);
-			}
+			if(Destroyed) return;
+			Scene.Unlock();
 		}
 
 		/// <summary>
@@ -170,17 +96,8 @@ namespace ccl
 		/// </summary>
 		public int Sample()
 		{
-			if(Destroyed) return -1;
+			if (Destroyed) return -1;
 			return CSycles.session_sample(Id);
-		}
-
-		/// <summary>
-		/// Tear down the set up run for sampling.
-		/// </summary>
-		public void EndRun()
-		{
-			if(Destroyed) return;
-			CSycles.session_end_run(Id);
 		}
 
 		/// <summary>
@@ -208,9 +125,7 @@ namespace ccl
 		public void Destroy()
 		{
 			if (Destroyed) return;
-			// TODO: XXXX scene no longer managed separately, should all go through session.
 			CSycles.session_destroy(Id);
-			Destroyed = true;
 		}
 
 		public void GetPixelBuffer(PassType pt, ref IntPtr pixel_buffer)
@@ -253,14 +168,14 @@ namespace ccl
 		/// <param name="height">Height of the resolutin to reset with</param>
 		/// <param name="samples">The amount of samples to reset with</param>
 		/// <returns>0 on success. -1 when the session is already destroyed. -13 when a crash happened.</returns>
-		public int Reset(uint width, uint height, uint samples, uint full_x, uint full_y, uint full_width, uint full_height )
+		public int Reset(uint width, uint height, uint samples, uint full_x, uint full_y, uint full_width, uint full_height)
 		{
 			if (Destroyed) return -1;
 			CSycles.progress_reset(Id);
 			return CSycles.session_reset(Id, width, height, samples, full_x, full_y, full_width, full_height);
 		}
 
-		public int Reset(int width, int height, int samples, int full_x, int full_y, int full_width, int full_height )
+		public int Reset(int width, int height, int samples, int full_x, int full_y, int full_width, int full_height)
 		{
 			return Reset((uint)width, (uint)height, (uint)samples, (uint)full_x, (uint)full_y, (uint)full_width, (uint)full_height);
 		}
@@ -287,14 +202,18 @@ namespace ccl
 		}
 
 
-		public IEnumerable<PassType> Passes {
-			get {
-				foreach(var pass in _passes) {
-						yield return pass;
+		public IEnumerable<PassType> Passes
+		{
+			get
+			{
+				foreach (var pass in _passes)
+				{
+					yield return pass;
 				}
 			}
 		}
 		private List<PassType> _passes = new List<PassType>();
+
 		/// <summary>
 		/// Add given pass to output layers
 		/// </summary>
@@ -303,10 +222,11 @@ namespace ccl
 		{
 			if (Destroyed) return;
 			CSycles.session_add_pass(Id, pass);
-			if (!_passes.Contains(pass)) {
+			if (!_passes.Contains(pass))
+			{
 				_passes.Add(pass);
 			}
-	}
+		}
 
 		/// <summary>
 		/// Clear all passes for session. Note, will always add Combined pass back
@@ -318,6 +238,26 @@ namespace ccl
 			CSycles.session_clear_passes(Id);
 			CSycles.session_add_pass(Id, PassType.Combined);
 			_passes.Add(PassType.Combined);
+		}
+
+		protected virtual void Dispose(bool disposing)
+		{
+			if (!Destroyed)
+			{
+				Destroy();
+				Destroyed = true;
+			}
+		}
+
+		~Session()
+		{
+			Dispose(disposing: false);
+		}
+
+		public void Dispose()
+		{
+			Dispose(disposing: true);
+			GC.SuppressFinalize(this);
 		}
 	}
 }

@@ -41,48 +41,6 @@ namespace ccl
 			return cycles_session_destroy(sessionId);
 		}
 
-		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-		public delegate void UpdateCallback(IntPtr sid);
-		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_session_set_update_callback(IntPtr sessionId, UpdateCallback update);
-		public static void session_set_update_callback(IntPtr sessionId, UpdateCallback update)
-		{
-			cycles_session_set_update_callback(sessionId, update);
-		}
-
-		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-		public delegate void TestCancelCallback(IntPtr sid);
-		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_session_set_cancel_callback(IntPtr sessionId, TestCancelCallback cancel);
-		public static void session_set_cancel_callback(IntPtr sessionId, TestCancelCallback cancel)
-		{
-			cycles_session_set_cancel_callback(sessionId, cancel);
-		}
-
-		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-		public delegate void RenderTileCallback(IntPtr sessionId, uint x, uint y, uint w, uint h, uint sample, uint depth, PassType passtype, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 9)][In, Out] float[] pixels, [In] int len);
-		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_session_set_update_tile_callback(IntPtr sessionId, RenderTileCallback renderTileCb);
-		public static void session_set_update_tile_callback(IntPtr sessionId, RenderTileCallback renderTileCb)
-		{
-			cycles_session_set_update_tile_callback(sessionId, renderTileCb);
-		}
-		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_session_set_write_tile_callback(IntPtr sessionId, RenderTileCallback renderTileCb);
-		public static void session_set_write_tile_callback(IntPtr sessionId, RenderTileCallback renderTileCb)
-		{
-			cycles_session_set_write_tile_callback(sessionId, renderTileCb);
-		}
-
-		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-		public delegate void DisplayUpdateCallback(IntPtr sessionId, int sample);
-		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_session_set_display_update_callback(IntPtr sessionId, DisplayUpdateCallback displayUpdateCallback);
-		public static void session_set_display_update_callback(IntPtr sessionId, DisplayUpdateCallback displayUpdateCallback)
-		{
-			cycles_session_set_display_update_callback(sessionId, displayUpdateCallback);
-		}
-
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		private static extern void cycles_session_start(IntPtr sessionId);
 		public static void session_start(IntPtr sessionId)
