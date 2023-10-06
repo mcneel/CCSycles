@@ -119,6 +119,12 @@ namespace ccl
 			CSycles.session_cancel(Id, cancelMessage);
 		}
 
+		public void QuickCancel()
+		{
+			if (Destroyed) return;
+			CSycles.session_quickcancel(Id);
+		}
+
 		/// <summary>
 		/// Destroy the session and all related.
 		/// </summary>
