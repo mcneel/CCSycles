@@ -235,21 +235,21 @@ namespace ccl
 		}
 
 		/// <summary>
-		/// Clear all passes for session. Note, will always add Combined pass back
+		/// Clear all passes for session.
 		/// </summary>
 		public void ClearPasses()
 		{
 			if (Destroyed) return;
 			_passes.Clear();
 			CSycles.session_clear_passes(Id);
-			CSycles.session_add_pass(Id, PassType.Combined);
-			_passes.Add(PassType.Combined);
 		}
 
 		protected virtual void Dispose(bool disposing)
 		{
 			if (!Destroyed)
 			{
+				QuickCancel();
+				ClearPasses();
 				Destroy();
 				Destroyed = true;
 			}
