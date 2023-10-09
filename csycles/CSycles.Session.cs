@@ -105,6 +105,14 @@ namespace ccl
 			cycles_session_cancel(sessionId, cancelMessage);
 		}
 
+		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Globalization", "CA2101:Specify marshaling for P/Invoke string arguments", Justification = "Using simple c string")]
+		private static extern void cycles_session_quickcancel(IntPtr sessionId);
+		public static void session_quickcancel(IntPtr sessionId)
+		{
+			cycles_session_quickcancel(sessionId);
+		}
+
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		private static extern void cycles_session_get_float_buffer(IntPtr sessionId, int passType, ref IntPtr pixels);
 		public static void session_get_float_buffer(IntPtr sessionId, PassType passType, ref IntPtr pixels)
