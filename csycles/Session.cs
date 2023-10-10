@@ -249,7 +249,6 @@ namespace ccl
 			if (!Destroyed)
 			{
 				QuickCancel();
-				ClearPasses();
 				Destroy();
 				Destroyed = true;
 			}
