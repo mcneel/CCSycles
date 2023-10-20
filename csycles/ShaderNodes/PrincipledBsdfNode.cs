@@ -94,6 +94,8 @@ namespace ccl.ShaderNodes
 			AddSocket(IOR);
 			AddSocket(Transmission);
 			AddSocket(TransmissionRoughness);
+			AddSocket(Emission);
+			AddSocket(EmissionStrength);
 			AddSocket(Alpha);
 			AddSocket(Normal);
 			AddSocket(ClearcoatNormal);
