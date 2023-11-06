@@ -44,7 +44,7 @@ namespace ccl
 			Client = client;
 			Shader = shader;
 			GeometryPointer = CSycles.scene_add_mesh(Client.Scene.Id, shader.Id);
-			System.Diagnostics.Trace.WriteLine($"Created mesh {GeometryPointer} with shader {shader.Id}\n");
+			//System.Diagnostics.Trace.WriteLine($"Created mesh {GeometryPointer} with shader {shader.Id}\n");
 		}
 
 		/// <summary>
