@@ -17,6 +17,7 @@ limitations under the License.
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 
 namespace ccl
 {
@@ -47,13 +48,12 @@ namespace ccl
 		{
 			get
 			{
-				if (IsCuda)
-					return Name.Split('_')[1];
-				if (IsOptix)
-					return $"{Name.Split('_')[1]} (Optix)";
-				if (IsHip) {
+				if (IsCuda || IsHip || IsMetal)
+				{
 					return Name.Split('_')[1];
 				}
+				if (IsOptix)
+					return $"{Name.Split('_')[1]} (Optix)";
 				if (IsMulti)
 				{
 					var n = string.Join(",", (from sd in Subdevices select sd.NiceName).ToList());
@@ -61,6 +61,15 @@ namespace ccl
 					return $"Multi ({multiType}): {n}";
 				}
 				return Name;
+			}
+		}
+
+		public string NiceNameSha {
+			get {
+				using(SHA256 sha = SHA256.Create())
+				{
+					return sha.ComputeHash(System.Text.Encoding.UTF8.GetBytes(NiceName)).Select(b => b.ToString("x2")).ToString();
+				}
 			}
 		}
 		/// <summary>
