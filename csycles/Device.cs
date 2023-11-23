@@ -68,7 +68,10 @@ namespace ccl
 			get {
 				using(SHA256 sha = SHA256.Create())
 				{
-					return sha.ComputeHash(System.Text.Encoding.UTF8.GetBytes(NiceName)).Select(b => b.ToString("x2")).ToString();
+					var nicenamebytes = System.Text.Encoding.UTF8.GetBytes(NiceName);
+					var hash = sha.ComputeHash(nicenamebytes);
+					var strhash = string.Concat(hash.Select(b => b.ToString("x2")));
+					return strhash;
 				}
 			}
 		}
