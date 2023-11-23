@@ -245,6 +245,7 @@ namespace ccl.ShaderNodes
 
 		protected void ImageParseXml(System.Xml.XmlReader xmlNode)
 		{
+#if DISABLEFORNOW
 			var imgsrc = xmlNode.GetAttribute("src");
 			if (!string.IsNullOrEmpty(imgsrc) && System.IO.File.Exists(imgsrc))
 			{
@@ -271,7 +272,7 @@ namespace ccl.ShaderNodes
 					Filename = imgsrc;
 				}
 			}
-
+#endif
 		}
 	}
 }

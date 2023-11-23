@@ -6,7 +6,7 @@
     <EnableDefaultItems>False</EnableDefaultItems>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ccl</RootNamespace>
-		<LangVersion>11.0</LangVersion>
+    <LangVersion>11.0</LangVersion>
     <AssemblyName>csycles</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />

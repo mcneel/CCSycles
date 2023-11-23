@@ -17,6 +17,7 @@ limitations under the License.
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 
 namespace ccl
 {
@@ -47,8 +48,10 @@ namespace ccl
 		{
 			get
 			{
-				if (IsCuda)
+				if (IsCuda || IsHip || IsMetal)
+				{
 					return Name.Split('_')[1];
+				}
 				if (IsOptix)
 					return $"{Name.Split('_')[1]} (Optix)";
 				if (IsMulti)
@@ -58,6 +61,18 @@ namespace ccl
 					return $"Multi ({multiType}): {n}";
 				}
 				return Name;
+			}
+		}
+
+		public string NiceNameSha {
+			get {
+				using(SHA256 sha = SHA256.Create())
+				{
+					var nicenamebytes = System.Text.Encoding.UTF8.GetBytes(NiceName);
+					var hash = sha.ComputeHash(nicenamebytes);
+					var strhash = string.Concat(hash.Select(b => b.ToString("x2")));
+					return strhash;
+				}
 			}
 		}
 		/// <summary>
@@ -133,7 +148,7 @@ namespace ccl
 		/// Get the default device (Cpu)
 		/// </summary>
 		/// <returns>The default device</returns>
-		static public Device Default => GetDevice(0);
+		static public Device Default => FirstCpu;
 
 		/// <summary>
 		/// Get capabilities of all devices that Cycles can see.
