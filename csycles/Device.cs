@@ -148,7 +148,7 @@ namespace ccl
 		/// Get the default device (Cpu)
 		/// </summary>
 		/// <returns>The default device</returns>
-		static public Device Default => GetDevice(0);
+		static public Device Default => FirstCpu;
 
 		/// <summary>
 		/// Get capabilities of all devices that Cycles can see.
