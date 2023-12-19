@@ -174,16 +174,11 @@ namespace ccl
 		/// <param name="height">Height of the resolutin to reset with</param>
 		/// <param name="samples">The amount of samples to reset with</param>
 		/// <returns>0 on success. -1 when the session is already destroyed. -13 when a crash happened.</returns>
-		public int Reset(uint width, uint height, uint samples, uint full_x, uint full_y, uint full_width, uint full_height)
+		public int Reset(int width, int height, int samples, int full_x, int full_y, int full_width, int full_height, int pixel_size)
 		{
 			if (Destroyed) return -1;
 			CSycles.progress_reset(Id);
-			return CSycles.session_reset(Id, width, height, samples, full_x, full_y, full_width, full_height);
-		}
-
-		public int Reset(int width, int height, int samples, int full_x, int full_y, int full_width, int full_height)
-		{
-			return Reset((uint)width, (uint)height, (uint)samples, (uint)full_x, (uint)full_y, (uint)full_width, (uint)full_height);
+			return CSycles.session_reset(Id, width, height, samples, full_x, full_y, full_width, full_height, pixel_size);
 		}
 
 		/// <summary>

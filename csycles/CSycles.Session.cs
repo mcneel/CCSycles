@@ -7,10 +7,10 @@ namespace ccl
 	{
 #region session
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		private static extern int cycles_session_reset(IntPtr sessionId, uint width, uint height, uint samples, uint full_x, uint full_y, uint full_width, uint full_height );
-		public static int session_reset(IntPtr sessionId, uint width, uint height, uint samples, uint full_x, uint full_y, uint full_width, uint full_height )
+		private static extern int cycles_session_reset(IntPtr sessionId, int width, int height, int samples, int full_x, int full_y, int full_width, int full_height, int pixelSize);
+		public static int session_reset(IntPtr sessionId, int width, int height, int samples, int full_x, int full_y, int full_width, int full_height, int pixelSize)
 		{
-			return cycles_session_reset(sessionId, width, height, samples, full_x, full_y, full_width, full_height );
+			return cycles_session_reset(sessionId, width, height, samples, full_x, full_y, full_width, full_height, pixelSize);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
