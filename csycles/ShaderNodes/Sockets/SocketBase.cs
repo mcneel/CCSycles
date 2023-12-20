@@ -1,3 +1,6 @@
+
+
+using System;
 /**
 Copyright 2014-2017 Robert McNeel and Associates
 
@@ -13,7 +16,6 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 **/
-
 namespace ccl.ShaderNodes.Sockets
 {
 
@@ -91,7 +93,18 @@ namespace ccl.ShaderNodes.Sockets
 
 		public void Connect(ISocket to)
 		{
-			Parent.Shader.Connect(Parent, UiName, to.Parent, to.UiName);
+#if DEBUG
+			if(!
+#endif
+				Parent.Shader.Connect(Parent, UiName, to.Parent, to.UiName)
+#if DEBUG
+			)
+			{
+				System.Diagnostics.Debug.Assert(false, $"Trying to connect to {to.Parent.Name}:{to.UiName} which has already a connection");
+			}
+#else
+				;
+#endif
 		}
 
 		internal SocketBase(ShaderNode parentNode, string uiName, string internalName = "UNSET")

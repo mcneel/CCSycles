@@ -174,9 +174,9 @@ namespace ccl
 		/// <param name="fromout"></param>
 		/// <param name="to"></param>
 		/// <param name="toin"></param>
-		public void Connect(ShaderNode from, string fromout, ShaderNode to, string toin)
+		public bool Connect(ShaderNode from, string fromout, ShaderNode to, string toin)
 		{
-			CSycles.shader_connect_nodes(Id, from.Id, fromout, to.Id, toin);
+			return CSycles.shader_connect_nodes(Id, from.Id, fromout, to.Id, toin);
 		}
 
 		/// <summary>
