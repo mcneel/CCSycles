@@ -227,6 +227,13 @@ namespace ccl
 		{
 			cycles_session_params_set_pixel_size(sessionParamsId, pixelSize);
 		}
+
+		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		private static extern void cycles_session_params_set_use_resolution_divider(IntPtr sessionParamsId, bool use_resolution_divider);
+		public static void session_params_set_use_resolution_divider(IntPtr sessionParamsId, bool useResolutionDivider)
+		{
+			cycles_session_params_set_use_resolution_divider(sessionParamsId, useResolutionDivider);
+		}
 #endregion
 
 #region progress

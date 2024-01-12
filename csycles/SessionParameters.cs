@@ -21,7 +21,7 @@ namespace ccl
 {
 	/// <summary>
 	/// Wrapper for creating and setting session parameters.
-	/// 
+	///
 	/// Note that this API is used only for setting parameters, not fetching them.
 	/// </summary>
 	public class SessionParameters
@@ -110,7 +110,7 @@ namespace ccl
 
 		/// <summary>
 		/// The number of Cpu threads to use to handle the rendering process.
-		/// 
+		///
 		/// 0 means automatic thread count based on available logic cores.
 		/// </summary>
 		public uint Threads
@@ -156,7 +156,7 @@ namespace ccl
 
 		/// <summary>
 		/// Set which ShadingSystem should be used.
-		/// 
+		///
 		/// Note: only SVM supported currently.
 		/// </summary>
 		public ShadingSystem ShadingSystem
@@ -175,6 +175,18 @@ namespace ccl
 			set
 			{
 				CSycles.session_params_set_pixel_size(Id, (uint)value);
+			}
+		}
+
+		/// <summary>
+		/// Set to true to use resolution division during initial stages of
+		/// raytracing
+		/// </summary>
+		public bool UseResolutionDivider
+		{
+			set
+			{
+				CSycles.session_params_set_use_resolution_divider(Id, value);
 			}
 		}
 	}
