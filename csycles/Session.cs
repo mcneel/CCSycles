@@ -146,15 +146,16 @@ namespace ccl
 			}
 		}
 
-		public void RetainPixelBuffer(PassType pt, int width, int height, ref IntPtr pixel_buffer)
+		public void RetainPixelBuffer(PassType pt, int width, int height, ref IntPtr pixel_buffer, ref int pixel_size_from_cycles)
 		{
 			if (Destroyed)
 			{
 				pixel_buffer = IntPtr.Zero;
+				pixel_size_from_cycles = 0;
 			}
 			else
 			{
-				CSycles.session_retain_float_buffer(Id, pt, width, height, ref pixel_buffer);
+				CSycles.session_retain_float_buffer(Id, pt, width, height, ref pixel_buffer, ref pixel_size_from_cycles);
 			}
 		}
 
