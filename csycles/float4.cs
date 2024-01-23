@@ -162,6 +162,30 @@ namespace ccl
 		/// </summary>
 		/// <param name="old">float4 to copy</param>
 		public float4(float4 old) : this(old.x, old.y, old.z, old.w) { }
+		private static float srgb_to_linear(float c)
+		{
+			if (c < 0.04045f)
+				return (c < 0.0f) ? 0.0f : c * (1.0f / 12.92f);
+			else
+				return (float)Math.Pow((c + 0.055f) * (1.0f / 1.055f), 2.4f);
+
+		}
+
+		/// <summary>
+		/// Apply sRGB to linear conversion on RGB. The A is kept as is.
+		/// </summary>
+		/// <param name="f4"></param>
+		/// <returns></returns>
+		public static float4 SrgbToLinear(float4 f4)
+		{
+			return new float4(
+				srgb_to_linear(f4.x),
+				srgb_to_linear(f4.y),
+				srgb_to_linear(f4.z),
+				f4.w
+			)
+			;
+		}
 
 		public float this[int index]
 		{
