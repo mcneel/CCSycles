@@ -1,5 +1,5 @@
 /**
-Copyright 2014 Robert McNeel and Associates
+Copyright 2014-2024 Robert McNeel and Associates
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -14,13 +14,13 @@ See the License for the specific language governing permissions and
 limitations under the License.
 **/
 
-using System;
-using System.Runtime.InteropServices;
-using System.Reflection;
-using System.Collections.Generic;
-using System.IO;
 using ccl.ShaderNodes;
+using System;
+using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
+using System.Reflection;
+using System.Runtime.InteropServices;
 
 /** \namespace ccl
  * \brief Namespace containing the low-level wrapping API of ccycles.dll and a set of higher-level classes.
@@ -33,7 +33,7 @@ namespace ccl
 	/// </summary>
 	public partial class CSycles
 	{
-#region misc
+		#region misc
 		private static bool g_ccycles_loaded;
 
 		[DllImport("kernel32", SetLastError = true, CharSet = CharSet.Unicode)]
@@ -144,7 +144,7 @@ namespace ccl
 				constructTypes[0] = typeof(Shader);
 				constructTypes[1] = typeof(IntPtr);
 				var shnt = g_registered_shadernodes[xmlName];
-				var constructor = shnt.GetConstructor(BindingFlags.NonPublic | BindingFlags.Instance, null, constructTypes, new ParameterModifier[]{ });
+				var constructor = shnt.GetConstructor(BindingFlags.NonPublic | BindingFlags.Instance, null, constructTypes, new ParameterModifier[] { });
 				var param = new object[2];
 				param[0] = shader;
 				param[1] = shaderNodePtr;
@@ -360,7 +360,7 @@ namespace ccl
 			var AutoGenFolder = Path.Combine(path, "AutoGenCycles");
 			Directory.CreateDirectory(AutoGenFolder);
 			int typecount = get_shadernodetype_count();
-			for(int i = 0; i < typecount; i++)
+			for (int i = 0; i < typecount; i++)
 			{
 				IntPtr nodeType = get_shadernodetype(i);
 				string n = nodetype_get_name(nodeType);

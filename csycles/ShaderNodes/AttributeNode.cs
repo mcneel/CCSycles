@@ -1,5 +1,5 @@
 /**
-Copyright 2014-2017 Robert McNeel and Associates
+Copyright 2014-2024 Robert McNeel and Associates
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -14,11 +14,11 @@ See the License for the specific language governing permissions and
 limitations under the License.
 **/
 
-using System.Text;
-using System.Xml;
-using System;
 using ccl.Attributes;
 using ccl.ShaderNodes.Sockets;
+using System;
+using System.Text;
+using System.Xml;
 
 /**
  * \defgroup cclshadernodes CSycles Shader Nodes
@@ -60,9 +60,9 @@ namespace ccl.ShaderNodes
 			AddSocket(Color);
 			Vector = new VectorSocket(parentNode, "Vector", "vector");
 			AddSocket(Vector);
-			Fac = new FloatSocket(parentNode, "Fac","fac");
+			Fac = new FloatSocket(parentNode, "Fac", "fac");
 			AddSocket(Fac);
-			Alpha = new FloatSocket(parentNode, "Alpha","alpha");
+			Alpha = new FloatSocket(parentNode, "Alpha", "alpha");
 			AddSocket(Alpha);
 		}
 	}
@@ -80,12 +80,12 @@ namespace ccl.ShaderNodes
 		/// <summary>
 		/// Attribute input sockets
 		/// </summary>
-		public AttributeInputs ins => (AttributeInputs) inputs;
+		public AttributeInputs ins => (AttributeInputs)inputs;
 
 		/// <summary>
 		/// Attribute output sockets
 		/// </summary>
-		public AttributeOutputs outs => (AttributeOutputs) outputs;
+		public AttributeOutputs outs => (AttributeOutputs)outputs;
 
 		/// <summary>
 		/// Create a new Add attribute.
@@ -130,7 +130,7 @@ namespace ccl.ShaderNodes
 		internal override void ParseXml(XmlReader xmlNode)
 		{
 			var attr = "";
-			if(Utilities.Instance.read_string(ref attr, xmlNode.GetAttribute("Attribute")))
+			if (Utilities.Instance.read_string(ref attr, xmlNode.GetAttribute("Attribute")))
 			{
 				Attribute = attr;
 			}

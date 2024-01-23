@@ -1,5 +1,5 @@
 /**
-Copyright 2014 Robert McNeel and Associates
+Copyright 2014-2024 Robert McNeel and Associates
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -14,10 +14,10 @@ See the License for the specific language governing permissions and
 limitations under the License.
 **/
 
-using System.Xml;
-using ccl.ShaderNodes.Sockets;
 using ccl.Attributes;
+using ccl.ShaderNodes.Sockets;
 using System;
+using System.Xml;
 
 namespace ccl.ShaderNodes
 {
@@ -36,7 +36,7 @@ namespace ccl.ShaderNodes
 			AddSocket(Color);
 			Tangent = new VectorSocket(parentNode, "Tangent", "tangent");
 			AddSocket(Tangent);
-			Normal = new VectorSocket(parentNode, "Normal","normal");
+			Normal = new VectorSocket(parentNode, "Normal", "normal");
 			AddSocket(Normal);
 			Roughness = new FloatSocket(parentNode, "Roughness", "roughness");
 			AddSocket(Roughness);

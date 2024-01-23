@@ -1,5 +1,5 @@
 /**
-Copyright 2014 Robert McNeel and Associates
+Copyright 2014-2024 Robert McNeel and Associates
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -14,12 +14,11 @@ See the License for the specific language governing permissions and
 limitations under the License.
 **/
 
+using ccl.Attributes;
+using ccl.ShaderNodes.Sockets;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using ccl.ShaderNodes.Sockets;
-using ccl.Attributes;
-
 using LeftRightFound = System.Tuple<ccl.ShaderNodes.ColorStop, ccl.ShaderNodes.ColorStop, bool>;
 
 namespace ccl.ShaderNodes
@@ -99,7 +98,7 @@ namespace ccl.ShaderNodes
 		/// <returns></returns>
 		public LeftRightFound GetLeftRight(float pos)
 		{
-			var needle = new ColorStop {Position = pos};
+			var needle = new ColorStop { Position = pos };
 			ColorStop l = null;
 			ColorStop r = null;
 
@@ -143,7 +142,7 @@ namespace ccl.ShaderNodes
 					// or copy the one from the right,
 					// but set its position to 0.0f so we can
 					// still interpolate
-					l = new ColorStop(r) {Position = 0.0f};
+					l = new ColorStop(r) { Position = 0.0f };
 				}
 
 			}
@@ -159,7 +158,7 @@ namespace ccl.ShaderNodes
 		/// <param name="position"></param>
 		public void InsertColorStop(float4 color, float position)
 		{
-			InsertColorStop(new ColorStop { Position = position, Color =  color });
+			InsertColorStop(new ColorStop { Position = position, Color = color });
 		}
 
 		/// <summary>
@@ -176,7 +175,7 @@ namespace ccl.ShaderNodes
 
 			var idx = Stops.BinarySearch(cstop);
 
-			if(idx<0) idx = ~idx;
+			if (idx < 0) idx = ~idx;
 
 			if (idx == Stops.Count)
 			{
@@ -247,7 +246,7 @@ namespace ccl.ShaderNodes
 						// get factor
 						if (Math.Abs(left.Position - right.Position) > 0.0001)
 						{
-							fac = Math.Abs(pos - right.Position)/Math.Abs(left.Position - right.Position);
+							fac = Math.Abs(pos - right.Position) / Math.Abs(left.Position - right.Position);
 						}
 						else
 						{
@@ -257,8 +256,8 @@ namespace ccl.ShaderNodes
 						// extra easing if ease
 						if (Interpolation == Interpolations.Ease)
 						{
-							mfac = fac*fac;
-							fac = 3.0f*mfac - 2.0f*mfac*fac;
+							mfac = fac * fac;
+							fac = 3.0f * mfac - 2.0f * mfac * fac;
 						}
 
 						// right color fac
@@ -383,7 +382,7 @@ namespace ccl.ShaderNodes
 
 			for (var i = 0; i < RampTableSize; i++)
 			{
-				ColorBand.evaluate((float) i/(float) (RampTableSize - 1), color);
+				ColorBand.evaluate((float)i / (float)(RampTableSize - 1), color);
 				CSycles.shadernode_set_member_vec4_at_index(Id, "ramp", color.x, color.y, color.z, color.w, i);
 			}
 		}
@@ -396,7 +395,7 @@ namespace ccl.ShaderNodes
 			if (string.IsNullOrEmpty(interpolation))
 			{
 				ColorBand.Interpolations i;
-				if(Enum.TryParse(interpolation, out i))
+				if (Enum.TryParse(interpolation, out i))
 				{
 					ColorBand.Interpolation = i;
 				}

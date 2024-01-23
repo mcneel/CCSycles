@@ -1,5 +1,6 @@
 /**
-Copyright 2014 Robert McNeel and Associates
+C
+opyright 2014-2024 Robert McNeel and Associates
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -32,10 +33,10 @@ using System;
 
 namespace ccl.ShaderNodes
 {
-	/// <summary>
-	/// AddClosure node input sockets
-	/// </summary>
-	public class AddClosureInputs : Inputs
+  /// <summary>
+  /// AddClosure node input sockets
+  /// </summary>
+  public class AddClosureInputs : Inputs
 	{
 		/// <summary>
 		/// AddClosure input socket

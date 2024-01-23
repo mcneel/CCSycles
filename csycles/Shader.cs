@@ -1,5 +1,5 @@
 /**
-Copyright 2014 Robert McNeel and Associates
+Copyright 2014-2024 Robert McNeel and Associates
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -14,15 +14,12 @@ See the License for the specific language governing permissions and
 limitations under the License.
 **/
 
+using ccl.ShaderNodes;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Text;
 using System.Xml;
-using ccl;
-using ccl.ShaderNodes;
-using ccl.ShaderNodes.Sockets;
 
 namespace ccl
 {
@@ -77,7 +74,7 @@ namespace ccl
 		private void CommonConstructor()
 		{
 			int nodeCount = CSycles.shader_node_count(Id);
-			for(int i = 0; i < nodeCount; i++)
+			for (int i = 0; i < nodeCount; i++)
 			{
 				IntPtr shn = CSycles.shader_node_get(Id, i);
 				string name = CSycles.shadernode_get_name(shn);

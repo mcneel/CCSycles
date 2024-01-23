@@ -1,5 +1,5 @@
 /**
-Copyright 2014 Robert McNeel and Associates
+Copyright 2014-2024 Robert McNeel and Associates
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -22,14 +22,14 @@ namespace ccl
 
 	internal struct _tfmApi
 	{
-		[DllImport(Constants.ccycles, SetLastError = false,  CallingConvention = CallingConvention.Cdecl)]
-		static public extern void cycles_tfm_inverse([In, MarshalAs(UnmanagedType.Struct)] _Transform t, [In, Out, MarshalAs(UnmanagedType.Struct)]ref _Transform res);
+		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		static public extern void cycles_tfm_inverse([In, MarshalAs(UnmanagedType.Struct)] _Transform t, [In, Out, MarshalAs(UnmanagedType.Struct)] ref _Transform res);
 
-		[DllImport(Constants.ccycles, SetLastError = false,  CallingConvention = CallingConvention.Cdecl)]
-		static public extern void cycles_tfm_lookat([In, MarshalAs(UnmanagedType.Struct)] _float4 position, [In, MarshalAs(UnmanagedType.Struct)] _float4 look, [In, MarshalAs(UnmanagedType.Struct)] _float4 up, [In, Out, MarshalAs(UnmanagedType.Struct)]ref _Transform res);
+		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		static public extern void cycles_tfm_lookat([In, MarshalAs(UnmanagedType.Struct)] _float4 position, [In, MarshalAs(UnmanagedType.Struct)] _float4 look, [In, MarshalAs(UnmanagedType.Struct)] _float4 up, [In, Out, MarshalAs(UnmanagedType.Struct)] ref _Transform res);
 
-		[DllImport(Constants.ccycles, SetLastError = false,  CallingConvention = CallingConvention.Cdecl)]
-		static public extern void cycles_tfm_rotate_around_axis(float angle, [In, MarshalAs(UnmanagedType.Struct)] _float4 axis, [In, Out, MarshalAs(UnmanagedType.Struct)]ref _Transform res);
+		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		static public extern void cycles_tfm_rotate_around_axis(float angle, [In, MarshalAs(UnmanagedType.Struct)] _float4 axis, [In, Out, MarshalAs(UnmanagedType.Struct)] ref _Transform res);
 
 	}
 
@@ -125,9 +125,9 @@ namespace ccl
 		{
 			Transform conv = new Transform
 			{
-				x = (float4) t.x,
-				y = (float4) t.y,
-				z = (float4) t.z,
+				x = (float4)t.x,
+				y = (float4)t.y,
+				z = (float4)t.z,
 			};
 
 
@@ -138,9 +138,9 @@ namespace ccl
 		{
 			_Transform conv = new _Transform
 			{
-				x = (_float4) t.x,
-				y = (_float4) t.y,
-				z = (_float4) t.z,
+				x = (_float4)t.x,
+				y = (_float4)t.y,
+				z = (_float4)t.z,
 			};
 
 			return conv;
@@ -242,7 +242,7 @@ namespace ccl
 		/// </summary>
 		/// <param name="old"></param>
 		public Transform(Transform old)
-			: this (
+			: this(
 				old.x.x, old.x.y, old.x.z, old.x.w,
 				old.y.x, old.y.y, old.y.z, old.y.w,
 				old.z.x, old.z.y, old.z.z, old.z.w
@@ -265,7 +265,7 @@ namespace ccl
 		/// <param name="m">float array of at least 12 elements. If the array is larger only the first 12 elements will be used.</param>
 		public void SetMatrix(float[] m)
 		{
-			if(m.Length < 12) throw new ArgumentException("float array too short, must contain at least 12 float elements.");
+			if (m.Length < 12) throw new ArgumentException("float array too short, must contain at least 12 float elements.");
 			x.x = m[0];
 			x.y = m[1];
 			x.z = m[2];

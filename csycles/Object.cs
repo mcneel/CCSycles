@@ -1,5 +1,5 @@
 /**
-Copyright 2014 Robert McNeel and Associates
+Copyright 2014-2024 Robert McNeel and Associates
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -35,7 +35,8 @@ namespace ccl
 		/// </summary>
 		/// <param name="client"></param>
 		/// <param name="equation"></param>
-		public ClippingPlane(Session client, float4 equation) {
+		public ClippingPlane(Session client, float4 equation)
+		{
 			Client = client;
 			Id = CSycles.scene_add_clipping_plane(client.Scene.Id, equation);
 		}
@@ -44,7 +45,7 @@ namespace ccl
 		/// Set new equation for the clipping plane.
 		/// </summary>
 		/// <param name="equation"></param>
-		public void SetEquation(float4 equation) 
+		public void SetEquation(float4 equation)
 		{
 			CSycles.scene_set_clipping_plane(Client.Scene.Id, Id, equation);
 		}

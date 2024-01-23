@@ -1,5 +1,5 @@
 /**
-Copyright 2014-2017 Robert McNeel and Associates
+Copyright 2014-2024 Robert McNeel and Associates
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -64,9 +64,11 @@ namespace ccl
 			}
 		}
 
-		public string NiceNameSha {
-			get {
-				using(SHA256 sha = SHA256.Create())
+		public string NiceNameSha
+		{
+			get
+			{
+				using (SHA256 sha = SHA256.Create())
 				{
 					var nicenamebytes = System.Text.Encoding.UTF8.GetBytes(NiceName);
 					var hash = sha.ComputeHash(nicenamebytes);
@@ -390,7 +392,8 @@ namespace ccl
 		/// <returns>Device representing the multi-device</returns>
 		static public Device CreateMultiDevice(List<Device> idx)
 		{
-			idx.Sort((Device a, Device b) => {
+			idx.Sort((Device a, Device b) =>
+			{
 				if (a.Id == b.Id) return 0;
 				return a.Id < b.Id ? -1 : 1;
 			});
@@ -439,8 +442,10 @@ namespace ccl
 		///
 		/// The resulting string can be used as input to DeviceFromString().
 		/// </summary>
-		public string DeviceString {
-			get {
+		public string DeviceString
+		{
+			get
+			{
 				if (!IsMulti) return $"{Id}";
 				return string.Join(",", (from sd in Subdevices select sd.Id).ToList());
 			}
@@ -493,7 +498,7 @@ namespace ccl
 			var l = IdListFromString(res);
 
 			if (l.Count == 0) return FirstGpu;
-			if(l.Count == 1)
+			if (l.Count == 1)
 			{
 				return l[0] == -1 ? FirstCuda : GetDevice(l[0]);
 			}

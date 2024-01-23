@@ -1,5 +1,5 @@
 /**
-Copyright 2014 Robert McNeel and Associates
+Copyright 2014-2024 Robert McNeel and Associates
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -14,11 +14,11 @@ See the License for the specific language governing permissions and
 limitations under the License.
 **/
 
+using ccl.Attributes;
+using ccl.ShaderNodes.Sockets;
 using System;
 using System.Text;
 using System.Xml;
-using ccl.ShaderNodes.Sockets;
-using ccl.Attributes;
 
 namespace ccl.ShaderNodes
 {
@@ -211,55 +211,55 @@ namespace ccl.ShaderNodes
 		}
 	}
 	[ShaderNode("vector_add")]
-	public class VectorAdd: VectorMathNode
+	public class VectorAdd : VectorMathNode
 	{
 
-		public VectorAdd(Shader shader) : this(shader, "a vector add node") {}
+		public VectorAdd(Shader shader) : this(shader, "a vector add node") { }
 		public VectorAdd(Shader shader, string name) : base(shader, name) { Operation = Operations.Add; }
 		internal VectorAdd(Shader shader, IntPtr intPtr) : base(shader, intPtr) { Operation = Operations.Add; }
 		public override string ShaderNodeTypeName => "vector_math";
 	}
 	[ShaderNode("vector_subtract")]
-	public class VectorSubtract: VectorMathNode
+	public class VectorSubtract : VectorMathNode
 	{
 
-		public VectorSubtract(Shader shader) : this(shader, "a vector subtract node") {}
+		public VectorSubtract(Shader shader) : this(shader, "a vector subtract node") { }
 		public VectorSubtract(Shader shader, string name) : base(shader, name) { Operation = Operations.Subtract; }
 		internal VectorSubtract(Shader shader, IntPtr intPtr) : base(shader, intPtr) { Operation = Operations.Subtract; }
 		public override string ShaderNodeTypeName => "vector_math";
 	}
 	[ShaderNode("vector_average")]
-	public class VectorAverage: VectorMathNode
+	public class VectorAverage : VectorMathNode
 	{
 
-		public VectorAverage(Shader shader) : this(shader, "a vector average node") {}
+		public VectorAverage(Shader shader) : this(shader, "a vector average node") { }
 		public VectorAverage(Shader shader, string name) : base(shader, name) { Operation = Operations.Average; }
 		internal VectorAverage(Shader shader, IntPtr intPtr) : base(shader, intPtr) { Operation = Operations.Average; }
 		public override string ShaderNodeTypeName => "vector_math";
 	}
 	[ShaderNode("vector_cross")]
-	public class VectorCross_Product: VectorMathNode
+	public class VectorCross_Product : VectorMathNode
 	{
 
-		public VectorCross_Product(Shader shader) : this(shader, "a vector cross node") {}
+		public VectorCross_Product(Shader shader) : this(shader, "a vector cross node") { }
 		public VectorCross_Product(Shader shader, string name) : base(shader, name) { Operation = Operations.Cross_Product; }
 		internal VectorCross_Product(Shader shader, IntPtr intPtr) : base(shader, intPtr) { Operation = Operations.Cross_Product; }
 		public override string ShaderNodeTypeName => "vector_math";
 	}
 	[ShaderNode("vector_dot")]
-	public class VectorDot_Product: VectorMathNode
+	public class VectorDot_Product : VectorMathNode
 	{
 
-		public VectorDot_Product(Shader shader) : this(shader, "a vector dot node") {}
+		public VectorDot_Product(Shader shader) : this(shader, "a vector dot node") { }
 		public VectorDot_Product(Shader shader, string name) : base(shader, name) { Operation = Operations.Dot_Product; }
 		internal VectorDot_Product(Shader shader, IntPtr intPtr) : base(shader, intPtr) { Operation = Operations.Dot_Product; }
 		public override string ShaderNodeTypeName => "vector_math";
 	}
 	[ShaderNode("vector_normalize")]
-	public class VectorNormalize: VectorMathNode
+	public class VectorNormalize : VectorMathNode
 	{
 
-		public VectorNormalize(Shader shader) : this(shader, "a vector normalize node") {}
+		public VectorNormalize(Shader shader) : this(shader, "a vector normalize node") { }
 		public VectorNormalize(Shader shader, string name) : base(shader, name) { Operation = Operations.Normalize; }
 		internal VectorNormalize(Shader shader, IntPtr intPtr) : base(shader, intPtr) { Operation = Operations.Normalize; }
 		public override string ShaderNodeTypeName => "vector_math";

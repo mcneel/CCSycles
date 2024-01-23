@@ -1,5 +1,5 @@
 /**
-Copyright 2014 Robert McNeel and Associates
+Copyright 2014-2024 Robert McNeel and Associates
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -14,12 +14,12 @@ See the License for the specific language governing permissions and
 limitations under the License.
 **/
 
+using ccl.Attributes;
+using ccl.ShaderNodes.Sockets;
 using System;
 using System.Linq;
 using System.Text;
 using System.Xml;
-using ccl.ShaderNodes.Sockets;
-using ccl.Attributes;
 
 namespace ccl.ShaderNodes
 {
@@ -61,14 +61,15 @@ namespace ccl.ShaderNodes
 			get
 			{
 				var t = GetType();
-				var attr = t.GetCustomAttributes(typeof (ShaderNodeAttribute), false)[0] as ShaderNodeAttribute;
+				var attr = t.GetCustomAttributes(typeof(ShaderNodeAttribute), false)[0] as ShaderNodeAttribute;
 				return attr.Name;
 			}
 		}
 
 		public string ShaderNodeTypeCodeName
 		{
-			get {
+			get
+			{
 				var t = GetType();
 				return t.Name;
 			}
@@ -256,7 +257,8 @@ namespace ccl.ShaderNodes
 			if (String.IsNullOrEmpty(childNodes))
 			{
 				xml.Append(" />");
-			} else
+			}
+			else
 			{
 				xml.Append(">");
 				xml.Append(childNodes);

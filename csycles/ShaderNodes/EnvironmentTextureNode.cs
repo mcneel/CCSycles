@@ -1,5 +1,5 @@
 /**
-Copyright 2014 Robert McNeel and Associates
+Copyright 2014-2024 Robert McNeel and Associates
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -14,12 +14,11 @@ See the License for the specific language governing permissions and
 limitations under the License.
 **/
 
-using System;
-using ccl.ShaderNodes.Sockets;
 using ccl.Attributes;
-using System.Xml;
-using System.Drawing;
+using ccl.ShaderNodes.Sockets;
+using System;
 using System.Text;
+using System.Xml;
 
 namespace ccl.ShaderNodes
 {
@@ -120,7 +119,8 @@ namespace ccl.ShaderNodes
 
 		internal override void SetEnums()
 		{
-			Projection = Projection switch {
+			Projection = Projection switch
+			{
 				EnvironmentProjection.Wallpaper => EnvironmentProjection.Wallpaper,
 				_ => EnvironmentProjection.Equirectangular
 			};

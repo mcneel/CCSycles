@@ -1,5 +1,5 @@
 /**
-Copyright 2014 Robert McNeel and Associates
+Copyright 2014-2024 Robert McNeel and Associates
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -92,7 +92,8 @@ namespace ccl.ShaderNodes
 		}
 
 		internal TextureNode(Shader type) :
-			this(type, "texturenode baseclass") { }
+			this(type, "texturenode baseclass")
+		{ }
 
 		internal TextureNode(Shader shader, string name) :
 			base(shader, name)
@@ -219,7 +220,7 @@ namespace ccl.ShaderNodes
 
 		internal override void SetDirectMembers()
 		{
-			CSycles.shadernode_set_enum(Id, "color_space", ColorSpace == TextureColorSpace.None? 0 : 1);
+			CSycles.shadernode_set_enum(Id, "color_space", ColorSpace == TextureColorSpace.None ? 0 : 1);
 			CSycles.shadernode_set_member_bool(Id, "useminmax", UseMin || UseMax);
 			if (UseMin)
 			{

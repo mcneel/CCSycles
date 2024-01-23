@@ -1,5 +1,5 @@
 /**
-Copyright 2014 Robert McNeel and Associates
+Copyright 2014-2024 Robert McNeel and Associates
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -70,13 +70,13 @@ namespace ccl
 
 		public void WaitUntilLocked()
 		{
-			if(Destroyed) return;
+			if (Destroyed) return;
 			Scene.WaitUntilLocked();
 		}
 
 		public void Unlock()
 		{
-			if(Destroyed) return;
+			if (Destroyed) return;
 			Scene.Unlock();
 		}
 

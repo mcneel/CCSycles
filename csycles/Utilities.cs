@@ -1,5 +1,5 @@
 /**
-Copyright 2014 Robert McNeel and Associates
+Copyright 2014-2024 Robert McNeel and Associates
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -14,15 +14,15 @@ See the License for the specific language governing permissions and
 limitations under the License.
 **/
 
+using ccl.ShaderNodes;
+using ccl.ShaderNodes.Sockets;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Xml;
-using ccl.ShaderNodes;
-using ccl.ShaderNodes.Sockets;
 
 namespace cclext
 {
-	public static class Extensions
+  public static class Extensions
 	{
 		public static string FirstCharacterToLower(string str)
 		{
@@ -36,7 +36,7 @@ namespace cclext
 namespace ccl
 {
 
-	public delegate void ConsoleWriteDelegate(string message);
+  public delegate void ConsoleWriteDelegate(string message);
 
 	public class Utilities
 	{

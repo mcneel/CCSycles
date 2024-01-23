@@ -1,5 +1,5 @@
 /**
-Copyright 2014 Robert McNeel and Associates
+Copyright 2014-2024 Robert McNeel and Associates
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -14,9 +14,9 @@ See the License for the specific language governing permissions and
 limitations under the License.
 **/
 
-using System;
-using ccl.ShaderNodes.Sockets;
 using ccl.Attributes;
+using ccl.ShaderNodes.Sockets;
+using System;
 
 namespace ccl.ShaderNodes
 {
@@ -116,7 +116,7 @@ namespace ccl.ShaderNodes
 			AddSocket(IsVolumeScatterRay);
 			RayLength = new FloatSocket(parentNode, "Ray Length", "ray_length");
 			AddSocket(RayLength);
-			RayDepth = new FloatSocket(parentNode, "Ray Depth" ,"ray_depth");
+			RayDepth = new FloatSocket(parentNode, "Ray Depth", "ray_depth");
 			AddSocket(RayDepth);
 			DiffuseDepth = new FloatSocket(parentNode, "Diffuse Depth", "diffuse_depth");
 			AddSocket(DiffuseDepth);
@@ -176,5 +176,5 @@ namespace ccl.ShaderNodes
 			inputs = new LightPathInputs();
 			outputs = new LightPathOutputs(this);
 		}
-  }
+	}
 }

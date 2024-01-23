@@ -1,8 +1,5 @@
-
-
-using System;
 /**
-Copyright 2014-2017 Robert McNeel and Associates
+Copyright 2014-2024 Robert McNeel and Associates
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -19,10 +16,10 @@ limitations under the License.
 namespace ccl.ShaderNodes.Sockets
 {
 
-	/// <summary>
-	/// Interface for Socket implementations.
-	/// </summary>
-	public interface ISocket
+  /// <summary>
+  /// Interface for Socket implementations.
+  /// </summary>
+  public interface ISocket
 	{
 		/// <summary>
 		/// Get or set the UI Name for this socket.
