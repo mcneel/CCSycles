@@ -1,5 +1,5 @@
 /**
-Copyright 2014 Robert McNeel and Associates
+Copyright 2014-2024 Robert McNeel and Associates
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -46,8 +46,8 @@ namespace ccl
 	/// <summary>
 	///  Device type mask used for Cycles initialisation
 	/// </summary>
-  public enum DeviceTypeMask : uint
-  {
+	public enum DeviceTypeMask : uint
+	{
 		CPU = (1 << (int)DeviceType.Cpu),
 		CUDA = (1 << (int)DeviceType.Cuda),
 		OPTIX = (1 << (int)DeviceType.Optix),
@@ -55,15 +55,15 @@ namespace ccl
 		METAL = (1 << (int)DeviceType.Metal),
 		ONEAPI = (1 << (int)DeviceType.OneApi),
 		All = 0xFFFFFFFF
-  }
+	}
 
-  /// <summary>
-  /// Shading systems available in Cycles.
-  ///
-  /// Note that currently only SVM is supported
-  /// in C[CS]?ycles
-  /// </summary>
-  public enum ShadingSystem : uint
+	/// <summary>
+	/// Shading systems available in Cycles.
+	///
+	/// Note that currently only SVM is supported
+	/// in C[CS]?ycles
+	/// </summary>
+	public enum ShadingSystem : uint
 	{
 		OSL,
 		SVM
@@ -97,16 +97,17 @@ namespace ccl
 		Static
 	}
 
-	public enum BvhLayout {
+	public enum BvhLayout
+	{
 
-  Bvh2 = (1 << 0),
-  Bvh4 = (1 << 1),
-  Bvh8 = (1 << 2),
+		Bvh2 = (1 << 0),
+		Bvh4 = (1 << 1),
+		Bvh8 = (1 << 2),
 
-  Embree = (1 << 3),
-  OptiX = (1 << 4),
+		Embree = (1 << 3),
+		OptiX = (1 << 4),
 
-  Default = Bvh8,
+		Default = Bvh8,
 	}
 
 	public enum CameraType : uint
@@ -140,7 +141,8 @@ namespace ccl
 		Triangle,
 	}
 
-	public enum InterpolationType : int {
+	public enum InterpolationType : int
+	{
 		None = -1,
 		Linear = 0,
 		Closest = 1,
@@ -184,7 +186,7 @@ namespace ccl
 
 		/* note that these can use maximum 12 bits, the other are for layers */
 
-		AllVisibility = ((1 << 14) -1),
+		AllVisibility = ((1 << 14) - 1),
 
 		MisSkip = 1 << 15,
 		DiffuseAncestor = 1 << 16,

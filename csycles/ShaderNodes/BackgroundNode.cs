@@ -1,5 +1,5 @@
 /**
-Copyright 2014 Robert McNeel and Associates
+Copyright 2014-2024 Robert McNeel and Associates
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -14,10 +14,10 @@ See the License for the specific language governing permissions and
 limitations under the License.
 **/
 
-using System.Xml;
-using ccl.ShaderNodes.Sockets;
 using ccl.Attributes;
+using ccl.ShaderNodes.Sockets;
 using System;
+using System.Xml;
 
 namespace ccl.ShaderNodes
 {
@@ -108,7 +108,7 @@ namespace ccl.ShaderNodes
 			ins.Strength.Value = 1.0f;
 		}
 
-	internal override void ParseXml(XmlReader xmlNode)
+		internal override void ParseXml(XmlReader xmlNode)
 		{
 			Utilities.Instance.get_float4(ins.Color, xmlNode.GetAttribute("color"));
 			Utilities.Instance.get_float(ins.Strength, xmlNode.GetAttribute("strength"));

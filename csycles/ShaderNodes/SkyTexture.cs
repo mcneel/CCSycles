@@ -1,5 +1,5 @@
 /**
-Copyright 2014 Robert McNeel and Associates
+Copyright 2014-2024 Robert McNeel and Associates
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -14,11 +14,11 @@ See the License for the specific language governing permissions and
 limitations under the License.
 **/
 
-using System;
-using System.Xml;
-using ccl.ShaderNodes.Sockets;
 using ccl.Attributes;
+using ccl.ShaderNodes.Sockets;
+using System;
 using System.Text;
+using System.Xml;
 
 namespace ccl.ShaderNodes
 {
@@ -120,7 +120,7 @@ namespace ccl.ShaderNodes
 			if (!string.IsNullOrEmpty(turbidity))
 			{
 				var turb = 0.0f;
-				if(Utilities.Instance.get_float(ref turb, turbidity)) Turbidity = turb;
+				if (Utilities.Instance.get_float(ref turb, turbidity)) Turbidity = turb;
 			}
 			if (!string.IsNullOrEmpty(ground_albedo))
 			{
@@ -147,7 +147,7 @@ namespace ccl.ShaderNodes
 		public override string CreateCodeAttributes()
 		{
 			var code = new StringBuilder($"{VariableName}.SkyType = {SkyType};", 1024);
-			code.Append( $"{VariableName}.GroundAlbedo = {GroundAlbedo};");
+			code.Append($"{VariableName}.GroundAlbedo = {GroundAlbedo};");
 			code.Append($"{VariableName}.Turbidity = {Turbidity};");
 			code.Append($"{VariableName}.SunDirection = new float4({SunDirection.x} , {SunDirection.y}, {SunDirection.z}, 0.0);");
 

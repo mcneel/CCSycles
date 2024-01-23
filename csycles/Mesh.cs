@@ -1,5 +1,5 @@
 /**
-Copyright 2014 Robert McNeel and Associates
+Copyright 2014-2024 Robert McNeel and Associates
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -58,7 +58,7 @@ namespace ccl
 			Client = client;
 			Shader = shader;
 
-		  GeometryPointer = geometry_ptr;
+			GeometryPointer = geometry_ptr;
 		}
 
 		/// <summary>
@@ -124,7 +124,7 @@ namespace ccl
 		/// <param name="verts"></param>
 		public void SetVerts(ref float[] verts)
 		{
-			CSycles.mesh_set_verts(Client.Scene.Id, GeometryPointer, ref verts, (uint) (verts.Length/3));
+			CSycles.mesh_set_verts(Client.Scene.Id, GeometryPointer, ref verts, (uint)(verts.Length / 3));
 		}
 
 		/// <summary>
@@ -134,7 +134,7 @@ namespace ccl
 		/// <param name="smooth"></param>
 		public void SetVertTris(ref int[] faces, bool smooth)
 		{
-			CSycles.mesh_set_tris(Client.Scene.Id, GeometryPointer, ref faces, (uint) (faces.Length/3), Shader.Id, smooth);
+			CSycles.mesh_set_tris(Client.Scene.Id, GeometryPointer, ref faces, (uint)(faces.Length / 3), Shader.Id, smooth);
 		}
 
 		/// <summary>
@@ -143,7 +143,7 @@ namespace ccl
 		/// <param name="vertex_normals"></param>
 		public void SetVertNormals(ref float[] vertex_normals)
 		{
-			CSycles.mesh_set_vertex_normals(Client.Scene.Id, GeometryPointer, ref vertex_normals, (uint) (vertex_normals.Length/3));
+			CSycles.mesh_set_vertex_normals(Client.Scene.Id, GeometryPointer, ref vertex_normals, (uint)(vertex_normals.Length / 3));
 		}
 
 		/// <summary>
@@ -153,7 +153,7 @@ namespace ccl
 		/// <param name="uvmap_name">UiName for the UV map attribute set</param>
 		public void SetUvs(ref float[] uvs, string uvmap_name)
 		{
-			CSycles.mesh_set_uvs(Client.Scene.Id, GeometryPointer, ref uvs, (uint) (uvs.Length/2), uvmap_name);
+			CSycles.mesh_set_uvs(Client.Scene.Id, GeometryPointer, ref uvs, (uint)(uvs.Length / 2), uvmap_name);
 		}
 
 		/// <summary>
@@ -162,7 +162,7 @@ namespace ccl
 		/// <param name="uvs"></param>
 		public void SetVertexColors(ref float[] vertexcolors)
 		{
-			CSycles.mesh_set_vertex_colors(Client.Scene.Id, GeometryPointer, ref vertexcolors, (uint) (vertexcolors.Length/3));
+			CSycles.mesh_set_vertex_colors(Client.Scene.Id, GeometryPointer, ref vertexcolors, (uint)(vertexcolors.Length / 3));
 		}
 
 		/// <summary>

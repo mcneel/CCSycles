@@ -1,5 +1,5 @@
 /**
-Copyright 2014-2019 Robert McNeel and Associates
+Copyright 2014-2024 Robert McNeel and Associates
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -14,9 +14,9 @@ See the License for the specific language governing permissions and
 limitations under the License.
 **/
 
-using System;
-using ccl.ShaderNodes.Sockets;
 using ccl.Attributes;
+using ccl.ShaderNodes.Sockets;
+using System;
 
 /**
  * TODO:
@@ -86,6 +86,6 @@ namespace ccl.ShaderNodes
 			inputs = new TangentInputs();
 			outputs = new TangentOutputs(this);
 		}
-  }
+	}
 }
 

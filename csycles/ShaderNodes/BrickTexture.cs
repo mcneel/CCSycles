@@ -1,5 +1,5 @@
 /**
-Copyright 2014 Robert McNeel and Associates
+Copyright 2014-2024 Robert McNeel and Associates
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -14,10 +14,10 @@ See the License for the specific language governing permissions and
 limitations under the License.
 **/
 
-using System.Xml;
-using System;
-using ccl.ShaderNodes.Sockets;
 using ccl.Attributes;
+using ccl.ShaderNodes.Sockets;
+using System;
+using System.Xml;
 
 namespace ccl.ShaderNodes
 {
@@ -81,7 +81,7 @@ namespace ccl.ShaderNodes
 			AddSocket(Color2);
 			Mortar = new ColorSocket(parentNode, "Mortar", "mortar");
 			AddSocket(Mortar);
-			Vector= new ColorSocket(parentNode, "Vector", "vector");
+			Vector = new ColorSocket(parentNode, "Vector", "vector");
 			AddSocket(Vector);
 
 			Scale = new FloatSocket(parentNode, "Scale", "scale");
@@ -180,12 +180,12 @@ namespace ccl.ShaderNodes
 		}
 
 		#region direct member variables
-	/// <summary>
-	/// Offset of brick start on row per row. 0.5f means
-	/// regular brick pattern (with OffsetFrequency 2), 0.0f means bricks on top of
-	/// each other
-	/// </summary>
-	public float Offset { get; set; }
+		/// <summary>
+		/// Offset of brick start on row per row. 0.5f means
+		/// regular brick pattern (with OffsetFrequency 2), 0.0f means bricks on top of
+		/// each other
+		/// </summary>
+		public float Offset { get; set; }
 		/// <summary>
 		/// Frequency to use offset by (row).
 		/// </summary>
@@ -198,7 +198,7 @@ namespace ccl.ShaderNodes
 		/// Use squash factor every nth row
 		/// </summary>
 		public int SquashFrequency { get; set; }
-#endregion
+		#endregion
 
 		internal override void SetDirectMembers()
 		{

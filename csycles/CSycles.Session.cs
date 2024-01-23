@@ -1,3 +1,19 @@
+/**
+Copyright 2014-2024 Robert McNeel and Associates
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+**/
+
 using System;
 using System.Runtime.InteropServices;
 
@@ -5,7 +21,7 @@ namespace ccl
 {
 	public partial class CSycles
 	{
-#region session
+		#region session
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		private static extern int cycles_session_reset(IntPtr sessionId, int width, int height, int samples, int full_x, int full_y, int full_width, int full_height, int pixelSize);
 		public static int session_reset(IntPtr sessionId, int width, int height, int samples, int full_x, int full_y, int full_width, int full_height, int pixelSize)
@@ -169,7 +185,7 @@ namespace ccl
 		private static extern void cycles_session_params_set_experimental(IntPtr sessionParamsId, uint experimental);
 		public static void session_params_set_experimental(IntPtr sessionParamsId, bool experimental)
 		{
-			cycles_session_params_set_experimental(sessionParamsId, (uint)(experimental?1:0));
+			cycles_session_params_set_experimental(sessionParamsId, (uint)(experimental ? 1 : 0));
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
@@ -234,9 +250,9 @@ namespace ccl
 		{
 			cycles_session_params_set_use_resolution_divider(sessionParamsId, useResolutionDivider);
 		}
-#endregion
+		#endregion
 
-#region progress
+		#region progress
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		private static extern void cycles_progress_reset(IntPtr sessionId);
 		public static void progress_reset(IntPtr sessionId)
@@ -262,7 +278,7 @@ namespace ccl
 		private static extern void cycles_progress_get_time(IntPtr sessionId, out double totalTime, out double sampleTime);
 		public static void progress_get_time(IntPtr sessionId, out double totalTime, out double sampleTime)
 		{
-			cycles_progress_get_time(sessionId,  out totalTime, out sampleTime);
+			cycles_progress_get_time(sessionId, out totalTime, out sampleTime);
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
@@ -287,9 +303,12 @@ namespace ccl
 				stringHolderPtr = cycles_string_holder_new();
 			}
 
-			public string Value {
-				get {
-					if(stringHolderPtr!=IntPtr.Zero) {
+			public string Value
+			{
+				get
+				{
+					if (stringHolderPtr != IntPtr.Zero)
+					{
 						IntPtr strPtr = cycles_string_holder_get(stringHolderPtr);
 						string s = Marshal.PtrToStringAnsi(strPtr);
 						return s;
@@ -305,8 +324,10 @@ namespace ccl
 
 			protected virtual void Dispose(bool disposing)
 			{
-				if (!disposedValue) {
-					if (disposing) {
+				if (!disposedValue)
+				{
+					if (disposing)
+					{
 					}
 
 					cycles_string_holder_delete(stringHolderPtr);
@@ -324,7 +345,7 @@ namespace ccl
 			#endregion
 
 
-	}
+		}
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
 		private static extern IntPtr cycles_string_holder_new();
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
@@ -336,11 +357,13 @@ namespace ccl
 		private static extern bool cycles_progress_get_status(IntPtr sessionId, IntPtr strHolder);
 		public static string progress_get_status(IntPtr sessionId)
 		{
-			using (CSStringHolder stringHolder = new CSStringHolder()) {
+			using (CSStringHolder stringHolder = new CSStringHolder())
+			{
 				bool success = cycles_progress_get_status(sessionId, stringHolder.Ptr);
-				if(success) {
+				if (success)
+				{
 					string status = stringHolder.Value;
-				  return status;
+					return status;
 				}
 			}
 
@@ -348,21 +371,23 @@ namespace ccl
 		}
 
 
-		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention=CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
 		private static extern bool cycles_progress_get_substatus(IntPtr sessionId, IntPtr strHolder);
 		public static string progress_get_substatus(IntPtr sessionId)
 		{
-			using (CSStringHolder stringHolder = new CSStringHolder()) {
+			using (CSStringHolder stringHolder = new CSStringHolder())
+			{
 				bool success = cycles_progress_get_substatus(sessionId, stringHolder.Ptr);
-				if (success) {
+				if (success)
+				{
 					string status = stringHolder.Value;
 					return status;
 				}
 			}
 
-	  return "";
-	}
+			return "";
+		}
 
-#endregion
+		#endregion
 	}
 }

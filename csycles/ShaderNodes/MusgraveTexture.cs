@@ -1,5 +1,5 @@
 /**
-Copyright 2014 Robert McNeel and Associates
+Copyright 2014-2024 Robert McNeel and Associates
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -14,11 +14,11 @@ See the License for the specific language governing permissions and
 limitations under the License.
 **/
 
-using System.Xml;
-using System;
-using ccl.ShaderNodes.Sockets;
 using ccl.Attributes;
+using ccl.ShaderNodes.Sockets;
+using System;
 using System.Text;
+using System.Xml;
 
 namespace ccl.ShaderNodes
 {
@@ -27,10 +27,10 @@ namespace ccl.ShaderNodes
 		public VectorSocket Vector { get; set; }
 		public FloatSocket Scale { get; set; }
 		public FloatSocket Detail { get; set; }
-		public FloatSocket Dimension{ get; set; }
-		public FloatSocket Lacunarity{ get; set; }
-		public FloatSocket Offset{ get; set; }
-		public FloatSocket Gain{ get; set; }
+		public FloatSocket Dimension { get; set; }
+		public FloatSocket Lacunarity { get; set; }
+		public FloatSocket Offset { get; set; }
+		public FloatSocket Gain { get; set; }
 		public FloatSocket W { get; set; }
 
 		public MusgraveInputs(ShaderNode parentNode)
@@ -123,7 +123,7 @@ namespace ccl.ShaderNodes
 		public void SetType(string dist)
 		{
 			dist = dist.Replace(" ", "_");
-			MusgraveType= (MusgraveTypes)System.Enum.Parse(typeof(MusgraveTypes), dist, true);
+			MusgraveType = (MusgraveTypes)System.Enum.Parse(typeof(MusgraveTypes), dist, true);
 		}
 
 		public void SetDimension(string dim)
@@ -166,9 +166,9 @@ namespace ccl.ShaderNodes
 		public override string CreateXmlAttributes()
 		{
 			var code = new StringBuilder($" musgrave_type=\"{MusgraveType}\" ", 1024);
-	  code.Append($" dimension=\"{Dimension}\" ");
+			code.Append($" dimension=\"{Dimension}\" ");
 
-	  return code.ToString();
+			return code.ToString();
 		}
 		public override string CreateCodeAttributes()
 		{

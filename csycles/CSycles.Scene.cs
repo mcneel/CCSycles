@@ -1,3 +1,19 @@
+/**
+Copyright 2014-2024 Robert McNeel and Associates
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+**/
+
 using System;
 using System.Runtime.InteropServices;
 
@@ -5,7 +21,7 @@ namespace ccl
 {
 	public partial class CSycles
 	{
-#region scene
+		#region scene
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		private static extern uint cycles_scene_create(uint sceneParamsId, IntPtr sessionId);
 		public static uint scene_create(uint sceneParamsId, IntPtr sessionId)
@@ -116,52 +132,52 @@ namespace ccl
 		{
 			cycles_scene_set_background_visibility(sessionId, (uint)raypathFlag);
 		}
-#endregion
+		#endregion
 
-#region scene parameters
+		#region scene parameters
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		private static extern uint cycles_scene_params_create(uint shadingsystem, uint bvhtype, uint bvhspatialsplit, int bvhlayout, uint persistentdata);
 		public static uint scene_params_create(ShadingSystem shadingSystem, BvhType bvhType, bool bvhSpatialSplit, BvhLayout bvhLayout, bool persistentData)
 		{
-			return cycles_scene_params_create((uint)shadingSystem, (uint)bvhType, (uint)(bvhSpatialSplit?1:0), (int)(bvhLayout), (uint)(persistentData?1:0));
+			return cycles_scene_params_create((uint)shadingSystem, (uint)bvhType, (uint)(bvhSpatialSplit ? 1 : 0), (int)(bvhLayout), (uint)(persistentData ? 1 : 0));
 		}
-		  
+
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		private static extern void cycles_scene_params_set_bvh_type(uint sceneParamsId, uint type);
 		public static void scene_params_set_bvh_type(uint sceneParamsId, BvhType type)
 		{
 			cycles_scene_params_set_bvh_type(sceneParamsId, (uint)type);
 		}
-  
+
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		private static extern void cycles_scene_params_set_bvh_spatial_split(uint sceneParamsId, uint split);
 		public static void scene_params_set_bvh_spatial_split(uint sceneParamsId, bool split)
 		{
-			cycles_scene_params_set_bvh_spatial_split(sceneParamsId, (uint)(split?1:0));
+			cycles_scene_params_set_bvh_spatial_split(sceneParamsId, (uint)(split ? 1 : 0));
 		}
-  
+
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		private static extern void cycles_scene_params_set_qbvh(uint sceneParamsId, uint qbvh);
 		public static void scene_params_set_qbvh(uint sceneParamsId, bool qbvh)
 		{
-			cycles_scene_params_set_qbvh(sceneParamsId, (uint)(qbvh?1:0));
+			cycles_scene_params_set_qbvh(sceneParamsId, (uint)(qbvh ? 1 : 0));
 		}
-  
+
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		private static extern void cycles_scene_params_set_shadingsystem(uint sceneParamsId, uint shadingsystem);
 		public static void scene_params_set_shadingsystem(uint sceneParamsId, ShadingSystem system)
 		{
 			cycles_scene_params_set_shadingsystem(sceneParamsId, (uint)system);
 		}
-  
+
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		private static extern void cycles_scene_params_set_persistent_data(uint sceneParamsId, uint persistentData);
 		public static void scene_params_set_persistent_data(uint sceneParamsId, bool persistent)
 		{
-			cycles_scene_params_set_persistent_data(sceneParamsId, (uint)(persistent?1:0));
+			cycles_scene_params_set_persistent_data(sceneParamsId, (uint)(persistent ? 1 : 0));
 		}
-  
-#endregion
+
+		#endregion
 
 
 	}

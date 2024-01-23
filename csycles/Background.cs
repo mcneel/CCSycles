@@ -1,5 +1,5 @@
 /**
-Copyright 2014 Robert McNeel and Associates
+Copyright 2014-2024 Robert McNeel and Associates
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -51,7 +51,7 @@ namespace ccl
 			}
 			get
 			{
-				if(bgShader == null)
+				if (bgShader == null)
 				{
 					var shid = CSycles.scene_get_background_shader(Session.Scene.Id);
 					bgShader = new Shader(Session.Scene, shid);

@@ -1,5 +1,5 @@
 /**
-Copyright 2014 Robert McNeel and Associates
+Copyright 2014-2024 Robert McNeel and Associates
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -14,10 +14,10 @@ See the License for the specific language governing permissions and
 limitations under the License.
 **/
 
+using ccl.Attributes;
+using ccl.ShaderNodes.Sockets;
 using System;
 using System.Xml;
-using ccl.ShaderNodes.Sockets;
-using ccl.Attributes;
 
 namespace ccl.ShaderNodes
 {
@@ -53,28 +53,28 @@ namespace ccl.ShaderNodes
 
 			BaseColor = new ColorSocket(parentNode, "Base Color", "base_color");
 			//SpecularColor          = new ColorSocket(parentNode, "Specular Color");
-			Subsurface             = new FloatSocket(parentNode, "Subsurface", "subsurface");
-			SubsurfaceRadius       = new VectorSocket(parentNode, "Subsurface Radius", "subsurface_radius");
-			SubsurfaceColor        = new ColorSocket(parentNode, "Subsurface Color", "subsurface_color");
-			Metallic               = new FloatSocket(parentNode, "Metallic", "metallic");
-			Specular               = new FloatSocket(parentNode, "Specular", "specular");
-			SpecularTint           = new FloatSocket(parentNode, "Specular Tint", "specular_tint");
-			Roughness              = new FloatSocket(parentNode, "Roughness", "roughness");
-			Anisotropic            = new FloatSocket(parentNode, "Anisotropic", "anisotropic");
-			Sheen                  = new FloatSocket(parentNode, "Sheen", "sheen");
-			SheenTint              = new FloatSocket(parentNode, "Sheen Tint", "sheen_tint");
-			Clearcoat              = new FloatSocket(parentNode, "Clearcoat", "clearcoat");
-			ClearcoatGloss         = new FloatSocket(parentNode, "Clearcoat Roughness", "clearcoat_roughness");
-			IOR                    = new FloatSocket(parentNode, "IOR", "ior");
-			Transmission           = new FloatSocket(parentNode, "Transmission", "transmission");
-			TransmissionRoughness  = new FloatSocket(parentNode, "Transmission Roughness", "transmission_roughness");
-			AnisotropicRotation    = new FloatSocket(parentNode, "Anisotropic Rotation",  "anisotropic_rotation");
-			Emission               = new ColorSocket(parentNode, "Emission", "emission");
-			EmissionStrength       = new FloatSocket(parentNode, "Emission Strength", "emission_strength");
-			Alpha                  = new FloatSocket(parentNode, "Alpha", "alpha");
-			Normal                 = new VectorSocket(parentNode, "Normal", "normal");
-			ClearcoatNormal        = new VectorSocket(parentNode, "Clearcoat Normal", "clearcoat_normal");
-			Tangent                = new VectorSocket(parentNode, "Tangent", "tangent");
+			Subsurface = new FloatSocket(parentNode, "Subsurface", "subsurface");
+			SubsurfaceRadius = new VectorSocket(parentNode, "Subsurface Radius", "subsurface_radius");
+			SubsurfaceColor = new ColorSocket(parentNode, "Subsurface Color", "subsurface_color");
+			Metallic = new FloatSocket(parentNode, "Metallic", "metallic");
+			Specular = new FloatSocket(parentNode, "Specular", "specular");
+			SpecularTint = new FloatSocket(parentNode, "Specular Tint", "specular_tint");
+			Roughness = new FloatSocket(parentNode, "Roughness", "roughness");
+			Anisotropic = new FloatSocket(parentNode, "Anisotropic", "anisotropic");
+			Sheen = new FloatSocket(parentNode, "Sheen", "sheen");
+			SheenTint = new FloatSocket(parentNode, "Sheen Tint", "sheen_tint");
+			Clearcoat = new FloatSocket(parentNode, "Clearcoat", "clearcoat");
+			ClearcoatGloss = new FloatSocket(parentNode, "Clearcoat Roughness", "clearcoat_roughness");
+			IOR = new FloatSocket(parentNode, "IOR", "ior");
+			Transmission = new FloatSocket(parentNode, "Transmission", "transmission");
+			TransmissionRoughness = new FloatSocket(parentNode, "Transmission Roughness", "transmission_roughness");
+			AnisotropicRotation = new FloatSocket(parentNode, "Anisotropic Rotation", "anisotropic_rotation");
+			Emission = new ColorSocket(parentNode, "Emission", "emission");
+			EmissionStrength = new FloatSocket(parentNode, "Emission Strength", "emission_strength");
+			Alpha = new FloatSocket(parentNode, "Alpha", "alpha");
+			Normal = new VectorSocket(parentNode, "Normal", "normal");
+			ClearcoatNormal = new VectorSocket(parentNode, "Clearcoat Normal", "clearcoat_normal");
+			Tangent = new VectorSocket(parentNode, "Tangent", "tangent");
 
 			AddSocket(BaseColor);
 			//AddSocket(SpecularColor);
@@ -184,7 +184,7 @@ namespace ccl.ShaderNodes
 		}
 
 		public Distributions Distribution { get; set; }
-		public ScatterMethod Sss {get; set; }
+		public ScatterMethod Sss { get; set; }
 
 		internal override void SetEnums()
 		{
@@ -224,7 +224,8 @@ namespace ccl.ShaderNodes
 			}
 			str = "";
 			Utilities.Instance.read_string(ref str, xmlNode.GetAttribute("sss"));
-			if (!string.IsNullOrEmpty(str)) {
+			if (!string.IsNullOrEmpty(str))
+			{
 				ScatterMethod sss;
 				if (Enum.TryParse(str, true, out sss)) Sss = sss;
 			}

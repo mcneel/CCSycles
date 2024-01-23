@@ -1,25 +1,41 @@
-using System.Runtime.InteropServices;
+/**
+Copyright 2014-2024 Robert McNeel and Associates
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+**/
+
 using System;
+using System.Runtime.InteropServices;
 
 namespace ccl
 {
 	public partial class CSycles
 	{
-#region integrator
+		#region integrator
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		private static extern void cycles_integrator_tag_update(IntPtr sessionId);
 		public static void integrator_tag_update(IntPtr sessionId)
 		{
 			cycles_integrator_tag_update(sessionId);
 		}
-		
+
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		private static extern void cycles_integrator_set_max_bounce(IntPtr sessionId, int value);
 		public static void integrator_set_max_bounce(IntPtr sessionId, int value)
 		{
 			cycles_integrator_set_max_bounce(sessionId, value);
 		}
-		
+
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		private static extern void cycles_integrator_set_min_bounce(IntPtr sessionId, int value);
 		public static void integrator_set_min_bounce(IntPtr sessionId, int value)
@@ -195,8 +211,8 @@ namespace ccl
 			cycles_integrator_set_light_sampling_threshold(sessionId, value);
 		}
 
-  
 
-#endregion
+
+		#endregion
 	}
 }

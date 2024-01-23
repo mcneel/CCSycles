@@ -1,11 +1,27 @@
-using System.Runtime.InteropServices;
+/**
+Copyright 2014-2024 Robert McNeel and Associates
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+**/
+
 using System;
+using System.Runtime.InteropServices;
 
 namespace ccl
 {
 	public partial class CSycles
 	{
-#region object
+		#region object
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		private static extern void cycles_scene_object_set_matrix(IntPtr sessionId, IntPtr objectId,
 			float a, float b, float c, float d,
@@ -94,7 +110,7 @@ namespace ccl
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		private static extern uint cycles_scene_add_clipping_plane(IntPtr sessionId, float a, float b, float c, float d);
-  
+
 		public static uint scene_add_clipping_plane(IntPtr sessionId, float4 equation)
 		{
 			return scene_add_clipping_plane(sessionId, equation.x, equation.y, equation.z, equation.w);
@@ -106,7 +122,7 @@ namespace ccl
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		private static extern void cycles_scene_set_clipping_plane(IntPtr sessionId, uint cpId, float a, float b, float c, float d);
-  
+
 		public static void scene_set_clipping_plane(IntPtr sessionId, uint cpId, float a, float b, float c, float d)
 		{
 			cycles_scene_set_clipping_plane(sessionId, cpId, a, b, c, d);
@@ -118,7 +134,7 @@ namespace ccl
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		private static extern void cycles_scene_clear_clipping_planes(IntPtr sessionId);
-  
+
 		public static void scene_clear_clipping_planes(IntPtr sessionId)
 		{
 			cycles_scene_clear_clipping_planes(sessionId);
@@ -126,7 +142,7 @@ namespace ccl
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		private static extern void cycles_scene_discard_clipping_plane(IntPtr sessionId, uint cpId);
-  
+
 		public static void scene_discard_clipping_plane(IntPtr sessionId, uint cpId)
 		{
 			cycles_scene_discard_clipping_plane(sessionId, cpId);

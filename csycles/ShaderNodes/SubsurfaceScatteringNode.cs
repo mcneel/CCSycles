@@ -1,5 +1,5 @@
 /**
-Copyright 2014 Robert McNeel and Associates
+Copyright 2014-2024 Robert McNeel and Associates
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -14,10 +14,10 @@ See the License for the specific language governing permissions and
 limitations under the License.
 **/
 
-using System.Xml;
-using ccl.ShaderNodes.Sockets;
 using ccl.Attributes;
+using ccl.ShaderNodes.Sockets;
 using System;
+using System.Xml;
 
 namespace ccl.ShaderNodes
 {
@@ -103,8 +103,10 @@ namespace ccl.ShaderNodes
 		{
 			var falloff = FalloffTypes.Burley;
 			var falloffstr = SssMethodFromInt(m);
-			if (!string.IsNullOrEmpty(falloffstr)) {
-				if (Enum.TryParse(falloffstr, out FalloffTypes ft)) {
+			if (!string.IsNullOrEmpty(falloffstr))
+			{
+				if (Enum.TryParse(falloffstr, out FalloffTypes ft))
+				{
 					falloff = ft;
 				}
 			}
@@ -157,10 +159,10 @@ namespace ccl.ShaderNodes
 			Utilities.Instance.get_float(ins.IOR, xmlNode.GetAttribute("texture_blur"));
 
 			var falloff = xmlNode.GetAttribute("falloff");
-			if(!string.IsNullOrEmpty(falloff))
+			if (!string.IsNullOrEmpty(falloff))
 			{
 				FalloffTypes ft = FalloffTypes.Cubic;
-				if(Enum.TryParse(falloff, out ft))
+				if (Enum.TryParse(falloff, out ft))
 				{
 					Falloff = ft;
 				}
