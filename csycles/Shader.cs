@@ -212,6 +212,21 @@ namespace ccl
 		}
 
 		/// <summary>
+		/// Set or get the pass index, used for the Material ID pass
+		/// </summary>
+		public int PassId
+		{
+			set
+			{
+				CSycles.shader_set_pass_id(Id, value);
+			}
+			get
+			{
+				return CSycles.shader_get_pass_id(Id);
+			}
+		}
+
+		/// <summary>
 		/// Set to true if this shader supports transparent shadows.
 		/// </summary>
 		public bool UseTransparentShadow
