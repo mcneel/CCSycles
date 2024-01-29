@@ -223,6 +223,22 @@ namespace ccl
 		{
 			cycles_shader_dump_graph(shaderId, filename);
 		}
+
+
+		[DllImport(Constants.ccycles, SetLastError = false, CharSet = CharSet.Ansi,
+			CallingConvention = CallingConvention.Cdecl)]
+		private static extern int cycles_shader_get_pass_id(IntPtr shaderId);
+		public static int shader_get_pass_id(IntPtr shaderId)
+		{
+			return cycles_shader_get_pass_id(shaderId);
+		}
+		[DllImport(Constants.ccycles, SetLastError = false, CharSet = CharSet.Ansi,
+			CallingConvention = CallingConvention.Cdecl)]
+		private static extern void cycles_shader_set_pass_id(IntPtr shaderId, int passId);
+		public static void shader_set_pass_id(IntPtr shaderId, int passId)
+		{
+			cycles_shader_set_pass_id(shaderId, passId);
+		}
 		[DllImport(Constants.ccycles, SetLastError = false, CharSet = CharSet.Ansi,
 			CallingConvention = CallingConvention.Cdecl)]
 		private static extern void cycles_shader_set_name(IntPtr shaderId, [MarshalAs(UnmanagedType.LPStr)] string name);
