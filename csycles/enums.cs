@@ -236,6 +236,8 @@ namespace ccl
 		AovValue,
 		AdaptiveAuxBuffer,
 		SampleCount,
+		ShadowCatcherTransparentSampleCount,
+		ShadowCatcherBackgroundSampleCount,
 		DiffuseColor,
 		GlossyColor,
 		TransmissionColor,
