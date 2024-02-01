@@ -48,18 +48,21 @@ namespace ccl
 		{
 			get
 			{
+				if (IsMulti)
+				{
+					var n = string.Join(", ", (from sd in Subdevices select sd.NiceName).ToList());
+					var multiType = FirstFromMulti.Type;
+					if(multiType == DeviceType.Optix) {
+						n = n.Replace(" (Optix)", "");
+					}
+					return $"Multi ({multiType}): {n}";
+				}
 				if (IsCuda || IsHip || IsMetal)
 				{
 					return Name.Split('_')[1];
 				}
 				if (IsOptix)
 					return $"{Name.Split('_')[1]} (Optix)";
-				if (IsMulti)
-				{
-					var n = string.Join(",", (from sd in Subdevices select sd.NiceName).ToList());
-					var multiType = (from sd in Subdevices select sd.Type).First();
-					return $"Multi ({multiType}): {n}";
-				}
 				return Name;
 			}
 		}
@@ -130,6 +133,23 @@ namespace ccl
 		public bool IsMulti => Type == DeviceType.Multi;
 
 		/// <summary>
+		/// True if this is a multi device that also uses CPU
+		/// </summary>
+		public bool MultiWithCpu => Subdevices.Where((Device d) => d.Type == DeviceType.Cpu).Any();
+
+		public Device FirstFromMulti  {
+			get
+			{
+				var l = Subdevices.Where((Device d) => d.Type != DeviceType.Cpu);
+				if(l.Any()) {
+					return l.First();	
+				}
+
+				return FirstCpu;
+			}
+		}
+
+		/// <summary>
 		/// True if this is a Multi Cuda device
 		/// </summary>
 		public bool IsMultiCuda => Type == DeviceType.Multi && Subdevices.Where((Device d) => d.Type == DeviceType.Cuda).Any();
@@ -139,6 +159,21 @@ namespace ccl
 		/// True if this is a Multi Optix device
 		/// </summary>
 		public bool IsMultiOptix => Type == DeviceType.Multi && Subdevices.Where((Device d) => d.Type == DeviceType.Optix).Any();
+
+		/// <summary>
+		/// True if this is a Multi Metal device
+		/// </summary>
+		public bool IsMultiMetal => Type == DeviceType.Multi && Subdevices.Where((Device d) => d.Type == DeviceType.Metal).Any();
+
+		/// <summary>
+		/// True if this is a Multi Hip device
+		/// </summary>
+		public bool IsMultiHip => Type == DeviceType.Multi && Subdevices.Where((Device d) => d.Type == DeviceType.Hip).Any();
+
+		/// <summary>
+		/// True if this is a Multi OneApi device
+		/// </summary>
+		public bool IsMultiOneApi => Type == DeviceType.Multi && Subdevices.Where((Device d) => d.Type == DeviceType.OneApi).Any();
 
 		/// <summary>
 		/// String representation of this device
@@ -381,6 +416,11 @@ namespace ccl
 				DisplayDevice = CSycles.device_display_device(idx),
 			};
 
+			if(d.Description == "Multi Device")
+			{
+				d.Type = DeviceType.Multi;
+			}
+
 			return d;
 		}
 
@@ -447,7 +487,7 @@ namespace ccl
 			get
 			{
 				if (!IsMulti) return $"{Id}";
-				return string.Join(",", (from sd in Subdevices select sd.Id).ToList());
+				return string.Join(", ", (from sd in Subdevices select sd.Id).ToList());
 			}
 		}
 		/// <summary>
@@ -484,6 +524,10 @@ namespace ccl
 		/// <returns></returns>
 		static public List<Device> DeviceListFromIntList(List<int> ids)
 		{
+			// TODO filter out first all ids that do not
+			// match an existing device. This can happen due to hardware
+			// configuration changes where an ID no longer is valid
+			// after an ID was selected
 			return ids.ConvertAll((int id) => GetDevice(id));
 		}
 
