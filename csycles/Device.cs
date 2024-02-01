@@ -48,18 +48,18 @@ namespace ccl
 		{
 			get
 			{
+				if (IsMulti)
+				{
+					var n = string.Join(",", (from sd in Subdevices select sd.NiceName).ToList());
+					var multiType = FirstFromMulti.Type;
+					return $"Multi ({multiType}): {n}";
+				}
 				if (IsCuda || IsHip || IsMetal)
 				{
 					return Name.Split('_')[1];
 				}
 				if (IsOptix)
 					return $"{Name.Split('_')[1]} (Optix)";
-				if (IsMulti)
-				{
-					var n = string.Join(",", (from sd in Subdevices select sd.NiceName).ToList());
-					var multiType = (from sd in Subdevices select sd.Type).First();
-					return $"Multi ({multiType}): {n}";
-				}
 				return Name;
 			}
 		}
@@ -128,6 +128,18 @@ namespace ccl
 		/// True if this device is a Multi device
 		/// </summary>
 		public bool IsMulti => Type == DeviceType.Multi;
+
+		public Device FirstFromMulti  {
+			get
+			{
+				var l = Subdevices.Where((Device d) => d.Type != DeviceType.Cpu);
+				if(l.Any()) {
+					return l.First();	
+				}
+
+				return FirstCpu;
+			}
+		}
 
 		/// <summary>
 		/// True if this is a Multi Cuda device
@@ -381,6 +393,11 @@ namespace ccl
 				DisplayDevice = CSycles.device_display_device(idx),
 			};
 
+			if(d.Description == "Multi Device")
+			{
+				d.Type = DeviceType.Multi;
+			}
+
 			return d;
 		}
 
@@ -484,6 +501,10 @@ namespace ccl
 		/// <returns></returns>
 		static public List<Device> DeviceListFromIntList(List<int> ids)
 		{
+			// TODO filter out first all ids that do not
+			// match an existing device. This can happen due to hardware
+			// configuration changes where an ID no longer is valid
+			// after an ID was selected
 			return ids.ConvertAll((int id) => GetDevice(id));
 		}
 
