@@ -19,6 +19,7 @@ using ccl.ShaderNodes.Sockets;
 using System;
 using System.Text;
 using System.Xml;
+#pragma warning disable IDE1006 // Naming Styles
 
 namespace ccl.ShaderNodes
 {
@@ -264,4 +265,107 @@ namespace ccl.ShaderNodes
 		internal VectorNormalize(Shader shader, IntPtr intPtr) : base(shader, intPtr) { Operation = Operations.Normalize; }
 		public override string ShaderNodeTypeName => "vector_math";
 	}
+
+	public class VectorRotateInputs : Inputs
+	{
+		public VectorSocket Vector { get; set; }
+		public VectorSocket Rotation { get; set; }
+		public VectorSocket Center { get; set; }
+		public VectorSocket Axis { get; set; }
+		public FloatSocket Angle { get; set; }
+
+		/// <summary>
+		/// Create VectorRotateNode input sockets
+		/// </summary>
+		/// <param name="parentNode"></param>
+		internal VectorRotateInputs(ShaderNode parentNode)
+		{
+			Vector = new VectorSocket(parentNode, "Vector", "vector");
+			AddSocket(Vector);
+			Rotation = new VectorSocket(parentNode, "Rotation", "rotation");
+			AddSocket(Rotation);
+			Center = new VectorSocket(parentNode, "Center", "center");
+			AddSocket(Center);
+			Axis = new VectorSocket(parentNode, "Axis", "axis");
+			AddSocket(Axis);
+			Angle = new FloatSocket(parentNode, "Angle", "angle");
+			AddSocket(Angle);
+		}
+	}
+
+	/// <summary>
+	/// VectorRotateNode output sockets
+	/// </summary>
+	public class VectorRotateOutputs : Outputs
+	{
+		public VectorSocket Vector { get; set; }
+
+		/// <summary>
+		/// Create VectorMathNode output sockets
+		/// </summary>
+		/// <param name="parentNode"></param>
+		internal VectorRotateOutputs(ShaderNode parentNode)
+		{
+			Vector = new VectorSocket(parentNode, "Vector", "vector");
+			AddSocket(Vector);
+		}
+	}
+
+	[ShaderNode("vector_rotate")]
+	public class VectorRotate : ShaderNode
+	{
+		public VectorRotate(Shader shader) : this(shader, "a vector rotate node") { }
+		public VectorRotate(Shader shader, string name) : base(shader, name) { FinalizeConstructor(); }
+		internal VectorRotate(Shader shader, IntPtr intPtr) : base(shader, intPtr) { FinalizeConstructor(); }
+		public override string ShaderNodeTypeName => "vector_rotate";
+
+		public enum VectorRotateType : int
+		{
+			Axis,
+			AxisX,
+			AxisY,
+			AxisZ,
+			Euler,
+		}
+
+		public VectorRotateType RotateType { get; set; }
+		public bool Invert { get; set; }
+
+		/// <summary>
+		/// VectorRotateNode input sockets
+		/// </summary>
+		public VectorRotateInputs ins => (VectorRotateInputs)inputs;
+
+		/// <summary>
+		/// VectorRotateNode output sockets
+		/// </summary>
+		public VectorRotateOutputs outs => (VectorRotateOutputs)outputs;
+
+		private void FinalizeConstructor()
+		{
+			inputs = new VectorRotateInputs(this);
+			outputs = new VectorRotateOutputs(this);
+
+			ins.Vector.Value = new float4(0.0f);
+			ins.Rotation.Value = new float4(0.0f);
+			ins.Center.Value = new float4(0.0f);
+			ins.Axis.Value = new float4(0.0f);
+			ins.Angle.Value = 0.0f;
+
+			RotateType = VectorRotateType.AxisY;
+			Invert = false;
+		}
+
+		internal override void SetEnums()
+		{
+			CSycles.shadernode_set_enum(Id, "type", (int)RotateType);
+		}
+
+		internal override void SetDirectMembers()
+		{
+			CSycles.shadernode_set_member_bool(Id, "invert", Invert);
+		}
+
+	}
 }
+#pragma warning restore IDE1006 // Naming Styles
