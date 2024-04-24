@@ -91,7 +91,7 @@ namespace ccl.ShaderNodes.Sockets
 		public void Connect(ISocket to)
 		{
 #if DEBUG
-			if(!
+			if (!
 #endif
 				Parent.Shader.Connect(Parent, UiName, to.Parent, to.UiName)
 #if DEBUG
@@ -102,6 +102,7 @@ namespace ccl.ShaderNodes.Sockets
 #else
 				;
 #endif
+				to.ConnectionFrom = this;
 		}
 
 		internal SocketBase(ShaderNode parentNode, string uiName, string internalName = "UNSET")
