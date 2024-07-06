@@ -36,9 +36,6 @@ namespace ccl
 		#region misc
 		private static bool g_ccycles_loaded;
 
-		[DllImport("kernel32", SetLastError = true, CharSet = CharSet.Unicode)]
-		private static extern IntPtr LoadLibrary(string filename);
-
 		/// <summary>
 		/// Load the ccycles DLL.
 		/// </summary>
@@ -46,11 +43,6 @@ namespace ccl
 		{
 			if (g_ccycles_loaded) return;
 
-#if WIN32
-			var path = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? "";
-			var ccycles_dll = System.IO.Path.Combine(path, "ccycles.dll");
-			LoadLibrary(ccycles_dll);
-#endif
 			LoadShaderNodes();
 			g_ccycles_loaded = true;
 			//GenShaderNodeCode();
