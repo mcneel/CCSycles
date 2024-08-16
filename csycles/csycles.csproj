@@ -108,6 +108,7 @@
     <Compile Include="CSycles.Light.cs" />
     <Compile Include="CSycles.Mesh.cs" />
     <Compile Include="CSycles.Object.cs" />
+    <Compile Include="CSycles.RhinoMapping.cs" />
     <Compile Include="CSycles.Scene.cs" />
     <Compile Include="CSycles.Session.cs" />
     <Compile Include="CSycles.Shader.cs" />
@@ -116,6 +117,7 @@
     <Compile Include="float4.cs" />
     <Compile Include="Mesh.cs" />
     <Compile Include="Object.cs" />
+    <Compile Include="RhinoMapping.cs" />
     <Compile Include="CodeShader.cs" />
     <Compile Include="Inputs.cs" />
     <Compile Include="Integrator.cs" />
