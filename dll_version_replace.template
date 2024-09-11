@@ -1,3 +1,4 @@
+LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL
 
 1 VERSIONINFO
 FILEVERSION VERSIONCOMMAS
@@ -21,3 +22,5 @@ BLOCK "VarFileInfo"
 	VALUE "Translation", 0x0409 0x04B0
 }
 }
+
+2 24 "ccycles_manifest.txt"
