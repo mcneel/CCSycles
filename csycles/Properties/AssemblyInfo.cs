@@ -34,5 +34,17 @@ using System.Runtime.InteropServices;
 // COM, set the ComVisible attribute to true on that type.
 [assembly: ComVisible(false)]
 
+// Setting DefaultDllImportSearchPaths to AssemblyDirectory | UseDllDirectoryForDependencies | System32
+// Ensures Csycles will load its dependencies only from the Rhino\Plug-ins folder or
+// from Windwos\System32 folder but never will try from the Appliction folder, where the .exe is located.
+// This is especially significant when Rhino is loaded as DLL
+//
+// ** This attribute has no effect on non-Windows platforms or the Mono runtime.** 
+// 
+// See also:
+// https://docs.microsoft.com/windows/desktop/dlls/dynamic-link-library-search-order
+// https://msdn.microsoft.com/library/system.runtime.interopservices.dllimportsearchpath
+[assembly: DefaultDllImportSearchPaths(DllImportSearchPath.AssemblyDirectory | DllImportSearchPath.UseDllDirectoryForDependencies | DllImportSearchPath.System32)]
+
 // The following GUID is for the ID of the typelib if this project is exposed to COM
 [assembly: Guid("0d4bcd1a-282c-492e-a615-37efb0a56927")]
