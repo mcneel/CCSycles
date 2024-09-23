@@ -188,6 +188,11 @@ namespace ccl
 			0.0f, 1.0f, 0.0f, 0.0f,
 			0.0f, 0.0f, -1.0f, 0.0f
 		);
+		static public Transform RhinoToCyclesCamReflected { get; } = new Transform(
+			1.0f, 0.0f, 0.0f, 0.0f,
+			0.0f, -1.0f, 0.0f, 0.0f,
+			0.0f, 0.0f, -1.0f, 0.0f
+		);
 
 		/// <summary>
 		/// X row, elements M00-M03
