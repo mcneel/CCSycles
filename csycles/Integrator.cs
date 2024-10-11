@@ -69,7 +69,7 @@ namespace ccl
 
 		/// <summary>
 		/// Set the maximum amount of bounces for a transparency ray.
-		/// 
+		///
 		/// Used when BranchedPath tracing is set.
 		/// </summary>
 		public int TransparentMaxBounce
@@ -81,7 +81,7 @@ namespace ccl
 		}
 		/// <summary>
 		/// Set the minimum amount of bounces for a transparency ray.
-		/// 
+		///
 		/// Used when BranchedPath tracing is set.
 		/// </summary>
 		public int TransparentMinBounce
@@ -94,7 +94,7 @@ namespace ccl
 
 		/// <summary>
 		/// Set the maximum amount of bounces for a diffuse ray.
-		/// 
+		///
 		/// Used when BranchedPath tracing is set.
 		/// </summary>
 		public int MaxDiffuseBounce
@@ -118,7 +118,7 @@ namespace ccl
 
 		/// <summary>
 		/// Set the maximimum amount of bounces for transmission rays.
-		/// 
+		///
 		/// Used when BranchedPath tracing is set.
 		/// </summary>
 		public int MaxTransmissionBounce
@@ -131,7 +131,7 @@ namespace ccl
 
 		/// <summary>
 		/// Set the maximum amount of bounces for volume rays.
-		/// 
+		///
 		/// Used when BranchedPath tracing is set.
 		/// </summary>
 		public int MaxVolumeBounce
@@ -177,7 +177,7 @@ namespace ccl
 
 		/// <summary>
 		/// Set the amount of bounces for AO rays
-		/// 
+		///
 		/// Used when BranchedPath tracing is set.
 		/// </summary>
 		public int AoBounces
@@ -190,7 +190,7 @@ namespace ccl
 
 		/// <summary>
 		/// Set the amount of factor for AO rays
-		/// 
+		///
 		/// Used when BranchedPath tracing is set.
 		/// </summary>
 		public float AoFactor
@@ -352,6 +352,51 @@ namespace ccl
 			set
 			{
 				CSycles.integrator_set_sampling_pattern(Session.Id, value);
+			}
+		}
+
+		/// <summary>
+		/// Set to true to use light trees.
+		/// </summary>
+		public bool UseLightTree
+		{
+			set
+			{
+				CSycles.integrator_set_use_light_tree(Session.Id, value);
+			}
+		}
+
+		/// <summary>
+		/// Set to true to use adaptive sampling.
+		/// </summary>
+		public bool UseAdaptiveSampling
+		{
+			set
+			{
+				CSycles.integrator_set_use_adaptive_sampling(Session.Id, value);
+			}
+		}
+
+		/// <summary>
+		/// Set to 0 to let Cycles choose the best number of samples
+		/// from which on adaptive sampling will be used.
+		/// </summary>
+		public int AdaptiveMinSamples
+		{
+			set
+			{
+				CSycles.integrator_set_adaptive_min_samples(Session.Id, value);
+			}
+		}
+
+		/// <summary>
+		/// Set the adaptive sampling threshold. When changes in a pixel
+		/// fall below this threshold, the pixel is considered converged.
+		/// </summary>
+		public float AdaptiveThreshold
+		{
+			set {
+				CSycles.integrator_set_adaptive_threshold(Session.Id, value);
 			}
 		}
 	}

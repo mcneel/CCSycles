@@ -211,6 +211,34 @@ namespace ccl
 			cycles_integrator_set_light_sampling_threshold(sessionId, value);
 		}
 
+		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		private static extern void cycles_integrator_set_use_light_tree(IntPtr sessionId, bool value);
+		public static void integrator_set_use_light_tree(IntPtr sessionId, bool value)
+		{
+			cycles_integrator_set_use_light_tree(sessionId, value);
+		}
+
+		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		private static extern void cycles_integrator_set_use_adaptive_sampling(IntPtr sessionId, bool value);
+		public static void integrator_set_use_adaptive_sampling(IntPtr sessionId, bool value)
+		{
+			cycles_integrator_set_use_adaptive_sampling(sessionId, value);
+		}
+
+		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		private static extern void cycles_integrator_set_adaptive_min_samples(IntPtr sessionId, int value);
+		public static void integrator_set_adaptive_min_samples(IntPtr sessionId, int value)
+		{
+			cycles_integrator_set_adaptive_min_samples(sessionId, value);
+		}
+
+		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		private static extern void cycles_integrator_set_adaptive_threshold(IntPtr sessionId, float value);
+		public static void integrator_set_adaptive_threshold(IntPtr sessionId, float value)
+		{
+			cycles_integrator_set_adaptive_threshold(sessionId, value);
+		}
+
 
 
 		#endregion
