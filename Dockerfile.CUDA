@@ -1,0 +1,32 @@
+FROM ubuntu:24.04
+
+RUN apt-get update
+RUN apt-get upgrade -y
+
+RUN apt-get install -y g++
+RUN apt-get install -y cmake
+RUN apt-get install -y python3
+RUN apt-get install -y git
+RUN apt-get install -y build-essential
+RUN apt-get install -y wget
+RUN apt-get install -y vim
+
+WORKDIR /tmp
+
+#RUN wget https://developer.download.nvidia.com/compute/cuda/12.8.0/local_installers/cuda_12.8.0_570.86.10_linux.run
+COPY cuda.run cuda.run
+COPY NVIDIA-OptiX-SDK-7.6.0-linux64-x86_64-31894579.sh NVIDIA-OptiX-SDK-7.6.0-linux64-x86_64-31894579.sh
+
+RUN mkdir /opt/optix76
+
+RUN sh cuda.run --silent --toolkit --override
+RUN sh NVIDIA-OptiX-SDK-7.6.0-linux64-x86_64-31894579.sh --skip-license --prefix=/opt/optix76
+
+RUN rm /tmp/*
+
+RUN echo "LD_LIBRARY_PATH=/usr/local/cuda/lib64:${LD_LIBRARY_PATH}" | tee -a /root/.bashrc > /dev/null
+RUN echo "PATH=/usr/local/cuda/bin:${PATH}" | tee -a /root/.bashrc
+
+WORKDIR /cycles
+
+ENTRYPOINT [ "tail", "-f", "/dev/null"]
