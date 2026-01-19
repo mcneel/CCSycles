@@ -51,17 +51,6 @@
         "shadernodes_cs"
       ],
       "postDebugTask": "clear and copy",
-    },
-    {
-      "name": "Nvim Debug Shadernodes Generation",
-      "type": "debugpy",
-      "request": "launch",
-      "program": "${file}",
-      "console": "integratedTerminal",
-      "args": [
-        "datatypes.json",
-        "shadernodes_cs"
-      ]
     }
   ]
 }
