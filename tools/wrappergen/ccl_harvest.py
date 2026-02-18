@@ -13,6 +13,7 @@ parser = argparse.ArgumentParser(description='Get Cycles classes and structs C++
 parser.add_argument('file', type=Path, help='The file or path to harvest')
 parser.add_argument('libs', type=Path, help='top-level path where all dependencies are located')
 parser.add_argument('third_party', type=Path, help='top-level path where third-party dependencies are located')
+parser.add_argument('--deep_diag', action=argparse.BooleanOptionalAction, default=False)
 
 def rec_children(node, marker=False, tokens=False, depth=0):
   sp = "  "
@@ -865,21 +866,21 @@ def get_diag_info(diag):
     }
 
 
-def harvest(file, libs, third_party):
+def harvest(parser_args):
     diags = dict()
     include_dirs = set()
-    for libdir in libs.iterdir():
+    for libdir in parser_args.libs.iterdir():
         if 'aarch' in f'{libdir}':
             continue
         if libdir.is_dir():
             include_dirs.add(f"{libdir}")
             include_dirs.add(f"{libdir / 'include'}")
-    for libdir in third_party.iterdir():
+    for libdir in parser_args.third_party.iterdir():
         if libdir.is_dir():
             include_dirs.add(f"{libdir}")
             include_dirs.add(f"{libdir / 'include'}")
 
-    source_files, _include_dirs = get_source_files(file)
+    source_files, _include_dirs = get_source_files(parser_args.file)
     source_files.sort()
     print(f"Found {len(source_files)} source files to harvest.")
     include_dirs = list(include_dirs.union(set(_include_dirs)))
@@ -935,6 +936,11 @@ def harvest(file, libs, third_party):
         tu = index.parse(sf, args=args)
         diags[f'{sf}'] = [get_diag_info(d) for d in tu.diagnostics]
 
+        if parser_args.deep_diag:
+            diagres = json.dumps(diags[f'{sf}'] , indent=4)
+            with open(f'diagnostics_{sf.replace('/', '_')}.json', 'w') as f:
+                f.write(diagres)
+
         #print(f"\t.. parsed {psf.name}, extracting now datatypes and their members...")
         investigate_children(tu.cursor)
         #rec_children(tu.cursor)
@@ -977,9 +983,9 @@ def realize_inheritance():
     for k in datatypes:
         datatypes[k].realize_inheritance()
 
-
+# Use "--deep_diag" or "--no-deep_diag" in the build target to toggle logging on/off.
 args = parser.parse_args()
-diags = harvest(args.file, args.libs, args.third_party)
+diags = harvest(args)
 
 #realize_inheritance()
 

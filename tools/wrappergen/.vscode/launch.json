@@ -14,6 +14,7 @@
         "/cycles/src/",
         "/cycles/lib/linux_x64/",
         "/cycles/third_party"
+        //"--no-deep_diag"
       ]
     },
     {
