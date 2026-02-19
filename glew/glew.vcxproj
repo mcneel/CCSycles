@@ -21,7 +21,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{1298F8E0-803D-4C1E-8D33-404138EAFE35}</ProjectGuid>
     <RootNamespace>glew</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.20348.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <Import Project="..\..\..\..\..\boostbuild\override.platform.props" Condition="exists('..\..\..\..\..\boostbuild\override.platform.props')" />
@@ -138,7 +138,7 @@
       <CompileAs>CompileAsCpp</CompileAs>
       <DisableSpecificWarnings>4018;4065;4127;4181;4200;4244;4267;4305;4800</DisableSpecificWarnings>
       <TreatSpecificWarningsAsErrors>4013;4431</TreatSpecificWarningsAsErrors>
-			<AdditionalOptions>/w34062 /J /MDd /Gs- %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/w34062 /J /MDd /Gs- %(AdditionalOptions)</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
@@ -160,7 +160,7 @@
       <CompileAs>CompileAsCpp</CompileAs>
       <DisableSpecificWarnings>4018;4065;4127;4181;4200;4244;4267;4305;4800</DisableSpecificWarnings>
       <TreatSpecificWarningsAsErrors>4013;4431</TreatSpecificWarningsAsErrors>
-			<AdditionalOptions>/w34062 /J /MDd /Gs- %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/w34062 /J /MDd /Gs- %(AdditionalOptions)</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
@@ -184,7 +184,7 @@
       <CompileAs>CompileAsCpp</CompileAs>
       <DisableSpecificWarnings>4018;4065;4127;4181;4200;4244;4267;4305;4800</DisableSpecificWarnings>
       <TreatSpecificWarningsAsErrors>4013;4431</TreatSpecificWarningsAsErrors>
-			<AdditionalOptions>/w34062 /J /MD /Gs- %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/w34062 /J /MD /Gs- %(AdditionalOptions)</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
@@ -210,7 +210,7 @@
       <CompileAs>CompileAsCpp</CompileAs>
       <DisableSpecificWarnings>4018;4065;4127;4181;4200;4244;4267;4305;4800</DisableSpecificWarnings>
       <TreatSpecificWarningsAsErrors>4013;4431</TreatSpecificWarningsAsErrors>
-			<AdditionalOptions>/w34062 /J /MD /Gs- %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/w34062 /J /MD /Gs- %(AdditionalOptions)</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
