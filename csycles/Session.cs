@@ -65,6 +65,8 @@ namespace ccl
 		{
 			SessionParams = sessionParams;
 			Id = CSycles.session_create(sessionParams.Id);
+			if (Id == IntPtr.Zero)
+				throw new InvalidOperationException("CSycles.session_create returned null. See compile diagnostics for the preceding native error.");
 			Scene = new Scene(this);
 		}
 
