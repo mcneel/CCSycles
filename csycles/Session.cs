@@ -35,6 +35,7 @@ namespace ccl
 		/// True if the session has already been destroyed.
 		/// </summary>
 		private bool Destroyed;
+		private bool QuickCanceled;
 
 		private Scene sc;
 		/// <summary>
@@ -89,6 +90,7 @@ namespace ccl
 		public void Start()
 		{
 			if (Destroyed) return;
+			QuickCanceled = false;
 			CSycles.progress_reset(Id);
 			CSycles.session_start(Id);
 		}
@@ -123,8 +125,9 @@ namespace ccl
 
 		public void QuickCancel()
 		{
-			if (Destroyed) return;
+			if (Destroyed || QuickCanceled) return;
 			CSycles.session_quickcancel(Id);
+			QuickCanceled = true;
 		}
 
 		/// <summary>
@@ -180,6 +183,7 @@ namespace ccl
 		public int Reset(int width, int height, int samples, int full_x, int full_y, int full_width, int full_height, int pixel_size)
 		{
 			if (Destroyed) return -1;
+			QuickCanceled = false;
 			CSycles.progress_reset(Id);
 			return CSycles.session_reset(Id, width, height, samples, full_x, full_y, full_width, full_height, pixel_size);
 		}
@@ -246,7 +250,10 @@ namespace ccl
 		{
 			if (!Destroyed)
 			{
-				QuickCancel();
+				if (disposing)
+				{
+					QuickCancel();
+				}
 				Destroy();
 				Destroyed = true;
 			}
