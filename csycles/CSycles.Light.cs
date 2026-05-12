@@ -80,6 +80,13 @@ namespace ccl
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		private static extern void cycles_light_set_use_caustics(IntPtr sessionId, IntPtr lightId, uint useCaustics);
+		public static void light_set_use_caustics(IntPtr sessionId, IntPtr lightId, bool useCaustics)
+		{
+			cycles_light_set_use_caustics(sessionId, lightId, (uint)(useCaustics ? 1 : 0));
+		}
+
+		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		private static extern void cycles_light_set_cast_shadow(IntPtr sessionId, IntPtr lightId, uint useMis);
 		public static void light_set_cast_shadow(IntPtr sessionId, IntPtr lightId, bool castShadow)
 		{

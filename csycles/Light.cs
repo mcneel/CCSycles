@@ -84,6 +84,19 @@ namespace ccl
 		}
 
 		/// <summary>
+		/// Set to true to let this light contribute to caustics via Manifold Next
+		/// Event Estimation. Activates only when the scene also contains at least
+		/// one IsCausticsCaster and one IsCausticsReceiver object.
+		/// </summary>
+		public bool UseCaustics
+		{
+			set
+			{
+				CSycles.light_set_use_caustics(Scene.Id, Id, value);
+			}
+		}
+
+		/// <summary>
 		/// Set to true if this light should cast shadows.
 		/// </summary>
 		public bool CastShadow

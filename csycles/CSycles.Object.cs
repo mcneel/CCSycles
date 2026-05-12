@@ -77,6 +77,20 @@ namespace ccl
 		}
 
 		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		private static extern void cycles_scene_object_set_is_caustics_caster(IntPtr sessionId, IntPtr objectId, bool is_caustics_caster);
+		public static void object_set_is_caustics_caster(IntPtr sessionId, IntPtr objectId, bool is_caustics_caster)
+		{
+			cycles_scene_object_set_is_caustics_caster(sessionId, objectId, is_caustics_caster);
+		}
+
+		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		private static extern void cycles_scene_object_set_is_caustics_receiver(IntPtr sessionId, IntPtr objectId, bool is_caustics_receiver);
+		public static void object_set_is_caustics_receiver(IntPtr sessionId, IntPtr objectId, bool is_caustics_receiver)
+		{
+			cycles_scene_object_set_is_caustics_receiver(sessionId, objectId, is_caustics_receiver);
+		}
+
+		[DllImport(Constants.ccycles, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		private static extern void cycles_scene_object_set_is_solid(IntPtr sessionId, IntPtr objectId, bool is_solid);
 		public static void object_set_is_solid(IntPtr sessionId, IntPtr objectId, bool is_solid)
 		{

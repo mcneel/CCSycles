@@ -163,6 +163,30 @@ namespace ccl
 		}
 
 		/// <summary>
+		/// Set to true if this object refracts/reflects light into caustic shadows that
+		/// Manifold Next Event Estimation should evaluate. Caustics activate only when
+		/// at least one caster, one receiver and one light with UseCaustics exist together.
+		/// </summary>
+		public bool IsCausticsCaster
+		{
+			set
+			{
+				CSycles.object_set_is_caustics_caster(Client.Scene.Id, ObjectPtr, value);
+			}
+		}
+
+		/// <summary>
+		/// Set to true if this object should receive caustics via MNEE.
+		/// </summary>
+		public bool IsCausticsReceiver
+		{
+			set
+			{
+				CSycles.object_set_is_caustics_receiver(Client.Scene.Id, ObjectPtr, value);
+			}
+		}
+
+		/// <summary>
 		/// Set to true if this object represents solid geometry.
 		/// </summary>
 		public bool IsSolid
