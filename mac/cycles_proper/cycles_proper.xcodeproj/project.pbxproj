@@ -148,7 +148,6 @@
 			baseConfigurationReference = 37EECDCA288773E700AA4E58 /* LibThirdPartyDebug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 			};
 			name = Debug;
 		};
@@ -157,7 +156,6 @@
 			baseConfigurationReference = 37EECDCB288773E700AA4E58 /* LibThirdPartyRelease.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 			};
 			name = Release;
 		};
@@ -231,7 +229,6 @@
 			baseConfigurationReference = 37EECDCC288773E700AA4E58 /* LibThirdPartyDistribution.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 			};
 			name = Distribution;
 		};
