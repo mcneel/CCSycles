@@ -257,6 +257,19 @@ namespace ccl
 		}
 
 		/// <summary>
+		/// When true, clipping planes cut all rays (indirect bounces too), not just
+		/// camera rays, so clipped geometry no longer contributes to indirect lighting.
+		/// Driven by the Product render preset (RH-95655).
+		/// </summary>
+		public bool ClipAllRays
+		{
+			set
+			{
+				CSycles.integrator_set_clip_all_rays(Session.Id, value);
+			}
+		}
+
+		/// <summary>
 		/// Set to true if all direct lights should be used.
 		/// </summary>
 		public bool UseDirectLight
