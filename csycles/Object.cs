@@ -204,6 +204,18 @@ namespace ccl
 		}
 
 		/// <summary>
+		/// Set the clipping plane participation mask. Bit i is set when clipping
+		/// plane i clips this object. Planes at index >= 32 always clip.
+		/// </summary>
+		public uint ClippingPlaneMask
+		{
+			set
+			{
+				CSycles.object_set_clipping_plane_mask(Client.Scene.Id, ObjectPtr, value);
+			}
+		}
+
+		/// <summary>
 		/// Set object random id.
 		/// </summary>
 		public uint RandomId
