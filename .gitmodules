@@ -1,4 +1,4 @@
 [submodule "cycles"]
 	path = cycles
 	url = https://github.com/mcneel/cycles
-	branch = ccsycles_rhino
+	branch = rhino9_cycles35
