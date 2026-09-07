@@ -248,19 +248,6 @@ namespace ccl
 			}
 		}
 
-		// Cycles' Shader::set_graph() captures `has_volume_connected` once, from the empty graph
-		// supplied at shader creation, then never re-checks. Since we build the shader graph
-		// incrementally (cycles_add_shader_node + cycles_shader_connect_nodes) the flag stays
-		// false, KERNEL_FEATURE_VOLUME is dropped from the compiled kernel, and any Volume
-		// closure on Output is silently ignored. Set this true after wiring a Volume output.
-		public bool HasVolumeConnected
-		{
-			set
-			{
-				if (Scene != null) CSycles.shader_set_has_volume_connected(Scene.Id, Id, value);
-			}
-		}
-
 		/// <summary>
 		/// Create node graph in the given shader from the passed XML.
 		///

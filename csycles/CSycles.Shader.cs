@@ -374,14 +374,6 @@ namespace ccl
 
 		[DllImport(Constants.ccycles, SetLastError = false,
 			CallingConvention = CallingConvention.Cdecl)]
-		private static extern void cycles_shader_set_has_volume_connected(IntPtr sessionId, IntPtr shaderId, uint hasVolumeConnected);
-		public static void shader_set_has_volume_connected(IntPtr sessionId, IntPtr shaderId, bool hasVolumeConnected)
-		{
-			cycles_shader_set_has_volume_connected(sessionId, shaderId, (uint)(hasVolumeConnected ? 1 : 0));
-		}
-
-		[DllImport(Constants.ccycles, SetLastError = false,
-			CallingConvention = CallingConvention.Cdecl)]
 		private static extern void cycles_shader_new_graph(IntPtr shaderId);
 		public static void shader_new_graph(IntPtr shaderId)
 		{
