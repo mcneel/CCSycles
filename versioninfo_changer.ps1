@@ -21,7 +21,7 @@ $bmm = $bd.Minute.ToString("D2")
 $dotted = "$rhinoMajorVersion.0.$yy$doy.$bhr$bmm" + "1"
 $commas = $dotted.Replace(".", ",")
 
-Write-Host "-> branch: $rhinoBranchName (major $rhinoMajorVersion, source $($branchInfo.Source))"
+Write-Host "-> branch: $rhinoBranchName (label from $($branchInfo.Source)); major $rhinoMajorVersion from $($branchInfo.MajorSource)"
 Write-Host "-> $dotted"
 Write-Host "-> $commas"
 
