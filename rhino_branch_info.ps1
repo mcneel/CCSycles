@@ -30,11 +30,14 @@ function Get-RhinoRepoRoot {
     return $null
 }
 
-function Get-RhinoMajorVersionFromHeader {
+function Get-RhinoVersionFromHeader {
     # RH-98439: the version stamp must follow the source tree, not the folder or branch
     # name. A 9.x branch checked out in a tree named "8.x" stamped an 8.0 version, and
     # Windows Installer then kept the old DLL on upgrade.
-    param([AllowNull()][string]$RepoRoot)
+    param(
+        [AllowNull()][string]$RepoRoot,
+        [ValidateSet("MAJOR", "MINOR")][string]$Part = "MAJOR"
+    )
 
     if ([string]::IsNullOrWhiteSpace($RepoRoot)) {
         return $null
@@ -47,12 +50,12 @@ function Get-RhinoMajorVersionFromHeader {
 
     $match = [System.Text.RegularExpressions.Regex]::Match(
         (Get-Content -LiteralPath $versionHeader -Raw),
-        '(?m)^\s*#\s*define\s+RMA_VERSION_MAJOR\s+(?<major>\d+)')
+        "(?m)^\s*#\s*define\s+RMA_VERSION_$Part\s+(?<value>\d+)")
     if (-not $match.Success) {
         return $null
     }
 
-    return $match.Groups["major"].Value
+    return $match.Groups["value"].Value
 }
 
 function Invoke-GitString {
@@ -124,9 +127,20 @@ function Resolve-RhinoBranchInfo {
         }
     }
 
-    $majorFromHeader = Get-RhinoMajorVersionFromHeader -RepoRoot $rhinoRepoRoot
+    $majorFromHeader = Get-RhinoVersionFromHeader -RepoRoot $rhinoRepoRoot
     if (-not $majorFromHeader -and $gitRoot) {
-        $majorFromHeader = Get-RhinoMajorVersionFromHeader -RepoRoot $gitRoot
+        $majorFromHeader = Get-RhinoVersionFromHeader -RepoRoot $gitRoot
+    }
+
+    # The minor is the service release (9.1 = SR1); stamping it keeps the DLL newer than any
+    # build of an earlier service release, so the installer replaces it on upgrade.
+    $minorFromHeader = Get-RhinoVersionFromHeader -RepoRoot $rhinoRepoRoot -Part MINOR
+    if (-not $minorFromHeader -and $gitRoot) {
+        $minorFromHeader = Get-RhinoVersionFromHeader -RepoRoot $gitRoot -Part MINOR
+    }
+    if (-not $minorFromHeader) {
+        Write-Warning "Could not read RMA_VERSION_MINOR from src4/version.h; using minor 0."
+        $minorFromHeader = "0"
     }
 
     if (-not $resolvedBranchName) {
@@ -163,6 +177,7 @@ function Resolve-RhinoBranchInfo {
         BranchName   = $resolvedBranchName
         BranchRoot   = $resolvedBranchRoot
         MajorVersion = $resolvedMajorVersion
+        MinorVersion = $minorFromHeader
         Source       = $source
         MajorSource  = $majorSource
         GitRoot      = $gitRoot
