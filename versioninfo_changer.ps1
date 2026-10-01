@@ -12,16 +12,17 @@ $branchInfo = Resolve-RhinoBranchInfo -StartPath $scriptRoot -RhinoBranchName $R
 $rhinoBranchRoot = $branchInfo.BranchRoot
 $rhinoBranchName = $branchInfo.BranchName
 $rhinoMajorVersion = $branchInfo.MajorVersion
+$rhinoMinorVersion = $branchInfo.MinorVersion
 
 $yy = $bd.ToString("yy")
 $doy = $bd.DayOfYear.ToString("D3")
 $bhr = $bd.ToString("HH")
 $bmm = $bd.Minute.ToString("D2")
 
-$dotted = "$rhinoMajorVersion.0.$yy$doy.$bhr$bmm" + "1"
+$dotted = "$rhinoMajorVersion.$rhinoMinorVersion.$yy$doy.$bhr$bmm" + "1"
 $commas = $dotted.Replace(".", ",")
 
-Write-Host "-> branch: $rhinoBranchName (label from $($branchInfo.Source)); major $rhinoMajorVersion from $($branchInfo.MajorSource)"
+Write-Host "-> branch: $rhinoBranchName (label from $($branchInfo.Source)); major $rhinoMajorVersion from $($branchInfo.MajorSource), minor $rhinoMinorVersion"
 Write-Host "-> $dotted"
 Write-Host "-> $commas"
 
